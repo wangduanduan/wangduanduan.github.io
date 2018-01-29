@@ -1,5 +1,5 @@
 ---
-title: jquery-deferred
+title: 熟练使用使用jQuery Promise (Deferred)
 date: 2018-01-29 13:43:23
 tags:
 - jQuery
