@@ -1,16 +1,8 @@
 ---
-title: Hello World
+title: 我的JavaScript最佳实践
 tags:
 - js
 ---
-
-JS最佳实践
-> update 2017/03/07
-> create by wdd
-> 一直会更新
-> git:https://github.com/wangduanduan/JS-Best-Practices
-
-[TOC]
 
 # 1 可维护性
 > 很多时候，我们不是从零开始，开发新代码。而是去维护别人的代码，以他人的工作成果为基础。确保自己的代码可维护，是赠人玫瑰，手留余香的好事。一方面让别人看的舒服，另一方面也防止自己长时间没看过自己的代码，自己都难以理解。
