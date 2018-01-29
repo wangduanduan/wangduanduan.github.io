@@ -1,5 +1,5 @@
 ---
-title: 如何去获取一个js.org的二级域名
+title: 如何去免费获取一个js.org的二级域名
 date: 2018-01-29 18:08:03
 tags:
 - jsorg
@@ -8,6 +8,8 @@ tags:
 
 > 之前我是使用wangduanduan.github.io作为我的博客地址，后来觉得麻烦，有把博客关了。最近有想去折腾折腾。
 先看效果：[wdd.js.org](https://wdd.js.org)
+
+如果你不了解js.org可以看看我的这篇文章:[一个值得所有前端开发者关注的网站js.org](https://segmentfault.com/a/1190000008342301)
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180129182103_Avcxhn_Jietu20180129-182047.jpeg)
 
