@@ -83,4 +83,7 @@ search:
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: https://github.com/wangduanduan/wangduanduan.github.io.git
+  # branch: [branch]
+  # message: [message]
