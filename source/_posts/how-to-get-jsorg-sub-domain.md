@@ -1,5 +1,5 @@
 ---
-title: 如何去免费获取一个js.org的二级域名
+title: 组织在召唤：如何免费获取一个js.org的二级域名
 date: 2018-01-29 18:08:03
 tags:
 - jsorg
