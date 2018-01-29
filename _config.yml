@@ -85,5 +85,5 @@ search:
 deploy:
   type: git
   repo: https://github.com/wangduanduan/wangduanduan.github.io.git
-  # branch: [branch]
-  # message: [message]
+  branch: master
+  message: update 
