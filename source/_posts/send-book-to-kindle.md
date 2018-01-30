@@ -1,5 +1,5 @@
 ---
-title: 猴子都能懂的向kindle推送电子书的教程
+title: 猴子都能懂的教程：向kindle推送电子书的教程
 date: 2018-01-30 19:55:43
 tags:
 - kindle
