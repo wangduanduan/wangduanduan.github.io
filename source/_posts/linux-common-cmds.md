@@ -1,5 +1,5 @@
 ---
-title: linux-common-cmds
+title: linux常用命令使用场景总结
 date: 2018-01-31 09:58:33
 tags:
 - linux
