@@ -978,6 +978,22 @@ hexo-generator-archive@^0.1.4:
     hexo-pagination "0.0.2"
     object-assign "^2.0.0"
 
+hexo-generator-baidu-sitemap@0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/hexo-generator-baidu-sitemap/-/hexo-generator-baidu-sitemap-0.0.8.tgz#352b55d017cd1b2947ce9cd60af5c4dbebe880bb"
+  dependencies:
+    ejs "^1.0.0"
+    utils-merge "^1.0.0"
+
+hexo-generator-baidu-sitemap@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/hexo-generator-baidu-sitemap/-/hexo-generator-baidu-sitemap-0.1.2.tgz#46521c35cda1666db2c7e50a14fc87c21a7d5634"
+  dependencies:
+    ejs "^1.0.0"
+    hexo "^3.0.0"
+    hexo-generator-baidu-sitemap "0.0.8"
+    utils-merge "^1.0.0"
+
 hexo-generator-category@^0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/hexo-generator-category/-/hexo-generator-category-0.1.3.tgz#b9e6a5862530a83bdd7da4c819c1b9f3e4ccb4b2"
@@ -999,6 +1015,14 @@ hexo-generator-searchdb@^1.0.8:
     ejs "^1.0.0"
     striptags latest
     utils-merge "^1.0.0"
+
+hexo-generator-sitemap@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/hexo-generator-sitemap/-/hexo-generator-sitemap-1.2.0.tgz#3018f8d7d1e2e42b3f71a65a7316ffcf583bc3f3"
+  dependencies:
+    minimatch "^3.0.0"
+    nunjucks "^2.3.0"
+    object-assign "^4.0.1"
 
 hexo-generator-tag@^0.2.0:
   version "0.2.0"
@@ -1074,7 +1098,7 @@ hexo-util@^0.6.0, hexo-util@^0.6.2:
     html-entities "^1.2.0"
     striptags "^2.1.1"
 
-hexo@^3.2.0:
+hexo@^3.0.0, hexo@^3.2.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/hexo/-/hexo-3.5.0.tgz#85a272b36e5c7bfea3571eca064910ed1bc12c8f"
   dependencies:
@@ -1588,6 +1612,14 @@ nth-check@~1.0.1:
 number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
+
+nunjucks@^2.3.0:
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/nunjucks/-/nunjucks-2.5.2.tgz#ea7d346e785b8a4874666c3cca9e18c577fba22c"
+  dependencies:
+    asap "^2.0.3"
+    chokidar "^1.6.0"
+    yargs "^3.32.0"
 
 nunjucks@^3.0.1:
   version "3.0.1"
