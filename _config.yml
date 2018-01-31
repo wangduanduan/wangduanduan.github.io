@@ -13,7 +13,7 @@ keywords: 王端端, 洞香春, wellClient
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://wdd.js.org
 root: /
 # permalink: :year/:month/:day/:title/
 permalink: :title.html
@@ -81,6 +81,18 @@ search:
   field: post
   format: html
   limit: 10000
+
+
+# Extensions
+## Plugins: http://hexo.io/plugins/
+#RSS订阅
+plugin:
+- hexo-generator-feed
+#Feed Atom
+feed:
+type: atom
+path: atom.xml
+limit: 20
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
