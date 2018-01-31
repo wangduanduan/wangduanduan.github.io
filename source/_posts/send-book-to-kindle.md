@@ -5,6 +5,12 @@ tags:
 - kindle
 ---
 
+[原文链接](https://wdd.js.org/2018/01/30/send-book-to-kindle/)
+
+读书，嗯，读书
+
+![](http://p3alsaatj.bkt.clouddn.com/20180130205840_hPSDa6_Jietu20180130-205818.jpeg)
+
 # 教程目的
 - 通过邮件向kindle推送一本电子书
 

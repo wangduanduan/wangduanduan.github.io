@@ -13,7 +13,7 @@ tags:
 https://en.wikipedia.org/w/load.php?debug=false&lang=en&modules=startup&only=scripts&skin=vector
 ```
 
-查询字符串是url中问号后边的部分，形势如：key1=value1&key2=value2&key3=value3。这部分称为`查询(query)组件`。
+查询字符串是url中问号后边的部分，形式如：key1=value1&key2=value2&key3=value3。这部分称为`查询(query)组件`。
 
 # 查询组件的最小数据集
 
