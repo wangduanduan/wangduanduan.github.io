@@ -5,7 +5,9 @@ tags:
 - reading
 ---
 
-- 阅读速度： 每天54000字
+![](http://p3alsaatj.bkt.clouddn.com/20180205175335_cuPtzB_Girl-Reading-Book.jpeg)
+
+- 阅读速度： 每天54000字, 无法量化，就无法改进
 - 页码控制基于多看阅读和kindle paper white
 
 
