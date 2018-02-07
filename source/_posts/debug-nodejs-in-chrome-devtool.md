@@ -8,11 +8,11 @@ tags:
 英文好的，直接看原文
 > https://blog.hospodarets.com/nodejs-debugging-in-chrome-devtools
 
-# 1 要求
+# 要求
 - Node.js 6.3+
 - Chrome 55+
 
-# 2 操作步骤
+# 操作步骤
 - 1 打开连接 `chrome://flags/#enable-devtools-experiments`
 - 2 开启`开发者工具实验性功能` 
 - 3 重启浏览器
@@ -23,7 +23,7 @@ tags:
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180207141636_hIfIyG_Screenshot.jpeg)
 
-# 3 运行程序
+# 运行程序
 必须要有 `--inspect`
 ```
 > node --inspect www
@@ -37,6 +37,3 @@ To start debugging, open the following URL in Chrome:
 
 程序后端输出的日志也回输出到谷歌浏览器的console里面，同时也可以在Sources里进行断点调试了。
 ![](http://p3alsaatj.bkt.clouddn.com/20180207141649_ArMyV7_Screenshot.jpeg)
-
-
-  [1]: /img/bVIKp4
