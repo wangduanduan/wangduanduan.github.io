@@ -9,5 +9,8 @@ blog: 洞香春
 description: 前端，后端，炒菜，摄影，读书，收集工具
 author: 王端端
 skills: js, nodejs, vue, webpack, linux, python
-emain: 1779706607@qq.com
+email: 1779706607@qq.com
+qq: 1779706607
+github: https://github.com/wangduanduan
+segmentfault: https://segmentfault.com/u/177970
 ```
