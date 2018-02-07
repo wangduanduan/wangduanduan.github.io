@@ -1,5 +1,5 @@
 ---
-title: chrome-snippets-collect
+title: 谷歌浏览器： Snippets小程序哪家强？
 date: 2018-02-07 13:48:55
 tags:
 - snippets
@@ -8,7 +8,8 @@ tags:
 > Snippets是可以在Chrome DevTools的“源”面板中创建和执行的小脚本。 您可以从任何页面访问和运行它们。 当您运行代码段时，它会从当前打开的页面的上下文执行。
 
 # 显示所有元素的边框，看页面布局非常方便
-![图片描述][1]
+![](http://p3alsaatj.bkt.clouddn.com/20180207135027_4TAe1P_Screenshot.jpeg)
+
 ```
 [].forEach.call($$("*"),function(a){
   a.style.outline="1px solid #"+(~~(Math.random()*(1<<24))).toString(16)
@@ -18,7 +19,7 @@ tags:
 # allcolors.js
 > 从页面上的元素中使用的计算样式打印所有颜色。 使用样式化的console.log调用来可视化每种颜色。
 
-![clipboard.png](/img/bVJmPn)
+![](http://p3alsaatj.bkt.clouddn.com/20180207135046_bfEqm5_Screenshot.jpeg)
 ```
 // allcolors.js
 // https://github.com/bgrins/devtools-snippets
@@ -125,7 +126,8 @@ tags:
 # cachebuster.js
 > 通过在href和src属性的末尾添加Date.now（）来覆盖所有链接和（可选）脚本标记。 默认情况下，不执行处理脚本，应将变量process_scripts更改为true以运行这些脚本。
 
-![clipboard.png](/img/bVJmPI)
+![](http://p3alsaatj.bkt.clouddn.com/20180207135131_CvscRc_Screenshot.jpeg)
+
 ```
 //Cache Buster
 (function (){
@@ -166,7 +168,7 @@ tags:
 console.save(data, [filename])
 ```
 
-![clipboard.png](/img/bVJmQf)
+![](http://p3alsaatj.bkt.clouddn.com/20180207135218_BG0kgp_Screenshot.jpeg)
 ```
 (function(console){
 
@@ -199,7 +201,7 @@ console.save(data, [filename])
 # formcontrols.js
 > 在一个不错的表中显示所有html表单元素及其值和类型。 在页面上为每个表单添加一个新表
 
-![clipboard.png](/img/bVJmQC)
+![](http://p3alsaatj.bkt.clouddn.com/20180207135247_mH2FW4_Screenshot.jpeg)
 ```
 // formcontrols.js
 // https://github.com/bgrins/devtools-snippets
@@ -236,7 +238,7 @@ console.save(data, [filename])
 # log-globals.js
 > 打印全局变量
 
-![clipboard.png](/img/bVJmQL)
+![](http://p3alsaatj.bkt.clouddn.com/20180207135302_NLgNKa_Screenshot.jpeg)
 ```
 *
 	log-globals
@@ -276,7 +278,7 @@ console.save(data, [filename])
 # performance.js
 > 打印有关window.performance对象的信息。 使用console.table和分组来组织信息。
 
-![clipboard.png](/img/bVJmTw)
+![](http://p3alsaatj.bkt.clouddn.com/20180207135314_IhE6UI_Screenshot.jpeg)
 ```
 // performance.js
 // https://github.com/bgrins/devtools-snippets
@@ -369,10 +371,6 @@ console.save(data, [filename])
 ```
 
 
-# 更多有意思的：http://bgrins.github.io/devtools-snippets/
-
-
-
-
-  [1]: /img/bVJmOH
+# 更多有意思的：
+- http://bgrins.github.io/devtools-snippets/
 
