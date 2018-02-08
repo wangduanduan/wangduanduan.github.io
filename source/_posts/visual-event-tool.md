@@ -1,5 +1,5 @@
 ---
-title: visual-event-tool 定位神器：1秒定位DOM元素绑定的事件代码的位置
+title: 定位神器：1秒定位DOM元素绑定的事件代码的位置
 date: 2018-02-08 09:15:20
 tags:
 ---
