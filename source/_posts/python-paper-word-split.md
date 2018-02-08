@@ -1,5 +1,5 @@
 ---
-title: 前端小白的python实战: 报纸分词排序
+title: 前端小白的python实战 报纸分词排序
 date: 2018-02-08 09:23:37
 tags:
 - Python
