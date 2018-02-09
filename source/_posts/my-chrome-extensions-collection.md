@@ -5,50 +5,50 @@ tags:
 - 浏览器插件
 ---
 
-# 广告拦截：[AdBlock](https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom)
+# 1. 广告拦截：[AdBlock](https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom)
 ![](http://p3alsaatj.bkt.clouddn.com/20180209102823_9knbE2_Screenshot.jpeg)
 
-# 获取网页样式：[CSS Peeper](https://chrome.google.com/webstore/detail/css-peeper/mbnbehikldjhnfehhnaidhjhoofhpehk)
+# 2. 获取网页样式：[CSS Peeper](https://chrome.google.com/webstore/detail/css-peeper/mbnbehikldjhnfehhnaidhjhoofhpehk)
 ![](http://p3alsaatj.bkt.clouddn.com/20180209102836_jsm5C6_Screenshot.jpeg)
 
-# 扩展管理：[扩展管理器（Extension Manager）](https://chrome.google.com/webstore/detail/extension-manager/gjldcdngmdknpinoemndlidpcabkggco)
+# 3. 扩展管理：[扩展管理器（Extension Manager）](https://chrome.google.com/webstore/detail/extension-manager/gjldcdngmdknpinoemndlidpcabkggco)
 ![](http://p3alsaatj.bkt.clouddn.com/20180209102849_eOYK73_Screenshot.jpeg)
 
-# json格式化：[JSON-handle](https://chrome.google.com/webstore/detail/json-handle/iahnhfdhidomcpggpaimmmahffihkfnj)
+# 4. json格式化：[JSON-handle](https://chrome.google.com/webstore/detail/json-handle/iahnhfdhidomcpggpaimmmahffihkfnj)
 ![](http://p3alsaatj.bkt.clouddn.com/20180209102859_yFF7sW_Screenshot.jpeg)
 
-# 多点高亮查找：[Multi-highlight](https://chrome.google.com/webstore/detail/multi-highlight/pfgfgjlejbbpfmcfjhdmikihihddeeji)
+# 5. 多点高亮查找：[Multi-highlight](https://chrome.google.com/webstore/detail/multi-highlight/pfgfgjlejbbpfmcfjhdmikihihddeeji)
 ![](http://p3alsaatj.bkt.clouddn.com/20180209102911_P6M1am_Screenshot.jpeg)
 
-# github源码阅读：[Octotree](https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnagc?hl=en-US)
+# 6. github源码阅读：[Octotree](https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnagc?hl=en-US)
 ![](http://p3alsaatj.bkt.clouddn.com/20180209102923_Hcc51U_Screenshot.jpeg)
 
-# http接口调试：[Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop)
+# 7. http接口调试：[Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop)
 ![](http://p3alsaatj.bkt.clouddn.com/20180209102936_jv4owo_Screenshot.jpeg)
 
-# 脚本增强：[Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
+# 8. 脚本增强：[Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
 ![](http://p3alsaatj.bkt.clouddn.com/20180209102945_MAOC9H_Screenshot.jpeg)
 
-# 脚本注入：[Script Injector](https://chrome.google.com/webstore/detail/script-injector/fddnddnolonllcgfbenaloajnbhebmob)
+# 9. 脚本注入：[Script Injector](https://chrome.google.com/webstore/detail/script-injector/fddnddnolonllcgfbenaloajnbhebmob)
 ![](http://p3alsaatj.bkt.clouddn.com/20180209102956_mL46rn_Screenshot.jpeg)
 
-# `键`步如飞：[Vimium](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb)
+# 10. `键`步如飞：[Vimium](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb)
 ![](http://p3alsaatj.bkt.clouddn.com/20180209103007_0v2dJn_Screenshot.jpeg)
 
-# Vue开发利器：[Vue.js devtools](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+# 11. Vue开发利器：[Vue.js devtools](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
 ![](http://p3alsaatj.bkt.clouddn.com/20180209103018_luGAzT_Screenshot.jpeg)
 
-# 前端资讯：[掘金](https://chrome.google.com/webstore/detail/%E6%8E%98%E9%87%91/lecdifefmmfjnjjinhaennhdlmcaeeeb)
+# 12. 前端资讯：[掘金](https://chrome.google.com/webstore/detail/%E6%8E%98%E9%87%91/lecdifefmmfjnjjinhaennhdlmcaeeeb)
 ![](http://p3alsaatj.bkt.clouddn.com/20180209103029_AnNeZb_Screenshot.jpeg)
 
-# 让不支持markdown的富文本编辑器支持markdown: [Markdown Here](https://chrome.google.com/webstore/detail/markdown-here/elifhakcjgalahccnjkneoccemfahfoa?hl=zh-CN)
+# 13. 让不支持markdown的富文本编辑器支持markdown: [Markdown Here](https://chrome.google.com/webstore/detail/markdown-here/elifhakcjgalahccnjkneoccemfahfoa?hl=zh-CN)
 ![](http://p3alsaatj.bkt.clouddn.com/20180209103039_VyOf1S_Screenshot.jpeg)
 
 
-# 多标签页时，自动释放内存，开100个标签页也毫无压力：[The Great Suspender](https://chrome.google.com/webstore/detail/the-great-suspender/klbibkeccnjlkjkiokjodocebajanakg?hl=zh-CN)
+# 14. 多标签页时，自动释放内存，开100个标签页也毫无压力：[The Great Suspender](https://chrome.google.com/webstore/detail/the-great-suspender/klbibkeccnjlkjkiokjodocebajanakg?hl=zh-CN)
 ![](http://p3alsaatj.bkt.clouddn.com/20180209103052_gRlB6Y_Screenshot.jpeg)
 
-# 接口测试：[Restlet Client - REST API Testing](https://chrome.google.com/webstore/detail/restlet-client-rest-api-t/aejoelaoggembcahagimdiliamlcdmfm?hl=en-US)
+# 15. 接口测试：[Restlet Client - REST API Testing](https://chrome.google.com/webstore/detail/restlet-client-rest-api-t/aejoelaoggembcahagimdiliamlcdmfm?hl=en-US)
 
 restlet Client和post man功能差不多，restlet更轻量，只在新开一个标签页。postman 需要打开一个app。
 

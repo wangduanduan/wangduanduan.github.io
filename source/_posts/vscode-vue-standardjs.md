@@ -8,7 +8,7 @@ tags:
 ---
 
 
-# JavaScript Standard Style简介
+# 1. JavaScript Standard Style简介
 本工具通过以下三种方式为你（及你的团队）节省大量时间：
 
 - 无须配置。 史上最便捷的统一代码风格的方式，轻松拥有。
@@ -23,7 +23,7 @@ npm i standard -g
 
 关于[JavaScript 代码规范](https://standardjs.com/readme-zhcn.html), 你可以点击链接看一下。
 
-# 如何在vscode中用JavaScript Standard Style风格去验证 vue文件
+# 2. 如何在vscode中用JavaScript Standard Style风格去验证 vue文件
 
 实际上[JavaScript Standard Style](https://marketplace.visualstudio.com/items?itemName=chenxsan.vscode-standardjs)有一个FAQ, 说明了如何使用。
 
@@ -63,15 +63,15 @@ If you want to enable autoFix for the new languages, you should enable it yourse
 ```
 
 
-# 综上， 整理一下安装思路
+# 3. 综上， 整理一下安装思路
 
-## 需要安装哪些包？
+## 3.1. 需要安装哪些包？
 - `npm i -g standard`
 - `npm i -g eslint-plugin-html@3.2.2` 必须是3x版本
 - `npm i -g eslint`
 以上三个包都是全局安装的，如果你想看看全局安装了哪些包可以用`npm list -g --depth=0`查看
 
-## vscode config 如何写？
+## 3.2. vscode config 如何写？
 ```
   "standard.validate": [
     "javascript",
@@ -89,12 +89,12 @@ If you want to enable autoFix for the new languages, you should enable it yourse
   },
 ```
 
-## 如何在保存文件时，自动使用standard格式化vue文件
+## 3.3. 如何在保存文件时，自动使用standard格式化vue文件
 ```
 "standard.autoFixOnSave": true
 ```
 
-## 如果还不行怎么办？
+## 3.4. 如果还不行怎么办？
 1. 重启一下vscode
 2. 重启一下电脑
 3. 在此文后追加评论

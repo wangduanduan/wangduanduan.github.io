@@ -4,14 +4,14 @@ date: 2018-02-08 13:51:13
 tags:
 ---
 
-# 特点
+# 1. 特点
 - 无依赖
 - 无检查
 - 无错误处理
 - 无逻辑
 - 无配置
 
-# 代码
+# 2. 代码
 ```
 function render(tpl, data){
     var re = /{{([^}]+)?}}/;
@@ -24,7 +24,7 @@ function render(tpl, data){
 
 ```
 
-# demo
+# 3. demo
 ```
 var tpl = '/cube_xinbao_dial_result/{{action}}/{{report_type}}/{{query}}/?userId={{userId}}';
 

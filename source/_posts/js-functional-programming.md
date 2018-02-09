@@ -20,7 +20,7 @@ github原文地址：https://github.com/MostlyAdequate/mostly-adequate-guide
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180208140744_5kvV4A_Screenshot.jpeg)
 
-# 后记
+# 1. 后记
 其实我是想学点函数柯里化的东西，然后用谷歌搜索了一下。第一个结果就是这本书。`非常感谢谷歌搜索，如果我用百度，可能就没有缘分遇到这本书了。`
 
 

@@ -5,7 +5,7 @@ tags:
 - sublime
 ---
 
-# 对应关系
+# 1. 对应关系
 标志 | 键名
 --- | ---
 ⌘  | command
@@ -18,7 +18,7 @@ tags:
 
 红色标记的是常用的快捷键。
 
-# 编辑
+# 2. 编辑
 按键 | 功能
 --- | ---
 `⌘ + X`|	剪切当前行
@@ -54,14 +54,14 @@ tags:
 ⌃ + ⇧ + W|	Wrap Selection in html tag
 ⌃ + ⇧ + K |	Delete current line of cursor
 
-# 导航
+# 3. 导航
 按键 |	功能
 ---| ---
 ⌘ + P or ⌘ + T	| 按照文件名打开文件
 ⌘ + R |	Goto symbol
 `⌃ + G ` |	跳到制定行
 
-# 通用
+# 4. 通用
 按键 |	功能
 --- | ---
 ⌘ + ⇧ + P |	Command Palette
@@ -71,14 +71,14 @@ tags:
 ⌘ + K, ⌘ + B|	Toggle side bar
 ⌃ + ⇧ + P|	Show scope in status bar
 
-# 查找／替换
+# 5. 查找／替换
 按键 | 	功能
 ---|---
 `⌘ + F` |	查找
 `⌘ + ⌥ + F` |	替换
 ⌘ + ⇧ + F|	在文件中查找
 
-# 滚动
+# 6. 滚动
 
 按键 |	功能
 ---|---
@@ -86,7 +86,7 @@ tags:
 ⌃ + L|	使当前行处于显示器的中央
 `⌘ + Down`|	滚动到文件结尾
 `⌘ + Up`|	滚动到文件开始
-# 标签页
+# 7. 标签页
 按键 |	功能
 ---|---
 ⌘ + ⇧ + t |	打开最近关闭的标签页
@@ -97,7 +97,7 @@ tags:
 `^ + Tab` |	顺序跳转到最近使用的标签页
 ⇧ + ^ + Tab	| 逆序跳转最近使用的标签页
 
-# 窗口分割
+# 8. 窗口分割
 按键 | 	功能
 ---|---
 ⌘ + ⌥ + 1|	切换成单窗口
@@ -108,7 +108,7 @@ tags:
 ⌃ + [NUM]|	Jump to group where num is 1-4
 ⌃ + ⇧ + [NUM]|	Move file to specified group where num is 1-4
 
-# 书签
+# 9. 书签
 按键|	功能
 ---|---
 `⌘ + F2` |	设置或取消设置书签
@@ -116,20 +116,20 @@ tags:
 `⇧ + F2	`| 跳到上一个书签
 `⇧ + ⌘ + F2` |	清空所有书签
 
-# 文本管理
+# 10. 文本管理
 按键 |	功能
 ---|---
 ⌘ + K, ⌘ + U|	转成大写
 ⌘ + K, ⌘ + L|	转成小写
 ⌘ + ⌃ + up, ⌘ + ⌃ + down|	Clip text upwards / downwards
 
-# 常用插件快捷键
+# 11. 常用插件快捷键
 插件名|按键|功能
 ---|---|---
 omniMarkupPreview|⌘ + ⌥ + o| 预览markdown
 viewInBrowse|⌃ + ⌥ + c | 在谷歌浏览器中预览html
 
-# 参考
+# 12. 参考
 - [Keyboard Shortcuts - OSX](http://docs.sublimetext.info/en/latest/reference/keyboard_shortcuts_osx.html)
 
 

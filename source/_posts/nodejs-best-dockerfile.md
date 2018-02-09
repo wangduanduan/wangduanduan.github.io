@@ -7,8 +7,8 @@ tags:
 - dockerfile
 ---
 
-# 少啰嗦，先看代码
-## package.json
+# 1. 少啰嗦，先看代码
+## 1.1. package.json
 ```
 {
   "name": "xxx",
@@ -36,7 +36,7 @@ tags:
 }
 ```
 
-## dockerfile
+## 1.2. dockerfile
 ```
 FROM node:9.2.1-alpine
 
@@ -56,7 +56,7 @@ EXPOSE 8088
 CMD yarn run server
 ```
 
-# 分析原理
+# 2. 分析原理
 - 使用alpine的nodejs镜像，显著缩小nodejs镜像大小
 - node:9.2.1-alpine自带yarn 和 npm
 - copy package到run npm i到copy . /app, 这样的顺序可以充分使用镜像缓存
@@ -64,6 +64,6 @@ CMD yarn run server
 `修改过后，对比之前通过jenkins打包时间从10分钟缩短到7.4秒`
 
 
-# 参考资料
+# 3. 参考资料
 - [How to write excellent Dockerfiles](https://rock-it.pl/how-to-write-excellent-dockerfiles/)
 

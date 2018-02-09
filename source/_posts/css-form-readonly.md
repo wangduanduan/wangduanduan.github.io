@@ -12,7 +12,7 @@ tags:
 <form class="form-readonly"></form>
 ```
 
-# 方法1: 用:before给form做个看不见的蒙版，遮住下面所有的元素，使之不响应任何事件
+# 1. 方法1: 用:before给form做个看不见的蒙版，遮住下面所有的元素，使之不响应任何事件
 ```
 .form-readonly{
     position: relative;
@@ -28,7 +28,7 @@ tags:
 }
 ```
 
-# 方法2: 用pointer-events:none, 让所有事件穿透form
+# 2. 方法2: 用pointer-events:none, 让所有事件穿透form
 ```
 .form-readonly{
     pointer-events:none;

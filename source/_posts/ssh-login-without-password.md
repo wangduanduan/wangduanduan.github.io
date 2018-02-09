@@ -5,12 +5,12 @@ tags:
 - ssh
 ---
 
-# 1 前提说明
+# 1. 前提说明
 A(本机 mac item2)
 B(远程机器 ip:a.b.c.d centos)
 
-# 2 过程1
-# 2.1 生成public_key与private_key
+# 2. 过程1
+# 3. 生成public_key与private_key
 在本机上输入，可以一路回车，不用说明
 ```
 ssh-keygen -t rsa
@@ -22,14 +22,14 @@ id_rsa
 id_rsa.pub
 ```
 
-# 2.2 将public_key上传到远程服务器
+# 4. 将public_key上传到远程服务器
 注意：在本机上输入
 ```
 // 回车之后，需要输入远程主机B的登录密码
 scp ~/.ssh/id_rsa.pub root@a.b.c.d:/root/.ssh
 ```
 
-# 2.3 登录远程主机
+# 5. 登录远程主机
 在本机上输入
 ```
 // 需要输入远程主机的密码
@@ -45,7 +45,7 @@ mv id_rsa.pub authorized_keys
 cat id_rsa.pub >> authorized_keys
 ```
 
-# 2.4 本机配置
+# 6. 本机配置
 注意，此时需要退出ssh, 在本机上执行以下命令
 ```
 vi ~/.ssh/config
@@ -61,11 +61,11 @@ IdentityFile ~/.ssh/id_rsa
 
 然后试一下，只需要`ssh serverName`, 就可以直接登录远程服务器，是不是很爽
 
-# 3 参考文献
+# 7. 参考文献
 - [scp 命令教程](http://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/scp.html)
 - [mac用iterm2实现ssh，怎么像SecureCRT一样保存IP和账号密码？](https://www.zhihu.com/question/30640159)
 
-# 4 精华推荐
+# 8. 精华推荐
 最后推荐一本非常好的linux常用命令手册，非常不错哦。
 
 > Linux下有很多命令行工具供我们使用，每个工具总是提供了大量参数供我们选择； 实际工作中，我们用到的工具，最常用的总是那么几个参数组合； 为此，我写了这本书相对实用的书；

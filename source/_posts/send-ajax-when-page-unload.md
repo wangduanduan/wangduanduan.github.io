@@ -6,7 +6,7 @@ tags:
 - onunload
 ---
 
-## 1 同步Ajax
+## 0.1. 同步Ajax
  
 > 这种需求主要用于当浏览器关闭，或者刷新时，向后端发起Ajax请求。
 
@@ -19,7 +19,7 @@ window.onunload = function(){
 
 同步请求锁定浏览器，直到完成。 如果请求是异步的，页面只是继续卸载。 它足够快，以至于该请求甚至没有时间触发。服务端很可能收不到请求。
 
-## 2 navigator.sendBeacon
+## 0.2. navigator.sendBeacon
 
 `优点`：简洁、异步、非阻塞
 `缺点`：这是实验性的技术，并非所有浏览器都支持。其中IE和safari不支持该技术。

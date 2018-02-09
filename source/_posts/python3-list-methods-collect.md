@@ -5,12 +5,12 @@ tags:
 - python3
 ---
 
-# 使用`[]`或者`list()`创建列表
+# 1. 使用`[]`或者`list()`创建列表
 ```
 user = []
 user = list()
 ```
-# 使用`list() `可以将其他类型转换成列表
+# 2. 使用`list() `可以将其他类型转换成列表
 ```
 # 将字符串转成列表
 >>> list('abcde')
@@ -20,7 +20,7 @@ user = list()
 >>> list(('a','b','c'))
 ['a', 'b', 'c']
 ```
-# 使用`[offset]`获取元素 或 修改元素
+# 3. 使用`[offset]`获取元素 或 修改元素
 ```
 >>> users = ['a','b','c','d','e']
 # 可以使用整数来获取某个元素
@@ -46,7 +46,7 @@ IndexError: list index out of range
 ['wdd', 'b', 'c', 'd', 'e']
 >>> 
 ```
-# 列表切片与提取元素
+# 4. 列表切片与提取元素
 列表的切片或者提取之后仍然是一个列表
 形式如：`list[start:end:step]`
 ```
@@ -79,7 +79,7 @@ IndexError: list index out of range
 
 ```
 
-# 使用`append()`添加元素至尾部
+# 5. 使用`append()`添加元素至尾部
 形式如：`list.append(item)`
 ```
 >>> users
@@ -89,7 +89,7 @@ IndexError: list index out of range
 ['wdd', 'b', 'c', 'd', 'e', 'ddw']
 ```
 
-# 使用`extend()`或`+=`合并列表
+# 6. 使用`extend()`或`+=`合并列表
 形式如：`list1.extend(list2)`
 这两个方法都会直接修改原列表
 ```
@@ -105,7 +105,7 @@ IndexError: list index out of range
 ['wdd', 'b', 'c', 'd', 'e', 'ddw', 'heihei', 'haha', 'heihei', 'haha']
 ```
 
-# 使用`insert()`在指定位置插入元素
+# 7. 使用`insert()`在指定位置插入元素
 形式如：`list.insert(offset, item)`
 insert也不存在越界的问题，偏移量正负都行，越界之后会自动伸缩到界限之内，并不会报错
 ```
@@ -127,7 +127,7 @@ insert也不存在越界的问题，偏移量正负都行，越界之后会自�
 ['-xiaoxiao', 'xiaoxiao', 'wdd', 'b', 'c', 'd', 'e', 'ddw', 'heihei', 'haha', 'heihei', '-xiaoxiao', 'haha', '-xiaoxiao']
 ```
 
-# 使用`del`删除某个元素
+# 8. 使用`del`删除某个元素
 形式如：`del list[offset]`
 del是python的语句，而不是列表的方法，del删除不存在的元素时，也会提示越界
 ```
@@ -146,7 +146,7 @@ Traceback (most recent call last):
 IndexError: list assignment index out of range
 ```
 
-# 使用`remove`删除具有指定值的元素
+# 9. 使用`remove`删除具有指定值的元素
 形式如：`list.remove(value)`
 ```
 >>> users
@@ -166,7 +166,7 @@ ValueError: list.remove(x): x not in list
 ['xiaoxiao', 'wdd', 'b', 'd', 'e', 'ddw', 'heihei', 'heihei', '-xiaoxiao', 'haha', '-xiaoxiao']
 ```
 
-# 使用`pop()`方式返回某个元素后，并在数组里删除它
+# 10. 使用`pop()`方式返回某个元素后，并在数组里删除它
 形式如：`list.pop(offset=-1)` 偏移量默认等于-1，也就是删除最后的元素
 ```
 >>> users
@@ -192,7 +192,7 @@ Traceback (most recent call last):
 IndexError: pop index out of range
 ```
 
-# 使用`index()`查询具有特定值的元素位置
+# 11. 使用`index()`查询具有特定值的元素位置
 形式如：`list.index(value)`
 ```
 # index只会返回第一遇到该值得位置
@@ -208,7 +208,7 @@ Traceback (most recent call last):
 ValueError: 'laksdf' is not in list
 ```
 
-# 使用`in`判断值是否存在列表
+# 12. 使用`in`判断值是否存在列表
 形式如：`value in list`
 ```
 >>> users
@@ -217,7 +217,7 @@ ValueError: 'laksdf' is not in list
 True
 ```
 
-# 使用`count()`记录特定值出现的次数
+# 13. 使用`count()`记录特定值出现的次数
 形式如：`list.count(value)`
 ```
 >>> users
@@ -228,7 +228,7 @@ True
 0
 ```
 
-# 使用`join()`将列表转为字符串
+# 14. 使用`join()`将列表转为字符串
 形式如：`string.join(list)`
 ```
 >>> users
@@ -241,7 +241,7 @@ True
 ''
 ```
 
-# 使用`sort()`重新排列列表元素
+# 15. 使用`sort()`重新排列列表元素
 形式如：list.sort()
 ```
 >>> users
@@ -268,7 +268,7 @@ True
 
 ```
 
-# 使用`reverse()`将列表翻转
+# 16. 使用`reverse()`将列表翻转
 形式如：list.reverse()
 ```
 >>> users
@@ -278,7 +278,7 @@ True
 ['-xiaoxiao', 'b', 'd', 'ddw', 'e', 'haha', 'heihei', 'heihei', 'wdd']
 ```
 
-# 使用`copy()`复制列表
+# 17. 使用`copy()`复制列表
 形式如：`list2 = list1.copy()`
 list2 = list1 这种并不是列表的复制，只是给列表起了别名。实际上还是指向同一个值。
 ```
@@ -290,7 +290,7 @@ list2 = list1 这种并不是列表的复制，只是给列表起了别名。实
 >>> 
 
 ```
-# 使用`clear()`清空列表
+# 18. 使用`clear()`清空列表
 形式如： `list.clear()`
 ```
 >>> users2
@@ -299,7 +299,7 @@ list2 = list1 这种并不是列表的复制，只是给列表起了别名。实
 >>> users2
 []
 ```
-# 使用`len()`获取列表长度
+# 19. 使用`len()`获取列表长度
 形式如：`len(list)`
 ```
 >>> users
@@ -309,7 +309,7 @@ list2 = list1 这种并不是列表的复制，只是给列表起了别名。实
 ```
 
 
-# 关于列表越界的深入思考
+# 20. 关于列表越界的深入思考
 写了这些方法后，我有一些疑问，为什么有些操作会提示越界，有些则不会呢？
 
 会提示偏移量越界的操作有

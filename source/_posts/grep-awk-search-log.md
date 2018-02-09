@@ -6,7 +6,7 @@ tags:
 - awk
 ---
 
-# grep 常用参数
+# 1. grep 常用参数
 参考： [GNU Grep 3.0](https://www.gnu.org/software/grep/manual/grep.html)
 ```
 --color:高亮显示匹配到的字符串
@@ -29,41 +29,41 @@ tags:
 －v：显示不包含匹配文本的所有行。
 ```
 
-# 普通：搜索trace.log 中含有ERROR字段的日志
+# 2. 普通：搜索trace.log 中含有ERROR字段的日志
 `grep ERROR trace.log `
 
-# 输出文件：可以将日志输出文件中
+# 3. 输出文件：可以将日志输出文件中
 `grep ERROR trace.log > error.log`
 
-# 反向：搜索不包含ERROR字段的日志
+# 4. 反向：搜索不包含ERROR字段的日志
 `grep -v ERROR trace.log`
 
-# 向前：搜索包含ERROR,并且显示ERROR前10行的日志
+# 5. 向前：搜索包含ERROR,并且显示ERROR前10行的日志
 `grep -B 10 ERROR trace.log`
 
-# 向后：搜索包含ERROR字段，并且显示ERROR后10行的日志
+# 6. 向后：搜索包含ERROR字段，并且显示ERROR后10行的日志
 `grep -A 10 ERROR trace.log`
 
-# 上下文：搜索包含ERROR字段，并且显示ERROR字段前后10行的日志
+# 7. 上下文：搜索包含ERROR字段，并且显示ERROR字段前后10行的日志
 `grep -C 10 ERROR trace.log`
 
-# 多字段：搜索包含ERROR和DEBUG字段的日志
+# 8. 多字段：搜索包含ERROR和DEBUG字段的日志
 `gerp -E 'ERROR|DEBUG' trace.log`
 
-# 多文件：从多个.log文件中搜索含有ERROR的日志
+# 9. 多文件：从多个.log文件中搜索含有ERROR的日志
 `grep ERROR *.log`
 
-# 省略文件名：从多个.log文件中搜索ERROR字段日志，并不显示日志文件名
+# 10. 省略文件名：从多个.log文件中搜索ERROR字段日志，并不显示日志文件名
 从多个文件中搜索的日志默认每行会带有日志文件名
 
 `grep -h ERROR *.log`
 
-# 时间范围： 按照时间范围搜索日志
+# 11. 时间范围： 按照时间范围搜索日志
 `awk '$2>"17:30:00" && $2<"18:00:00"' trace.log`
 日志形式如下, $2代表第二列即11:44:58, awk需要指定列
 ```
 11-21 16:44:58 /user/info/
 ```
 
-# 有没有：搜索到第一个匹配行后就停止搜索
+# 12. 有没有：搜索到第一个匹配行后就停止搜索
 `grep -m 1 ERROR trace.log`

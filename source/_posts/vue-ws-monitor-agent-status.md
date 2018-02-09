@@ -233,7 +233,7 @@ var tm = (function(){
 
 `最后，这个小小的监控如果用jQuery写，也可以，不过就是太坑了，每次都要去找到Dom元素，再更新DOM，用了Vue这类的框架，页面的dom操作完全不用关心了，真是太舒服了。\(^o^)/`
 
-# 关于stomp的重连
+# 1. 关于stomp的重连
 `程序后服务端使用RabbitMQ`
 这里我直接引用我的另一个项目的部分代码，这个没有使用SockJS， 直接使用浏览器原生的WebSocket。
 重连的原理很简单，就是检测到断开时，去调用我的reconnectWs方法，这里我也做了重连的次数限制。
@@ -350,7 +350,7 @@ initWebSocket: function(callback, errorCallback) {
         },
 ```
 
-# 参考
+# 2. 参考
 - [STOMP Over WebSocket](http://jmesnil.net/stomp-websocket/doc/)
 
   [1]: /img/bVHuvW

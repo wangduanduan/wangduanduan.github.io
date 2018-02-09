@@ -6,7 +6,7 @@ tags:
 - oh-my-zsh
 ---
 
-# oh-my-zsh中常用的git缩写
+# 1. oh-my-zsh中常用的git缩写
 
 ```
 alias ga='git add'
@@ -36,7 +36,7 @@ alias glgp='git log --stat -p'
 [oh-my-zsh git命令缩写完整版](https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/git/git.plugin.zsh)
 
 
-# 常用的git命令
+# 2. 常用的git命令
 
 `假设你在master分支上`
 
@@ -53,16 +53,16 @@ git commit -am '修改了一个问题'
 // 将本地仓库推送到远程仓库
 git push 
 ```
-## 状态管理
-### 状态查看
+## 2.1. 状态管理
+### 2.1.1. 状态查看
 查看当前仓库状态
 ```
 git status
 ```
 
-## 分支管理
+## 2.2. 分支管理
 
-### 分支新建
+### 2.2.1. 分支新建
 基于当前分支，创建test分支
 ```
 // 创建dev分支
@@ -75,7 +75,7 @@ git checkout -b dev
 git checkout -b new-branch-name commit-id
 ```
 
-### 分支查看
+### 2.2.2. 分支查看
 查看远程分支： git branch -r
 
 ```
@@ -89,7 +89,7 @@ git branch -r
 git branch -a
 ```
 
-### 分支切换
+### 2.2.3. 分支切换
 切换到某个分支: git checkout 0.10.7
 ```
 > git checkout 0.10.7
@@ -97,7 +97,7 @@ Branch 0.10.7 set up to track remote branch 0.10.7 from origin.
 Switched to a new branch '0.10.7'
 ```
 
-### 分支合并
+### 2.2.4. 分支合并
 
 将master分支合并到0.10.7分支: git merge
 ```
@@ -111,7 +111,7 @@ Merge made by the 'recursive' strategy.
  create mode 100644 views/qc-template-show-modal.html
 ```
 
-### 分支删除 
+### 2.2.5. 分支删除 
 ```
 // 删除远程dev分支
 git push --delete origin dev
@@ -120,7 +120,7 @@ git push --delete origin dev
 git branch -D dev
 ```
 
-## 版本对比
+## 2.3. 版本对比
 ```
 // 查看尚未暂存的文件更新了哪些部分
 git diff
@@ -132,14 +132,14 @@ git diff commitID1 commitID2
 git diff commitID1:filename1 commitID2:filename2
 ```
 
-## 日志查看
+## 2.4. 日志查看
 ```
 git log 
 git short-log 
 ```
 
 
-# 参考文献
+# 3. 参考文献
 - [git 命令参考](https://git-scm.com/docs)
 - [《Pro Git 中文版》](https://git-scm.com/book/zh/v2)
 - [廖雪峰 git教程](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)

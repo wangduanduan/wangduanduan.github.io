@@ -5,7 +5,7 @@ tags:
 - gist
 ---
 
-# Github Gis服务
+# 1. Github Gis服务
 
 - 出生名门github
 - 用于记录代码片段
@@ -17,12 +17,12 @@ tags:
 更多介绍请看：[如何看待 Github Gist这个服务，怎样更好的利用？](https://www.zhihu.com/question/21343711)
 
 
-# 客户端
-## gistbox: 谷歌浏览器插件，用来编写gist
+# 2. 客户端
+## 2.1. gistbox: 谷歌浏览器插件，用来编写gist
 ![](http://p3alsaatj.bkt.clouddn.com/20180208140404_EDRTAX_Screenshot.jpeg)
 
 
-## lepton: 支持windows, max,linux
+## 2.2. lepton: 支持windows, max,linux
 我自己用的就是这个，感觉还不错
 github: https://github.com/hackjutsu/Lepton
 

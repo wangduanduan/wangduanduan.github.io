@@ -5,7 +5,7 @@ tags:
 - git
 ---
 
-# 常用配置
+# 1. 常用配置
 
 ```
 git config --global user.name "wddd"   
@@ -25,7 +25,7 @@ git config --global core.editor "mate -w"    # 设置Editor使用textmate
 git config -l  # 列举所有配置
 ```
 
-# 提交与查看状态
+# 2. 提交与查看状态
 ```
 // 提交
 git ci -am "fix a bug"
@@ -45,7 +45,7 @@ git br -a
 git pull
 ```
 
-# 分支推送与拉取
+# 3. 分支推送与拉取
 ```
 // 基于本地maste分支，新建一个dev分支
 git chheckout master // 切换到master分支
@@ -55,7 +55,7 @@ git push origin dev // 将dev分支，推送到远程仓库
 git fetch origin test // 拉去远程test分支到本地
 ```
 
-# git 仅仅合并某次提交
+# 4. git 仅仅合并某次提交
 
 ```
 git checkout master

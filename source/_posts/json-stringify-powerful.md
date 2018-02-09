@@ -5,7 +5,7 @@ tags:
 - json
 ---
 
-# 语法
+# 1. 语法
 ```
 JSON.stringify(value[, replacer[, space]])
 ```
@@ -18,8 +18,8 @@ JSON.stringify(user);
 "{"name":"andy","isDead":false,"age":11,"addr":"shanghai"}"
 ```
 
-# 扩展用法
-## replacer
+# 2. 扩展用法
+## 2.1. replacer
 replacer可以是`函数`或者是`数组`。
 
 `功能1: 改变属性值`
@@ -63,7 +63,7 @@ JSON.stringify(user, ['name', 'addr']);
 "{"name":"andy","addr":"shanghai"}"
 
 ```
-## space
+## 2.2. space
 space可以是`数字`或者是`字符串`, 如果是数字则表示属性名前加上空格符号的数量，如果是字符串，则直接在属性名前加上该字符串。
 
 `功能1: 给输出属性前加上n个空格`
@@ -104,7 +104,7 @@ good"addr": "shanghai"
 }"
 ```
 
-## 深拷贝
+## 2.3. 深拷贝
 ```
 var user = {name: 'andy', isDead: false, age: 11, addr: 'shanghai'};
 
@@ -112,9 +112,9 @@ var temp = JSON.stringify(user);
 var user2 = JSON.parse(temp);
 ```
 
-# 其他
+# 3. 其他
 JSON.parse() 其实也是支持第二个参数的。功能类似于JSON.stringify的第二个参数的功能。
 
-# 参考
+# 4. 参考
 - [MDN JSON.stringify()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
 

@@ -13,13 +13,13 @@ tags:
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180129182103_Avcxhn_Jietu20180129-182047.jpeg)
 
-# 前提
+# 1. 前提
 - 已经有了github pages的一个博客，并且博客中有内容，没有内容会审核不通过的。我第一次申请域名，就是因为内容太少而审核不通过。
 
-# 想好自己要什么域名？
+# 2. 想好自己要什么域名？
 比如你想要一个：wdd.js.org的域名，你先在浏览器里访问这个地址，看看有没有人用过，如果已经有人用过，那么你就只能想点其他的域名了。
 
-# fork js.org的项目，添加自己的域名
+# 3. fork js.org的项目，添加自己的域名
 1 fork https://github.com/js-org/dns.js.org
 2 修改你fork后的仓库中的`cnames_active.js`文件，加上自己的一条域名，最好要按照字母顺序
 
@@ -32,7 +32,7 @@ tags:
 
 3 commit
 
-# 加入CNAME文件
+# 4. 加入CNAME文件
 我是用hexo和next主题作为博客的模板。其中我在`gh-pages`分支写博客，然后部署到`master`分支。
 
 我在我的`gh-pages`分支的`source`目录下加入CNAME文件, 内容只有一行
@@ -45,7 +45,7 @@ wdd.js.org
 
 将博客再次部署好，`如果CNAME生效的话，你已经无法从原来的地址访问：wangduanduan.github.io， 这个博客了。`
 
-# 向js.org项目发起pull-request
+# 5. 向js.org项目发起pull-request
 找到你fork后的项目，点击 `new pull request`, 向原来的项目发起请求。
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180129190011_xvkHec_Jietu20180129-185938.jpeg)

@@ -6,7 +6,7 @@ tags:
 - books
 ---
 
-# Front-End Developer Handbook 2017
+# 1. Front-End Developer Handbook 2017
 
 - 地址：https://frontendmasters.com/books/front-end-handbook/2017/
 
@@ -38,7 +38,7 @@ tags:
 ![](http://p3alsaatj.bkt.clouddn.com/20180208093612_dpum1B_Screenshot.jpeg)
 
 
-# JS函数式编程指南
+# 2. JS函数式编程指南
 英文版地址：
 中文版地址：https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/
 
@@ -60,7 +60,7 @@ tags:
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180208093626_sxuAr3_Screenshot.jpeg)
 
-# 前端开发笔记本
+# 3. 前端开发笔记本
 
 地址：http://chanshuyi.github.io/frontend_notebook/
 

@@ -12,7 +12,7 @@ tags:
 ![](http://p3alsaatj.bkt.clouddn.com/20180208135709_Z3SQQV_Screenshot.jpeg)
 
 
-# [debugout.js](https://github.com/inorganik/debugout.js)
+# 1. [debugout.js](https://github.com/inorganik/debugout.js)
 > 一般来说，可以使用打开console面板，然后右键save，是可以将console.log输出的信息另存为log文件的。但是这就把所有的日志都包含进来了，如何只保存我想要的日志呢？
 
 （调试输出）从您的日志中生成可以搜索，时间戳，下载等的文本文件。 参见下面的一些例子。
@@ -39,7 +39,7 @@ Debugout的log（）接受任何类型的对象，包括函数。 Debugout不是
 
 
 
-# 使用
+# 2. 使用
 
 在脚本顶部的全局命名空间中创建一个新的调试对象，并使用debugout的日志方法替换所有控制台日志方法：
 
@@ -50,7 +50,7 @@ var bugout = new debugout();
 bugout.log('some object or string');
 ```
 
-# API
+# 3. API
 
 - log() -像console.log(), 但是会自动存储
 - getLog() - 返回所有日志
@@ -61,7 +61,7 @@ bugout.log('some object or string');
 - clear() - 清空日志
 - determineType() - 一个更细粒度的typeof为您提供方便
 
-# 可选配置
+# 4. 可选配置
 ···
 // log in real time (forwards to console.log)
 self.realTimeLoggingOn = true; 
@@ -83,10 +83,10 @@ self.logFilename = 'log.txt';
 self.maxDepth = 25;
 ···
 
-# 项目地址
+# 5. 项目地址
 https://github.com/inorganik/debugout.js
 
-# 另外
+# 6. 另外
 我自己也模仿debugout.js写了一个日志保存的项目，该项目可以在ie10及以上下载日志。
 debugout.js在ie浏览器上下载日志的方式是有问题的。
 项目地址：https://github.com/wangduanduan/log4b.git

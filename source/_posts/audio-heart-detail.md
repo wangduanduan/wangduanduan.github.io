@@ -9,12 +9,12 @@ tags:
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180208094439_zGRL80_Screenshot.jpeg)
 
-# Audio
+# 1. Audio
 通过打开谷歌浏览器的dev tools -> Settings -> Elements -> Show user agent shadow DOM, 你可以看到其实Audio标签也是由常用的 input标签和div等标签合成的。
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180208094451_tBBQUM_Screenshot.jpeg)
 
-# 基本用法
+# 2. 基本用法
 ```
 1 <audio src="http://65.ierge.cn/12/186/372266.mp3">
 Your browser does not support the audio element.
@@ -47,7 +47,7 @@ Your browser does not support the audio element.
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180208094523_k82xlG_Screenshot.jpeg)
 
-# 常用属性
+# 3. 常用属性
 - autoplay: 音频流文件就绪后是否自动播放
 - preload: "none" | "metadata" | "auto" | "" 
     - "none": 无需预加载
@@ -59,14 +59,14 @@ Your browser does not support the audio element.
 - mediagroup： string 多个视频或者音频流是否合并
 - src： 音频地址
 
-# API(重点)
+# 4. API(重点)
 - load(): 加载资源
 - play(): 播放
 - pause(): 暂停
 - canPlayType()： 询问浏览器以确定是否可以播放给定的MIME类型
 - buffered()：指定文件的缓冲部分的开始和结束时间
 
-# 常用事件：Media Events(重点)
+# 5. 常用事件：Media Events(重点)
 
 事件名  |	何时触发
 --- | ---
@@ -89,13 +89,13 @@ ratechange | 媒体播放速度改变
 durationchange | 媒体时长改变
 volumechange| 媒体声音大小改变
 
-# Audio DOM 属性(重点)
-## 只读属性
+# 6. Audio DOM 属性(重点)
+## 6.1. 只读属性
 - `duration`： 媒体时长，数值， 单位s
 - `ended`: 是否完成播放，布尔值
 - `paused`: 是否播放暂停，布尔值
 
-## 其他可读写属性(重点)
+## 6.2. 其他可读写属性(重点)
 - `playbackRate`： 播放速度，大多数浏览器支持0.5-4， 1表示正常速度，设置该属性可以修改播放速度
 - `volume`：0.0-1.0之间，设置该属性可以修改声音大小
 - `muted`: 是否静音， 设置该属性可以静音
@@ -122,13 +122,13 @@ Your browser does not support the audio element.
 </script>
 ```
 
-# 常见问题及解决方法
+# 7. 常见问题及解决方法
 - `录音无法拖动，播放一端就自动停止`： https://wenjs.me/p/about-mp3progress-on-audio
 - `如何隐藏Audio的下载按钮`：https://segmentfault.com/a/1190000009737051
 - `想找一个简单的录音播放插件`： https://github.com/kolber/audiojs
 
 
-# 参考资料
+# 8. 参考资料
 - [W3C: the-audio-element](https://www.w3.org/TR/html5/embedded-content-0.html#the-audio-element)
 - [wikipedia: HTML5 Audio](https://en.wikipedia.org/wiki/HTML5_Audio#Supported_audio_coding_formats)
 - [W3C: HTML/Elements/audio](https://www.w3.org/wiki/HTML/Elements/audio#Media_Events)

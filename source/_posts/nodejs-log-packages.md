@@ -4,14 +4,14 @@ date: 2018-02-07 13:46:51
 tags:
 ---
 
-# [morgan](https://github.com/expressjs/morgan)
+# 1. [morgan](https://github.com/expressjs/morgan)
 - 【优点】morgan配置非常简单
 - 【优点】支持自定义日志格式
 - 【优点】支持日志分机
 - 【优点】支持日志压缩：使用[rotating-file-stream](https://github.com/iccicci/rotating-file-stream)
 - 【缺点】无法同时往console和文件中写日志
 
-# [log4js-node](https://github.com/nomiddlename/log4js-node)
+# 2. [log4js-node](https://github.com/nomiddlename/log4js-node)
 - 【优点】配置简单
 - 【优点】支持同时往控制台和文件中写数据
 - 【优点】支持按照时间或文件大小分割文件
@@ -55,16 +55,16 @@ logger.fatal("This little thing had none");
 logger.trace("and this little thing went wee, wee, wee, all the way home.");
 ```
 
-# [winston](https://github.com/winstonjs/winston)
+# 3. [winston](https://github.com/winstonjs/winston)
 - 没用过，不做评论
 
-# [fluent-logger-node](https://github.com/fluent/fluent-logger-node)
+# 4. [fluent-logger-node](https://github.com/fluent/fluent-logger-node)
 - 往fluntd中写日志，没用过
 
-# [express-winston](https://github.com/bithavoc/express-winston)
+# 5. [express-winston](https://github.com/bithavoc/express-winston)
 - 没用过
 
-# 如何自定义一个日志插件
+# 6. 如何自定义一个日志插件
 - 可以自定义日志结构
 - 日志文件可以用gzip压缩
 - 不影响往console写日志

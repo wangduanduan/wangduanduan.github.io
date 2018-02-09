@@ -10,7 +10,7 @@ tags:
 
 `那么如何让下载按钮隐藏掉呢？`
 
-# controlsList="nodownload"
+# 1. controlsList="nodownload"
 
 ```
 // 这个方法只支持 Chrome 58+， 低于该版本的是没有无法隐藏的
@@ -24,7 +24,7 @@ controlsList属性只兼容Chrome 58+以上，具体可以参考[controlslist.ht
 - nofullscreen: 不要全屏
 - noremoteplayback: 不要远程回放
 
-# css方式来隐藏
+# 2. css方式来隐藏
 ```
 // 这个方式兼容所有版本的谷歌浏览器
 audio::-webkit-media-controls {
@@ -36,7 +36,7 @@ audio::-webkit-media-controls-enclosure {
 }
 ```
 
-# 即使让下载按钮隐藏了，如何禁止右键下载？
+# 3. 即使让下载按钮隐藏了，如何禁止右键下载？
 ```
 // 给audio标签禁止右键，来禁止下载
 <audio src="/i/horse.ogg" controls="controls" controlsList="nodownload" oncontextmenu="return false">
@@ -44,7 +44,7 @@ audio::-webkit-media-controls-enclosure {
 </audio>
 ```
 
-# 第三方插件: audiojs
+# 4. 第三方插件: audiojs
 项目地址: https://github.com/kolber/audiojs
 优点： 简单，无依赖
 缺点：异步插入的audio标签，每次还是需要重新调用audiojs.createAll()方法来重新实例化
@@ -64,11 +64,11 @@ audio::-webkit-media-controls-enclosure {
 ![](http://p3alsaatj.bkt.clouddn.com/20180208134755_pPAs8b_Screenshot.jpeg)
 
 
-# audio相关问题以及解决方案
+# 5. audio相关问题以及解决方案
 - [关于动态生成的mp3在audio标签无法拖动的问题: (audio断点续传)](https://wenjs.me/p/about-mp3progress-on-audio)
 
 
-# 参考文献
+# 6. 参考文献
 - https://stackoverflow.com/questions/41115801/in-chrome-55-prevent-showing-download-button-for-html-5-video
 - https://stackoverflow.com/questions/39602852/disable-download-button-for-google-chrome/40975859#40975859
 - https://googlechrome.github.io/samples/media/controlslist.html

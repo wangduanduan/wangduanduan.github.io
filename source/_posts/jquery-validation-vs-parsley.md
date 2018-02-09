@@ -6,14 +6,14 @@ tags:
 - Parsley
 ---
 
-# 基本对比
+# 1. 基本对比
 
 名称 | gitbub地址 | stars | 文档地址
 --- | --- | --- | ---
 jquery-validation | [这里](https://github.com/jquery-validation/jquery-validation) | 7859(截止7/21) | [这里](http://www.runoob.com/jquery/jquery-plugin-validate.html)
 Parsley.js | [这里](https://github.com/guillaumepotier/Parsley.js) | 7979(截止7/21) | [这里](http://parsleyjs.org/)
 
-# 强烈推荐Parsley
+# 2. 强烈推荐Parsley
 这两个表格验证插件我都用过，最早用的是jqueryValidataion, 现在用Parsley。
 这两个插件都`依赖jQuery`。但是如果说那个跟好用的话，真心推荐Parsley。Parsley`号称不用写一行代码就能验证表单`。另外从star的数量上也可以看出来Parsley更流行。而且Parsley支持在html中就将错误信息定义在里面。
 

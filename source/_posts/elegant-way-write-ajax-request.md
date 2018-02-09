@@ -6,7 +6,7 @@ tags:
 - jQuery
 ---
 
-# 首先需要一个配置文件
+# 1. 首先需要一个配置文件
 ```
 var api = {
 	basePath: 'http://192.168.200.226:58080',
@@ -30,7 +30,7 @@ var api = {
 }
 ```
 
-# 然后需要一个方法，把配置文件生成接口
+# 2. 然后需要一个方法，把配置文件生成接口
 ```
 function WellApi(Config){
 var headers = {};
@@ -120,7 +120,7 @@ return new Api();
 }
 ```
 
-# 试用一下
+# 3. 试用一下
 ```
 <!DOCTYPE html>
 <html>
@@ -159,7 +159,7 @@ return new Api();
 </html>
 ```
 
-# 注意点
+# 4. 注意点
 `fire(pathParm, payload)`中的`pathParm`是最终会被渲染到请求的路径里面，而paylaod代表请求体。 
 
 例如：
@@ -176,7 +176,7 @@ return new Api();
 
 `path里面不仅仅可放一个变量的`，具体可以参考[mustache](https://github.com/janl/mustache.js)语法，上面代码里的render是以最简单的实现。
 
-# 优点与扩展
+# 5. 优点与扩展
 - [优点]：类似与promise的回调方式
 - [优点]：增加一个接口只是需要增加一个配置文件，很方便
 - [扩展]：当前的ajax 的contentType我只写了json，有兴趣可以扩展其他的数据类型

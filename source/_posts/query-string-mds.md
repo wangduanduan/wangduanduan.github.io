@@ -5,7 +5,7 @@ tags:
 - docs
 ---
 
-# 什么是查询字符串？
+# 1. 什么是查询字符串？
 
 给个例子：
 
@@ -15,7 +15,7 @@ https://en.wikipedia.org/w/load.php?debug=false&lang=en&modules=startup&only=scr
 
 查询字符串是url中问号后边的部分，形式如：key1=value1&key2=value2&key3=value3。这部分称为`查询(query)组件`。
 
-# 查询组件的最小数据集
+# 2. 查询组件的最小数据集
 
 - `参数名`：
 - `是否必须`：
@@ -27,7 +27,7 @@ https://en.wikipedia.org/w/load.php?debug=false&lang=en&modules=startup&only=scr
   - 数值型：取值区间。[4, 10]
   - 枚举型：枚举字符串。1代表男，0代表女
 
-# 举例说明：一个用户查询的接口
+# 3. 举例说明：一个用户查询的接口
 
 参数名 | 是否必须 | 是否是精确查询 | 描述 | 示例 | 约束
 ---|---|---|---|----|---
@@ -42,5 +42,5 @@ registerBeginTime | 否 | 是 | 开始注册时间，返回的结果都是该时
 很多资源
 
 
-# 参考
+# 4. 参考
 - [wikipedia:Query_string](https://en.wikipedia.org/wiki/Query_string)

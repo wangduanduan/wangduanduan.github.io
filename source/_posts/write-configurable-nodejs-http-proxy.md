@@ -16,7 +16,7 @@ nodejs比较好的代理包有：[node-http-proxy](https://github.com/nodejitsu/
 
 这样做的好处是：`新增服务只需要在配置文件上加上该服务，无需修改业务逻辑`
 
-# /config/default.js
+# 1. /config/default.js
 ```
 module.exports = {
 	"ENV":"dev",
@@ -46,7 +46,7 @@ module.exports = {
 	}
 }
 ```
-# /app.js
+# 2. /app.js
 将所有要走代理的路径前必需加上 `/p`, 这个是我的个人配置，当然也可以是其他的名字。
 
 ```
@@ -65,7 +65,7 @@ var proxy = require('./routes/proxy');
 app.use('/p',proxy);
 ```
 
-# /routes/proxy.js
+# 3. /routes/proxy.js
 ```
 var express = require('express');
 // config是一个第三方包，它的功能是
@@ -164,7 +164,7 @@ module.exports = router;
 
 ```
 
-# 相关第三方模块
+# 4. 相关第三方模块
 - [node-config](https://github.com/lorenwest/node-config)
 - [request](https://github.com/request/request)
 - [log4js-node](https://github.com/nomiddlename/log4js-node)

@@ -5,8 +5,8 @@ tags:
 - mongodb
 ---
 
-# 1 列出并选用
-## 1.1 列出所有数据库
+# 1. 列出并选用
+## 1.1. 列出所有数据库
 
 ```
 > show dbs 
@@ -14,14 +14,14 @@ local   0.000GB
 myblog  0.000GB
 ```
 
-## 1.2 使用某个数据库
+## 1.2. 使用某个数据库
 
 ```
 > use myblog
 switched to db myblog
 ```
 
-## 1.3 列出所有集合
+## 1.3. 列出所有集合
 
 ```
 > show collections
@@ -32,7 +32,7 @@ users
 wangduanduan
 ```
 
-# 2 插入数据 insert(value)
+# 2. 插入数据 insert(value)
 
 ```
 // 在已经存在的集合中插入数据
@@ -44,9 +44,9 @@ Inserted 1 record(s) in 43ms
 Inserted 1 record(s) in 72ms
 ```
 
-# 3 查询 find(option)
+# 3. 查询 find(option)
 
-## 3.1 查询集合里所有的文档
+## 3.1. 查询集合里所有的文档
 ```
 > db.users.find()
 /* 1 */
@@ -78,7 +78,7 @@ Inserted 1 record(s) in 72ms
 }
 ```
 
-## 3.2 按条件查询文档
+## 3.2. 按条件查询文档
 ```
 > db.users.find({name:'wangduanduan'})
 /* 1 */
@@ -105,13 +105,13 @@ Fetched 0 record(s) in 1ms
 }
 ```
 
-## 3.3 查询集合内文档的个数
+## 3.3. 查询集合内文档的个数
 ```
 > db.users.count()
 4
 ```
 
-## 3.4 比较运算符
+## 3.4. 比较运算符
 - $gt: 大于
 - $gte: 大于等于
 - $lt: 小于
@@ -130,8 +130,8 @@ Fetched 0 record(s) in 1ms
 }
 ```
 
-## 3.5 逻辑运算符
-### 3.5.1 与
+## 3.5. 逻辑运算符
+### 3.5.1. 与
 ```
 // 查询名字是wangduanduan,age=34的用户
 > db.users.find({name:'wangduanduan',age:34})
@@ -142,7 +142,7 @@ Fetched 0 record(s) in 1ms
     "age" : 34.0
 }
 ```
-### 3.5.2 $in 或
+### 3.5.2. $in 或
 ```
 // 查询名字是wangduanduan,或hh的用户
 > db.users.find({name:{$in:['wangduanduan','hh']}})
@@ -154,7 +154,7 @@ Fetched 0 record(s) in 1ms
 }
 ```
 
-### 3.5.3 $nin 非
+### 3.5.3. $nin 非
 ```
 // 查询名字不是wangduanduan或者hh的用户
 > db.users.find({name:{$nin:['wangduanduan','hh']}})
@@ -173,7 +173,7 @@ Fetched 0 record(s) in 1ms
 }
 ```
 
-## 3.6 正则匹配
+## 3.6. 正则匹配
 ```
 // 查询名字是中含有duan的用户
 > db.users.find({name:/duan/})
@@ -193,7 +193,7 @@ Fetched 0 record(s) in 1ms
 ```
 
 
-## 3.7 大招$where
+## 3.7. 大招$where
 ```
 // 返回含有login_name字段的文档
 db.getCollection('users').find({$where:function(){
@@ -202,27 +202,27 @@ db.getCollection('users').find({$where:function(){
 ```
 
 
-# 4 更新 update();
+# 4. 更新 update();
 
-## 4.1 整体更新
+## 4.1. 整体更新
 ```
 > db.users.update({login_name:'wangduanduan'},{name:'heihei',age:34})
 Updated 1 existing record(s) in 116ms
 ```
 
 
-## 4.2 $set 局部更新
+## 4.2. $set 局部更新
 ```
 // 只是将用户年龄设置成101
 > db.users.update({name:'wangduanduan'},{$set:{age:101}})
 
 ```
-## 4.3 $inc 
+## 4.3. $inc 
 ```
 // 将用户年龄增加1岁，如果文档没有age这个字段，则会增加这个字段
 > db.users.update({name:'wangduanduan'},{$inc:{age:1}})
 ```
-## 4.3 upsert操作
+## 4.4. upsert操作
 ```
 // 如果查不到文档，则增加文档
 > db.users.update({name:'nobody'},{$inc:{age:1}},true)
@@ -235,13 +235,13 @@ Updated 1 new record(s) in 3ms
     "age" : 1.0
 }
 ```
-## 4.4 批量更新
+## 4.5. 批量更新
 ```
 // upadate 的第四个参数设置成true的时候，就会批量更新
 > db.users.update({name:'wangduanduan'},{$set:{age:1891}},false,true)
 ```
 
-# 5 删除
+# 5. 删除
 ```
 // 删除某些文档
 db.person.remove({"name":"joe"})

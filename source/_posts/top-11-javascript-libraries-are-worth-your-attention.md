@@ -13,8 +13,8 @@ tags:
 
 一些库是几乎必须在每个其他项目应用，而其他的更集中和用于执行应用程序中的特定功能。为了清楚起见，我们按类型分组了最好的JavaScript库，所以让我们开始。
 
-# 图表类
-## D3
+# 1. 图表类
+## 1.1. D3
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180207140915_vcI4lr_Screenshot.jpeg)
 
@@ -22,13 +22,13 @@ tags:
 
 D3符合W3C网络标准，几乎支持所有现代浏览器。尽管事实上它不包括任何预先构建的图表，它提供了许多例子和“输入和退出”选择，容易的调试过程和强大的转换等有用的功能。
 
-## Chart.js
+## 1.2. Chart.js
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180207140930_ZnxYmL_Screenshot.jpeg)
 
 `Chart.js`是一个简单的开源解决方案，用于小项目和这些情况下，当你需要快速创建图表。它有八种图表类型和混合它们的能力，外加令人惊叹的动画选项开箱。强烈建议使用此JavaScript图形库，以便简单的设置过程，工作灵活性和全面的文档，尽管其功能相当有限。 Chartist.js具有类似的功能，而它是基于SVG，而不是HTML5画布在Chartjs。
 
-## FusionCharts
+## 1.3. FusionCharts
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180207140946_mjOHvG_Screenshot.jpeg)
 
@@ -36,7 +36,7 @@ FusionCharts是迄今为止最好的JavaScript图表库。作为设计师和开�
 
 今天FusionCharts可以拥有超过24,000个客户，其中包括白宫，Oracle，IBM，微软，谷歌等等。作为最流行的JavaScript库之一，它是高度可扩展的，并与各种设备和浏览器，包括IE 6,7和8兼容。但是，水印版本可以免费使用商业和个人项目，但删除水印你需要购买许可证。
 
-## Google Charts
+## 1.4. Google Charts
 
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180207141002_vvosw1_Screenshot.jpeg)
@@ -44,7 +44,7 @@ FusionCharts是迄今为止最好的JavaScript图表库。作为设计师和开�
 
 由于详细的文档，代码注释和分步说明，Google Charts工具可以成为任何人谁想要使用JavaScript构建图表的一个很好的起点。但是，由于文件是从Google的服务器上传的，因此您的Web JavaScript应用程序应该在线以查看图表。
 
-## Echarts（百度出品）
+## 1.5. Echarts（百度出品）
 ![](http://p3alsaatj.bkt.clouddn.com/20180207141017_bXZ0zq_Screenshot.jpeg)
 - 更小文件 更大作为
 
@@ -59,8 +59,8 @@ FusionCharts是迄今为止最好的JavaScript图表库。作为设计师和开�
 - 更丰富的可视化效果
     - 新增更多图表类型，更好的满足不同数据的处理需求 更多的搭配方案让你的数据呈现方式更个性和完美
 
-# 动画
-## GSAP
+# 2. 动画
+## 2.1. GSAP
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180207141045_LW91oF_Screenshot.jpeg)
 
@@ -68,7 +68,7 @@ FusionCharts是迄今为止最好的JavaScript图表库。作为设计师和开�
 
 GSAP与新旧浏览器以及移动设备高度兼容。在顶级功能SVG支持，使任何DOM元素可拖动，可旋转或可滑动滚动和快速性能的能力。它还带有定向旋转，3D变换，模块化架构，快速加载，零依赖性等等。
 
-## Bounce.js
+## 2.2. Bounce.js
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180207141103_qmxThj_Screenshot.jpeg)
 
@@ -76,27 +76,27 @@ GSAP与新旧浏览器以及移动设备高度兼容。在顶级功能SVG支持�
 
 这个库是绝对免费的和MIT许可的，它是一个不错的选择，在那些情况下，当你不需要一个长列表的动画类型，寻找实验或只是尝试你的手在动画。
 
-# Animate.css
+# 3. Animate.css
 
 ![clipboard.png](/img/bVI7Av)
 
 `Animate.css`是一个平滑的CSS库，允许您添加整洁的动画到所选对象。它具有超过50种不同的预设，可以应用于文本，形式，对象和CSS3的图片。由于小文件大小，跨浏览器支持和易于使用它可以是一个非常适合移动项目，滑块，主页等。
 
-# 时间日期
-## Moment.js
+# 4. 时间日期
+## 4.1. Moment.js
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180207141151_MuJJGe_Screenshot.jpeg)
 
 `Moment.js`是一个简单和轻量级的日期库，使解析，操作和格式化日期和时间容易和准确。它具有多语言支持，持续时间，日历时间和各种插件，以获得诸如时区支持，Twitter集成等功能。但重要的是，它消除了使用本机JavaScript日期对象的需要，随后促进复杂解析过程和减少代码量。
 
-## Date-fns
+## 4.2. Date-fns
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180207141209_nLE7jE_Screenshot.jpeg)
 
 `Date-fns`是一个高级工具集，用于在浏览器和Node.js中操作时间和日期。它提供了140多个有用的功能，可以通过简单的API轻松访问。由于模块化结构，它允许您只选择您当前需要的项目的那些功能。
 
-# 其他
-## Math.js
+# 5. 其他
+## 5.1. Math.js
 
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180207141231_eEfaRZ_Screenshot.jpeg)
@@ -104,7 +104,7 @@ GSAP与新旧浏览器以及移动设备高度兼容。在顶级功能SVG支持�
 
 Math.js是JavaScript引擎的开源数学库。它有许多函数和常量，灵活的表达式解析器，以及支持复杂和大数字，单位，字符串，分数，矩阵，数组和符号计算。
 
-## Handsontable
+## 5.2. Handsontable
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180207141247_GqNwF8_Screenshot.jpeg)
 

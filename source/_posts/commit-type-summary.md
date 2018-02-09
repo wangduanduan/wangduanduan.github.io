@@ -6,7 +6,7 @@ tags:
 - git-commit
 ---
 
-# 缩写含义说明
+# 1. 缩写含义说明
 
   类型    |                         描述
 -------- | -----------------------------------------------------
@@ -21,7 +21,7 @@ chore    | 改变构建流程、或者增加依赖库、工具等
 revert   | 回滚到上一个版本
 tips     | 增加一些提示信息，例如错误提示
 
-# 格式示例
+# 2. 格式示例
 
 格式： type [id] message
 
@@ -29,9 +29,9 @@ tips     | 增加一些提示信息，例如错误提示
 git commit -am "fix 2038 解决点击无反应的问题"
 ```
 
-# 小技巧
+# 3. 小技巧
 
-## 使用单引号多行commit
+## 3.1. 使用单引号多行commit
 
 注意： window下务必使用git bash。
 
@@ -44,7 +44,7 @@ asdflka sdflkasdf '
 
 
 
-# 参考
+# 4. 参考
 - [project-guidelines](https://github.com/wearehive/project-guidelines/blob/master/README-zh.md)
 - [Commit message 和 Change log 编写指南](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)
 - [cz-cli](https://github.com/commitizen/cz-cli)

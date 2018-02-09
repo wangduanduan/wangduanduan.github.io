@@ -7,14 +7,14 @@ tags:
 
 > 以谷歌浏览器为栗子
 
-#1 打开一个HTTPS网站，例如https://segmentfault.com/
-#2 F12 -> Secutity -> 点击View certificate
+# 1. 打开一个HTTPS网站，例如https://segmentfault.com/
+# 2. F12 -> Secutity -> 点击View certificate
 ![](http://p3alsaatj.bkt.clouddn.com/20180209133438_49mTFN_Screenshot.jpeg)
 
-#3 详细信息 -> 复制到文件
+# 3. 详细信息 -> 复制到文件
 ![](http://p3alsaatj.bkt.clouddn.com/20180209133453_9nA0g1_Screenshot.jpeg)
 
-#4 证书导出向导
+# 4. 证书导出向导
 ![](http://p3alsaatj.bkt.clouddn.com/20180209133502_rgjg2i_Screenshot.jpeg)
 ![](http://p3alsaatj.bkt.clouddn.com/20180209133512_y7Xayk_Screenshot.jpeg)
 

@@ -17,7 +17,7 @@ tags:
 - `如果接口有调整，只需要修改一下接口配置文件就可以`
 - `统一管理接口配置`
 
-# content-type配置
+# 1. content-type配置
 
 ```
 // filename: content-type.js
@@ -27,7 +27,7 @@ module.exports = {
 }
 ```
 
-# api 配置
+# 2. api 配置
 ```
 // filename: api-sdk-conf.js
 import contentType from './content-type'
@@ -48,7 +48,7 @@ export default {
 }
 ```
 
-# request.js 方法
+# 3. request.js 方法
 ```
 // request.js
 import axios from 'axios'
@@ -104,7 +104,7 @@ apiConf.apis.forEach((item) => {
 export default api
 ```
 
-# 在组件中使用
+# 4. 在组件中使用
 ```
 import api from '@/apis/request'
 ...
@@ -140,7 +140,7 @@ Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
 username=admin&password=admin&namespace=_system
 ```
 
-# 更多
+# 5. 更多
 `有个地方我不是很明白，希望懂的人可以给我解答一下`
 
 如果某个组件中只需要`login`方法，但是我这样写会报错。

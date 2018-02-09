@@ -13,7 +13,7 @@ tags:
 
 那么问题来了，朱四九和朱百六是什么关系？ 你可能马上懵逼了。所以说：`命名不仅仅是一种科学，更是一种艺术`。
 
-# 名副其实
+# 1. 名副其实
 ```
 // bad
 var d; // 分手的时间，以天计算
@@ -22,7 +22,7 @@ var d; // 分手的时间，以天计算
 var daysAfterBrokeUp; // 分手以后，以天计算
 ```
 
-# 避免误导
+# 2. 避免误导
 ```
 // bad
 var nameList = 'wdd'; // List一般暗指数据是数组，而不应该赋值给字符串
@@ -37,7 +37,7 @@ var ill10o = 10; //千万不要把i,1,l,0,o,O放在一起，傻傻分不清楚
 var illOne = 10;
 ```
 
-# 做有意义的区分
+# 3. 做有意义的区分
 ```
 // bad
 var userData, userInfo; // Data和Info, 有什么区别？？？？, 不要再用data和info这样模糊不清的单词了
@@ -46,7 +46,7 @@ var userData, userInfo; // Data和Info, 有什么区别？？？？, 不要再�
 var userProfile, userAcount
 ```
 
-# 使用读得出来的名称
+# 4. 使用读得出来的名称
 ```
 // bad 
 var beeceearrthrtee; // 你知道怎么读吗？ 鼻涕阿三？？
@@ -55,7 +55,7 @@ var beeceearrthrtee; // 你知道怎么读吗？ 鼻涕阿三？？
 var userName;
 ```
 
-# 使用可搜索的名称
+# 5. 使用可搜索的名称
 ```
 // bad
 var e = 'not found'; // 想搜e, 就很难搜
@@ -64,7 +64,7 @@ var e = 'not found'; // 想搜e, 就很难搜
 var ERROR_NO_FOUND = 'not found';
 ```
 
-# 方法名一概是动词短语
+# 6. 方法名一概是动词短语
 ```
 // good
 function createAgent(){}
@@ -73,7 +73,7 @@ function updateAgent(){}
 function queryAgent(){}
 ```
 
-# 尽量不要用单字母名称, 除了用于循环
+# 7. 尽量不要用单字母名称, 除了用于循环
 ```
 // bad
 var i = 1;
@@ -89,17 +89,17 @@ userList.forEach(function(user){
 });
 ```
 
-# 每个概念对应一个词
+# 8. 每个概念对应一个词
 ```
 controller和manager, 没什么区别，要用controller都用controller, 要用manager都用manager, 不要混着用
 ```
 
-# 建立项目词汇表, 不要随意创造名称
+# 9. 建立项目词汇表, 不要随意创造名称
 ```
 user, agent, org, queue, activity, device...
 ```
 
-# 参考资料
+# 10. 参考资料
 - 《代码整洁之道》
 - 《明朝那些事儿》
 

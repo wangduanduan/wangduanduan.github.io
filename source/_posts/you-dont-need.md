@@ -4,7 +4,7 @@ date: 2018-01-29 14:11:36
 tags:
 ---
 
-# [You-Dont-Need-JavaScript](https://github.com/you-dont-need/You-Dont-Need-JavaScript)
+# 1. [You-Dont-Need-JavaScript](https://github.com/you-dont-need/You-Dont-Need-JavaScript)
 
 > `CSS是强大的，你可以做很多事情没有JS。` 本文教你使用原生CSS做下面的事情。
 
@@ -40,7 +40,7 @@ tags:
 
 ![](https://github.com/you-dont-need/You-Dont-Need-JavaScript/raw/master/images/accordion.gif)
 
-# [You-Dont-Need-Lodash-Underscore](https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore)
+# 2. [You-Dont-Need-Lodash-Underscore](https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore)
 
 
 > Lodash和Underscore是伟大的现代JavaScript实用程序库，它们被前端开发人员广泛使用。但是，如果您将目标锁定为现代浏览器，则可能会发现，许多方法已经得到ES5和ES6的原生支持。如果你想要你的项目需要更少的依赖，并且你清楚的知道你的目标浏览器，那么你可能不需要Lodash / Underscore。
@@ -107,7 +107,7 @@ tags:
     - _.replace
 
 
-# [You-Dont-Need-jQuery](https://github.com/nefe/You-Dont-Need-jQuery)
+# 3. [You-Dont-Need-jQuery](https://github.com/nefe/You-Dont-Need-jQuery)
 `纯JavaScript的例子, 实现做jQuery与查询，样式，dom，ajax，事件等`
 
 前端发展很快，现代浏览器原生 API 已经足够好用。我们并不需要为了操作 DOM、Event 等再学习一下 jQuery 的 API。同时由于 React、Angular、Vue 等框架的流行，直接操作 DOM 不再是好的模式，jQuery 使用场景大大减少。本项目总结了大部分 jQuery API 替代的方法，暂时只支持 IE10 以上浏览器。 
@@ -126,7 +126,7 @@ tags:
 - Alternatives
 - Browser Support
 
-# [You-Dont-Need-GUI](https://github.com/you-dont-need/You-Dont-Need-GUI)
+# 4. [You-Dont-Need-GUI](https://github.com/you-dont-need/You-Dont-Need-GUI)
 
 图形用户界面对计算机用户非常友好。它们被引入以响应命令行界面（CLI）感知的陡峭学习曲线。
 

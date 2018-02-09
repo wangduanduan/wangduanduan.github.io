@@ -10,11 +10,11 @@ tags:
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180202093814_7NNlq9_40-Reasons-to-Ban-Guns.jpeg)
 
-# Git Bash
+# 1. Git Bash
 ![](http://p3alsaatj.bkt.clouddn.com/20180202104601_8MoLOf_Screenshot.jpeg)
 
 
-# Gow
+# 2. Gow
 
 |     1     |     2     |      3       |       4        |   5    |    6    |    7     |    8     |      9       |    10     |
 | --------- | --------- | ------------ | -------------- | ------ | ------- | -------- | -------- | ------------ | --------- |
@@ -33,26 +33,26 @@ tags:
 | uniq      | unix2dos  | unlink       | `unrar`        | unrar3 | unshar  | uudecode | uuencode | `vim`        | wc        |
 | `wget`    | `whereis` | `which`      | whoami         | xargs  | yes     | `zip`    | zip32z64 |              |           |
 
-# ConEmu
+# 3. ConEmu
 
-# gerp
+# 4. gerp
 
-# Chrome Extensions
+# 5. Chrome Extensions
 
-## vimium
+## 5.1. vimium
 
-## Multi-highlight
+## 5.2. Multi-highlight
 
-## Restlet Client - REST API Testing
+## 5.3. Restlet Client - REST API Testing
 
-## Tampermonkey
+## 5.4. Tampermonkey
 
-# Web Tools
+# 6. Web Tools
 
-## jsonviewernew
+## 6.1. jsonviewernew
 
 https://www.bejson.com/jsonviewernew/
 
-## regex101
+## 6.2. regex101
 
-## Linux 工具快速教程
+## 6.3. Linux 工具快速教程

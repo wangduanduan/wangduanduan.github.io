@@ -9,10 +9,10 @@ tags:
 
 在局域网内传文件，或者自己测试使用都是非常方便的。
 
-# 基于python
+# 1. 基于python
 ![](http://p3alsaatj.bkt.clouddn.com/20180209130207_yzmvQO_Screenshot.jpeg)
 
-## 基于Python2
+## 1.1. 基于Python2
 `python -m SimpleHTTPServer port`
 
 ```
@@ -21,7 +21,7 @@ Serving HTTP on 0.0.0.0 port 8099 ...
 127.0.0.1 - - [24/Oct/2017 11:07:56] "GET / HTTP/1.1" 200 -
 ```
 
-## 基于python3
+## 1.2. 基于python3
 `python3 -m http.server port`
 
 ```
@@ -32,12 +32,12 @@ Serving HTTP on 0.0.0.0 port 8099 (http://0.0.0.0:8099/) ...
 127.0.0.1 - - [24/Oct/2017 11:05:06] "GET /favicon.ico HTTP/1.1" 404 -
 ```
 
-# 基于nodejs
+# 2. 基于nodejs
 首先你要安装nodejs
 ![](http://p3alsaatj.bkt.clouddn.com/20180209130231_76jUWj_Screenshot.jpeg)
 
 
-## [http-server](https://github.com/indexzero/http-server)
+## 2.1. [http-server](https://github.com/indexzero/http-server)
 ```
 // 安装
 npm install http-server -g
@@ -46,7 +46,7 @@ npm install http-server -g
 http-server [path] [options]
 ```
 
-## [serve](https://github.com/zeit/serve)
+## 2.2. [serve](https://github.com/zeit/serve)
 ```
 // 安装
 npm install -g serve
@@ -55,7 +55,7 @@ npm install -g serve
 serve [options] <path>
 ```
 
-## [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
+## 2.3. [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
 ```
 // 安装
 npm install webpack-dev-server -g
@@ -64,7 +64,7 @@ npm install webpack-dev-server -g
 webpack-dev-server
 ```
 
-## [anywhere](https://github.com/JacksonTian/anywhere)
+## 2.4. [anywhere](https://github.com/JacksonTian/anywhere)
 ```
 // 安装
 npm install -g anywhere
@@ -74,7 +74,7 @@ anywhere
 anywhere -p port
 ```
 
-## [puer](https://github.com/leeluolee/puer)
+## 2.5. [puer](https://github.com/leeluolee/puer)
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180209130246_GqSjH6_Screenshot.jpeg)
 

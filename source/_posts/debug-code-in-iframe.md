@@ -11,20 +11,20 @@ tags:
 
 `这个小技巧，对于调试非常有用，但是我直到今天才发现。`
 
-# Chrome
+# 1. Chrome
 
 这个小箭头可以让你选择不同的iframe的执行环境，可以切换到你的iframe环境里。
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180208135509_koFmKH_Screenshot.jpeg)
 
 
-# IE 
+# 2. IE 
 
 如图所示是ie11的dev tool点击下来箭头，也可以选择不同的iframe执行环境。
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180208135527_niIzO1_Screenshot.jpeg)
 
-# 其他浏览器
+# 3. 其他浏览器
 
 其他浏览器可以自行摸索一下。。。（G_H）
 

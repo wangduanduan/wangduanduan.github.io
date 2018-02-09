@@ -7,9 +7,9 @@ tags:
 
 > 因为阿里云最近搞活动，所以买了一台阿里云香港的一台最低配置主机。用来搞搞开发，做静态页面，给女朋友发短信，爬爬页面，翻墙等等。
 
-# 软件安装
+# 1. 软件安装
 
-## 安装git
+## 1.1. 安装git
 ```
 yum install git
 
@@ -17,7 +17,7 @@ yum install git
 git --version
 ```
 
-## 安装oh-my-zsh
+## 1.2. 安装oh-my-zsh
 ```
 // 检查有没有安装zsh, 没有安装的话，先安装zsh
 cat /etc/shells
@@ -29,7 +29,7 @@ yum install zsh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
-## 安装ss
+## 1.3. 安装ss
 基于python2.7
 
 [参考文献](http://heroi.cn/2017/08/09/%E9%98%BF%E9%87%8C%E4%BA%91ecs%E9%A6%99%E6%B8%AF%E8%8A%82%E7%82%B9%E6%90%AD%E5%BB%BAss%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%85%A8%E8%BF%87%E7%A8%8B/)
@@ -64,7 +64,7 @@ ssserver -d stop
 netstat -tunlp
 ```
 
-## 安装nodejs
+## 1.4. 安装nodejs
 ```
 yum install epel-release
 yum install nodejs
@@ -77,7 +77,7 @@ yum-config-manager --enable cr && yum update
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 ```
 
-## 安装nginx
+## 1.5. 安装nginx
 [参考](http://www.centoscn.com/nginx/2017/0119/8422.html)
 ```
 // 直接通过 yum install nginx 肯定是不行的,因为yum没有nginx，所以首先把 nginx 的源加入 yum 中。
@@ -91,14 +91,14 @@ yum info nginx
 yum install nginx
 ```
 
-# 安装python3
+# 2. 安装python3
 ```
 yum install epel-release
 yum install python34
 python3 --version
 ```
 
-# 服务管理
+# 3. 服务管理
 功能 | 命令
 --- | ---
 使服务开启启动 | systemctl enable httpd.service

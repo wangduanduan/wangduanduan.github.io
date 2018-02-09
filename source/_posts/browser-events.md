@@ -4,7 +4,7 @@ date: 2018-01-29 14:15:25
 tags:
 ---
 
-# [visibilitychange事件](https://developer.mozilla.org/zh-CN/docs/Web/Events/visibilitychange)
+# 1. [visibilitychange事件](https://developer.mozilla.org/zh-CN/docs/Web/Events/visibilitychange)
 
 触发条件：`浏览器标签页被隐藏或显示的时候会触发visibilitychange事件.`
 
@@ -16,7 +16,7 @@ document.addEventListener("visibilitychange", function() {
 });
 ```
 
-# [storage事件](https://developer.mozilla.org/en-US/docs/Web/Events/storage)
+# 2. [storage事件](https://developer.mozilla.org/en-US/docs/Web/Events/storage)
 
 触发条件：`使用localStorage or sessionStorage存储或者修改某个本地存储时`
 
@@ -34,7 +34,7 @@ localStorage.setItem('makeCall','120')
 ...key: "makeCall", oldValue: "119", newValue: "120", ...
 ```
 
-# [beforeunload事件](https://developer.mozilla.org/en-US/docs/Web/Events/beforeunload)
+# 3. [beforeunload事件](https://developer.mozilla.org/en-US/docs/Web/Events/beforeunload)
 
 触发条件：`当页面的资源将要卸载(及刷新或者关闭标签页前). 当页面依然可见，并且该事件可以被取消只时`
 
@@ -51,7 +51,7 @@ window.addEventListener("beforeunload", function (e) {
 
 ```
 
-# [navigator.sendBeacon](https://developer.mozilla.org/zh-CN/docs/Web/API/Navigator/sendBeacon)
+# 4. [navigator.sendBeacon](https://developer.mozilla.org/zh-CN/docs/Web/API/Navigator/sendBeacon)
 
 这个方法主要用于满足 统计和诊断代码 的需要，这些代码通常尝试在卸载（unload）文档之前向web服务器发送数据。过早的发送数据可能导致错过收集数据的机会。然而， 对于开发者来说保证在文档卸载期间发送数据一直是一个困难。因为用户代理通常会忽略在卸载事件处理器中产生的异步 XMLHttpRequest 。
 

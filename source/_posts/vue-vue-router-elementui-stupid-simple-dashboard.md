@@ -32,7 +32,7 @@ tags:
 - vue-awesome
 - babel
 
-# vue-cli 安装模板
+# 1. vue-cli 安装模板
 ```
 ➜  vue-el-dashboard git:(master) vue init webpack
 
@@ -57,7 +57,7 @@ tags:
    Documentation can be found at https://vuejs-templates.github.io/webpack
 ```
 
-# 安装依赖并运行
+# 2. 安装依赖并运行
 ```
 ➜  vue-el-dashboard git:(master) ✗ cnpm i
 ✔ Installed 44 packages
@@ -68,7 +68,7 @@ tags:
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180209120349_hZ5aL8_Screenshot.jpeg)
 
-# 安装初始化页面布局
+# 3. 安装初始化页面布局
 安装并使用Element UI
 
 ```
@@ -134,7 +134,7 @@ export default {
 
 `现在，布局就这么成了。`
 
-# 安装侧边菜单栏
+# 4. 安装侧边菜单栏
 我需要侧边栏是下图右边的自定义颜色的那种菜单
 ![](http://p3alsaatj.bkt.clouddn.com/20180209120427_5XI3wx_Screenshot.jpeg)
 
@@ -337,7 +337,7 @@ import NavMenu from '@/components/NavMenu'
 点击展开菜单看看：
 ![](http://p3alsaatj.bkt.clouddn.com/20180209120513_YyPnIb_Screenshot.jpeg)
 
-# 侧边菜单栏进阶
+# 5. 侧边菜单栏进阶
 
 我们需要的功能：
 
@@ -526,7 +526,7 @@ module.exports = [{
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180209120622_xWsb3F_Screenshot.jpeg)
 
-# 先加个头部吧，秃顶太丑了
+# 6. 先加个头部吧，秃顶太丑了
 在componets文件夹下创建一个Header.vue, 并在App.vue中引入，
 
 Header.vue
@@ -630,7 +630,7 @@ new Vue({
 看下效果, 图标什么的都有了。
 ![](http://p3alsaatj.bkt.clouddn.com/20180209120656_Hk4igw_Screenshot.jpeg)
 
-# 组件路由与懒加载
+# 7. 组件路由与懒加载
 在components新增四个文件：
 
 BasicContainer.vue
@@ -710,7 +710,7 @@ export default new Router({ routes })
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180209120713_ZEW6BF_Screenshot.jpeg)
 
-# github 部署
+# 8. github 部署
 如果你想在github上部署，那么你要修改config/index.js的以下代码, 不然有些文件因为路径问题可能会找不到。
 
 ```

@@ -12,17 +12,17 @@ tags:
 [本栗子的pages地址](https://wangduanduan.github.io/webrtc/)
 
 
-# 准备
+# 1. 准备
 - 使用最新版谷歌浏览器（62版）
 - 视频聊天中 一个是windows, 一个是mac
 - stun服务器使用谷歌的，trun使用[ScaleDrone](https://www.scaledrone.com/)的sdk，这样我就不用管服务端了。
 
-# 先上效果图
+# 2. 先上效果图
 ![](http://p3alsaatj.bkt.clouddn.com/20180209125722_GO0Ee0_Screenshot.jpeg)
 
-# 再上在线例子[点击此处](https://wangduanduan.github.io/webrtc/demos/chat-with-your-friend.html)
+# 3. 再上在线例子[点击此处](https://wangduanduan.github.io/webrtc/demos/chat-with-your-friend.html)
 
-# 源码分析
+# 4. 源码分析
 
 ```
 // 产生随机数
@@ -147,8 +147,8 @@ function localDescCreated(desc) {
 }
 ```
 
-# WebRTC简介
-## 介绍
+# 5. WebRTC简介
+## 5.1. 介绍
 WebRTC 是一个开源项目，用于Web浏览器之间进行实时音频视频通讯，数据传递。
 WebRTC有几个JavaScript APIS。 点击链接去查看demo。
 
@@ -157,17 +157,17 @@ WebRTC有几个JavaScript APIS。 点击链接去查看demo。
 - [RTCPeerConnection: 在用户之间传递音频流和视频流]()
 - [RTCDataChannel: 在用户之间传递文件流]()
 
-## 在哪里使用WebRTC?
+## 5.2. 在哪里使用WebRTC?
 - Chrome
 - FireFox
 - Opera
 - Android
 - iOS
 
-## 什么是信令
+## 5.3. 什么是信令
 WebRTC使用`RTCPeerConnection`在浏览器之间传递流数据, 但是也需要一种机制去协调收发控制信息，这就是信令。信令的方法和协议并不是在WebRTC中明文规定的。 在codelad中用的是Node，也有许多其他的方法。
 
-## 什么是STUN和TURN和ICE? 
+## 5.4. 什么是STUN和TURN和ICE? 
 > STUN（Session Traversal Utilities for NAT，NAT会话穿越应用程序）是一种网络协议，它允许位于NAT（或多重NAT）后的客户端找出自己的公网地址，查出自己位于哪种类型的NAT之后以及NAT为某一个本地端口所绑定的Internet端端口。这些信息被用来在两个同时处于NAT路由器之后的主机之间创建UDP通信。该协议由RFC 5389定义。 [wikipedia STUN](https://zh.wikipedia.org/wiki/STUN)
 
 > TURN（全名Traversal Using Relay NAT, NAT中继穿透），是一种资料传输协议（data-transfer protocol）。允许在TCP或UDP的连线上跨越NAT或防火墙。
@@ -182,10 +182,10 @@ TURN是一个client-server协议。TURN的NAT穿透方法与STUN类似，都是�
 
 WebRTC被设计用于点对点之间工作，因此用户可以通过最直接的途径连接。然而，WebRTC的构建是为了应付现实中的网络: `客户端应用程序需要穿越NAT网关和防火墙，并且对等网络需要在直接连接失败的情况下进行回调。` 作为这个过程的一部分，WebRTC api使用STUN服务器来获取计算机的IP地址，并将服务器作为中继服务器运行，以防止对等通信失败。(现实世界中的WebRTC更详细地解释了这一点。)
 
-## WebRTC是否安全?
+## 5.5. WebRTC是否安全?
 WebRTC组件是强制要求加密的，并且它的JavaScript APIS只能在安全的域下使用(HTTPS 或者 localhost)。信令机制并没有被WebRTC标准定义，所以是否使用安全的协议就取决于你自己了。
 
-# WebRTC 参考资料
+# 6. WebRTC 参考资料
 - [官网教程](https://webrtc.org/)
 - [WebRTC 简单的视频聊天](https://www.scaledrone.com/blog/posts/webrtc-tutorial-simple-video-chat) [repo](https://github.com/ScaleDrone/webrtc)
 - [WebRTC 教程](https://www.tutorialspoint.com/webrtc/index.html)

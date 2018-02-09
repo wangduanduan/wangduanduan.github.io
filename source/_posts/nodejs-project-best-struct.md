@@ -8,8 +8,8 @@ tags:
 
 原文阅读: [nodebestpractices](https://github.com/i0natan/nodebestpractices)
 
-# 工程结构最佳实践
-## 组件化
+# 1. 工程结构最佳实践
+## 1.1. 组件化
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180209115729_iJfUGU_Screenshot.jpeg)
 
@@ -42,23 +42,23 @@ tags:
     - userTesting.js
     - userAction.js
 
-## 层次化
+## 1.2. 层次化
 ![](http://p3alsaatj.bkt.clouddn.com/20180209115743_ugkfVb_Screenshot.jpeg)
 
 - 不要在express中写太多业务逻辑，express专注web层
 - 业务层要单独抽出
 - 数据库层单独抽出
 
-## NPM化
+## 1.3. NPM化
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180209115755_WLygCk_Screenshot.jpeg)
 
 `把常用组件做成NPM包`
 
-## 分离`Express`的 `app` 和 `server`
+## 1.4. 分离`Express`的 `app` 和 `server`
 ![](http://p3alsaatj.bkt.clouddn.com/20180209115806_dtcV4n_Screenshot.jpeg)
 
-## 配置化
+## 1.5. 配置化
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180209115815_7O9oS6_Screenshot.jpeg)
 - `环境感知： 根据不同环境使用不同配置`

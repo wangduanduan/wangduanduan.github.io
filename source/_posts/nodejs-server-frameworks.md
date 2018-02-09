@@ -13,8 +13,8 @@ tags:
 
 Photo by 贝莉儿 NG on Unsplash
 
-# 1 MVC frameworks
-# 1.1 Sinatra-like
+# 1. MVC frameworks
+# 2. Sinatra-like
 
 `这些框架提供了丰富的配置，比Rails-like或full-stack少。`
 
@@ -29,7 +29,7 @@ Photo by 贝莉儿 NG on Unsplash
 - [Flicker.js](https://flickerstudio.github.io/flickerjs)
 - [ZinkyJS](https://github.com/zinkyJS/zinky)
 
-## 1.2 Rails-like
+## 2.1. Rails-like
 `正确呈现您的项目。从包含的模板创建自己的艺术`
 
 - [Nodal](http://nodaljs.com/)
@@ -44,7 +44,7 @@ Photo by 贝莉儿 NG on Unsplash
 - [KambojaJS](http://kambojajs.com/)
 - [JS-Web](http://js-web-framework.com/)
 
-# 2 Full-stack frameworks
+# 3. Full-stack frameworks
 
 `这就是Node.js真正闪耀的地方。全栈MVC框架与脚手架，模板引擎，websocket和持久性库捆绑在一起，允许您构建实时可伸缩的Web应用程序。`
 
@@ -73,7 +73,7 @@ Photo by 贝莉儿 NG on Unsplash
 - [Horizon](http://horizon.io)
 - [Apogeu](https://apogeu.github.io/)
 
-# 3 REST API frameworks
+# 4. REST API frameworks
 `对于那些使用富客户端/前端MVC框架（或不）的客户，只需要启动一个快速的Node.js REST API服务器即可。`
 
 - [Ivy](http://ivyframework.com)
@@ -94,7 +94,7 @@ Photo by 贝莉儿 NG on Unsplash
 - [microlet](https://borislemke.gitbooks.io/microlet/)
 - [Moleculer](https://moleculer.services/)
 
-# 4 Other libraries
+# 5. Other libraries
 `中间件，库和静态站点生成器。`
 
 - [Connect](http://www.senchalabs.org/connect/)

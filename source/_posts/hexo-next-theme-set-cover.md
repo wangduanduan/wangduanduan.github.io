@@ -15,7 +15,7 @@ tags:
 
 <!-- more -->
 
-# Next主题设置摘要
+# 1. Next主题设置摘要
 
 filename: themes/next/_config.yml，将auto_excerpt.enable设置成true，length属性表示摘要的字数限制。
 ```
@@ -25,7 +25,7 @@ auto_excerpt:
 ```
 
 
-# 文章具体设置
+# 2. 文章具体设置
 
 在 `<!-- more -->`上面放一张图片就可以了
 

@@ -6,10 +6,10 @@ tags:
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180208091603_Jkrh7t_Screenshot.jpeg)
 
-# 1 VisualEvent
+# 1. VisualEvent
 github地址： https://github.com/DataTables/VisualEvent
 
-# 2 使用教程
+# 2. 使用教程
 1. 打开http://sprymedia.co.uk/VisualEvent/这个页面，然后将visual Event连接拖动到浏览器的书签栏上
 ![](http://p3alsaatj.bkt.clouddn.com/20180208091616_EoSfZO_Screenshot.jpeg)
 

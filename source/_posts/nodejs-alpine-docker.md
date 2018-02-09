@@ -6,18 +6,18 @@ tags:
 - docker
 ---
 
-# 系统环境
+# 1. 系统环境
 - centos7 内核：3.10.0-514.26.2.el7.x86_64
 - 安装docker要求内核版本不低于3.10
 
-# 安装docker
+# 2. 安装docker
 ```
 yum install docker // 安装docker
 systemctl start docker.service // 启动docker
 systemctl enable docker.service // 设置开机启动
 ```
 
-# Nodejs 镜像选择
+# 3. Nodejs 镜像选择
 
 REPOSITORY | TAG | IMAGE ID | CREATED | SIZE
 ---|---|---|---|---
@@ -36,7 +36,7 @@ docker.io/iron/node | latest | 9ca501065d18 | 20 months ago | 18.56 MB
 
 最终选择 `node:9.2.1-alpine`, 该镜像体积很小，已经内置npm(5.5.1), yarn(1.3.2)
 
-# 时区配置
+# 4. 时区配置
 `node:9.2.1-alpine`的时区默认不是国内的，需要在build时，配置时区。
 
 ```

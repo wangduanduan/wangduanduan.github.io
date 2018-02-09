@@ -9,14 +9,14 @@ tags:
 先看效果：
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180208092429_56loaY_Screenshot.jpeg)
-# 环境
+# 1. 环境
 - win7 64位
 - python 3.5
 
-# 目标
+# 2. 目标
 抓取一篇报纸，并提取出关键字，然后按照出现次数排序，用echarts在页面上显示出来。
 
-# 工具选择
+# 3. 工具选择
 因为之前对nodejs的相关工具比较熟悉，在用python的时候，也想有类似的工具。所以就做了一个对比的表格。
 
 功能 | nodejs版 | python版
@@ -27,7 +27,7 @@ DOM解析工具 | [cheeio](https://github.com/cheeriojs/cheerio) | [pyquery](htt
 函数编程工具 | [underscore.js](https://github.com/jashkenas/underscore) | [underscore.py](https://github.com/serkanyersen/underscore.py)(underscore来处理集合比较方便)
 服务器 | [express](https://github.com/expressjs/express) | [flask](https://github.com/pallets/flask)
 
-# 开始的噩梦：中文乱码
+# 4. 开始的噩梦：中文乱码
 感觉每个学python的人都遇到过中文乱码的问题。我也不例外。
 
 首先要抓取网页，但是网页在控制台输出的时候，中文总是乱码。搞了好久，搞得我差点要放弃python。最终找到解决方法。[ 解决python3 UnicodeEncodeError: 'gbk' codec can't encode character '\xXX' in position XX](http://blog.csdn.net/jim7424994/article/details/22675759)
@@ -40,7 +40,7 @@ import sys
 sys.stdout = io.TextIOWrapper(sys.stoodout.buffer,encoding='gb18030')
 ```
 
-# 函数式编程： 顺享丝滑
+# 5. 函数式编程： 顺享丝滑
 ```
 #filename word_rank.py
 import requests
@@ -99,7 +99,7 @@ def main(url): # 入口函数，函数组合
 
 ```
 
-# python服务端：Flask浅入浅出
+# 6. python服务端：Flask浅入浅出
 ```
 import word_rank
 from flask import Flask, request, jsonify, render_template
@@ -123,7 +123,7 @@ if __name__ == '__main__':
     app.run()
 ```
 
-# 总结
+# 7. 总结
 据说有个定律：`凡是能用JavaScript写出来的，最终都会用JavaScript写出来`。 我是很希望这样啦。但是不得不承认，python上有很多非常优秀的库。
 这些库在npm上并没有找到合适的替代品。
 

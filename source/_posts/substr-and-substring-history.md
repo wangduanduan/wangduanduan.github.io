@@ -10,7 +10,7 @@ tags:
 
 `看来是时候扒一扒这两个方法的历史了。`
 
-# 1 基因追本溯源
+# 1. 基因追本溯源
 ![](http://p3alsaatj.bkt.clouddn.com/20180129134826_f2U0eJ_Screenshot.jpeg)
 
 在编程语言的历史长河中，曾经出现过很多编程语言。然而大浪淘沙，铅华洗尽之后，很多早已折戟沉沙，有些却依旧光彩夺目。那么stubstr与substring的DNA究竟来自何处？
@@ -48,7 +48,7 @@ tags:
 - 2009 - `Go`
 - 2014 - `Swift (编程语言)`
 
-## 1.1 在C++中首次出现substr()
+## 1.1. 在C++中首次出现substr()
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180129135004_rX3T5Y_Screenshot.jpeg)
 
@@ -66,7 +66,7 @@ string substr (size_t pos = 0, size_t len = npos) const;
   std::string str2 = str.substr (3,5);     // "think"
 ```
 
-## 1.2 在Java中首次出现substring()
+## 1.2. 在Java中首次出现substring()
 ![](http://p3alsaatj.bkt.clouddn.com/20180129135035_mmgoda_Screenshot.jpeg)
 
 
@@ -79,7 +79,7 @@ String substring(int beginIndex, int endIndex)
 // 返回一个新字符串，它是此字符串的一个子字符串。
 ```
 
-# 1.3 JavaScript的历史继承
+# 2. JavaScript的历史继承
 ![](http://www.jstips.co/assets/images/jstips-animation.gif)
 
 
@@ -92,14 +92,14 @@ JavaScript并不像C那样出身名门，在贝尔实验室精心打造，但是
 
 因此可以想象，在10天之内，当Brendan Eich写到String的substr和substring方法时，或许他并没困惑着两个方法的参数应该如何设置，`因为在C++和Java的实现中，已经有了类似的定义。` 如果你了解历史，你就不会困惑现在。
 
-# 2 所以，substr和substring究竟有什么不同？
+# 3. 所以，substr和substring究竟有什么不同？
 
 如下图所示：substr和substring都接受两个参数，他们的第一个参数的含义是相同的，`不同的是第二个参数。substr的第二个参数是到达结束点的距离，substring是结束的位置。`
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180129135055_OMkyzS_Screenshot.jpeg)
 
 
-# 3 参考文献
+# 4. 参考文献
 - [维基百科：程式語言歷史](https://zh.wikipedia.org/wiki/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80%E6%AD%B7%E5%8F%B2)
 - [C++ std::string::substr](http://www.cplusplus.com/reference/string/string/substr/)
 - [JavaScript](https://en.wikipedia.org/wiki/JavaScript)

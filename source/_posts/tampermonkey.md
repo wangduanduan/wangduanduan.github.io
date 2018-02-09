@@ -22,16 +22,16 @@ tags:
 
 这就是`油猴子脚本干的事情`， 当然，它能干的事情，远不止如此。`它是齐天大圣孙悟空，有七十二变。`
 
-# 什么是油猴子脚本？
+# 1. 什么是油猴子脚本？
 
 > Greasemonkey，简称GM，中文俗称为“油猴”，是Firefox的一个附加组件。它让用户安装一些脚本使大部分HTML为主的网页于用户端直接改变得更方便易用。随着Greasemonkey脚本常驻于浏览器，每次随着目的网页打开而自动做修改，使得运行脚本的用户印象深刻地享受其固定便利性。
 
 > Greasemonkey可替网页加入些新功能（例如在亚马逊书店嵌入商品比价功能）、修正网页错误、组合来自不同网页的数据、或者数繁不及备载的其他功能。写的好的Greasemonkey脚本甚至可让其输出与被修改的页面集成得天衣无缝，像是原本网页里的一部分。 来自[维基百科](https://zh.wikipedia.org/wiki/Greasemonkey)
 
-# 如何安装油猴子插件？
+# 2. 如何安装油猴子插件？
 在google商店搜索`Tampermonkey`, 安装量最高的就是它。
 
-# 如何写油猴子脚本？
+# 3. 如何写油猴子脚本？
 油猴子脚本有个新建脚本页面，在此页面可以创建脚本。具体教程可以参考。
 
 - [中文 GreaseMonkey 用户脚本开发手册](https://jixunmoe.github.io/gmDevBook/#/doc/intro/about)
@@ -42,12 +42,12 @@ tags:
 ![](http://p3alsaatj.bkt.clouddn.com/20180129140004_amXldp_Screenshot.jpeg)
 
 
-# 如何使用他人的脚本？
+# 4. 如何使用他人的脚本？
 [greasyfork网站](https://greasyfork.org/zh-CN)提供很多脚本，它仿佛是代码界的github, 可以在该网站搜到很多有意思的脚本。
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180129140017_AapqKj_Screenshot.jpeg)
 
-# 有哪些好用的脚本？
+# 5. 有哪些好用的脚本？
 - [有哪些超神的油猴脚本?](https://www.zhihu.com/question/22210090)
 - 或者你可以在greasyfork网站查看一些下载量排行
 

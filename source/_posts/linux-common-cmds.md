@@ -6,7 +6,7 @@ tags:
 - shell
 ---
 
-# lsof: 根据端口号查监听的进程号
+# 1. lsof: 根据端口号查监听的进程号
 [参考](http://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/lsof.html)
 
 使用模型：`lsof -i :port`
@@ -19,7 +19,7 @@ lsof -i :8088
 
 > lsof（list open files）是一个查看当前系统文件的工具。在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件。如传输控制协议 (TCP) 和用户数据报协议 (UDP) 套接字等，系统在后台都为该应用程序分配了一个文件描述符，该文件描述符提供了大量关于这个应用程序本身的信息。[lsof命令详情](http://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/lsof.html)
 
-# grep: 搜索神器
+# 2. grep: 搜索神器
 
 参考： [GNU Grep 3.0](https://www.gnu.org/software/grep/manual/grep.html)
 ```
@@ -43,53 +43,53 @@ lsof -i :8088
 －v：显示不包含匹配文本的所有行。
 ```
 
-##普通：搜索trace.log 中含有ERROR字段的日志
+## 2.1. 普通：搜索trace.log 中含有ERROR字段的日志
 `grep ERROR trace.log `
 
-##输出文件：可以将日志输出文件中
+## 2.2. 输出文件：可以将日志输出文件中
 `grep ERROR trace.log > error.log`
 
-##反向：搜索不包含ERROR字段的日志
+## 2.3. 反向：搜索不包含ERROR字段的日志
 `grep -v ERROR trace.log`
 
-##向前：搜索包含ERROR,并且显示ERROR前10行的日志
+## 2.4. 向前：搜索包含ERROR,并且显示ERROR前10行的日志
 `grep -B 10 ERROR trace.log`
 
-##向后：搜索包含ERROR字段，并且显示ERROR后10行的日志
+## 2.5. 向后：搜索包含ERROR字段，并且显示ERROR后10行的日志
 `grep -A 10 ERROR trace.log`
 
-##上下文：搜索包含ERROR字段，并且显示ERROR字段前后10行的日志
+## 2.6. 上下文：搜索包含ERROR字段，并且显示ERROR字段前后10行的日志
 `grep -C 10 ERROR trace.log`
 
-##多字段：搜索包含ERROR和DEBUG字段的日志
+## 2.7. 多字段：搜索包含ERROR和DEBUG字段的日志
 `gerp -E 'ERROR|DEBUG' trace.log`
 
-##多文件：从多个.log文件中搜索含有ERROR的日志
+## 2.8. 多文件：从多个.log文件中搜索含有ERROR的日志
 `grep ERROR *.log`
 
-##省略文件名：从多个.log文件中搜索ERROR字段日志，并不显示日志文件名
+## 2.9. 省略文件名：从多个.log文件中搜索ERROR字段日志，并不显示日志文件名
 从多个文件中搜索的日志默认每行会带有日志文件名
 
 `grep -h ERROR *.log`
 
-##时间范围： 按照时间范围搜索日志
+## 2.10. 时间范围： 按照时间范围搜索日志
 `awk '$2>"17:30:00" && $2<"18:00:00"' trace.log`
 日志形式如下, $2代表第二列即11:44:58, awk需要指定列
 ```
 11-21 16:44:58 /user/info/
 ```
 
-##有没有：搜索到第一个匹配行后就停止搜索
+## 2.11. 有没有：搜索到第一个匹配行后就停止搜索
 `grep -m 1 ERROR trace.log`
 
-## 行数统计: 统计ERROR出现了多少行
+## 2.12. 行数统计: 统计ERROR出现了多少行
 `grep -c ERROR trace.log`
 
-## 单词统计：统计ERROR出现了多少次
+## 2.13. 单词统计：统计ERROR出现了多少次
 `grep -c ERROR trace.log | wc -w`
 
-# wc：单词统计
+# 3. wc：单词统计
 
 
-# 参考文献
+# 4. 参考文献
 - [Linux工具快速教程](http://linuxtools-rst.readthedocs.io/zh_CN/latest/index.html)

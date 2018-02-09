@@ -99,7 +99,7 @@ setInterval(function(){
 }, 3000);
 ```
 
-# 后续补充
+# 1. 后续补充
 我从这里发现：https://github.com/ecomfe/echarts/issues/3282，选中地图的写法是这样的，而试了一下果然可以。主要是type要是`mapSelect`,而不是`geoSelect`
 ```
 myChart.dispatchAction({

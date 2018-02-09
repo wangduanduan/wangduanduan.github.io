@@ -5,7 +5,7 @@ tags:
 - ztree
 ---
 
-# ztree获得顶层节点
+# 1. ztree获得顶层节点
 
 ```
 treeObj.getNodesByParam('level',0,null);

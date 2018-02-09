@@ -7,8 +7,8 @@ tags:
 - audio
 ---
 
-# 简介
-## 相关技术
+# 1. 简介
+## 1.1. 相关技术
 
 - [Vue](https://cn.vuejs.org/)
 - [Vue-cli](https://github.com/vuejs/vue-cli)
@@ -16,7 +16,7 @@ tags:
 - [yarn](https://yarnpkg.com/lang/zh-hans/) (之前我用npm, 并使用cnpm的源，但是用了yarn之后，我发现它比cnpm的速度还快，功能更好，我就毫不犹豫选择yarn了)
 - [Audio相关API和事件](https://segmentfault.com/a/1190000009769804)
 
-## 从本教程你会学到什么？
+## 1.2. 从本教程你会学到什么？
 
 - `Vue单文件组件开发知识`
 - `Element UI基本用法`
@@ -32,13 +32,13 @@ tags:
 - `个性化配置与排他性播放`
 - `一点点ES6语法`
 
-# 学前准备
+# 2. 学前准备
 基本上不需要什么准备，但是如果你能先看一下Aduio相关API和事件将会更好
 
 - [Audio: 如果你愿意一层一层剥开我的心](https://wdd.js.org/audio-heart-detail.html)
 - [使用 HTML5 音频和视频](https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/Using_HTML5_audio_and_video)
 
-# [在线demon](https://wangduanduan.github.io/element-audio/)
+# 3. [在线demon](https://wangduanduan.github.io/element-audio/)
 `没有在线demo的教程都是耍流氓`
 
 - [查看在线demon](https://wangduanduan.github.io/element-audio/)
@@ -46,9 +46,9 @@ tags:
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180209134536_j9HvMg_Screenshot.jpeg)
 
-# 开始编码
+# 4. 开始编码
 
-# 项目初始化
+# 5. 项目初始化
 
 ```
 ➜  test vue init webpack element-audio
@@ -76,13 +76,13 @@ tags:
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180209134627_t78Jqf_Screenshot.jpeg)
 
-## 安装ElementUI并插入audio标签
-### `安装ElementUI`
+## 5.1. 安装ElementUI并插入audio标签
+### 5.1.1. `安装ElementUI`
 ```
 yarn add element-ui // or npm i element-ui -S
 ```
 
-### 在`src/main.js`中引入Element UI
+### 5.1.2. 在`src/main.js`中引入Element UI
 ```
 // filename: src/main.js
 import Vue from 'vue'
@@ -102,7 +102,7 @@ new Vue({
 })
 
 ```
-### 创建`src/components/VueAudio.vue`
+### 5.1.3. 创建`src/components/VueAudio.vue`
 ```
 // filename: src/components/VueAudio.vue
 <template>
@@ -125,7 +125,7 @@ export default {
 
 ```
 
-### 修改`src/App.vue`, 并引入`VueAudio.vue`组件
+### 5.1.4. 修改`src/App.vue`, 并引入`VueAudio.vue`组件
 ```
 // filename: src/App.vue
 <template>
@@ -155,7 +155,7 @@ export default {
 打开：http://localhost:8080/，你应该能看到如下效果，说明引入成功，你可以点击播放按钮看看，音频是否能够播放
 ![](http://p3alsaatj.bkt.clouddn.com/20180209134643_6gU9xo_Screenshot.jpeg)
 
-## 音频的播放暂停控制
+## 5.2. 音频的播放暂停控制
 我们需要用一个按钮去控制音频的播放与暂停，这里调用了audio的两个api,以及两个事件
 
 - audio.play()
@@ -229,7 +229,7 @@ export default {
 ![](http://p3alsaatj.bkt.clouddn.com/20180209134700_DTqSCu_Screenshot.jpeg)
 
 
-## 音频显示时间
+## 5.3. 音频显示时间
 音频的时间显示主要有两部分，音频的总时长和当前播放时间。可以从两个事件中获取
 - `loadedmetadata`:代表音频的元数据已经被加载完成，可以从中获取音频总时长
 - `timeupdate`: 当前播放位置作为正常播放的一部分而改变，或者以特别有趣的方式，例如不连续地改变，可以从该事件中获取音频的当前播放时间，`该事件在播放过程中会不断被触发`
@@ -381,7 +381,7 @@ export default {
 打开浏览器可以看到，当音频播放时，当前时间也在改变。
 ![](http://p3alsaatj.bkt.clouddn.com/20180209134724_Po5w9m_Screenshot.jpeg)
 
-## 音频进度条控制
+## 5.4. 音频进度条控制
 进度条主要有两个控制，改变进度的原理是：改变`audio.currentTime`属性值
 
 - 音频播放后，当前时间改变，进度条就要随之改变
@@ -410,22 +410,22 @@ formatProcessToolTip(index = 0) {
 },
 ```
 
-## 音频音量控制
+## 5.5. 音频音量控制
 音频的音量控制和进度控制差不多，也是通过拖动滑动条，去修改`aduio.volume`属性值，此处不再啰嗦
 
-## 音频播放速度控制
+## 5.6. 音频播放速度控制
 音频播放速度控制和进度控制差不多，也是点击按钮，去修改`aduio.playbackRate`属性值，该属性代表音量的大小，取值范围是0 - 1，用滑动条的时候，也是需要换算一下值，此处不再啰嗦
 
-## 音频静音控制
+## 5.7. 音频静音控制
 静音的控制是点击按钮，去修改`aduio.muted`属性，该属性有两个值: true(静音)，false(不静音)。 注意，静音的时候，音频的进度条还是会继续往前走的。
 
-## 音频下载控制
+## 5.8. 音频下载控制
 音频下载是一个a链接，记得加上`download`属性，不然浏览器会在新标签打开音频，而不是下载音频
 ```
 <a :href="url" v-show="!controlList.noDownload" target="_blank" class="download" download>下载</a>
 ```
 
-## 个性化配置
+## 5.9. 个性化配置
 音频的个性化配置有很多，大家可以自己扩展，通过父组件传递响应的值，可以做到个性化设置。
 
 ```
@@ -499,7 +499,7 @@ export default {
 
 </style>
 ```
-## 一点点ES6语法
+## 5.10. 一点点ES6语法
 大多数时候，我们希望页面上播放一个音频时，其他音频可以暂停。
 `[...audios]`可以把一个类数组转化成数组，这个是我常用的。
 
@@ -525,7 +525,7 @@ onPlay (res) {
 },
 ```
 
-## 完成后的文件
+## 5.11. 完成后的文件
 
 ```
 //filename: VueAudio.vue
@@ -775,7 +775,7 @@ onPlay (res) {
 
 ```
 
-# 感谢
+# 6. 感谢
 - 如果你需要一个小型的vue音乐播放器，你可以试试[vue-aplayer](https://github.com/SevenOutman/vue-aplayer), 该播放器不仅仅支持vue组件，非Vue的也支持，你可以看看他们的[demo](https://sevenoutman.github.io/vue-aplayer/demo)
 
 

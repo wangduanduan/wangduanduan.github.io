@@ -11,7 +11,7 @@ tags:
 
 > 你不能是一个好的ReactJS，React Native或GraphQL开发人员，如果你没有很好地理解JavaScript。有太多的JavaScript书出来，每月出来更多。那么什么是最好的JavaScript书为你？经过多年的经历，这些是学习JavaScript的最好的JavaScript书。请记住，这些书中的一些可能不是最新的，但概念和基础仍应适用。我们将继续更新这个最好的JavaScript书籍的列表，还有书签，共享和定期检查！
 
-# JavaScript: The Good Parts《JavaScript语言精粹》
+# 1. JavaScript: The Good Parts《JavaScript语言精粹》
 ![](http://p3alsaatj.bkt.clouddn.com/20180207102004_vjixz0_Screenshot.jpeg)
 
 JavaScript：Douglas Crockford的Good Parts是JavaScript书籍历史中的一个重要版本，是每个JavaScript程序员都需要阅读的一本书。 Douglas Crockford是JSON，JSLint的创建者，并且对JavaScript的开发做出了许多贡献。
@@ -21,7 +21,7 @@ JavaScript：The Good Parts侧重于使JavaScript成为一个伟大的面向对�
 JavaScript：Good Parts将告诉你如何创建优雅的代码，而不管你使用JavaScript的方式。如果你为Web开发网站或应用程序，这本书是绝对必须的。你需要编写复杂的接口，做大量的计算和处理JS，就像它是面向对象的语言，这实际上是一个必读。
 
 
-# You Don’t Know JS《你不知道js》
+# 2. You Don’t Know JS《你不知道js》
 ![](http://p3alsaatj.bkt.clouddn.com/20180207102016_UmVPGO_Screenshot.jpeg)
 
 你不知道JS通过Kyle Simpson是一个JavaScript系列的书，将显示你的JavaScript知识的差距，然后教你需要了解JavaScript的一切，以弥补这些差距。 Kyle Simpson是最好的JavaScript老师之一。任何认真对待JavaScript的人都应该注意凯尔的所有教义。
@@ -30,7 +30,7 @@ JavaScript：Good Parts将告诉你如何创建优雅的代码，而不管你使
 
 你不知道JS书系列是所有JavaScript程序员的必须，所有的书是伟大的。短书的长度是一件伟大的事情，你可以快速完成，而不失去焦点。你不知道JS带有最高的建议。
 
-# JavaScript: The Definitive Guide《JavaScript权威指南》
+# 3. JavaScript: The Definitive Guide《JavaScript权威指南》
 ![](http://p3alsaatj.bkt.clouddn.com/20180207102027_1Flhff_Screenshot.jpeg)
 
 JavaScript：David Flanagan的“绝对指南”是一本书，它肯定是一个非常沉重的标题，绝对是最好的JavaScript书籍之一。 David Flanagan在Mozilla工作，他的大部分时间都在编写编程书。
@@ -42,7 +42,7 @@ JavaScript：The Definitive Guide多年来一直有多个版本和更新。这�
 JavaScript：The Definitive Guide是一个关于JavaScript的最终指南，从基础知识开始，一直到高级功能。 JavaScript：The Definitive Guide属于每个程序员的架子，不能被推荐足够。
 
 
-# Secrets of the JavaScript Ninja《JavaScript忍者秘籍》
+# 4. Secrets of the JavaScript Ninja《JavaScript忍者秘籍》
 ![](http://p3alsaatj.bkt.clouddn.com/20180207102038_jVjJSH_Screenshot.jpeg)
 
 JavaScript Ninja的秘密由John Resig，Bear Bibeault＆Josip Maras是一个JavaScript经典，将把你变成一个JavaScript忍者。 John Resig是jQuery库的创建者，Bear Bibeault是一名网络开发人员，Josip Maras是一位博士后研究员。
@@ -53,7 +53,7 @@ JavaScript Ninja的秘密使用非常实用的例子清楚地说明每个核心�
 
 JavaScript Ninja的秘密是非常精巧的写作，这是没有什么惊喜，因为作者在JavaScript非常有经验。 JavaScript Ninja的秘密推荐给任何想成为一个JavaScript忍者，这是每个人。
 
-# Effective JavaScript: 68 Specific Ways to Harness the Power of JavaScript
+# 5. Effective JavaScript: 68 Specific Ways to Harness the Power of JavaScript
 ![](http://p3alsaatj.bkt.clouddn.com/20180207102048_OqhkNl_Screenshot.jpeg)
 
 有效的JavaScript：68具体的方法来利用JavaScript的力量David Herman将教会你通过68提示和技巧写更好的JavaScript。 David Herman是Mozilla Research的首席研究员，在Ecma的JavaScript标准化委员会有多年的经验。
@@ -62,7 +62,7 @@ JavaScript Ninja的秘密是非常精巧的写作，这是没有什么惊喜，�
 
 有效的JavaScript涵盖68个JavaScript原则到68个简短的课程，使它成为一个伟大的方式来学习JavaScript。 Effective JavaScript是一本推荐给所有级别的JavaScript程序员的书，不管它们有多忙。
 
-# JavaScript Patterns: Build Better Applications with Coding and Design Patterns
+# 6. JavaScript Patterns: Build Better Applications with Coding and Design Patterns
 ![](http://p3alsaatj.bkt.clouddn.com/20180207102104_pqt50u_Screenshot.jpeg)
 
 JavaScript模式：使用编码和设计模式构建更好的应用程序Stoyan Stefanov教你JavaScript编码模式和最佳实践。 Stoyan Stefanov在雅虎工作，是YSlow 2.0的建筑师
@@ -71,7 +71,7 @@ JavaScript模式将引导您使用模式和反模式编写JavaScript。讨论了
 
 JavaScript模式在JavaScript的教学模式以及详细的代码示例方面非常出色。这本书展示了你使用它教授的各种技术的优点和缺点。 JavaScript模式是一本关于开发JavaScript应用程序的精心编写的书，应该用作各级JavaScript开发人员的参考。
 
-# The Principles of Object-Oriented JavaScript
+# 7. The Principles of Object-Oriented JavaScript
 ![](http://p3alsaatj.bkt.clouddn.com/20180207102115_O5ja00_Screenshot.jpeg)
 
 Nicholas C. Zakas的面向对象JavaScript的原理探讨了JavaScript的面向对象的特性，并揭示了JavaScript如何使用继承和其他关键属性。 Nicholas C. Zakas是一位前端顾问，在他的主页，YUI等上与Yahoo广泛合作。
@@ -80,7 +80,7 @@ Nicholas C. Zakas的面向对象JavaScript的原理探讨了JavaScript的面向�
 
 面向对象的JavaScript的原则涵盖JavaScript的面向对象的方面，并且非常好。这本书的长度不算太大，所以它不会压倒你。如果你想使用JavaScript的面向对象的原则，面向对象的JavaScript的原则是为你。
 
-# Eloquent JavaScript: A Modern Introduction to Programming
+# 8. Eloquent JavaScript: A Modern Introduction to Programming
 ![](http://p3alsaatj.bkt.clouddn.com/20180207102127_poTUgO_Screenshot.jpeg)
 
 雄辩的JavaScript：Marijn的现代编程介绍Haverbeke是一本关于JavaScript的惊人的书。这肯定是一本雄辩的书.Marijn Haverbeke在开源软件上工作，并创建了CodeMirror和Tern。

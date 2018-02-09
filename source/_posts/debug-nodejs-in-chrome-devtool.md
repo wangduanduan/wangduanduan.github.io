@@ -8,11 +8,11 @@ tags:
 英文好的，直接看原文
 > https://blog.hospodarets.com/nodejs-debugging-in-chrome-devtools
 
-# 要求
+# 1. 要求
 - Node.js 6.3+
 - Chrome 55+
 
-# 操作步骤
+# 2. 操作步骤
 - 1 打开连接 `chrome://flags/#enable-devtools-experiments`
 - 2 开启`开发者工具实验性功能` 
 - 3 重启浏览器
@@ -23,7 +23,7 @@ tags:
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180207141636_hIfIyG_Screenshot.jpeg)
 
-# 运行程序
+# 3. 运行程序
 必须要有 `--inspect`
 ```
 > node --inspect www
