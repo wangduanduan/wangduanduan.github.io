@@ -14,3 +14,4 @@ tags:
 - [深入剖析 Socket——TCP 通信中由于底层队列填满而造成的死锁问题](http://blog.51cto.com/191274/1592101)
 - [netstat Recv-Q和Send-Q](http://blog.csdn.net/sjin_1314/article/details/9853163)
 - [深入剖析 Socket——数据传输的底层实现](http://wiki.jikexueyuan.com/project/java-socket/socket-advanced.html)
+- [Use of Recv-Q and Send-Q](https://stackoverflow.com/questions/36466744/use-of-recv-q-and-send-q)
