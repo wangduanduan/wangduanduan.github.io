@@ -254,7 +254,7 @@ API.heartBeat({
 // path 如下
 path: '/store/order/{{type}}/{{age}}'
 
-// 则pathParm应该是
+// 则pathParm应该是
 {
   type: 'dog',
   aget: 14
