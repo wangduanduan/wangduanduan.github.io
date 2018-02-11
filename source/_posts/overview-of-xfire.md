@@ -6,7 +6,7 @@ tags:
 - fetch
 ---
 
-> 我曾写过两篇文章：[jQuery进阶：用最优雅的方式写ajax请求](https://segmentfault.com/a/1190000008678653), [axios进阶：用最优雅的方式写ajax请求](https://segmentfault.com/a/1190000012037455), 原理都是在将`使用配置文件的方式，自动生成接口方法`。 在多个项目中，我曾使用这种配置的方式批量生成ajax接口，但是每次都要造轮子是很繁琐的，索性自己发布一个npm包吧，于是xfire出来了。
+> 我曾写过两篇文章 [jQuery进阶 用最优雅的方式写ajax请求](https://segmentfault.com/a/1190000008678653), [axios进阶 用最优雅的方式写ajax请求](https://segmentfault.com/a/1190000012037455), 原理都是在将`使用配置文件的方式，自动生成接口方法`。 在多个项目中，我曾使用这种配置的方式批量生成ajax接口，但是每次都要造轮子是很繁琐的，索性自己发布一个npm包吧，于是xfire出来了。
 
 > xfire地址：https://github.com/wangduanduan/xfire，
 

@@ -1,8 +1,14 @@
 ---
-title: tcp-high-recv-q-or-send-q-reasons
+title: TCP链接高Recv-Q的原因以及解决方法
 date: 2018-02-08 21:58:31
 tags:
+- tcp
+- Recv-Q
 ---
+
+```
+tcp 1692012 0 172.17.72.4:48444 10.254.149.149:58080 ESTABLISHED 27/node
+```
 
 
 
