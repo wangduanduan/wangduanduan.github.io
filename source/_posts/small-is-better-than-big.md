@@ -1,5 +1,5 @@
 ---
-title: small is bettet then big 读书改变自己
+title: small is better than big 读书改变自己
 date: 2018-02-13 14:57:23
 tags:
 - 思想者
