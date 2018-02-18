@@ -6,7 +6,7 @@ tags:
 ---
 
 注意：该文章中设置代理的方法存在很大的问题，请不要在使用。这里只作为记录。
-非常推荐你使用[http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware)，作为生产环境代理的包。你可以看我的这篇文章，里面有一个非常小巧的写法，可以实现各种代理的方法。
+非常推荐你使用[http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware)，作为生产环境代理的包。你可以看我的这篇文章，里面有一个非常小巧的写法，可以实现各种代理的方法，[Express 代理中间件的写法](https://wdd.js.org/express-proxy-middleware-demo.html)
 关于该文章中设置代理会产生的问题，在这篇文章中我会做详细的说明。
 
 nodejs比较好的代理包有：[node-http-proxy](https://github.com/nodejitsu/node-http-proxy)和[http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware)。这两个我都用过，它们的优点自不用说，只说说缺点：`它们不能从配置文件里读取代理配置。每添加一个拦截路径都需要多加一个接口调用。`
