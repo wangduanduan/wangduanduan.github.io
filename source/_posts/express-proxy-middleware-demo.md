@@ -7,7 +7,7 @@ tags:
 - Express
 ---
 
-# 配置文件写法
+# 1. 配置文件写法
 
 ```
 // filename: config/default.js
@@ -54,7 +54,7 @@ module.exports = {
 }
 ```
 
-# app.js写法
+# 2. app.js写法
 
 ```
 var express = require('express')
