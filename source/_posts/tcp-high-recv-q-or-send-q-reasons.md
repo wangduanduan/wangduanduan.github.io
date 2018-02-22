@@ -66,16 +66,16 @@ http首部可以分为两种
 在我们自己的代理的代码中，我有发现，在代理进行转发时，只删除了headers.host, 并没有删除headers.Connection等逐跳首部的字段
 
 ```
- delete req.headers.host
+delete req.headers.host
 
-    var option = {
-      url: url,
-      headers: req.headers
-    }
+var option = {
+  url: url,
+  headers: req.headers
+}
 
-    var proxy = request(option)
-    req.pipe(proxy)
-    proxy.pipe(res)
+var proxy = request(option)
+req.pipe(proxy)
+proxy.pipe(res)
 ```
 
 # 4. 解决方案
