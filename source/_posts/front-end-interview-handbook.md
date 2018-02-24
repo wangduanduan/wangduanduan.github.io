@@ -45,17 +45,23 @@ console.log(average);
 ### 1.3.11. 有用过哪些js编程风格
 ### 1.3.12. 如何理解EventLoop?
 
-## 1.4. 网络相关
-### 1.4.1. 请求状态码 1xx,2xx,3xx,4xx,5xx分别有什么含义？
-### 1.4.2. 发送某些post请求时，有时会多一些options请求，请问这是为什么？
+## 1.4. 其它
+### 1.4.1. 平时使用什么搜索引擎查资料？
+### 1.4.2. 对翻墙有什么看法？如何翻墙？
+### 1.4.3. 个人有没有技术博客，地址是什么？
+### 1.4.4. github上有没有项目？
 
-### 1.4.3. http报文有哪些组成部分？
+## 1.5. 网络相关
+### 1.5.1. 请求状态码 1xx,2xx,3xx,4xx,5xx分别有什么含义？
+### 1.5.2. 发送某些post请求时，有时会多一些options请求，请问这是为什么？
 
-### 1.4.4. http端到端首部和逐跳首部有什么区别？
+### 1.5.3. http报文有哪些组成部分？
 
-### 1.4.5. http与https在同时使用时，有什么注意点？
+### 1.5.4. http端到端首部和逐跳首部有什么区别？
 
-### 1.4.6. http, tcp, udp, websocket，分别位于7层网络的那一层？tcp和udp有什么不同？
+### 1.5.5. http与https在同时使用时，有什么注意点？
+
+### 1.5.6. http, tcp, udp, websocket，分别位于7层网络的那一层？tcp和udp有什么不同？
 
 
 # 2. 编码题
@@ -65,3 +71,7 @@ console.log(average);
 ## 2.2. 写一个函数，来判断变量是否是数组，至少使用两种写法
 
 ## 2.3. 写一个函数，将秒转化成时分秒格式，如80转化成：00:01:20
+
+# 3. 翻译题
+
+> Aggregation operations process data records and return computed results. Aggregation operations group values from multiple documents together, and can perform a variety of operations on the grouped data to return a single result. MongoDB provides three ways to perform aggregation: the aggregation pipeline, the map-reduce function, and single purpose aggregation methods.
