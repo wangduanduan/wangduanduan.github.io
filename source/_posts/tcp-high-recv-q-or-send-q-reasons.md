@@ -86,8 +86,7 @@ proxy.pipe(res)
 2. 使用成熟的开源产品
 
 # 5. 参考文献
-- [What is the reason for a high Recv-Q of a TCP connection?
-](https://stackoverflow.com/questions/34108513/what-is-the-reason-for-a-high-recv-q-of-a-tcp-connection)
+- [What is the reason for a high Recv-Q of a TCP connection?](https://stackoverflow.com/questions/34108513/what-is-the-reason-for-a-high-recv-q-of-a-tcp-connection)
 - [TCP buffers keep filling up (Recv-Q full): named unresponsive](https://unix.stackexchange.com/questions/100913/tcp-buffers-keep-filling-up-recv-q-full-named-unresponsive)
 - [linux探秘:netstat中Recv-Q 深究](http://blog.51cto.com/191274/1592101)
 - [深入剖析 Socket——TCP 通信中由于底层队列填满而造成的死锁问题](http://blog.51cto.com/191274/1592101)
