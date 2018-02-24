@@ -9,7 +9,7 @@ tags:
 # 1. 问答题
 ## 1.1. HTML相关
 ### 1.1.1. <!DOCTYPE html>的作用是什么？
-### 1.1.2. <script>, <script async> 和 <script defer>之间有什么区别？
+### 1.1.2. script, script async和script defer之间有什么区别？
 ### 1.1.3. cookie, sessionStorage 和 localStorage之间有什么区别？
 ### 1.1.4. 用过哪些html模板渲染工具？
 
