@@ -54,7 +54,9 @@ tags:
 35 | 给投资新手的极简股票课	| kindle | 在读
 36 | 前端开发手册2017 | kindle | 在读
 37 | 国富论 | kindle | 在读
-统计 | | | 已读完10本
+38 | [未来世界的幸存者](http://www.ruanyifeng.com/survivor/index.html) | 网络 | 
+
+
 
 
 # 第9周 0226-0304 ed
