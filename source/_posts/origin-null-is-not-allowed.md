@@ -4,6 +4,7 @@ date: 2018-03-09 17:58:05
 tags: 
 - chrome
 - 跨域
+- origin-null-is-not-allowed
 ---
 
 # 1. 问题表现
