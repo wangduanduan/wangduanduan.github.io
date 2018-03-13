@@ -65,6 +65,8 @@ tags:
 
 优秀的数据结构，可以节省你80%的编码时间。差劲的数据结构，你需要花大量的时间去做各种高难度动作的转换，一不小心，数据库就要累的气喘如牛，停机罢工。
 
+![](http://p3alsaatj.bkt.clouddn.com/20180313113812_yObLd0_.jpeg)
+
 ## 2.4. 知识积累，从博客开始
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180312205835_RKuuzw_.jpeg)
