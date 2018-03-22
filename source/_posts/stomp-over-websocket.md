@@ -79,6 +79,8 @@ files:
 
 该问题还没有分析出原因，但是看了stompjs的源码不是太多，明天用源码调试看看原因。
 
+问题已经找到，请参考：https://github.com/wangduanduan/stomp-websocket#about-ie8-ie9-use-websocket
+
 
 # 5. 参考文献
 - [STOMP Over WebSocket](http://jmesnil.net/stomp-websocket/doc/)
