@@ -6,45 +6,27 @@ tags:
 - oh-my-zsh
 ---
 
-# 1. oh-my-zsh中常用的git缩写
+# 1. 必会8个命令
 
-```
-alias ga='git add'
-alias gb='git branch'
-alias gba='git branch -a'
-alias gbd='git branch -d'
-alias gcam='git commit -a -m'
-alias gcb='git checkout -b'
-alias gco='git checkout'
-alias gcm='git checkout master'
-alias gcp='git cherry-pick'
-alias gd='git diff'
-alias gfo='git fetch origin'
-alias ggpush='git push origin $(git_current_branch)'
-alias ggsup='git branch --set-upstream-to=origin/$(git_current_branch)'
-alias glgp='git log --stat -p'
-alias gm='git merge'
-alias gp='git push'
-alias gst='git status'
-alias gsta='git stash save'
-alias gstp='git stash pop'
-alias gl='git pull'
-alias glg='git log --stat'
-alias glgp='git log --stat -p'
-```
+下面的操作都是经常使用的，有些只需要做一次，有些是经常操作的
 
-[oh-my-zsh git命令缩写完整版](https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/git/git.plugin.zsh)
+git命令虽然多，但是经常使用的不超过8个。
+
+命令 | 执行次数 | 说明
+--- | --- | ---
+`git clone http://sdfjslf.git` | 每个项目只需要执行一次 | //克隆一个项目 
+`git fetch origin round-2` | 每个分支只需要执行一次 |  //round-2分支在本地不存在，首先要创建一个分支
+`git checkout round-2` | 多次 | // 切换到round-2分支
+`git branch --set-upstream-to=origin/round-2` | 每个分支只需要执行一次 | // 将本地round-2分支关联远程round-2分支
+`git add -A` | 每次增加文件都要执行 |  // 在round-2下创建了一个文件, 使用-A可以添加所有文件到暂存区
+`git commit -am "我增加了一个文件"` | 每次提交都要执行 | // commit
+`git push` | 每次推送都要执行 | //最好是在push之前，使用git pull拉去远程代码到本地，否则有可能被拒绝
+`git pull` | 每次拉去都要执行 | 拉去远程分支代码到本地并合并到当前分支
 
 
 # 2. 常用的git命令
 
 `假设你在master分支上`
-
-```sequence
-Alice->Bob: Hello Bob, how are you?
-Note right of Bob: Bob thinks
-Bob-->Alice: I am good thanks!
-```
 
 ```
 // 将本地修改后的文件推送到本地仓库
@@ -138,8 +120,38 @@ git log
 git short-log 
 ```
 
+# 3. oh-my-zsh中常用的git缩写
 
-# 3. 参考文献
+```
+alias ga='git add'
+alias gb='git branch'
+alias gba='git branch -a'
+alias gbd='git branch -d'
+alias gcam='git commit -a -m'
+alias gcb='git checkout -b'
+alias gco='git checkout'
+alias gcm='git checkout master'
+alias gcp='git cherry-pick'
+alias gd='git diff'
+alias gfo='git fetch origin'
+alias ggpush='git push origin $(git_current_branch)'
+alias ggsup='git branch --set-upstream-to=origin/$(git_current_branch)'
+alias glgp='git log --stat -p'
+alias gm='git merge'
+alias gp='git push'
+alias gst='git status'
+alias gsta='git stash save'
+alias gstp='git stash pop'
+alias gl='git pull'
+alias glg='git log --stat'
+alias glgp='git log --stat -p'
+```
+
+[oh-my-zsh git命令缩写完整版](https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/git/git.plugin.zsh)
+
+
+
+# 4. 参考文献
 - [git 命令参考](https://git-scm.com/docs)
 - [《Pro Git 中文版》](https://git-scm.com/book/zh/v2)
 - [廖雪峰 git教程](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
