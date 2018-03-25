@@ -15,52 +15,76 @@ tags:
 
 # 我的2018年总书单
 
-序号 | 书名 | 来源 | 状态 | 读后感
----|---|---|---|---
-1 | 浪潮之巅上下册 | 纸质 | 读完
-2 | 新生 七年就是一辈子 | 多看 | 读完 
-3 | 大数据 | 多看 | 读完
-4 | 怪诞经济学| 多看| 读完
-5 | 专业主义| 多看| 读完
-6 | 失控| 多看| 在读
-7 | 怪诞心理学| 多看| 读完
-8 | 设计心理学| 多看| 
-9 | 魔鬼经济学| 多看| 在读
-10 | 乌合之众| kindle| 在读 
-11 | 把时间当做朋友| 多看| 
-12 | 三体| 多看| 
-13 | 人性的弱点| 多看 | 读完
-14 | 物种起源| kindle |  
-15 | 沉默的大多数 | kindle| 读完 
-16 | 生命不息，折腾不止 | kindle| 读完 
-17 | 动物农场 | kindle| 读完 
-18 | 世说新语 | kindle|  
-19 | 厚黑学 | kindle| 读完 
-20 | python学习手册 | kindle | 废话太多，看了快一半，不看了 
-21 | python编程从入门到实战 | kindle | 读完  
-22 | 图解HTTP | kindle | 读完 
-23 | 图解TCP IP | 多看 | 读完
-24 | MySql必知必会 | kindle | 在读 
-25 | 编程之美 | kindle | 在读
-26 | 一只特立独行的猪 | kindle | 读完
-27 | 富爸爸财务自由之路 | kindle | 在读
-28 | 利用python进行数据分析 | kindle | 推迟
-29 | 流畅的python | kindle | 推迟
-30 | 自控力 | kindle | 
-31 | 人类简史 | kindle | 
-32 | 影响力 | kindle | 
-33 | 富爸爸 穷爸爸 | kindle | 读完
-34 | python语言及其应用 | kindle | 读完
-35 | 给投资新手的极简股票课	| kindle | 读完
-36 | 前端开发手册2017 | kindle | 读完
-37 | 国富论 | kindle | 在读
-38 | [阮一峰 未来世界的幸存者](http://www.ruanyifeng.com/survivor/index.html) | 网络 | 读完
-39 | [阮一峰 前方的路](http://www.ruanyifeng.com/road/) | 网络 | 
-40 | 人类简史 | kindle | 
-41 | 上帝会掷骰子吗？量子物理史话 | kindle | 读完
-42 | 编写可读性代码的艺术 | kindle | 读完
-43 | 程序员的数学 | kindle | 读完
-44 | 韦伯英语字典 | 纸质书 | 
+书名 | 来源 | 状态 | 读后感
+---|---|---|---
+浪潮之巅上下册 | 纸质 | 读完
+新生 七年就是一辈子 | 多看 | 读完 
+大数据 | 多看 | 读完
+怪诞经济学| 多看| 读完
+专业主义| 多看| 读完
+怪诞心理学| 多看| 读完
+乌合之众| kindle| 读完
+人性的弱点| 多看 | 读完
+沉默的大多数 | kindle| 读完 
+生命不息，折腾不止 | kindle| 读完 
+动物农场 | kindle| 读完 
+厚黑学 | kindle| 读完 
+python学习手册 | kindle | 废话太多，看了快一半，不看了 
+python编程从入门到实战 | kindle | 读完  
+图解HTTP | kindle | 读完 
+图解TCP IP | 多看 | 读完
+编程之美 | kindle | 读完
+一只特立独行的猪 | kindle | 读完
+利用python进行数据分析 | kindle | 推迟
+流畅的python | kindle | 推迟
+富爸爸 穷爸爸 | kindle | 读完
+python语言及其应用 | kindle | 读完
+给投资新手的极简股票课	| kindle | 读完
+前端开发手册2017 | kindle | 读完
+国富论 | kindle | 20% 停止
+[阮一峰 未来世界的幸存者](http://www.ruanyifeng.com/survivor/index.html) | 网络 | 读完
+上帝会掷骰子吗？量子物理史话 | kindle | 读完
+编写可读性代码的艺术 | kindle | 读完
+程序员的数学 | kindle | 读完
+深入浅出react | kindle | 52% 停止
+大型网站技术架构 | kindle | 读完
+webkit技术内幕 | kindle | 在读
+经济史的趣味 | kindle | 在读
+30年后，你那什么养活自己 | kindle | 在读
+富爸爸财务自由之路 | kindle | 在读
+小狗钱钱 | kindle | 在读
+you dont konw js 英文版 | kindle | 在读
+MySql必知必会 | kindle | 在读 
+失控| 多看| 在读
+魔鬼经济学| 多看| 在读
+设计心理学| 多看| 
+把时间当做朋友| 多看| 
+三体| 多看| 
+自控力 | kindle | 
+人类简史 | kindle | 
+影响力 | kindle | 
+[阮一峰 前方的路](http://www.ruanyifeng.com/road/) | 网络 | 
+人类简史 | kindle | 
+韦伯英语字典 | 纸质书 | 
+
+# 第12周 0218-0324 ed
+书名|周一|周二|周三|周四|周五|周六|周日
+---|---|---|---|---|---|---|---
+失控1573 | 812 | 822 | 832 | 844 | 863 | 874 | 891
+魔鬼经济学| 698| 710| 721| 735| 767| 786| 810
+数学之美	| 2章| 3章| null| null| null| null| null
+韦伯英语字典	| null| null| null| null| null| null| null
+乌合之众	| 79%| 80%| 83%| 88%| 100%| null| null
+国富论	| 17%| 18%| 19%| 20%done| null| null| null
+编程之美	| 69%| 74%| 81%| 100%| null| null| null
+富爸爸 财务自由之路	| 17%| 19%| 27%| 29%| 35%| 38%| 45%
+深入浅出react redux	|37%|38%|41%|52%done|null|null|null
+大型网站技术架构	| 60%| 63%| 72%| 89%| 100%| null| null
+webkit技术内幕|17%|18%|21%|27%|37%|38%|44%
+经济史的趣味| 18%| 19%| 21%| 24%| 28%| 30%| 33%
+30年后，你那什么养活自己 | null | null | null | null | 15% | 21% | 24%
+小狗钱钱	|null|null|null|null|1%|8%|20%
+you dont konw js | null| null| null| null| 2%| 3%| 4%
 
  
 # 第11周 0212-0318 ed
