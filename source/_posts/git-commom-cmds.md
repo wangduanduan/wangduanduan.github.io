@@ -91,6 +91,10 @@ Merge made by the 'recursive' strategy.
  views/qc-template.html            |   7 ++-
  4 files changed, 198 insertions(+), 7 deletions(-)
  create mode 100644 views/qc-template-show-modal.html
+
+
+// 有时候只想合并某次commit到当前分支，而不是合并整个分支，可以使用 cherry-pick 合并
+git cherry-pick commmitId
 ```
 
 ### 2.2.5. 分支删除 
@@ -100,6 +104,23 @@ git push --delete origin dev
 
 // 删除本地dev分支
 git branch -D dev
+```
+
+### 拉取本地不存在的远程分支
+
+```
+// 假设现在在master分支， 我需要拉去远程的dev分支到本地
+
+// 拉取远程分支到本地
+git fetch origin dev
+
+// 切换到dev分支
+git checkout dev
+
+// 本地dev分支关联远程dev分支, 如果不把本地dev分支关联远程dev分支，则执行git pull和git push命令时会报错
+git branch --set-upstream-to=origin/dev
+
+// 然后你就可以在dev分支上编辑了
 ```
 
 ## 2.3. 版本对比
