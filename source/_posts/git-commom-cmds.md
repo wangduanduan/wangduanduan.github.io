@@ -106,7 +106,7 @@ git push --delete origin dev
 git branch -D dev
 ```
 
-### 拉取本地不存在的远程分支
+### 2.2.6. 拉取本地不存在的远程分支
 
 ```
 // 假设现在在master分支， 我需要拉去远程的dev分支到本地
