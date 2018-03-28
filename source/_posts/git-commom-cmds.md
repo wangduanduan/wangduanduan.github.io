@@ -1,10 +1,12 @@
 ---
-title: git常用命令与oh-my-zsh常用缩写
+title: gitbash生存指南 之 git常用命令与oh-my-zsh常用缩写
 date: 2018-01-31 16:19:38
 tags:
 - git
 - oh-my-zsh
 ---
+
+`如果命令行可以解决的问题，就绝对不要用GUI工具。快点试用Git bash吧， 别再用TortoiseGit了。`
 
 # 1. 必会8个命令
 
