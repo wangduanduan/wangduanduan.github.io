@@ -54,8 +54,11 @@ WebSocket断开时，会触发`CloseEvent`, CloseEvent会在连接关闭时发�
 3000–3999	 ||	可以由库或框架使用.? 不应由应用使用. 可以在 IANA 注册, 先到先得.
 4000–4999	 ||	可以由应用使用.
 
+# 4. 其他注意事项
 
-# 4. 参考
+如果你的服务所在的域是HTTPS的，那么使用的WebSocket协议也必须是`wss`, 而不能是`ws`
+
+# 5. 参考
 - [CloseEvent](https://developer.mozilla.org/zh-CN/docs/Web/API/CloseEvent)
 - [getting the reason why websockets closed with close code 1006](https://stackoverflow.com/questions/19304157/getting-the-reason-why-websockets-closed-with-close-code-1006)
 - [Defined Status Codes](https://tools.ietf.org/html/rfc6455#section-7.4.1)
