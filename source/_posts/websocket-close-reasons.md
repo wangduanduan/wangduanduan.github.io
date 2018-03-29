@@ -58,7 +58,13 @@ WebSocket断开时，会触发`CloseEvent`, CloseEvent会在连接关闭时发�
 
 如果你的服务所在的域是HTTPS的，那么使用的WebSocket协议也必须是`wss`, 而不能是`ws`
 
-# 5. 参考
+# 5. 如何在老IE上使用原生WebSocket？
+
+[web-socket-js](https://github.com/gimite/web-socket-js)是基于flash的技术，只需要引入两个js文件和一个swf文件，就可以让浏览器用于几乎原生的WebSocket接口。另外，web-socket-js还是需要在ws服务端883端口做一个flash安全策略文件的服务。
+
+我自己曾经基于stompjs和web-socket-js，做WebSocket兼容到IE5, 当然了stompjs在低版本的IE上有兼容性问题, 而且stompjs已经不再维护了，你可以使用我fork的一个版本，地址是：https://github.com/wangduanduan/stomp-websocket/blob/master/lib/stomp.js
+
+# 6. 参考
 - [CloseEvent](https://developer.mozilla.org/zh-CN/docs/Web/API/CloseEvent)
 - [getting the reason why websockets closed with close code 1006](https://stackoverflow.com/questions/19304157/getting-the-reason-why-websockets-closed-with-close-code-1006)
 - [Defined Status Codes](https://tools.ietf.org/html/rfc6455#section-7.4.1)
