@@ -57,6 +57,5 @@ WebSocket断开时，会触发`CloseEvent`, CloseEvent会在连接关闭时发�
 
 # 4. 参考
 - [CloseEvent](https://developer.mozilla.org/zh-CN/docs/Web/API/CloseEvent)
-- [getting the reason why websockets closed with close code 1006
-](https://stackoverflow.com/questions/19304157/getting-the-reason-why-websockets-closed-with-close-code-1006)
+- [getting the reason why websockets closed with close code 1006](https://stackoverflow.com/questions/19304157/getting-the-reason-why-websockets-closed-with-close-code-1006)
 - [Defined Status Codes](https://tools.ietf.org/html/rfc6455#section-7.4.1)
