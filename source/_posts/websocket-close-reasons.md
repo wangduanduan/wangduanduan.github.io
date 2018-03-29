@@ -64,6 +64,19 @@ WebSocket断开时，会触发`CloseEvent`, CloseEvent会在连接关闭时发�
 
 我自己曾经基于stompjs和web-socket-js，做WebSocket兼容到IE5, 当然了stompjs在低版本的IE上有兼容性问题, 而且stompjs已经不再维护了，你可以使用我fork的一个版本，地址是：https://github.com/wangduanduan/stomp-websocket/blob/master/lib/stomp.js
 
+主要是老版本IE在正则表达式行为方面有点异常。
+
+```
+
+      // fix ie8, ie9, RegExp not normal problem
+      // in chrome the frames length will be 2, but in ie8, ie9, it well be 1
+      // by wdd 20180321
+      if (frames.length === 1) {
+        frames.push('')
+      }
+
+```
+
 # 6. 参考
 - [CloseEvent](https://developer.mozilla.org/zh-CN/docs/Web/API/CloseEvent)
 - [getting the reason why websockets closed with close code 1006](https://stackoverflow.com/questions/19304157/getting-the-reason-why-websockets-closed-with-close-code-1006)
