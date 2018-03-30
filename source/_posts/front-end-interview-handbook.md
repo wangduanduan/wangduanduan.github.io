@@ -104,6 +104,31 @@ setTimeout(function(){
 
 ## 2.3. 写一个函数，将秒转化成时分秒格式，如80转化成：00:01:20
 
+## 写一个函数，将对象中属性值为'', undefined, null的属性删除掉
+
+```
+// 处理前
+var obj = {
+  name: 'wdd',
+  address: {
+    code: '',
+    tt: null,
+    age: 1
+  },
+  ss: [],
+  vv: undefined
+}
+
+// 处理后
+{
+  name: 'wdd',
+  address: {
+    age: 1
+  },
+  ss: []
+}
+```
+
 # 3. 翻译题
 
 > Aggregation operations process data records and return computed results. Aggregation operations group values from multiple documents together, and can perform a variety of operations on the grouped data to return a single result. MongoDB provides three ways to perform aggregation: the aggregation pipeline, the map-reduce function, and single purpose aggregation methods.
