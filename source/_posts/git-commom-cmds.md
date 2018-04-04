@@ -168,6 +168,7 @@ alias gstp='git stash pop'
 alias gl='git pull'
 alias glg='git log --stat'
 alias glgp='git log --stat -p'
+alias glgga='git log --graph --decorate --all' // 图形化查看分支之间的发展关系
 ```
 
 [oh-my-zsh git命令缩写完整版](https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/git/git.plugin.zsh)
