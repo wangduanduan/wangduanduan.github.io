@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'public'), {maxAge: config.get('maxA
 
 设置的方式是给每一个静态文件设置一个时间戳。
 
-例如：`vendor/loadjs/load.js?_=123898923423"></script>`，这种形势。
+例如：`vendor/loadjs/load.js?_=123898923423"></script>`
 
 ## 2.1. Express 路由
 
