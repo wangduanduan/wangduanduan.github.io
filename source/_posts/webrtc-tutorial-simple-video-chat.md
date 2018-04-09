@@ -11,6 +11,7 @@ tags:
 [本栗子的地址](https://github.com/wangduanduan/webrtc)
 [本栗子的pages地址](https://wangduanduan.github.io/webrtc/)
 
+`因为使用的是ScaleDrone的js sdk, 后期很可能服务不稳定之类的`
 
 # 1. 准备
 - 使用最新版谷歌浏览器（62版）
