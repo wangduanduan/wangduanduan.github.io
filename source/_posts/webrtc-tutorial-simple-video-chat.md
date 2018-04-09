@@ -1,5 +1,5 @@
 ---
-title: webrtc-tutorial-simple-video-chat
+title: 120行代码实现 浏览器WebRTC视频聊天
 date: 2018-02-09 12:56:12
 tags:
 - webrtc
