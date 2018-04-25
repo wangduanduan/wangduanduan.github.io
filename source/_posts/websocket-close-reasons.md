@@ -5,11 +5,15 @@ tags:
 - WebSocket
 ---
 
+
+
 # 1. 把错误打印出来
 
 WebSocket断开的原因有很多，最好在WebSocket断开时，将错误打印出来。
 
 在线demo地址：https://wdd.js.org/websocket-demos/
+
+![](http://p3alsaatj.bkt.clouddn.com/20180425112232_cxPVAD_Jietu20180425-112142.jpeg)
 
 ```
 ws.onerror = function (e) {
