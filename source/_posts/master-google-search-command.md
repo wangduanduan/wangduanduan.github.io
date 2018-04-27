@@ -16,8 +16,7 @@ tags:
   - [4.4. 时区查询](#44-时区查询)
   - [4.5. 地区查询](#45-地区查询)
   - [4.6. 天气查询](#46-天气查询)
-- [5. 自定义搜索](#5-自定义搜索)
-- [6. 参考](#6-参考)
+- [5. 参考](#5-参考)
 
 <!-- /TOC -->
 
@@ -35,6 +34,8 @@ OR | 包含A或者B | `A OR B` 或者 `A | B` |  | nodejs OR webpack
 ~ | 包含A, 并且包含B的近义词 | A ~B | | github ~js
 .. | 区间查询 AB之间 | A..B | | china 1888..2000
 * | 匹配任意字符 | | | node* java
+site: | 站内搜索 | A site:B | | | DLL site:webpack.js.org
+filetype: | 按照文件类型搜索 | A filetype:B | | csta filetype:pdf
 
 # 3. 关键词使用
 
@@ -71,14 +72,7 @@ OR | 包含A或者B | `A OR B` 或者 `A | B` |  | nodejs OR webpack
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180426180104_3qesjV_Jietu20180426-180042.jpeg)
 
-# 5. 自定义搜索
-
-指令 | 备注 | 示例
----|--- | --- 
-site: | 站内搜索 | DLL site:webpack.js.org 
-filetype: | 文件类型搜索 | nodejs filetype:pdf
-
-# 6. 参考
+# 5. 参考
 - [Advanced Google Search Commands](https://www.lifewire.com/advanced-google-search-3482174)
 - [Google_rules_for_searching.pdf](https://uvtagg.org/classes/smaxwell/Google_rules_for_searching.pdf)
 - [An introduction to search commands](http://www.searchcommands.com/)
