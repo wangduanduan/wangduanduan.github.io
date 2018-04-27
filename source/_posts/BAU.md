@@ -1,5 +1,5 @@
 ---
-title: BAM(Bug Analysis Method) Bug分析方法 之 GTPA
+title: BAM(Bug Analysis Method) Bug分析方法 之 TPAF
 date: 2018-04-27 20:11:44
 tags:
 ---
