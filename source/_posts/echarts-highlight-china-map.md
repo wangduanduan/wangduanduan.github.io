@@ -5,6 +5,8 @@ tags:
 - echarts
 ---
 
+# 1. 小栗子
+
 ![](http://p3alsaatj.bkt.clouddn.com/20180209131759_k10o0Z_bVVWEB.jpeg)
 
 最早我是想通过`dispatchAction`方法去改变选中的省份，但是没有起作用，如果你知道这个方法怎么实现，麻烦你可以告诉我。
@@ -99,7 +101,7 @@ setInterval(function(){
 }, 3000);
 ```
 
-# 1. 后续补充
+# 2. 后续补充
 我从这里发现：https://github.com/ecomfe/echarts/issues/3282，选中地图的写法是这样的，而试了一下果然可以。主要是type要是`mapSelect`,而不是`geoSelect`
 ```
 myChart.dispatchAction({
@@ -115,5 +117,24 @@ myChart.dispatchAction({
 });
 ```
 
+# 3. 哪里去下载中国地图？
 
-  [1]: /img/bVVWEB
+官方示例里是没有中国地图的，不过你可以去github的官方仓库里找。地址是：https://github.com/apache/incubator-echarts/tree/master/map
+
+![](http://p3alsaatj.bkt.clouddn.com/20180509112951_wNvh6u_Jietu20180509-112929.jpeg)
+
+# 4. 地图学习的栗子哪里有？
+
+## 4.1. 先学习一下美国地图怎么玩吧
+
+echarts官方文档上有美国地图的实例，地址：http://echarts.baidu.com/examples/editor.html?c=map-usa
+
+![](http://p3alsaatj.bkt.clouddn.com/20180509113143_019h7i_Jietu20180509-113135.jpeg)
+
+## 4.2. 我国地图也是有的，参考iphone销量这个栗子
+
+地址：http://echarts.baidu.com/option.html#series-map, 注意：`地图的相关文档在series->type:map中`
+
+![](http://p3alsaatj.bkt.clouddn.com/20180509113253_Y1hJI4_Jietu20180509-113227.jpeg)
+
+
