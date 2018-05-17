@@ -106,6 +106,6 @@ describe('Hacker News登录测试', () => {
 
 运行结束后，左侧栏目鼠标移动上去，右侧栏都会显示出该步骤的截图，所以叫做时光穿梭功能。
 
-从截图也可以看出来，Cypress的步骤描述很详细。
+![](http://p3alsaatj.bkt.clouddn.com/20180517164346_Lipgu6_Jietu20180517-163217.jpeg)
 
-![](http://p3alsaatj.bkt.clouddn.com/20180517162842_TVatQu_Jietu20180517-162820.jpeg)
+从截图也可以看出来，Cypress的步骤描述很详细。
