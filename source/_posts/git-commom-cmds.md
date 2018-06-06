@@ -143,6 +143,15 @@ git log
 git short-log 
 ```
 
+## 2.5. 撤销修改
+
+### 2.5.1. 撤销处于修改状态的文件
+
+如果你修改了某个文件，但是还没有commit到本地仓库。
+```
+git checkout -- somefile.js
+```
+
 # 3. oh-my-zsh中常用的git缩写
 
 ```
