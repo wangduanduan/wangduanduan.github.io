@@ -10,7 +10,7 @@ tags:
 
 - [1. 什么是REST?](#1-什么是rest)
 - [2. REST API最为重要的约束](#2-rest-api最为重要的约束)
-- [3. REST API HTTP方法](#3-rest-api-http方法)
+- [3. REST API HTTP方法 与 CURD](#3-rest-api-http方法-与-curd)
 - [4. 状态码](#4-状态码)
 - [5. RESTful架构设计](#5-restful架构设计)
 - [6. 文档](#6-文档)
@@ -47,7 +47,10 @@ RESTful API的简单定义可以轻松解释这个概念。 REST是一种架构�
 - `Code-On-Demand` 支持通过下载并执行一些代码（例如Java Applet、Flash或JavaScript），对客户端的功能进行扩展。
 
 
-# 3. REST API HTTP方法
+# 3. REST API HTTP方法 与 CURD
+
+REST API 使用POST，GET, PUT, DELETE的HTTP方法来描述对资源的增、查、改、删。
+这四个HTTP方法在数据层对应着SQL的插入、查询、更新、删除操作。
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180612085022_UHL82x_content_request_methods.jpeg)
 
@@ -78,7 +81,7 @@ RESTful API的简单定义可以轻松解释这个概念。 REST是一种架构�
 
 版本管理一般有两种
 
-- 位于url中的版本标识： http://example.com/api/`v1`
+- 位于url中的版本标识： http://example.com/api/v1
 - 位于请求头中的版本标识：Accept: application/vnd.redkavasyl+json; `version=2.0`
   
 
@@ -95,8 +98,9 @@ RESTful API的简单定义可以轻松解释这个概念。 REST是一种架构�
 
 【图2 无状态的架构】
 
+>  each request from client to server must contain all of the information necessary to understand the request, and cannot take advantage of any stored context on the server. Session state is therefore kept entirely on the client. [rest_arch_style stateless](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_3)
 
-
+每一个请求自身必须携带所有的信息，让客户端理解这个请求。举个栗子，常见的翻页操作，应该客户端告诉服务端想要看第几页的数据，而不应该让服务端记住客户端看到了第几页。
 
 # 9. 参考
 
