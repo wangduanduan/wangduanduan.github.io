@@ -1,5 +1,5 @@
 ---
-title: Restful API
+title: Restful API 架构思考
 date: 2018-06-07 22:35:08
 tags:
 - rest
@@ -76,6 +76,8 @@ RESTful API的简单定义可以轻松解释这个概念。 REST是一种架构�
 
 # 7. 版本
 
+版本管理一般有两种
+
 - 位于url中的版本标识： http://example.com/api/`v1`
 - 位于请求头中的版本标识：Accept: application/vnd.redkavasyl+json; `version=2.0`
   
@@ -83,6 +85,8 @@ RESTful API的简单定义可以轻松解释这个概念。 REST是一种架构�
 # 8. 深入理解状态与无状态
 
 我认为REST架构最难理解的就是状态与无状态。下面我画出两个示意图。
+
+图1是有状态的服务，状态存储于单个服务之中，一旦一个服务挂了，状态就没了，有状态服务很难扩展。无状态的服务，状态存储于客户端，一个请求可以被投递到任何服务端，即使一个服务挂了，也不回影响到同一个客户端发来的下一个请求。
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180612141107_qhgDxn_Jietu20180612-141048.jpeg)
 【图1 有状态的架构】
