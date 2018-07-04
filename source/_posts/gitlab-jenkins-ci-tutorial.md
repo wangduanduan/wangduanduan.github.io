@@ -9,7 +9,7 @@ tags:
 ## 1.1. 构建触发器设置
 
 - 方框位置打钩
-- 注意：椭圆圈住的位置的URL在下文中会用到
+- 注意：椭圆圈住的位置的URL在下文中会用到, 该URL是JenKins自动生成的
 
 如果你的项目中看不到这一项，那么你需要安装[Gitlab Plugin](https://wiki.jenkins.io/display/JENKINS/GitLab+Plugin)
 
@@ -18,7 +18,7 @@ tags:
 
 ## 1.2. 构建
 
-注意：`$BUILD_NUMBER`是一个环境变量，表示当前构建的次数。加上这个之后，每次构建产生的tag都不一样。
+注意：`$BUILD_NUMBER`是JenKins自带的一个环境变量，表示当前构建的次数。加上这个之后，每次构建产生的tag都不一样。
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180703180154_3EBgJo_Jietu20180703-180138.jpeg)
 
