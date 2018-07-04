@@ -45,3 +45,27 @@ tags:
 如果测试失败，gitlab这边会给出具体的错误信息。
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180703181150_q5E49m_Jietu20180703-181139.jpeg)
+
+
+# 3. 延伸阅读
+## 3.1. JenKins环境变量
+
+jenkins还有更多的环境变量，可以在构建时读取出来。参考： https://wiki.jenkins.io/display/JENKINS/Building+a+software+project
+
+环境变量 | 描述
+--- | ---
+BUILD_URL | The URL where the results of this build can be found (e.g. http://buildserver/jenkins/job/MyJobName/666/)
+EXECUTOR_NUMBER | The unique number that identifies the current executor (among executors of the same machine) that's carrying out this build. This is the number you see in the "build executor status", except that the number starts from 0, not 1.
+NODE_NAME | The name of the node the current build is running on. Equals 'master' for master node.
+BUILD_NUMBER | The current build number, such as "153"
+BUILD_ID| The current build id, such as "2005-08-22_23-59-59" (YYYY-MM-DD_hh-mm-ss, defunct since version 1.597)
+WORKSPACE| The absolute path of the workspace.
+BUILD_TAG| String of jenkins-${JOB_NAME}-${BUILD_NUMBER}. Convenient to put into a resource file, a jar file, etc for easier identification.
+JENKINS_URL|Set to the URL of the Jenkins master that's running the build. This value is used by Jenkins CLI for example
+JOB_NAME|Name of the project of this build. This is the name you gave your job when you first set it up. It's the third column of the Jenkins Dashboard main page.
+JAVA_HOME|If your job is configured to use a specific JDK, this variable is set to the JAVA_HOME of the specified JDK. When this variable is set, PATH is also updated to have $JAVA_HOME/bin.
+SVN_REVISION | For Subversion-based projects, this variable contains the revision number of the module. If you have more than one module specified, this won't be set.
+GIT_URL | For Git-based projects, this variable contains the Git url (like git@github.com:user/repo.git or [https://github.com/user/repo.git])
+GIT_COMMIT | For Git-based projects, this variable contains the Git hash of the commit checked out for the build (like ce9a3c1404e8c91be604088670e93434c4253f03) (all the GIT_* variables require git plugin)    
+GIT_BRANCH | For Git-based projects, this variable contains the Git branch that was checked out for the build (normally origin/master)
+CVS_BRANCH | For CVS-based projects, this variable contains the branch of the module. If CVS is configured to check out the trunk, this environment variable will not be set.
