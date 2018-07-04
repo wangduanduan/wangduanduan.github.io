@@ -18,7 +18,7 @@ tags:
 
 ## 1.2. 构建
 
-注意：`$BUILD_NUMBER`是一个全局的宏，加上这个之后，每次构建产生的tag都不一样。
+注意：`$BUILD_NUMBER`是一个环境变量，表示当前构建的次数。加上这个之后，每次构建产生的tag都不一样。
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180703180154_3EBgJo_Jietu20180703-180138.jpeg)
 
@@ -47,10 +47,24 @@ tags:
 ![](http://p3alsaatj.bkt.clouddn.com/20180703181150_q5E49m_Jietu20180703-181139.jpeg)
 
 
-# 3. 延伸阅读
+# 3. 高级技巧
+
+## 3.2 构建节流
+
+在使用GitLab CI自动构建项目时。正常情况GitLab项目的每次push，JenKins都会自动打包。
+
+如果一样项目一分钟收到30次push, JenKins做30次打包是非常浪费资源的。通过设置构建节流，可以限制单位时间内JenKins的构建次数。
+
+下图设置Throttle Builds每小时只能构建一次，但是允许用户手动构建时，跳过构建节流的限制。
+
+![](http://p3alsaatj.bkt.clouddn.com/20180704094538_Uf1RrX_Jietu20180704-094526.jpeg)
+
+
 ## 3.1. JenKins环境变量
 
-jenkins还有更多的环境变量，可以在构建时读取出来。参考： https://wiki.jenkins.io/display/JENKINS/Building+a+software+project
+jenkins还有更多的环境变量，可以在构建时读取出来，方便参数化构建。
+
+例如你想获取当前构建的累积次数，可以用`$BUILD_NUMBER`
 
 环境变量 | 描述
 --- | ---
@@ -69,3 +83,6 @@ GIT_URL | For Git-based projects, this variable contains the Git url (like git@g
 GIT_COMMIT | For Git-based projects, this variable contains the Git hash of the commit checked out for the build (like ce9a3c1404e8c91be604088670e93434c4253f03) (all the GIT_* variables require git plugin)    
 GIT_BRANCH | For Git-based projects, this variable contains the Git branch that was checked out for the build (normally origin/master)
 CVS_BRANCH | For CVS-based projects, this variable contains the branch of the module. If CVS is configured to check out the trunk, this environment variable will not be set.
+
+# 参考
+- [Building a software project](https://wiki.jenkins.io/display/JENKINS/Building+a+software+project)
