@@ -1,5 +1,5 @@
 ---
-title: GitLab JenKins 集成教程
+title: GitLab JenKins 自动化构建
 date: 2018-07-03 17:56:05
 tags:
 ---
