@@ -26,6 +26,15 @@ tags:
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180703180601_uyMlkh_Jietu20180703-180546.jpeg)
 
+**Docker Build and Publish 高级设置**
+
+`Skip Push` 默认情况该值处于选中状态，如果需要push到私有仓库，那么该项目要取消勾选。`如果你构建的项目没有push到私有仓库，那么就是该值引起的问题`
+
+
+其他参数可以自行设置。
+
+![](http://p3alsaatj.bkt.clouddn.com/20180705162021_Nr0P43_Jietu20180705-161956.jpeg)
+
 # 2. gitlab配置
 
 ## 2.1. 配置WebHooks
@@ -83,6 +92,7 @@ GIT_URL | For Git-based projects, this variable contains the Git url (like git@g
 GIT_COMMIT | For Git-based projects, this variable contains the Git hash of the commit checked out for the build (like ce9a3c1404e8c91be604088670e93434c4253f03) (all the GIT_* variables require git plugin)    
 GIT_BRANCH | For Git-based projects, this variable contains the Git branch that was checked out for the build (normally origin/master)
 CVS_BRANCH | For CVS-based projects, this variable contains the branch of the module. If CVS is configured to check out the trunk, this environment variable will not be set.
+
 
 # 参考
 - [Building a software project](https://wiki.jenkins.io/display/JENKINS/Building+a+software+project)
