@@ -35,6 +35,7 @@ tags:
 
 ![](http://p3alsaatj.bkt.clouddn.com/20180705162021_Nr0P43_Jietu20180705-161956.jpeg)
 
+
 # 2. gitlab配置
 
 ## 2.1. 配置WebHooks
