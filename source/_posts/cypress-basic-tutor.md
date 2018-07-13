@@ -2,6 +2,8 @@
 title: cypress基础教程
 date: 2018-07-12 16:43:18
 tags:
+- cypress
+- 端到端测试
 ---
 
 # 1. 软件安装
