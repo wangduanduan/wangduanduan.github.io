@@ -101,3 +101,6 @@ deploy:
   repo: https://github.com/wangduanduan/wangduanduan.github.io.git
   branch: master
   message: update 
+
+admin:
+  deployCommand: './hexo-deploy.sh'

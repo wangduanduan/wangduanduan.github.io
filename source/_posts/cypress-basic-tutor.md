@@ -1,12 +1,11 @@
----
 title: cypress基础教程
-date: 2018-07-12 16:43:18
 tags:
-- cypress
-- 端到端测试
+  - cypress
+  - 端到端测试
+categories: []
+date: 2018-07-12 16:43:00
 ---
-
-# 1. 软件安装
+# 1. 软件安装.
 
 # 2. 安装cypress
 
@@ -128,7 +127,7 @@ cy.get('#loading').should('not.exist')
 cy.get(':radio').should('be.checked')
 ```
 
-# 读取测试配置数据
+# 9. 读取测试配置数据
 
 - Cypress.env() 可以读取全局配置
 - fixture(文件名).as(变量), 可以将文件中的配置数据读取为变量，作为后续的测试用例来使用，注意这一步是异步的，必须放在before或者beforeEach等钩子函数中使用
@@ -161,15 +160,15 @@ describe('软电话登录', function () {
 
 ```
 
-# 全局配置 cypress.json
+# 10. 全局配置 cypress.json
 
 参考：https://docs.cypress.io/guides/references/configuration.html#Options
 
-# 变量与别称
+# 11. 变量与别称
 
 参考：https://docs.cypress.io/guides/core-concepts/variables-and-aliases.html#
 
-# 钩子函数
+# 12. 钩子函数
 
 参考： https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Hooks
 
@@ -178,7 +177,7 @@ describe('软电话登录', function () {
 - afterEach()
 - after()
 
-# 最佳实践
+# 13. 最佳实践
 
 参考： https://docs.cypress.io/guides/references/best-practices.html
 
