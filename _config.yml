@@ -93,6 +93,13 @@ feed:
 type: atom
 path: atom.xml
 limit: 20
+
+githubEmojis:
+  enable: true
+  className: github-emoji
+  unicode: false
+  styles:
+  localEmojis:
     
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

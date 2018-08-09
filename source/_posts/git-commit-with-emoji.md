@@ -20,3 +20,5 @@ git commit -am ":art: 格式化代码"
 --- | --- | ---
 `:bug:` | :bug: | 解决bug
 
+# 参考
+- https://gitmoji.carloscuesta.me/
