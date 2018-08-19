@@ -88,6 +88,10 @@ MySql必知必会 | kindle | 在读
 我们为什么生病 | 
 腾讯传 | 0601
 
+# 第33周 0812-0818
+
+![](http://p3alsaatj.bkt.clouddn.com/20180819204938_FeYwGw_Jietu20180819-204902.jpeg)
+
 
 # 第15周 0409-0415 ed
 
