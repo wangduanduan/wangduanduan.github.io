@@ -38,25 +38,25 @@ tags:
 下面给展示几张我的PS照片
 
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814185855_oORpt1_Jietu20180814-185838.jpeg-480x)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814185855_oORpt1_Jietu20180814-185838.jpeg)
 
 【毕业照】
 
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814190245_gfE8Fb_Jietu20180814-190136.jpeg-480x)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814190245_gfE8Fb_Jietu20180814-190136.jpeg)
 
 【帮别人做的艺术照】
 
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814190255_wMF7u1_Jietu20180814-190227.jpeg-480x)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814190255_wMF7u1_Jietu20180814-190227.jpeg)
 
 【刺客信条 换脸 我自己】
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814190305_8V2gKz_Jietu20180814-190236.jpeg-480x)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814190305_8V2gKz_Jietu20180814-190236.jpeg)
 
 【旅游照 换脸 我自己】
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814190409_GjfFso_Jietu20180814-190359.jpeg-480x)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814190409_GjfFso_Jietu20180814-190359.jpeg)
 
 【宿舍楼 上面ps了一条狼】
 
