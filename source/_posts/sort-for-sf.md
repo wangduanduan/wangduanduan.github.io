@@ -7,7 +7,7 @@ tags:
 有个需求，想看点赞最多的头条，但是页面没有这种按钮。怎么办？自己写吧。
 
 先看效果
-![](http://p3alsaatj.bkt.clouddn.com/20180207140139_xwjt2M_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180207140139_xwjt2M_Screenshot.jpeg)
 
 再看代码
 ```

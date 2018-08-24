@@ -7,7 +7,7 @@ tags:
 - 未完成
 ---
 
-![](http://p3alsaatj.bkt.clouddn.com/20180209223906_Nh00QV_Csad9HyVUAABc1P.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209223906_Nh00QV_Csad9HyVUAABc1P.jpeg)
 
 <!-- more -->
 

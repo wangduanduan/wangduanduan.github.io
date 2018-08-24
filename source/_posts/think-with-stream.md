@@ -8,7 +8,7 @@ tags:
 
 # 1. 流的存在
 
-![](http://p3alsaatj.bkt.clouddn.com/20180205113245_dxUKTb_latest.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180205113245_dxUKTb_latest.jpeg)
 
 # 2. 流的规则
 

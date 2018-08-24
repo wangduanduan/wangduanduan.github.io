@@ -19,7 +19,7 @@ tags:
 仓库地址：https://github.com/wangduanduan/vue-el-dashboard
 
 效果图：
-![](http://p3alsaatj.bkt.clouddn.com/20180209120336_WDGC7Q_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209120336_WDGC7Q_Screenshot.jpeg)
 使用到的技术：
 - Vue
 - Vue-router
@@ -63,7 +63,7 @@ tags:
 ```
 `浏览器打开如下页面`:
 
-![](http://p3alsaatj.bkt.clouddn.com/20180209120349_hZ5aL8_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209120349_hZ5aL8_Screenshot.jpeg)
 
 # 3. 安装初始化页面布局
 安装并使用Element UI
@@ -94,7 +94,7 @@ new Vue({
 ```
 
 我需要的布局是这种：
-![](http://p3alsaatj.bkt.clouddn.com/20180209120401_Bz1hp8_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209120401_Bz1hp8_Screenshot.jpeg)
 
 在 [Element](http://element-cn.eleme.io/#/zh-CN/component/container) 上复制对应的代码,
 并粘贴到 /src/App.vue文件中：
@@ -127,13 +127,13 @@ export default {
 ```
 
 不出意外的话，你可以在浏览器上看到如下布局：
-![](http://p3alsaatj.bkt.clouddn.com/20180209120415_IXpxss_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209120415_IXpxss_Screenshot.jpeg)
 
 `现在，布局就这么成了。`
 
 # 4. 安装侧边菜单栏
 我需要侧边栏是下图右边的自定义颜色的那种菜单
-![](http://p3alsaatj.bkt.clouddn.com/20180209120427_5XI3wx_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209120427_5XI3wx_Screenshot.jpeg)
 
 在components文件夹下新建NavMenu.vue
 ```
@@ -271,7 +271,7 @@ import NavMenu from '@/components/NavMenu'
 ```
 
 现在打开浏览器，应该可以看到如下界面：
-![](http://p3alsaatj.bkt.clouddn.com/20180209120449_4adtnd_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209120449_4adtnd_Screenshot.jpeg)
 
 可以看到菜单已经引入进来了，但是是两个菜单，下面我们需要修改一下，只要右边的菜单，并删除一些多余的元素。
 修改NavMenu.vue文件。
@@ -329,10 +329,10 @@ import NavMenu from '@/components/NavMenu'
 ```
 
 现在打开浏览器看看：
-![](http://p3alsaatj.bkt.clouddn.com/20180209120504_fBzacz_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209120504_fBzacz_Screenshot.jpeg)
 
 点击展开菜单看看：
-![](http://p3alsaatj.bkt.clouddn.com/20180209120513_YyPnIb_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209120513_YyPnIb_Screenshot.jpeg)
 
 # 5. 侧边菜单栏进阶
 
@@ -347,7 +347,7 @@ import NavMenu from '@/components/NavMenu'
 - unique-opened: 是否只保持一个子菜单的展开
 - router: 是否使用 vue-router 的模式，启用该模式会在激活导航时以 index 作为 path 进行路由跳转
 
-![](http://p3alsaatj.bkt.clouddn.com/20180209120526_BrJl3d_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209120526_BrJl3d_Screenshot.jpeg)
 
 修改NavMenu.vue
 ```
@@ -404,7 +404,7 @@ import NavMenu from '@/components/NavMenu'
 ```
 
 打开浏览器，点击一个二级菜单看看，你会发现，效果并不像预期那样，而且控制台还向你扔出一个bug：
-![](http://p3alsaatj.bkt.clouddn.com/20180209120546_OMkIrB_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209120546_OMkIrB_Screenshot.jpeg)
 
 添加一个暂时的路由: 修改main.js
 ```
@@ -429,7 +429,7 @@ new Vue({
 ```
 
 打开浏览器，点击一个二级菜单，这时候没有报错，浏览器的路径也变了, 变成`http://localhost:8080/#/1-3`
-![](http://p3alsaatj.bkt.clouddn.com/20180209120605_R7ixHF_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209120605_R7ixHF_Screenshot.jpeg)
 
 `每次增加一个菜单都要写点html是不能忍的，能用js的，就别用html`。
 
@@ -521,7 +521,7 @@ module.exports = [{
 这里要说明一下，我给二级菜单加上了`over-hide`类，二级菜单在展开时，有点溢出父元素了。
 打开浏览器看看, 这时候菜单已经是根据配置文件渲染的了。
 
-![](http://p3alsaatj.bkt.clouddn.com/20180209120622_xWsb3F_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209120622_xWsb3F_Screenshot.jpeg)
 
 # 6. 先加个头部吧，秃顶太丑了
 在componets文件夹下创建一个Header.vue, 并在App.vue中引入，
@@ -584,7 +584,7 @@ export default {
 </style>
 ```
 这时候打开浏览器看看, 是不是已经好看一点了。但是body有边框，不好看啊！
-![](http://p3alsaatj.bkt.clouddn.com/20180209120643_htqsRT_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209120643_htqsRT_Screenshot.jpeg)
 
 `再次美化`
 
@@ -625,7 +625,7 @@ new Vue({
 })
 ```
 看下效果, 图标什么的都有了。
-![](http://p3alsaatj.bkt.clouddn.com/20180209120656_Hk4igw_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209120656_Hk4igw_Screenshot.jpeg)
 
 # 7. 组件路由与懒加载
 在components新增四个文件：
@@ -705,7 +705,7 @@ export default new Router({ routes })
 
 看看效果：点击菜单，路径跳转，并且每次都是单独去加载路由的文件。
 
-![](http://p3alsaatj.bkt.clouddn.com/20180209120713_ZEW6BF_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209120713_ZEW6BF_Screenshot.jpeg)
 
 # 8. github 部署
 如果你想在github上部署，那么你要修改config/index.js的以下代码, 不然有些文件因为路径问题可能会找不到。

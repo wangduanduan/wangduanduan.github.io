@@ -60,5 +60,5 @@ tags:
 - 免费
 - 体积很小，占用内存很小，启动很快
 
-![](http://p3alsaatj.bkt.clouddn.com/20180201172157_gz0qsT_Jietu20180201-172150.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180201172157_gz0qsT_Jietu20180201-172150.jpeg)
 

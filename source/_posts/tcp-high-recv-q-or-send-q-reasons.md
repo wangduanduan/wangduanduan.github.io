@@ -38,7 +38,7 @@ http首部可以分为两种
 
 很多老的或简单的代理都是盲中继(blind relay),它们只是将字节从一个连接转发到另一个连接中去,不对Connection首部进行特殊的处理。
 
-![](http://p3alsaatj.bkt.clouddn.com/20180222111857_Wi3Sye_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180222111857_Wi3Sye_Screenshot.jpeg)
 
 - (1)在图4-15a中 Web客户端向代理发送了一条报文,其中包含了Connection:Keep-Alive首部,如果可能的话请求建立一条keep-alive连接。客户端等待响应,以确定对方是否认可它对keep-alive信道的请求。
 

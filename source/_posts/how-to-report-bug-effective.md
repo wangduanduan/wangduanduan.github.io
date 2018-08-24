@@ -5,7 +5,7 @@ tags:
 - bug
 ---
 
-![](http://p3alsaatj.bkt.clouddn.com/20180315213220_Rq8h6q_lady-bug-on-leaf.jpg.653x0_q80_crop-smart.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180315213220_Rq8h6q_lady-bug-on-leaf.jpg.653x0_q80_crop-smart.jpeg)
 
 # 1. 自问自答
 

@@ -20,23 +20,23 @@ WakeTime功能列表
 
 ## 1.1. WakeTime Dashboard 欣赏
 
-![](http://p3alsaatj.bkt.clouddn.com/20180427133630_gtKsV3_Jietu20180427-133547.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180427133630_gtKsV3_Jietu20180427-133547.jpeg)
 
 ## 1.2. WakaTime插件 支持哪些IDE?
 
-![](http://p3alsaatj.bkt.clouddn.com/20180427133734_MIGsDY_Jietu20180427-133726.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180427133734_MIGsDY_Jietu20180427-133726.jpeg)
 
 ## 1.3. WakaTime 生成嵌入式图片代码
 
 在线预览地址：https://wdd.js.org/about/
 
-![](http://p3alsaatj.bkt.clouddn.com/20180427133853_hFgMtz_Jietu20180427-133847.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180427133853_hFgMtz_Jietu20180427-133847.jpeg)
 
 # 2. RescueTime 拯救你的时间
 
 [RescueTime](https://www.rescuetime.com/)， RescueTime也是一款时间分析软件，支持多个平台。包括Mac, Windows, Linux, Android, Chrome插件，FireFox插件
 
-![](http://p3alsaatj.bkt.clouddn.com/20180427134336_lsj1oz_Jietu20180427-134326.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180427134336_lsj1oz_Jietu20180427-134326.jpeg)
 
 相比于WakaTime, RescueTime并不局限于IDE中，它可以记录更多维度的时间花费，包括如下。
 
@@ -47,7 +47,7 @@ WakeTime功能列表
 
 ## 2.1. RescueTime Dashboard 欣赏
 
-![](http://p3alsaatj.bkt.clouddn.com/20180427134857_2Bh7SO_Jietu20180427-134848.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180427134857_2Bh7SO_Jietu20180427-134848.jpeg)
 
 # 3. 分析与对比
 

@@ -44,7 +44,7 @@ tags:
 - [查看在线demon](https://wangduanduan.github.io/element-audio/)
 - [项目地址](https://github.com/wangduanduan/element-audio)
 
-![](http://p3alsaatj.bkt.clouddn.com/20180209134536_j9HvMg_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209134536_j9HvMg_Screenshot.jpeg)
 
 # 4. 开始编码
 
@@ -74,7 +74,7 @@ tags:
 
 浏览器打开 `http://localhost:8080/`, 看到如下界面，说明项目初始化成功
 
-![](http://p3alsaatj.bkt.clouddn.com/20180209134627_t78Jqf_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209134627_t78Jqf_Screenshot.jpeg)
 
 ## 5.1. 安装ElementUI并插入audio标签
 ### 5.1.1. `安装ElementUI`
@@ -153,7 +153,7 @@ export default {
 </style>
 ```
 打开：http://localhost:8080/，你应该能看到如下效果，说明引入成功，你可以点击播放按钮看看，音频是否能够播放
-![](http://p3alsaatj.bkt.clouddn.com/20180209134643_6gU9xo_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209134643_6gU9xo_Screenshot.jpeg)
 
 ## 5.2. 音频的播放暂停控制
 我们需要用一个按钮去控制音频的播放与暂停，这里调用了audio的两个api,以及两个事件
@@ -226,7 +226,7 @@ export default {
 
 </style>
 ```
-![](http://p3alsaatj.bkt.clouddn.com/20180209134700_DTqSCu_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209134700_DTqSCu_Screenshot.jpeg)
 
 
 ## 5.3. 音频显示时间
@@ -379,7 +379,7 @@ export default {
 </style>
 ```
 打开浏览器可以看到，当音频播放时，当前时间也在改变。
-![](http://p3alsaatj.bkt.clouddn.com/20180209134724_Po5w9m_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209134724_Po5w9m_Screenshot.jpeg)
 
 ## 5.4. 音频进度条控制
 进度条主要有两个控制，改变进度的原理是：改变`audio.currentTime`属性值

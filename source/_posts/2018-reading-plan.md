@@ -6,7 +6,7 @@ tags:
 - 读书
 ---
 
-![](http://p3alsaatj.bkt.clouddn.com/20180205175335_cuPtzB_Girl-Reading-Book.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180205175335_cuPtzB_Girl-Reading-Book.jpeg)
 
 - 要量化阅读
 - 要坚持不懈
@@ -90,7 +90,7 @@ MySql必知必会 | kindle | 在读
 
 # 第33周 0812-0818
 
-![](http://p3alsaatj.bkt.clouddn.com/20180819204938_FeYwGw_Jietu20180819-204902.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180819204938_FeYwGw_Jietu20180819-204902.jpeg)
 
 
 # 第15周 0409-0415 ed

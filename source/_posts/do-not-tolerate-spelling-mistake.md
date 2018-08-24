@@ -8,7 +8,7 @@ tags:
 
 你要相信计算机，计算机告诉你的问题，99%一定是开发者自身的问题，而不是计算机的问题。
 
-![](http://p3alsaatj.bkt.clouddn.com/20180403205759_9VJNcG_.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180403205759_9VJNcG_.jpeg)
 
 找bug其实是一个很有意思的事情，有点像躲猫猫，计算机告诉你一些表象原因。有些时候，你可以从这些表象原因中立马发现问题所在，有时候又会让你抓耳挠腮，废寝忘食，辗转反侧，求之不得。
 
@@ -16,7 +16,7 @@ tags:
 
 > 初极狭，才通人。复行数十步，豁然开朗。土地平旷，屋舍俨然，有良田美池桑竹之属。阡陌交通，鸡犬相闻。其中往来种作，男女衣着，悉如外人。黄发垂髫，并怡然自乐。-- 《桃花源记》
 
-![](http://p3alsaatj.bkt.clouddn.com/20180403205900_TGZuPo_.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180403205900_TGZuPo_.jpeg)
 
 # 1. 为什么会产生拼写错误？
 - 马虎

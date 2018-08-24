@@ -221,14 +221,14 @@ var tm = (function(){
 ```
 
 打开控制台，输入tm.initWebsocket()后，websocket连接正常。
-![](http://p3alsaatj.bkt.clouddn.com/20180207093803_2QPxWp_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180207093803_2QPxWp_Screenshot.jpeg)
 
 之后坐席状态改变，可以看到有事件推送过来。
-![](http://p3alsaatj.bkt.clouddn.com/20180207093819_vbKAv5_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180207093819_vbKAv5_Screenshot.jpeg)
 
 
 看下整个页面：
-![](http://p3alsaatj.bkt.clouddn.com/20180207093836_bj5ctf_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180207093836_bj5ctf_Screenshot.jpeg)
 
 
 `最后，这个小小的监控如果用jQuery写，也可以，不过就是太坑了，每次都要去找到Dom元素，再更新DOM，用了Vue这类的框架，页面的dom操作完全不用关心了，真是太舒服了。\(^o^)/`

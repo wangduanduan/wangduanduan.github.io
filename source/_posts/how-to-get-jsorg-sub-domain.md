@@ -11,7 +11,7 @@ tags:
 
 如果你不了解js.org可以看看我的这篇文章:[一个值得所有前端开发者关注的网站js.org](https://segmentfault.com/a/1190000008342301)
 
-![](http://p3alsaatj.bkt.clouddn.com/20180129182103_Avcxhn_Jietu20180129-182047.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180129182103_Avcxhn_Jietu20180129-182047.jpeg)
 
 # 1. 前提
 - 已经有了github pages的一个博客，并且博客中有内容，没有内容会审核不通过的。我第一次申请域名，就是因为内容太少而审核不通过。
@@ -28,7 +28,7 @@ tags:
 "wdd": "wangduanduan.github.io",
 ```
 
-![](http://p3alsaatj.bkt.clouddn.com/20180129182555_tx71OV_Jietu20180129-182542.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180129182555_tx71OV_Jietu20180129-182542.jpeg)
 
 3 commit
 
@@ -41,18 +41,18 @@ tags:
 wdd.js.org
 ```
 
-![](http://p3alsaatj.bkt.clouddn.com/20180129183216_aPl2ld_Jietu20180129-183209.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180129183216_aPl2ld_Jietu20180129-183209.jpeg)
 
 将博客再次部署好，`如果CNAME生效的话，你已经无法从原来的地址访问：wangduanduan.github.io， 这个博客了。`
 
 # 5. 向js.org项目发起pull-request
 找到你fork后的项目，点击 `new pull request`, 向原来的项目发起请求。
 
-![](http://p3alsaatj.bkt.clouddn.com/20180129190011_xvkHec_Jietu20180129-185938.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180129190011_xvkHec_Jietu20180129-185938.jpeg)
 
 然后你可以在`js-org/dns.js.org`项目的pull requests看到你的请求，当这个请求被合并时，你就拥有了js.org的二级域名。
 
-![](http://p3alsaatj.bkt.clouddn.com/20180129190308_0cZZwM_Jietu20180129-190255.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180129190308_0cZZwM_Jietu20180129-190255.jpeg)
 
 
-![](http://p3alsaatj.bkt.clouddn.com/20180129190454_9BnL7F_Jietu20180129-190449.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180129190454_9BnL7F_Jietu20180129-190449.jpeg)

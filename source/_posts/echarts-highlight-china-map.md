@@ -7,7 +7,7 @@ tags:
 
 # 1. 小栗子
 
-![](http://p3alsaatj.bkt.clouddn.com/20180209131759_k10o0Z_bVVWEB.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209131759_k10o0Z_bVVWEB.jpeg)
 
 最早我是想通过`dispatchAction`方法去改变选中的省份，但是没有起作用，如果你知道这个方法怎么实现，麻烦你可以告诉我。
 我实现的方法是另外一种。
@@ -121,7 +121,7 @@ myChart.dispatchAction({
 
 官方示例里是没有中国地图的，不过你可以去github的官方仓库里找。地址是：https://github.com/apache/incubator-echarts/tree/master/map
 
-![](http://p3alsaatj.bkt.clouddn.com/20180509112951_wNvh6u_Jietu20180509-112929.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180509112951_wNvh6u_Jietu20180509-112929.jpeg)
 
 # 4. 地图学习的栗子哪里有？
 
@@ -129,12 +129,12 @@ myChart.dispatchAction({
 
 echarts官方文档上有美国地图的实例，地址：http://echarts.baidu.com/examples/editor.html?c=map-usa
 
-![](http://p3alsaatj.bkt.clouddn.com/20180509113143_019h7i_Jietu20180509-113135.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180509113143_019h7i_Jietu20180509-113135.jpeg)
 
 ## 4.2. 我国地图也是有的，参考iphone销量这个栗子
 
 地址：http://echarts.baidu.com/option.html#series-map, 注意：`地图的相关文档在series->type:map中`
 
-![](http://p3alsaatj.bkt.clouddn.com/20180509113253_Y1hJI4_Jietu20180509-113227.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180509113253_Y1hJI4_Jietu20180509-113227.jpeg)
 
 

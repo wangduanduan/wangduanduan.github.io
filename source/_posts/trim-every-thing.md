@@ -4,7 +4,7 @@ date: 2018-02-11 14:28:22
 tags:
 ---
 
-![](http://p3alsaatj.bkt.clouddn.com/20180211142905_ruma02_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180211142905_ruma02_Screenshot.jpeg)
 
 # trim-everything
 trim所有字段，因为底层使用的JSON.stringify作为遍历器，所以如果字段的值是function，那么会被trim掉。

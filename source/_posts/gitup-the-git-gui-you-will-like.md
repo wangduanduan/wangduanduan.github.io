@@ -12,7 +12,7 @@ tags:
 
 `GitUp, The Git interface you've been missing all your life has finally arrived` http://gitup.co/
 
-![](http://p3alsaatj.bkt.clouddn.com/20180424180658_8xeyJO_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180424180658_8xeyJO_Screenshot.jpeg)
 
 
 # 1. 功能介绍
@@ -44,13 +44,13 @@ tags:
 
 ## 1.4. 速度非常快
 
-![](http://p3alsaatj.bkt.clouddn.com/20180424203917_Wl9aRw_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180424203917_Wl9aRw_Screenshot.jpeg)
 
 - `速度非常快`: GitUp 加载和渲染超40000个commit的git仓库，只需要1秒之内。GitUp之所以这么快的原因是，GitUp绕过git的接口，直接与git本地数据库交互。所以，有些时候，GitUp要比git的原生命令要快的多。
 
 ## 1.5. 实时搜索
 
-![](http://p3alsaatj.bkt.clouddn.com/20180424204319_6aEPUe_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180424204319_6aEPUe_Screenshot.jpeg)
 
 - `实时搜索`: 你可以按照分支，tag, commmit消息，作者，甚至diff的内容进行搜索，GitUp会马上把结果提供给你。
 

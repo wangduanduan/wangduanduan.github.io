@@ -15,19 +15,19 @@ tags:
 > 用过你才知道好用
 > https://conemu.github.io/
 
-![](http://p3alsaatj.bkt.clouddn.com/20180207092640_YZRllN_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180207092640_YZRllN_Screenshot.jpeg)
 
 
 # 2. 搜索神器
 ## 2.1. [Wox](http://www.getwox.com/)
 > Windows下一款最接近 Alfred 的软件启动/文件搜索利器
 
-![](http://p3alsaatj.bkt.clouddn.com/20180207092710_pxaoZs_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180207092710_pxaoZs_Screenshot.jpeg)
 
 ## 2.2. [Everything](http://www.voidtools.com/)
 > 快速批量查找文件的利器
 
-![](http://p3alsaatj.bkt.clouddn.com/20180207092724_2J8b1j_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180207092724_2J8b1j_Screenshot.jpeg)
 
 
 # 3. 包管理神器
@@ -35,30 +35,30 @@ tags:
 > 安装软件再也不用烦恼
 [教程](https://laravel-china.org/topics/67)
 
-![](http://p3alsaatj.bkt.clouddn.com/20180207092800_QUwCtM_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180207092800_QUwCtM_Screenshot.jpeg)
 
 # 5. 健康管理神器
 # 6. [f.lux](https://justgetflux.com/)
 > 有没有注意到人们在夜间发短信的怪异蓝色发光？或者醒来准备写下一个伟大的想法，并被你的电脑屏幕蒙蔽？白天，电脑屏幕看起来很好，他们的设计看起来像太阳。但是，在晚上9点，晚上10点或凌晨3点，你可能不应该看太阳。f.lux修复这个：它使你的电脑显示器的颜色适应一天的时间，在夜间温暖和白天喜欢阳光。甚至有可能你因为你的电脑而停滞太晚。你可以使用f.lux因为它使你睡得更好，或者你可以只使用它，只是因为它使你的电脑看起来更好。
 
-![](http://p3alsaatj.bkt.clouddn.com/20180207092815_zz11tq_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180207092815_zz11tq_Screenshot.jpeg)
 
 # 7. 谷歌浏览器插件神器
 ## 7.1. 强烈推荐vimium
 > 速度起飞，只用键盘就可以完全操纵谷歌浏览器
 
-![](http://p3alsaatj.bkt.clouddn.com/20180207092830_nDZN5E_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180207092830_nDZN5E_Screenshot.jpeg)
 
 ## 7.2. shortKeys
 > vimium的快捷键其实已经足够多了，但是如果你想有更多自定义的快捷键，例如：`关闭右侧的标签页`，这个快捷键。你可以试试shortKeys。唯一遗憾的是，这里面也没有`关闭其他标签页`的快捷键，如果你知道有哪些工具可以做到，麻烦请告诉我。
 
-![](http://p3alsaatj.bkt.clouddn.com/20180207092845_ihUE4D_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180207092845_ihUE4D_Screenshot.jpeg)
 
 
 
 ## 7.3. infinity新标签页
 
-![](http://p3alsaatj.bkt.clouddn.com/20180207092901_tOTDlF_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180207092901_tOTDlF_Screenshot.jpeg)
 
 # 8. 参考
 - http://www.jeffjade.com/2016/01/13/2016-01-13-windows-software-cmder/

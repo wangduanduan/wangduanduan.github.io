@@ -18,7 +18,7 @@ tags:
 # 3. 前提准备
 
 # 4. 从MVC角度分析需求
-![](http://p3alsaatj.bkt.clouddn.com/20180206142506_ZGP1bd_lE6cj.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180206142506_ZGP1bd_lE6cj.jpeg)
 
 - 模型层：资源最小数据集定义，功能定义
 - 控制器：负责请求处理。例如增删改查

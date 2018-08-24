@@ -8,7 +8,7 @@ tags:
 > github向我推荐这个[xmysql](https://github.com/o1lab/xmysql)时候，我瞟了一眼它的简介`One command to generate REST APIs for any MySql Database`, 说实话这个介绍让我眼前一亮，想想每次向后端的同学要个接口的时候，他们总是要`哼哧哼哧`搞个半天给才能我。抱着试试看的心态，我试用了一个疗程，oh不是， 是安装并使用了一下。 说实话，体验是蛮不错的，但是体验一把过后，我想不到这个工具的使用场景，因为`你不可能把数据库的所有表都公开出来，让前端随意读写,` 但是试试看总是不错的.
 
 # 1 来吧，冒险一次！
-![](http://p3alsaatj.bkt.clouddn.com/20180211145108_PKYPlv_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180211145108_PKYPlv_Screenshot.jpeg)
 
 `安装与使用`
 ```

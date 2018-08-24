@@ -11,7 +11,7 @@ tags:
 
 jenkins Docker Build and Publish插件有个高级选项，Additional Build Arguments
 
-![](http://p3alsaatj.bkt.clouddn.com/20180723192825_l83hdH_Jietu20180723-192716.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180723192825_l83hdH_Jietu20180723-192716.jpeg)
 
 可以在docker构建时，将额外的参数传递给dockerfile。
 

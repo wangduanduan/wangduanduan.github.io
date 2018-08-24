@@ -5,7 +5,7 @@ tags:
 - hexo
 ---
 
-![](http://p3alsaatj.bkt.clouddn.com/20180208213207_ah8hTV_Jietu20180208-213152.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180208213207_ah8hTV_Jietu20180208-213152.jpeg)
 
 <!-- more -->
 

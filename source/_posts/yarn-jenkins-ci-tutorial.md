@@ -13,7 +13,7 @@ tags:
 
 地址：https://plugins.jenkins.io/nodejs
 
-![](http://p3alsaatj.bkt.clouddn.com/20180716210423_ixn1oc_Jietu20180716-210411.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180716210423_ixn1oc_Jietu20180716-210411.jpeg)
 
 - 注意该插件要求jenkins版本不低于1.651.3
 
@@ -24,9 +24,9 @@ tags:
 
 
 
-![](http://p3alsaatj.bkt.clouddn.com/20180716210627_eWn8gN_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180716210627_eWn8gN_Screenshot.jpeg)
 
-![](http://p3alsaatj.bkt.clouddn.com/20180716210915_aCIn6F_Jietu20180716-210903.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180716210915_aCIn6F_Jietu20180716-210903.jpeg)
 
 ## 1.2. 插件初始化设置
 
@@ -37,7 +37,7 @@ tags:
 3. 输入一些全局安装包，例如: `yarn`
 4. 最后别忘记点击保存
 
-![](http://p3alsaatj.bkt.clouddn.com/20180716211246_fnKu4l_Jietu20180716-211220.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180716211246_fnKu4l_Jietu20180716-211220.jpeg)
 
 
 # 2. 创建一个任务
@@ -46,7 +46,7 @@ tags:
 2. 选择FreeStyle风格
 3. 点击确定
 
-![](http://p3alsaatj.bkt.clouddn.com/20180716211615_KonR3t_Jietu20180716-211606.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180716211615_KonR3t_Jietu20180716-211606.jpeg)
 
 # 3. 任务配置
 
@@ -54,21 +54,21 @@ tags:
 
 1. 源码管理当然选择私有部署的git仓库了
 
-![](http://p3alsaatj.bkt.clouddn.com/20180716212144_CMXTaO_Jietu20180716-212111.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180716212144_CMXTaO_Jietu20180716-212111.jpeg)
 
 ## 3.2. 触发器构建
 
 1. 记住方框里面的地址，这个地址需要填入到gilab响应仓库的`settings>integrations>URL`, 然后选择add webhook, 这边git一旦push, jenkins那边就会自动构建测试任务了。
 
-![](http://p3alsaatj.bkt.clouddn.com/20180716212313_ENwdDS_Jietu20180716-212249.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180716212313_ENwdDS_Jietu20180716-212249.jpeg)
 
 【下图： 私有gitlab仓库集成设置】
 
-![](http://p3alsaatj.bkt.clouddn.com/20180716212645_nLHRSD_Jietu20180716-212633.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180716212645_nLHRSD_Jietu20180716-212633.jpeg)
 
 ## 3.3. 构建环境选择nodejs
 
-![](http://p3alsaatj.bkt.clouddn.com/20180716212827_0Ifs6f_Jietu20180716-212803.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180716212827_0Ifs6f_Jietu20180716-212803.jpeg)
 
 ## 3.4. 构建
 
@@ -87,16 +87,16 @@ yarn --registry=https://registry.npm.taobao.org // 使用淘宝仓库，安装�
 yarn run test:report // 运行测试
 ```
 
-![](http://p3alsaatj.bkt.clouddn.com/20180716212945_ttrGNU_Jietu20180716-212927.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180716212945_ttrGNU_Jietu20180716-212927.jpeg)
 
 
 ## 3.5. 构建后操作
 
 1. 构建后操作可以选择安装一个`publish html reports`, 用来查看测试报告。如果没有改选项，则需要安装该插件
 
-![](http://p3alsaatj.bkt.clouddn.com/20180716213355_mohuli_Jietu20180716-213303.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180716213355_mohuli_Jietu20180716-213303.jpeg)
 
-![](http://p3alsaatj.bkt.clouddn.com/20180716213502_o3WHlC_Jietu20180716-213454.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180716213502_o3WHlC_Jietu20180716-213454.jpeg)
 
 
 # 4. 第一次构建
@@ -105,13 +105,13 @@ yarn run test:report // 运行测试
 
 安装了`publish html reports`插件后，这边会多出一个选项。
 
-![](http://p3alsaatj.bkt.clouddn.com/20180716213819_ccKdHB_Jietu20180716-213807.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180716213819_ccKdHB_Jietu20180716-213807.jpeg)
 
 点击进去可以发现测试报告。
 
 `注意` 测试报告并不是publish html reports生成的。
 
-![](http://p3alsaatj.bkt.clouddn.com/20180716213937_Ft7YJr_Jietu20180716-213919.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180716213937_Ft7YJr_Jietu20180716-213919.jpeg)
 
 # 5. 测试报告如何生成？
 
@@ -125,7 +125,7 @@ yarn run test:report // 运行测试
 
 我的项目目录如下：
 
-![](http://p3alsaatj.bkt.clouddn.com/20180716214502_tvPCcT_Jietu20180716-214433.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180716214502_tvPCcT_Jietu20180716-214433.jpeg)
 
 
 # 6. 最后: 如果你也需要自动化接口测试工具

@@ -26,7 +26,7 @@ Origin null是本地文件系统，因此这表明您正在加载通过file：//
 ## 3.1. 方案1 给Chrome快捷方式中增加 --allow-file-access-from-files
 打开Chrome快捷方式的属性中设置：右击Chrome浏览器快捷方式，选择“属性”，在“目标”中加"--allow-file-access-from-files"，注意前面有个空格，重启Chrome浏览器便可。
 
-![](http://p3alsaatj.bkt.clouddn.com/20180309181105_SUxYRg_Screenshot.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180309181105_SUxYRg_Screenshot.jpeg)
 
 
 ## 3.2. 方案2 启动一个简单的静态文件服务器, 以http协议访问html

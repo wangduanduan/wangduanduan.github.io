@@ -25,7 +25,7 @@ tags:
 
 > 表现层状态转换（REST，英文：Representational State Transfer）是Roy Thomas Fielding博士于2000年在他的博士论文[1] 中提出来的一种万维网软件架构风格，目的是便于不同软件/程序在网络（例如互联网）中互相传递信息。表现层状态转换（REST，英文：Representational State Transfer）是根基于超文本传输协议(HTTP)之上而确定的一组约束和属性，是一种设计提供万维网络服务的软件构建风格。匹配或兼容于这种架构风格(简称为 REST 或 RESTful)的网络服务，允许客户端发出以统一资源标识符访问和操作网络资源的请求，而与预先定义好的无状态操作集一致化。[wikipdeia](https://zh.wikipedia.org/wiki/%E8%A1%A8%E7%8E%B0%E5%B1%82%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2)
 
-![](http://p3alsaatj.bkt.clouddn.com/20180607224524_M1yRtD_content_api_for_restful_web_services.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180607224524_M1yRtD_content_api_for_restful_web_services.jpeg)
 
 
 `REST API 不是一个标准或者一个是协议，仅仅是一种风格，一种style。`
@@ -34,7 +34,7 @@ tags:
 RESTful API的简单定义可以轻松解释这个概念。 REST是一种架构风格，RESTful是它的解释。也就是说，如果您的后端服务器具有REST API，并且您（从网站/应用程序）向客户端请求此API，则您的客户端为RESTful。
 
 
-![](http://p3alsaatj.bkt.clouddn.com/20180607225013_Kuay0l_content_rest_api_design.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180607225013_Kuay0l_content_rest_api_design.jpeg)
 
 
 # 2. REST API最为重要的约束
@@ -52,7 +52,7 @@ RESTful API的简单定义可以轻松解释这个概念。 REST是一种架构�
 REST API 使用POST，GET, PUT, DELETE的HTTP方法来描述对资源的增、查、改、删。
 这四个HTTP方法在数据层对应着SQL的插入、查询、更新、删除操作。
 
-![](http://p3alsaatj.bkt.clouddn.com/20180612085022_UHL82x_content_request_methods.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180612085022_UHL82x_content_request_methods.jpeg)
 
 # 4. 状态码
 
@@ -73,9 +73,9 @@ REST API 使用POST，GET, PUT, DELETE的HTTP方法来描述对资源的增、�
 
 # 6. 文档
 
-![](http://p3alsaatj.bkt.clouddn.com/20180612085417_wIj3AP_content_requests_for_the_user_in_swagger.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180612085417_wIj3AP_content_requests_for_the_user_in_swagger.jpeg)
 
-![](http://p3alsaatj.bkt.clouddn.com/20180612085434_VuMRnP_content_description_of_each_request_model_in_swagger.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180612085434_VuMRnP_content_description_of_each_request_model_in_swagger.jpeg)
 
 # 7. 版本
 
@@ -91,10 +91,10 @@ REST API 使用POST，GET, PUT, DELETE的HTTP方法来描述对资源的增、�
 
 图1是有状态的服务，状态存储于单个服务之中，一旦一个服务挂了，状态就没了，有状态服务很难扩展。无状态的服务，状态存储于客户端，一个请求可以被投递到任何服务端，即使一个服务挂了，也不回影响到同一个客户端发来的下一个请求。
 
-![](http://p3alsaatj.bkt.clouddn.com/20180612141107_qhgDxn_Jietu20180612-141048.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180612141107_qhgDxn_Jietu20180612-141048.jpeg)
 【图1 有状态的架构】
 
-![](http://p3alsaatj.bkt.clouddn.com/20180612141200_2UmvfX_Jietu20180612-141058.jpeg)
+![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180612141200_2UmvfX_Jietu20180612-141058.jpeg)
 
 【图2 无状态的架构】
 
