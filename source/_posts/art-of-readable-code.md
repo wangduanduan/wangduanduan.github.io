@@ -4,7 +4,7 @@ date: 2018-03-15 18:21:50
 tags:
 ---
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180315182640_4hEdE7_.jpeg)
+![](/images/20180315182640_4hEdE7_.jpeg)
 
 # 1. 代码应当易于理解
 - 唯一标准：`让别人理解的时间最小`
@@ -34,7 +34,7 @@ make | create, set up, build, generate, compose, add ,new
 - 亲密性 按照亲密关系分段
 - 顺序
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180315182604_54Imyu_.jpeg)
+![](/images/20180315182604_54Imyu_.jpeg)
 
 # 4. 写什么样的注释
 - 不要写一眼就能看懂的注释，类似于此地无银三百两

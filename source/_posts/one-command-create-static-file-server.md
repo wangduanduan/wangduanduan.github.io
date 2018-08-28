@@ -10,7 +10,7 @@ tags:
 在局域网内传文件，或者自己测试使用都是非常方便的。
 
 # 1. 基于python
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209130207_yzmvQO_Screenshot.jpeg)
+![](/images/20180209130207_yzmvQO_Screenshot.jpeg)
 
 ## 1.1. 基于Python2
 `python -m SimpleHTTPServer port`
@@ -34,7 +34,7 @@ Serving HTTP on 0.0.0.0 port 8099 (http://0.0.0.0:8099/) ...
 
 # 2. 基于nodejs
 首先你要安装nodejs
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209130231_76jUWj_Screenshot.jpeg)
+![](/images/20180209130231_76jUWj_Screenshot.jpeg)
 
 
 ## 2.1. [http-server](https://github.com/indexzero/http-server)
@@ -76,7 +76,7 @@ anywhere -p port
 
 ## 2.5. [puer](https://github.com/leeluolee/puer)
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209130246_GqSjH6_Screenshot.jpeg)
+![](/images/20180209130246_GqSjH6_Screenshot.jpeg)
 
 ```
 // 安装

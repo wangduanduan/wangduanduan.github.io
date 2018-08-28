@@ -55,7 +55,7 @@ Services”
 - December 2006 : Published new editions of ECMA-269, ECMA-323, ECMA-348
 
 # 4. CSTA 标准文档
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180129213747_HP5lYR_Jietu20180129-213719.jpeg)
+![](/images/20180129213747_HP5lYR_Jietu20180129-213719.jpeg)
 
 # 5. CSTA 标准扩展
 - 新的特性可以被加入标准通过发布新版本的标准
@@ -69,11 +69,11 @@ Services”
 - `计算域`是CSTA程序的宿主环境，用来与`转换域`交互与控制
 - `转换域` - CSTA模型提供抽象层，程序可以观测并控制的。`转换渔`包括一些对象例如CSTA呼叫，设备，链接。
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180129213839_Tor6cE_Screenshot.jpeg)
+![](/images/20180129213839_Tor6cE_Screenshot.jpeg)
 
 # 7. CSTA 操作模型：呼叫，设备，链接
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180129213917_6hEPjl_Screenshot.jpeg)
+![](/images/20180129213917_6hEPjl_Screenshot.jpeg)
 
 相关说明是的的的的
 

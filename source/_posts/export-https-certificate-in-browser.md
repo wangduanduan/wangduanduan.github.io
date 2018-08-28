@@ -9,19 +9,19 @@ tags:
 
 # 1. 打开一个HTTPS网站，例如https://segmentfault.com/
 # 2. F12 -> Secutity -> 点击View certificate
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209133438_49mTFN_Screenshot.jpeg)
+![](/images/20180209133438_49mTFN_Screenshot.jpeg)
 
 # 3. 详细信息 -> 复制到文件
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209133453_9nA0g1_Screenshot.jpeg)
+![](/images/20180209133453_9nA0g1_Screenshot.jpeg)
 
 # 4. 证书导出向导
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209133502_rgjg2i_Screenshot.jpeg)
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209133512_y7Xayk_Screenshot.jpeg)
+![](/images/20180209133502_rgjg2i_Screenshot.jpeg)
+![](/images/20180209133512_y7Xayk_Screenshot.jpeg)
 
 这一步要给证书文件起个名字，后缀名就不用了。
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209133527_7TnRGi_Screenshot.jpeg)
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209133536_UqAHTV_Screenshot.jpeg)
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209133544_3agGIU_Screenshot.jpeg)
+![](/images/20180209133527_7TnRGi_Screenshot.jpeg)
+![](/images/20180209133536_UqAHTV_Screenshot.jpeg)
+![](/images/20180209133544_3agGIU_Screenshot.jpeg)
 
 然后在你的桌面上就多了一个证书文件。
 

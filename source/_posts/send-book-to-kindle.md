@@ -9,7 +9,7 @@ tags:
 
 读书，嗯，读书
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180130205840_hPSDa6_Jietu20180130-205818.jpeg)
+![](/images/20180130205840_hPSDa6_Jietu20180130-205818.jpeg)
 
 # 1. 教程目的
 - 通过邮件向kindle推送一本电子书
@@ -26,13 +26,13 @@ tags:
 - 会出现下面tab页面 => 设置 => 个人文档设置 => 里面会有电子邮件地址
 - 里面的邮箱即为你邮件发送的收件方地址。例如：`abcd@kindle.cc`
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180130201119_fDv8Lt_Jietu20180130-200631.jpeg)
+![](/images/20180130201119_fDv8Lt_Jietu20180130-200631.jpeg)
 
 # 4. 如何设置邮箱白名单？
 
 并不是所有邮件都能发送到`abcd@kindle.cc`, 需要在上一步的同一个页面设置`已认可的发件人电子邮箱`, 只有来自认可的邮箱的电子书，亚马逊才会接受。你需要`添加认可的电子邮箱`。例如发件的邮箱写为：`abcd@qq.com`
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180130202003_gH5BoP_Screenshot.jpeg)
+![](/images/20180130202003_gH5BoP_Screenshot.jpeg)
 
 
 # 5. 邮件该怎么写？
@@ -52,7 +52,7 @@ tags:
 
 > 如果没有找到你已经发送的书籍，请再次检查一下，你的kindle邮箱和白名单中的邮箱是否正确
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180130202558_bYkctZ_Jietu20180130-202546.jpeg)
+![](/images/20180130202558_bYkctZ_Jietu20180130-202546.jpeg)
 
 # 7. 如何向kindle推送电子书
 
@@ -63,7 +63,7 @@ tags:
 4. 点击发送
 5. kindle链接WiFi，进入我的图书馆，点击设备，同步
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180130203158_8z8IlQ_Jietu20180130-203143.jpeg)
+![](/images/20180130203158_8z8IlQ_Jietu20180130-203143.jpeg)
 
 # 8. 使用体验的思考？
 之前用多看阅读，`WIFI传书`非常方便。kindle的上传图书其实蛮复杂的，过程中可能直接过滤掉一些用户。

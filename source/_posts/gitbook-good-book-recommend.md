@@ -35,7 +35,7 @@ tags:
 
 第三部分简要解释和识别交易工具。
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180208093612_dpum1B_Screenshot.jpeg)
+![](/images/20180208093612_dpum1B_Screenshot.jpeg)
 
 
 # 2. JS函数式编程指南
@@ -58,7 +58,7 @@ tags:
 
 以上说明，强类型的函数式语言毫无疑问将会成为本书所示范式的最佳试验场。JavaScript 是我们学习这种范式的一种手段，将它应用于什么地方则完全取决于你自己。幸运的是，所有的接口都是数学的，因而也是普适的。最终你会发现你习惯了 swiftz、scalaz、haskell 和 purescript，以及其他各种数学偏向的语言。
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180208093626_sxuAr3_Screenshot.jpeg)
+![](/images/20180208093626_sxuAr3_Screenshot.jpeg)
 
 # 3. 前端开发笔记本
 
@@ -66,5 +66,5 @@ tags:
 
 前端开发笔记本涵括了大部分前端开发所需的知识点，主要包括5大部分：《页面制作》、《JavaScript程序设计》、《DOM编程》、《页面架构》、《前端产品架构》。
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180208093640_prGtzY_Screenshot.jpeg)
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180208093648_jJXSIc_Screenshot.jpeg)
+![](/images/20180208093640_prGtzY_Screenshot.jpeg)
+![](/images/20180208093648_jJXSIc_Screenshot.jpeg)

@@ -6,7 +6,7 @@ tags:
 - 未完成
 ---
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180328085107_sqWkoq_110S46131-0.jpeg)
+![](/images/20180328085107_sqWkoq_110S46131-0.jpeg)
 
 我很讨厌teacher, 我几乎所有做的噩梦都和上课，考试，老师有关。但是我渴望master, 特别是行业顶尖的master。我渴望从master哪里获取知识，但是master们往往都是很忙的，哪有时间教你。但是作为master, 几乎每个人都有基本领域公认的巨著。
 

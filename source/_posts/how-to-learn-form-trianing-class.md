@@ -5,13 +5,13 @@ tags:
 - 学习方法
 ---
 
-![牛人](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180312210006_ggoJT5_.jpeg)
+![牛人](/images/20180312210006_ggoJT5_.jpeg)
 
 <!-- more -->
 
 # 1. 培训行业的现状和问题
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180312210146_0EzB4z_.jpeg)
+![](/images/20180312210146_0EzB4z_.jpeg)
 
 进入培训班学习可能有一下两个原因：
 
@@ -30,13 +30,13 @@ tags:
 
 # 2. 如何成为培训出来的牛人？
 
-![牛人](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180312210006_ggoJT5_.jpeg)
+![牛人](/images/20180312210006_ggoJT5_.jpeg)
 
 无论在哪个行业，自学都是必不可少的事情。毕业不是学习的终点，而应该是起点。你和技术牛人之间的距离或许并不遥远，可能只是一个芭蕉扇的距离。
 
 ## 2.1. 读权威书籍，扎实理论基础
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180312205915_vK65MG_images.jpeg)
+![](/images/20180312205915_vK65MG_images.jpeg)
 
 每个行业都有一些经历时间考验而熠熠生辉的经典数据，例如在前端行业。我认为下面两本书是必须要读完一本的。
 
@@ -53,23 +53,23 @@ tags:
 
 ## 2.2. 动手能力，闲话少说，放码过来
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180312210414_APpqMz_Screenshot.jpeg)
+![](/images/20180312210414_APpqMz_Screenshot.jpeg)
 
 各种demo啊，效果啊，有时间自己都可以撸一遍，放在github上，又不收钱，还能提高动手能力。
 
 ## 2.3. 数据结构
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180312205748_PCryFT_.jpeg)
+![](/images/20180312205748_PCryFT_.jpeg)
 
 > 差劲的程序员操心代码，牛逼的程序员操心数据结构和它们之间的关系。 一一Linus Torvalds, Linux 创始人
 
 优秀的数据结构，可以节省你80%的编码时间。差劲的数据结构，你需要花大量的时间去做各种高难度动作的转换，一不小心，数据库就要累的气喘如牛，停机罢工。
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180313113812_yObLd0_.jpeg)
+![](/images/20180313113812_yObLd0_.jpeg)
 
 ## 2.4. 知识积累，从博客开始
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180312205835_RKuuzw_.jpeg)
+![](/images/20180312205835_RKuuzw_.jpeg)
 
 
 如果你已经在某个行业工作个两三年，一篇像样的博客都没有。
@@ -81,11 +81,11 @@ tags:
 
 ## 2.5. 互联网的基石 TCP IP
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180312205615_vUZuEg_.jpeg)
+![](/images/20180312205615_vUZuEg_.jpeg)
 
 计算机行业是分层的，就像大海一样，海面上的往往都是惊涛骇浪，暴风骤雨，各种框架层出不穷，争奇斗艳。当你深入海底，你会发现，那里是最平静的地方。而TCP IP等协议知识，就是整个互联网大航海时代的海底。互联网行业如此多娇，引无数框架竞折腰。浪潮之巅者成为行业热点，所有资源会喷薄涌入，失去优势被替代者，往往折戟沉沙铁未销。总之，越是上层，竞争越激烈，换代越快。
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180313113545_2Wlw3y_.jpeg)![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180313113633_GQRwhD_images.jpeg)
+![](/images/20180313113545_2Wlw3y_.jpeg)![](/images/20180313113633_GQRwhD_images.jpeg)
 
 但是底层的TCP/IP之类的知识，往往几十年都不会有多大的改变。而且无论你从事什么语言开发，只要你涉及到通信了，你就需要TCP/IP的知识点，不过你不清楚这些知识点，你可以随时给自己埋下定时炸弹。
 
@@ -104,7 +104,7 @@ tags:
 
 ## 2.6. 工具的威力
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180312205507_oFCW2L_images.jpeg)
+![](/images/20180312205507_oFCW2L_images.jpeg)
 
 `你用刀，我用枪，谁说谁能打过谁`。原始社会两个野蛮人相遇，块头大的，食物多，可以拥有更多的繁衍后代的权利。但是当一个野蛮人知道用刀的威力时，他就不会害怕胳膊比较粗的对手了。
 
@@ -114,7 +114,7 @@ tags:
 
 ## 2.7. 英语阅读能力
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180312211550_3JOQkF_.jpeg)
+![](/images/20180312211550_3JOQkF_.jpeg)
 
 
 IT行业还有一个现象，就是看英文文档如喝中药一般，总是捏着鼻子也看不下去。看中文文档放佛如喝王老吉，消火又滋润。
@@ -128,7 +128,7 @@ IT行业至今来说，放佛还是个舶来品。所有的最新的文档都是
 
 ## 2.8. 文档能力
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180312212821_8MdIOS_.jpeg)
+![](/images/20180312212821_8MdIOS_.jpeg)
 
 大多说程序的文档都是写给自己看的，或者说大多说的程序员的语文都是数学老师教的。这个其实很让看文档的人苦恼的。一个优秀的程序和框架，无一不是文档非常完善。因为文档的完善才能有利于文档的传播，才有利于解决问题。你的框架再牛逼，效率再如何高，没有人能看的懂，那是没用了。闭门造车永远也搞不出好东西。
 

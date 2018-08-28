@@ -21,7 +21,7 @@ tags:
 
 但是，当我看到官网这张图，我盯着看了几分钟后，理解了这张图，也完全理解了Vuex。
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180530213345_GW7iQ8_Jietu20180530-213253.jpeg)
+![](/images/20180530213345_GW7iQ8_Jietu20180530-213253.jpeg)
 
 那么为什么要尽早使用Vuex呢？
 

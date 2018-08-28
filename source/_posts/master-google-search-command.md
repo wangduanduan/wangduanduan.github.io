@@ -49,28 +49,28 @@ filetype: | 按照文件类型搜索 | A filetype:B | | csta filetype:pdf
 
 ## 4.1. define 快速返回关键词定义
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180426175550_4QI50S_Jietu20180426-175542.jpeg)
+![](/images/20180426175550_4QI50S_Jietu20180426-175542.jpeg)
 
 
 ## 4.2. 计算器 
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180426175645_exHEvl_Jietu20180426-175638.jpeg)
+![](/images/20180426175645_exHEvl_Jietu20180426-175638.jpeg)
 
 ## 4.3. 单位转换 
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180426175515_2t1Vps_Jietu20180426-175503.jpeg)
+![](/images/20180426175515_2t1Vps_Jietu20180426-175503.jpeg)
 
 ## 4.4. 时区查询
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180426175804_vszyoQ_Jietu20180426-175746.jpeg)
+![](/images/20180426175804_vszyoQ_Jietu20180426-175746.jpeg)
 
 ## 4.5. 地区查询
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180426175935_39RATW_Jietu20180426-175916.jpeg)
+![](/images/20180426175935_39RATW_Jietu20180426-175916.jpeg)
 
 ## 4.6. 天气查询
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180426180104_3qesjV_Jietu20180426-180042.jpeg)
+![](/images/20180426180104_3qesjV_Jietu20180426-180042.jpeg)
 
 # 5. 参考
 - [Advanced Google Search Commands](https://www.lifewire.com/advanced-google-search-3482174)

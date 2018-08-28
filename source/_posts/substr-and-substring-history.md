@@ -11,11 +11,11 @@ tags:
 `看来是时候扒一扒这两个方法的历史了。`
 
 # 1. 基因追本溯源
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180129134826_f2U0eJ_Screenshot.jpeg)
+![](/images/20180129134826_f2U0eJ_Screenshot.jpeg)
 
 在编程语言的历史长河中，曾经出现过很多编程语言。然而大浪淘沙，铅华洗尽之后，很多早已折戟沉沙，有些却依旧光彩夺目。那么stubstr与substring的DNA究竟来自何处？
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180129134917_jJiHDy_Screenshot.jpeg)
+![](/images/20180129134917_jJiHDy_Screenshot.jpeg)
 
 > 1950与1960年代
 
@@ -50,7 +50,7 @@ tags:
 
 ## 1.1. 在C++中首次出现substr()
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180129135004_rX3T5Y_Screenshot.jpeg)
+![](/images/20180129135004_rX3T5Y_Screenshot.jpeg)
 
 
 在c语言中，并没有出现substr或者substring方法。然而在1983，substr()方法已经出现在C++语言中了。然而这时候还没有出现substring, 所以可以见得：`substr是stustring的老大哥`
@@ -67,7 +67,7 @@ string substr (size_t pos = 0, size_t len = npos) const;
 ```
 
 ## 1.2. 在Java中首次出现substring()
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180129135035_mmgoda_Screenshot.jpeg)
+![](/images/20180129135035_mmgoda_Screenshot.jpeg)
 
 
 距离substr()方法出现已经有了将近十年之隔，此间涌现一批后起之秀，如: Python, Ruby, VB之类，然而他们之中并没有stustring的基因，在Java的String类中，我们看到两个方法。从这两个方法之中我们可以看到：substring方法基本原型的参数是开始和结束的下标。
@@ -96,7 +96,7 @@ JavaScript并不像C那样出身名门，在贝尔实验室精心打造，但是
 
 如下图所示：substr和substring都接受两个参数，他们的第一个参数的含义是相同的，`不同的是第二个参数。substr的第二个参数是到达结束点的距离，substring是结束的位置。`
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180129135055_OMkyzS_Screenshot.jpeg)
+![](/images/20180129135055_OMkyzS_Screenshot.jpeg)
 
 
 # 4. 参考文献

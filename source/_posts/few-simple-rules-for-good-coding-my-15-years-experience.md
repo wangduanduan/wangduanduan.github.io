@@ -6,7 +6,7 @@ tags:
 
 原文地址：https://hackernoon.com/few-simple-rules-for-good-coding-my-15-years-experience-96cb29d4acd9#.ddzpjb80c
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180207140343_0UaL3X_Screenshot.jpeg)
+![](/images/20180207140343_0UaL3X_Screenshot.jpeg)
 
 嗨，我的工作作为一个程序员超过15年，并使用许多不同的语言，范例，框架和其他狗屎。我想和大家分享我写好代码的规则。
 
@@ -75,7 +75,7 @@ tags:
 差异化工作可以增加心智能力，并提供新想法。所以，暂停现在的工作，出去呼吸一下新鲜空气，与朋友交谈，弹吉他等。
 `ps: 莫春者，春服既成，冠者五六人，童子六七人，浴乎沂，风乎舞雩，咏而归。------《论语.先进》。`
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180207140423_Iku4es_Screenshot.jpeg)
+![](/images/20180207140423_Iku4es_Screenshot.jpeg)
 
 
 # 13. 在空闲时间学习新事物

@@ -21,7 +21,7 @@ jquery-1.11.3.min.js:5 Mixed Content: The page at 'https://wangduanduan.github.i
 # 3. 如何快速隐藏一个DOM元素
 选中一个元素，然后按`h`,这时候就会在选中的DOM元素上加上`__web-inspector-hide-shortcut__`类，这个类会让元素隐藏。谷歌和火狐上都可以，IE上没有试过行不行。
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180208091217_HDF1vL_Screenshot.jpeg)
+![](/images/20180208091217_HDF1vL_Screenshot.jpeg)
 
 
   [1]: /img/bVUshW

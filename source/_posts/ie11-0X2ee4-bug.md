@@ -26,7 +26,7 @@ SCRIPT7002: XMLHttpRequest: 网络错误 0x2ee4, 由于出现错误 00002ee4 而
 stackoverflow上有个答案，它的思路是：`在post请求发送之前，先进行一次get操作` 这个方式我试过，是可行的。但是深层次的原因我不是很明白。
 
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180211141321_kcU1Mh_Screenshot.jpeg)
+![](/images/20180211141321_kcU1Mh_Screenshot.jpeg)
 
 
 然而真相总有大白的一天，其实深层次的原因是，IE11的配置。
@@ -39,21 +39,21 @@ stackoverflow上有个答案，它的思路是：`在post请求发送之前，�
 - 点击确定
 - 重启计算机
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180211141332_EzU6Hs_Screenshot.jpeg)
+![](/images/20180211141332_EzU6Hs_Screenshot.jpeg)
 
 # 2 其他常规设置
 
 ## 2.1 去掉兼容模式， 使用Edge文档模式
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180211141344_ctLchE_Screenshot.jpeg)
+![](/images/20180211141344_ctLchE_Screenshot.jpeg)
 
 下图中红色框里的按钮也要取消勾选
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180211141353_182pMj_Screenshot.jpeg)
+![](/images/20180211141353_182pMj_Screenshot.jpeg)
 
 ## 2.2 有些使用activeX，还是需要检查是否启用的
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180211141403_eM2ajd_Screenshot.jpeg)
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180211141414_8gyYUu_Screenshot.jpeg)
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180211141427_CeMrwH_Screenshot.jpeg)
+![](/images/20180211141403_eM2ajd_Screenshot.jpeg)
+![](/images/20180211141414_8gyYUu_Screenshot.jpeg)
+![](/images/20180211141427_CeMrwH_Screenshot.jpeg)
 
 ## 2.3 允许跨域
 如果你的接口跨域了，还要检查浏览器是否允许跨域，否则浏览器可能默认就禁止跨域的
@@ -67,7 +67,7 @@ stackoverflow上有个答案，它的思路是：`在post请求发送之前，�
 5. 确定 
 6. 然后`重启电脑`
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180211141443_fV3amH_Screenshot.jpeg)
+![](/images/20180211141443_fV3amH_Screenshot.jpeg)
 
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180322150920_oVhst9_Jietu20180322-150855.jpeg)
+![](/images/20180322150920_oVhst9_Jietu20180322-150855.jpeg)

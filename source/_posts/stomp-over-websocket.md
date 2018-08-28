@@ -12,11 +12,11 @@ tags:
 
 简单说一下思路：WebSocket底层基于TCP协议的，如果你的服务器基于HTTP协议暴露80端口，那WebSocket肯定无法连接。`你只要将HTTP协议修改成TCP协议就可以了。`
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180320223231_T2gHyb_Screenshot.jpeg)
+![](/images/20180320223231_T2gHyb_Screenshot.jpeg)
 
 然后是安全组的配置：
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180320223255_pGGCWF_Screenshot.jpeg)
+![](/images/20180320223255_pGGCWF_Screenshot.jpeg)
 
 同样如果使用了NGINX作为反向代理，那么NGINX也需要做配置的。
 

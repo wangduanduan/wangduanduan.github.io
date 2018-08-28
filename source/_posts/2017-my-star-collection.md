@@ -5,7 +5,7 @@ tags:
 - star
 ---
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180211143825_5WhtUR_Screenshot.jpeg)
+![](/images/20180211143825_5WhtUR_Screenshot.jpeg)
 
 > 我不知道世上的人对我怎样评价。我却这样认为：我好像是在海上玩耍，时而发现了一个光滑的石子儿，时而发现一个美丽的贝壳而为之高兴的孩子。尽管如此，那真理的海洋还神秘地展现在我们面前。—— 牛顿
 
@@ -28,7 +28,7 @@ tags:
 - 兼容 IE10+
 - 支持 SSR (example)
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180211144002_TNZrwa_Screenshot.jpeg)
+![](/images/20180211144002_TNZrwa_Screenshot.jpeg)
 
 # 2. [JavaScript Standard Style：一千个开发者只有一个风格](https://github.com/standard/standard)
 
@@ -47,7 +47,7 @@ tags:
 - 无分号 – 这没什么不好。不骗你！
 - 查看更多 – [为何不试试 standard 规范呢！](https://github.com/standard/standard/blob/master/docs/RULES-zhcn.md#javascript-standard-style)
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180211144016_ciMMeG_Screenshot.jpeg)
+![](/images/20180211144016_ciMMeG_Screenshot.jpeg)
 
 # 3. [mitt: 纳米级别的事件订阅系统](https://github.com/developit/mitt)
 
@@ -58,7 +58,7 @@ tags:
 - 非常熟悉: 类似于Node's EventEmitter
 - 函数式: 方法不依赖`this`
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180211144027_hANzrm_Screenshot.jpeg)
+![](/images/20180211144027_hANzrm_Screenshot.jpeg)
 
 # 4. [faker.js: 最优雅的假数据生成器](https://github.com/Marak/faker.js)
 
@@ -71,7 +71,7 @@ var randomName = faker.name.findName(); // Caitlyn Kerluke
 var randomEmail = faker.internet.email(); // Rusty@arne.info
 var randomCard = faker.helpers.createCard(); // random contact card containing many properties
 ```
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180211144039_JErY9F_Screenshot.jpeg)
+![](/images/20180211144039_JErY9F_Screenshot.jpeg)
 
 # 5. [superstruct: 精准详细的runtime 数据验证工具](https://github.com/ianstormtaylor/superstruct)
 

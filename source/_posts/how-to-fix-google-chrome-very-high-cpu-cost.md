@@ -20,14 +20,14 @@ tags:
 
 其实Chrome浏览器自身也是有任务管理器的，一般来说windows版chrome按住`shift+esc`就会调出任务管理器窗口。mac版调出任务管理器没有快捷，只能通过`Window > Task Manager`调出。
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180604181340_ymCT2T_Jietu20180604-174820.jpeg)
+![](/images/20180604181340_ymCT2T_Jietu20180604-174820.jpeg)
 
 调出任务管理器后，发现一个标签页，CPU占用率达到99%， 那就说明，应该是这个标签页中存在持续占用大量CPU计算的程序。
 
 最后找到这个页面，发现该页面背景图是一种动态粒子图。就是基于[particles.js](https://github.com/VincentGarreau/particles.js/)做的。我想，终于找到你了。
 
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180604181757_rRfc8L_687474703a2f2f76696e63656e74676172726561752e636f6d2f7061727469636c65732e6a732f6173736574732f696d672f6769746875622d73637265656e2e6a7067.jpeg)
+![](/images/20180604181757_rRfc8L_687474703a2f2f76696e63656e74676172726561752e636f6d2f7061727469636c65732e6a732f6173736574732f696d672f6769746875622d73637265656e2e6a7067.jpeg)
 
 
 于是我把这个动态图的相关js代码给注释掉，电脑的风扇也终于变得安静了。
@@ -52,12 +52,12 @@ tags:
 
 particles.js提供的demo效果图，在Chrome中CPU会被提高到100%。
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180605133536_WgqoKS_Jietu20180605-132714.jpeg)
+![](/images/20180605133536_WgqoKS_Jietu20180605-132714.jpeg)
 
 
 也有几家使用动态背景图的官网。我记得知乎以前就用过动态背景图，但是现在找不到了。另外一个使用动态背景图的是[daocloud](http://www.daocloud.io/), CPU也是会在首页飙升到50%。
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180605133717_ckASzG_Jietu20180605-132903.jpeg)
+![](/images/20180605133717_ckASzG_Jietu20180605-132903.jpeg)
 
 所谓：`强招必自损`，动态背景图在给人以炫酷科技感的同时，也需要权衡这种技术对客户计算机的压力。
 

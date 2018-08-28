@@ -5,7 +5,7 @@ tags:
 - hexo
 ---
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180208212257_BZZjA5_1200px-The_Great_Wave_off_Kanagawa.jpeg)
+![](/images/20180208212257_BZZjA5_1200px-The_Great_Wave_off_Kanagawa.jpeg)
 
 默认情况下NexT主题的首页，每篇文章几乎都会全部渲染出来。这是这样来看，首页就会变得非常长，不利于快速浏览。
 
@@ -37,7 +37,7 @@ tags:
 - hexo
 ---
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180208212257_BZZjA5_1200px-The_Great_Wave_off_Kanagawa.jpeg)
+![](/images/20180208212257_BZZjA5_1200px-The_Great_Wave_off_Kanagawa.jpeg)
 
 文章摘要
 

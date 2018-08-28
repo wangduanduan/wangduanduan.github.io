@@ -74,7 +74,7 @@ v-model 会忽略所有表单元素的 value、checked、selected 特性的初�
 
 当userAge被jQuery改成14时，Vue实例中的userAge任然是12。当你输入userName时，Vue发现数据改变，触发虚拟DOM的重新渲染，同时也将userAge渲染成了12。
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209131356_2Lfly1_Screenshot.jpeg)
+![](/images/20180209131356_2Lfly1_Screenshot.jpeg)
 
 总结：`如果你在Vue项目中逼不得已使用jQuery, 你要知道这会导致哪些常见的问题，以及解决思路。`
 

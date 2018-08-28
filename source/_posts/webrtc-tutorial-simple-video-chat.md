@@ -19,7 +19,7 @@ tags:
 - stun服务器使用谷歌的，trun使用[ScaleDrone](https://www.scaledrone.com/)的sdk，这样我就不用管服务端了。
 
 # 2. 先上效果图
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209125722_GO0Ee0_Screenshot.jpeg)
+![](/images/20180209125722_GO0Ee0_Screenshot.jpeg)
 
 # 3. 再上在线例子[点击此处](https://wangduanduan.github.io/webrtc/demos/chat-with-your-friend.html)
 
@@ -177,9 +177,9 @@ TURN是一个client-server协议。TURN的NAT穿透方法与STUN类似，都是�
 > ICE （Interactive Connectivity Establishment，互动式连接建立 ），一种综合性的NAT穿越的技术。
 互动式连接建立是由IETF的MMUSIC工作组开发出来的一种framework，可整合各种NAT穿透技术，如STUN、TURN（Traversal Using Relay NAT，中继NAT实现的穿透）、RSIP（Realm Specific IP，特定域IP）等。该framework可以让SIP的客户端利用各种NAT穿透方式打穿远程的防火墙。[wikipedia ICE]
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209125753_F5e9Xf_Screenshot.jpeg)
+![](/images/20180209125753_F5e9Xf_Screenshot.jpeg)
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209125803_bcjg2P_Screenshot.jpeg)
+![](/images/20180209125803_bcjg2P_Screenshot.jpeg)
 
 WebRTC被设计用于点对点之间工作，因此用户可以通过最直接的途径连接。然而，WebRTC的构建是为了应付现实中的网络: `客户端应用程序需要穿越NAT网关和防火墙，并且对等网络需要在直接连接失败的情况下进行回调。` 作为这个过程的一部分，WebRTC api使用STUN服务器来获取计算机的IP地址，并将服务器作为中继服务器运行，以防止对等通信失败。(现实世界中的WebRTC更详细地解释了这一点。)
 

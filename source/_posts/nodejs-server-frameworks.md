@@ -9,7 +9,7 @@ tags:
 
 > 没有什么事情是一个框架解决不了的，如果有，就再找一个。
  
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180129141430_C2s0Wc_Screenshot.jpeg)
+![](/images/20180129141430_C2s0Wc_Screenshot.jpeg)
 
 Photo by 贝莉儿 NG on Unsplash
 

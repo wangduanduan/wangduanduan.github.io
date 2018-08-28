@@ -6,7 +6,7 @@ tags:
 
 当我们使用原生的audio标签时，可以看到如下的效果。
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180208134739_FKSyw4_Screenshot.jpeg)
+![](/images/20180208134739_FKSyw4_Screenshot.jpeg)
 
 `那么如何让下载按钮隐藏掉呢？`
 
@@ -61,7 +61,7 @@ audio::-webkit-media-controls-enclosure {
 </script>
 ```
 效果图：
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180208134755_pPAs8b_Screenshot.jpeg)
+![](/images/20180208134755_pPAs8b_Screenshot.jpeg)
 
 
 # 5. audio相关问题以及解决方案

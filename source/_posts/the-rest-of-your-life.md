@@ -5,7 +5,7 @@ tags:
 - 未完成
 ---
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814211237_9Y8uPX_Jietu20180814-211226.jpeg)
+![](/images/20180814211237_9Y8uPX_Jietu20180814-211226.jpeg)
 
 <!-- more -->
 
@@ -38,25 +38,25 @@ tags:
 下面给展示几张我的PS照片
 
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814185855_oORpt1_Jietu20180814-185838.jpeg)
+![](/images/20180814185855_oORpt1_Jietu20180814-185838.jpeg)
 
 【毕业照】
 
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814190245_gfE8Fb_Jietu20180814-190136.jpeg)
+![](/images/20180814190245_gfE8Fb_Jietu20180814-190136.jpeg)
 
 【帮别人做的艺术照】
 
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814190255_wMF7u1_Jietu20180814-190227.jpeg)
+![](/images/20180814190255_wMF7u1_Jietu20180814-190227.jpeg)
 
 【刺客信条 换脸 我自己】
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814190305_8V2gKz_Jietu20180814-190236.jpeg)
+![](/images/20180814190305_8V2gKz_Jietu20180814-190236.jpeg)
 
 【旅游照 换脸 我自己】
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814190409_GjfFso_Jietu20180814-190359.jpeg)
+![](/images/20180814190409_GjfFso_Jietu20180814-190359.jpeg)
 
 【宿舍楼 上面ps了一条狼】
 
@@ -82,44 +82,44 @@ tags:
 
 兼职的日志过得很苦，单是还算充实。虽然工资不高，但是因为还没毕业，也没有奢望过高的工资。
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814211015_JTfR37_Jietu20180814-211003.jpeg)
+![](/images/20180814211015_JTfR37_Jietu20180814-211003.jpeg)
 
 【上图 我在一个古玩店的拍摄玉器的时候，有个小女孩过来找我玩，我随手拍的】
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814211237_9Y8uPX_Jietu20180814-211226.jpeg)
+![](/images/20180814211237_9Y8uPX_Jietu20180814-211226.jpeg)
 
 【上图 是在1号线 莲花路地铁站 因为错过了地铁拍的】
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814211409_tv0CQF_Jietu20180814-211402.jpeg)
+![](/images/20180814211409_tv0CQF_Jietu20180814-211402.jpeg)
 
 【上图 是从1号线 莲花地铁站 转公交拍的】
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814211546_tQTFxw_Jietu20180814-211535.jpeg)
+![](/images/20180814211546_tQTFxw_Jietu20180814-211535.jpeg)
 
 【每天早上起的很早，能够看到军训的学生在操场上奔跑】
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814211730_1b2O72_Jietu20180814-211722.jpeg)
+![](/images/20180814211730_1b2O72_Jietu20180814-211722.jpeg)
 
 【在古玩店一般都要拍到很晚，因为是按张数算拍照工资，拍的越多，工资越高。还好晚上回公司 打车费用是可以报销的】
 
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814211957_n2hrCB_Jietu20180814-211922.jpeg)
+![](/images/20180814211957_n2hrCB_Jietu20180814-211922.jpeg)
 
 【晚上还要回到学校，一般到学校就快晚上10点左右了】
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814212145_4pUouy_Jietu20180814-212129.jpeg)
+![](/images/20180814212145_4pUouy_Jietu20180814-212129.jpeg)
 
 【毕业了，新校区依然很漂亮】
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814212242_BApzl0_Jietu20180814-212236.jpeg)
+![](/images/20180814212242_BApzl0_Jietu20180814-212236.jpeg)
 
 【毕业了，老校区下了一场雨】
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814212339_FKCQfW_Jietu20180814-212319.jpeg)
+![](/images/20180814212339_FKCQfW_Jietu20180814-212319.jpeg)
 
 【毕业了，青春像一艘船，沉入海底】
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180814212511_DvDCtu_Jietu20180814-212501.jpeg)
+![](/images/20180814212511_DvDCtu_Jietu20180814-212501.jpeg)
 
 【毕业了，我等的人，你在哪里？】
 

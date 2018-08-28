@@ -67,14 +67,14 @@ npm i cypress -D
 
 打开之后就是这个样子，可以手动去打开项目，运行测试用例。
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180516092612_wiNNiZ_Jietu20180516-092604.jpeg)
+![](/images/20180516092612_wiNNiZ_Jietu20180516-092604.jpeg)
 
 
 # 5. 初始化Cypress
 
 Cypress初始化，会在项目根目录自动生成cypress文件夹，并且里面有些测试用例模板，可以很方便的学习。
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180516092918_zwtp3h_Jietu20180516-092911.jpeg)
+![](/images/20180516092918_zwtp3h_Jietu20180516-092911.jpeg)
 
 初始化的方法有两种。
 1. 如果你下载的客户端，那么你用客户端打开项目时，它会检测项目目录下有没有Cypress目录，如果没有，就自动帮你生成模板。
@@ -101,11 +101,11 @@ describe('Hacker News登录测试', () => {
 
 打开Cypress客户端，选择要测试项目的根目录，点击hacker-news.js后，测试用例就会自动运行
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180517162959_83xejF_Jietu20180517-162945.jpeg)
+![](/images/20180517162959_83xejF_Jietu20180517-162945.jpeg)
 
 
 运行结束后，左侧栏目鼠标移动上去，右侧栏都会显示出该步骤的截图，所以叫做时光穿梭功能。
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180517164346_Lipgu6_Jietu20180517-163217.jpeg)
+![](/images/20180517164346_Lipgu6_Jietu20180517-163217.jpeg)
 
 从截图也可以看出来，Cypress的步骤描述很详细。

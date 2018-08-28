@@ -12,7 +12,7 @@ tags:
 
 从下表可以看出，主流的浏览器都支持execCommand命令
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180314142213_IhrFsz_Jietu20180314-141253.jpeg)
+![](/images/20180314142213_IhrFsz_Jietu20180314-141253.jpeg)
 
 # 2. 复制的原理
 

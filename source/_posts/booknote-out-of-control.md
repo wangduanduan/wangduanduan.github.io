@@ -7,7 +7,7 @@ tags:
 - 未完成
 ---
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180209225401_xDhao1_IMG_2666.jpeg)
+![](/images/20180209225401_xDhao1_IMG_2666.jpeg)
 <!-- more -->
 
 

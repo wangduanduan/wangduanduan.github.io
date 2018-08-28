@@ -6,11 +6,11 @@ tags:
 
 # 1. 曾经，你可以能习惯这样阅读javascript
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180207135809_HSz6fD_Screenshot.jpeg)
+![](/images/20180207135809_HSz6fD_Screenshot.jpeg)
 
 # 2. 现在，你可以用这个姿势阅读
 
-![](https://wdd-images.oss-cn-shanghai.aliyuncs.com/20180207135821_3b9l9c_Screenshot.jpeg)
+![](/images/20180207135821_3b9l9c_Screenshot.jpeg)
 
 # 3. 怎么做呢?
 ## 3.1. step1:
