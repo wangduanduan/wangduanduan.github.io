@@ -6,12 +6,10 @@
     "version": "3.7.1"
   },
   "scripts": {
-    "d": "git add -A && git commit -m 'update' && hexo g -d && git push",
-    "start": "hexo server -d"
+    "start": "git add -A && git commit -m 'update' && git push"
   },
   "dependencies": {
     "hexo": "^3.2.0",
-    "hexo-admin": "^2.3.0",
     "hexo-deployer-git": "^0.3.1",
     "hexo-generator-archive": "^0.1.4",
     "hexo-generator-baidu-sitemap": "^0.1.2",
