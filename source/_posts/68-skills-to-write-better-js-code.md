@@ -6,6 +6,7 @@ tags:
 
 书还没看完。一遍看，一遍写读书笔记。
 
+
 这本书的序是JavaScript之父Brendan Eich写的，作者是JavaScript标准化委员会专家。可想而知其质量如何。这本书不厚，和《JavaScript语言精粹》差不多厚，约等于4分之一的《JavaScript权威指南》的厚度。绝对值得一看。
 
 # 1. 本书赞誉
