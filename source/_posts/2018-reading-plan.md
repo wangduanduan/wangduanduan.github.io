@@ -55,11 +55,11 @@ webkit技术内幕 | kindle | 读完
 小狗钱钱 | kindle | 读完
 you dont konw js 英文版 | kindle | 停止
 MySql必知必会 | kindle | 在读 
-失控| 多看| 在读
+失控| 多看| 读完
 魔鬼经济学| 多看| 在读
 设计心理学| 多看| 
 把时间当做朋友| 多看| 
-三体| 多看| 在读 | 读完第一部
+三体| 多看| 读完 | 读完第一部
 自控力 | kindle | 
 影响力 | kindle | 读完
 [阮一峰 前方的路](http://www.ruanyifeng.com/road/) | 网络 |
