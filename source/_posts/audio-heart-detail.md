@@ -7,12 +7,12 @@ tags:
 
 > 我觉得DOM就好像是元素周期表里的元素，JS就好像是实验器材，通过各种化学反应，产生各种魔术。
 
-![](/images/20180208094439_zGRL80_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208094439_zGRL80_Screenshot.jpeg)
 
 # 1. Audio
 通过打开谷歌浏览器的dev tools -> Settings -> Elements -> Show user agent shadow DOM, 你可以看到其实Audio标签也是由常用的 input标签和div等标签合成的。
 
-![](/images/20180208094451_tBBQUM_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208094451_tBBQUM_Screenshot.jpeg)
 
 # 2. 基本用法
 ```
@@ -41,11 +41,11 @@ Your browser does not support the audio element.
 ```
 你可以看出他们在Chrome里表现的差异
 
-![](/images/20180208094513_MO2e9z_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208094513_MO2e9z_Screenshot.jpeg)
 
 关于audio标签支持的音频类型，可以参考[Audio#Supported_audio_coding_formats](https://en.wikipedia.org/wiki/HTML5_Audio#Supported_audio_coding_formats)
 
-![](/images/20180208094523_k82xlG_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208094523_k82xlG_Screenshot.jpeg)
 
 # 3. 常用属性
 - autoplay: 音频流文件就绪后是否自动播放

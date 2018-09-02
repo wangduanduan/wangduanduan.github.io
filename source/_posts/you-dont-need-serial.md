@@ -38,7 +38,7 @@ tags:
 
 可以看一下纯CSS的例子
 
-![](https://github.com/you-dont-need/You-Dont-Need-JavaScript/raw/master/images/accordion.gif)
+![](https://github.com/you-dont-need/You-Dont-Need-JavaScript/raw/masterhttps://wdd.js.org/img/images/accordion.gif)
 
 # [2 You-Dont-Need-Lodash-Underscore](https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore)
 

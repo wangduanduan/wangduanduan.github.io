@@ -3,10 +3,10 @@ title:  寻一片净土 书写我自己的芳华
 date: 2018-02-08 20:18:42
 tags:
 - 思想者
-cover: /images/20180208202159_i9HYlT_1-1G024112343148.jpeg
+cover: https://wdd.js.org/img/images/20180208202159_i9HYlT_1-1G024112343148.jpeg
 ---
 
-![](/images/20180208202159_i9HYlT_1-1G024112343148.jpeg)
+![](https://wdd.js.org/img/images/20180208202159_i9HYlT_1-1G024112343148.jpeg)
 
 <!-- more -->
 
@@ -60,7 +60,7 @@ cover: /images/20180208202159_i9HYlT_1-1G024112343148.jpeg
 
 来书写我自己的芳华
 
-![](/images/20180208203548_bMcwuP_平凡之路.jpeg)
+![](https://wdd.js.org/img/images/20180208203548_bMcwuP_平凡之路.jpeg)
 
 > 所以，最近一直在把SegmentFault上的文章搬迁到github pages上
 

@@ -13,18 +13,18 @@ tags:
 
 如果你的项目中看不到这一项，那么你需要安装[Gitlab Plugin](https://wiki.jenkins.io/display/JENKINS/GitLab+Plugin)
 
-![](/images/20180703175934_fhIT2T_Jietu20180703-175910.jpeg)
+![](https://wdd.js.org/img/images/20180703175934_fhIT2T_Jietu20180703-175910.jpeg)
 
 
 ## 1.2. 构建
 
 注意：`$BUILD_NUMBER`是JenKins自带的一个环境变量，表示当前构建的次数。加上这个之后，每次构建产生的tag都不一样。
 
-![](/images/20180703180154_3EBgJo_Jietu20180703-180138.jpeg)
+![](https://wdd.js.org/img/images/20180703180154_3EBgJo_Jietu20180703-180138.jpeg)
 
 构建生成的项目名称如下图所示。
 
-![](/images/20180703180601_uyMlkh_Jietu20180703-180546.jpeg)
+![](https://wdd.js.org/img/images/20180703180601_uyMlkh_Jietu20180703-180546.jpeg)
 
 **Docker Build and Publish 高级设置**
 
@@ -33,7 +33,7 @@ tags:
 
 其他参数可以自行设置。
 
-![](/images/20180705162021_Nr0P43_Jietu20180705-161956.jpeg)
+![](https://wdd.js.org/img/images/20180705162021_Nr0P43_Jietu20180705-161956.jpeg)
 
 
 # 2. gitlab配置
@@ -46,7 +46,7 @@ tags:
 - 选中Push events
 - 点击Add webhook
 
-![](/images/20180703180947_EvLieQ_Jietu20180703-180934.jpeg)
+![](https://wdd.js.org/img/images/20180703180947_EvLieQ_Jietu20180703-180934.jpeg)
 
 添加成功后，会在Add webhook按钮下出现 Webhooks列表，你可以点击某一个webhook后的Test按钮进行测试。
 
@@ -54,7 +54,7 @@ tags:
 
 如果测试失败，gitlab这边会给出具体的错误信息。
 
-![](/images/20180703181150_q5E49m_Jietu20180703-181139.jpeg)
+![](https://wdd.js.org/img/images/20180703181150_q5E49m_Jietu20180703-181139.jpeg)
 
 
 # 3. 高级技巧
@@ -67,7 +67,7 @@ tags:
 
 下图设置Throttle Builds每小时只能构建一次，但是允许用户手动构建时，跳过构建节流的限制。
 
-![](/images/20180704094538_Uf1RrX_Jietu20180704-094526.jpeg)
+![](https://wdd.js.org/img/images/20180704094538_Uf1RrX_Jietu20180704-094526.jpeg)
 
 
 ## 3.1. JenKins环境变量

@@ -13,7 +13,7 @@ WebSocket断开的原因有很多，最好在WebSocket断开时，将错误打�
 
 在线demo地址：https://wdd.js.org/websocket-demos/
 
-![](/images/20180425112232_cxPVAD_Jietu20180425-112142.jpeg)
+![](https://wdd.js.org/img/images/20180425112232_cxPVAD_Jietu20180425-112142.jpeg)
 
 ```
 ws.onerror = function (e) {
@@ -28,7 +28,7 @@ ws.onerror = function (e) {
 
 WebSocket断开时，会触发`CloseEvent`, CloseEvent会在连接关闭时发送给使用 WebSockets 的客户端. 它在 WebSocket 对象的 onclose 事件监听器中使用。CloseEvent的code字段表示了WebSocket断开的原因。可以从该字段中分析断开的原因。
 
-![](/images/20180329204553_TjCFdu_Jietu20180329-204536.jpeg)
+![](https://wdd.js.org/img/images/20180329204553_TjCFdu_Jietu20180329-204536.jpeg)
 
 # 3. 关闭状态码表
 

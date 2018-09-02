@@ -18,7 +18,7 @@ IE11有安全设置中有两个选项，
 2. 点击浏览器右上角的齿轮图标
 3. 点击弹框上的 `Internet选项`
 
-![](/images/20180823102310_20uJ5k_Jietu20180823-102245.jpeg)
+![](https://wdd.js.org/img/images/20180823102310_20uJ5k_Jietu20180823-102245.jpeg)
 
 # 第二步
 
@@ -26,7 +26,7 @@ IE11有安全设置中有两个选项，
 2. 点击`Internet`
 3. 点击`自定义级别`
 
-![](/images/20180823103244_USZZfQ_Jietu20180823-103223.jpeg)
+![](https://wdd.js.org/img/images/20180823103244_USZZfQ_Jietu20180823-103223.jpeg)
 
 # 第三步
 
@@ -34,17 +34,17 @@ IE11有安全设置中有两个选项，
 
 如果这项是禁用的，那么要勾选启用。
 
-![](/images/20180823103506_t5pugZ_Jietu20180823-103456.jpeg)
+![](https://wdd.js.org/img/images/20180823103506_t5pugZ_Jietu20180823-103456.jpeg)
 
 
 找到`通过域访问数据源`
 
 如果这项是禁用的，那么要勾选启用。
 
-![](/images/20180823103835_hDBxJg_Jietu20180823-103813.jpeg)
+![](https://wdd.js.org/img/images/20180823103835_hDBxJg_Jietu20180823-103813.jpeg)
 
 最后在点击确定。
 
-![](/images/20180823104124_nVXlJh_Jietu20180823-104111.jpeg)
+![](https://wdd.js.org/img/images/20180823104124_nVXlJh_Jietu20180823-104111.jpeg)
 
 最后，如果`跨域浏览窗口和框架`,`通过域访问数据源`都启用了，还是无法跨域。那么最好重启一下电脑。有些设置可能在重启后才会生效。

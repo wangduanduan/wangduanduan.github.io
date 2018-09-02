@@ -12,14 +12,14 @@ tags:
 
 `GitUp, The Git interface you've been missing all your life has finally arrived` http://gitup.co/
 
-![](/images/20180424180658_8xeyJO_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180424180658_8xeyJO_Screenshot.jpeg)
 
 
 # 1. 功能介绍
 
 ## 1.1. 可视化、实时绘图、快速查看
 
-![](../images/map.gif)
+![](..https://wdd.js.org/img/images/map.gif)
 
 - `仓库可视化`: GitUp让你清晰明了的看到你的整个分支的迷宫
 - `实时绘图`: 你做的任何改变，都会立刻反应到GitUp的图形上，不用刷新，不用等待
@@ -27,7 +27,7 @@ tags:
 
 ## 1.2. 远离脏乱、快速撤销、时光穿梭
 
-![](../images/snapshots.gif)
+![](..https://wdd.js.org/img/images/snapshots.gif)
 
 - `远离脏乱`: GitUp给你完整的，透明的控制本地仓库的能力，非常方便去取消你不想要的改变
 - `快速撤销`: 你只需要按 command + z就可以快速取消
@@ -36,7 +36,7 @@ tags:
 
 ## 1.3. 全功能、快捷键、改变！
 
-![](../images/editing.gif)
+![](..https://wdd.js.org/img/images/editing.gif)
 
 - `全功能`: Rewrite, split, delete, and re-order commits, fixup and squash, cherry-pick, merge, rebase全都有, 而且非常快
 - `快捷键`: GitUp提供很多的快捷键
@@ -44,13 +44,13 @@ tags:
 
 ## 1.4. 速度非常快
 
-![](/images/20180424203917_Wl9aRw_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180424203917_Wl9aRw_Screenshot.jpeg)
 
 - `速度非常快`: GitUp 加载和渲染超40000个commit的git仓库，只需要1秒之内。GitUp之所以这么快的原因是，GitUp绕过git的接口，直接与git本地数据库交互。所以，有些时候，GitUp要比git的原生命令要快的多。
 
 ## 1.5. 实时搜索
 
-![](/images/20180424204319_6aEPUe_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180424204319_6aEPUe_Screenshot.jpeg)
 
 - `实时搜索`: 你可以按照分支，tag, commmit消息，作者，甚至diff的内容进行搜索，GitUp会马上把结果提供给你。
 

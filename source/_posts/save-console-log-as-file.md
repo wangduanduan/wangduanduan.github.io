@@ -9,7 +9,7 @@ tags:
 
 `debugout.js的原理是将所有日志序列化后，保存到一个变量里。当然这个变量不会无限大，因为默认的最大日志限制是2500行，这个是可配置的。另外，debugout.js也支持在localStorage里存储日志的。`
 
-![](/images/20180208135709_Z3SQQV_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208135709_Z3SQQV_Screenshot.jpeg)
 
 
 # 1. [debugout.js](https://github.com/inorganik/debugout.js)
@@ -30,11 +30,11 @@ Debugout的log（）接受任何类型的对象，包括函数。 Debugout不是
 
 下图是使用downloadLog方法下载的日志文件。
 
-![](/images/20180208135722_EwunDY_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208135722_EwunDY_Screenshot.jpeg)
 
 官方提供的demo示例，欢迎试玩。http://inorganik.github.io/debugout.js/
 
-![](/images/20180208135732_Ltowzp_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208135732_Ltowzp_Screenshot.jpeg)
 
 
 

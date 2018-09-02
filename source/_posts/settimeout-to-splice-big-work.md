@@ -61,7 +61,7 @@ Js利用定时器来分解任务，关键点有两个。
 ```
 `总共耗时180ms, 浏览器已经给出警告！[Violation] 'setTimeout' handler took 53ms`。
 
-![](/images/20180208141029_DSFYi3_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208141029_DSFYi3_Screenshot.jpeg)
 
 
 ## 1.2. 分批次动态创建
@@ -116,7 +116,7 @@ Js利用定时器来分解任务，关键点有两个。
 ```
 `这次异步按批次创建，没有耗时的警告。因为控制了每次代码在50ms内运行。实际上每80行耗时约10ms左右。这就不会引起页面卡顿等问题。`
 
-![](/images/20180208141052_DlS2x4_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208141052_DlS2x4_Screenshot.jpeg)
 
 
   [1]: /img/bVLoTq

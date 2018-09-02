@@ -7,7 +7,7 @@ tags:
 有个需求，想看点赞最多的头条，但是页面没有这种按钮。怎么办？自己写吧。
 
 先看效果
-![](/images/20180207140139_xwjt2M_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180207140139_xwjt2M_Screenshot.jpeg)
 
 再看代码
 ```

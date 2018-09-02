@@ -42,4 +42,4 @@ gg | 移动到这个档案的第一行 |
 
 
 # 3. vi快捷手册
-![](/images/20180211161542_xzqVSU_vi-vim-cheat-sheet.gif)
+![](https://wdd.js.org/img/images/20180211161542_xzqVSU_vi-vim-cheat-sheet.gif)

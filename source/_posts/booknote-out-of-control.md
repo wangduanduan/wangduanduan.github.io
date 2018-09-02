@@ -7,7 +7,7 @@ tags:
 - 未完成
 ---
 
-![](/images/20180209225401_xDhao1_IMG_2666.jpeg)
+![](https://wdd.js.org/img/images/20180209225401_xDhao1_IMG_2666.jpeg)
 <!-- more -->
 
 

@@ -18,7 +18,7 @@ date: 2018-07-12 16:43:00
 2. 打开cypress客户端， 点击箭头位置，通过资源管理器选择`/test`目录
 3. 如果`/test`没有cypress目录，那么cypress就会在test目录下新建cypress目录，并初始化一些文件
 
-![](/images/20180712165231_6m1oNT_Jietu20180712-165215.jpeg)
+![](https://wdd.js.org/img/images/20180712165231_6m1oNT_Jietu20180712-165215.jpeg)
 
 # 4. cypress目录分析
 
@@ -52,7 +52,7 @@ describe('Hacker News登录测试', () => {
 })
 ```
 
-![](/images/20180712214300_oiyXLR_Jietu20180712-214248.jpeg)
+![](https://wdd.js.org/img/images/20180712214300_oiyXLR_Jietu20180712-214248.jpeg)
 
 # 6. DOM选取
 

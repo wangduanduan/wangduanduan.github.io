@@ -8,7 +8,7 @@ tags:
 
 先看效果：
 
-![](/images/20180208092429_56loaY_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208092429_56loaY_Screenshot.jpeg)
 # 1. 环境
 - win7 64位
 - python 3.5

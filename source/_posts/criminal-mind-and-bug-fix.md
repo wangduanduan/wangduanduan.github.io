@@ -6,7 +6,7 @@ tags:
 - 犯罪心理
 ---
 
-![](/images/20180424210625_plfStH_1925476-30f31d37becb81f7.jpeg)
+![](https://wdd.js.org/img/images/20180424210625_plfStH_1925476-30f31d37becb81f7.jpeg)
 
 # 死亡时间 vs 问题时间
 
@@ -19,6 +19,6 @@ tags:
 
 最后，Aaron大写的帅啊！
 
-![](/images/20180424211055_ikM8Ez_a4b3dea5a85c012ca065abb86ec668d3_hd.jpeg)
+![](https://wdd.js.org/img/images/20180424211055_ikM8Ez_a4b3dea5a85c012ca065abb86ec668d3_hd.jpeg)
 
 

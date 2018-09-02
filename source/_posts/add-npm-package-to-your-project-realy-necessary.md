@@ -4,7 +4,7 @@ date: 2018-06-14 21:41:52
 tags:
 ---
 
-![](/images/20180614224056_7kDRDy_Jietu20180614-224039.jpeg)
+![](https://wdd.js.org/img/images/20180614224056_7kDRDy_Jietu20180614-224039.jpeg)
 
 # 1. 风雨总在阳光后
 

@@ -9,49 +9,49 @@ tags:
 # 1. serve: 在任意目录开启静态文件服务器
 - https://github.com/zeit/serve
 
-![](/images/20180208093930_pRnErF_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208093930_pRnErF_Screenshot.jpeg)
 
 
 # 2. lambda-view：优雅的看js源码
 - https://github.com/Jianru-Lin/lambda-view
 
-![](/images/20180208093942_n2HZ5Z_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208093942_n2HZ5Z_Screenshot.jpeg)
 
 
 # 3. ConEmu：windows命令行从未如此迷人
 - https://github.com/Maximus5/ConEmu
 
-![](/images/20180208093958_rE9cvM_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208093958_rE9cvM_Screenshot.jpeg)
 
 # 4. Wox：天下武功，唯快不破
 - https://github.com/Wox-launcher/Wox
 
-![](/images/20180208094014_SJzmnb_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208094014_SJzmnb_Screenshot.jpeg)
 
 
 # 5. gow：谁说windows不能用linux命令
 - https://github.com/bmatzelle/gow
 
-![](/images/20180208094028_KBQKT0_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208094028_KBQKT0_Screenshot.jpeg)
 
 
 # 6. vimium：像用vim一样用chrome浏览器
 - https://github.com/philc/vimium
 
-![](/images/20180208094044_xVRMWm_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208094044_xVRMWm_Screenshot.jpeg)
 
 # 7. localtunnel：将内网地址转化成公网地址
 - https://github.com/localtunnel/localtunnel
 
-![](/images/20180208094058_E8pr8Z_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208094058_E8pr8Z_Screenshot.jpeg)
 
 # 8. Browsersync：省时省力的浏览器同步测试工具
 
 地址：http://www.browsersync.cn/
 
-![](/images/20180208094111_5udBpr_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208094111_5udBpr_Screenshot.jpeg)
 
 # 9. PM2: 集负载均衡、热更新、监控等功能于一身的Node.js应用程序的生产流程管理器
 地址：https://github.com/Unitech/pm2
 
-![](/images/20180208094127_Wj5s2J_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208094127_Wj5s2J_Screenshot.jpeg)

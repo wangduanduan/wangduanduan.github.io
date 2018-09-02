@@ -8,7 +8,7 @@ tags:
 > Snippets是可以在Chrome DevTools的“源”面板中创建和执行的小脚本。 您可以从任何页面访问和运行它们。 当您运行代码段时，它会从当前打开的页面的上下文执行。
 
 # 1. 显示所有元素的边框，看页面布局非常方便
-![](/images/20180207135027_4TAe1P_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180207135027_4TAe1P_Screenshot.jpeg)
 
 ```
 [].forEach.call($$("*"),function(a){
@@ -19,7 +19,7 @@ tags:
 # 2. allcolors.js
 > 从页面上的元素中使用的计算样式打印所有颜色。 使用样式化的console.log调用来可视化每种颜色。
 
-![](/images/20180207135046_bfEqm5_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180207135046_bfEqm5_Screenshot.jpeg)
 ```
 // allcolors.js
 // https://github.com/bgrins/devtools-snippets
@@ -126,7 +126,7 @@ tags:
 # 3. cachebuster.js
 > 通过在href和src属性的末尾添加Date.now（）来覆盖所有链接和（可选）脚本标记。 默认情况下，不执行处理脚本，应将变量process_scripts更改为true以运行这些脚本。
 
-![](/images/20180207135131_CvscRc_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180207135131_CvscRc_Screenshot.jpeg)
 
 ```
 //Cache Buster
@@ -168,7 +168,7 @@ tags:
 console.save(data, [filename])
 ```
 
-![](/images/20180207135218_BG0kgp_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180207135218_BG0kgp_Screenshot.jpeg)
 ```
 (function(console){
 
@@ -201,7 +201,7 @@ console.save(data, [filename])
 # 5. formcontrols.js
 > 在一个不错的表中显示所有html表单元素及其值和类型。 在页面上为每个表单添加一个新表
 
-![](/images/20180207135247_mH2FW4_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180207135247_mH2FW4_Screenshot.jpeg)
 ```
 // formcontrols.js
 // https://github.com/bgrins/devtools-snippets
@@ -238,7 +238,7 @@ console.save(data, [filename])
 # 6. log-globals.js
 > 打印全局变量
 
-![](/images/20180207135302_NLgNKa_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180207135302_NLgNKa_Screenshot.jpeg)
 ```
 *
 	log-globals
@@ -278,7 +278,7 @@ console.save(data, [filename])
 # 7. performance.js
 > 打印有关window.performance对象的信息。 使用console.table和分组来组织信息。
 
-![](/images/20180207135314_IhE6UI_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180207135314_IhE6UI_Screenshot.jpeg)
 ```
 // performance.js
 // https://github.com/bgrins/devtools-snippets

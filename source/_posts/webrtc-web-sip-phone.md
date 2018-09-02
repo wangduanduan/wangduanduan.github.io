@@ -11,14 +11,14 @@ tags:
 - 我只是从WEB端考虑这个问题，实际还需要后端sip服务器的配合
 - jsSIP有个非常不错的在线demo, 可以去哪里玩耍，很好玩呢 [try jssip ](https://tryit.jssip.net/)
 
-![](/images/20180211144554_nUwjgc_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180211144554_nUwjgc_Screenshot.jpeg)
 
 # 1. 技术简介
 > - `WebRTC`: WebRTC，名称源自`网页即时通信`（英语：Web Real-Time Communication）的缩写，是一个支持网页浏览器进行实时语音对话或视频对话的API。它于2011年6月1日开源并在Google、Mozilla、Opera支持下被纳入万维网联盟的W3C推荐标准
 
 > - `SIP`: `会话发起协议`（Session Initiation Protocol，缩写SIP）是一个由IETF MMUSIC工作组开发的协议，作为标准被提议用于创建，修改和终止包括视频，语音，即时通信，在线游戏和虚拟现实等多种多媒体元素在内的交互式用户会话。2000年11月，SIP被正式批准成为3GPP信号协议之一，并成为IMS体系结构的一个永久单元。SIP与H.323一样，是用于VoIP最主要的信令协议之一。
 
-![](/images/20180211144604_Zdxh2x_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180211144604_Zdxh2x_Screenshot.jpeg)
 
 一般来说，要么使用实体话机，要么在系统上安装基于sip的客户端程序。实体话机硬件成本高，基于sip的客户端往往兼容性差，无法跨平台，易被杀毒软件查杀。
 
@@ -30,7 +30,7 @@ tags:
 ## 2.1 [jsSIP](http://jssip.net/)
 `jsSIP是JavaScript SIP 库`
 
-![](/images/20180211144616_7c5Pf0_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180211144616_7c5Pf0_Screenshot.jpeg)
 
 功能特点如下：
 
@@ -85,7 +85,7 @@ var session = ua.call('sip:bob@example.com', options);
 ## 2.2 [SIP.js](https://sipjs.com/)
 sip.js项目实际是fork自jsSIP的，这里主要介绍它的服务端支持情况。其他接口自己自行查阅
 
-![](/images/20180211144630_24V1u8_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180211144630_24V1u8_Screenshot.jpeg)
 
 - FreeSWITCH
 - Asterisk
@@ -94,7 +94,7 @@ sip.js项目实际是fork自jsSIP的，这里主要介绍它的服务端支持�
 
 # 3. 平台考量
 
-![](/images/20180211144642_my1Cbb_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180211144642_my1Cbb_Screenshot.jpeg)
 
 由于WebRTC对浏览器有较高的要求，你可以看看下图，哪些浏览器支持WebRTC, 所有IE浏览器都不行，chrome系支持情况不错。
 

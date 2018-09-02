@@ -19,7 +19,7 @@ tags:
 
 # 2. 客户端
 ## 2.1. gistbox: 谷歌浏览器插件，用来编写gist
-![](/images/20180208140404_EDRTAX_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208140404_EDRTAX_Screenshot.jpeg)
 
 
 ## 2.2. lepton: 支持windows, max,linux
@@ -31,12 +31,12 @@ github: https://github.com/hackjutsu/Lepton
 - 支持打标签
 - ...
 
-![](/images/20180208140426_ZPBCpF_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208140426_ZPBCpF_Screenshot.jpeg)
 
 看看官方的一些截图。
 
-![](/images/20180208140435_fH3oRd_Screenshot.jpeg)
-![](/images/20180208140446_IQ7NtM_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208140435_fH3oRd_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208140446_IQ7NtM_Screenshot.jpeg)
 
 
   [1]: /img/bVMRP2

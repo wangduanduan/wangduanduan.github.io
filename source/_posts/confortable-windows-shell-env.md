@@ -46,7 +46,7 @@ tags:
 
 就放佛 张韶涵的歌《遗失的美好》：`有些人说不清哪里好 但就是谁都替代不了`,  然后我就又装上了f.lux。在我的影响下，我附近的几个小伙伴，也都装上了`f.lux`。 后来我换了mac, 但是我也装了f.lux。
 
-![](https://justgetflux.com/images/flux-windows.jpg)
+![](https://justgetflux.comhttps://wdd.js.org/img/images/flux-windows.jpg)
 
 > f.lux让你的电脑屏幕看起来就像你所在的房间一样。 当日落时，它使您的电脑看起来像你的室内灯。 在早上，它使事情看起来像阳光。
 
@@ -60,5 +60,5 @@ tags:
 - 免费
 - 体积很小，占用内存很小，启动很快
 
-![](/images/20180201172157_gz0qsT_Jietu20180201-172150.jpeg)
+![](https://wdd.js.org/img/images/20180201172157_gz0qsT_Jietu20180201-172150.jpeg)
 

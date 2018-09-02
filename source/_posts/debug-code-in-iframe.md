@@ -15,14 +15,14 @@ tags:
 
 这个小箭头可以让你选择不同的iframe的执行环境，可以切换到你的iframe环境里。
 
-![](/images/20180208135509_koFmKH_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208135509_koFmKH_Screenshot.jpeg)
 
 
 # 2. IE 
 
 如图所示是ie11的dev tool点击下来箭头，也可以选择不同的iframe执行环境。
 
-![](/images/20180208135527_niIzO1_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180208135527_niIzO1_Screenshot.jpeg)
 
 # 3. 其他浏览器
 

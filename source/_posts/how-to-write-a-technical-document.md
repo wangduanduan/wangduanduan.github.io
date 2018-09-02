@@ -11,7 +11,7 @@ tags:
 
 # 1. 衡量好文档的唯一标准是什么？
 
-![](/images/20180209125351_QEkv8l_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180209125351_QEkv8l_Screenshot.jpeg)
 
 Martin(Bob大叔)曾在《代码整洁之道》一书打趣地说：当你的代码在做 Code Review 时，审查者要是愤怒地吼道：
 
@@ -24,7 +24,7 @@ Martin(Bob大叔)曾在《代码整洁之道》一书打趣地说：当你的代
 `“What the fuck?”，`
 
 
-![](/images/20180209125409_sQvHfi_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180209125409_sQvHfi_Screenshot.jpeg)
 
 
 那说明你写的是 Good Code。衡量代码质量的唯一标准就`是每分钟骂出“WTF” 的频率`。
@@ -72,8 +72,8 @@ Martin(Bob大叔)曾在《代码整洁之道》一书打趣地说：当你的代
 
 **总之：`有些鸟儿是关不住的 他们的羽毛太鲜亮了`。**
 
-![](/images/20180209125425_frCDAB_Screenshot.jpeg)
-![](/images/20180209125433_KKkTLQ_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180209125425_frCDAB_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180209125433_KKkTLQ_Screenshot.jpeg)
 
   [1]: /img/bVXUY5
   [2]: /img/bVXUY8

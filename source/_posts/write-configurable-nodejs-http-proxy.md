@@ -11,7 +11,7 @@ tags:
 
 nodejs比较好的代理包有：[node-http-proxy](https://github.com/nodejitsu/node-http-proxy)和[http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware)。这两个我都用过，它们的优点自不用说，只说说缺点：`它们不能从配置文件里读取代理配置。每添加一个拦截路径都需要多加一个接口调用。`
 
-![](/images/20180209132526_lgeTcJ_bVVFlt.jpeg)
+![](https://wdd.js.org/img/images/20180209132526_lgeTcJ_bVVFlt.jpeg)
 
 所以，我需要自己写一个http代理，要包含一下功能：
 

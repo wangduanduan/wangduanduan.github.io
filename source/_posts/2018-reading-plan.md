@@ -6,7 +6,7 @@ tags:
 - 读书
 ---
 
-![](/images/20180205175335_cuPtzB_Girl-Reading-Book.jpeg)
+![](https://wdd.js.org/img/images/20180205175335_cuPtzB_Girl-Reading-Book.jpeg)
 
 - 要量化阅读
 - 要坚持不懈

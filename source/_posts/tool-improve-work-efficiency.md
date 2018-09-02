@@ -8,10 +8,10 @@ tags:
 - 未完成
 ---
 
-![](/images/20180202093814_7NNlq9_40-Reasons-to-Ban-Guns.jpeg)
+![](https://wdd.js.org/img/images/20180202093814_7NNlq9_40-Reasons-to-Ban-Guns.jpeg)
 
 # 1. Git Bash
-![](/images/20180202104601_8MoLOf_Screenshot.jpeg)
+![](https://wdd.js.org/img/images/20180202104601_8MoLOf_Screenshot.jpeg)
 
 
 # 2. Gow
