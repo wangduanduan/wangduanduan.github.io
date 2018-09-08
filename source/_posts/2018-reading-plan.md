@@ -6,6 +6,8 @@ tags:
 - 读书
 ---
 
+18年9月8号以后的读书日志放到github仓库里了，https://github.com/wangduanduan/books-read
+
 ![](https://wdd.js.org/img/images/20180205175335_cuPtzB_Girl-Reading-Book.jpeg)
 
 - 要量化阅读
