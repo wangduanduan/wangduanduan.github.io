@@ -152,6 +152,19 @@ git short-log
 git checkout -- somefile.js
 ```
 
+## 2.5 丢弃所有未提交的改变
+
+git clean 用来删除未跟踪的新创建的文件或者文件夹
+
+``
+git checkout . && git clean -xdf
+``
+
+git clean 
+- `-x` 不读取gitignore中的忽略规则
+- `-d` 删除所有未跟踪的文件和文件夹
+- `-f` 强制
+
 # 3. oh-my-zsh中常用的git缩写
 
 ```
