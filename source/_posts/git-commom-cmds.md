@@ -111,10 +111,10 @@ git branch -D dev
 ### 2.2.6. 拉取本地不存在的远程分支
 
 ```
-// 假设现在在master分支， 我需要拉去远程的dev分支到本地
+// 假设现在在master分支， 我需要拉去远程的dev分支到本地，而本地没有dev分支
 
-// 拉取远程分支到本地
-git fetch origin dev
+// 拉取远程分支到本地 git fetch orgin 远程分支名:本地分支名
+git fetch origin dev:dev
 
 // 切换到dev分支
 git checkout dev
