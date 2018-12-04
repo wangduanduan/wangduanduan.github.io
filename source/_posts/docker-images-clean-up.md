@@ -1,5 +1,5 @@
 ---
-title: docker-images-clean-up
+title: Docker镜像批量清理脚本
 date: 2018-12-04 15:05:31
 tags:
 - docker
