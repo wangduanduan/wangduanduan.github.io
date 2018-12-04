@@ -28,10 +28,8 @@ NPM是包最多管理工具，按照80-20定律，其中80%的包都可能是坑
 
 基本上，涵盖了所有你需要的内容。
 
-![](http://p3alsaatj.bkt.clouddn.com/20181029091908_yToVp2_bVbizp7.jpeg)
 
 # npms.io 一个更好的Node.js包搜索工具
 
 相比于npmjs官方的搜索，[npms.io](https://npms.io/)提供量化的数据，表明了一个包的质量，流行度以及维护性。并给出一个包的整体分数。
 
-![](http://p3alsaatj.bkt.clouddn.com/20181029091924_HeMqTd_bVbizrH.jpeg)

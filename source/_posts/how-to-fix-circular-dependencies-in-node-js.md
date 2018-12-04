@@ -75,11 +75,6 @@ TypeError: sayA is not a function
 
 图2中，出现向左的箭头，说明出现了循环依赖，说明要此处断开循环。
 
-![](http://p3alsaatj.bkt.clouddn.com/20181029092439_iAPS8M_bVbiGlF.jpeg)
-【图1】
-![](http://p3alsaatj.bkt.clouddn.com/20181029092450_uwYCic_bVbiGmj.jpeg)
-【图2】
-
 # 如何解决循环依赖
 
 ## 方案1： 先导出自身模块

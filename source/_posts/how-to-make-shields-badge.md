@@ -10,7 +10,6 @@ tags:
 
 一般开源项目都会有一些小徽章来标识项目的状态信息，并且这些信息是会自动更新的。在shields的官网https://shields.io/#/, 上面有各种各样的小图标，并且有很多自定义的方案。
 
-![](http://p3alsaatj.bkt.clouddn.com/20181029091553_scB7Y4_bVbhGSx.jpeg)
 
 # 起因：如何给私有部署的jenkins制作shields服务？
 
@@ -22,11 +21,9 @@ tags:
 
 有个npm包叫做，[text-to-svg](https://github.com/shrhdk/text-to-svg), 似乎可以将文本转成svg, 但是看了文本转svg的效果，果断就放弃了。
 
-![](http://p3alsaatj.bkt.clouddn.com/20181029091612_yQW6Z0_bVbhGVr.jpeg)
 
 最后回到起点，看了shields官方仓库，发现一个templates目录，豁然开朗。`原来svg图标是由svg的模板生成的`，每次生成图标只需要将信息添加到模板中，然后就可以渲染出svg字符串了。
 
-![](http://p3alsaatj.bkt.clouddn.com/20181029091628_NentG3_bVbhGVR.jpeg)
 
 顺着这个思路，发现一个包[shields-lightweight](https://github.com/albanm/shields-lightweight)
 
@@ -65,15 +62,9 @@ var svgBadge2 = shieldsLess.svg({
 
 渲染后的效果，查看在线demo: https://wdd.js.org/shields-less/example/
 
-![](http://p3alsaatj.bkt.clouddn.com/20181029091647_DGvgch_bVbhGX0.jpeg)
 
 # shields服务开发
 
 shields服务其实很简单。架构如下，客户端浏览器发送一个请求，向shields服务，shield服务解析请求，并向jenkins服务发送请求，jenkins服务每个项目都有json的http接口，可以获取项目信息的。shields将从jenkins获取的信息封装到svg小图标中，然后将svg小图标发送到客户端。
 
-![](http://p3alsaatj.bkt.clouddn.com/20181029091701_pzZ4VD_bVbhGYl.jpeg)
-
-
 # 最终效果
-
-![](http://p3alsaatj.bkt.clouddn.com/20181029091712_c4ahSd_bVbhGY9.jpeg)
