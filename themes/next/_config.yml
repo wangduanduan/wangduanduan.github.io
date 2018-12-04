@@ -36,7 +36,7 @@ favicon:
   #ms_browserconfig: /images/browserconfig.xml
 
 # Set default keywords (Use a comma to separate)
-keywords: "Hexo, NexT"
+keywords: "王端端, 洞香春"
 
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
@@ -118,9 +118,9 @@ baidusitemap:
 
 # Schemes
 # scheme: Muse
-scheme: Mist
+# scheme: Mist
 # scheme: Pisces
-#scheme: Gemini
+scheme: Gemini
 
 
 # ---------------------------------------------------------------
@@ -557,7 +557,7 @@ firestore:
 # Get more information on http://ibruce.info/2015/04/04/busuanzi/
 busuanzi_count:
   # count values only if the other configs are false
-  enable: true
+  enable: false
   # custom uv span for the whole site
   site_uv: true
   site_uv_header: <i class="fa fa-user"></i>
