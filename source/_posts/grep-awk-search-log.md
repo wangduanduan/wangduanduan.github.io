@@ -67,3 +67,27 @@ tags:
 
 # 12. 有没有：搜索到第一个匹配行后就停止搜索
 `grep -m 1 ERROR trace.log`
+
+# 13. 使用正则提取字符串
+
+`grep -Eo 'cause":"(.*?)"' test.log`
+
+```
+cause":"A"
+cause":"B"
+cause":"A"
+cause":"A"
+cause":"A"
+```
+
+如果相对提取字符串的结果进行按照出现的次数进行排序，可以使用sort, uniq命令
+
+```
+grep -Eo 'cause":"(.*?)"' test.log | sort | uniq -c | sort -k1,1 -n
+```
+
+步骤分解
+
+- sort 对结果进行排序
+- uniq -c 对结果进行去重并统计出现次数
+- sort -k1,1 -n 按照第一列的结果，进行数值大小排序
