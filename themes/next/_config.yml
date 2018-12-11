@@ -162,7 +162,7 @@ links_layout: block
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.gif
 # in site  directory(source/uploads): /uploads/avatar.gif
-avatar: http://p3alsaatj.bkt.clouddn.com/20180129093544_I5Jscb_IMG_1402.jpeg
+avatar: /images/avatar.jpeg
 
 # Table Of Contents in the Sidebar
 toc:
