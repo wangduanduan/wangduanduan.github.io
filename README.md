@@ -1,5 +1,7 @@
 # 王端端的个人博客
 
+> 夫天地者，万物之逆旅也；光阴者，百代之过客也。而浮生若梦，为欢几何？
+
 ![Travis](https://img.shields.io/travis/wangduanduan/wangduanduan.github.io.svg)
 
 # 博客地址
