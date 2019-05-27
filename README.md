@@ -4,6 +4,10 @@
 
 ![Travis](https://img.shields.io/travis/wangduanduan/wangduanduan.github.io.svg)
 
+![GitHub last commit](https://img.shields.io/github/last-commit/wangduanduan/wangduanduan.github.io.svg) 
+![GitHub issues](https://img.shields.io/github/issues/wangduanduan/wangduanduan.github.io.svg) 
+![GitHub closed issues](https://img.shields.io/github/issues-closed/wangduanduan/wangduanduan.github.io.svg)
+
 # 博客地址
 
 - 2019年之前的博客 https://wdd.js.org/
