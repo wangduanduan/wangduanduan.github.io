@@ -1807,8 +1807,8 @@ markdown@~0.5.0:
     nopt "~2.1.1"
 
 marked@^0.3.9:
-  version "0.3.12"
-  resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.12.tgz#7cf25ff2252632f3fe2406bde258e94eee927519"
+  version "0.3.19"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.19.tgz#5d47f709c4c9fc3c216b6d46127280f40b39d790"
 
 match-words@^0.1.0:
   version "0.1.1"
