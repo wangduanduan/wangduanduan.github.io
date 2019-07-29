@@ -11,7 +11,7 @@
 
 - 2019年之前的博客 https://wdd.js.org/
 - 2019年之后为了不想折腾，直接用这个仓库的Issues写博客
-- 
+- 这个博客不会更新，新博客地址 https://www.yuque.com/wangdd/blog
 
 # 个人微信公众号
 
