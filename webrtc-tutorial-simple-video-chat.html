@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="google-site-verification" content="We4cS1h0IumMJjPPUa-q5_PDG5BHKCm8e5htMVa6m0w" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="webrtc," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="洞香春" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="本例子是参考webrtc-tutorial-simple-video-chat做的。这个教程应该主要是去宣传ScaleDrone的sdk, 他们的服务是收费的，但是免费的也可以用，就是有些次数限制。  本栗子的地址本栗子的pages地址 因为使用的是ScaleDrone的js sdk, 后期很可能服务不稳定之类的 1. 准备 使用最新版谷歌浏览器（62版） 视频聊天中 一个是windows, 一">
+<meta name="keywords" content="webrtc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="120行代码实现 浏览器WebRTC视频聊天">
+<meta property="og:url" content="https://wdd.js.org/webrtc-tutorial-simple-video-chat.html">
+<meta property="og:site_name" content="洞香春">
+<meta property="og:description" content="本例子是参考webrtc-tutorial-simple-video-chat做的。这个教程应该主要是去宣传ScaleDrone的sdk, 他们的服务是收费的，但是免费的也可以用，就是有些次数限制。  本栗子的地址本栗子的pages地址 因为使用的是ScaleDrone的js sdk, 后期很可能服务不稳定之类的 1. 准备 使用最新版谷歌浏览器（62版） 视频聊天中 一个是windows, 一">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://wdd.js.org/img/images/20180209125722_GO0Ee0_Screenshot.jpeg">
+<meta property="og:image" content="https://wdd.js.org/img/images/20180209125753_F5e9Xf_Screenshot.jpeg">
+<meta property="og:image" content="https://wdd.js.org/img/images/20180209125803_bcjg2P_Screenshot.jpeg">
+<meta property="og:updated_time" content="2019-08-29T02:42:09.963Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="120行代码实现 浏览器WebRTC视频聊天">
+<meta name="twitter:description" content="本例子是参考webrtc-tutorial-simple-video-chat做的。这个教程应该主要是去宣传ScaleDrone的sdk, 他们的服务是收费的，但是免费的也可以用，就是有些次数限制。  本栗子的地址本栗子的pages地址 因为使用的是ScaleDrone的js sdk, 后期很可能服务不稳定之类的 1. 准备 使用最新版谷歌浏览器（62版） 视频聊天中 一个是windows, 一">
+<meta name="twitter:image" content="https://wdd.js.org/img/images/20180209125722_GO0Ee0_Screenshot.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://wdd.js.org/webrtc-tutorial-simple-video-chat.html"/>
+
+
+
+
+
+  <title>120行代码实现 浏览器WebRTC视频聊天 | 洞香春</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?32b66b12a233c7f47949966dc2e2cd97";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <!-- Google AdSense start -->
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-7799082458078979",
+    enable_page_level_ads: true
+  });
+</script>
+  <!-- Google AdSense end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">洞香春</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">洞香春以名士荟萃、谈论国事、交流思想而著称于当时列国 --《大秦帝国》</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wdd.js.org/webrtc-tutorial-simple-video-chat.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王端端">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="洞香春">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">120行代码实现 浏览器WebRTC视频聊天</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-09T12:56:12+00:00">
+                2018-02-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,639 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本例子是参考<a href="https://www.scaledrone.com/blog/posts/webrtc-tutorial-simple-video-chat" target="_blank" rel="noopener">webrtc-tutorial-simple-video-chat</a>做的。<br>这个教程应该主要是去宣传ScaleDrone的sdk, 他们的服务是收费的，但是免费的也可以用，就是有些次数限制。</p>
+</blockquote>
+<p><a href="https://github.com/wangduanduan/webrtc" target="_blank" rel="noopener">本栗子的地址</a><br><a href="https://wangduanduan.github.io/webrtc/" target="_blank" rel="noopener">本栗子的pages地址</a></p>
+<p><code>因为使用的是ScaleDrone的js sdk, 后期很可能服务不稳定之类的</code></p>
+<h1 id="1-准备"><a href="#1-准备" class="headerlink" title="1. 准备"></a>1. 准备</h1><ul>
+<li>使用最新版谷歌浏览器（62版）</li>
+<li>视频聊天中 一个是windows, 一个是mac</li>
+<li>stun服务器使用谷歌的，trun使用<a href="https://www.scaledrone.com/" target="_blank" rel="noopener">ScaleDrone</a>的sdk，这样我就不用管服务端了。</li>
+</ul>
+<h1 id="2-先上效果图"><a href="#2-先上效果图" class="headerlink" title="2. 先上效果图"></a>2. 先上效果图</h1><p><img src="https://wdd.js.org/img/images/20180209125722_GO0Ee0_Screenshot.jpeg" alt=""></p>
+<h1 id="3-再上在线例子点击此处"><a href="#3-再上在线例子点击此处" class="headerlink" title="3. 再上在线例子点击此处"></a>3. 再上在线例子<a href="https://wangduanduan.github.io/webrtc/demos/chat-with-your-friend.html" target="_blank" rel="noopener">点击此处</a></h1><h1 id="4-源码分析"><a href="#4-源码分析" class="headerlink" title="4. 源码分析"></a>4. 源码分析</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 产生随机数</span></span><br><span class="line"><span class="keyword">if</span> (!location.hash) &#123;</span><br><span class="line">    location.hash = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">0xFFFFFF</span>).toString(<span class="number">16</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 获取房间号</span></span><br><span class="line"><span class="keyword">var</span> roomHash = location.hash.substring(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 放置你自己的频道id, 这是我注册了ScaleDrone 官网后，创建的channel</span></span><br><span class="line"><span class="comment">// 你也可以自己创建</span></span><br><span class="line"><span class="keyword">var</span> drone = <span class="keyword">new</span> ScaleDrone(<span class="string">'87fYv4ncOoa0Cjne'</span>);</span><br><span class="line"><span class="comment">// 房间名必须以 'observable-'开头</span></span><br><span class="line"><span class="keyword">var</span> roomName = <span class="string">'observable-'</span> + roomHash;</span><br><span class="line"><span class="keyword">var</span> configuration = &#123;</span><br><span class="line">    iceServers: [&#123;</span><br><span class="line">        urls: <span class="string">'stun:stun.l.google.com:19302'</span> <span class="comment">// 使用谷歌的stun服务</span></span><br><span class="line">    &#125;]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> room;</span><br><span class="line"><span class="keyword">var</span> pc;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onSuccess</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onError</span>(<span class="params">error</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.error(error);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">drone.on(<span class="string">'open'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">error</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (error) &#123; <span class="keyword">return</span> <span class="built_in">console</span>.error(error);&#125;</span><br><span class="line"></span><br><span class="line">    room = drone.subscribe(roomName);</span><br><span class="line">    room.on(<span class="string">'open'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">error</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (error) &#123;onError(error);&#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 已经链接到房间后，就会收到一个 members 数组，代表房间里的成员</span></span><br><span class="line">    <span class="comment">// 这时候信令服务已经就绪</span></span><br><span class="line">    room.on(<span class="string">'members'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">members</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'MEMBERS'</span>, members);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 如果你是第二个链接到房间的人，就会创建offer</span></span><br><span class="line">        <span class="keyword">var</span> isOfferer = members.length === <span class="number">2</span>;</span><br><span class="line">        startWebRTC(isOfferer);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过Scaledrone发送信令消息</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sendMessage</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">    drone.publish(&#123;</span><br><span class="line">        room: roomName,</span><br><span class="line">        message</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">startWebRTC</span>(<span class="params">isOfferer</span>) </span>&#123;</span><br><span class="line">    pc = <span class="keyword">new</span> RTCPeerConnection(configuration);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 当本地ICE Agent需要通过信号服务器发送信息到其他端时</span></span><br><span class="line">    <span class="comment">// 会触发icecandidate事件回调</span></span><br><span class="line">    pc.onicecandidate = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (event.candidate) &#123;</span><br><span class="line">            sendMessage(&#123; <span class="string">'candidate'</span>: event.candidate &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果用户是第二个进入的人，就在negotiationneeded 事件后创建sdp</span></span><br><span class="line">    <span class="keyword">if</span> (isOfferer) &#123;</span><br><span class="line">        <span class="comment">// onnegotiationneeded 在要求sesssion协商时发生</span></span><br><span class="line">        pc.onnegotiationneeded = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 创建本地sdp描述 SDP (Session Description Protocol) session描述协议</span></span><br><span class="line">            pc.createOffer().then(localDescCreated).catch(onError);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 当远程数据流到达时，将数据流装载到video中</span></span><br><span class="line">    pc.onaddstream = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">        remoteVideo.srcObject = event.stream;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取本地媒体流</span></span><br><span class="line">    navigator.mediaDevices.getUserMedia(&#123;</span><br><span class="line">        audio: <span class="literal">true</span>,</span><br><span class="line">        video: <span class="literal">true</span>,</span><br><span class="line">    &#125;).then( <span class="function"><span class="keyword">function</span>(<span class="params">stream</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 将本地捕获的视频流装载到本地video中</span></span><br><span class="line">        localVideo.srcObject = stream;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 将本地流加入RTCPeerConnection 实例中 发送到其他端</span></span><br><span class="line">        pc.addStream(stream);</span><br><span class="line">    &#125;, onError);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 从Scaledrone监听信令数据</span></span><br><span class="line">    room.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">message, client</span>)</span>&#123;</span><br><span class="line">        <span class="comment">// 消息是我自己发送的，则不处理</span></span><br><span class="line">        <span class="keyword">if</span> (client.id === drone.clientId) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (message.sdp) &#123;</span><br><span class="line">            <span class="comment">// 设置远程sdp, 在offer 或者 answer后</span></span><br><span class="line">            pc.setRemoteDescription(<span class="keyword">new</span> RTCSessionDescription(message.sdp), <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="comment">// 当收到offer 后就接听</span></span><br><span class="line">                <span class="keyword">if</span> (pc.remoteDescription.type === <span class="string">'offer'</span>) &#123;</span><br><span class="line">                    pc.createAnswer().then(localDescCreated).catch(onError);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, onError);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (message.candidate) &#123;</span><br><span class="line">            <span class="comment">// 增加新的 ICE canidatet 到本地的链接中</span></span><br><span class="line">            pc.addIceCandidate(</span><br><span class="line">                <span class="keyword">new</span> RTCIceCandidate(message.candidate), onSuccess, onError</span><br><span class="line">            );</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">localDescCreated</span>(<span class="params">desc</span>) </span>&#123;</span><br><span class="line">    pc.setLocalDescription(desc, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        sendMessage(&#123; <span class="string">'sdp'</span>: pc.localDescription &#125;);</span><br><span class="line">    &#125;,onError);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="5-WebRTC简介"><a href="#5-WebRTC简介" class="headerlink" title="5. WebRTC简介"></a>5. WebRTC简介</h1><h2 id="5-1-介绍"><a href="#5-1-介绍" class="headerlink" title="5.1. 介绍"></a>5.1. 介绍</h2><p>WebRTC 是一个开源项目，用于Web浏览器之间进行实时音频视频通讯，数据传递。<br>WebRTC有几个JavaScript APIS。 点击链接去查看demo。</p>
+<ul>
+<li><a href="">getUserMedia(): 捕获音频视频</a></li>
+<li><a href="">MediaRecorder: 记录音频视频</a></li>
+<li><a href="">RTCPeerConnection: 在用户之间传递音频流和视频流</a></li>
+<li><a href="">RTCDataChannel: 在用户之间传递文件流</a></li>
+</ul>
+<h2 id="5-2-在哪里使用WebRTC"><a href="#5-2-在哪里使用WebRTC" class="headerlink" title="5.2. 在哪里使用WebRTC?"></a>5.2. 在哪里使用WebRTC?</h2><ul>
+<li>Chrome</li>
+<li>FireFox</li>
+<li>Opera</li>
+<li>Android</li>
+<li>iOS</li>
+</ul>
+<h2 id="5-3-什么是信令"><a href="#5-3-什么是信令" class="headerlink" title="5.3. 什么是信令"></a>5.3. 什么是信令</h2><p>WebRTC使用<code>RTCPeerConnection</code>在浏览器之间传递流数据, 但是也需要一种机制去协调收发控制信息，这就是信令。信令的方法和协议并不是在WebRTC中明文规定的。 在codelad中用的是Node，也有许多其他的方法。</p>
+<h2 id="5-4-什么是STUN和TURN和ICE"><a href="#5-4-什么是STUN和TURN和ICE" class="headerlink" title="5.4. 什么是STUN和TURN和ICE?"></a>5.4. 什么是STUN和TURN和ICE?</h2><blockquote>
+<p>STUN（Session Traversal Utilities for NAT，NAT会话穿越应用程序）是一种网络协议，它允许位于NAT（或多重NAT）后的客户端找出自己的公网地址，查出自己位于哪种类型的NAT之后以及NAT为某一个本地端口所绑定的Internet端端口。这些信息被用来在两个同时处于NAT路由器之后的主机之间创建UDP通信。该协议由RFC 5389定义。 <a href="https://zh.wikipedia.org/wiki/STUN" target="_blank" rel="noopener">wikipedia STUN</a></p>
+<p>TURN（全名Traversal Using Relay NAT, NAT中继穿透），是一种资料传输协议（data-transfer protocol）。允许在TCP或UDP的连线上跨越NAT或防火墙。<br>TURN是一个client-server协议。TURN的NAT穿透方法与STUN类似，都是通过取得应用层中的公有地址达到NAT穿透。但实现TURN client的终端必须在通讯开始前与TURN server进行交互，并要求TURN server产生”relay port”，也就是relayed-transport-address。这时TURN server会建立peer，即远端端点（remote endpoints），开始进行中继（relay）的动作，TURN client利用relay port将资料传送至peer，再由peer转传到另一方的TURN client。<a href="https://zh.wikipedia.org/wiki/TURN" target="_blank" rel="noopener">wikipedia TURN</a></p>
+<p>ICE （Interactive Connectivity Establishment，互动式连接建立 ），一种综合性的NAT穿越的技术。<br>互动式连接建立是由IETF的MMUSIC工作组开发出来的一种framework，可整合各种NAT穿透技术，如STUN、TURN（Traversal Using Relay NAT，中继NAT实现的穿透）、RSIP（Realm Specific IP，特定域IP）等。该framework可以让SIP的客户端利用各种NAT穿透方式打穿远程的防火墙。[wikipedia ICE]</p>
+</blockquote>
+<p><img src="https://wdd.js.org/img/images/20180209125753_F5e9Xf_Screenshot.jpeg" alt=""></p>
+<p><img src="https://wdd.js.org/img/images/20180209125803_bcjg2P_Screenshot.jpeg" alt=""></p>
+<p>WebRTC被设计用于点对点之间工作，因此用户可以通过最直接的途径连接。然而，WebRTC的构建是为了应付现实中的网络: <code>客户端应用程序需要穿越NAT网关和防火墙，并且对等网络需要在直接连接失败的情况下进行回调。</code> 作为这个过程的一部分，WebRTC api使用STUN服务器来获取计算机的IP地址，并将服务器作为中继服务器运行，以防止对等通信失败。(现实世界中的WebRTC更详细地解释了这一点。)</p>
+<h2 id="5-5-WebRTC是否安全"><a href="#5-5-WebRTC是否安全" class="headerlink" title="5.5. WebRTC是否安全?"></a>5.5. WebRTC是否安全?</h2><p>WebRTC组件是强制要求加密的，并且它的JavaScript APIS只能在安全的域下使用(HTTPS 或者 localhost)。信令机制并没有被WebRTC标准定义，所以是否使用安全的协议就取决于你自己了。</p>
+<h1 id="6-WebRTC-参考资料"><a href="#6-WebRTC-参考资料" class="headerlink" title="6. WebRTC 参考资料"></a>6. WebRTC 参考资料</h1><ul>
+<li><a href="https://webrtc.org/" target="_blank" rel="noopener">官网教程</a></li>
+<li><a href="https://www.scaledrone.com/blog/posts/webrtc-tutorial-simple-video-chat" target="_blank" rel="noopener">WebRTC 简单的视频聊天</a> <a href="https://github.com/ScaleDrone/webrtc" target="_blank" rel="noopener">repo</a></li>
+<li><a href="https://www.tutorialspoint.com/webrtc/index.html" target="_blank" rel="noopener">WebRTC 教程</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebRTC_API" target="_blank" rel="noopener">MDN WebRTC API</a></li>
+<li><a href="https://codelabs.developers.google.com/codelabs/webrtc-web/#0" target="_blank" rel="noopener">谷歌codelab WebRT教程</a></li>
+<li><a href="https://github.com/webrtc/samples" target="_blank" rel="noopener">github上WebRTC各种例子</a></li>
+<li><a href="https://segmentfault.com/bookmark/1230000011819985" target="_blank" rel="noopener">segemntfault上关于WebRTC的教程</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>请我喝杯茶</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="王端端 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="王端端 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    王端端
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文标题：</strong>
+    <a href="https://wdd.js.org/webrtc-tutorial-simple-video-chat.html" title="120行代码实现 浏览器WebRTC视频聊天">120行代码实现 浏览器WebRTC视频聊天</a>
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://wdd.js.org/webrtc-tutorial-simple-video-chat.html" title="120行代码实现 浏览器WebRTC视频聊天">https://wdd.js.org/webrtc-tutorial-simple-video-chat.html</a>
+  </li>
+  <li class="post-copyright-date">
+      <strong>发布时间：</strong>2018年2月9日 - 12时02分
+  </li>  
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/webrtc/" rel="tag"># webrtc</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/how-to-write-a-technical-document.html" rel="next" title="如何写好技术文档?">
+                <i class="fa fa-chevron-left"></i> 如何写好技术文档?
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/top-javascript-tools-in-2017.html" rel="prev" title="top-javascript-tools-in-2017">
+                top-javascript-tools-in-2017 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpeg"
+                alt="王端端" />
+            
+              <p class="site-author-name" itemprop="name">王端端</p>
+              <p class="site-description motion-element" itemprop="description">前端，后端，炒菜，摄影，读书，收集工具</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">193</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">178</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/wangduanduan" rel="external nofollow" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1779706607@qq.com" rel="external nofollow" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://segmentfault.com/u/wangdd" rel="external nofollow" target="_blank" title="segmentfault">
+                      
+                        <i class="fa fa-fw fa-globe"></i>segmentfault</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-准备"><span class="nav-text">1. 准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-先上效果图"><span class="nav-text">2. 先上效果图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-再上在线例子点击此处"><span class="nav-text">3. 再上在线例子点击此处</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-源码分析"><span class="nav-text">4. 源码分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-WebRTC简介"><span class="nav-text">5. WebRTC简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-介绍"><span class="nav-text">5.1. 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-在哪里使用WebRTC"><span class="nav-text">5.2. 在哪里使用WebRTC?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-什么是信令"><span class="nav-text">5.3. 什么是信令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-什么是STUN和TURN和ICE"><span class="nav-text">5.4. 什么是STUN和TURN和ICE?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-WebRTC是否安全"><span class="nav-text">5.5. WebRTC是否安全?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-WebRTC-参考资料"><span class="nav-text">6. WebRTC 参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王端端</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" rel="external nofollow" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

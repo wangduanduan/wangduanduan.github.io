@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>洞香春</title>
+  
+  <subtitle>洞香春以名士荟萃、谈论国事、交流思想而著称于当时列国 --《大秦帝国》</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://wdd.js.org/"/>
+  <updated>2019-08-29T02:42:09.955Z</updated>
+  <id>https://wdd.js.org/</id>
+  
+  <author>
+    <name>王端端</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>悄悄是别离的笙箫 博客停止更新说明</title>
+    <link href="https://wdd.js.org/books-about-network-protocol.html"/>
+    <id>https://wdd.js.org/books-about-network-protocol.html</id>
+    <published>2019-01-18T21:32:08.000Z</published>
+    <updated>2019-08-29T02:42:09.955Z</updated>
+    
+    <content type="html"><![CDATA[<p><code>注意这个博客不会在更新，以后的文章都会在语雀上更新。</code></p><p>博客地址：<a href="https://www.yuque.com/wangdd/blog" target="_blank" rel="noopener">https://www.yuque.com/wangdd/blog</a></p><p><code>再见，亲们！</code></p><h1 id="如何学习网络协议？"><a href="#如何学习网络协议？" class="headerlink" title="如何学习网络协议？"></a>如何学习网络协议？</h1><blockquote><p>大学时，学到网络协议的7层模型时，老师教了大家一个顺口溜：物数网传会表应。并说这是重点，年年必考，5分的题目摆在这里，你们爱背不背。<br>考试的时候，果然遇到这个问题，搜索枯肠，只能想到这7个字的第一个字，因为这5分，差点挂科。<br>后来工作面试，面试官也是很喜欢七层模型，三次握手之类的问题，但是遇到这些问题时，总是觉得很心虚。</p></blockquote><h1 id="1-协议分层"><a href="#1-协议分层" class="headerlink" title="1. 协议分层"></a>1. 协议分层</h1><p>四层网络协议模型中，应用层以下一般都是交给操作系统来处理。应用层对于四层模型来说，仅仅是冰山一角。海面下巨复杂的三层协议，都被操作系统给隐藏起来了，一般我们在页面上发起一个ajax请求，看见了network面板多了一个http请求，至于底层是如何实现的，我们并不关心。</p><p><img src="http://assets.processon.com/chart_image/5c41d889e4b0641c83e1f059.png" alt=""></p><ul><li><code>应⽤层</code>负责处理特定的应⽤程序细节。</li><li><code>运输层</code>运输层主要为两台主机上的应⽤程序提供端到端的通信。</li><li><code>网络层</code>处理理分组在⽹网络中的活动，例例如分组的选路</li><li><code>链路层</code>处理理与电缆(或其他任何传输媒介)的物理理接⼝口细节</li></ul><p>下面重点讲一下运输层和网络层</p><h2 id="1-1-运输层的两兄弟"><a href="#1-1-运输层的两兄弟" class="headerlink" title="1.1. 运输层的两兄弟"></a>1.1. 运输层的两兄弟</h2><p>运输层有两个比较重要的协议。tcp和udp。</p><p>大哥tcp是比较<code>严谨认真、温柔体贴、慢热内向</code>的协议，发出去的消息，总是一个一个认真检查，等待对方回复和确认，如果一段时间内，对方没有回复确认消息，还会再次发送消息，如果对方回复说你发的太快了，tcp还会体贴的把发送消息的速度降低。</p><p>弟弟udp则比较可爱呆萌、调皮好动、不负责任的协议。哥哥tcp所具有的特点，弟弟udp一个也没有。但是<code>有的人说不清哪里好 但就是谁都替代不了</code>，udp没有tcp那些复杂的校验和重传等复杂的步骤，所以它发送消息非常快，而且并不保证对方一定收到。如果对方收不到消息，那么udp就会呆萌的看着你，笑着对你说：<code>我已经尽力了</code>。一般语音而视频数据都是用udp协议传输的，因为音频或者视频卡了一下并不影响整体的质量，而对实时性的要求会更高。</p><h2 id="1-2-运输层和网络层的区别"><a href="#1-2-运输层和网络层的区别" class="headerlink" title="1.2. 运输层和网络层的区别"></a>1.2. 运输层和网络层的区别</h2><ul><li><code>运输层关注的是端到端层面</code>，及End1到End2，忽略中间的任何点。</li><li><code>网络层关注两点之间的层面</code>，即hop1如何到hop2，hop2如何到hop3</li><li><code>网络层并不保证消息可靠性</code>，可靠性上层的传输层负责。TCP采用超时重传，分组确认的机制，保证消息不会丢失。</li></ul><p><img src="http://assets.processon.com/chart_image/5c41e125e4b056ae29f55886.png" alt=""></p><p>从下图tcp, udp, ip协议中，可以发现</p><ul><li>传输层的tcp和udp都是有源端口和目的端口，但是没有ip字段</li><li>源ip和目的ip只在ip数据报中</li><li>理解各个协议，关键在于理解报文的各个字段的含义</li></ul><p><img src="http://assets.processon.com/chart_image/5c41e22fe4b056ae29f55947.png" alt=""></p><h2 id="1-3-ip和端口号的真正含义"><a href="#1-3-ip和端口号的真正含义" class="headerlink" title="1.3. ip和端口号的真正含义"></a>1.3. ip和端口号的真正含义</h2><p>上个章节讲到运输层和网络层的区别，其中端口号被封装在运输层，ip被封装到网络成，</p><p>那么端口号和ip地址到底有什么区别呢？</p><ul><li>ip用来用来标记主机的位置</li><li>端口号用来标记该数据应该被目标主机上的哪个应用程序去处理</li></ul><p><img src="http://assets.processon.com/chart_image/5c41e3a1e4b0fa03ce9f52c9.png" alt=""></p><h2 id="1-4-数据在协议栈的流动-封装与分用"><a href="#1-4-数据在协议栈的流动-封装与分用" class="headerlink" title="1.4. 数据在协议栈的流动 封装与分用"></a>1.4. 数据在协议栈的流动 封装与分用</h2><ul><li>当发送消息时，数据在向下传递时，经过不同层次的协议处理，打上各种头部信息</li><li>当接受消息时，数据在向上传递，通过不同的头部信息字段，才知道要交给上层的那个模块来处理。比如一个ip包，如果没有头部信息，那么这个消息究竟是交给tcp协议来处理，还是udp来处理，就不得而知了</li></ul><p><img src="http://assets.processon.com/chart_image/5c41e531e4b056ae29f55ab3.png" alt=""></p><h1 id="2-深入阅读，好书推荐"><a href="#2-深入阅读，好书推荐" class="headerlink" title="2. 深入阅读，好书推荐"></a>2. 深入阅读，好书推荐</h1><ul><li>《http权威指南》 <code>有人说这本书太厚，偷偷告诉你，其实这本书并厚，因为这本书的后面的30%部分都是附录，这本书的精华是前50%的部分</code></li><li>《图解http》、《图解tcp/ip》<code>这两本图解的书，知识点讲的都是比较通俗易懂的，适合入门</code></li><li>《tcp/ip 详解 卷1》<code>这本书，让你知其然，更知其所以然</code></li><li>《tcp/ip 基础》、《tcp/ip 路由技术》<code>这两本书，会让你从不同角度思考协议</code></li><li>《精通wireshark》、《wireshark网络分析实战》<code>如果你看了很多书，却从来没有试过网络抓包，那你只是懂纸上谈兵罢了。你永远无法理解tcp三次握手的怦然心动，与四次分手的刻骨铭心。</code></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;code&gt;注意这个博客不会在更新，以后的文章都会在语雀上更新。&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;博客地址：&lt;a href=&quot;https://www.yuque.com/wangdd/blog&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://ww
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>呼叫中心简史</title>
+    <link href="https://wdd.js.org/call-center-brief-history.html"/>
+    <id>https://wdd.js.org/call-center-brief-history.html</id>
+    <published>2019-01-15T21:04:11.000Z</published>
+    <updated>2019-08-29T02:42:09.955Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="什么是呼叫中心？"><a href="#什么是呼叫中心？" class="headerlink" title="什么是呼叫中心？"></a>什么是呼叫中心？</h1><p>呼叫中心又称为客户服务中心。有以下关键词</p><ul><li>CTI</li><li>通信网络</li><li>计算机</li><li>企业级</li><li>高质量、高效率、全方位、综合信息服务</li></ul><h1 id="呼叫中心历史"><a href="#呼叫中心历史" class="headerlink" title="呼叫中心历史"></a>呼叫中心历史</h1><blockquote><p>1956年美国泛美航空公司建成世界第一家呼叫中心。</p></blockquote><table><thead><tr><th>阶段</th><th>行业范围</th><th>技术</th><th>功能与意义</th></tr></thead><tbody><tr><td>第一代呼叫中心</td><td>民航</td><td>PBX、电话排队</td><td>主要服务由人工完成</td></tr><tr><td>第二代呼叫中心</td><td>银行、生活</td><td>IVR(交互式语音应答)、DTMF</td><td>显著提高工作效率，提供全天候服务</td></tr><tr><td>第三代呼叫中心</td><td></td><td>CTI(电脑计算机集成)</td><td>语音数据同步，客户信息存储与查阅，个性化服务，自动化</td></tr><tr><td>第四代呼叫中心</td><td></td><td>接入电子邮件、互联网、手机短信等</td><td>多渠道接入、多渠道统一排队</td></tr><tr><td>第五代呼叫中心</td><td></td><td>接入社交网络、社交媒体(微博、微信等)</td><td>文本交谈，音频视频沟通</td></tr></tbody></table><h1 id="呼叫中心分类"><a href="#呼叫中心分类" class="headerlink" title="呼叫中心分类"></a>呼叫中心分类</h1><ul><li>按呼叫方式分类<ul><li>外呼型呼叫中心（如电话营销）</li><li>客服型呼叫中心（如客户服务）</li><li>混合型呼叫中心 （如营销和客服）</li></ul></li><li>按技术架构分类<ul><li>交换机</li><li>板卡</li><li>软交换（IPCC）</li></ul></li></ul><p><img src="http://assets.processon.com/chart_image/5c3de07ee4b0641c83dd3eff.png" alt=""><br>【交换机类型呼叫中心】</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;什么是呼叫中心？&quot;&gt;&lt;a href=&quot;#什么是呼叫中心？&quot; class=&quot;headerlink&quot; title=&quot;什么是呼叫中心？&quot;&gt;&lt;/a&gt;什么是呼叫中心？&lt;/h1&gt;&lt;p&gt;呼叫中心又称为客户服务中心。有以下关键词&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CTI&lt;/li&gt;
+&lt;li
+      
+    
+    </summary>
+    
+    
+      <category term="呼叫中心" scheme="https://wdd.js.org/tags/%E5%91%BC%E5%8F%AB%E4%B8%AD%E5%BF%83/"/>
+    
+      <category term="客户CRM" scheme="https://wdd.js.org/tags/%E5%AE%A2%E6%88%B7CRM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>乐府 长相思 李白</title>
+    <link href="https://wdd.js.org/libai-chang-xiang-si.html"/>
+    <id>https://wdd.js.org/libai-chang-xiang-si.html</id>
+    <published>2019-01-10T19:50:05.000Z</published>
+    <updated>2019-08-29T02:42:09.959Z</updated>
+    
+    <content type="html"><![CDATA[<p>长相思，在长安。</p><p>络纬秋啼进井栏，微霜凄凄簟(dian)色寒。</p><p>孤灯不明思欲绝，卷帏望月空长叹。</p><p>美人如花隔云端！</p><p>上有青冥之高天，下有绿水之波澜。</p><p>天长路远魂飞苦，梦魂不到关山难。</p><p>长相思，催心肝。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;长相思，在长安。&lt;/p&gt;
+&lt;p&gt;络纬秋啼进井栏，微霜凄凄簟(dian)色寒。&lt;/p&gt;
+&lt;p&gt;孤灯不明思欲绝，卷帏望月空长叹。&lt;/p&gt;
+&lt;p&gt;美人如花隔云端！&lt;/p&gt;
+&lt;p&gt;上有青冥之高天，下有绿水之波澜。&lt;/p&gt;
+&lt;p&gt;天长路远魂飞苦，梦魂不到关山难。&lt;/p&gt;
+&lt;p&gt;长相思
+      
+    
+    </summary>
+    
+    
+      <category term="李白" scheme="https://wdd.js.org/tags/%E6%9D%8E%E7%99%BD/"/>
+    
+      <category term="李白诗集" scheme="https://wdd.js.org/tags/%E6%9D%8E%E7%99%BD%E8%AF%97%E9%9B%86/"/>
+    
+      <category term="乐府" scheme="https://wdd.js.org/tags/%E4%B9%90%E5%BA%9C/"/>
+    
+      <category term="长相思" scheme="https://wdd.js.org/tags/%E9%95%BF%E7%9B%B8%E6%80%9D/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>时间花在哪里，你就会成为什么样的人</title>
+    <link href="https://wdd.js.org/where-time-you-spend-what-you-will-be.html"/>
+    <id>https://wdd.js.org/where-time-you-spend-what-you-will-be.html</id>
+    <published>2019-01-01T21:02:08.000Z</published>
+    <updated>2019-08-29T02:42:09.963Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="2008-2018-十年，往事如昨"><a href="#2008-2018-十年，往事如昨" class="headerlink" title="2008-2018 十年，往事如昨"></a>2008-2018 十年，往事如昨</h1><p>2018年已经是昨天，今天是2019的第一天。</p><p>2008年已经是10年前，10年前的傍晚，我走在南京仙林的一个大街上，提着一瓶矿泉水，擦着额头的汗水，仰头看着大屏幕上播放着北京奥运会的开幕式。</p><p>10年前的夏天，我带着一步诺基亚手机功能机，独自一人去了南京。</p><p>坐过绣球公园的石凳，穿过天妃宫的回廊，吹过阅江楼的凉爽的江风，踏着古老斑驳的城墙，在林荫小路的长椅上，我想着10年后我会在哪里？做着什么事情？</p><p>往事如昨，而今将近而立，但是依然觉得自己还是10年的那个独自出去玩的小男孩。</p><h1 id="2018-读了10年都没有读完的书，五味杂陈"><a href="#2018-读了10年都没有读完的书，五味杂陈" class="headerlink" title="2018 读了10年都没有读完的书，五味杂陈"></a>2018 读了10年都没有读完的书，五味杂陈</h1><p>2018年，在我做手术前，我觉得自己出了工作的时间外，大多数时间都在看书。2018年这一年看的书，要比2008到2018年这十年间的看的书都要多。这都归功于我对每天的看书都有定量的计划，一旦按照这个计划实行几个月，积累的效果还是非常明显的。</p><p>2018年，手机几乎成为人的四肢之外的第五肢。对大多人来说，上厕所可以不带纸，但是不能不带手机。</p><ul><li>各种APP, 都在极力的吸引用户多花点时间在自己身上</li><li>信息流充斥着各种毫无营养，专门吸人眼球的垃圾新闻，但是这种新闻的阅读量还是蛮大的</li><li>各种借钱，信用卡，花呗等都像青楼的小姐，妩媚的笑容，说道：官人，进来做一做</li><li>共享单车，在今年退潮之后，才发现自己都在裸泳</li><li>比特币，挖矿机。不知道谁割了谁的韭菜，总希望有下一个傻子来接盘，最后发现自己可能就是最后一个傻子</li><li>AI，人工智能很火，放佛就快要进入终结者那样的世界</li><li>锤子垮了，曾经吹过的牛逼，曾经理想主义终于脱去那又黑又亮的面具</li></ul><blockquote><p>图灵测试（The Turing test）由艾伦·麦席森·图灵发明，指测试者与被测试者（一个人和一台机器）隔开的情况下，通过一些装置（如键盘）向被测试者随意提问。<br>进行多次测试后，如果有超过30%的测试者不能确定出被测试者是人还是机器，那么这台机器就通过了测试，并被认为具有人类智能。图灵测试一词来源于计算机科学和密码学的先驱阿兰·麦席森·图灵写于1950年的一篇论文《计算机器与智能》，其中30%是图灵对2000年时的机器思考能力的一个预测，目前我们已远远落后于这个预测。</p></blockquote><p>最后说一下图灵测试，在AI方面，这个测试无人不知。一个机器如果通过了图灵测试，则说明该机器具有了只能。但是三体的作者大刘曾经说过一句话，给我一种醍醐灌顶的感觉，<code>假如一个机器人有能力通过图灵测试，却假装无法通过，你说这个机器是否具有人工智能</code>。所以大刘的这种说法才更加让人恐惧。机器人能通过图灵测试，只说明这个机器人具有了智能。但是现阶段的智能只不过是条件反射，或者是基于概率计算的结果。后者这种能通话测试，却假装无法通过的智能。这不仅仅是智能，而是<code>机器的城府</code>。</p><p><code>有智能的机器并不可怕，有城府的机器人才是真正的可怕。</code></p><h1 id="如果梦中更加幸福快乐，为什么要回到现实"><a href="#如果梦中更加幸福快乐，为什么要回到现实" class="headerlink" title="如果梦中更加幸福快乐，为什么要回到现实"></a>如果梦中更加幸福快乐，为什么要回到现实</h1><p>火影的最后，大筒木辉夜使用无限月读将世界上的所有人都带入梦境，每个人的查克拉都被吸取，并作为神树的养料。</p><p>如果真的存在大筒木这样的上帝，那么时间就是查克拉。人类唯一真正拥有过的东西，<strong>时间</strong>，将作为神树的养料，从每个人身上提取。</p><p>各种具有吸引力的术，其实可以理解为无限月读，让人沉醉于梦幻中。</p><p><code>如果梦中更加幸福快乐，为什么要回到现实中承受压力与悲哀呢？</code> 目前我无法回复自己的这个问题，期待2019年我可以得到这个答案。</p><h1 id="工作方面"><a href="#工作方面" class="headerlink" title="工作方面"></a>工作方面</h1><p>2019年，我会在做一些后端方面的工作，努力加油吧。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;2008-2018-十年，往事如昨&quot;&gt;&lt;a href=&quot;#2008-2018-十年，往事如昨&quot; class=&quot;headerlink&quot; title=&quot;2008-2018 十年，往事如昨&quot;&gt;&lt;/a&gt;2008-2018 十年，往事如昨&lt;/h1&gt;&lt;p&gt;2018年已经是昨天
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>v-for Vue风格指南</title>
+    <link href="https://wdd.js.org/vue-style-guide.html"/>
+    <id>https://wdd.js.org/vue-style-guide.html</id>
+    <published>2018-12-19T09:29:30.000Z</published>
+    <updated>2019-08-29T02:42:09.963Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1-v-for设置key值"><a href="#1-v-for设置key值" class="headerlink" title="1. v-for设置key值"></a>1. v-for设置key值</h1><p><strong>key的值应当是遍历元素的某个唯一属性，例如 item.id，而不是遍历的序号index。直接把key的值绑定为index, 可能会引起不必要的bug</strong></p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// good</span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"(item,index) in list"</span> <span class="attr">:key</span>=<span class="string">"item.id"</span>&gt;</span></span><br><span class="line">    &#123;&#123; todo.text &#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// very bad</span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"(item,index) in list"</span> <span class="attr">:key</span>=<span class="string">"index"</span>&gt;</span></span><br><span class="line">    &#123;&#123; todo.text &#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure><p><strong>如果要遍历的对象没有一个唯一的id, 非常建议给要遍历的元素加上唯一的id</strong>。推荐使用<a href="https://github.com/ai/nanoid" target="_blank" rel="noopener">nanoid</a></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> nanoid <span class="keyword">from</span> <span class="string">'nanoid'</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">someAjax()</span><br><span class="line">.then(<span class="function">(<span class="params">res</span>)=&gt;</span>&#123;</span><br><span class="line">  res.users.forEach(<span class="function">(<span class="params">item</span>)=&gt;</span>&#123;</span><br><span class="line">    item.id = nanoid()</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">this</span>.users = res.users</span><br><span class="line">&#125;)</span><br><span class="line">.catch(<span class="function">(<span class="params">err</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.error(err)</span><br><span class="line">&#125;)</span><br><span class="line">...</span><br></pre></td></tr></table></figure><h1 id="2-v-for元素一定要是对象"><a href="#2-v-for元素一定要是对象" class="headerlink" title="2. v-for元素一定要是对象"></a>2. v-for元素一定要是对象</h1><p><strong>除非是最简单的渲染，如果要在渲染期间改变某个元素值，那么只能将简单元素构造为对象。</strong></p><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// very bad</span></span><br><span class="line"><span class="keyword">var</span> example1 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#example-1'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    items: [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&lt;div id=<span class="string">"example-1"</span>&gt;</span><br><span class="line">  &lt;input v-<span class="keyword">for</span>=<span class="string">"item in items"</span> v-model=<span class="string">"item"</span>&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">var</span> example1 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#example-1'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    items: [&#123;<span class="attr">id</span>:<span class="number">1</span>, <span class="attr">value</span>:<span class="string">'a'</span>&#125;, &#123;<span class="attr">id</span>: <span class="number">2</span>, <span class="attr">value</span>:<span class="string">'b'</span>&#125;, &#123;<span class="attr">id</span>:<span class="number">3</span>, <span class="attr">value</span>:<span class="string">'c'</span>&#125;]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&lt;div id=<span class="string">"example-1"</span>&gt;</span><br><span class="line">  &lt;input v-<span class="keyword">for</span>=<span class="string">"item in items"</span> :key=<span class="string">"item.id"</span> v-model=<span class="string">"item.value"</span>&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure><h1 id="3-v-for不要和v-if一起使用"><a href="#3-v-for不要和v-if一起使用" class="headerlink" title="3. v-for不要和v-if一起使用"></a>3. v-for不要和v-if一起使用</h1><p><strong>一般情况下，列表中的元素需要按照某些条件进行显示或者隐藏，那么建议使用计算属性。</strong></p><p>好处：</p><ul><li><code>渲染效率更高</code></li><li><code>解藕渲染层的逻辑，可维护性更强</code></li></ul><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// very bad</span></span><br><span class="line"><span class="keyword">var</span> example1 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#example-1'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    items: [</span><br><span class="line">      &#123;<span class="attr">id</span>:<span class="number">1</span>, <span class="attr">value</span>:<span class="string">'a'</span>, <span class="attr">show</span>: <span class="literal">true</span>&#125;, </span><br><span class="line">      &#123;<span class="attr">id</span>:<span class="number">2</span>, <span class="attr">value</span>:<span class="string">'b'</span>, <span class="attr">show</span>: <span class="literal">false</span>&#125;, </span><br><span class="line">      &#123;<span class="attr">id</span>:<span class="number">3</span>, <span class="attr">value</span>:<span class="string">'c'</span>, <span class="attr">show</span>: <span class="literal">false</span>&#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&lt;div id=<span class="string">"example-1"</span>&gt;</span><br><span class="line">  &lt;input v-<span class="keyword">for</span>=<span class="string">"item in items"</span> v-<span class="keyword">if</span>=<span class="string">"item.show"</span> :key=<span class="string">"item.id"</span> v-model=<span class="string">"item.value"</span>&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// very good</span></span><br><span class="line"><span class="keyword">var</span> example1 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#example-1'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    items: [</span><br><span class="line">      &#123;<span class="attr">id</span>:<span class="number">1</span>, <span class="attr">value</span>:<span class="string">'a'</span>, <span class="attr">show</span>: <span class="literal">true</span>&#125;, </span><br><span class="line">      &#123;<span class="attr">id</span>:<span class="number">2</span>, <span class="attr">value</span>:<span class="string">'b'</span>, <span class="attr">show</span>: <span class="literal">false</span>&#125;, </span><br><span class="line">      &#123;<span class="attr">id</span>:<span class="number">3</span>, <span class="attr">value</span>:<span class="string">'c'</span>, <span class="attr">show</span>: <span class="literal">false</span>&#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    itemsShow: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.items.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> item.show</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&lt;div id=<span class="string">"example-1"</span>&gt;</span><br><span class="line">  &lt;input v-<span class="keyword">for</span>=<span class="string">"item in itemsShow"</span> v-<span class="keyword">if</span>=<span class="string">"item.show"</span> :key=<span class="string">"item.id"</span> v-model=<span class="string">"item.value"</span>&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;1-v-for设置key值&quot;&gt;&lt;a href=&quot;#1-v-for设置key值&quot; class=&quot;headerlink&quot; title=&quot;1. v-for设置key值&quot;&gt;&lt;/a&gt;1. v-for设置key值&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;key的值应当是遍历元素的某个唯
+      
+    
+    </summary>
+    
+    
+      <category term="Vue" scheme="https://wdd.js.org/tags/Vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>awk、grep、cut、sort、uniq简单命令玩转日志分析与统计</title>
+    <link href="https://wdd.js.org/awk-grep-cut-sort-uniq-log.html"/>
+    <id>https://wdd.js.org/awk-grep-cut-sort-uniq-log.html</id>
+    <published>2018-12-18T11:56:27.000Z</published>
+    <updated>2019-08-29T02:42:09.955Z</updated>
+    
+    <content type="html"><![CDATA[<p>test.log</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2019<span class="selector-tag">-1010-1920</span> 192<span class="selector-class">.345</span><span class="selector-class">.23</span><span class="selector-class">.3</span> <span class="selector-tag">cause</span><span class="selector-pseudo">:"AAA"</span> <span class="selector-tag">type</span><span class="selector-pseudo">:"A"</span> <span class="selector-tag">loginIn</span></span><br><span class="line">2019<span class="selector-tag">-1010-1920</span> 192<span class="selector-class">.345</span><span class="selector-class">.23</span><span class="selector-class">.1</span> <span class="selector-tag">cause</span><span class="selector-pseudo">:"BBB"</span> <span class="selector-tag">type</span><span class="selector-pseudo">:"A"</span> <span class="selector-tag">loginIn</span></span><br><span class="line">2019<span class="selector-tag">-1010-1920</span> 192<span class="selector-class">.345</span><span class="selector-class">.23</span><span class="selector-class">.3</span> <span class="selector-tag">cause</span><span class="selector-pseudo">:"AAA"</span> <span class="selector-tag">type</span><span class="selector-pseudo">:"S"</span> <span class="selector-tag">loginIn</span></span><br><span class="line">2019<span class="selector-tag">-1010-1920</span> 192<span class="selector-class">.345</span><span class="selector-class">.23</span><span class="selector-class">.1</span> <span class="selector-tag">cause</span><span class="selector-pseudo">:"BBJ"</span> <span class="selector-tag">type</span><span class="selector-pseudo">:"A"</span> <span class="selector-tag">loginIn</span></span><br></pre></td></tr></table></figure><h1 id="按列分割"><a href="#按列分割" class="headerlink" title="按列分割"></a>按列分割</h1><p><strong>提取第三列</strong></p><p>日志列数比较少或则要提取的字段比较靠前时，优先使用awk。当然cut也可以做到。</p><p>比如输出日志的第三列</p><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">awk '&#123;<span class="keyword">print</span> <span class="variable">$3&#125;</span>' <span class="keyword">test</span>.<span class="keyword">log</span> <span class="comment">// $3表示第三列</span></span><br><span class="line">cut -<span class="keyword">d</span> <span class="string">" "</span> -f3 <span class="keyword">test</span>.<span class="keyword">log</span> <span class="comment">// -f3指定第三列, -d用来指定分割符</span></span><br></pre></td></tr></table></figure><h1 id="正则提取"><a href="#正则提取" class="headerlink" title="正则提取"></a>正则提取</h1><p><strong>提取cause字段的原因值？</strong></p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2019<span class="selector-tag">-1010-1920</span> 192<span class="selector-class">.345</span><span class="selector-class">.23</span><span class="selector-class">.3</span> <span class="selector-tag">cause</span><span class="selector-pseudo">:"AAA"</span> <span class="selector-tag">type</span><span class="selector-pseudo">:"A"</span> <span class="selector-tag">loginIn</span></span><br><span class="line">2019<span class="selector-tag">-1010-1920</span> 192<span class="selector-class">.345</span><span class="selector-class">.23</span><span class="selector-class">.1</span> <span class="selector-tag">type</span><span class="selector-pseudo">:"A"</span> <span class="selector-tag">loginIn</span> <span class="selector-tag">cause</span><span class="selector-pseudo">:"BBB"</span></span><br><span class="line">2019<span class="selector-tag">-1010-1920</span> 192<span class="selector-class">.345</span><span class="selector-class">.23</span><span class="selector-class">.3</span> <span class="selector-tag">cause</span><span class="selector-pseudo">:"AAA"</span> <span class="selector-tag">type</span><span class="selector-pseudo">:"S"</span> <span class="selector-tag">loginIn</span></span><br><span class="line">2019<span class="selector-tag">-1010-1920</span> 192<span class="selector-class">.345</span><span class="selector-class">.23</span><span class="selector-class">.1</span> <span class="selector-tag">type</span><span class="selector-pseudo">:"A"</span> <span class="selector-tag">cause</span><span class="selector-pseudo">:"BBJ"</span> <span class="selector-tag">loginIn</span></span><br></pre></td></tr></table></figure><p><code>当要提取的内容不在同一列时，往往就无法用cut或者awk就按列提取</code>。最好用的方式是用grep的正则提取。</p><p>好像grep不支持捕获分组，所以只能提取出出cause:”AAA”，而无法直接提取出AAA</p><ul><li>E 表示使用正则</li><li>o 表示只显示匹配到的内容</li></ul><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; grep -Eo <span class="string">'cause:".*?"'</span> test.log</span><br><span class="line"><span class="string">cause:</span><span class="string">"AAA"</span></span><br><span class="line"><span class="string">cause:</span><span class="string">"BBB"</span></span><br><span class="line"><span class="string">cause:</span><span class="string">"AAA"</span></span><br><span class="line"><span class="string">cause:</span><span class="string">"BBJ"</span></span><br></pre></td></tr></table></figure><h1 id="统计"><a href="#统计" class="headerlink" title="统计"></a>统计</h1><p>对输出的关键词进行统计，并按照升序或者降序排列。</p><p>将关键词按照列或者按照正则提取出来之后，首先要进行<code>sort</code>排序, 然后再进行<code>uniq</code>去重。</p><p>不进行排序就直接去重，统计的值就不准确。因为uniq去重只能去除连续的相同字符串。不是连续的字符串，则会统计多次。</p><p>下面例子：非连续的cause:”AAA”，没有被合并在一起计数</p><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line">grep -Eo <span class="string">'cause:".*?"'</span> test.log | uniq -c</span><br><span class="line">   <span class="number">1</span> <span class="string">cause:</span><span class="string">"AAA"</span></span><br><span class="line">   <span class="number">1</span> <span class="string">cause:</span><span class="string">"BBB"</span></span><br><span class="line">   <span class="number">1</span> <span class="string">cause:</span><span class="string">"AAA"</span></span><br><span class="line">   <span class="number">1</span> <span class="string">cause:</span><span class="string">"BBJ"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// good AAA 被正确统计了</span></span><br><span class="line">grep -Eo <span class="string">'cause:".*?"'</span> test.log | sort | uniq -c</span><br><span class="line">   <span class="number">2</span> <span class="string">cause:</span><span class="string">"AAA"</span></span><br><span class="line">   <span class="number">1</span> <span class="string">cause:</span><span class="string">"BBB"</span></span><br><span class="line">   <span class="number">1</span> <span class="string">cause:</span><span class="string">"BBJ"</span></span><br></pre></td></tr></table></figure><h1 id="对统计值排序"><a href="#对统计值排序" class="headerlink" title="对统计值排序"></a>对统计值排序</h1><p>sort默认的排序是按照字典排序, 可以使用-n参数让其按照数值大小排序。</p><ul><li>n 按照数值排序</li><li>r 取反。sort按照数值排序是，默认是升序，如果想要结果降序，那么需要<code>-r</code></li><li>-k -k可以指定按照某列的数值顺序排序，如-k1,1(指定第一列)， -k2,2(指定第二列)。如果不指定-k参数，那么一般默认第一列。</li></ul><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 升序排序</span></span><br><span class="line">grep -Eo 'cause:<span class="string">".*?"</span>' <span class="keyword">test</span>.<span class="keyword">log</span> | <span class="keyword">sort</span> |uniq -c | <span class="keyword">sort</span> -<span class="keyword">n</span></span><br><span class="line">   1 cause:<span class="string">"BBB"</span></span><br><span class="line">   1 cause:<span class="string">"BBJ"</span></span><br><span class="line">   2 cause:<span class="string">"AAA"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 降序排序</span></span><br><span class="line">grep -Eo 'cause:<span class="string">".*?"</span>' <span class="keyword">test</span>.<span class="keyword">log</span> | <span class="keyword">sort</span> |uniq -c | <span class="keyword">sort</span> -nr</span><br><span class="line">   2 cause:<span class="string">"AAA"</span></span><br><span class="line">   1 cause:<span class="string">"BBJ"</span></span><br><span class="line">   1 cause:<span class="string">"BBB"</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;test.log&lt;/p&gt;
+&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="awk" scheme="https://wdd.js.org/tags/awk/"/>
+    
+      <category term="grep" scheme="https://wdd.js.org/tags/grep/"/>
+    
+      <category term="cut" scheme="https://wdd.js.org/tags/cut/"/>
+    
+      <category term="sort" scheme="https://wdd.js.org/tags/sort/"/>
+    
+      <category term="uniq" scheme="https://wdd.js.org/tags/uniq/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>普通人选择框架、聪明人适应框架</title>
+    <link href="https://wdd.js.org/common-make-a-choice-wise-learn-to-adapt.html"/>
+    <id>https://wdd.js.org/common-make-a-choice-wise-learn-to-adapt.html</id>
+    <published>2018-12-18T08:49:53.000Z</published>
+    <updated>2019-08-29T02:42:09.955Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="从头开发一个软件只是小儿科，改进一个程序才显真本事"><a href="#从头开发一个软件只是小儿科，改进一个程序才显真本事" class="headerlink" title="从头开发一个软件只是小儿科，改进一个程序才显真本事"></a>从头开发一个软件只是小儿科，改进一个程序才显真本事</h1><blockquote><p>引子</p></blockquote><p>27的麻省理工学院人工智能实验室程序员理查德·斯托曼，又遇到打印机卡纸的问题。这台打印机是施乐公司捐助，可以为网络中的多个用户打印，但是用了一段时间后，打印机总是卡纸。打印的时候，只要卡住一页纸，后续的纸都无法打印。</p><p>实际上施乐公司是在复印机机的基础上设计的打印机，复印机使用的时候，旁边需要站个人，当复印机卡住的时候，人需要去整理一下纸张。按照专业的术语来说，这叫<code>系统需要用户参与</code>。</p><p>但是这台打印机是多用户的，总不可能看着打印机打印。<code>程序员解决不了机械问题</code>，所以很多人对这个问题束手无策。</p><p>但是斯托曼去修改了这台打印机的远程控制程序，让它定期去检查这台打印机是否正常工作。如果打印机出现卡纸问题，控制程序就会向远程用户发送一条提醒消息：</p><p><code>打印机被卡住了，请去维修</code></p><p>结果就是很多人不用跑来跑去去检查打印机是否卡纸，从而节约了很多时间。按照专业的术语来说，这叫<code>提高网络整体智能</code>。</p><p># </p><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;从头开发一个软件只是小儿科，改进一个程序才显真本事&quot;&gt;&lt;a href=&quot;#从头开发一个软件只是小儿科，改进一个程序才显真本事&quot; class=&quot;headerlink&quot; title=&quot;从头开发一个软件只是小儿科，改进一个程序才显真本事&quot;&gt;&lt;/a&gt;从头开发一个软件只是小
+      
+    
+    </summary>
+    
+    
+      <category term="未完成" scheme="https://wdd.js.org/tags/%E6%9C%AA%E5%AE%8C%E6%88%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深入理解 JavaScript中的变量、值、函数传参</title>
+    <link href="https://wdd.js.org/deep-in-javascript-variable-value-arguments.html"/>
+    <id>https://wdd.js.org/deep-in-javascript-variable-value-arguments.html</id>
+    <published>2018-12-17T15:24:15.000Z</published>
+    <updated>2019-08-29T02:42:09.955Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1-demo"><a href="#1-demo" class="headerlink" title="1. demo"></a>1. demo</h1><p>如果你对下面的代码没有任何疑问就能自信的回答出输出的内容，那么本篇文章就不值得你浪费时间了。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> var1 = <span class="number">1</span></span><br><span class="line"><span class="keyword">var</span> var2 = <span class="literal">true</span></span><br><span class="line"><span class="keyword">var</span> var3 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">var</span> var4 = var3</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span> (<span class="params">var1, var3</span>) </span>&#123;</span><br><span class="line">    var1 = <span class="string">'changed'</span></span><br><span class="line">    var3[<span class="number">0</span>] = <span class="string">'changed'</span></span><br><span class="line">    var3 = <span class="string">'changed'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test(var1, var3)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(var1, var2, var3, var4)</span><br></pre></td></tr></table></figure><h1 id="2-深入理解原始类型"><a href="#2-深入理解原始类型" class="headerlink" title="2. 深入理解原始类型"></a>2. 深入理解原始类型</h1><p>原始类型有5个 <code>Undefinded, Null, Boolean, Number, String</code></p><h2 id="2-1-原始类型变量没有属性和方法"><a href="#2-1-原始类型变量没有属性和方法" class="headerlink" title="2.1. 原始类型变量没有属性和方法"></a>2.1. 原始类型变量没有属性和方法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 抬杠, 下面的length属性，toString方法怎么有属性和方法呢？</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="string">'oooo'</span></span><br><span class="line">a.length</span><br><span class="line">a.toString</span><br></pre></td></tr></table></figure><p>原始类型中，有三个特殊的引用类型<code>Boolean</code>, <code>Number</code>, <code>String</code>，在操作原始类型时，原始类型变量会转换成对应的<code>基本包装类型</code>变量去操作。参考<code>JavaScript高级程序设计 5.6 基本包装类型。</code></p><h2 id="2-2-原始类型值不可变"><a href="#2-2-原始类型值不可变" class="headerlink" title="2.2. 原始类型值不可变"></a>2.2. 原始类型值不可变</h2><p><strong>原始类型的变量的值是不可变的，只能给变量赋予新的值。</strong></p><p>下面给出例子</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// str1 开始的值是aaa</span></span><br><span class="line"><span class="keyword">var</span> str1 = <span class="string">'aaa'</span></span><br><span class="line"><span class="comment">// 首先创建一个能容纳6个字符串的新字符串</span></span><br><span class="line"><span class="comment">// 然后再这个字符串中填充 aaa和bbb</span></span><br><span class="line"><span class="comment">// 最后销毁字符串 aaa和bbb</span></span><br><span class="line"><span class="comment">// 而不能理解成在str1的值aaa后追加bbb</span></span><br><span class="line">str1 = str1 + <span class="string">'bbb'</span></span><br></pre></td></tr></table></figure><p><strong>其他原始类型的值也是不可变的</strong>, 例如数值类型的。</p><h2 id="2-3-原始类型值是字面量"><a href="#2-3-原始类型值是字面量" class="headerlink" title="2.3. 原始类型值是字面量"></a>2.3. 原始类型值是字面量</h2><h1 id="3-变量和值有什么区别？"><a href="#3-变量和值有什么区别？" class="headerlink" title="3. 变量和值有什么区别？"></a>3. 变量和值有什么区别？</h1><ul><li><code>不是每一个值都有地址，但每一个变量有。</code>《Go程序设计语言》 </li><li><code>变量没有类型，值有。变量可以用来保存任何类型的值。</code>《You-Dont-Know-JS》</li></ul><p>变量都是有内存地址的，变量有用来保存各种类型的值；不同类型的值，占用的空间不同。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">typeof</span> a <span class="comment">// 检测的不是变量a的类型，而是a的值1的类型</span></span><br></pre></td></tr></table></figure><h1 id="4-变量访问有哪些方式？"><a href="#4-变量访问有哪些方式？" class="headerlink" title="4. 变量访问有哪些方式？"></a>4. 变量访问有哪些方式？</h1><p>变量访问的方式有两种：</p><ol><li><code>按值访问</code></li><li><code>按引用访问</code></li></ol><p>在JS中，五种基本类型<code>Undefinded, Null, Boolean, Number, String</code>是按照值访问的。基本类型变量的值就是字面上表示的值。而引用类型的值是指向该对象的指针，而指针可以理解为内存地址。</p><p>可以理解基本类型的变量的值，就是字面上写的数值。而<code>引用类型的值则是一个内存地址</code>。但是这个内存地址，对于程序来说，是透明不可见的。无论是Get还是Set都无法操作这个内存地址。</p><p>下面是个示意表格。</p><table><thead><tr><th>语句</th><th>变量</th><th>值</th><th>Get</th><th>访问类型</th></tr></thead><tbody><tr><td><code>var a = 1</code></td><td>a</td><td><code>1</code></td><td>1</td><td>按值</td></tr><tr><td><code>var a = []</code></td><td>a</td><td><code>0x00000320</code></td><td><code>[]</code></td><td>按引用</td></tr></tbody></table><blockquote><p><strong>抬杠</strong> <code>Undefinded, Null, Boolean, Number</code>是基本类型可以理解，因为这些类型的变量所占用的内存空间都是大小固定的。但是<code>string</code>类型的变量，字符串的长短都是不一样的，也就是说，字符串占用的内存空间大小是不固定的，为什么string被列为按值访问呢？</p></blockquote><p>基本类型和引用类型的本质区别是，当这个变量被<code>分配</code>值时，它需要向操作系统申请内存资源，如果你向操作系统申请的内存空间的大小是固定的，那么就是基本类型，反之，则为引用类型。</p><h1 id="5-例子的解释"><a href="#5-例子的解释" class="headerlink" title="5. 例子的解释"></a>5. 例子的解释</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> var1 = <span class="number">1</span></span><br><span class="line"><span class="keyword">var</span> var2 = <span class="literal">true</span></span><br><span class="line"><span class="keyword">var</span> var3 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">var</span> var4 = var3</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span> (<span class="params">var1, var3</span>) </span>&#123;</span><br><span class="line">    var1 = <span class="string">'changed'</span> <span class="comment">// a</span></span><br><span class="line">    var3[<span class="number">0</span>] = <span class="string">'changed'</span> <span class="comment">// b</span></span><br><span class="line">    var3 = <span class="string">'changed'</span> <span class="comment">// c</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test(var1, var3)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(var1, var2, var3, var4)</span><br></pre></td></tr></table></figure><p><img src="http://assets.processon.com/chart_image/5c151883e4b0ed122da81fd1.png?1=1" alt=""></p><p>上面的js分为两个调用栈，在</p><ul><li>图1 外层的调用栈。有四个变量v1、v2、v3、v4</li><li>图2 调用test是传参，内层的v1、v3会屏蔽外层的v1、v3。内层的v1,v3和外层的v1、v3内存地址是不同的。内层v1和外层v1已经没有任何关系了，但是内层的v3和外层v3仍然指向同一个数组。</li><li>图3 内层的v1的值被改变成’changed‘, v3[0]的值被改变为’changed’。</li><li>图4 内层v3的值被重写为字符串<code>changed</code>, 彻底断了与外层v3联系。</li><li>图5 当test执行完毕，内层的v1和v3将不会存在，ox75和ox76位置的内存空间也会被释放</li></ul><p>最终的输出：</p><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">1 </span>true [<span class="string">"changed"</span>, <span class="number">2</span>, <span class="number">3</span>] [<span class="string">"changed"</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure><h1 id="6-如何深入学习JS、Node-js"><a href="#6-如何深入学习JS、Node-js" class="headerlink" title="6. 如何深入学习JS、Node.js"></a>6. 如何深入学习JS、Node.js</h1><p>看完两个stackoverflow上两个按照投票数量的榜单</p><ul><li><a href="https://stackoverflow.com/questions/tagged/javascript?sort=votes" target="_blank" rel="noopener">JavaScript问题榜单</a></li><li><a href="https://stackoverflow.com/questions/tagged/node.js?sort=votes" target="_blank" rel="noopener">Node.js问题榜单</a></li></ul><p><code>如果学习有捷径的话，踩一遍别人踩过的坑，可能就是捷径。</code></p><h1 id="7-参考"><a href="#7-参考" class="headerlink" title="7. 参考"></a>7. 参考</h1><ul><li><a href="https://stackoverflow.com/questions/518000/is-javascript-a-pass-by-reference-or-pass-by-value-language" target="_blank" rel="noopener">is-javascript-a-pass-by-reference-or-pass-by-value-language</a></li><li><a href="https://stackoverflow.com/questions/10648367/is-number-in-javascript-immutable" target="_blank" rel="noopener">Is number in JavaScript immutable? duplicate</a></li><li><a href="https://www.sitepoint.com/immutability-javascript/" target="_blank" rel="noopener">Immutability in JavaScript</a></li><li><a href="https://javascriptweblog.wordpress.com/2010/09/27/the-secret-life-of-javascript-primitives/" target="_blank" rel="noopener">the-secret-life-of-javascript-primitives</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures" target="_blank" rel="noopener">JavaScript data types and data structuresLanguages   Edit Advanced</a></li><li><a href="https://stackoverflow.com/questions/16115512/understanding-javascript-immutable-variable" target="_blank" rel="noopener">Understanding Javascript immutable variable</a></li><li><a href="https://codeburst.io/explaining-value-vs-reference-in-javascript-647a975e12a0" target="_blank" rel="noopener">Explaining Value vs. Reference in Javascript</a></li><li><a href="https://github.com/getify/You-Dont-Know-JS/blob/master/types%20%26%20grammar/ch1.md#values-as-types" target="_blank" rel="noopener">You-Dont-Know-JS</a></li><li>《JavaScript高级程序设计（第3版）》[美] 尼古拉斯·泽卡斯 </li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;1-demo&quot;&gt;&lt;a href=&quot;#1-demo&quot; class=&quot;headerlink&quot; title=&quot;1. demo&quot;&gt;&lt;/a&gt;1. demo&lt;/h1&gt;&lt;p&gt;如果你对下面的代码没有任何疑问就能自信的回答出输出的内容，那么本篇文章就不值得你浪费时间了。&lt;/p&gt;
+&lt;
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>WTF!! Vue数组splice方法无法正常工作</title>
+    <link href="https://wdd.js.org/vue-array-splice-not-work.html"/>
+    <id>https://wdd.js.org/vue-array-splice-not-work.html</id>
+    <published>2018-12-12T20:29:16.000Z</published>
+    <updated>2019-08-29T02:42:09.963Z</updated>
+    
+    <content type="html"><![CDATA[<p>当函数执行到this.agents.splice()时，我设置了断点。发现传参index是0，但是页面上的列表项对应的第一行数据没有被删除，</p><p>WTF！！！ 这是什么鬼！然后我打开Vue Devtools, 然后刷新了一下，发现那个数组的第一项还是存在的。什么鬼？？</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">removeOneAgentByIndex: <span class="function"><span class="keyword">function</span> (<span class="params">index</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.agents.splice(index, <span class="number">1</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>然后我就谷歌了一下，发现这个<a href="https://stackoverflow.com/questions/48484773/splice-not-working-properly-my-object-list-vuejs" target="_blank" rel="noopener">splice not working properly my object list VueJs</a>, 大概意思是v-for的时候最好给列表项绑定<code>:key=</code>。然后我是试了这个方法，发现没啥作用。</p><p>最终我决定，单步调试，<strong>如果我发现该问题出在Vue自身，那我就该抛弃Vue, 学习React了</strong></p><p>单步调试中出现一个异常的情况，removeOneAgentByIndex是被A函数调用的，A函数由websocket事件驱动。正常情况下应该触发一次的事件，服务端却发送了两次到客户端。由于事件重复，第一次执行A删除时，实际上removeOneAgentByIndex是执行成功了，但是重复的第二个事件到来时，A函数又往agents数组中添加了一项。导致看起来，removeOneAgentByIndex函数执行起来似乎没有设么作用。而且这两个重复的事件是在几乎是在同一时间发送到客户端，所以我几乎花了将近一个小时去解决这个bug。<code>引起这个bug的原因是事件重复，所以我在前端代码中加入事件去重功能，最终解决这个问题。</code></p><p>我记得之前看过一篇文章，一个开发者调通过回调函数计费，回调函数是由事件触发，但是没想到有时候事件会重发，导致重复计费。后来这名开发者在自己的代码中加入事件去重的功能，最终解决了这个问题。</p><p>事后总结：我觉得我不该怀疑Vue这种库出现了问题，但是我又不禁去怀疑。</p><p>通过这个bug, 我也学到了第二方法，可以删除Vue数组中的某一项，参考下面代码。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Only in 2.2.0+: Also works with Array + index.</span></span><br><span class="line">removeOneAgentByIndex: <span class="function"><span class="keyword">function</span> (<span class="params">index</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.$<span class="keyword">delete</span>(<span class="keyword">this</span>.agents, index)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>另外Vue devtools有时候并不会实时的观测到组件属性的变化，即使点了Refresh按钮。如果点了Refresh按钮还不行，那建议你重新打开谷歌浏览器的devtools面板。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;当函数执行到this.agents.splice()时，我设置了断点。发现传参index是0，但是页面上的列表项对应的第一行数据没有被删除，&lt;/p&gt;
+&lt;p&gt;WTF！！！ 这是什么鬼！然后我打开Vue Devtools, 然后刷新了一下，发现那个数组的第一项还是存在的。什么鬼
+      
+    
+    </summary>
+    
+    
+      <category term="bug" scheme="https://wdd.js.org/tags/bug/"/>
+    
+      <category term="Vue" scheme="https://wdd.js.org/tags/Vue/"/>
+    
+      <category term="splice" scheme="https://wdd.js.org/tags/splice/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>百分百重现的Bug的分析之道</title>
+    <link href="https://wdd.js.org/100-percent-reappear-bug-analyze.html"/>
+    <id>https://wdd.js.org/100-percent-reappear-bug-analyze.html</id>
+    <published>2018-12-11T12:47:26.000Z</published>
+    <updated>2019-08-29T02:42:09.955Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="问题现象"><a href="#问题现象" class="headerlink" title="问题现象"></a>问题现象</h1><p>最近遇到客户反馈一个问题，我自己这边测试，问题也是百分百必现。</p><p>服务的架构是C/S架构，简单抽象如下图。</p><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">--------</span><br><span class="line">client</span><br><span class="line">--------</span><br><span class="line">server</span><br><span class="line">--------</span><br></pre></td></tr></table></figure><p>虽然我自己是100%重现该问题，但是有同事却没有重现该问题。说明该问题和输入的数据有关，我的测试和同事的测试条件是不同的。</p><p>但是我们基本诊断<code>服务端问题</code>, 可能方向有几个</p><ol><li>DA模块</li><li>中继模块</li></ol><p>但是最终发现，问题重现是有一定几率的。并不是百分百重现。</p><p>实际上server端是一个集群，可能部署了多了节点。每个节点都有相同的模块，有可能某个Node中的某个模块出现问题了。</p><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// server</span></span><br><span class="line">----------------</span><br><span class="line">| Node  | Node |</span><br><span class="line">-------------</span><br><span class="line">| Node  | Node |</span><br><span class="line">----------------</span><br></pre></td></tr></table></figure><p>经过排查，发现某个Node的X模块有问题。</p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul><li>在微服务框架中，需要对服务的全部的环节都有全局的掌握</li><li>要用集群的思维去考虑故障点，因为现在的服务都不是单点的</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;问题现象&quot;&gt;&lt;a href=&quot;#问题现象&quot; class=&quot;headerlink&quot; title=&quot;问题现象&quot;&gt;&lt;/a&gt;问题现象&lt;/h1&gt;&lt;p&gt;最近遇到客户反馈一个问题，我自己这边测试，问题也是百分百必现。&lt;/p&gt;
+&lt;p&gt;服务的架构是C/S架构，简单抽象如下图。&lt;/p
+      
+    
+    </summary>
+    
+    
+      <category term="bug" scheme="https://wdd.js.org/tags/bug/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Docker镜像批量清理脚本</title>
+    <link href="https://wdd.js.org/docker-images-clean-up.html"/>
+    <id>https://wdd.js.org/docker-images-clean-up.html</id>
+    <published>2018-12-04T15:05:31.000Z</published>
+    <updated>2019-08-29T02:42:09.955Z</updated>
+    
+    <content type="html"><![CDATA[<p>使用jenkins作为打包的工具，主机上的磁盘空间总是被慢慢被占满，直到jenkins无法运行。本文从几个方面来清理docker垃圾。</p><h1 id="批量删除已经退出的容器"><a href="#批量删除已经退出的容器" class="headerlink" title="批量删除已经退出的容器"></a>批量删除已经退出的容器</h1><figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a | <span class="type">grep</span> <span class="string">"Exited"</span> | <span class="type">awk</span> '&#123;print $<span class="number">1</span> &#125;' | <span class="type">xargs</span> docker rm</span><br></pre></td></tr></table></figure><h1 id="批量删除带有none字段的镜像"><a href="#批量删除带有none字段的镜像" class="headerlink" title="批量删除带有none字段的镜像"></a>批量删除带有none字段的镜像</h1><p>$3一般就是取出每一行的镜像id字段</p><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方案1： 根据镜像id删除镜像</span></span><br><span class="line"><span class="attribute">docker</span> images| grep <span class="literal">none</span> |awk <span class="string">'&#123;print <span class="variable">$3</span> &#125;'</span>|xargs docker rmi</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方案2: 根据镜像名删除镜像</span></span><br><span class="line">docker images | grep wecloud | awk <span class="string">'&#123;print <span class="variable">$1</span>":"<span class="variable">$2</span>&#125;'</span> | xargs docker rmi</span><br></pre></td></tr></table></figure><p>方案1，根据镜像ID删除镜像时，有写镜像虽然镜像名不同，但是镜像ID都是相同的，这是后往往会删除失败。所以根据镜像名删除镜像的效果会更好。</p><h1 id="删除镜像定时任务脚本"><a href="#删除镜像定时任务脚本" class="headerlink" title="删除镜像定时任务脚本"></a>删除镜像定时任务脚本</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># create by wangduanduan</span></span><br><span class="line"><span class="comment"># when current free disk less then max free disk, you can remove docker images</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line">GREEN=<span class="string">'\033[0;32m'</span></span><br><span class="line">RED=<span class="string">'\033[0;31m'</span></span><br><span class="line">NC=<span class="string">'\033[0m'</span></span><br><span class="line"></span><br><span class="line">max_free_disk=5 <span class="comment"># 5G. when current free disk less then max free disk, remove docker images</span></span><br><span class="line">current_free_disk=`df -lh | grep centos-root | awk <span class="string">'&#123;print strtonum($4)&#125;'</span>`</span><br><span class="line"></span><br><span class="line">df -lh</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"max_free_disk: <span class="variable">$max_free_disk</span> G"</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"current_free_disk: <span class="variable">$&#123;GREEN&#125;</span> <span class="variable">$current_free_disk</span> G <span class="variable">$&#123;NC&#125;</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$current_free_disk</span> -lt <span class="variable">$max_free_disk</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"<span class="variable">$&#123;RED&#125;</span> need to clean up docker images <span class="variable">$&#123;NC&#125;</span>"</span></span><br><span class="line">docker images | grep none | awk <span class="string">'&#123;print $3 &#125;'</span> | xargs docker rmi</span><br><span class="line">docker images | grep wecloud | awk <span class="string">'&#123;print $1":"$2&#125;'</span> | xargs docker rmi</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"<span class="variable">$&#123;GREEN&#125;</span>no need clean<span class="variable">$&#123;NC&#125;</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure><h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p><code>为了加快打包的速度，一般不要太频繁的删除镜像</code>。因为老的镜像中的某些不改变的层，可以作为新的镜像的缓存，从而大大加快构建的速度。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;使用jenkins作为打包的工具，主机上的磁盘空间总是被慢慢被占满，直到jenkins无法运行。本文从几个方面来清理docker垃圾。&lt;/p&gt;
+&lt;h1 id=&quot;批量删除已经退出的容器&quot;&gt;&lt;a href=&quot;#批量删除已经退出的容器&quot; class=&quot;headerlink&quot; ti
+      
+    
+    </summary>
+    
+    
+      <category term="docker" scheme="https://wdd.js.org/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Node.js 如何找出循环依赖的文件？如何解决循环依赖问题？</title>
+    <link href="https://wdd.js.org/how-to-fix-circular-dependencies-in-node-js.html"/>
+    <id>https://wdd.js.org/how-to-fix-circular-dependencies-in-node-js.html</id>
+    <published>2018-10-29T09:21:03.000Z</published>
+    <updated>2019-08-29T02:42:09.959Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文重点是讲解<code>如何解决循环依赖这个问题</code>。关心这个问题是如何产生的，可以自行谷歌。</p><h1 id="如何重现这个问题"><a href="#如何重现这个问题" class="headerlink" title="如何重现这个问题"></a>如何重现这个问题</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="keyword">const</span> &#123;sayB&#125; = <span class="built_in">require</span>(<span class="string">'./b.js'</span>)</span><br><span class="line"></span><br><span class="line">sayB()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayA</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'say A'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  sayA</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// b.js</span></span><br><span class="line"><span class="keyword">const</span> &#123;sayA&#125; = <span class="built_in">require</span>(<span class="string">'./a.js'</span>)</span><br><span class="line"></span><br><span class="line">sayA()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayB</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'say B'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  sayB</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>执行下面的代码</p><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">➜  test git:(master) ✗ node <span class="selector-tag">a</span>.js</span><br><span class="line">/Users/dd/wj-gitlab/tools/test/<span class="selector-tag">b</span><span class="selector-class">.js</span>:<span class="number">3</span></span><br><span class="line"><span class="function"><span class="title">sayA</span><span class="params">()</span></span></span><br><span class="line">^</span><br><span class="line"></span><br><span class="line">TypeError: sayA is not <span class="selector-tag">a</span> function</span><br><span class="line">    at Object.&lt;anonymous&gt; (/Users/dd/wj-gitlab/tools/test/<span class="selector-tag">b</span><span class="selector-class">.js</span>:<span class="number">3</span>:<span class="number">1</span>)</span><br><span class="line">    at Module._compile (module<span class="selector-class">.js</span>:<span class="number">635</span>:<span class="number">30</span>)</span><br><span class="line">    at Object<span class="selector-class">.Module</span>._extensions.<span class="selector-class">.js</span> (module<span class="selector-class">.js</span>:<span class="number">646</span>:<span class="number">10</span>)</span><br><span class="line">    at Module<span class="selector-class">.load</span> (module<span class="selector-class">.js</span>:<span class="number">554</span>:<span class="number">32</span>)</span><br><span class="line">    at tryModuleLoad (module<span class="selector-class">.js</span>:<span class="number">497</span>:<span class="number">12</span>)</span><br><span class="line">    at Function<span class="selector-class">.Module</span>._load (module<span class="selector-class">.js</span>:<span class="number">489</span>:<span class="number">3</span>)</span><br><span class="line">    at Module<span class="selector-class">.require</span> (module<span class="selector-class">.js</span>:<span class="number">579</span>:<span class="number">17</span>)</span><br><span class="line">    at require (internal/module<span class="selector-class">.js</span>:<span class="number">11</span>:<span class="number">18</span>)</span><br><span class="line">    at Object.&lt;anonymous&gt; (/Users/dd/wj-gitlab/tools/test/<span class="selector-tag">a</span><span class="selector-class">.js</span>:<span class="number">1</span>:<span class="number">78</span>)</span><br><span class="line">    at Module._compile (module<span class="selector-class">.js</span>:<span class="number">635</span>:<span class="number">30</span>)</span><br></pre></td></tr></table></figure><p><code>sayA is not a function</code>那么sayA是个什么呢，实际上它是 <code>undefined</code></p><p><code>遇到这种问题时，你最好能意识到可能是循环依赖的问题</code>，否则找问题可能事倍功半。</p><h1 id="如何找到循环依赖的的文件"><a href="#如何找到循环依赖的的文件" class="headerlink" title="如何找到循环依赖的的文件"></a>如何找到循环依赖的的文件</h1><p>上文的示例代码很简单，2个文件，很容易找出循环依赖。<code>如果有十几个文件，手工去找循环依赖的文件，也是非常麻烦的。</code></p><p>下面推荐一个工具 <a href="https://github.com/pahen/madge" target="_blank" rel="noopener">madge</a>, 它可以可视化的查看文件之间的依赖关系。</p><p>注意下图1，以cli.js为起点，所有的箭头都是向右展开的，这说明没有循环依赖。<code>如果有箭头出现向左逆流，那么就可能是循环依赖的点。</code></p><p>图2中，出现向左的箭头，说明出现了循环依赖，说明要此处断开循环。</p><h1 id="如何解决循环依赖"><a href="#如何解决循环依赖" class="headerlink" title="如何解决循环依赖"></a>如何解决循环依赖</h1><h2 id="方案1：-先导出自身模块"><a href="#方案1：-先导出自身模块" class="headerlink" title="方案1： 先导出自身模块"></a>方案1： 先导出自身模块</h2><p>将module.exports放到文件头部，先将自身模块导出，然后再导入其他模块。</p><p>来自：<a href="http://maples7.com/2016/08/17/cyclic-dependencies-in-node-and-its-solution/" target="_blank" rel="noopener">http://maples7.com/2016/08/17/cyclic-dependencies-in-node-and-its-solution/</a></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  sayA</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123;sayB&#125; = <span class="built_in">require</span>(<span class="string">'./b.js'</span>)</span><br><span class="line"></span><br><span class="line">sayB()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayA</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'say A'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// b.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  sayB</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123;sayA&#125; = <span class="built_in">require</span>(<span class="string">'./a.js'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> sayA)</span><br><span class="line"></span><br><span class="line">sayA()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayB</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'say A'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="方案2：-间接调用"><a href="#方案2：-间接调用" class="headerlink" title="方案2： 间接调用"></a>方案2： 间接调用</h2><p>通过引入一个event的消息传递，让多个个模块可以间接传递消息，多个模块之间也可以通过发消息相互调用。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'./b.js'</span>)</span><br><span class="line"><span class="keyword">const</span> bus = <span class="built_in">require</span>(<span class="string">'./bus.js'</span>)</span><br><span class="line"></span><br><span class="line">bus.on(<span class="string">'sayA'</span>, sayA)</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  bus.emit(<span class="string">'sayB'</span>)</span><br><span class="line">&#125;, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayA</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'say A'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  sayA</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// b.js</span></span><br><span class="line"><span class="keyword">const</span> bus = <span class="built_in">require</span>(<span class="string">'./bus.js'</span>)</span><br><span class="line"></span><br><span class="line">bus.on(<span class="string">'sayB'</span>, sayB)</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  bus.emit(<span class="string">'sayA'</span>)</span><br><span class="line">&#125;, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayB</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'say B'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  sayB</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bus.js</span></span><br><span class="line">const <span class="type">EventEmitter</span> = require(<span class="symbol">'event</span>s')</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyEmitter</span> <span class="keyword">extends</span> <span class="title">EventEmitter</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">module.exports = <span class="keyword">new</span> <span class="type">MyEmitter</span>()</span><br></pre></td></tr></table></figure><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>出现循环依赖，往往是代码的结构出现了问题。应当主动去避免循环依赖这种问题，但是遇到这种问题，无法避免时，也要意识到是循环依赖导致的问题，并找方案解决。</p><p>最后给出一个有意思的问题，下面的代码运行<code>node a.js</code>会输出什么？为什么会这样？</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> moduleB = <span class="built_in">require</span>(<span class="string">'./b.js'</span>)</span><br><span class="line"></span><br><span class="line">setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'setInterval A'</span>)</span><br><span class="line">&#125;, <span class="number">500</span>)</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'setTimeout moduleA'</span>)</span><br><span class="line">  moduleB.sayB()</span><br><span class="line">&#125;, <span class="number">2000</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayA</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'say A'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  sayA</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// b.js</span></span><br><span class="line"><span class="keyword">var</span> moduleA = <span class="built_in">require</span>(<span class="string">'./a.js'</span>)</span><br><span class="line"></span><br><span class="line">setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'setInterval B'</span>)</span><br><span class="line">&#125;, <span class="number">500</span>)</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'setTimeout moduleB'</span>)</span><br><span class="line">  moduleA.sayA()</span><br><span class="line">&#125;, <span class="number">2000</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayB</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'say B'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  sayB</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;本文重点是讲解&lt;code&gt;如何解决循环依赖这个问题&lt;/code&gt;。关心这个问题是如何产生的，可以自行谷歌。&lt;/p&gt;
+&lt;h1 id=&quot;如何重现这个问题&quot;&gt;&lt;a href=&quot;#如何重现这个问题&quot; class=&quot;headerlink&quot; title=&quot;如何重现这个问题&quot;&gt;&lt;/a&gt;如
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>众里寻他千百度 - 如何挑选高质量的前端项目资源？</title>
+    <link href="https://wdd.js.org/better-place-search-frontend-resource.html"/>
+    <id>https://wdd.js.org/better-place-search-frontend-resource.html</id>
+    <published>2018-10-29T09:18:26.000Z</published>
+    <updated>2019-08-29T02:42:09.955Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>我以前写过一篇文章，<a href="https://segmentfault.com/a/1190000007699297" target="_blank" rel="noopener">UI大全：前端UI框架集合（持续更新，当前32个）</a>, 最近翻阅了这篇文章。发现有些框架，如果你用了，那你就掉坑里去了。</p></blockquote><p>NPM是包最多管理工具，按照80-20定律，其中80%的包都可能是坑，其中20%的包应该是高质量的。那么应当如何挑选呢？</p><h1 id="bestofjs-org-最好的都在这里"><a href="#bestofjs-org-最好的都在这里" class="headerlink" title="bestofjs.org 最好的都在这里"></a>bestofjs.org 最好的都在这里</h1><p><a href="https://bestofjs.org/" target="_blank" rel="noopener">bestofjs</a>整合了最优秀的的js, html和css项目资源。</p><p>简要介绍一下主要的资源：</p><ul><li>React: react相关</li><li>Testing: 测试相关</li><li>Vue: Vue相关</li><li>Charting: 图表相关</li><li>Node.js framework: Node.js服务端框架相关</li><li>UI Framework: UI框架</li><li>Learning resource: 学习资源</li><li>Animation: 动画相关</li><li>Componment Toolkit: 组件化工具</li></ul><p>基本上，涵盖了所有你需要的内容。</p><h1 id="npms-io-一个更好的Node-js包搜索工具"><a href="#npms-io-一个更好的Node-js包搜索工具" class="headerlink" title="npms.io 一个更好的Node.js包搜索工具"></a>npms.io 一个更好的Node.js包搜索工具</h1><p>相比于npmjs官方的搜索，<a href="https://npms.io/" target="_blank" rel="noopener">npms.io</a>提供量化的数据，表明了一个包的质量，流行度以及维护性。并给出一个包的整体分数。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;我以前写过一篇文章，&lt;a href=&quot;https://segmentfault.com/a/1190000007699297&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;UI大全：前端UI框架集合（持续更新，当前32个）&lt;/a&gt;
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>shields小徽章是如何生成的？以及搭建自己的shield服务器</title>
+    <link href="https://wdd.js.org/how-to-make-shields-badge.html"/>
+    <id>https://wdd.js.org/how-to-make-shields-badge.html</id>
+    <published>2018-10-29T09:14:43.000Z</published>
+    <updated>2019-08-29T02:42:09.959Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="shields小徽章介绍"><a href="#shields小徽章介绍" class="headerlink" title="shields小徽章介绍"></a>shields小徽章介绍</h1><p>一般开源项目都会有一些小徽章来标识项目的状态信息，并且这些信息是会自动更新的。在shields的官网<a href="https://shields.io/#/" target="_blank" rel="noopener">https://shields.io/#/</a>, 上面有各种各样的小图标，并且有很多自定义的方案。</p><h1 id="起因：如何给私有部署的jenkins制作shields服务？"><a href="#起因：如何给私有部署的jenkins制作shields服务？" class="headerlink" title="起因：如何给私有部署的jenkins制作shields服务？"></a>起因：如何给私有部署的jenkins制作shields服务？</h1><p>私有部署的jenkins是用来打包docker镜像的，而我想获取最新的项目打包的jenkins镜像信息。但是私有的jenkins项目信息，公网的shields服务是无法获取其信息的。那么如果搭建一个私有的shields服务呢？</p><h1 id="第一步：如何根据一些信息，制作svg图标"><a href="#第一步：如何根据一些信息，制作svg图标" class="headerlink" title="第一步：如何根据一些信息，制作svg图标"></a>第一步：如何根据一些信息，制作svg图标</h1><p>查看shields图标的源码，可以看到这些图标都是svg格式的图标。然后的思路就是，<code>将文字信息转成svg图标</code>。最后我发现这个思路是个死胡同，</p><p>有个npm包叫做，<a href="https://github.com/shrhdk/text-to-svg" target="_blank" rel="noopener">text-to-svg</a>, 似乎可以将文本转成svg, 但是看了文本转svg的效果，果断就放弃了。</p><p>最后回到起点，看了shields官方仓库，发现一个templates目录，豁然开朗。<code>原来svg图标是由svg的模板生成的</code>，每次生成图标只需要将信息添加到模板中，然后就可以渲染出svg字符串了。</p><p>顺着这个思路，发现一个包<a href="https://github.com/albanm/shields-lightweight" target="_blank" rel="noopener">shields-lightweight</a></p><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">var shields</span> = require(<span class="string">'shields-lightweight'</span>);</span><br><span class="line"><span class="attribute">var svgBadge</span> = shields.svg(<span class="string">'subject'</span>, <span class="string">'status'</span>, <span class="string">'red'</span>, <span class="string">'flat'</span>);</span><br></pre></td></tr></table></figure><p>这个包的确可以生成和shields一样的小徽章，但是如果徽章中有中文，那么中文就会溢出。<code>因为一个中文字符的宽度要比一个英文字符宽很多。</code> </p><p>所以我就fork了这个项目，重写了图标宽度计算的方式。<a href="https://github.com/wangduanduan/shields-less" target="_blank" rel="noopener">shields-less</a></p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> shields-<span class="keyword">less</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> shieldsLess = require(<span class="string">'shields-less'</span>)</span><br><span class="line"><span class="keyword">var</span> svgBadge = shieldsLess.svg(&#123;</span><br><span class="line">    leftText: <span class="string">'npm 黄河远上白云间'</span>,</span><br><span class="line">    rightText: <span class="string">'hello 世界'</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> svgBadge2 = shieldsLess.svg(&#123;</span><br><span class="line">    leftText: <span class="string">'npm 黄河远上白云间'</span>,</span><br><span class="line">    rightText: <span class="string">'hello 世界'</span>,</span><br><span class="line">    <span class="keyword">style</span>: <span class="string">'square'</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> svgBadge2 = shieldsLess.svg(&#123;</span><br><span class="line">    leftText: <span class="string">'npm 黄河远上白云间'</span>,</span><br><span class="line">    rightText: <span class="string">'hello 世界'</span>,</span><br><span class="line">    leftColor: <span class="string">'#e64a19'</span>,</span><br><span class="line">    rightColor: <span class="string">'#448aff'</span>,</span><br><span class="line">    <span class="keyword">style</span>: <span class="string">'square'</span> // just two <span class="keyword">style</span>: <span class="keyword">square</span> <span class="keyword">and</span> plat(<span class="keyword">default</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>渲染后的效果，查看在线demo: <a href="https://wdd.js.org/shields-less/example/">https://wdd.js.org/shields-less/example/</a></p><h1 id="shields服务开发"><a href="#shields服务开发" class="headerlink" title="shields服务开发"></a>shields服务开发</h1><p>shields服务其实很简单。架构如下，客户端浏览器发送一个请求，向shields服务，shield服务解析请求，并向jenkins服务发送请求，jenkins服务每个项目都有json的http接口，可以获取项目信息的。shields将从jenkins获取的信息封装到svg小图标中，然后将svg小图标发送到客户端。</p><h1 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;shields小徽章介绍&quot;&gt;&lt;a href=&quot;#shields小徽章介绍&quot; class=&quot;headerlink&quot; title=&quot;shields小徽章介绍&quot;&gt;&lt;/a&gt;shields小徽章介绍&lt;/h1&gt;&lt;p&gt;一般开源项目都会有一些小徽章来标识项目的状态信息，并且这些信
+      
+    
+    </summary>
+    
+    
+      <category term="shields" scheme="https://wdd.js.org/tags/shields/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>荣耀往往冠以虚伪 正能量满满的《无耻之徒》</title>
+    <link href="https://wdd.js.org/shameless-and-glory.html"/>
+    <id>https://wdd.js.org/shameless-and-glory.html</id>
+    <published>2018-10-06T23:05:24.000Z</published>
+    <updated>2019-08-29T02:42:09.959Z</updated>
+    
+    <content type="html"><![CDATA[<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=18861490&auto=1&height=66"></iframe><p>今年的国庆，我宅在家里，没有出去玩。因为在我们在法定节假日，最好不要出去旅游。</p><p><code>因为这世界本来有很多路，走的人太多了，也就没了路。</code></p><p>堵在高速，堵在景区，堵在厕所，堵在某个街角</p><p>在家里刷完美剧《无耻之徒》八季，说心里话：<code>这部剧刷新我的人生观，感觉自己在七天之内重生似的</code></p><h1 id="虚伪往往冠以荣耀，荣耀往往冠以虚荣"><a href="#虚伪往往冠以荣耀，荣耀往往冠以虚荣" class="headerlink" title="虚伪往往冠以荣耀，荣耀往往冠以虚荣"></a>虚伪往往冠以荣耀，荣耀往往冠以虚荣</h1><p>古龙小说有个特点，越是卑鄙无耻，虚荣腹黑的人，往往冠以正能量慢慢的名字，例如：小李飞刀中的总是喜欢主持正义的大侠<code>赵正义</code>。我觉得，古龙先生一定看过李宗吾的厚黑学，并且深有研究。</p><p>无耻之徒中的frank，也是类似赵正义这类人。</p><p>看剧过程中，几次忍不住想把frank掐死。但是某些时候，frank也会散发出一种大人物的闪光点。</p><p>居中人物看似无耻，很黄很暴力，但是整部剧给人以正能量满满的感觉。反观国产脑残电视剧，哪些动不动说什么<code>我已经等你五千年</code>之类的狗屁对白，让我一听就觉得piece of shit。</p><h1 id="没有好人，也没有坏人，只是人罢了"><a href="#没有好人，也没有坏人，只是人罢了" class="headerlink" title="没有好人，也没有坏人，只是人罢了"></a>没有好人，也没有坏人，只是人罢了</h1><h1 id="回首往事，怎么可能没有后悔与遗憾，人生本来就没有完美的"><a href="#回首往事，怎么可能没有后悔与遗憾，人生本来就没有完美的" class="headerlink" title="回首往事，怎么可能没有后悔与遗憾，人生本来就没有完美的"></a>回首往事，怎么可能没有后悔与遗憾，人生本来就没有完美的</h1><h1 id="无论如何，血缘关系是无法切断的关系"><a href="#无论如何，血缘关系是无法切断的关系" class="headerlink" title="无论如何，血缘关系是无法切断的关系"></a>无论如何，血缘关系是无法切断的关系</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot; src=&quot;//music.163.com/outchain/player?type=2&amp;id=
+      
+    
+    </summary>
+    
+    
+      <category term="未完成" scheme="https://wdd.js.org/tags/%E6%9C%AA%E5%AE%8C%E6%88%90/"/>
+    
+      <category term="无耻之徒" scheme="https://wdd.js.org/tags/%E6%97%A0%E8%80%BB%E4%B9%8B%E5%BE%92/"/>
+    
+      <category term="美剧" scheme="https://wdd.js.org/tags/%E7%BE%8E%E5%89%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Express代理中间件问题与解决方案</title>
+    <link href="https://wdd.js.org/express-middleware-order-proxy-problem.html"/>
+    <id>https://wdd.js.org/express-middleware-order-proxy-problem.html</id>
+    <published>2018-09-30T09:41:44.000Z</published>
+    <updated>2019-08-29T02:42:09.955Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前后端分离应用的架构"><a href="#前后端分离应用的架构" class="headerlink" title="前后端分离应用的架构"></a>前后端分离应用的架构</h1><p>在前后端分离架构中，为了避免跨域以及暴露内部服务地址。一般来说，我会在Express这层中加入一个反向代理。</p><p>所有向后端服务访问的请求，都通过代理转发到内部的各个服务。</p><p><img src="http://on-img.com/chart_image/5ac48a5fe4b00dc8a02d30f4.png" alt=""></p><p>这个反向代理服务器，做起来很简单。用<a href="https://github.com/chimurai/http-proxy-middleware" target="_blank" rel="noopener">http-proxy-middleware</a>这个模块，几行代码就可以搞定。</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line">Object.keys(proxyTable).<span class="keyword">forEach</span>(<span class="function"><span class="keyword">function</span> <span class="params">(context)</span> </span>&#123;</span><br><span class="line">  app.<span class="keyword">use</span>(proxyMiddleware(context, proxyTable[context]))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>http-proxy-middleware实际上是对于<a href="https://github.com/nodejitsu/node-http-proxy" target="_blank" rel="noopener">node-http-proxy</a>的更加简便的封装。node-http-proxy是http-proxy-middleware的底层包，如果node-http-proxy有问题，那么这个问题就会影响到http-proxy-middleware这个包。</p><h1 id="最近的bug"><a href="#最近的bug" class="headerlink" title="最近的bug"></a>最近的bug</h1><p>http-proxy-middleware最近有个问题，请求体在被代理转发前，如果请求体被解析了。那么后端服务将会收不到请求结束的消息，从浏览器的网络面板可以看出，一个请求一直在pending状态。</p><p><a href="https://github.com/chimurai/http-proxy-middleware/issues/299" target="_blank" rel="noopener">Cannot proxy after parsing body #299</a>, 实际上这个问题在node-http-proxy也被提出过，而且处于open状态。<a href="https://github.com/nodejitsu/node-http-proxy/issues/1279" target="_blank" rel="noopener">POST fails/hangs examples to restream also not working #1279</a></p><p>目前这个bug还是处于open状态，但是还是有解决方案的。就是<code>将请求体解析的中间件挂载在代理之后</code>。</p><p>下面的代码，express.json()会对json格式的请求体进行解析。方案1在代理前就进行body解析，所有格式是json的请求体都会被解析。</p><p>但是有些走代理的请求，如果我们并不关心请求体的内容是什么，实际上我们可以不解析那些走代理的请求。所以，可以先挂载代理中间件，然后挂载请求体解析中间件，最后挂载内部的一些接口服务。</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方案1 bad</span></span><br><span class="line">app.<span class="keyword">use</span>(express.json())</span><br><span class="line">Object.keys(proxyTable).<span class="keyword">forEach</span>(<span class="function"><span class="keyword">function</span> <span class="params">(context)</span> </span>&#123;</span><br><span class="line">  app.<span class="keyword">use</span>(proxyMiddleware(context, proxyTable[context]))</span><br><span class="line">&#125;)</span><br><span class="line">app.<span class="keyword">use</span>(<span class="string">'/api'</span>, (req, res, next)=&gt; &#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方案2 good</span></span><br><span class="line">Object.keys(proxyTable).<span class="keyword">forEach</span>(<span class="function"><span class="keyword">function</span> <span class="params">(context)</span> </span>&#123;</span><br><span class="line">  app.<span class="keyword">use</span>(proxyMiddleware(context, proxyTable[context]))</span><br><span class="line">&#125;)</span><br><span class="line">app.<span class="keyword">use</span>(express.json())</span><br><span class="line">app.<span class="keyword">use</span>(<span class="string">'/api'</span>, (req, res, next)=&gt; &#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>经过这个问题，我对Express中间件的挂载顺序有了更加深刻的认识。</p><p>同时，在使用第三方包的过程中，如果该包bug，那么也需要自行找出合适的解决方案。而这个能力，往往就是高手与新手的区别。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;前后端分离应用的架构&quot;&gt;&lt;a href=&quot;#前后端分离应用的架构&quot; class=&quot;headerlink&quot; title=&quot;前后端分离应用的架构&quot;&gt;&lt;/a&gt;前后端分离应用的架构&lt;/h1&gt;&lt;p&gt;在前后端分离架构中，为了避免跨域以及暴露内部服务地址。一般来说，我会在Exp
+      
+    
+    </summary>
+    
+    
+      <category term="express" scheme="https://wdd.js.org/tags/express/"/>
+    
+      <category term="proxy" scheme="https://wdd.js.org/tags/proxy/"/>
+    
+      <category term="http-proxy-middleware" scheme="https://wdd.js.org/tags/http-proxy-middleware/"/>
+    
+      <category term="node-http-proxy" scheme="https://wdd.js.org/tags/node-http-proxy/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>什么样的嘻哈音乐会被听众喜欢</title>
+    <link href="https://wdd.js.org/what-hip-hop-music-will-be-popular.html"/>
+    <id>https://wdd.js.org/what-hip-hop-music-will-be-popular.html</id>
+    <published>2018-09-10T22:07:47.000Z</published>
+    <updated>2019-08-29T02:42:09.963Z</updated>
+    
+    <content type="html"><![CDATA[<p>《中国新说唱 - 第九期》四位评委一致认为会被流行的歌曲，几乎都没有流行，反观那些评分较低的嘻哈歌曲，反而在各大音乐排行版上名列前茅。</p><p>评委认为会流行的歌曲有以下特点</p><ol><li>词要简单，不要有深度，越简单约容易流行</li><li>要中西结合，国际化更好</li></ol><p>对于第一点，无疑是在侮辱嘻哈音乐听众的智商。</p><p>对于第二点，实际上只是在吹嘘罢了。难道山歌就一定比中英文结合的说明要层次低。</p><p>纵观网易云音乐排行榜上的比较流行的嘻哈音乐，可以发现有以下特点。</p><ol><li>歌词有血有肉</li><li>节奏缓和，吐字清晰，容易模仿</li><li>爱情和青春主题更讨喜</li></ol><p>对于第一点，如果你的歌词，只是再说自己有多牛逼，别人多low，那么你的歌一定火不了。</p><p>对于第二点，虽然嘻哈音乐讲究说唱的速度，但是如果你的歌曲，整片速度快的都像在高速公路上飙车，那么没有人能跟上。观众顶多会送你一个老司机牌坊，然后就没有然后了。</p><p>缓和的说唱，更容易打动人心。</p><p>爱情和青春，永恒不变的讨喜主题。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;《中国新说唱 - 第九期》四位评委一致认为会被流行的歌曲，几乎都没有流行，反观那些评分较低的嘻哈歌曲，反而在各大音乐排行版上名列前茅。&lt;/p&gt;
+&lt;p&gt;评委认为会流行的歌曲有以下特点&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;词要简单，不要有深度，越简单约容易流行&lt;/li&gt;
+&lt;li&gt;要中西结
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>偷时间的人与王阳明心学</title>
+    <link href="https://wdd.js.org/wangyangmin-school-of-mind.html"/>
+    <id>https://wdd.js.org/wangyangmin-school-of-mind.html</id>
+    <published>2018-09-10T21:31:38.000Z</published>
+    <updated>2019-08-29T02:42:09.963Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="我们用自己的时间，交换到别人的快乐"><a href="#我们用自己的时间，交换到别人的快乐" class="headerlink" title="我们用自己的时间，交换到别人的快乐"></a>我们用自己的时间，交换到别人的快乐</h1><p>关于王阳明的心学的书籍，我看过一本，但是没看完。</p><p>虽然我没看，但是我似乎已经理解了心学。</p><p>可以从我个人的角度说明</p><ul><li>上大学时，我有段时间迷上玩英雄联盟，但是因为玩的太菜，所以不久就放弃了。但是喜欢看一些关于游戏的直播视频。</li><li>有时候看歌唱比赛，觉得人家唱的那么好听，顿生仰慕之心，进而去了解这个人</li><li>喜欢看某个电视剧，然后就追着看了</li><li>刷某个APP, 一刷就几十分钟过去了</li><li>…</li></ul><p>做这些事情，都有一个特点，就是我们：<code>我们用自己的时间，交换到别人的快乐</code>，仿佛与魔鬼做了交易。</p><p>从心学的角度来说明，我们总是从外界去求取快乐，求取自我实现。</p><p>而王阳明老师交给我的是，<code>你应该从你的内心发现快乐，</code>不需要依赖外呼去实现内心的安静与愉悦。</p><p>自己内心的愉悦是永恒的，从外界获取愉悦是短暂的。</p><h1 id="因为不想无聊，所以出卖自己的时间"><a href="#因为不想无聊，所以出卖自己的时间" class="headerlink" title="因为不想无聊，所以出卖自己的时间"></a>因为不想无聊，所以出卖自己的时间</h1><p>用自己的时间去交换别人的快乐，还有另外一个原因。</p><p>就是自己的时间太无聊，因为无法忍受无聊，所以要找点乐子。</p><p>但是从深层次来讲，我们为什么会感到无聊呢？</p><p>因为你无事可做啊？ 无事可做最无聊</p><p>看着手机上满屏的APP图标，</p><p>仿佛是路过青楼，</p><p>每个APP都在妩媚的招手笑道：官人进来坐坐好吗？</p><p>每个APP都希望你可以花费更多的时间在它上面，</p><p>就像是后宫剧的争宠一样，</p><p>因为时间就是流量，</p><p>流量就是金钱</p><h1 id="我们被圈养成优秀的绵羊"><a href="#我们被圈养成优秀的绵羊" class="headerlink" title="我们被圈养成优秀的绵羊"></a>我们被圈养成优秀的绵羊</h1><p>屠夫一定不是最富有的，牧羊人一定是最富有的人。</p><p>屠夫杀猪，猪感觉很痛，而且猪要是被杀了，就没办法再杀了</p><p>牧羊人不一样，牧羊人有每次只褥一只的几根羊毛</p><p>绵羊丝毫感觉不到，</p><p>所以牧羊人必须驯服越来越多的绵羊</p><p>让后让每个绵羊以毛质鲜亮为美</p><p>毛质鲜亮浓密的绵羊，称为优秀的绵羊</p><p>我们都慢慢被培养成优秀的绵羊</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;我们用自己的时间，交换到别人的快乐&quot;&gt;&lt;a href=&quot;#我们用自己的时间，交换到别人的快乐&quot; class=&quot;headerlink&quot; title=&quot;我们用自己的时间，交换到别人的快乐&quot;&gt;&lt;/a&gt;我们用自己的时间，交换到别人的快乐&lt;/h1&gt;&lt;p&gt;关于王阳明的心学的书
+      
+    
+    </summary>
+    
+    
+      <category term="心理学" scheme="https://wdd.js.org/tags/%E5%BF%83%E7%90%86%E5%AD%A6/"/>
+    
+      <category term="心学" scheme="https://wdd.js.org/tags/%E5%BF%83%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>负和游戏与嘻哈音乐</title>
+    <link href="https://wdd.js.org/negative-game-and-hipop-music.html"/>
+    <id>https://wdd.js.org/negative-game-and-hipop-music.html</id>
+    <published>2018-09-08T15:54:33.000Z</published>
+    <updated>2019-08-29T02:42:09.959Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="负和游戏"><a href="#负和游戏" class="headerlink" title="负和游戏"></a>负和游戏</h1><p>我很早就听过一个名词，叫做零和游戏，或者又叫做零和博弈。</p><blockquote><p>零和博弈表示所有博弈方的利益之和为零或一个常数，即一方有所得，其他方必有所失。 <a href="https://zh.wikipedia.org/wiki/%E9%9B%B6%E5%92%8C%E5%8D%9A%E5%BC%88" target="_blank" rel="noopener">维基百科</a></p></blockquote><p>最近读的一本书 《以交易为生》，本来是耐着兴趣读下去的</p><p>没想到读到某些地方，也给我醍醐灌顶的感觉</p><p>世界上哪有零和游戏啊，都是负和游戏。</p><p>你给张三转1000块，按理说你少了1000块，张三多了1000块，<code>1000 - 1000 = 0</code>和为零。</p><p>实际上呢，你转账时还需要付手续费吧。<code>1000 - 1000 - 1 = -1</code></p><p>同样的情况，坐庄的人总是需要抽成的。</p><h1 id="嘻哈音乐"><a href="#嘻哈音乐" class="headerlink" title="嘻哈音乐"></a>嘻哈音乐</h1><p>去年爱奇艺的《中国有嘻哈》红遍大江南北</p><p>所以今天又搞了个第二季</p><p>任何事情，第一遍总是最好的，续集往往都不如人意。</p><p>从谷歌趋势和百度统计来看，这档节目热度在平稳降低。</p><p>另外，爱奇艺也有可能是有点心虚。以前视频下面都会写出播放量，但是现在都不显示播放量数据了，而是显示热度。</p><p>说实在的17年中国有嘻哈能火，完全是因为它能够在众多娱乐节目中给人非常特别的感觉。</p><p>但是18年中国新说唱，和其他节目有什么区别能，同质化严重。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;负和游戏&quot;&gt;&lt;a href=&quot;#负和游戏&quot; class=&quot;headerlink&quot; title=&quot;负和游戏&quot;&gt;&lt;/a&gt;负和游戏&lt;/h1&gt;&lt;p&gt;我很早就听过一个名词，叫做零和游戏，或者又叫做零和博弈。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;零和博弈表示所有博弈方的利
+      
+    
+    </summary>
+    
+    
+      <category term="俗人琐事" scheme="https://wdd.js.org/tags/%E4%BF%97%E4%BA%BA%E7%90%90%E4%BA%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>单反、电视剧、游戏机</title>
+    <link href="https://wdd.js.org/camera-vs-game.html"/>
+    <id>https://wdd.js.org/camera-vs-game.html</id>
+    <published>2018-09-07T22:56:45.000Z</published>
+    <updated>2019-08-29T02:42:09.955Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近每天看的书，有几本是将摄影有关的</p><p>勾搭我心痒痒，上京东收藏了好几个尼康的单反</p><p>之所以喜欢尼康，是因为以前用尼康用的顺手</p><p>回家做完饭，随便看看书</p><p>耳朵里听着女朋友放的电视剧传的声音</p><p>什么：臣妾已身怀龙嗣…</p><p>什么：我已经等了你3千年，我终于…</p><p>真实搞不懂现在电视剧编剧怎么那么无趣</p><p>除了宫斗，就是玄幻</p><p>偏偏女生还看的津津有味，废寝忘食，机不离手，眼圈红红</p><p>放佛那命运多舛、遭人暗算、打入冷宫的是自己一样</p><p>王者农药已经放弃一阵子了，打算买个游戏机玩玩</p><p>听说任天堂 switch不错啊，上京东看看价钱</p><p>还是算了吧，订单下了个<code>红枣枸杞养生茶</code></p><p>听同事说赚钱之道，其语出惊人：<code>赚钱的方法都已经写在宪法上了</code></p><p>每次想到这个金句，不禁让人感慨万千</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近每天看的书，有几本是将摄影有关的&lt;/p&gt;
+&lt;p&gt;勾搭我心痒痒，上京东收藏了好几个尼康的单反&lt;/p&gt;
+&lt;p&gt;之所以喜欢尼康，是因为以前用尼康用的顺手&lt;/p&gt;
+&lt;p&gt;回家做完饭，随便看看书&lt;/p&gt;
+&lt;p&gt;耳朵里听着女朋友放的电视剧传的声音&lt;/p&gt;
+&lt;p&gt;什么：臣妾已身怀龙嗣
+      
+    
+    </summary>
+    
+    
+      <category term="俗人琐事" scheme="https://wdd.js.org/tags/%E4%BF%97%E4%BA%BA%E7%90%90%E4%BA%8B/"/>
+    
+  </entry>
+  
+</feed>

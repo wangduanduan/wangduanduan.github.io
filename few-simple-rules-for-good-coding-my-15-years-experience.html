@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="google-site-verification" content="We4cS1h0IumMJjPPUa-q5_PDG5BHKCm8e5htMVa6m0w" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="王端端, 洞香春" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="洞香春" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="原文地址：https://hackernoon.com/few-simple-rules-for-good-coding-my-15-years-experience-96cb29d4acd9#.ddzpjb80c  嗨，我的工作作为一个程序员超过15年，并使用许多不同的语言，范例，框架和其他狗屎。我想和大家分享我写好代码的规则。 1. 优化VS可读性 去他妈的优化始终编​​写易于阅读且对开发人员">
+<meta name="keywords" content="王端端, 洞香春, wellClient">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【译】13简单的优秀编码规则（从我15年的经验）">
+<meta property="og:url" content="https://wdd.js.org/few-simple-rules-for-good-coding-my-15-years-experience.html">
+<meta property="og:site_name" content="洞香春">
+<meta property="og:description" content="原文地址：https://hackernoon.com/few-simple-rules-for-good-coding-my-15-years-experience-96cb29d4acd9#.ddzpjb80c  嗨，我的工作作为一个程序员超过15年，并使用许多不同的语言，范例，框架和其他狗屎。我想和大家分享我写好代码的规则。 1. 优化VS可读性 去他妈的优化始终编​​写易于阅读且对开发人员">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://wdd.js.org/img/images/20180207140343_0UaL3X_Screenshot.jpeg">
+<meta property="og:image" content="https://wdd.js.org/img/images/20180207140423_Iku4es_Screenshot.jpeg">
+<meta property="og:updated_time" content="2019-08-29T02:42:09.955Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【译】13简单的优秀编码规则（从我15年的经验）">
+<meta name="twitter:description" content="原文地址：https://hackernoon.com/few-simple-rules-for-good-coding-my-15-years-experience-96cb29d4acd9#.ddzpjb80c  嗨，我的工作作为一个程序员超过15年，并使用许多不同的语言，范例，框架和其他狗屎。我想和大家分享我写好代码的规则。 1. 优化VS可读性 去他妈的优化始终编​​写易于阅读且对开发人员">
+<meta name="twitter:image" content="https://wdd.js.org/img/images/20180207140343_0UaL3X_Screenshot.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://wdd.js.org/few-simple-rules-for-good-coding-my-15-years-experience.html"/>
+
+
+
+
+
+  <title>【译】13简单的优秀编码规则（从我15年的经验） | 洞香春</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?32b66b12a233c7f47949966dc2e2cd97";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <!-- Google AdSense start -->
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-7799082458078979",
+    enable_page_level_ads: true
+  });
+</script>
+  <!-- Google AdSense end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">洞香春</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">洞香春以名士荟萃、谈论国事、交流思想而著称于当时列国 --《大秦帝国》</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wdd.js.org/few-simple-rules-for-good-coding-my-15-years-experience.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王端端">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="洞香春">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【译】13简单的优秀编码规则（从我15年的经验）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-07T14:03:12+00:00">
+                2018-02-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,639 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>原文地址：<a href="https://hackernoon.com/few-simple-rules-for-good-coding-my-15-years-experience-96cb29d4acd9#.ddzpjb80c" target="_blank" rel="noopener">https://hackernoon.com/few-simple-rules-for-good-coding-my-15-years-experience-96cb29d4acd9#.ddzpjb80c</a></p>
+<p><img src="https://wdd.js.org/img/images/20180207140343_0UaL3X_Screenshot.jpeg" alt=""></p>
+<p>嗨，我的工作作为一个程序员超过15年，并使用许多不同的语言，范例，框架和其他狗屎。我想和大家分享我写好代码的规则。</p>
+<h1 id="1-优化VS可读性-去他妈的优化"><a href="#1-优化VS可读性-去他妈的优化" class="headerlink" title="1. 优化VS可读性 去他妈的优化"></a>1. 优化VS可读性 去他妈的优化</h1><p>始终编​​写易于阅读且对开发人员可理解的代码。因为在硬可读代码上花费的时间和资源将远远高于从优化中获得的。<br>如果你需要进行优化，那么使它像DI的独立模块，具有100％的测试覆盖率，并且不会被触及至少一年。</p>
+<h1 id="2-架构第一"><a href="#2-架构第一" class="headerlink" title="2. 架构第一"></a>2. 架构第一</h1><p>我看到很多人说“我们需要快速做事，我们没有时间做架构”。其中约99％的人因为这样的想法而遇到了大问题。<br>编写代码而不考虑其架构是没有用的，就像没有实现它们的计划一样，梦想你的愿望。<br>在编写代码的第一行之前，你应该明白它将要做什么，它将如何使用，模块，服务如何相互工作，它将有什么结构，如何进行测试和调试，以及如何更新。</p>
+<h1 id="3-测试覆盖率"><a href="#3-测试覆盖率" class="headerlink" title="3. 测试覆盖率"></a>3. 测试覆盖率</h1><p>测试是好事，但他们并不总是负担得起，对项目有意义。</p>
+<p>当你需要测试：</p>
+<ul>
+<li>当你编写模块时，微服务将不会被触及至少一个月。</li>
+<li>当你编写开源代码。</li>
+<li>当你编写涉及金融渠道的核心代码或代码。</li>
+<li>当您有代码更新的同时更新测试的资源。</li>
+</ul>
+<p>当你不需要测试时：</p>
+<ul>
+<li>当你是一个创业。</li>
+<li>当你有小团队和代码更改是快速。</li>
+<li>当你编写的脚本，可以简单地通过他们的输出手动测试。</li>
+</ul>
+<p>记住，<code>带有严格测试的代码可能比没有测试的代码更有害</code>。</p>
+<h1 id="4-保持简单，极度简单"><a href="#4-保持简单，极度简单" class="headerlink" title="4. 保持简单，极度简单"></a>4. 保持简单，极度简单</h1><p>不要编写复杂的代码。更多更简单，那么更少的错误它可能有和更少的时间来调试它们。代码应该做的只是它需要没有非常多的抽象和其他OOP shit（尤其是涉及java开发人员）+ 20％的东西可能需要在将来以简单的方式更新它。</p>
+<h1 id="5-注释"><a href="#5-注释" class="headerlink" title="5. 注释"></a>5. 注释</h1><p>出现注释说明你的代码不够好。好的代码应该是可以理解的，没有一行注释。但是如何为新开发人员节省时间？ - 编写简单的内联文档描述什么和如何方法工作。这将节省很多时间来理解，甚至更多 - 它将给人们更多的机会来提出更好的实施这种方法。并且它将是全球代码文档的良好开端。</p>
+<h1 id="6-硬耦合VS较小耦合"><a href="#6-硬耦合VS较小耦合" class="headerlink" title="6. 硬耦合VS较小耦合"></a>6. 硬耦合VS较小耦合</h1><p>始终尝试使用微服务架构。单片软件可以比微服务软件运行得更快，但只能在一个服务器的上下文中运行。<br>微服务使您可以不仅在许多服务器上，而且有时甚至在一台机器上（我的意思是过程分发）高效地分发您的软件。</p>
+<h1 id="7-代码审查"><a href="#7-代码审查" class="headerlink" title="7. 代码审查"></a>7. 代码审查</h1><p>代码审查可以是好的，也以是坏的。<br>您可以组织代码审查，只有当您有开发人员了解95％的代码，谁可以监控所有更新，而不浪费很多时间。在其他情况下，这将是只是耗时，每个人都会讨厌这个。</p>
+<p>在这部分有很多问题，所以更深入地描述这一点。</p>
+<p>许多人认为代码审查是一个很好的方式教新手，或者工作在不同部分的代码的队友。但是代码审查的主要目标是保持代码质量，而不是教学。让我们想象你的团队制作代码用于控制核反应堆或太空火箭发动机的冷却系统。你在非常硬的逻辑中犯了巨大的错误，然后你给这个代码审查新的家伙。你怎么认为会发生意外的风险？ - 我的练习率超过70％。</p>
+<p>良好的团队是每个人都有自己的角色，负责确切的工作。如果有人想要理解另一段代码，那么他去一个负责任去问他。你不可能知道一切，更好的优秀的理解小块代码而不是理解所有。</p>
+<h1 id="8-重构没啥用"><a href="#8-重构没啥用" class="headerlink" title="8. 重构没啥用"></a>8. 重构没啥用</h1><p>在我的职业生涯中，我听到很多次“不要担心，我们以后会重构它”。在未来，这会导致大的技术债务或从头开始删除所有的代码和写作。</p>
+<p>所以，不要得到一个债务，除非你有钱从头开发你的软件几次。</p>
+<h1 id="9-当你累了或在一个坏的心情不要写代码。"><a href="#9-当你累了或在一个坏的心情不要写代码。" class="headerlink" title="9. 当你累了或在一个坏的心情不要写代码。"></a>9. 当你累了或在一个坏的心情不要写代码。</h1><p>当开发人员厌倦时，他们正在制造2到5倍或者更多的bug。所以工作更多是非常糟糕的做法。这就是为什么越来越多的国家思考6小时工作日，其中一些已经有了。精神工作不同于使用你的二头肌。</p>
+<h1 id="10-不要一次写全部-使开发迭代"><a href="#10-不要一次写全部-使开发迭代" class="headerlink" title="10. 不要一次写全部 - 使开发迭代"></a>10. 不要一次写全部 - 使开发迭代</h1><p>在编写代码分析和预测之前，您的客户/客户真正需要什么，然后选择您可以在短期内以高质量开发的MVF（最有价值的功能）。使用这样的迭代来部署质量更新，而不是腰部时间和资源对不合理的愿望和牺牲与质量。</p>
+<h1 id="11-自动化VS手动"><a href="#11-自动化VS手动" class="headerlink" title="11. 自动化VS手动"></a>11. 自动化VS手动</h1><p>自动化是长期的100％成功。所以如果你有资源自动化的东西，现在应该做。你可能认为“只需要5分钟，为什么我应该自动化？但让我计算这个。例如，它是5个开发人员的日常任务。 5分钟<em> 5天</em> 21天* 12个月= 6 300分钟= 105小时= 13.125天〜5250 $。<br>如果你有40 000名员工，这将需要多少费用？</p>
+<h1 id="12-出去浪，学习新爱好"><a href="#12-出去浪，学习新爱好" class="headerlink" title="12. 出去浪，学习新爱好"></a>12. 出去浪，学习新爱好</h1><p>差异化工作可以增加心智能力，并提供新想法。所以，暂停现在的工作，出去呼吸一下新鲜空气，与朋友交谈，弹吉他等。<br><code>ps: 莫春者，春服既成，冠者五六人，童子六七人，浴乎沂，风乎舞雩，咏而归。------《论语.先进》。</code></p>
+<p><img src="https://wdd.js.org/img/images/20180207140423_Iku4es_Screenshot.jpeg" alt=""></p>
+<h1 id="13-在空闲时间学习新事物"><a href="#13-在空闲时间学习新事物" class="headerlink" title="13. 在空闲时间学习新事物"></a>13. 在空闲时间学习新事物</h1><p><code>当人们停止学习时，他们开始退化。</code></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>请我喝杯茶</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="王端端 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="王端端 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    王端端
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文标题：</strong>
+    <a href="https://wdd.js.org/few-simple-rules-for-good-coding-my-15-years-experience.html" title="【译】13简单的优秀编码规则（从我15年的经验）">【译】13简单的优秀编码规则（从我15年的经验）</a>
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://wdd.js.org/few-simple-rules-for-good-coding-my-15-years-experience.html" title="【译】13简单的优秀编码规则（从我15年的经验）">https://wdd.js.org/few-simple-rules-for-good-coding-my-15-years-experience.html</a>
+  </li>
+  <li class="post-copyright-date">
+      <strong>发布时间：</strong>2018年2月7日 - 14时02分
+  </li>  
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/sort-for-sf.html" rel="next" title="15行代码为segmentfault增加头条文章排序功能">
+                <i class="fa fa-chevron-left"></i> 15行代码为segmentfault增加头条文章排序功能
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/top-11-javascript-libraries-are-worth-your-attention.html" rel="prev" title="12个值得关注的顶级JS库">
+                12个值得关注的顶级JS库 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpeg"
+                alt="王端端" />
+            
+              <p class="site-author-name" itemprop="name">王端端</p>
+              <p class="site-description motion-element" itemprop="description">前端，后端，炒菜，摄影，读书，收集工具</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">193</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">178</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/wangduanduan" rel="external nofollow" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1779706607@qq.com" rel="external nofollow" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://segmentfault.com/u/wangdd" rel="external nofollow" target="_blank" title="segmentfault">
+                      
+                        <i class="fa fa-fw fa-globe"></i>segmentfault</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-优化VS可读性-去他妈的优化"><span class="nav-text">1. 优化VS可读性 去他妈的优化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-架构第一"><span class="nav-text">2. 架构第一</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-测试覆盖率"><span class="nav-text">3. 测试覆盖率</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-保持简单，极度简单"><span class="nav-text">4. 保持简单，极度简单</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-注释"><span class="nav-text">5. 注释</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-硬耦合VS较小耦合"><span class="nav-text">6. 硬耦合VS较小耦合</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-代码审查"><span class="nav-text">7. 代码审查</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-重构没啥用"><span class="nav-text">8. 重构没啥用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-当你累了或在一个坏的心情不要写代码。"><span class="nav-text">9. 当你累了或在一个坏的心情不要写代码。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-不要一次写全部-使开发迭代"><span class="nav-text">10. 不要一次写全部 - 使开发迭代</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-自动化VS手动"><span class="nav-text">11. 自动化VS手动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-出去浪，学习新爱好"><span class="nav-text">12. 出去浪，学习新爱好</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-在空闲时间学习新事物"><span class="nav-text">13. 在空闲时间学习新事物</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王端端</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" rel="external nofollow" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

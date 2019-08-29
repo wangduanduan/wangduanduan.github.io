@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="google-site-verification" content="We4cS1h0IumMJjPPUa-q5_PDG5BHKCm8e5htMVa6m0w" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="docker,jenkins," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="洞香春" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="dockerThe docker variable offers convenient access to Docker-related functions from a Pipeline script. Methods needing a slave will implicitly run a node {…} block if you have not wrapped them in one.">
+<meta name="keywords" content="docker,jenkins">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jenkins 全局变量参考">
+<meta property="og:url" content="https://wdd.js.org/jenkins-global-variable-reference.html">
+<meta property="og:site_name" content="洞香春">
+<meta property="og:description" content="dockerThe docker variable offers convenient access to Docker-related functions from a Pipeline script. Methods needing a slave will implicitly run a node {…} block if you have not wrapped them in one.">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-29T02:42:09.959Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jenkins 全局变量参考">
+<meta name="twitter:description" content="dockerThe docker variable offers convenient access to Docker-related functions from a Pipeline script. Methods needing a slave will implicitly run a node {…} block if you have not wrapped them in one.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://wdd.js.org/jenkins-global-variable-reference.html"/>
+
+
+
+
+
+  <title>Jenkins 全局变量参考 | 洞香春</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?32b66b12a233c7f47949966dc2e2cd97";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <!-- Google AdSense start -->
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-7799082458078979",
+    enable_page_level_ads: true
+  });
+</script>
+  <!-- Google AdSense end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">洞香春</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">洞香春以名士荟萃、谈论国事、交流思想而著称于当时列国 --《大秦帝国》</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wdd.js.org/jenkins-global-variable-reference.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王端端">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="洞香春">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Jenkins 全局变量参考</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-28T11:59:21+00:00">
+                2018-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,755 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h1><p>The docker variable offers convenient access to Docker-related functions from a Pipeline script.</p>
+<p>Methods needing a slave will implicitly run a node {…} block if you have not wrapped them in one. It is a good idea to enclose a block of steps which should all run on the same node in such a block yourself. (If using a Swarm server, or any other specific Docker server, this probably does not matter, but if you are using the default server on localhost it likely will.)</p>
+<p>Some methods return instances of auxiliary classes which serve as holders for an ID and which have their own methods and properties. Methods taking a body return any value returned by the body itself. Some method parameters are optional and are enclosed with []. Reference:</p>
+<ul>
+<li><p><strong>withRegistry(url[, credentialsId]) {…}</strong><br>Specifies a registry URL such as <a href="https://docker.mycorp.com/" target="_blank" rel="noopener">https://docker.mycorp.com/</a>, plus an optional credentials ID to connect to it.</p>
+</li>
+<li><p><strong>withServer(uri[, credentialsId]) {…}</strong><br>Specifies a server URI such as tcp://swarm.mycorp.com:2376, plus an optional credentials ID to connect to it.</p>
+</li>
+<li><p><strong>withTool(toolName) {…}</strong><br>Specifies the name of a Docker installation to use, if any are defined in Jenkins global configuration. If unspecified, docker is assumed to be in the $PATH of the slave agent.</p>
+</li>
+<li><p><strong>image(id)</strong><br>Creates an Image object with a specified name or ID. See below.</p>
+</li>
+<li><p><strong>build(image[, args])</strong><br>Runs docker build to create and tag the specified image from a Dockerfile in the current directory. Additional args may be added, such as ‘-f Dockerfile.other –pull –build-arg http_proxy=<a href="http://192.168.1.1:3128" target="_blank" rel="noopener">http://192.168.1.1:3128</a> .’. Like docker build, args must end with the build context. Returns the resulting Image object. Records a FROM fingerprint in the build.</p>
+</li>
+<li><p><strong>Image.id</strong><br>The image name with optional tag (mycorp/myapp, mycorp/myapp:latest) or ID (hexadecimal hash).</p>
+</li>
+<li><p><strong>Image.run([args, command])</strong><br>Uses docker run to run the image, and returns a Container which you could stop later. Additional args may be added, such as ‘-p 8080:8080 –memory-swap=-1’. Optional command is equivalent to Docker command specified after the image. Records a run fingerprint in the build.</p>
+</li>
+<li><p><strong>Image.withRun[(args[, command])] {…}</strong><br>Like run but stops the container as soon as its body exits, so you do not need a try-finally block.</p>
+</li>
+<li><p><strong>Image.inside[(args)] {…}</strong><br>Like withRun this starts a container for the duration of the body, but all external commands (sh) launched by the body run inside the container rather than on the host. These commands run in the same working directory (normally a slave workspace), which means that the Docker server must be on localhost.</p>
+</li>
+<li><p><strong>Image.tag([tagname])</strong><br>Runs docker tag to record a tag of this image (defaulting to the tag it already has). Will rewrite an existing tag if one exists.</p>
+</li>
+<li><p><strong>Image.push([tagname])</strong><br>Pushes an image to the registry after tagging it as with the tag method. For example, you can use image.push ‘latest’ to publish it as the latest version in its repository.</p>
+</li>
+<li><p><strong>Image.pull()</strong><br>Runs docker pull. Not necessary before run, withRun, or inside.</p>
+</li>
+<li><p><strong>Image.imageName()</strong><br>The id prefixed as needed with registry information, such as docker.mycorp.com/mycorp/myapp. May be used if running your own Docker commands using sh.</p>
+</li>
+<li><p><strong>Container.id</strong><br>Hexadecimal ID of a running container.</p>
+</li>
+<li><p><strong>Container.stop</strong><br>Runs docker stop and docker rm to shut down a container and remove its storage.</p>
+</li>
+<li><p><strong>Container.port(port)</strong><br>Runs docker port on the container to reveal how the port port is mapped on the host.</p>
+</li>
+</ul>
+<h1 id="env"><a href="#env" class="headerlink" title="env"></a>env</h1><p>Environment variables are accessible from Groovy code as env.VARNAME or simply as VARNAME. You can write to such properties as well (only using the env. prefix):<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">env.MYTOOL_VERSION = '<span class="number">1.33</span>'</span><br><span class="line"><span class="keyword">node</span> <span class="title">&#123;</span></span><br><span class="line"><span class="title">  sh</span> '/usr/local/mytool-$MYTOOL_VERSION/bin/<span class="literal">start</span>'</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>These definitions will also be available via the REST API during the build or after its completion, and from upstream Pipeline builds using the build step.</p>
+<p>However any variables set this way are global to the Pipeline build. For variables with node-specific content (such as file paths), you should instead use the withEnv step, to bind the variable only within a node block.</p>
+<p>A set of environment variables are made available to all Jenkins projects, including Pipelines. The following is a general list of variables (by name) that are available; see the notes below the list for Pipeline-specific details.</p>
+<ul>
+<li><strong>BRANCH_NAME</strong><br>For a multibranch project, this will be set to the name of the branch being built, for example in case you wish to deploy to production from master but not from feature branches.</li>
+<li><strong>CHANGE_ID</strong><br>For a multibranch project corresponding to some kind of change request, this will be set to the change ID, such as a pull request number.</li>
+<li><strong>CHANGE_URL</strong><br>For a multibranch project corresponding to some kind of change request, this will be set to the change URL.</li>
+<li><strong>CHANGE_TITLE</strong><br>For a multibranch project corresponding to some kind of change request, this will be set to the title of the change.</li>
+<li><strong>CHANGE_AUTHOR</strong><br>For a multibranch project corresponding to some kind of change request, this will be set to the username of the author of the proposed change.</li>
+<li><strong>CHANGE_AUTHOR_DISPLAY_NAME</strong><br>For a multibranch project corresponding to some kind of change request, this will be set to the human name of the author.</li>
+<li><strong>CHANGE_AUTHOR_EMAIL</strong><br>For a multibranch project corresponding to some kind of change request, this will be set to the email address of the author.</li>
+<li><strong>CHANGE_TARGET</strong><br>For a multibranch project corresponding to some kind of change request, this will be set to the target or base branch to which the change could be merged.</li>
+<li><strong>BUILD_NUMBER</strong><br>The current build number, such as “153”</li>
+<li><strong>BUILD_ID</strong><br>The current build ID, identical to BUILD_NUMBER for builds created in 1.597+, but a YYYY-MM-DD_hh-mm-ss timestamp for older builds</li>
+<li>**BUILD_DISPLAY_NAME<br>The display name of the current build, which is something like “#153” by default.</li>
+<li><strong>JOB_NAME</strong><br>Name of the project of this build, such as “foo” or “foo/bar”. (To strip off folder paths from a Bourne shell script, try: ${JOB_NAME##*/})</li>
+<li><strong>BUILD_TAG</strong><br>String of “jenkins-${JOB_NAME}-${BUILD_NUMBER}”. Convenient to put into a resource file, a jar file, etc for easier identification.</li>
+<li><strong>EXECUTOR_NUMBER</strong><br>The unique number that identifies the current executor (among executors of the same machine) that’s carrying out this build. This is the number you see in the “build executor status”, except that the number starts from 0, not 1.</li>
+<li><strong>NODE_NAME</strong><br>Name of the slave if the build is on a slave, or “master” if run on master</li>
+<li><strong>NODE_LABELS</strong><br>Whitespace-separated list of labels that the node is assigned.</li>
+<li><strong>WORKSPACE</strong><br>The absolute path of the directory assigned to the build as a workspace.</li>
+<li><strong>JENKINS_HOME</strong><br>The absolute path of the directory assigned on the master node for Jenkins to store data.</li>
+<li><strong>JENKINS_URL</strong><br>Full URL of Jenkins, like <a href="http://server:port/jenkins/" target="_blank" rel="noopener">http://server:port/jenkins/</a> (note: only available if Jenkins URL set in system configuration)</li>
+<li><strong>BUILD_URL</strong><br>Full URL of this build, like <a href="http://server:port/jenkins/job/foo/15/" target="_blank" rel="noopener">http://server:port/jenkins/job/foo/15/</a> (Jenkins URL must be set)</li>
+<li><strong>JOB_URL</strong><br>Full URL of this job, like <a href="http://server:port/jenkins/job/foo/" target="_blank" rel="noopener">http://server:port/jenkins/job/foo/</a> (Jenkins URL must be set)<br>The following variables are currently unavailable inside a Pipeline script:</li>
+</ul>
+<p>SCM-specific variables such as SVN_REVISION<br>As an example of loading variable values from Groovy:</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">mail</span> to: <span class="string">'devops<span class="variable">@acme</span>.com'</span>,</span><br><span class="line">    subject: <span class="string">"Job '<span class="variable">$&#123;JOB_NAME&#125;</span>' (<span class="variable">$&#123;BUILD_NUMBER&#125;</span>) is waiting for input"</span>,</span><br><span class="line">    body: <span class="string">"Please go to <span class="variable">$&#123;BUILD_URL&#125;</span> and verify the build"</span></span><br></pre></td></tr></table></figure>
+<h1 id="params"><a href="#params" class="headerlink" title="params"></a>params</h1><p>Exposes all parameters defined in the build as a read-only map with variously typed values. Example:<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">params</span>.BOOLEAN_PARAM_NAME) &#123;doSomething()&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Note for multibranch (Jenkinsfile) usage: the properties step allows you to define job properties, but these take effect when the step is run, whereas build parameter definitions are generally consulted before the build begins. As a convenience, any parameters currently defined in the job which have default values will also be listed in this map. That allows you to write, for example:</p>
+<p>properties([parameters([string(name: ‘BRANCH’, defaultValue: ‘master’)])])<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="string">url:</span> <span class="string">'…'</span>, <span class="string">branch:</span> params.BRANCH</span><br></pre></td></tr></table></figure></p>
+<p>and be assured that the master branch will be checked out even in the initial build of a branch project, or if the previous build did not specify parameters or used a different parameter name.</p>
+<h1 id="currentBuild"><a href="#currentBuild" class="headerlink" title="currentBuild"></a>currentBuild</h1><p>The currentBuild variable may be used to refer to the currently running build. It has the following readable properties:</p>
+<ul>
+<li><strong>number</strong><br>build number (integer)</li>
+<li><strong>result</strong><br>typically SUCCESS, UNSTABLE, or FAILURE (may be null for an ongoing build)</li>
+<li><strong>currentResult</strong><br>typically SUCCESS, UNSTABLE, or FAILURE. Will never be null.</li>
+<li><strong>resultIsBetterOrEqualTo(String)</strong><br>Compares the current build result to the provided result string (SUCCESS, UNSTABLE, or FAILURE) and returns true if the current build result is better than or equal to the provided result.</li>
+<li><strong>resultIsWorseOrEqualTo(String)</strong><br>Compares the current build result to the provided result string (SUCCESS, UNSTABLE, or FAILURE) and returns true if the current build result is worse than or equal to the provided result.</li>
+<li><strong>displayName</strong><br>normally #123 but sometimes set to, e.g., an SCM commit identifier</li>
+<li><strong>description</strong><br>additional information about the build</li>
+<li><strong>id</strong><br>normally number as a string</li>
+<li><strong>timeInMillis</strong><br>time since the epoch when the build was scheduled</li>
+<li><strong>startTimeInMillis</strong><br>time since the epoch when the build started running</li>
+<li><strong>duration</strong><br>duration of the build in milliseconds</li>
+<li><strong>durationString</strong><br>a human-readable representation of the build duration</li>
+<li><strong>previousBuild</strong><br>another similar object, or null</li>
+<li><strong>nextBuild</strong><br>similarly</li>
+<li><strong>absoluteUrl</strong><br>URL of build index page</li>
+<li><strong>buildVariables</strong><br>for a non-Pipeline downstream build, offers access to a map of defined build variables; for a Pipeline downstream build, any variables set globally on env</li>
+<li><strong>changeSets</strong><br>a list of changesets coming from distinct SCM checkouts; each has a kind and is a list of commits; each commit has a commitId, timestamp, msg, author, and affectedFiles each of which has an editType and path; the value will not generally be Serializable so you may only access it inside a method marked @NonCPS</li>
+<li><strong>rawBuild</strong><br>a hudson.model.Run with further APIs, only for trusted libraries or administrator-approved scripts outside the sandbox; the value will not be Serializable so you may only access it inside a method marked @NonCPS<br>Additionally, for this build only (but not for other builds), the following properties are writable:<br>result<br>displayName<br>description</li>
+</ul>
+<h1 id="scm"><a href="#scm" class="headerlink" title="scm"></a>scm</h1><p>Represents the SCM configuration in a multibranch project build. Use checkout scm to check out sources matching Jenkinsfile.<br>You may also use this in a standalone project configured with Pipeline script from SCM, though in that case the checkout will just be of the latest revision in the branch, possibly newer than the revision from which the Pipeline script was loaded.</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a href="https://qa.nuxeo.org/jenkins/pipeline-syntax/globals" target="_blank" rel="noopener">Global Variable Reference</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>请我喝杯茶</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="王端端 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="王端端 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    王端端
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文标题：</strong>
+    <a href="https://wdd.js.org/jenkins-global-variable-reference.html" title="Jenkins 全局变量参考">Jenkins 全局变量参考</a>
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://wdd.js.org/jenkins-global-variable-reference.html" title="Jenkins 全局变量参考">https://wdd.js.org/jenkins-global-variable-reference.html</a>
+  </li>
+  <li class="post-copyright-date">
+      <strong>发布时间：</strong>2018年8月28日 - 11时08分
+  </li>  
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/docker/" rel="tag"># docker</a>
+          
+            <a href="/tags/jenkins/" rel="tag"># jenkins</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/the-hard-way-of-markdown-insert-images.html" rel="next" title="markdown博客图床上传的艰辛之路">
+                <i class="fa fa-chevron-left"></i> markdown博客图床上传的艰辛之路
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/build-use-ci-test.html" rel="prev" title="CI构建测试">
+                CI构建测试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpeg"
+                alt="王端端" />
+            
+              <p class="site-author-name" itemprop="name">王端端</p>
+              <p class="site-description motion-element" itemprop="description">前端，后端，炒菜，摄影，读书，收集工具</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">193</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">178</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/wangduanduan" rel="external nofollow" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1779706607@qq.com" rel="external nofollow" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://segmentfault.com/u/wangdd" rel="external nofollow" target="_blank" title="segmentfault">
+                      
+                        <i class="fa fa-fw fa-globe"></i>segmentfault</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#docker"><span class="nav-text">docker</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#env"><span class="nav-text">env</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#params"><span class="nav-text">params</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#currentBuild"><span class="nav-text">currentBuild</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#scm"><span class="nav-text">scm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王端端</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" rel="external nofollow" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

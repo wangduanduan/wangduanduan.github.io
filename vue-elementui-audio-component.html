@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="google-site-verification" content="We4cS1h0IumMJjPPUa-q5_PDG5BHKCm8e5htMVa6m0w" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="audio,vue,ElementUI," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="洞香春" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="1. 简介1.1. 相关技术 Vue Vue-cli ElementUI yarn (之前我用npm, 并使用cnpm的源，但是用了yarn之后，我发现它比cnpm的速度还快，功能更好，我就毫不犹豫选择yarn了) Audio相关API和事件  1.2. 从本教程你会学到什么？ Vue单文件组件开发知识 Element UI基本用法 Audio原生API及Audio相关事件 音频播放器的基本原理">
+<meta name="keywords" content="audio,vue,ElementUI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue+ElementUI 手把手教你做一个audio组件">
+<meta property="og:url" content="https://wdd.js.org/vue-elementui-audio-component.html">
+<meta property="og:site_name" content="洞香春">
+<meta property="og:description" content="1. 简介1.1. 相关技术 Vue Vue-cli ElementUI yarn (之前我用npm, 并使用cnpm的源，但是用了yarn之后，我发现它比cnpm的速度还快，功能更好，我就毫不犹豫选择yarn了) Audio相关API和事件  1.2. 从本教程你会学到什么？ Vue单文件组件开发知识 Element UI基本用法 Audio原生API及Audio相关事件 音频播放器的基本原理">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://wdd.js.org/img/images/20180209134536_j9HvMg_Screenshot.jpeg">
+<meta property="og:image" content="https://wdd.js.org/img/images/20180209134627_t78Jqf_Screenshot.jpeg">
+<meta property="og:image" content="https://wdd.js.org/img/images/20180209134643_6gU9xo_Screenshot.jpeg">
+<meta property="og:image" content="https://wdd.js.org/img/images/20180209134700_DTqSCu_Screenshot.jpeg">
+<meta property="og:image" content="https://wdd.js.org/img/images/20180209134724_Po5w9m_Screenshot.jpeg">
+<meta property="og:updated_time" content="2019-08-29T02:42:09.963Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue+ElementUI 手把手教你做一个audio组件">
+<meta name="twitter:description" content="1. 简介1.1. 相关技术 Vue Vue-cli ElementUI yarn (之前我用npm, 并使用cnpm的源，但是用了yarn之后，我发现它比cnpm的速度还快，功能更好，我就毫不犹豫选择yarn了) Audio相关API和事件  1.2. 从本教程你会学到什么？ Vue单文件组件开发知识 Element UI基本用法 Audio原生API及Audio相关事件 音频播放器的基本原理">
+<meta name="twitter:image" content="https://wdd.js.org/img/images/20180209134536_j9HvMg_Screenshot.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://wdd.js.org/vue-elementui-audio-component.html"/>
+
+
+
+
+
+  <title>Vue+ElementUI 手把手教你做一个audio组件 | 洞香春</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?32b66b12a233c7f47949966dc2e2cd97";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <!-- Google AdSense start -->
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-7799082458078979",
+    enable_page_level_ads: true
+  });
+</script>
+  <!-- Google AdSense end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">洞香春</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">洞香春以名士荟萃、谈论国事、交流思想而著称于当时列国 --《大秦帝国》</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wdd.js.org/vue-elementui-audio-component.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王端端">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="洞香春">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vue+ElementUI 手把手教你做一个audio组件</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-09T13:44:13+00:00">
+                2018-02-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,764 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  19 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><h2 id="1-1-相关技术"><a href="#1-1-相关技术" class="headerlink" title="1.1. 相关技术"></a>1.1. 相关技术</h2><ul>
+<li><a href="https://cn.vuejs.org/" target="_blank" rel="noopener">Vue</a></li>
+<li><a href="https://github.com/vuejs/vue-cli" target="_blank" rel="noopener">Vue-cli</a></li>
+<li><a href="http://element-cn.eleme.io/#/zh-CN" target="_blank" rel="noopener">ElementUI</a></li>
+<li><a href="https://yarnpkg.com/lang/zh-hans/" target="_blank" rel="noopener">yarn</a> (之前我用npm, 并使用cnpm的源，但是用了yarn之后，我发现它比cnpm的速度还快，功能更好，我就毫不犹豫选择yarn了)</li>
+<li><a href="https://segmentfault.com/a/1190000009769804" target="_blank" rel="noopener">Audio相关API和事件</a></li>
+</ul>
+<h2 id="1-2-从本教程你会学到什么？"><a href="#1-2-从本教程你会学到什么？" class="headerlink" title="1.2. 从本教程你会学到什么？"></a>1.2. 从本教程你会学到什么？</h2><ul>
+<li><code>Vue单文件组件开发知识</code></li>
+<li><code>Element UI基本用法</code></li>
+<li><code>Audio原生API及Audio相关事件</code></li>
+<li><code>音频播放器的基本原理</code></li>
+<li><code>音频的播放暂停控制</code></li>
+<li><code>更新音频显示时间</code></li>
+<li><code>音频进度条控制与跳转</code></li>
+<li><code>音频音量控制</code></li>
+<li><code>音频播放速度控制</code></li>
+<li><code>音频静音控制</code></li>
+<li><code>音频下载控制</code></li>
+<li><code>个性化配置与排他性播放</code></li>
+<li><code>一点点ES6语法</code></li>
+</ul>
+<h1 id="2-学前准备"><a href="#2-学前准备" class="headerlink" title="2. 学前准备"></a>2. 学前准备</h1><p>基本上不需要什么准备，但是如果你能先看一下Aduio相关API和事件将会更好</p>
+<ul>
+<li><a href="https://wdd.js.org/audio-heart-detail.html">Audio: 如果你愿意一层一层剥开我的心</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/Using_HTML5_audio_and_video" target="_blank" rel="noopener">使用 HTML5 音频和视频</a></li>
+</ul>
+<h1 id="3-在线demon"><a href="#3-在线demon" class="headerlink" title="3. 在线demon"></a>3. <a href="https://wangduanduan.github.io/element-audio/" target="_blank" rel="noopener">在线demon</a></h1><p><code>没有在线demo的教程都是耍流氓</code></p>
+<ul>
+<li><a href="https://wangduanduan.github.io/element-audio/" target="_blank" rel="noopener">查看在线demon</a></li>
+<li><a href="https://github.com/wangduanduan/element-audio" target="_blank" rel="noopener">项目地址</a></li>
+</ul>
+<p><img src="https://wdd.js.org/img/images/20180209134536_j9HvMg_Screenshot.jpeg" alt=""></p>
+<h1 id="4-开始编码"><a href="#4-开始编码" class="headerlink" title="4. 开始编码"></a>4. 开始编码</h1><h1 id="5-项目初始化"><a href="#5-项目初始化" class="headerlink" title="5. 项目初始化"></a>5. 项目初始化</h1><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">➜  <span class="keyword">test</span> vue init webpack element-audio</span><br><span class="line"></span><br><span class="line">  A newer <span class="keyword">version</span> of vue-<span class="keyword">cli</span> is available.</span><br><span class="line"></span><br><span class="line">  latest:    2.9.2</span><br><span class="line">  installed: 2.9.1</span><br><span class="line"></span><br><span class="line">? Project name element-audio</span><br><span class="line">? Project description A Vue.js project</span><br><span class="line">? Author wangdd &lt;wangdd@xxxxxx.com&gt;</span><br><span class="line">? Vue build standalone</span><br><span class="line">? Install vue-router? <span class="keyword">No</span></span><br><span class="line">? <span class="keyword">Use</span> ESLint to lint your code? <span class="keyword">No</span></span><br><span class="line">? <span class="keyword">Set</span> up unit tests <span class="keyword">No</span></span><br><span class="line">? Setup e2e tests with Nightwatch? <span class="keyword">No</span></span><br><span class="line">? Should we <span class="keyword">run</span> `npm install` <span class="keyword">for</span> you after the project has been created? (recommended) npm</span><br><span class="line"></span><br><span class="line">➜  <span class="keyword">test</span> <span class="keyword">cd</span> element-audio </span><br><span class="line">➜  element-audio npm <span class="keyword">run</span> dev</span><br></pre></td></tr></table></figure>
+<p>浏览器打开 <code>http://localhost:8080/</code>, 看到如下界面，说明项目初始化成功</p>
+<p><img src="https://wdd.js.org/img/images/20180209134627_t78Jqf_Screenshot.jpeg" alt=""></p>
+<h2 id="5-1-安装ElementUI并插入audio标签"><a href="#5-1-安装ElementUI并插入audio标签" class="headerlink" title="5.1. 安装ElementUI并插入audio标签"></a>5.1. 安装ElementUI并插入audio标签</h2><h3 id="5-1-1-安装ElementUI"><a href="#5-1-1-安装ElementUI" class="headerlink" title="5.1.1. 安装ElementUI"></a>5.1.1. <code>安装ElementUI</code></h3><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn <span class="built_in">add</span> <span class="keyword">element</span>-ui<span class="comment"> // or npm i element-ui -S</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-1-2-在src-main-js中引入Element-UI"><a href="#5-1-2-在src-main-js中引入Element-UI" class="headerlink" title="5.1.2. 在src/main.js中引入Element UI"></a>5.1.2. 在<code>src/main.js</code>中引入Element UI</h3><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// filename: src/main.js</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> ElementUI <span class="keyword">from</span> <span class="string">'element-ui'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'element-ui/lib/theme-chalk/index.css'</span></span><br><span class="line"></span><br><span class="line">Vue.config.productionTip = <span class="keyword">false</span></span><br><span class="line"></span><br><span class="line">Vue.use(ElementUI)</span><br><span class="line"></span><br><span class="line"><span class="comment">/* eslint-disable no-new */</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  template: <span class="string">'&lt;App/&gt;'</span>,</span><br><span class="line">  components: &#123; App &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="5-1-3-创建src-components-VueAudio-vue"><a href="#5-1-3-创建src-components-VueAudio-vue" class="headerlink" title="5.1.3. 创建src/components/VueAudio.vue"></a>5.1.3. 创建<code>src/components/VueAudio.vue</code></h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// filename: src/components/VueAudio.vue</span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">audio</span> <span class="attr">src</span>=<span class="string">"http://devtest.qiniudn.com/secret base~.mp3"</span> <span class="attr">controls</span>=<span class="string">"controls"</span>&gt;</span><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="undefined">  data () &#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;&#125;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-1-4-修改src-App-vue-并引入VueAudio-vue组件"><a href="#5-1-4-修改src-App-vue-并引入VueAudio-vue组件" class="headerlink" title="5.1.4. 修改src/App.vue, 并引入VueAudio.vue组件"></a>5.1.4. 修改<code>src/App.vue</code>, 并引入<code>VueAudio.vue</code>组件</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// filename: src/App.vue</span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">VueAudio</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> VueAudio <span class="keyword">from</span> <span class="string">'./components/VueAudio'</span></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="actionscript">  name: <span class="string">'app'</span>,</span></span><br><span class="line"><span class="undefined">  components: &#123;</span></span><br><span class="line"><span class="undefined">    VueAudio</span></span><br><span class="line"><span class="undefined">  &#125;,</span></span><br><span class="line"><span class="undefined">  data () &#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;&#125;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>打开：<a href="http://localhost:8080/，你应该能看到如下效果，说明引入成功，你可以点击播放按钮看看，音频是否能够播放" target="_blank" rel="noopener">http://localhost:8080/，你应该能看到如下效果，说明引入成功，你可以点击播放按钮看看，音频是否能够播放</a><br><img src="https://wdd.js.org/img/images/20180209134643_6gU9xo_Screenshot.jpeg" alt=""></p>
+<h2 id="5-2-音频的播放暂停控制"><a href="#5-2-音频的播放暂停控制" class="headerlink" title="5.2. 音频的播放暂停控制"></a>5.2. 音频的播放暂停控制</h2><p>我们需要用一个按钮去控制音频的播放与暂停，这里调用了audio的两个api,以及两个事件</p>
+<ul>
+<li>audio.play()</li>
+<li>audio.pause()</li>
+<li>play事件</li>
+<li>pause事件</li>
+</ul>
+<p>修改<code>src/components/VueAudio.vue</code><br><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">// filename: src/components/VueAudio.vue</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!-- 此处的ref属性，可以很方便的在vue组件中通过 this.$refs.audio获取该dom元素 --&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">audio</span> <span class="attr">ref</span>=<span class="string">"audio"</span> </span></span></span><br><span class="line"><span class="xml">    @pause="onPause"</span></span><br><span class="line"><span class="xml">    @play="onPlay"</span></span><br><span class="line"><span class="xml">    src="http://devtest.qiniudn.com/secret base~.mp3" controls="controls"&gt;<span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!-- 音频播放控件 --&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">type</span>=<span class="string">"text"</span> @<span class="attr">click</span>=<span class="string">"startPlayOrPause"</span>&gt;</span></span><span class="template-variable">&#123;&#123;audio.playing | transPlayPause&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span></span><br><span class="line"><span class="xml">export default &#123;</span></span><br><span class="line"><span class="xml">  data () &#123;</span></span><br><span class="line"><span class="xml">    return &#123;</span></span><br><span class="line"><span class="xml">      audio: &#123;</span></span><br><span class="line"><span class="xml">        // 该字段是音频是否处于播放状态的属性</span></span><br><span class="line"><span class="xml">        playing: false</span></span><br><span class="line"><span class="xml">      &#125;</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;,</span></span><br><span class="line"><span class="xml">  methods: &#123;</span></span><br><span class="line"><span class="xml">    // 控制音频的播放与暂停</span></span><br><span class="line"><span class="xml">    startPlayOrPause () &#123;</span></span><br><span class="line"><span class="xml">      return this.audio.playing ? this.pause() : this.play()</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    // 播放音频</span></span><br><span class="line"><span class="xml">    play () &#123;</span></span><br><span class="line"><span class="xml">      this.$refs.audio.play()</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    // 暂停音频</span></span><br><span class="line"><span class="xml">    pause () &#123;</span></span><br><span class="line"><span class="xml">      this.$refs.audio.pause()</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    // 当音频播放</span></span><br><span class="line"><span class="xml">    onPlay () &#123;</span></span><br><span class="line"><span class="xml">      this.audio.playing = true</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    // 当音频暂停</span></span><br><span class="line"><span class="xml">    onPause () &#123;</span></span><br><span class="line"><span class="xml">      this.audio.playing = false</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;,</span></span><br><span class="line"><span class="xml">  filters: &#123;</span></span><br><span class="line"><span class="xml">    // 使用组件过滤器来动态改变按钮的显示</span></span><br><span class="line"><span class="xml">    transPlayPause(value) &#123;</span></span><br><span class="line"><span class="xml">      return value ? '暂停' : '播放'</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://wdd.js.org/img/images/20180209134700_DTqSCu_Screenshot.jpeg" alt=""></p>
+<h2 id="5-3-音频显示时间"><a href="#5-3-音频显示时间" class="headerlink" title="5.3. 音频显示时间"></a>5.3. 音频显示时间</h2><p>音频的时间显示主要有两部分，音频的总时长和当前播放时间。可以从两个事件中获取</p>
+<ul>
+<li><code>loadedmetadata</code>:代表音频的元数据已经被加载完成，可以从中获取音频总时长</li>
+<li><code>timeupdate</code>: 当前播放位置作为正常播放的一部分而改变，或者以特别有趣的方式，例如不连续地改变，可以从该事件中获取音频的当前播放时间，<code>该事件在播放过程中会不断被触发</code></li>
+</ul>
+<p><code>要点代码</code>：整数格式化成时:分:秒<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function realFormatSecond(<span class="built_in">second</span>) &#123;</span><br><span class="line">  var secondType = typeof <span class="built_in">second</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (secondType === <span class="string">'number'</span> || secondType === <span class="string">'string'</span>) &#123;</span><br><span class="line">    <span class="built_in">second</span> = parseInt(<span class="built_in">second</span>)</span><br><span class="line"></span><br><span class="line">    var hours = Math.<span class="built_in">floor</span>(<span class="built_in">second</span> / <span class="number">3600</span>)</span><br><span class="line">    <span class="built_in">second</span> = <span class="built_in">second</span> - hours * <span class="number">3600</span></span><br><span class="line">    var mimute = Math.<span class="built_in">floor</span>(<span class="built_in">second</span> / <span class="number">60</span>)</span><br><span class="line">    <span class="built_in">second</span> = <span class="built_in">second</span> - mimute * <span class="number">60</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> hours + <span class="string">':'</span> + (<span class="string">'0'</span> + mimute).slice(<span class="number">-2</span>) + <span class="string">':'</span> + (<span class="string">'0'</span> + <span class="built_in">second</span>).slice(<span class="number">-2</span>)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'0:00:00'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>要点代码</code>： 两个事件的处理<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 当timeupdate事件大概每秒一次，用来更新音频流的当前播放时间</span></span><br><span class="line"><span class="function"><span class="title">onTimeupdate</span><span class="params">(res)</span></span> &#123;</span><br><span class="line">      console.log(<span class="string">'timeupdate'</span>)</span><br><span class="line">      console.log(res)</span><br><span class="line">      this<span class="selector-class">.audio</span><span class="selector-class">.currentTime</span> = res<span class="selector-class">.target</span><span class="selector-class">.currentTime</span></span><br><span class="line">    &#125;,</span><br><span class="line"><span class="comment">// 当加载语音流元数据完成后，会触发该事件的回调函数</span></span><br><span class="line"><span class="comment">// 语音元数据主要是语音的长度之类的数据</span></span><br><span class="line"><span class="function"><span class="title">onLoadedmetadata</span><span class="params">(res)</span></span> &#123;</span><br><span class="line">  console.log(<span class="string">'loadedmetadata'</span>)</span><br><span class="line">  console.log(res)</span><br><span class="line">  this<span class="selector-class">.audio</span><span class="selector-class">.maxTime</span> = parseInt(res<span class="selector-class">.target</span><span class="selector-class">.duration</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>完整代码</code><br><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!-- 此处的ref属性，可以很方便的在vue组件中通过 this.$refs.audio获取该dom元素 --&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">audio</span> <span class="attr">ref</span>=<span class="string">"audio"</span> </span></span></span><br><span class="line"><span class="xml">    @pause="onPause"</span></span><br><span class="line"><span class="xml">    @play="onPlay"</span></span><br><span class="line"><span class="xml">    @timeupdate="onTimeupdate" </span></span><br><span class="line"><span class="xml">    @loadedmetadata="onLoadedmetadata"</span></span><br><span class="line"><span class="xml">    src="http://devtest.qiniudn.com/secret base~.mp3" controls="controls"&gt;<span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!-- 音频播放控件 --&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">type</span>=<span class="string">"text"</span> @<span class="attr">click</span>=<span class="string">"startPlayOrPause"</span>&gt;</span></span><span class="template-variable">&#123;&#123;audio.playing | transPlayPause&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">el-tag</span> <span class="attr">type</span>=<span class="string">"info"</span>&gt;</span></span><span class="template-variable">&#123;&#123; audio.currentTime | formatSecond&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">el-tag</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">el-tag</span> <span class="attr">type</span>=<span class="string">"info"</span>&gt;</span></span><span class="template-variable">&#123;&#123; audio.maxTime | formatSecond&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">el-tag</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">// 将整数转换成 时：分：秒的格式</span></span><br><span class="line"><span class="xml">function realFormatSecond(second) &#123;</span></span><br><span class="line"><span class="xml">  var secondType = typeof second</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">  if (secondType === 'number' || secondType === 'string') &#123;</span></span><br><span class="line"><span class="xml">    second = parseInt(second)</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">    var hours = Math.floor(second / 3600)</span></span><br><span class="line"><span class="xml">    second = second - hours * 3600</span></span><br><span class="line"><span class="xml">    var mimute = Math.floor(second / 60)</span></span><br><span class="line"><span class="xml">    second = second - mimute * 60</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">    return hours + ':' + ('0' + mimute).slice(-2) + ':' + ('0' + second).slice(-2)</span></span><br><span class="line"><span class="xml">  &#125; else &#123;</span></span><br><span class="line"><span class="xml">    return '0:00:00'</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">export default &#123;</span></span><br><span class="line"><span class="xml">  data () &#123;</span></span><br><span class="line"><span class="xml">    return &#123;</span></span><br><span class="line"><span class="xml">      audio: &#123;</span></span><br><span class="line"><span class="xml">        // 该字段是音频是否处于播放状态的属性</span></span><br><span class="line"><span class="xml">        playing: false,</span></span><br><span class="line"><span class="xml">        // 音频当前播放时长</span></span><br><span class="line"><span class="xml">        currentTime: 0,</span></span><br><span class="line"><span class="xml">        // 音频最大播放时长</span></span><br><span class="line"><span class="xml">        maxTime: 0</span></span><br><span class="line"><span class="xml">      &#125;</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;,</span></span><br><span class="line"><span class="xml">  methods: &#123;</span></span><br><span class="line"><span class="xml">    // 控制音频的播放与暂停</span></span><br><span class="line"><span class="xml">    startPlayOrPause () &#123;</span></span><br><span class="line"><span class="xml">      return this.audio.playing ? this.pause() : this.play()</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    // 播放音频</span></span><br><span class="line"><span class="xml">    play () &#123;</span></span><br><span class="line"><span class="xml">      this.$refs.audio.play()</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    // 暂停音频</span></span><br><span class="line"><span class="xml">    pause () &#123;</span></span><br><span class="line"><span class="xml">      this.$refs.audio.pause()</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    // 当音频播放</span></span><br><span class="line"><span class="xml">    onPlay () &#123;</span></span><br><span class="line"><span class="xml">      this.audio.playing = true</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    // 当音频暂停</span></span><br><span class="line"><span class="xml">    onPause () &#123;</span></span><br><span class="line"><span class="xml">      this.audio.playing = false</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    // 当timeupdate事件大概每秒一次，用来更新音频流的当前播放时间</span></span><br><span class="line"><span class="xml">    onTimeupdate(res) &#123;</span></span><br><span class="line"><span class="xml">      console.log('timeupdate')</span></span><br><span class="line"><span class="xml">      console.log(res)</span></span><br><span class="line"><span class="xml">      this.audio.currentTime = res.target.currentTime</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    // 当加载语音流元数据完成后，会触发该事件的回调函数</span></span><br><span class="line"><span class="xml">    // 语音元数据主要是语音的长度之类的数据</span></span><br><span class="line"><span class="xml">    onLoadedmetadata(res) &#123;</span></span><br><span class="line"><span class="xml">      console.log('loadedmetadata')</span></span><br><span class="line"><span class="xml">      console.log(res)</span></span><br><span class="line"><span class="xml">      this.audio.maxTime = parseInt(res.target.duration)</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;,</span></span><br><span class="line"><span class="xml">  filters: &#123;</span></span><br><span class="line"><span class="xml">    // 使用组件过滤器来动态改变按钮的显示</span></span><br><span class="line"><span class="xml">    transPlayPause(value) &#123;</span></span><br><span class="line"><span class="xml">      return value ? '暂停' : '播放'</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    // 将整数转化成时分秒</span></span><br><span class="line"><span class="xml">    formatSecond(second = 0) &#123;</span></span><br><span class="line"><span class="xml">      return realFormatSecond(second)</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>打开浏览器可以看到，当音频播放时，当前时间也在改变。<br><img src="https://wdd.js.org/img/images/20180209134724_Po5w9m_Screenshot.jpeg" alt=""></p>
+<h2 id="5-4-音频进度条控制"><a href="#5-4-音频进度条控制" class="headerlink" title="5.4. 音频进度条控制"></a>5.4. 音频进度条控制</h2><p>进度条主要有两个控制，改变进度的原理是：改变<code>audio.currentTime</code>属性值</p>
+<ul>
+<li>音频播放后，当前时间改变，进度条就要随之改变</li>
+<li>拖动进度条，可以改变音频的当前时间</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 进度条ui</span></span><br><span class="line">&lt;el-slider v-model=<span class="string">"sliderTime"</span> :format-tooltip=<span class="string">"formatProcessToolTip"</span> <span class="meta">@change</span>=<span class="string">"changeCurrentTime"</span> <span class="class"><span class="keyword">class</span>="<span class="title">slider</span>"&gt;&lt;<span class="type">/el-slider</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 拖动进度条，改变当前时间，index是进度条改变时的回调函数的参数0-100之间，需要换算成实际时间</span></span><br><span class="line">changeCurrentTime(index) &#123;</span><br><span class="line">  <span class="keyword">this</span>.$refs.audio.currentTime = parseInt(index / <span class="number">100</span> * <span class="keyword">this</span>.audio.maxTime)</span><br><span class="line">&#125;,</span><br><span class="line"><span class="comment">// 当音频当前时间改变后，进度条也要改变</span></span><br><span class="line">onTimeupdate(res) &#123;</span><br><span class="line">  console.log(<span class="string">'timeupdate'</span>)</span><br><span class="line">  console.log(res)</span><br><span class="line">  <span class="keyword">this</span>.audio.currentTime = res.target.currentTime</span><br><span class="line">  <span class="keyword">this</span>.sliderTime = parseInt(<span class="keyword">this</span>.audio.currentTime / <span class="keyword">this</span>.audio.maxTime * <span class="number">100</span>)</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line"><span class="comment">// 进度条格式化toolTip</span></span><br><span class="line">formatProcessToolTip(index = <span class="number">0</span>) &#123;</span><br><span class="line">  index = parseInt(<span class="keyword">this</span>.audio.maxTime / <span class="number">100</span> * index)</span><br><span class="line">  <span class="keyword">return</span> <span class="string">'进度条: '</span> + realFormatSecond(index)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h2 id="5-5-音频音量控制"><a href="#5-5-音频音量控制" class="headerlink" title="5.5. 音频音量控制"></a>5.5. 音频音量控制</h2><p>音频的音量控制和进度控制差不多，也是通过拖动滑动条，去修改<code>aduio.volume</code>属性值，此处不再啰嗦</p>
+<h2 id="5-6-音频播放速度控制"><a href="#5-6-音频播放速度控制" class="headerlink" title="5.6. 音频播放速度控制"></a>5.6. 音频播放速度控制</h2><p>音频播放速度控制和进度控制差不多，也是点击按钮，去修改<code>aduio.playbackRate</code>属性值，该属性代表音量的大小，取值范围是0 - 1，用滑动条的时候，也是需要换算一下值，此处不再啰嗦</p>
+<h2 id="5-7-音频静音控制"><a href="#5-7-音频静音控制" class="headerlink" title="5.7. 音频静音控制"></a>5.7. 音频静音控制</h2><p>静音的控制是点击按钮，去修改<code>aduio.muted</code>属性，该属性有两个值: true(静音)，false(不静音)。 注意，静音的时候，音频的进度条还是会继续往前走的。</p>
+<h2 id="5-8-音频下载控制"><a href="#5-8-音频下载控制" class="headerlink" title="5.8. 音频下载控制"></a>5.8. 音频下载控制</h2><p>音频下载是一个a链接，记得加上<code>download</code>属性，不然浏览器会在新标签打开音频，而不是下载音频<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">:href</span>=<span class="string">"url"</span> <span class="attr">v-show</span>=<span class="string">"!controlList.noDownload"</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">class</span>=<span class="string">"download"</span> <span class="attr">download</span>&gt;</span>下载<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="5-9-个性化配置"><a href="#5-9-个性化配置" class="headerlink" title="5.9. 个性化配置"></a>5.9. 个性化配置</h2><p>音频的个性化配置有很多，大家可以自己扩展，通过父组件传递响应的值，可以做到个性化设置。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> controlList: &#123;</span><br><span class="line">  <span class="comment">// 不显示下载</span></span><br><span class="line">  noDownload: <span class="literal">false</span>,</span><br><span class="line">  <span class="comment">// 不显示静音</span></span><br><span class="line">  noMuted: <span class="literal">false</span>,</span><br><span class="line">  <span class="comment">// 不显示音量条</span></span><br><span class="line">  noVolume: <span class="literal">false</span>,</span><br><span class="line">  <span class="comment">// 不显示进度条</span></span><br><span class="line">  noProcess: <span class="literal">false</span>,</span><br><span class="line">  <span class="comment">// 只能播放一个</span></span><br><span class="line">  onlyOnePlaying: <span class="literal">false</span>,</span><br><span class="line">  <span class="comment">// 不要快进按钮</span></span><br><span class="line">  noSpeed: <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setControlList () &#123;</span><br><span class="line">    <span class="keyword">let</span> controlList = <span class="keyword">this</span>.theControlList.split(<span class="string">' '</span>)</span><br><span class="line">    controlList.forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.controlList[item] !== <span class="literal">undefined</span>)&#123;</span><br><span class="line">        <span class="keyword">this</span>.controlList[item] = <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>例如父组件这样<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"item in audios"</span> <span class="attr">:key</span>=<span class="string">"item.url"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">VueAudio</span> <span class="attr">:theUrl</span>=<span class="string">"item.url"</span> <span class="attr">:theControlList</span>=<span class="string">"item.controlList"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> VueAudio <span class="keyword">from</span> <span class="string">'./components/VueAudio'</span></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="actionscript">  name: <span class="string">'app'</span>,</span></span><br><span class="line"><span class="undefined">  components: &#123;</span></span><br><span class="line"><span class="undefined">    VueAudio</span></span><br><span class="line"><span class="undefined">  &#125;,</span></span><br><span class="line"><span class="undefined">  data () &#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="undefined">      audios: [</span></span><br><span class="line"><span class="undefined">        &#123;</span></span><br><span class="line"><span class="actionscript">          url: <span class="string">'http://devtest.qiniudn.com/secret base~.mp3'</span>,</span></span><br><span class="line"><span class="actionscript">          controlList: <span class="string">'onlyOnePlaying'</span></span></span><br><span class="line"><span class="undefined">        &#125;,</span></span><br><span class="line"><span class="undefined">        &#123;</span></span><br><span class="line"><span class="actionscript">          url: <span class="string">'http://devtest.qiniudn.com/回レ！雪月花.mp3'</span>,</span></span><br><span class="line"><span class="actionscript">          controlList: <span class="string">'noDownload noMuted onlyOnePlaying'</span></span></span><br><span class="line"><span class="undefined">        &#125;,&#123;</span></span><br><span class="line"><span class="actionscript">          url: <span class="string">'http://devtest.qiniudn.com/あっちゅ～ま青春!.mp3'</span>,</span></span><br><span class="line"><span class="actionscript">          controlList: <span class="string">'noDownload noVolume noMuted onlyOnePlaying'</span></span></span><br><span class="line"><span class="undefined">        &#125;,&#123;</span></span><br><span class="line"><span class="actionscript">          url: <span class="string">'http://devtest.qiniudn.com/Preparation.mp3'</span>,</span></span><br><span class="line"><span class="actionscript">          controlList: <span class="string">'noDownload noSpeed onlyOnePlaying'</span></span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">      ]</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="5-10-一点点ES6语法"><a href="#5-10-一点点ES6语法" class="headerlink" title="5.10. 一点点ES6语法"></a>5.10. 一点点ES6语法</h2><p>大多数时候，我们希望页面上播放一个音频时，其他音频可以暂停。<br><code>[...audios]</code>可以把一个类数组转化成数组，这个是我常用的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">onPlay (res) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res)</span><br><span class="line">    <span class="keyword">this</span>.audio.playing = <span class="literal">true</span></span><br><span class="line">    <span class="keyword">this</span>.audio.loading = <span class="literal">false</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(!<span class="keyword">this</span>.controlList.onlyOnePlaying)&#123;</span><br><span class="line">      <span class="keyword">return</span> </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> target = res.target</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> audios = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'audio'</span>);</span><br><span class="line">    <span class="comment">// 如果设置了排他性，当前音频播放是，其他音频都要暂停</span></span><br><span class="line">    [...audios].forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span>(item !== target)&#123;</span><br><span class="line">        item.pause()</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h2 id="5-11-完成后的文件"><a href="#5-11-完成后的文件" class="headerlink" title="5.11. 完成后的文件"></a>5.11. 完成后的文件</h2><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">//filename: VueAudio.vue</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"di main-wrap"</span> <span class="attr">v-loading</span>=<span class="string">"audio.waiting"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!-- 这里设置了ref属性后，在vue组件中，就可以用this.$refs.audio来访问该dom元素 --&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">audio</span> <span class="attr">ref</span>=<span class="string">"audio"</span> <span class="attr">class</span>=<span class="string">"dn"</span> </span></span></span><br><span class="line"><span class="xml">    :src="url" :preload="audio.preload"</span></span><br><span class="line"><span class="xml">    @play="onPlay" </span></span><br><span class="line"><span class="xml">    @error="onError"</span></span><br><span class="line"><span class="xml">    @waiting="onWaiting"</span></span><br><span class="line"><span class="xml">    @pause="onPause" </span></span><br><span class="line"><span class="xml">    @timeupdate="onTimeupdate" </span></span><br><span class="line"><span class="xml">    @loadedmetadata="onLoadedmetadata"</span></span><br><span class="line"><span class="xml">    &gt;<span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">type</span>=<span class="string">"text"</span> @<span class="attr">click</span>=<span class="string">"startPlayOrPause"</span>&gt;</span></span><span class="template-variable">&#123;&#123;audio.playing | transPlayPause&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">v-show</span>=<span class="string">"!controlList.noSpeed"</span> <span class="attr">type</span>=<span class="string">"text"</span> @<span class="attr">click</span>=<span class="string">"changeSpeed"</span>&gt;</span></span><span class="template-variable">&#123;&#123;audio.speed | transSpeed&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">el-tag</span> <span class="attr">type</span>=<span class="string">"info"</span>&gt;</span></span><span class="template-variable">&#123;&#123; audio.currentTime | formatSecond&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">el-tag</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">el-slider</span> <span class="attr">v-show</span>=<span class="string">"!controlList.noProcess"</span> <span class="attr">v-model</span>=<span class="string">"sliderTime"</span> <span class="attr">:format-tooltip</span>=<span class="string">"formatProcessToolTip"</span> @<span class="attr">change</span>=<span class="string">"changeCurrentTime"</span> <span class="attr">class</span>=<span class="string">"slider"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-slider</span>&gt;</span></span></span><br><span class="line"><span class="xml">      </span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">el-tag</span> <span class="attr">type</span>=<span class="string">"info"</span>&gt;</span></span><span class="template-variable">&#123;&#123; audio.maxTime | formatSecond &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">el-tag</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">v-show</span>=<span class="string">"!controlList.noMuted"</span> <span class="attr">type</span>=<span class="string">"text"</span> @<span class="attr">click</span>=<span class="string">"startMutedOrNot"</span>&gt;</span></span><span class="template-variable">&#123;&#123;audio.muted | transMutedOrNot&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">el-slider</span> <span class="attr">v-show</span>=<span class="string">"!controlList.noVolume"</span> <span class="attr">v-model</span>=<span class="string">"volume"</span> <span class="attr">:format-tooltip</span>=<span class="string">"formatVolumeToolTip"</span> @<span class="attr">change</span>=<span class="string">"changeVolume"</span> <span class="attr">class</span>=<span class="string">"slider"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-slider</span>&gt;</span></span></span><br><span class="line"><span class="xml">      </span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">:href</span>=<span class="string">"url"</span> <span class="attr">v-show</span>=<span class="string">"!controlList.noDownload"</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">class</span>=<span class="string">"download"</span> <span class="attr">download</span>&gt;</span>下载<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span></span><br><span class="line"><span class="xml">  function realFormatSecond(second) &#123;</span></span><br><span class="line"><span class="xml">    var secondType = typeof second</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">    if (secondType === 'number' || secondType === 'string') &#123;</span></span><br><span class="line"><span class="xml">      second = parseInt(second)</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">      var hours = Math.floor(second / 3600)</span></span><br><span class="line"><span class="xml">      second = second - hours * 3600</span></span><br><span class="line"><span class="xml">      var mimute = Math.floor(second / 60)</span></span><br><span class="line"><span class="xml">      second = second - mimute * 60</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">      return hours + ':' + ('0' + mimute).slice(-2) + ':' + ('0' + second).slice(-2)</span></span><br><span class="line"><span class="xml">    &#125; else &#123;</span></span><br><span class="line"><span class="xml">      return '0:00:00'</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">  export default &#123;</span></span><br><span class="line"><span class="xml">    props: &#123;</span></span><br><span class="line"><span class="xml">      theUrl: &#123;</span></span><br><span class="line"><span class="xml">        type: String,</span></span><br><span class="line"><span class="xml">        required: true,</span></span><br><span class="line"><span class="xml">      &#125;,</span></span><br><span class="line"><span class="xml">      theSpeeds: &#123;</span></span><br><span class="line"><span class="xml">        type: Array,</span></span><br><span class="line"><span class="xml">        default () &#123;</span></span><br><span class="line"><span class="xml">          return [1, 1.5, 2]</span></span><br><span class="line"><span class="xml">        &#125;</span></span><br><span class="line"><span class="xml">      &#125;,</span></span><br><span class="line"><span class="xml">      theControlList: &#123;</span></span><br><span class="line"><span class="xml">        type: String,</span></span><br><span class="line"><span class="xml">        default: ''</span></span><br><span class="line"><span class="xml">      &#125;</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    name: 'VueAudio',</span></span><br><span class="line"><span class="xml">    data() &#123;</span></span><br><span class="line"><span class="xml">      return &#123;</span></span><br><span class="line"><span class="xml">        url: this.theUrl || 'http://devtest.qiniudn.com/secret base~.mp3',</span></span><br><span class="line"><span class="xml">        audio: &#123;</span></span><br><span class="line"><span class="xml">          currentTime: 0,</span></span><br><span class="line"><span class="xml">          maxTime: 0,</span></span><br><span class="line"><span class="xml">          playing: false,</span></span><br><span class="line"><span class="xml">          muted: false,</span></span><br><span class="line"><span class="xml">          speed: 1,</span></span><br><span class="line"><span class="xml">          waiting: true,</span></span><br><span class="line"><span class="xml">          preload: 'auto'</span></span><br><span class="line"><span class="xml">        &#125;,</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">        sliderTime: 0,</span></span><br><span class="line"><span class="xml">        volume: 100,</span></span><br><span class="line"><span class="xml">        speeds: this.theSpeeds,</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">        controlList: &#123;</span></span><br><span class="line"><span class="xml">          // 不显示下载</span></span><br><span class="line"><span class="xml">          noDownload: false,</span></span><br><span class="line"><span class="xml">          // 不显示静音</span></span><br><span class="line"><span class="xml">          noMuted: false,</span></span><br><span class="line"><span class="xml">          // 不显示音量条</span></span><br><span class="line"><span class="xml">          noVolume: false,</span></span><br><span class="line"><span class="xml">          // 不显示进度条</span></span><br><span class="line"><span class="xml">          noProcess: false,</span></span><br><span class="line"><span class="xml">          // 只能播放一个</span></span><br><span class="line"><span class="xml">          onlyOnePlaying: false,</span></span><br><span class="line"><span class="xml">          // 不要快进按钮</span></span><br><span class="line"><span class="xml">          noSpeed: false</span></span><br><span class="line"><span class="xml">        &#125;</span></span><br><span class="line"><span class="xml">      &#125;</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    methods: &#123;</span></span><br><span class="line"><span class="xml">      setControlList () &#123;</span></span><br><span class="line"><span class="xml">        let controlList = this.theControlList.split(' ')</span></span><br><span class="line"><span class="xml">        controlList.forEach((item) =&gt; &#123;</span></span><br><span class="line"><span class="xml">          if(this.controlList[item] !== undefined)&#123;</span></span><br><span class="line"><span class="xml">            this.controlList[item] = true</span></span><br><span class="line"><span class="xml">          &#125;</span></span><br><span class="line"><span class="xml">        &#125;)</span></span><br><span class="line"><span class="xml">      &#125;,</span></span><br><span class="line"><span class="xml">      changeSpeed() &#123;</span></span><br><span class="line"><span class="xml">        let index = this.speeds.indexOf(this.audio.speed) + 1</span></span><br><span class="line"><span class="xml">        this.audio.speed = this.speeds[index % this.speeds.length]</span></span><br><span class="line"><span class="xml">        this.$refs.audio.playbackRate = this.audio.speed</span></span><br><span class="line"><span class="xml">      &#125;,</span></span><br><span class="line"><span class="xml">      startMutedOrNot() &#123;</span></span><br><span class="line"><span class="xml">        this.$refs.audio.muted = !this.$refs.audio.muted</span></span><br><span class="line"><span class="xml">        this.audio.muted = this.$refs.audio.muted</span></span><br><span class="line"><span class="xml">      &#125;,</span></span><br><span class="line"><span class="xml">      // 音量条toolTip</span></span><br><span class="line"><span class="xml">      formatVolumeToolTip(index) &#123;</span></span><br><span class="line"><span class="xml">        return '音量条: ' + index</span></span><br><span class="line"><span class="xml">      &#125;,</span></span><br><span class="line"><span class="xml">      // 进度条toolTip</span></span><br><span class="line"><span class="xml">      formatProcessToolTip(index = 0) &#123;</span></span><br><span class="line"><span class="xml">        index = parseInt(this.audio.maxTime / 100 * index)</span></span><br><span class="line"><span class="xml">        return '进度条: ' + realFormatSecond(index)</span></span><br><span class="line"><span class="xml">      &#125;,</span></span><br><span class="line"><span class="xml">      // 音量改变</span></span><br><span class="line"><span class="xml">      changeVolume(index = 0) &#123;</span></span><br><span class="line"><span class="xml">        this.$refs.audio.volume = index / 100</span></span><br><span class="line"><span class="xml">        this.volume = index</span></span><br><span class="line"><span class="xml">      &#125;,</span></span><br><span class="line"><span class="xml">      // 播放跳转</span></span><br><span class="line"><span class="xml">      changeCurrentTime(index) &#123;</span></span><br><span class="line"><span class="xml">        this.$refs.audio.currentTime = parseInt(index / 100 * this.audio.maxTime)</span></span><br><span class="line"><span class="xml">      &#125;,</span></span><br><span class="line"><span class="xml">      startPlayOrPause() &#123;</span></span><br><span class="line"><span class="xml">        return this.audio.playing ? this.pausePlay() : this.startPlay()</span></span><br><span class="line"><span class="xml">      &#125;,</span></span><br><span class="line"><span class="xml">      // 开始播放</span></span><br><span class="line"><span class="xml">      startPlay() &#123;</span></span><br><span class="line"><span class="xml">        this.$refs.audio.play()</span></span><br><span class="line"><span class="xml">      &#125;,</span></span><br><span class="line"><span class="xml">      // 暂停</span></span><br><span class="line"><span class="xml">      pausePlay() &#123;</span></span><br><span class="line"><span class="xml">        this.$refs.audio.pause()</span></span><br><span class="line"><span class="xml">      &#125;,</span></span><br><span class="line"><span class="xml">      // 当音频暂停</span></span><br><span class="line"><span class="xml">      onPause () &#123;</span></span><br><span class="line"><span class="xml">        this.audio.playing = false</span></span><br><span class="line"><span class="xml">      &#125;,</span></span><br><span class="line"><span class="xml">      // 当发生错误, 就出现loading状态</span></span><br><span class="line"><span class="xml">      onError () &#123;</span></span><br><span class="line"><span class="xml">        this.audio.waiting = true</span></span><br><span class="line"><span class="xml">      &#125;,</span></span><br><span class="line"><span class="xml">      // 当音频开始等待</span></span><br><span class="line"><span class="xml">      onWaiting (res) &#123;</span></span><br><span class="line"><span class="xml">        console.log(res)</span></span><br><span class="line"><span class="xml">      &#125;,</span></span><br><span class="line"><span class="xml">      // 当音频开始播放</span></span><br><span class="line"><span class="xml">      onPlay (res) &#123;</span></span><br><span class="line"><span class="xml">        console.log(res)</span></span><br><span class="line"><span class="xml">        this.audio.playing = true</span></span><br><span class="line"><span class="xml">        this.audio.loading = false</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">        if(!this.controlList.onlyOnePlaying)&#123;</span></span><br><span class="line"><span class="xml">          return </span></span><br><span class="line"><span class="xml">        &#125;</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">        let target = res.target</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">        let audios = document.getElementsByTagName('audio');</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">        [...audios].forEach((item) =&gt; &#123;</span></span><br><span class="line"><span class="xml">          if(item !== target)&#123;</span></span><br><span class="line"><span class="xml">            item.pause()</span></span><br><span class="line"><span class="xml">          &#125;</span></span><br><span class="line"><span class="xml">        &#125;)</span></span><br><span class="line"><span class="xml">      &#125;,</span></span><br><span class="line"><span class="xml">      // 当timeupdate事件大概每秒一次，用来更新音频流的当前播放时间</span></span><br><span class="line"><span class="xml">      onTimeupdate(res) &#123;</span></span><br><span class="line"><span class="xml">        // console.log('timeupdate')</span></span><br><span class="line"><span class="xml">        // console.log(res)</span></span><br><span class="line"><span class="xml">        this.audio.currentTime = res.target.currentTime</span></span><br><span class="line"><span class="xml">        this.sliderTime = parseInt(this.audio.currentTime / this.audio.maxTime * 100)</span></span><br><span class="line"><span class="xml">      &#125;,</span></span><br><span class="line"><span class="xml">      // 当加载语音流元数据完成后，会触发该事件的回调函数</span></span><br><span class="line"><span class="xml">      // 语音元数据主要是语音的长度之类的数据</span></span><br><span class="line"><span class="xml">      onLoadedmetadata(res) &#123;</span></span><br><span class="line"><span class="xml">        console.log('loadedmetadata')</span></span><br><span class="line"><span class="xml">        console.log(res)</span></span><br><span class="line"><span class="xml">        this.audio.waiting = false</span></span><br><span class="line"><span class="xml">        this.audio.maxTime = parseInt(res.target.duration)</span></span><br><span class="line"><span class="xml">      &#125;</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    filters: &#123;</span></span><br><span class="line"><span class="xml">      formatSecond(second = 0) &#123;</span></span><br><span class="line"><span class="xml">        return realFormatSecond(second)</span></span><br><span class="line"><span class="xml">      &#125;,</span></span><br><span class="line"><span class="xml">      transPlayPause(value) &#123;</span></span><br><span class="line"><span class="xml">        return value ? '暂停' : '播放'</span></span><br><span class="line"><span class="xml">      &#125;,</span></span><br><span class="line"><span class="xml">      transMutedOrNot(value) &#123;</span></span><br><span class="line"><span class="xml">        return value ? '放音' : '静音'</span></span><br><span class="line"><span class="xml">      &#125;,</span></span><br><span class="line"><span class="xml">      transSpeed(value) &#123;</span></span><br><span class="line"><span class="xml">        return '快进: x' + value</span></span><br><span class="line"><span class="xml">      &#125;</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    created() &#123;</span></span><br><span class="line"><span class="xml">      this.setControlList()</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- Add "scoped" attribute to limit CSS to this component only --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span><span class="undefined"></span></span></span><br><span class="line"><span class="xml">  .main-wrap&#123;</span></span><br><span class="line"><span class="xml">    padding: 10px 15px;</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml">  .slider &#123;</span></span><br><span class="line"><span class="xml">    display: inline-block;</span></span><br><span class="line"><span class="xml">    width: 100px;</span></span><br><span class="line"><span class="xml">    position: relative;</span></span><br><span class="line"><span class="xml">    top: 14px;</span></span><br><span class="line"><span class="xml">    margin-left: 15px;</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">  .di &#123;</span></span><br><span class="line"><span class="xml">    display: inline-block;</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">  .download &#123;</span></span><br><span class="line"><span class="xml">    color: #409EFF;</span></span><br><span class="line"><span class="xml">    margin-left: 15px;</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">  .dn&#123;</span></span><br><span class="line"><span class="xml">    display: none;</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h1 id="6-感谢"><a href="#6-感谢" class="headerlink" title="6. 感谢"></a>6. 感谢</h1><ul>
+<li>如果你需要一个小型的vue音乐播放器，你可以试试<a href="https://github.com/SevenOutman/vue-aplayer" target="_blank" rel="noopener">vue-aplayer</a>, 该播放器不仅仅支持vue组件，非Vue的也支持，你可以看看他们的<a href="https://sevenoutman.github.io/vue-aplayer/demo" target="_blank" rel="noopener">demo</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>请我喝杯茶</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="王端端 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="王端端 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    王端端
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文标题：</strong>
+    <a href="https://wdd.js.org/vue-elementui-audio-component.html" title="Vue+ElementUI 手把手教你做一个audio组件">Vue+ElementUI 手把手教你做一个audio组件</a>
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://wdd.js.org/vue-elementui-audio-component.html" title="Vue+ElementUI 手把手教你做一个audio组件">https://wdd.js.org/vue-elementui-audio-component.html</a>
+  </li>
+  <li class="post-copyright-date">
+      <strong>发布时间：</strong>2018年2月9日 - 13时02分
+  </li>  
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/audio/" rel="tag"># audio</a>
+          
+            <a href="/tags/vue/" rel="tag"># vue</a>
+          
+            <a href="/tags/ElementUI/" rel="tag"># ElementUI</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/export-https-certificate-in-browser.html" rel="next" title="如何从浏览器导出HTTPS证书">
+                <i class="fa fa-chevron-left"></i> 如何从浏览器导出HTTPS证书
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/booknote-professionalism.html" rel="prev" title="读书笔记-大前研一 专业主义">
+                读书笔记-大前研一 专业主义 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpeg"
+                alt="王端端" />
+            
+              <p class="site-author-name" itemprop="name">王端端</p>
+              <p class="site-description motion-element" itemprop="description">前端，后端，炒菜，摄影，读书，收集工具</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">193</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">178</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/wangduanduan" rel="external nofollow" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1779706607@qq.com" rel="external nofollow" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://segmentfault.com/u/wangdd" rel="external nofollow" target="_blank" title="segmentfault">
+                      
+                        <i class="fa fa-fw fa-globe"></i>segmentfault</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-简介"><span class="nav-text">1. 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-相关技术"><span class="nav-text">1.1. 相关技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-从本教程你会学到什么？"><span class="nav-text">1.2. 从本教程你会学到什么？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-学前准备"><span class="nav-text">2. 学前准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-在线demon"><span class="nav-text">3. 在线demon</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-开始编码"><span class="nav-text">4. 开始编码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-项目初始化"><span class="nav-text">5. 项目初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-安装ElementUI并插入audio标签"><span class="nav-text">5.1. 安装ElementUI并插入audio标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-1-安装ElementUI"><span class="nav-text">5.1.1. 安装ElementUI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-2-在src-main-js中引入Element-UI"><span class="nav-text">5.1.2. 在src/main.js中引入Element UI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-3-创建src-components-VueAudio-vue"><span class="nav-text">5.1.3. 创建src/components/VueAudio.vue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-4-修改src-App-vue-并引入VueAudio-vue组件"><span class="nav-text">5.1.4. 修改src/App.vue, 并引入VueAudio.vue组件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-音频的播放暂停控制"><span class="nav-text">5.2. 音频的播放暂停控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-音频显示时间"><span class="nav-text">5.3. 音频显示时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-音频进度条控制"><span class="nav-text">5.4. 音频进度条控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-音频音量控制"><span class="nav-text">5.5. 音频音量控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-6-音频播放速度控制"><span class="nav-text">5.6. 音频播放速度控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-7-音频静音控制"><span class="nav-text">5.7. 音频静音控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-8-音频下载控制"><span class="nav-text">5.8. 音频下载控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-9-个性化配置"><span class="nav-text">5.9. 个性化配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-10-一点点ES6语法"><span class="nav-text">5.10. 一点点ES6语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-11-完成后的文件"><span class="nav-text">5.11. 完成后的文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-感谢"><span class="nav-text">6. 感谢</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王端端</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" rel="external nofollow" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

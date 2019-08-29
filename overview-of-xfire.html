@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="google-site-verification" content="We4cS1h0IumMJjPPUa-q5_PDG5BHKCm8e5htMVa6m0w" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="xfire,fetch," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="洞香春" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="我曾写过两篇文章 jQuery进阶 用最优雅的方式写ajax请求, axios进阶 用最优雅的方式写ajax请求, 原理都是在将使用配置文件的方式，自动生成接口方法。 在多个项目中，我曾使用这种配置的方式批量生成ajax接口，但是每次都要造轮子是很繁琐的，索性自己发布一个npm包吧，于是xfire出来了。 xfire地址：https://github.com/wangduanduan/xfire">
+<meta name="keywords" content="xfire,fetch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xfire 简单优雅、高度可配置的fetch接口批量生成工具">
+<meta property="og:url" content="https://wdd.js.org/overview-of-xfire.html">
+<meta property="og:site_name" content="洞香春">
+<meta property="og:description" content="我曾写过两篇文章 jQuery进阶 用最优雅的方式写ajax请求, axios进阶 用最优雅的方式写ajax请求, 原理都是在将使用配置文件的方式，自动生成接口方法。 在多个项目中，我曾使用这种配置的方式批量生成ajax接口，但是每次都要造轮子是很繁琐的，索性自己发布一个npm包吧，于是xfire出来了。 xfire地址：https://github.com/wangduanduan/xfire">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img.shields.io/npm/v/xfire.svg">
+<meta property="og:image" content="https://img.shields.io/badge/code_style-standard-brightgreen.svg">
+<meta property="og:image" content="https://leanote.com/api/file/getImage?fileId=5a5a136aab6441186c001591">
+<meta property="og:updated_time" content="2019-08-29T02:42:09.959Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="xfire 简单优雅、高度可配置的fetch接口批量生成工具">
+<meta name="twitter:description" content="我曾写过两篇文章 jQuery进阶 用最优雅的方式写ajax请求, axios进阶 用最优雅的方式写ajax请求, 原理都是在将使用配置文件的方式，自动生成接口方法。 在多个项目中，我曾使用这种配置的方式批量生成ajax接口，但是每次都要造轮子是很繁琐的，索性自己发布一个npm包吧，于是xfire出来了。 xfire地址：https://github.com/wangduanduan/xfire">
+<meta name="twitter:image" content="https://img.shields.io/npm/v/xfire.svg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://wdd.js.org/overview-of-xfire.html"/>
+
+
+
+
+
+  <title>xfire 简单优雅、高度可配置的fetch接口批量生成工具 | 洞香春</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?32b66b12a233c7f47949966dc2e2cd97";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <!-- Google AdSense start -->
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-7799082458078979",
+    enable_page_level_ads: true
+  });
+</script>
+  <!-- Google AdSense end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">洞香春</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">洞香春以名士荟萃、谈论国事、交流思想而著称于当时列国 --《大秦帝国》</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wdd.js.org/overview-of-xfire.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王端端">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="洞香春">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">xfire 简单优雅、高度可配置的fetch接口批量生成工具</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-11T14:31:36+00:00">
+                2018-02-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,811 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>我曾写过两篇文章 <a href="https://segmentfault.com/a/1190000008678653" target="_blank" rel="noopener">jQuery进阶 用最优雅的方式写ajax请求</a>, <a href="https://segmentfault.com/a/1190000012037455" target="_blank" rel="noopener">axios进阶 用最优雅的方式写ajax请求</a>, 原理都是在将<code>使用配置文件的方式，自动生成接口方法</code>。 在多个项目中，我曾使用这种配置的方式批量生成ajax接口，但是每次都要造轮子是很繁琐的，索性自己发布一个npm包吧，于是xfire出来了。</p>
+<p>xfire地址：<a href="https://github.com/wangduanduan/xfire，" target="_blank" rel="noopener">https://github.com/wangduanduan/xfire，</a></p>
+<p>觉得不错的话，可以给xfire点个赞或者开个issue，或者提个建议。谢谢。</p>
+</blockquote>
+<h1 id="1-xfire"><a href="#1-xfire" class="headerlink" title="1. xfire"></a>1. xfire</h1><p><a href="https://www.npmjs.org/package/xfire" target="_blank" rel="noopener"><img src="https://img.shields.io/npm/v/xfire.svg" alt="npm"></a> <a href="https://standardjs.com" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="JavaScript Style Guide"></a> </p>
+<p><code>非常简单，高度可配置的fetch接口批量生成工具。</code></p>
+<hr>
+<h1 id="2-特点"><a href="#2-特点" class="headerlink" title="2. 特点"></a>2. 特点</h1><ul>
+<li>:smile: <code>非常简单: 提供配置文件,自动生成接口</code></li>
+<li>:triangular_ruler: <code>提前验证:支持请求体格式验证</code></li>
+<li>:bug: <code>报错详细: 给出具体的报错位置,字段信息</code></li>
+</ul>
+<h1 id="3-安装"><a href="#3-安装" class="headerlink" title="3. 安装"></a>3. 安装</h1><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -S xfire</span><br><span class="line"></span><br><span class="line">yarn <span class="keyword">add</span><span class="bash"> xfire</span></span><br></pre></td></tr></table></figure>
+<h1 id="4-demo"><a href="#4-demo" class="headerlink" title="4. demo"></a>4. demo</h1><p>首先需要一个配置文件<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// api.config.js</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">export</span> <span class="selector-tag">default</span> &#123;</span><br><span class="line">  <span class="attribute">prefix</span>: <span class="string">'http://localhost:80'</span>,</span><br><span class="line">  <span class="attribute">list</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attribute">name</span>: <span class="string">'login'</span>,</span><br><span class="line">      <span class="attribute">desp</span>: <span class="string">'sercurity login'</span>,</span><br><span class="line">      <span class="attribute">path</span>: <span class="string">'/agent/login'</span>,</span><br><span class="line">      <span class="attribute">method</span>: <span class="string">'post'</span>,</span><br><span class="line">      <span class="attribute">contentType</span>: <span class="string">'formData'</span>,</span><br><span class="line">      <span class="attribute">bodyStruct</span>: &#123;</span><br><span class="line">        <span class="attribute">username</span>: <span class="string">'string'</span>,</span><br><span class="line">        <span class="attribute">password</span>: <span class="string">'string'</span>,</span><br><span class="line">        <span class="attribute">namespace</span>: <span class="string">'string'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attribute">defaultBody</span>: &#123;</span><br><span class="line">        <span class="attribute">password</span>: <span class="string">'Aa123456'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attribute">status</span>: &#123;</span><br><span class="line">        <span class="number">401</span>: <span class="string">'username or password wrong'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attribute">name</span>: <span class="string">'heartBeat'</span>,</span><br><span class="line">      <span class="attribute">path</span>: <span class="string">'/sdk/api/csta/agent/heartbeat/&#123;&#123;agentId&#125;&#125;'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attribute">name</span>: <span class="string">'setAgentState'</span>,</span><br><span class="line">      <span class="attribute">desp</span>: <span class="string">'set agent state'</span>,</span><br><span class="line">      <span class="attribute">path</span>: <span class="string">'/sdk/api/csta/agent/state/&#123;&#123;namespace&#125;&#125;'</span>,</span><br><span class="line">      <span class="attribute">method</span>: <span class="string">'post'</span>,</span><br><span class="line">      <span class="attribute">bodyStruct</span>: &#123;</span><br><span class="line">        <span class="attribute">agentId</span>: <span class="string">'string?'</span>,</span><br><span class="line">        <span class="attribute">loginId</span>: <span class="string">'string'</span>,</span><br><span class="line">        <span class="attribute">func</span>: <span class="string">'string'</span>,</span><br><span class="line">        <span class="attribute">agentMode</span>: <span class="string">'string?'</span>,</span><br><span class="line">        <span class="attribute">device</span>: <span class="string">'string?'</span>,</span><br><span class="line">        <span class="attribute">password</span>: <span class="string">'string'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后引入xfire<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xfire <span class="keyword">from</span> <span class="string">'xfire'</span></span><br><span class="line"><span class="keyword">import</span> apiConfig <span class="keyword">from</span> <span class="string">'./api.config.js'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> API = xfire.init(apiConfig)</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>POTST 发送formData类型的数据示例<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">API.login.fire(&#123;&#125;, &#123;</span><br><span class="line">  username: <span class="string">'wangduanduan'</span>,</span><br><span class="line">  password: <span class="string">'123456'</span>,</span><br><span class="line">  namespace: <span class="string">'dd.com'</span></span><br><span class="line">&#125;)</span><br><span class="line">.<span class="keyword">then</span>(<span class="function"><span class="params">(res)</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res)</span><br><span class="line">&#125;)</span><br><span class="line">.<span class="keyword">catch</span>(<span class="function"><span class="params">(err)</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(err)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>GET 数据示例<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">API.heartBeat.fire(&#123;</span><br><span class="line">  agentId: <span class="string">'5001@dd.com'</span></span><br><span class="line">&#125;)</span><br><span class="line">.<span class="keyword">then</span>(<span class="function"><span class="params">(res)</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res)</span><br><span class="line">&#125;)</span><br><span class="line">.<span class="keyword">catch</span>(<span class="function"><span class="params">(err)</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(err)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>POST json类型数据示例<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">API.setAgentState.fire(&#123;</span><br><span class="line">  namespace: <span class="string">'windows'</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">  agentId: <span class="string">'5001@dd.com'</span>,</span><br><span class="line">  loginId: <span class="string">'5001@dd.com'</span>,</span><br><span class="line">  func: <span class="string">'login'</span>,</span><br><span class="line">  agentMode: <span class="string">'Ready'</span>,</span><br><span class="line">  device: <span class="string">'8001@dd.com'</span>,</span><br><span class="line">  password: <span class="string">'123456'</span></span><br><span class="line">&#125;)</span><br><span class="line">.<span class="keyword">then</span>(<span class="function"><span class="params">(res)</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res)</span><br><span class="line">&#125;)</span><br><span class="line">.<span class="keyword">catch</span>(<span class="function"><span class="params">(err)</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(err)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h1 id="5-xfire-API"><a href="#5-xfire-API" class="headerlink" title="5. xfire API"></a>5. xfire API</h1><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> API = xfire.init(<span class="built_in">config</span>)</span><br></pre></td></tr></table></figure>
+<p><code>config 字段说明</code></p>
+<p>注意:如果config无法通过下面的格式验证,则会直接报错</p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>config.prefix</td>
+<td>string</td>
+<td>是</td>
+<td>无</td>
+<td>接口url公用的前缀</td>
+</tr>
+<tr>
+<td>config.list</td>
+<td>array</td>
+<td>是</td>
+<td>无</td>
+<td>接口数组</td>
+</tr>
+</tbody>
+</table>
+<p><code>config list字段说明</code></p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td><code>是</code></td>
+<td>无</td>
+<td>接口名</td>
+</tr>
+<tr>
+<td>desp</td>
+<td>string</td>
+<td>否</td>
+<td>无</td>
+<td>接口描述</td>
+</tr>
+<tr>
+<td><code>path</code></td>
+<td>string</td>
+<td><code>是</code></td>
+<td>无</td>
+<td>接口路径</td>
+</tr>
+<tr>
+<td>method</td>
+<td>enum string</td>
+<td>否</td>
+<td>get</td>
+<td>请求方式: get, post, put, delete </td>
+</tr>
+<tr>
+<td>contentType</td>
+<td>enum string</td>
+<td>否</td>
+<td>json</td>
+<td>请求体类型: json, formData。json会被渲染: application/json; charset=UTF-8, formData会被渲染成: application/x-www-form-urlencoded; charset=UTF-8</td>
+</tr>
+<tr>
+<td>bodyStruct</td>
+<td>object</td>
+<td>否</td>
+<td>无</td>
+<td>请求体格式验证结构, 如果bodyStruct存在,则使用bodyStruct验证body: 具体格式参考<a href="https://github.com/ianstormtaylor/superstruct/blob/master/docs/guide.md" target="_blank" rel="noopener">superstruct</a></td>
+</tr>
+<tr>
+<td>defaultBody</td>
+<td>object</td>
+<td>否</td>
+<td>无</td>
+<td>默认请求体。bodyStruct存在的情况下才有效</td>
+</tr>
+<tr>
+<td>status</td>
+<td>object</td>
+<td>否</td>
+<td>无</td>
+<td>响应状态码及其含义</td>
+</tr>
+</tbody>
+</table>
+<p>当某个list对象的 name 不存在时,config验证时的报错:<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Uncaught StructError: Expected a value of<span class="built_in"> type </span>`string` <span class="keyword">for</span> `name` but received `undefined`.</span><br></pre></td></tr></table></figure></p>
+<p>当发送请求时,请求体不符合bodyStruct时, 报错如下<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">name: <span class="string">'login'</span>,</span><br><span class="line">desp: <span class="string">'sercurity login'</span>,</span><br><span class="line">path: <span class="string">'/agent/login'</span>,</span><br><span class="line">method: <span class="string">'post'</span>,</span><br><span class="line">contentType: <span class="string">'formData'</span>,</span><br><span class="line">bodyStruct: &#123;</span><br><span class="line">  username: <span class="string">'string'</span>,</span><br><span class="line">  password: <span class="string">'string'</span>,</span><br><span class="line">  namespace: <span class="string">'string'</span></span><br><span class="line">&#125;,</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">API.login.fire(&#123;&#125;, &#123;</span><br><span class="line">  <span class="comment">// username: '5001',</span></span><br><span class="line">  password: <span class="string">'Aa123456'</span>,</span><br><span class="line">  namespace: <span class="string">'zhen04.cc'</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">Uncaught StructError: Expected a value <span class="keyword">of</span> type `string` for `username` but received `undefined`.</span><br></pre></td></tr></table></figure></p>
+<h1 id="6-xfire-实例-API"><a href="#6-xfire-实例-API" class="headerlink" title="6. xfire 实例 API"></a>6. xfire 实例 API</h1><p>xfire.init()方法会返回xfire实例对象,该对象上有一个特殊方法<code>$setHeaders</code>, 还有其他的由配置文件产生的方法。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> API = xfire.init(apiConfig)</span><br></pre></td></tr></table></figure>
+<h2 id="6-1-setHeaders-设置请求头部信息"><a href="#6-1-setHeaders-设置请求头部信息" class="headerlink" title="6.1. $setHeaders(): 设置请求头部信息"></a>6.1. $setHeaders(): 设置请求头部信息</h2><p>$setHeaders()用来设置除了<code>contentType</code>以外的请求头, 一旦设置请求头部信息,所有的实例接口在发送请求时,都会带有该头部信息。<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">API.$setHeaders(&#123;sessionId: <span class="string">'jfsldkf-sdflskdjf-sflskfjlsf'</span>&#125;)</span><br></pre></td></tr></table></figure></p>
+<h2 id="6-2-api方法-fire-pathParm-body"><a href="#6-2-api方法-fire-pathParm-body" class="headerlink" title="6.2. api方法: fire(pathParm, body)"></a>6.2. api方法: fire(pathParm, body)</h2><p>pathParm对象上的数据最终会被渲染到<code>请求路径上</code>, body是请求体。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attribute">name</span>: <span class="string">'heartBeat'</span>,</span><br><span class="line">      desp: <span class="string">'agent heart beat'</span>,</span><br><span class="line">      path: <span class="string">'/sdk/api/csta/agent/heartbeat/&#123;&#123;agentId&#125;&#125;'</span>,</span><br><span class="line">      method: <span class="string">'post'</span></span><br><span class="line">    &#125;,</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>类似上面的对象,会产生一个以<code>heartBeat</code>为名称的方法,所有请求方法都是fire()方法。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">API<span class="selector-class">.xxx</span><span class="selector-class">.fire</span>(pathParm, body)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不需要请求体时, body可以不传</span></span><br><span class="line">API<span class="selector-class">.xxx</span><span class="selector-class">.fire</span>(pathParm)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不需要参数渲染到路径时,pathParm必须传空对象:&#123;&#125;</span></span><br><span class="line">API<span class="selector-class">.xxx</span><span class="selector-class">.fire</span>(&#123;&#125;, body)</span><br></pre></td></tr></table></figure>
+<p>例子:<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">API.heartBeat(&#123;</span><br><span class="line">  agentId: <span class="string">'5001@ee.com'</span></span><br><span class="line">&#125;)</span><br><span class="line">.<span class="keyword">then</span>(<span class="function"><span class="params">(res)</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res)</span><br><span class="line">&#125;)</span><br><span class="line">.<span class="keyword">catch</span>(<span class="function"><span class="params">(err)</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(err)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>关于<code>path</code>和 fire的 <code>pathParm</code>参数:<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// path 如下</span></span><br><span class="line"><span class="attribute">path</span>: <span class="string">'/store/order/&#123;&#123;type&#125;&#125;/&#123;&#123;age&#125;&#125;'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 则pathParm应该是</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attribute">type</span>: <span class="string">'dog'</span>,</span><br><span class="line">  <span class="attribute">aget</span>: <span class="number">14</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>注意</code>: pathParm不支持复杂的数据类型。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原始数据类型 string, number, boolean 都是可以的</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attribute">key1</span>: <span class="string">'string'</span>,</span><br><span class="line">  <span class="attribute">key2</span>: number,</span><br><span class="line">  <span class="attribute">key3</span>: boolean</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 复杂的数据类型,如数组和嵌套对象, 函数, 将导致渲染失败</span></span><br><span class="line"><span class="comment">// bad</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attribute">key1</span>: [<span class="number">1</span>, <span class="number">3</span>, <span class="number">3</span>],</span><br><span class="line">  <span class="attribute">key2</span>: &#123;</span><br><span class="line">    <span class="attribute">key3</span>: <span class="string">'string'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attribute">key4</span>: function()&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="7-warning-polyfill"><a href="#7-warning-polyfill" class="headerlink" title="7. :warning: polyfill"></a>7. :warning: polyfill</h1><p>xfire底层使用了浏览器原生的<code>Promise</code>, <code>fetch</code>, <code>Object.keys()</code>, <code>Object.assign()</code> 所以对浏览器是有要求的。<code>xfire本身不带有任何polyfill。</code></p>
+<p>目前IE11以及以下是不支持Promise和fetch的。</p>
+<p>在此给出两个方案:</p>
+<h2 id="7-1-方案1-babel-polyfill"><a href="#7-1-方案1-babel-polyfill" class="headerlink" title="7.1. 方案1: babel-polyfill"></a>7.1. 方案1: babel-polyfill</h2><p>通过引入<a href="https://babeljs.io/docs/usage/polyfill/" target="_blank" rel="noopener">babel-polyfill</a>, 让浏览器支持xfire所需要的原生方法。</p>
+<h2 id="7-2-方案2-polyfill-io"><a href="#7-2-方案2-polyfill-io" class="headerlink" title="7.2. 方案2: polyfill.io"></a>7.2. 方案2: <a href="https://polyfill.io/v2/docs/" target="_blank" rel="noopener">polyfill.io</a></h2><p><img src="https://leanote.com/api/file/getImage?fileId=5a5a136aab6441186c001591" alt=""></p>
+<p>只需要为您的网站,为每个浏览器量身定制的polyfills。 复制代码释放魔法:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.polyfill.io/v2/polyfill.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Polyfill.io读取每个请求的User-Agent头并返回适合请求浏览器的polyfill。 根据您在应用中使用的功能量身定制响应,并查看我们的实例以快速入门。</p>
+<h1 id="8-ajax-Vs-fetch"><a href="#8-ajax-Vs-fetch" class="headerlink" title="8. ajax Vs fetch"></a>8. ajax Vs fetch</h1><p><code>与其使用各种ajax第三方库，不如使用原始fetch</code></p>
+<blockquote>
+<p>总结一下，Fetch 优点主要有：</p>
+<p>语法简洁，更加语义化<br>基于标准 Promise 实现，支持 async/await<br>同构方便，使用 isomorphic-fetch –<a href="https://github.com/camsong/blog/issues/2" target="_blank" rel="noopener">传统 Ajax 已死，Fetch 永生</a><br>未来更容易扩展 – by me</p>
+</blockquote>
+<p>我使用ajax经历过三个阶段：<br>1、 jQuery时期，我用jQuery的<code>ajax</code><br>2、 类似Vue的现代框架时，使用<a href="https://github.com/axios/axios" target="_blank" rel="noopener">axio</a><br>3、 再后来我就使用浏览器原生的<code>fetch</code></p>
+<blockquote>
+<p>Fetch API  提供了一个 JavaScript接口，用于访问和操纵HTTP管道的部分，例如请求和响应。它还提供了一个全局 fetch()方法，该方法提供了一种简单，合乎逻辑的方式来跨网络异步获取资源。– <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch" target="_blank" rel="noopener">MDN</a></p>
+<p>这种功能以前是使用  XMLHttpRequest实现的。Fetch提供了一个更好的替代方法，可以很容易地被其他技术使用，例如 Service Workers。Fetch还提供了单个逻辑位置来定义其他HTTP相关概念，例如 CORS和HTTP的扩展。– <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch" target="_blank" rel="noopener">MDN</a></p>
+</blockquote>
+<p>从<a href="https://caniuse.com/#search=fetch" target="_blank" rel="noopener">caniuse</a>的数据来看，fetch方法除IE11不支持以外，大部分常用浏览器都支持了。</p>
+<p>fetch接口示例：<br><figure class="highlight scilab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'/users.json'</span>)</span><br><span class="line">  .<span class="keyword">then</span>(<span class="function"><span class="keyword">function</span><span class="params">(response)</span> &#123;</span></span><br><span class="line">    <span class="keyword">return</span> response.json()</span><br><span class="line">  &#125;).<span class="keyword">then</span>(<span class="function"><span class="keyword">function</span><span class="params">(json)</span> &#123;</span></span><br><span class="line">    console.<span class="built_in">log</span>(<span class="string">'parsed json'</span>, json)</span><br><span class="line">  &#125;).<span class="keyword">catch</span>(<span class="function"><span class="keyword">function</span><span class="params">(ex)</span> &#123;</span></span><br><span class="line">    console.<span class="built_in">log</span>(<span class="string">'parsing failed'</span>, ex)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  fetch(<span class="string">'/users.html'</span>)</span><br><span class="line">  .<span class="keyword">then</span>(<span class="function"><span class="keyword">function</span><span class="params">(response)</span> &#123;</span></span><br><span class="line">    <span class="keyword">return</span> response.text()</span><br><span class="line">  &#125;).<span class="keyword">then</span>(<span class="function"><span class="keyword">function</span><span class="params">(body)</span> &#123;</span></span><br><span class="line">    document.body.innerHTML = body</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure></p>
+<h1 id="9-fetch相关文章"><a href="#9-fetch相关文章" class="headerlink" title="9. fetch相关文章"></a>9. fetch相关文章</h1><ul>
+<li><a href="https://github.com/camsong/blog/issues/2" target="_blank" rel="noopener">传统 Ajax 已死，Fetch 永生</a></li>
+<li><a href="https://juejin.im/entry/574512b7c26a38006c43567c" target="_blank" rel="noopener">fetch 简介: 新一代 Ajax API</a></li>
+<li><a href="http://undefinedblog.com/window-fetch-is-not-as-good-as-you-imagined/" target="_blank" rel="noopener">fetch 没有你想象的那么美
+</a></li>
+</ul>
+<h1 id="10-fetch相关库"><a href="#10-fetch相关库" class="headerlink" title="10. fetch相关库"></a>10. fetch相关库</h1><ul>
+<li><a href="https://github.com/github/fetch" target="_blank" rel="noopener">github/fetch</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>请我喝杯茶</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="王端端 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="王端端 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    王端端
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文标题：</strong>
+    <a href="https://wdd.js.org/overview-of-xfire.html" title="xfire 简单优雅、高度可配置的fetch接口批量生成工具">xfire 简单优雅、高度可配置的fetch接口批量生成工具</a>
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://wdd.js.org/overview-of-xfire.html" title="xfire 简单优雅、高度可配置的fetch接口批量生成工具">https://wdd.js.org/overview-of-xfire.html</a>
+  </li>
+  <li class="post-copyright-date">
+      <strong>发布时间：</strong>2018年2月11日 - 14时02分
+  </li>  
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/xfire/" rel="tag"># xfire</a>
+          
+            <a href="/tags/fetch/" rel="tag"># fetch</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/trim-every-thing.html" rel="next" title="trim-everything trim所有数据类型">
+                <i class="fa fa-chevron-left"></i> trim-everything trim所有数据类型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/useful-browser-events.html" rel="prev" title="不常用却很有妙用的事件及方法">
+                不常用却很有妙用的事件及方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpeg"
+                alt="王端端" />
+            
+              <p class="site-author-name" itemprop="name">王端端</p>
+              <p class="site-description motion-element" itemprop="description">前端，后端，炒菜，摄影，读书，收集工具</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">193</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">178</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/wangduanduan" rel="external nofollow" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1779706607@qq.com" rel="external nofollow" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://segmentfault.com/u/wangdd" rel="external nofollow" target="_blank" title="segmentfault">
+                      
+                        <i class="fa fa-fw fa-globe"></i>segmentfault</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-xfire"><span class="nav-text">1. xfire</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-特点"><span class="nav-text">2. 特点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-安装"><span class="nav-text">3. 安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-demo"><span class="nav-text">4. demo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-xfire-API"><span class="nav-text">5. xfire API</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-xfire-实例-API"><span class="nav-text">6. xfire 实例 API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-setHeaders-设置请求头部信息"><span class="nav-text">6.1. $setHeaders(): 设置请求头部信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-api方法-fire-pathParm-body"><span class="nav-text">6.2. api方法: fire(pathParm, body)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-warning-polyfill"><span class="nav-text">7. :warning: polyfill</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-方案1-babel-polyfill"><span class="nav-text">7.1. 方案1: babel-polyfill</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-方案2-polyfill-io"><span class="nav-text">7.2. 方案2: polyfill.io</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-ajax-Vs-fetch"><span class="nav-text">8. ajax Vs fetch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-fetch相关文章"><span class="nav-text">9. fetch相关文章</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-fetch相关库"><span class="nav-text">10. fetch相关库</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王端端</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" rel="external nofollow" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

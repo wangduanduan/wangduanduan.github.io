@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="google-site-verification" content="We4cS1h0IumMJjPPUa-q5_PDG5BHKCm8e5htMVa6m0w" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="代理," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="洞香春" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="注意：该文章中设置代理的方法存在很大的问题，请不要在使用。这里只作为记录。非常推荐你使用http-proxy-middleware，作为生产环境代理的包。你可以看我的这篇文章，里面有一个非常小巧的写法，可以实现各种代理的方法，Express 代理中间件的写法关于该文章中设置代理会产生的问题，在这篇文章中我会做详细的说明, TCP链接高Recv-Q的原因以及解决方法 nodejs比较好的代理包有：n">
+<meta name="keywords" content="代理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手写可配置的express &amp; nodejs的代理">
+<meta property="og:url" content="https://wdd.js.org/write-configurable-nodejs-http-proxy.html">
+<meta property="og:site_name" content="洞香春">
+<meta property="og:description" content="注意：该文章中设置代理的方法存在很大的问题，请不要在使用。这里只作为记录。非常推荐你使用http-proxy-middleware，作为生产环境代理的包。你可以看我的这篇文章，里面有一个非常小巧的写法，可以实现各种代理的方法，Express 代理中间件的写法关于该文章中设置代理会产生的问题，在这篇文章中我会做详细的说明, TCP链接高Recv-Q的原因以及解决方法 nodejs比较好的代理包有：n">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://wdd.js.org/img/images/20180209132526_lgeTcJ_bVVFlt.jpeg">
+<meta property="og:updated_time" content="2019-08-29T02:42:09.963Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="手写可配置的express &amp; nodejs的代理">
+<meta name="twitter:description" content="注意：该文章中设置代理的方法存在很大的问题，请不要在使用。这里只作为记录。非常推荐你使用http-proxy-middleware，作为生产环境代理的包。你可以看我的这篇文章，里面有一个非常小巧的写法，可以实现各种代理的方法，Express 代理中间件的写法关于该文章中设置代理会产生的问题，在这篇文章中我会做详细的说明, TCP链接高Recv-Q的原因以及解决方法 nodejs比较好的代理包有：n">
+<meta name="twitter:image" content="https://wdd.js.org/img/images/20180209132526_lgeTcJ_bVVFlt.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://wdd.js.org/write-configurable-nodejs-http-proxy.html"/>
+
+
+
+
+
+  <title>手写可配置的express & nodejs的代理 | 洞香春</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?32b66b12a233c7f47949966dc2e2cd97";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <!-- Google AdSense start -->
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-7799082458078979",
+    enable_page_level_ads: true
+  });
+</script>
+  <!-- Google AdSense end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">洞香春</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">洞香春以名士荟萃、谈论国事、交流思想而著称于当时列国 --《大秦帝国》</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wdd.js.org/write-configurable-nodejs-http-proxy.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王端端">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="洞香春">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">手写可配置的express & nodejs的代理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-09T13:24:35+00:00">
+                2018-02-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  956 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>注意：该文章中设置代理的方法存在很大的问题，请不要在使用。这里只作为记录。<br>非常推荐你使用<a href="https://github.com/chimurai/http-proxy-middleware" target="_blank" rel="noopener">http-proxy-middleware</a>，作为生产环境代理的包。你可以看我的这篇文章，里面有一个非常小巧的写法，可以实现各种代理的方法，<a href="https://wdd.js.org/express-proxy-middleware-demo.html">Express 代理中间件的写法</a><br>关于该文章中设置代理会产生的问题，在这篇文章中我会做详细的说明, <a href="https://wdd.js.org/tcp-high-recv-q-or-send-q-reasons.html">TCP链接高Recv-Q的原因以及解决方法</a></p>
+<p>nodejs比较好的代理包有：<a href="https://github.com/nodejitsu/node-http-proxy" target="_blank" rel="noopener">node-http-proxy</a>和<a href="https://github.com/chimurai/http-proxy-middleware" target="_blank" rel="noopener">http-proxy-middleware</a>。这两个我都用过，它们的优点自不用说，只说说缺点：<code>它们不能从配置文件里读取代理配置。每添加一个拦截路径都需要多加一个接口调用。</code></p>
+<p><img src="https://wdd.js.org/img/images/20180209132526_lgeTcJ_bVVFlt.jpeg" alt=""></p>
+<p>所以，我需要自己写一个http代理，要包含一下功能：</p>
+<ol>
+<li>从配置文件里读取代理配置</li>
+<li>可以路径重写</li>
+</ol>
+<p>这样做的好处是：<code>新增服务只需要在配置文件上加上该服务，无需修改业务逻辑</code></p>
+<h1 id="1-config-default-js"><a href="#1-config-default-js" class="headerlink" title="1. /config/default.js"></a>1. /config/default.js</h1><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">	<span class="string">"ENV"</span>:<span class="string">"dev"</span>,</span><br><span class="line">	<span class="string">"PORT"</span>:<span class="string">"8088"</span>,</span><br><span class="line"></span><br><span class="line">	<span class="string">"maxAge"</span>: <span class="number">10</span>,</span><br><span class="line"></span><br><span class="line">	<span class="string">"proxy"</span>:&#123;</span><br><span class="line">		<span class="string">"olap"</span>:&#123;</span><br><span class="line">			<span class="string">"host"</span>:<span class="string">"172.16.200.225"</span>,</span><br><span class="line">			<span class="string">"port"</span>:<span class="string">"8092"</span>,</span><br><span class="line">			<span class="string">"form"</span>:<span class="string">""</span>,</span><br><span class="line">			<span class="string">"to"</span>:<span class="string">""</span></span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="string">"qc"</span>:&#123;</span><br><span class="line">			<span class="string">"host"</span>:<span class="string">"192.168.40.231"</span>,</span><br><span class="line">			<span class="string">"port"</span>:<span class="string">"30088"</span></span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="string">"api"</span>:&#123;</span><br><span class="line">			<span class="string">"host"</span>:<span class="string">"192.168.40.231"</span>,</span><br><span class="line">			<span class="string">"port"</span>:<span class="string">"30412"</span></span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="string">"ocm"</span>:&#123;</span><br><span class="line">			<span class="string">"host"</span>: process.env.ocm_host || <span class="string">"192.168.40.119"</span>,</span><br><span class="line">			<span class="string">"port"</span>: process.env.ocm_port || <span class="string">"31003"</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="2-app-js"><a href="#2-app-js" class="headerlink" title="2. /app.js"></a>2. /app.js</h1><p>将所有要走代理的路径前必需加上 <code>/p</code>, 这个是我的个人配置，当然也可以是其他的名字。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="keyword">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> compression = <span class="keyword">require</span>(<span class="string">'compression'</span>);</span><br><span class="line"><span class="keyword">var</span> path = <span class="keyword">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">var</span> config = <span class="keyword">require</span>(<span class="string">'config'</span>);</span><br><span class="line"><span class="keyword">var</span> log4js = <span class="keyword">require</span>(<span class="string">'log4js'</span>);</span><br><span class="line"><span class="keyword">var</span> wsProxyConfig = config.get(<span class="string">'proxy'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> routes = <span class="keyword">require</span>(<span class="string">'./routes/index'</span>);</span><br><span class="line"><span class="keyword">var</span> views = <span class="keyword">require</span>(<span class="string">'./routes/views'</span>);</span><br><span class="line"><span class="keyword">var</span> proxy = <span class="keyword">require</span>(<span class="string">'./routes/proxy'</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.<span class="keyword">use</span>(<span class="string">'/p'</span>,proxy);</span><br></pre></td></tr></table></figure>
+<h1 id="3-routes-proxy-js"><a href="#3-routes-proxy-js" class="headerlink" title="3. /routes/proxy.js"></a>3. /routes/proxy.js</h1><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="comment">// config是一个第三方包，它的功能是</span></span><br><span class="line"><span class="comment">// 自动根据环境变量帮你读取config目录下</span></span><br><span class="line"><span class="comment">// 的配置文件，默认会读取default.json，</span></span><br><span class="line"><span class="comment">// config支持很多文件类型。</span></span><br><span class="line"><span class="keyword">var</span> config = <span class="built_in">require</span>(<span class="string">'config'</span>);</span><br><span class="line"><span class="keyword">var</span> request = <span class="built_in">require</span>(<span class="string">'request'</span>);</span><br><span class="line"><span class="keyword">var</span> log4js = <span class="built_in">require</span>(<span class="string">'log4js'</span>);</span><br><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> router = express.Router();</span><br><span class="line"><span class="comment">// 此处就是获取配置文件的proxy项了</span></span><br><span class="line"><span class="keyword">var</span> proxyConfig = config.get(<span class="string">'proxy'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这里记录代理的日志</span></span><br><span class="line">log4js.configure(&#123;</span><br><span class="line">  <span class="attribute">appenders</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="attribute">type</span>: <span class="string">'file'</span>,</span><br><span class="line">    	<span class="attribute">filename</span>: <span class="string">'./logs/all-proxy-logs.log'</span>,</span><br><span class="line">    	<span class="attribute">maxLogSize</span>: <span class="number">10</span>*<span class="number">1024</span>*<span class="number">1024</span>, <span class="comment">//max 10mb</span></span><br><span class="line">    	<span class="attribute">backups</span>: <span class="number">5</span>,</span><br><span class="line">    	<span class="attribute">compress</span>: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="attribute">type</span>: <span class="string">'stdout'</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> logger = log4js.getLogger(<span class="string">'proxy'</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">router.all(<span class="string">'/:apiName/*'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line"> 	<span class="comment">// apiName 必需要对应配置文件的proxy的属性名</span></span><br><span class="line"> 	<span class="keyword">var</span> apiName = req.params.apiName;</span><br><span class="line"></span><br><span class="line"> 	<span class="keyword">if</span>(!apiName)&#123;</span><br><span class="line"> 		res.status(<span class="number">404</span>).end(<span class="string">'api not found'</span>);</span><br><span class="line"> 	&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 如果apiName不在配置文件里，则报500</span></span><br><span class="line"> 	<span class="keyword">else</span> <span class="keyword">if</span>(!proxyConfig[apiName])&#123;</span><br><span class="line"> 		res.status(<span class="number">500</span>).end(<span class="string">'api has no config'</span>);</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line"> 	<span class="title">else</span>&#123;</span><br><span class="line"> 	    <span class="comment">// originUrl是原始的url</span></span><br><span class="line"> 	    <span class="comment">// 例如 /p/qc/calls</span></span><br><span class="line"> 		<span class="keyword">var</span> originalUrl = req.originalUrl;</span><br><span class="line">	 	<span class="keyword">var</span> api = proxyConfig[apiName];</span><br><span class="line">	 	<span class="keyword">var</span> <span class="built_in">url</span> = originalUrl.replace(<span class="string">'/p'</span>,<span class="string">''</span>);</span><br><span class="line"></span><br><span class="line">	 	<span class="built_in">url</span> = <span class="string">`http://<span class="subst">$&#123;api.host&#125;</span>:<span class="subst">$&#123;api.port&#125;</span>`</span> + <span class="built_in">url</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 某些需要路径重写的地方</span></span><br><span class="line">	 	<span class="keyword">if</span>(api.form &amp;&amp; api.to)&#123;</span><br><span class="line">	 		<span class="built_in">url</span> = <span class="built_in">url</span>.replace(api.form, api.to);</span><br><span class="line">	 	&#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 必须要删除这个host</span></span><br><span class="line">        <span class="comment">// 因为本地测试时，这个host是localhost</span></span><br><span class="line">        <span class="comment">// 这会导致服务端报错</span></span><br><span class="line">	 	<span class="keyword">delete</span> req.headers.host;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 修改好的请求头</span></span><br><span class="line">	 	<span class="keyword">var</span> option = &#123;</span><br><span class="line">	 		<span class="attribute">url</span>: <span class="built_in">url</span>,</span><br><span class="line">	 		<span class="attribute">headers</span>: req.headers</span><br><span class="line">	 	&#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 使用request发起请求</span></span><br><span class="line">	 	<span class="keyword">var</span> proxy = request(option);</span><br><span class="line">	 	<span class="comment">// 此处是关键，将请求流写入代理，将代理的响应写入原始响应</span></span><br><span class="line">	 	req.pipe(proxy);</span><br><span class="line">	 	proxy.pipe(res);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 代理结束响应时，原始请求结束，并输出日志</span></span><br><span class="line">	 	proxy.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	 		<span class="keyword">var</span> log = <span class="string">`<span class="subst">$&#123;req.method&#125;</span> <span class="subst">$&#123;res.statusCode&#125;</span> <span class="subst">$&#123;req.originalUrl&#125;</span> ---&gt; <span class="subst">$&#123;option.url&#125;</span> <span class="subst">$&#123;req.headers.sessionid&#125;</span>`</span>;</span><br><span class="line"></span><br><span class="line">	 		<span class="keyword">if</span>(res.statusCode &lt; <span class="number">400</span>)&#123;</span><br><span class="line">	 			logger.info(log);</span><br><span class="line">	 		&#125;</span><br><span class="line">	 		<span class="title">else</span>&#123;</span><br><span class="line">	 			logger.error(log);</span><br><span class="line">	 		&#125;</span><br><span class="line"></span><br><span class="line">	 		res.end();</span><br><span class="line">	 	&#125;);</span><br><span class="line"> 	&#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = router;</span><br></pre></td></tr></table></figure>
+<h1 id="4-相关第三方模块"><a href="#4-相关第三方模块" class="headerlink" title="4. 相关第三方模块"></a>4. 相关第三方模块</h1><ul>
+<li><a href="https://github.com/lorenwest/node-config" target="_blank" rel="noopener">node-config</a></li>
+<li><a href="https://github.com/request/request" target="_blank" rel="noopener">request</a></li>
+<li><a href="https://github.com/nomiddlename/log4js-node" target="_blank" rel="noopener">log4js-node</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>请我喝杯茶</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="王端端 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="王端端 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    王端端
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文标题：</strong>
+    <a href="https://wdd.js.org/write-configurable-nodejs-http-proxy.html" title="手写可配置的express & nodejs的代理">手写可配置的express & nodejs的代理</a>
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://wdd.js.org/write-configurable-nodejs-http-proxy.html" title="手写可配置的express & nodejs的代理">https://wdd.js.org/write-configurable-nodejs-http-proxy.html</a>
+  </li>
+  <li class="post-copyright-date">
+      <strong>发布时间：</strong>2018年2月9日 - 13时02分
+  </li>  
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/代理/" rel="tag"># 代理</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/mac-sublime-shortcut-collector.html" rel="next" title="mac-sublime-shortcut-collector">
+                <i class="fa fa-chevron-left"></i> mac-sublime-shortcut-collector
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/json-stringify-powerful.html" rel="prev" title="你不知道的JSON.stringify()妙用">
+                你不知道的JSON.stringify()妙用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpeg"
+                alt="王端端" />
+            
+              <p class="site-author-name" itemprop="name">王端端</p>
+              <p class="site-description motion-element" itemprop="description">前端，后端，炒菜，摄影，读书，收集工具</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">193</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">178</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/wangduanduan" rel="external nofollow" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1779706607@qq.com" rel="external nofollow" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://segmentfault.com/u/wangdd" rel="external nofollow" target="_blank" title="segmentfault">
+                      
+                        <i class="fa fa-fw fa-globe"></i>segmentfault</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-config-default-js"><span class="nav-text">1. /config/default.js</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-app-js"><span class="nav-text">2. /app.js</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-routes-proxy-js"><span class="nav-text">3. /routes/proxy.js</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-相关第三方模块"><span class="nav-text">4. 相关第三方模块</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王端端</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" rel="external nofollow" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
