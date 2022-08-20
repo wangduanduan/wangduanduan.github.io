@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>ajax on 洞香春</title>
+    <link>https://wdd.js.org/tags/ajax/</link>
+    <description>Recent content in ajax on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 15 Mar 2018 14:17:59 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/ajax/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>状态码为200时 jQuery ajax报错</title>
+      <link>https://wdd.js.org/posts/2018/status-code-200-jquery-ajax-failed/</link>
+      <pubDate>Thu, 15 Mar 2018 14:17:59 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/status-code-200-jquery-ajax-failed/</guid>
+      <description>1. 问题现象 HTTP 状态码为 200 OK 时， jquery ajax报错
+2. 问题原因 jquery ajax的dataType字段包含：json, 但是服务端返回的数据不是规范的json格式，导致jquery解析json字符串报错，最终导致ajax报错。
+jQuery ajax 官方文档上说明：
+&amp;ldquo;json&amp;rdquo;: Evaluates the response as JSON and returns a JavaScript object. Cross-domain &amp;ldquo;json&amp;rdquo; requests are converted to &amp;ldquo;jsonp&amp;rdquo; unless the request includes jsonp: false in its request options. The JSON data is parsed in a strict manner; any malformed JSON is rejected and a parse error is thrown. As of jQuery 1.9, an empty response is also rejected; the server should return a response of null or {} instead.</description>
+    </item>
+    
+    <item>
+      <title>IE11 0x2ee4 bug 以及类似问题解决方法</title>
+      <link>https://wdd.js.org/posts/2018/ie11-0x2ee4-bug/</link>
+      <pubDate>Sun, 11 Feb 2018 14:12:19 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/ie11-0x2ee4-bug/</guid>
+      <description>一千个IE浏览器访问同一个页面，可能报一千种错误。前端激进派对IE恨得牙痒痒，但是无论你爱，或者不爱，IE就在那里，不来不去。
+一些银行，以及政府部门，往往都是指定必须使用IE浏览器。所以，一些仅在IE浏览器上出现的问题。总结起来问题的原因很简单：IE的配置不正确
+下面就将一个我曾经遇到的问题: IE11 0x2ee4， 以及其他的问题的解决方案
+1. IE11 SCRIPT7002: XMLHttpRequest: 网络错误 0x2ee4 背景介绍：在一个HTTPS域向另外一个HTTPS域发送跨域POTST请求时
+这个问题在浏览器的输出内容如下，怪异的是，并不是所有IE11都会报这个错误。
+SCRIPT7002: XMLHttpRequest: 网络错误 0x2ee4, 由于出现错误 00002ee4 而导致此项操作无法完成 stackoverflow上有个答案，它的思路是：在post请求发送之前，先进行一次get操作 这个方式我试过，是可行的。但是深层次的原因我不是很明白。
+然而真相总有大白的一天，其实深层次的原因是，IE11的配置。
+去掉检查证书吊销的的检查，解决0x2ee4的问题
+解决方法
+去掉check for server certificate revocation*， 也有可能你那边是中文翻译的：叫检查服务器证书是否已吊销 去掉检查发型商证书是否已吊销 点击确定 重启计算机 2 其他常规设置 2.1 去掉兼容模式， 使用Edge文档模式 下图中红色框里的按钮也要取消勾选 2.2 有些使用activeX，还是需要检查是否启用的 2.3 允许跨域 如果你的接口跨域了，还要检查浏览器是否允许跨域，否则浏览器可能默认就禁止跨域的
+设置方法
+internet选项 安全 自定义级别 启用通过跨域访问数据源 启用跨域浏览窗口和框架 确定 然后重启电脑 </description>
+    </item>
+    
+    <item>
+      <title>发起Ajax请求当页面onunload</title>
+      <link>https://wdd.js.org/posts/2018/send-ajax-when-page-unload/</link>
+      <pubDate>Wed, 07 Feb 2018 09:18:54 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/send-ajax-when-page-unload/</guid>
+      <description>0.1. 同步Ajax 这种需求主要用于当浏览器关闭，或者刷新时，向后端发起Ajax请求。
+window.onunload = function(){ $.ajax({url:&amp;#34;http://localhost:8888/test.php?&amp;#34;, async:false}); }; 使用async：false参数使请求同步（默认是异步的）。
+同步请求锁定浏览器，直到完成。 如果请求是异步的，页面只是继续卸载。 它足够快，以至于该请求甚至没有时间触发。服务端很可能收不到请求。
+0.2. navigator.sendBeacon 优点：简洁、异步、非阻塞 缺点：这是实验性的技术，并非所有浏览器都支持。其中IE和safari不支持该技术。
+示例：
+window.addEventListener(&amp;#39;unload&amp;#39;, logData, false); function logData() { navigator.sendBeacon(&amp;#34;/log&amp;#34;, analyticsData); } 参考：http://stackoverflow.com/questions/1821625/ajax-request-with-jquery-on-page-unload 参考：https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon</description>
+    </item>
+    
+  </channel>
+</rss>

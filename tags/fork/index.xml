@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>fork on 洞香春</title>
+    <link>https://wdd.js.org/tags/fork/</link>
+    <description>Recent content in fork on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 31 Jan 2018 17:16:44 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/fork/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>git合并上游仓库即同步fork后的仓库</title>
+      <link>https://wdd.js.org/posts/2018/fork-sync-learn/</link>
+      <pubDate>Wed, 31 Jan 2018 17:16:44 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/fork-sync-learn/</guid>
+      <description>1. 前提说明 仓库A: http://gitlab.tt.cc:30000/fe/omp.git 仓库B: 仓库Bfork自仓库A, 仓库A的地址是：http://gitlab.tt.cc:30000/wangdd/omp.git 某一时刻，仓库A更新了。仓库B需要同步上游分支的更新。
+2. 本地操作 // 1 查看远程分支 ➜ omp git:(master) git remote -v origin	http://gitlab.tt.cc:30000/wangdd/omp.git (fetch) origin	http://gitlab.tt.cc:30000/wangdd/omp.git (push) // 2 添加一个远程同步的上游仓库 ➜ omp git:(master) git remote add upstream http://gitlab.tt.cc:30000/fe/omp.git ➜ omp git:(master) git remote -v origin	http://gitlab.tt.cc:30000/wangdd/omp.git (fetch) origin	http://gitlab.tt.cc:30000/wangdd/omp.git (push) upstream	http://gitlab.tt.cc:30000/fe/omp.git (fetch) upstream	http://gitlab.tt.cc:30000/fe/omp.git (push) // 3 拉去上游分支到本地，并且会被存储在一个新分支upstream/master ➜ omp git:(master) git fetch upstream remote: Counting objects: 4, done. remote: Compressing objects: 100% (4/4), done.</description>
+    </item>
+    
+  </channel>
+</rss>

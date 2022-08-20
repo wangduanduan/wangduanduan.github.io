@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>FreeSWITCH之路 on 洞香春</title>
+    <link>https://wdd.js.org/freeswitch/</link>
+    <description>Recent content in FreeSWITCH之路 on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 01 Jun 2022 08:27:53 +0800</lastBuildDate><atom:link href="https://wdd.js.org/freeswitch/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>WebRTC 人声检测与舒适噪音</title>
+      <link>https://wdd.js.org/freeswitch/webrtc-vad-cng/</link>
+      <pubDate>Wed, 01 Jun 2022 08:27:53 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/freeswitch/webrtc-vad-cng/</guid>
+      <description>人声检测 VAD 人声检测(VAD: Voice Activity Detection)是区分语音中是人说话的声音，还是其他例如环境音的一种功能。
+除此以外，人声检测还能用于减少网络中语音包传输的数据量，从而极大的降低语音的带宽，极限情况下能降低50%的带宽。
+在一个通话中，一般都是只有一个人说话，另一人听。很少可能是两个人都说话的。
+例如A在说话的时候，B可能在等待。
+虽然B在等待过程中，B的语音流依然再按照原始速度和编码再发给A, 即使这里面是环境噪音或者是无声。
+A ----&amp;gt; B # A在说话 A &amp;lt;--- B # B在等待过程中，B的语音流依然再按照原始速度和编码再发给A 如果B具有VAD检测功能，那么B就可以在不说话的时候，发送特殊标记的语音流或者通过减少语音流发送的频率，来减少无意义语音的发送。
+从而极大的降低B-&amp;gt;A的语音流。
+下图是Wireshark抓包的两种RTP包，g711编码的占214字节，但是用舒适噪音编码的只有63字节。将近减少了4倍的带宽。
+舒适噪音生成器 CNG 舒适噪音(CN stands for Comfort Noise), 是一种模拟的背景环境音。舒适噪音生成器在接收端根据发送到给的参数，来产生类似接收端的舒适噪音, 用来模拟发送方的噪音环境。
+CN也是一种RTP包的格式，定义在RFC 3389
+舒适噪音的payload, 也被称作静音插入描述帧(SID: a Silence Insertion Descriptor frame), 包括一个字节的数据，用来描述噪音的级别。也可以包含其他的额外的数据。早期版本的舒适噪音的格式定义在RFC 1890中，这个版本的格式只包含一个字段，就是噪音级别。
+噪音级别占用一个字节，其中第一个bit必须是0， 因此噪音级别有127中可能。
+0 1 2 3 4 5 6 7 +-+-+-+-+-+-+-+-+ |0| level | +-+-+-+-+-+-+-+-+ 跟着噪音级别的后续字节都是声音的频谱信息。
+Byte 1 2 3 ... M+1 +-----+-----+-----+-----+-----+ |level| N1 | N2 | .</description>
+    </item>
+    
+    <item>
+      <title>安装bcg729模块</title>
+      <link>https://wdd.js.org/freeswitch/install-bcg729/</link>
+      <pubDate>Sat, 28 May 2022 17:34:13 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/freeswitch/install-bcg729/</guid>
+      <description>g729编码的占用带宽是g711的1/8，使用g729编码，可以极大的降低带宽的费用。fs原生的mod_g927模块是需要按并发数收费的，但是我们可以使用开源的bcg729模块。
+这里需要准备两个仓库，为了加快clone速度，我将这两个模块导入到gitee上。
+https://gitee.com/wangduanduan/mod_bcg729 https://gitee.com/wangduanduan/bcg729 安装前提 已经安装好了freeswitch, 编译mod_bcg729模块，需要指定freeswitch头文件的位置
+step0: 切换到工作目录 cd /usr/local/src/ step1: clone mod_bcg729 git clone https://gitee.com/wangduanduan/mod_bcg729.git step2: clone bcg729 mod_bcg729模块在编辑的时候，会检查当前目录下有没有bcg729的目录。 如果没有这个目录，就会从github上clone bcg729的项目。 所以我们可以在编译之前，先把bcg729 clone到mob_bcg729目录下
+cd mod_bcg729 git clone https://gitee.com/wangduanduan/bcg729.git step3: 编辑mod_bcg729 编译mod_bcg729需要指定fs头文件switch.h的位置。 在Makefile项目里有FS_INCLUDES这个变量用来定义fs头文件的位置
+FS_INCLUDES=/usr/include/freeswitch FS_MODULES=/usr/lib/freeswitch/mod 如果你的源码头文件路径不是/usr/include/freeswitch， 则需要在执行make命令时通过参数指定， 例如下面编译的时候。
+make FS_INCLUDES=/usr/local/freeswitch/include/freeswitch Tip 如何找到头文件的目录？ 头文件一般在fs安装目录的include/freeswitch目录下 如果还是找不到，则可以使用 find /usr -name switch.h -type f 搜索对应的头文件 step4: 复制so文件 mod_bcg729编译之后，可以把生成的mod_bcg729.so拷贝到fs安装目录的mod目录下
+step5: 加载模块 命令行加载
+load mod_bcg729 配置文件加载 命令行加载重启后就失效了，可以将加载的模块写入到配置文件中。 在modules.conf.xml中加入
+&amp;lt;load module=&amp;#34;mod_bcg729&amp;#34;/&amp;gt; step5: vars.xml修改 &amp;lt;X-PRE-PROCESS cmd=&amp;#34;set&amp;#34; data=&amp;#34;global_codec_prefs=PCMU,PCMA,G729&amp;#34; /&amp;gt; &amp;lt;X-PRE-PROCESS cmd=&amp;#34;set&amp;#34; data=&amp;#34;outbound_codec_prefs=PCMU,PCMA,G729&amp;#34;/&amp;gt; &amp;lt;X-PRE-PROCESScmd=&amp;#34;set&amp;#34;data=&amp;#34;media_mix_inbound_outbound_codecs=true&amp;#34;/&amp;gt; step6: sip profile修改 开启转码</description>
+    </item>
+    
+    <item>
+      <title>会议提示音无法正常播放</title>
+      <link>https://wdd.js.org/freeswitch/conference-announce/</link>
+      <pubDate>Sat, 28 May 2022 17:17:54 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/freeswitch/conference-announce/</guid>
+      <description>呼入到会议，正常来说，当会议室有且只有一人时，应该会报“当前只有一人的提示音”。但是测试的时候，输入了密码，进入了会议，却没有播报正常的提示音。
+经过排查发现，dialplan中，会议室的名字中含有@符号。
+按照fs的文档，发现@后面应该是profilename, 然而fs的conference.conf.xml却没有这个profile, 进而导致语音无法播报的问题。所以只要加入这个profile, 或者直接用@default, 就可以正确的播报语音了。
+Action data Description confname profile is &amp;ldquo;default&amp;rdquo;, no flags or pin confname+1234 profile is &amp;ldquo;default&amp;rdquo;, pin is 1234 confname@profilename+1234 profile is &amp;ldquo;profilename&amp;rdquo;, pin=1234, no flags confname+1234+flags{mute} profile is &amp;ldquo;default&amp;rdquo;, pin=1234, one flag confname++flags{endconf|moderator} profile is &amp;ldquo;default&amp;rdquo;, no p.i.n., multiple flags bridge:confname:1000@${domain_name} a &amp;ldquo;bridging&amp;rdquo; conference, you must provide another endpoint, or &amp;rsquo;none&#39;. bridge:uuid:none a &amp;ldquo;bridging&amp;rdquo; conference with UUID assigned as conference name 所以，当你遇到问题的时候，应该仔细的再去阅读一下官方的接口文档。
+参考文档</description>
+    </item>
+    
+    <item>
+      <title>FS日志设置</title>
+      <link>https://wdd.js.org/freeswitch/log-settings/</link>
+      <pubDate>Sat, 28 May 2022 17:14:05 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/freeswitch/log-settings/</guid>
+      <description>开启sip信令的日志 这样会让fs把收发的sip信令打印到fs_cli里面，但不是日志文件里面
+sofia global siptrace on # sofia global siptrace off 关闭 开启sofia模块的日志 sofia 模块的日志即使开启，也是输出到fs_cli里面的，不会输出到日志文件里面
+sofia loglevel all 7 # sofia loglevel &amp;lt;all|default|tport|iptsec|nea|nta|nth_client|nth_server|nua|soa|sresolv|stun&amp;gt; [0-9] 将fs_cli的输出，写到日志文件里 sofia tracelevel 会将某些日志重定向到日志文件里 sofia tracelevel debug # sofia tracelevel &amp;lt;console|alert|crit|err|warning|notice|info|debug&amp;gt; 注意，debug级别的日志非常多，仅仅适用于debug
+大量的日志写入磁盘
+占用太多的io 磁盘空间可能很快占满 </description>
+    </item>
+    
+    <item>
+      <title>Sofia 模块全部配置</title>
+      <link>https://wdd.js.org/freeswitch/sofia-config/</link>
+      <pubDate>Sat, 28 May 2022 14:57:59 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/freeswitch/sofia-config/</guid>
+      <description>About Sofia is a FreeSWITCH™ module (mod_sofia) that provides SIP connectivity to and from FreeSWITCH in the form of a User Agent. A &amp;ldquo;User Agent&amp;rdquo; (&amp;ldquo;UA&amp;rdquo;) is an application used for handling a certain network protocol; the network protocol in Sofia&amp;rsquo;s case is SIP. Sofia is the general name of any User Agent in FreeSWITCH using the SIP network protocol. For example, Sofia receives calls sent to FreeSWITCH from other SIP User Agents (UAs), sends calls to other UAs, acts as a client to register FreeSWITCH with other UAs, lets clients register with FreeSWITCH, and connects calls (i.</description>
+    </item>
+    
+    <item>
+      <title>FS常用运维手册</title>
+      <link>https://wdd.js.org/freeswitch/tips/</link>
+      <pubDate>Sat, 28 May 2022 14:54:40 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/freeswitch/tips/</guid>
+      <description>安装单个模块 make mod_sofia-install make mod_ilbc-install fs-cli事件订阅 /event plain ALL /event plain CHANNEL_ANSWER sofia 帮助文档 sofia help USAGE: -------------------------------------------------------------------------------- sofia global siptrace &amp;lt;on|off&amp;gt; sofia capture &amp;lt;on|off&amp;gt; watchdog &amp;lt;on|off&amp;gt; sofia profile &amp;lt;name&amp;gt; [start | stop | restart | rescan] [wait] flush_inbound_reg [&amp;lt;call_id&amp;gt; | &amp;lt;[user]@domain&amp;gt;] [reboot] check_sync [&amp;lt;call_id&amp;gt; | &amp;lt;[user]@domain&amp;gt;] [register | unregister] [&amp;lt;gateway name&amp;gt; | all] killgw &amp;lt;gateway name&amp;gt; [stun-auto-disable | stun-enabled] [true | false]] siptrace &amp;lt;on|off&amp;gt; capture &amp;lt;on|off&amp;gt; watchdog &amp;lt;on|off&amp;gt; sofia &amp;lt;status|xmlstatus&amp;gt; profile &amp;lt;name&amp;gt; [reg [&amp;lt;contact str&amp;gt;]] | [pres &amp;lt;pres str&amp;gt;] | [user &amp;lt;user@domain&amp;gt;] sofia &amp;lt;status|xmlstatus&amp;gt; gateway &amp;lt;name&amp;gt; sofia loglevel &amp;lt;all|default|tport|iptsec|nea|nta|nth_client|nth_server|nua|soa|sresolv|stun&amp;gt; [0-9] sofia tracelevel &amp;lt;console|alert|crit|err|warning|notice|info|debug&amp;gt; sofia help -------------------------------------------------------------------------------- 开启消息头压缩 &amp;lt;param name=&amp;#34;enable-compact-headers&amp;#34; value=&amp;#34;true&amp;#34;/&amp;gt; fs需要重启</description>
+    </item>
+    
+    <item>
+      <title>FreeSWITCH 媒体相关操作</title>
+      <link>https://wdd.js.org/freeswitch/media-settings/</link>
+      <pubDate>Sat, 28 May 2022 14:50:55 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/freeswitch/media-settings/</guid>
+      <description>查看FS支持的编码 show codec 编码设置 vars.xml
+global_codec_prefs=G722,PCMU,PCMA,GSM outbound_codec_prefs=PCMU,PCMA,GSM 查看FS使用的编码 &amp;gt; sofia status profile internal CODECS IN ILBC,PCMU,PCMA,GSM CODECS OUT ILBC,PCMU,PCMA,GSM &amp;gt; sofia status profile external CODECS IN ILBC,PCMU,PCMA,GSM CODECS OUT ILBC,PCMU,PCMA,GSM 使修改后的profile生效 &amp;gt; sofia profile internal rescan &amp;gt; sofia profile external rescan 重启profile &amp;gt; sofia profile internal restart &amp;gt; sofia profile external restart </description>
+    </item>
+    
+  </channel>
+</rss>

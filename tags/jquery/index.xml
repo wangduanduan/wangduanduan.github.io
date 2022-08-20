@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>jQuery on 洞香春</title>
+    <link>https://wdd.js.org/tags/jquery/</link>
+    <description>Recent content in jQuery on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 01 Sep 2018 21:04:54 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/jquery/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>jQuery 与IE浏览器兼容性的思考</title>
+      <link>https://wdd.js.org/posts/2018/jquery-ie-browser-support/</link>
+      <pubDate>Sat, 01 Sep 2018 21:04:54 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/jquery-ie-browser-support/</guid>
+      <description>兼容性：对，说你呢！IE! 当我们在说浏览器兼容性的时候，其实我们大多数时候在说IE浏览器的兼容性。
+对，说你呢！IE!
+现在jQuery的最新版已经是3.3.1， 根据jQuery的官方说明。
+最新版的jQuery支持IE9+, 如果你想支持IE6-8，那么你最好去用jQuery 1.12。
+Current Active Support Desktop Internet Explorer: 9+ If you need to support older browsers like Internet Explorer 6-8, Opera 12.1x or Safari 5.1+, use jQuery 1.12. 来自 Browser Support
+jQuery的亮点 我只想安安静静的做东西，不想和各种浏览器diss或者battle。
+所以老司机总是选择一个合适的轮子，</description>
+    </item>
+    
+    <item>
+      <title>表单验证工具 jquery-validation Vs Parsley</title>
+      <link>https://wdd.js.org/posts/2018/jquery-validation-vs-parsley/</link>
+      <pubDate>Thu, 08 Feb 2018 09:26:00 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/jquery-validation-vs-parsley/</guid>
+      <description>1. 基本对比 名称 gitbub地址 stars 文档地址 jquery-validation 这里 7859(截止7/21) 这里 Parsley.js 这里 7979(截止7/21) 这里 2. 强烈推荐Parsley 这两个表格验证插件我都用过，最早用的是jqueryValidataion, 现在用Parsley。 这两个插件都依赖jQuery。但是如果说那个跟好用的话，真心推荐Parsley。Parsley号称不用写一行代码就能验证表单。另外从star的数量上也可以看出来Parsley更流行。而且Parsley支持在html中就将错误信息定义在里面。
+Parsley优势
+直观的DOM API: 像没有其他表单验证库一样，只需用HTML格式写入您的要求，Parsley将会做剩下的所有事情！不需要编写一行代码来验证表单。 动态表单验证： parsley现在更聪明，它会自动检测您的表单的修改并相应地调整其验证。简单地添加，删除或编辑字段，parsley将会自动验证。 还有好多&amp;hellip; &amp;lt;form&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; required=&amp;#34;&amp;#34; data-parsley-checkphonenum data-parsley-checkphonenum-message=&amp;#34;手机号码格式有误&amp;#34; name=&amp;#34;phoneNum&amp;#34; class=&amp;#34;form-control&amp;#34; placeholder=&amp;#34;请填写手机号&amp;#34;&amp;gt; &amp;lt;/form&amp;gt; //验证表单 // 注意 checkphonenum是我自定义的验证规则，添加到parsley里面的 $(&amp;#39;from&amp;#39;).parsley().validate(); </description>
+    </item>
+    
+    <item>
+      <title>熟练使用使用jQuery Promise (Deferred)</title>
+      <link>https://wdd.js.org/posts/2018/jquery-deferred/</link>
+      <pubDate>Mon, 29 Jan 2018 13:43:23 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/jquery-deferred/</guid>
+      <description>1. 情景再现 以前用nodejs写后端程序时，遇到Promise这个概念，这个东西好呀！不用谢一层一层回调，直接用类似于jQuery的连缀方式。后来遇到bluebird这个库，它就是Promise库中很有名的。我希望可以把Promise用在前端的ajax请求上，但是我不想又引入bluebird。后来发现，jquery本身就具有类似于Promise的东西。于是我就jquery的Promise写一些异步请求。
+2. 不堪回首 看看一看我以前写异步请求的方式
+// 函数定义 function sendRequest(req,successCallback,errorCallback){ $.ajax({ ... ... success:function(res){ successCallback(res); }, error:function(res){ errorCallback(res); } }); } // 函数调用,这个函数的匿名函数写的时候很容易出错，而且有时候难以理解 sendRequest(req,function(res){ //请求成功 ... },function(res){ //请求失败 ... }); 3. 面朝大海 下面是我希望的异步调用方式
+sendRequest(req) .done(function(res){ //请求成功 ... }) .fail(function(req){ //请求失败 ... }); 4. 废话少说，放‘码’过来 talk is cheap, show me the code
+// 最底层的发送异步请求，做成Promise的形式 App.addMethod(&amp;#39;_sendRequest&amp;#39;,function(path,method,payload){ var dfd = $.Deferred(); $.ajax({ url:path, type:method || &amp;#34;get&amp;#34;, headers:{ sessionId:session.id || &amp;#39;&amp;#39; }, data:JSON.stringify(payload), dataType:&amp;#34;json&amp;#34;, contentType : &amp;#39;application/json; charset=UTF-8&amp;#39;, success:function(data){ dfd.</description>
+    </item>
+    
+  </channel>
+</rss>

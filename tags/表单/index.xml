@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>表单 on 洞香春</title>
+    <link>https://wdd.js.org/tags/%E8%A1%A8%E5%8D%95/</link>
+    <description>Recent content in 表单 on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 09 Feb 2018 13:31:38 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E8%A1%A8%E5%8D%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>奇技淫巧：css实现整个表单只读 form readonly</title>
+      <link>https://wdd.js.org/posts/2018/css-form-readonly/</link>
+      <pubDate>Fri, 09 Feb 2018 13:31:38 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/css-form-readonly/</guid>
+      <description>一般的方法往往给表单的各个input、select等加上readonly，但是这个方法有很多缺点。此处就不一一赘述。
+我说的方法只需要给表单加上一个类，就可以让表单只读。
+&amp;lt;form class=&amp;#34;form-readonly&amp;#34;&amp;gt;&amp;lt;/form&amp;gt; 1. 方法1: 用:before给form做个看不见的蒙版，遮住下面所有的元素，使之不响应任何事件 .form-readonly{ position: relative; } .form-readonly:before{ content: &amp;#34;&amp;#34;; z-index: 1; position: absolute; top: 0; right: 0; bottom: 0; left: 0; } 2. 方法2: 用pointer-events:none, 让所有事件穿透form .form-readonly{ pointer-events:none; } 关于pointer-events属性，可以看看这个介绍：https://segmentfault.com/a/1190000011182335</description>
+    </item>
+    
+  </channel>
+</rss>

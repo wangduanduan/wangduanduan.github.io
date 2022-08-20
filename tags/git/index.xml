@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>git on 洞香春</title>
+    <link>https://wdd.js.org/tags/git/</link>
+    <description>Recent content in git on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 28 May 2022 12:39:50 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Shell 教程技巧</title>
+      <link>https://wdd.js.org/posts/2022/shell-101/</link>
+      <pubDate>Sat, 28 May 2022 12:39:50 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2022/shell-101/</guid>
+      <description>复制文本到剪贴板 sudo apt install xclip vim ~/.zshrc
+alias copy=&amp;#39;xclip -selection clipboard&amp;#39; 这样我们就可以用copy命令来考本文件内容到系统剪贴板了。
+copy aaa.txt 判断工作区是否clean if [ -z &amp;#34;$(git status --porcelain)&amp;#34; ]; then # Working directory clean else # Uncommitted changes fi </description>
+    </item>
+    
+    <item>
+      <title>无坚不摧：打造极大提高工作效率的装备库</title>
+      <link>https://wdd.js.org/posts/2018/tool-improve-work-efficiency/</link>
+      <pubDate>Fri, 02 Feb 2018 09:24:43 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/tool-improve-work-efficiency/</guid>
+      <description>1. Git Bash 2. Gow 1 2 3 4 5 6 7 8 9 10 awk basename bash bc bison bunzip2 bzip2 bzip2 bzip2recover cat chgrp chmod chown chroot cksum clear cp csplit curl cut dc dd df diff diff3 dirname dos2unix du egrep env expand expr factor fgrep flex fmt fold gawk gdbm3 gfind gow grep gsar gsort gzip head history5 hostid hostname id indent install join jwhois less lesskey libcurl libeay32 libiconv-2 libidn-11 libintl-2 libintl3 libssl32 ln ls m4 make md5sum mkdir mkfifo mknod msys-1 msys-regex-1 msys-termcap-0 mv nano ncftp nl od pageant paste patch pathchk pcre3 plink pr printenv printf pscp psftp putty puttygen pwd readline5 regex2 rm rmdir scp sdiff sed seq sftp sha1sum shar sleep split ssh ssleay32 su sum sync tac tail tar tee test touch tr uname unexpand uniq unix2dos unlink unrar unrar3 unshar uudecode uuencode vim wc wget whereis which whoami xargs yes zip zip32z64 3.</description>
+    </item>
+    
+    <item>
+      <title>git合并上游仓库即同步fork后的仓库</title>
+      <link>https://wdd.js.org/posts/2018/fork-sync-learn/</link>
+      <pubDate>Wed, 31 Jan 2018 17:16:44 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/fork-sync-learn/</guid>
+      <description>1. 前提说明 仓库A: http://gitlab.tt.cc:30000/fe/omp.git 仓库B: 仓库Bfork自仓库A, 仓库A的地址是：http://gitlab.tt.cc:30000/wangdd/omp.git 某一时刻，仓库A更新了。仓库B需要同步上游分支的更新。
+2. 本地操作 // 1 查看远程分支 ➜ omp git:(master) git remote -v origin	http://gitlab.tt.cc:30000/wangdd/omp.git (fetch) origin	http://gitlab.tt.cc:30000/wangdd/omp.git (push) // 2 添加一个远程同步的上游仓库 ➜ omp git:(master) git remote add upstream http://gitlab.tt.cc:30000/fe/omp.git ➜ omp git:(master) git remote -v origin	http://gitlab.tt.cc:30000/wangdd/omp.git (fetch) origin	http://gitlab.tt.cc:30000/wangdd/omp.git (push) upstream	http://gitlab.tt.cc:30000/fe/omp.git (fetch) upstream	http://gitlab.tt.cc:30000/fe/omp.git (push) // 3 拉去上游分支到本地，并且会被存储在一个新分支upstream/master ➜ omp git:(master) git fetch upstream remote: Counting objects: 4, done. remote: Compressing objects: 100% (4/4), done.</description>
+    </item>
+    
+  </channel>
+</rss>

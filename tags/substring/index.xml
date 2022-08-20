@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>substring on 洞香春</title>
+    <link>https://wdd.js.org/tags/substring/</link>
+    <description>Recent content in substring on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 29 Jan 2018 13:46:31 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/substring/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>追本溯源：substr与substring历史漫话</title>
+      <link>https://wdd.js.org/posts/2018/substr-and-substring-history/</link>
+      <pubDate>Mon, 29 Jan 2018 13:46:31 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/substr-and-substring-history/</guid>
+      <description>引子： 很多时候，当我要字符串截取时，我会想到substr和substring的方法，但是具体要怎么传参数时，我总是记不住。哪个应该传个字符串长度，哪个又应该传个开始和结尾的下标，如果我不去查查这两个函数，我始终不敢去使用它们。所以我总是觉得，这个两个方法名起的真是蹩脚。然而事实是这样的吗？
+看来是时候扒一扒这两个方法的历史了。
+1. 基因追本溯源 在编程语言的历史长河中，曾经出现过很多编程语言。然而大浪淘沙，铅华洗尽之后，很多早已折戟沉沙，有些却依旧光彩夺目。那么stubstr与substring的DNA究竟来自何处？
+1950与1960年代
+1954 - FORTRAN 1958 - LISP 1959 - COBOL 1964 - BASIC 1970 - Pascal 1967-1978：确立了基础范式
+1972 - C语言 1975 - Scheme 1978 - SQL (起先只是一种查询语言，扩充之后也具备了程序结构) 1980年代：增强、模块、性能
+1983 - C++ (就像有类别的C) 1988 - Tcl 1990年代：互联网时代
+1991 - Python 1991 - Visual Basic 1993 - Ruby 1995 - Java 1995 - Delphi (Object Pascal) 1995 - JavaScript 1995 - PHP 2009 - Go 2014 - Swift (编程语言) 1.</description>
+    </item>
+    
+  </channel>
+</rss>

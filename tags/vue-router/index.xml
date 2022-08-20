@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Vue-router on 洞香春</title>
+    <link>https://wdd.js.org/tags/vue-router/</link>
+    <description>Recent content in Vue-router on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 09 Feb 2018 12:02:05 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/vue-router/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vue &#43; Vue-router &#43; Element-ui 搭建一个非常简单的dashboard demo</title>
+      <link>https://wdd.js.org/posts/2018/vue-vue-router-elementui-stupid-simple-dashboard/</link>
+      <pubDate>Fri, 09 Feb 2018 12:02:05 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/vue-vue-router-elementui-stupid-simple-dashboard/</guid>
+      <description>做完这个demo后，你会体会到，Vue组件化，webpack, Vue-router等，并不是很难学习，你需要的只是拿起斧头的勇气
+在做demo的过程中，我遇到一个问题，就是vue-router懒加载一直实现不了，纠结了半天。后来回到原点，去vue-route官网看文档，发现是因为syntax-dynamic-import插件没有安装。
+所以说：你以为的bug, 实际上是你没看透文档
+初次学习这个教程，你不需要有任何担忧某些东西不会，你也不需要写任何代码。因为基本上所有代码都是从element官网上拷贝的，你所做的只是把他们组装在一起罢了。
+在线预览 仓库地址：https://github.com/wangduanduan/vue-el-dashboard
+效果图： 使用到的技术：
+Vue Vue-router Element-ui webpack Normalize.css vue-awesome babel 1. vue-cli 安装模板 ➜ vue-el-dashboard git:(master) vue init webpack ? Generate project in current directory? Yes ? Project name vue-el-dashboard ? Project description A Vue.js project ? Author wangdd &amp;lt;wangdd@welljoint.com&amp;gt; ? Vue build standalone ? Install vue-router? Yes ? Use ESLint to lint your code? Yes ? Pick an ESLint preset Standard ?</description>
+    </item>
+    
+  </channel>
+</rss>

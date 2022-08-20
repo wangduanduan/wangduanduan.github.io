@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>谷歌 on 洞香春</title>
+    <link>https://wdd.js.org/tags/%E8%B0%B7%E6%AD%8C/</link>
+    <description>Recent content in 谷歌 on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 06 Mar 2018 11:15:38 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E8%B0%B7%E6%AD%8C/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>曲线救国 使用googler命令行搜索</title>
+      <link>https://wdd.js.org/posts/2018/use-googler-for-serarch/</link>
+      <pubDate>Tue, 06 Mar 2018 11:15:38 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/use-googler-for-serarch/</guid>
+      <description>之前因为有优惠政策，于是我在xx云上买了一台位于香港的最低配置的服务器，期限三年，主要用来搭建ss, 用来跨栏。
+用了一段时间，感觉挺稳定的。后来一纸通知，收到了整改信息。于是我就把ss服务停了。
+三年的主机不能浪费，于是我就思考一下曲线救国的思路。
+即使用ssh链接上远程服务器后，使用googler命令进行搜索，然后点击链接，使用本地浏览器打开搜索结果
+关于googler可以查看，https://github.com/jarun/googler#installation</description>
+    </item>
+    
+  </channel>
+</rss>

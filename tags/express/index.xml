@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>express on 洞香春</title>
+    <link>https://wdd.js.org/tags/express/</link>
+    <description>Recent content in express on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 30 Sep 2018 09:41:44 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/express/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Express代理中间件问题与解决方案</title>
+      <link>https://wdd.js.org/posts/2018/express-middleware-order-proxy-problem/</link>
+      <pubDate>Sun, 30 Sep 2018 09:41:44 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/express-middleware-order-proxy-problem/</guid>
+      <description>前后端分离应用的架构 在前后端分离架构中，为了避免跨域以及暴露内部服务地址。一般来说，我会在Express这层中加入一个反向代理。
+所有向后端服务访问的请求，都通过代理转发到内部的各个服务。
+这个反向代理服务器，做起来很简单。用http-proxy-middleware这个模块，几行代码就可以搞定。
+// app.js Object.keys(proxyTable).forEach(function (context) { app.use(proxyMiddleware(context, proxyTable[context])) }) http-proxy-middleware实际上是对于node-http-proxy的更加简便的封装。node-http-proxy是http-proxy-middleware的底层包，如果node-http-proxy有问题，那么这个问题就会影响到http-proxy-middleware这个包。
+最近的bug http-proxy-middleware最近有个问题，请求体在被代理转发前，如果请求体被解析了。那么后端服务将会收不到请求结束的消息，从浏览器的网络面板可以看出，一个请求一直在pending状态。
+Cannot proxy after parsing body #299, 实际上这个问题在node-http-proxy也被提出过，而且处于open状态。POST fails/hangs examples to restream also not working #1279
+目前这个bug还是处于open状态，但是还是有解决方案的。就是将请求体解析的中间件挂载在代理之后。
+下面的代码，express.json()会对json格式的请求体进行解析。方案1在代理前就进行body解析，所有格式是json的请求体都会被解析。
+但是有些走代理的请求，如果我们并不关心请求体的内容是什么，实际上我们可以不解析那些走代理的请求。所以，可以先挂载代理中间件，然后挂载请求体解析中间件，最后挂载内部的一些接口服务。
+// 方案1 bad app.use(express.json()) Object.keys(proxyTable).forEach(function (context) { app.use(proxyMiddleware(context, proxyTable[context])) }) app.use(&amp;#39;/api&amp;#39;, (req, res, next)=&amp;gt; { }) // 方案2 good Object.keys(proxyTable).forEach(function (context) { app.use(proxyMiddleware(context, proxyTable[context])) }) app.use(express.json()) app.use(&amp;#39;/api&amp;#39;, (req, res, next)=&amp;gt; { }) 总结 经过这个问题，我对Express中间件的挂载顺序有了更加深刻的认识。
+同时，在使用第三方包的过程中，如果该包bug，那么也需要自行找出合适的解决方案。而这个能力，往往就是高手与新手的区别。</description>
+    </item>
+    
+    <item>
+      <title>Express静态文件浏览器缓存设置与缓存清除</title>
+      <link>https://wdd.js.org/posts/2018/express-static-file-cache-setting-and-cleaning/</link>
+      <pubDate>Sun, 08 Apr 2018 09:00:48 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/express-static-file-cache-setting-and-cleaning/</guid>
+      <description>1. Express设置缓存 Express设置静态文件的方法很简单，一行代码搞定。app.use(express.static(path.join(__dirname, &#39;public&#39;), {maxAge: MAX_AGE})), 注意MAX_AGE的单位是毫秒。这句代码的含义是让pulic目录下的所有文件都可以在浏览器中缓存，过期时长为MAX_AGE毫秒。
+app.use(express.static(path.join(__dirname, &amp;#39;public&amp;#39;), {maxAge: config.get(&amp;#39;maxAge&amp;#39;)})) 2. Express让浏览器清除缓存 缓存的好处是可以更快的访问服务，但是缓存也有坏处。例如设置缓存为10天，第二天的时候服务更新了。如果客户端不强制刷新页面的话，浏览器会一致使用更新前的静态文件，这样会导致一些BUG。你总当每次出问题时，客户打电话给你后，你让他强制刷新浏览器吧？
+所以，最好在服务重启后，重新让浏览器获取最新的静态文件。
+设置的方式是给每一个静态文件设置一个时间戳。
+例如：vendor/loadjs/load.js?_=123898923423&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+2.1. Express 路由 // /routes/index.js router.get(&amp;#39;/home&amp;#39;, function (req, res, next) { res.render(&amp;#39;home&amp;#39;, {config: config, serverStartTimestamp: new Date().getTime()}) }) 2.2. 视图文件 // views/home.html &amp;lt;script src=&amp;#34;vendor/loadjs/load.js?_=&amp;lt;%= serverStartTimestamp %&amp;gt;&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; 设置之后，每次服务更新或者重启，浏览器都会使用最新的时间戳serverStartTimestamp，去获取静态文件。
+2.3. 动态加载JS文件 有时候js文件并不是直接在HTML中引入，可能是使用了一些js文件加载库，例如requirejs, LABjs等。这些情况下，可以在全局设置环境变量SERVER_START_TIMESTAMP，用来表示服务启动的时间戳，在获取js的时候，将该时间戳拼接在路径上。
+注意：环境变量SERVER_START_TIMESTAMP，一定要在其他脚本使用前定义。
+// views/home.html &amp;lt;script&amp;gt; var SERVER_START_TIMESTAMP = &amp;lt;%= serverStartTimestamp %&amp;gt; &amp;lt;/script&amp;gt; // load.js &amp;#39;vendor/contact-center/skill.js?_=&amp;#39; + SERVER_START_TIMESTAMP </description>
+    </item>
+    
+  </channel>
+</rss>

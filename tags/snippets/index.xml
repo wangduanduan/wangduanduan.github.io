@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>snippets on 洞香春</title>
+    <link>https://wdd.js.org/tags/snippets/</link>
+    <description>Recent content in snippets on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 07 Feb 2018 13:48:55 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/snippets/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>谷歌浏览器： Snippets小程序哪家强？</title>
+      <link>https://wdd.js.org/posts/2018/chrome-snippets-collect/</link>
+      <pubDate>Wed, 07 Feb 2018 13:48:55 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/chrome-snippets-collect/</guid>
+      <description>Snippets是可以在Chrome DevTools的“源”面板中创建和执行的小脚本。 您可以从任何页面访问和运行它们。 当您运行代码段时，它会从当前打开的页面的上下文执行。
+1. 显示所有元素的边框，看页面布局非常方便 [].forEach.call($$(&amp;#34;*&amp;#34;),function(a){ a.style.outline=&amp;#34;1px solid #&amp;#34;+(~~(Math.random()*(1&amp;lt;&amp;lt;24))).toString(16) }); 2. allcolors.js 从页面上的元素中使用的计算样式打印所有颜色。 使用样式化的console.log调用来可视化每种颜色。
+// allcolors.js // https://github.com/bgrins/devtools-snippets // Print out CSS colors used in elements on the page. (function () { // Should include colors from elements that have a border color but have a zero width? var includeBorderColorsWithZeroWidth = false; var allColors = {}; var props = [&amp;#34;background-color&amp;#34;, &amp;#34;color&amp;#34;, &amp;#34;border-top-color&amp;#34;, &amp;#34;border-right-color&amp;#34;, &amp;#34;border-bottom-color&amp;#34;, &amp;#34;border-left-color&amp;#34;]; var skipColors = { &amp;#34;rgb(0, 0, 0)&amp;#34;: 1, &amp;#34;rgba(0, 0, 0, 0)&amp;#34;: 1, &amp;#34;rgb(255, 255, 255)&amp;#34;: 1 }; [].</description>
+    </item>
+    
+  </channel>
+</rss>

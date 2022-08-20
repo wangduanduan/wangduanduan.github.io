@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>stompjs on 洞香春</title>
+    <link>https://wdd.js.org/tags/stompjs/</link>
+    <description>Recent content in stompjs on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 20 Mar 2018 22:09:34 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/stompjs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在实践中我遇到stompjs, websocket和nginx的问题与总结</title>
+      <link>https://wdd.js.org/posts/2018/stomp-over-websocket/</link>
+      <pubDate>Tue, 20 Mar 2018 22:09:34 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/stomp-over-websocket/</guid>
+      <description>1. AWS EC2 不支持WebSocket 直达解决方案 英文版
+简单说一下思路：WebSocket底层基于TCP协议的，如果你的服务器基于HTTP协议暴露80端口，那WebSocket肯定无法连接。你只要将HTTP协议修改成TCP协议就可以了。
+然后是安全组的配置：
+同样如果使用了NGINX作为反向代理，那么NGINX也需要做配置的。
+// https://gist.githubusercontent.com/unshift/324be6a8dc9e880d4d670de0dc97a8ce/raw/29507ed6b3c9394ecd7842f9d3228827cffd1c58/elasticbeanstalk_websockets files: &amp;#34;/etc/nginx/conf.d/01_websockets.conf&amp;#34; : mode: &amp;#34;000644&amp;#34; owner: root group: root content : | upstream nodejs { server 127.0.0.1:8081; keepalive 256; } server { listen 8080; location / { proxy_pass http://nodejs; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection &amp;#34;upgrade&amp;#34;; proxy_http_version 1.1; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; } } &amp;#34;/opt/elasticbeanstalk/hooks/appdeploy/enact/41_remove_eb_nginx_confg.sh&amp;#34;: mode: &amp;#34;000755&amp;#34; owner: root group: root content : | mv /etc/nginx/conf.</description>
+    </item>
+    
+    <item>
+      <title>Vue&#43;websocket&#43;stompjs 实时监控坐席状态demo</title>
+      <link>https://wdd.js.org/posts/2018/vue-ws-monitor-agent-status/</link>
+      <pubDate>Wed, 07 Feb 2018 09:36:49 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/vue-ws-monitor-agent-status/</guid>
+      <description>由于是前后端分离的demo, 程序的后端我不管，我只负责把前端做好，这只是个demo， 还有很多不完善的地方。
+2018-01-09新增： 后端的MQ事件结构现在也改了，该demo只能看看了。
+html
+&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html lang=&amp;#34;zh-cn&amp;#34;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;utf-8&amp;#34;&amp;gt; &amp;lt;link href=&amp;#34;http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css&amp;#34; rel=&amp;#34;stylesheet&amp;#34;&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;table class=&amp;#34;table&amp;#34; id=&amp;#34;event-queue&amp;#34;&amp;gt; &amp;lt;thead&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;th&amp;gt;当前状态&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;状态改变时间&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;姓名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;工号&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;分机号&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;对方号码&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;呼入数&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;呼出数&amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;/thead&amp;gt; &amp;lt;tbody&amp;gt; &amp;lt;tr v-for=&amp;#34;item in eventQueue&amp;#34;&amp;gt; &amp;lt;td&amp;gt;{{item.agentStatus | transAgentStatus}}&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;{{item.agentStatusTime}}&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;{{item.userName}}&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;{{item.loginName}}&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;{{item.deviceId}}&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;/tbody&amp;gt; &amp;lt;/table&amp;gt; &amp;lt;script src=&amp;#34;http://cdn.bootcss.com/vue/1.0.26/vue.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script src=&amp;#34;js/websocket-suport.min.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script src=&amp;#34;js/main.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; js
+var tm = (function(){ var App = function(){}; var app = App.</description>
+    </item>
+    
+  </channel>
+</rss>

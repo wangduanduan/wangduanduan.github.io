@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>clipboard on 洞香春</title>
+    <link>https://wdd.js.org/tags/clipboard/</link>
+    <description>Recent content in clipboard on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 14 Mar 2018 14:19:12 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/clipboard/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>前端剪贴板复制功能实现原理</title>
+      <link>https://wdd.js.org/posts/2018/clipboard-copy-tutorial/</link>
+      <pubDate>Wed, 14 Mar 2018 14:19:12 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/clipboard-copy-tutorial/</guid>
+      <description>1. 兼容情况 如果想浏览器支持粘贴功能，那么浏览器必须支持，document.execCommand(&amp;lsquo;copy&amp;rsquo;)方法，也可以根据document.queryCommandEnabled(&amp;lsquo;copy&amp;rsquo;)，返回的true或者false判断浏览器是否支持copy命令。
+从下表可以看出，主流的浏览器都支持execCommand命令
+2. 复制的原理 查询元素 选中元素 执行复制命令 3. 代码展示 // html &amp;lt;input id=&amp;#34;username&amp;#34; value=&amp;#34;123456&amp;#34;&amp;gt; // 查询元素 var username = document.getElementById(‘username’) // 选中元素 username.select() // 执行复制 document.execCommand(&amp;#39;copy&amp;#39;) 注意: 以上代码只是简单示意，在实践过程中还有几个要判断的情况
+首要要去检测浏览器execCommand能力检测 选取元素时，有可能选取元素为空，要考虑这种情况的处理 4. 第三方方案 clipboard.js是一个比较方便的剪贴板库，功能蛮多的。
+&amp;lt;!-- Target --&amp;gt; &amp;lt;textarea id=&amp;#34;bar&amp;#34;&amp;gt;Mussum ipsum cacilds...&amp;lt;/textarea&amp;gt; &amp;lt;!-- Trigger --&amp;gt; &amp;lt;button class=&amp;#34;btn&amp;#34; data-clipboard-action=&amp;#34;cut&amp;#34; data-clipboard-target=&amp;#34;#bar&amp;#34;&amp;gt; Cut to clipboard &amp;lt;/button&amp;gt; 官方给的代码里有上面的一个示例，如果你用了这个示例，但是不起作用，那你估计是没有初始化ClipboardJS示例的。
+注意：下面的函数必须要主动调用，这样才能给响应的DOM元素注册事件。 ClipboardJS源代码压缩后大约有3kb，虽然很小了，但是如果你不需要它的这么多功能的话，其实你自己写几行代码就可以搞定复制功能。
+new ClipboardJS(&amp;#39;.btn&amp;#39;); </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>静态文件服务器 on 洞香春</title>
+    <link>https://wdd.js.org/tags/%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+    <description>Recent content in 静态文件服务器 on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 09 Feb 2018 13:01:14 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一行命令搭建简易静态文件http服务器</title>
+      <link>https://wdd.js.org/posts/2018/one-command-create-static-file-server/</link>
+      <pubDate>Fri, 09 Feb 2018 13:01:14 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/one-command-create-static-file-server/</guid>
+      <description>简易服务器：在命令执行的所在路径启动一个http服务器，然后你可以通过浏览器访问该路径下的所有文件。
+在局域网内传文件，或者自己测试使用都是非常方便的。
+1. 基于python 1.1. 基于Python2 python -m SimpleHTTPServer port
+&amp;gt; python -m SimpleHTTPServer 8099 Serving HTTP on 0.0.0.0 port 8099 ... 127.0.0.1 - - [24/Oct/2017 11:07:56] &amp;#34;GET / HTTP/1.1&amp;#34; 200 - 1.2. 基于python3 python3 -m http.server port
+&amp;gt; python3 -m http.server 8099 Serving HTTP on 0.0.0.0 port 8099 (http://0.0.0.0:8099/) ... 127.0.0.1 - - [24/Oct/2017 11:05:06] &amp;#34;GET / HTTP/1.1&amp;#34; 200 - 127.0.0.1 - - [24/Oct/2017 11:05:06] code 404, message File not found 127.</description>
+    </item>
+    
+  </channel>
+</rss>

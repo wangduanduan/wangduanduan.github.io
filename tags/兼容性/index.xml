@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>兼容性 on 洞香春</title>
+    <link>https://wdd.js.org/tags/%E5%85%BC%E5%AE%B9%E6%80%A7/</link>
+    <description>Recent content in 兼容性 on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 01 Sep 2018 21:04:54 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E5%85%BC%E5%AE%B9%E6%80%A7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>jQuery 与IE浏览器兼容性的思考</title>
+      <link>https://wdd.js.org/posts/2018/jquery-ie-browser-support/</link>
+      <pubDate>Sat, 01 Sep 2018 21:04:54 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/jquery-ie-browser-support/</guid>
+      <description>兼容性：对，说你呢！IE! 当我们在说浏览器兼容性的时候，其实我们大多数时候在说IE浏览器的兼容性。
+对，说你呢！IE!
+现在jQuery的最新版已经是3.3.1， 根据jQuery的官方说明。
+最新版的jQuery支持IE9+, 如果你想支持IE6-8，那么你最好去用jQuery 1.12。
+Current Active Support Desktop Internet Explorer: 9+ If you need to support older browsers like Internet Explorer 6-8, Opera 12.1x or Safari 5.1+, use jQuery 1.12. 来自 Browser Support
+jQuery的亮点 我只想安安静静的做东西，不想和各种浏览器diss或者battle。
+所以老司机总是选择一个合适的轮子，</description>
+    </item>
+    
+  </channel>
+</rss>

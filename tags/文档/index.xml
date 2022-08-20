@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>文档 on 洞香春</title>
+    <link>https://wdd.js.org/tags/%E6%96%87%E6%A1%A3/</link>
+    <description>Recent content in 文档 on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 09 Feb 2018 12:52:57 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E6%96%87%E6%A1%A3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何写好技术文档?</title>
+      <link>https://wdd.js.org/posts/2018/how-to-write-a-technical-document/</link>
+      <pubDate>Fri, 09 Feb 2018 12:52:57 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/how-to-write-a-technical-document/</guid>
+      <description>本文来自于公司内部的一个分享。 在文档方面，对内的一些接口文档主要是用swagger来写的。虽然可以在线测试，比较方便。但是也存在着一些更新不及时，swgger文档无法导出成文件的问题。 在对外提供的文档方面：我主要负责做一个浏览器端的一个js sdk。文档还算可以github地址，所以想把一些写文档的心得分享给大家。
+1. 衡量好文档的唯一标准是什么？ Martin(Bob大叔)曾在《代码整洁之道》一书打趣地说：当你的代码在做 Code Review 时，审查者要是愤怒地吼道：
+“What the fuck is this shit?” “Dude, What the fuck！” 等言辞激烈的词语时，那说明你写的代码是 Bad Code，如果审查者只是漫不经心的吐出几个
+“What the fuck?”，
+那说明你写的是 Good Code。衡量代码质量的唯一标准就是每分钟骂出“WTF” 的频率。
+衡量文档的标准也是如此。
+2. 好文档的特点 简洁：一句话可以说完的事情，就不要分两句话来说。并不是文档越厚越好，太厚的文档大多没人看。 准确: 字段类型，默认值，备注，是否必填等属性说明。 逻辑性: 文档如何划分？ 利于查看。 demo胜千言: 好的demo胜过各种字段说明，可以复制下来直接使用。 读者心: 从读者的角度考虑, 方法尽量简洁。可以传递一个参数搞定的事情，绝对不要让用户去传两个参数。 及时更新: 不更新的文档比bug更严重。 向后兼容: 不要随意废弃已有的接口或者某个字段，除非你考虑到这样做的后果。 建立文档词汇表：每个概念只有一个名字，不要随意起名字，名不正则言不顺。 格式统一：例如时间格式。我曾见过2017-09-12 09:32:23, 或2017.09.12 09:32:23或2017.09.12 09:32:23。变量名user_name, userName。 使用专业词语：不要过于口语化 3. 总结: 写出好文档要有以下四点 逻辑性：便于查找 专业性: 值得信赖，质量保证 责任心：及时更新，准确性，向后兼容 读者心：你了解的东西，别人可能并不清楚。从读者的角度去考虑，他们需要什么，而不是一味去强调你能提供什么。 4. 写文档的工具 markdown: 方便快捷，可以导出各种格式的文件 swagger: 功能强大，需要部署，不方便传递文件 5.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>hugo on 洞香春</title>
+    <link>https://wdd.js.org/tags/hugo/</link>
+    <description>Recent content in hugo on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 28 May 2022 21:08:43 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo博客常见问题以及解决方案</title>
+      <link>https://wdd.js.org/posts/2022/hugo-blog-faq/</link>
+      <pubDate>Sat, 28 May 2022 21:08:43 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2022/hugo-blog-faq/</guid>
+      <description>如何在markdown中插入图片 在static 目录中创建 images 目录，然后把图片放到images目录中。
+在文章中引用的时候
+![](/images/qianxun.jpeg#center) Warning 我之前创建的文件夹的名字叫做 img, 本地可以正常显示，但是部署之后，就无法显示图片了。
+最后我把img改成images才能正常在网页上显示。</description>
+    </item>
+    
+  </channel>
+</rss>

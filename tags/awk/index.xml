@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>awk on 洞香春</title>
+    <link>https://wdd.js.org/tags/awk/</link>
+    <description>Recent content in awk on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 09 Feb 2018 10:45:31 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/awk/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>grep awk 搜索日志常用命令</title>
+      <link>https://wdd.js.org/posts/2018/grep-awk-search-log/</link>
+      <pubDate>Fri, 09 Feb 2018 10:45:31 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/grep-awk-search-log/</guid>
+      <description>1. grep 常用参数 参考： GNU Grep 3.0
+--color:高亮显示匹配到的字符串 -v：显示不能被pattern匹配到的 -i：忽略字符大小写 -o：仅显示匹配到的字符串 -q：静默模式，不输出任何信息 -A#：after，匹配到的后#行 -B#：before，匹配到的前#行 -C#：context，匹配到的前后各#行 -E：使用ERE，支持使用扩展的正则表达式 －c：只输出匹配行的计数。 －I：不区分大 小写(只适用于单字符)。 －h：查询多文件时不显示文件名。 －l：查询多文件时只输出包含匹配字符的文件名。 －n：显示匹配行及 行号。 - m: 匹配多少个关键词之后就停止搜索 －s：不显示不存在或无匹配文本的错误信息。 －v：显示不包含匹配文本的所有行。 2. 普通：搜索trace.log 中含有ERROR字段的日志 grep ERROR trace.log 3. 输出文件：可以将日志输出文件中 grep ERROR trace.log &amp;gt; error.log
+4. 反向：搜索不包含ERROR字段的日志 grep -v ERROR trace.log
+5. 向前：搜索包含ERROR,并且显示ERROR前10行的日志 grep -B 10 ERROR trace.log
+6. 向后：搜索包含ERROR字段，并且显示ERROR后10行的日志 grep -A 10 ERROR trace.log
+7. 上下文：搜索包含ERROR字段，并且显示ERROR字段前后10行的日志 grep -C 10 ERROR trace.log
+8. 多字段：搜索包含ERROR和DEBUG字段的日志 gerp -E &#39;ERROR|DEBUG&#39; trace.</description>
+    </item>
+    
+  </channel>
+</rss>

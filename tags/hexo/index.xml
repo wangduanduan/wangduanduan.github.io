@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>hexo on 洞香春</title>
+    <link>https://wdd.js.org/tags/hexo/</link>
+    <description>Recent content in hexo on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 08 Feb 2018 21:29:18 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/hexo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一些关于Hexo的疑问</title>
+      <link>https://wdd.js.org/posts/2018/something-you-may-dont-konw-about-hexo/</link>
+      <pubDate>Thu, 08 Feb 2018 21:29:18 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/something-you-may-dont-konw-about-hexo/</guid>
+      <description>1. 文件名重复了怎么办？ 使用hexo new filename命令用来新建一个文章，但是如果你创建文章时，已经存在了同样的一个文件名，那么Hexo会怎样处理？
+报错 覆盖之前的文章 在文件名后面加个序号 实际上Hexo使用第三个方式来处理，例如
+// 执行下面命令两次，会产生两个文件 filename.md, filename-1.md hexo new filename hexo new filename 所以，在创建文章时，你根本不需要考虑文章重名的事情，Hexo会自动帮你加上序号后处理。</description>
+    </item>
+    
+    <item>
+      <title>Hexo NexT主题设置封面的方法</title>
+      <link>https://wdd.js.org/posts/2018/hexo-next-theme-set-cover/</link>
+      <pubDate>Thu, 08 Feb 2018 21:09:50 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/hexo-next-theme-set-cover/</guid>
+      <description> 默认情况下NexT主题的首页，每篇文章几乎都会全部渲染出来。这是这样来看，首页就会变得非常长，不利于快速浏览。
+而我希望首页可以尽量缩短，每个文章只需要稍微一点介绍，如果有图片，就设置一张封面就好了。
+下面是具体的设置步骤
+1. Next主题设置摘要 filename: themes/next/_config.yml，将auto_excerpt.enable设置成true，length属性表示摘要的字数限制。
+auto_excerpt: enable: true length: 150 2. 文章具体设置 在 &amp;lt;!-- more --&amp;gt;上面放一张图片就可以了
+--- title: Hexo NexT主题设置封面的方法 date: 2018-02-08 21:09:50 tags: - hexo --- ![](https://wdd.js.org/img/images/20180208212257_BZZjA5_1200px-The_Great_Wave_off_Kanagawa.jpeg) 文章摘要 &amp;lt;!-- more --&amp;gt; 文章正文 </description>
+    </item>
+    
+    <item>
+      <title>组织在召唤：如何免费获取一个js.org的二级域名</title>
+      <link>https://wdd.js.org/posts/2018/how-to-get-jsorg-sub-domain/</link>
+      <pubDate>Mon, 29 Jan 2018 18:08:03 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/how-to-get-jsorg-sub-domain/</guid>
+      <description>之前我是使用wangduanduan.github.io作为我的博客地址，后来觉得麻烦，有把博客关了。最近有想去折腾折腾。 先看效果：wdd.js.org
+如果你不了解js.org可以看看我的这篇文章:一个值得所有前端开发者关注的网站js.org
+1. 前提 已经有了github pages的一个博客，并且博客中有内容，没有内容会审核不通过的。我第一次申请域名，就是因为内容太少而审核不通过。 2. 想好自己要什么域名？ 比如你想要一个：wdd.js.org的域名，你先在浏览器里访问这个地址，看看有没有人用过，如果已经有人用过，那么你就只能想点其他的域名了。
+3. fork js.org的项目，添加自己的域名 1 fork https://github.com/js-org/dns.js.org 2 修改你fork后的仓库中的cnames_active.js文件，加上自己的一条域名，最好要按照字母顺序
+如下图所示，我在第1100行加入。注意，不要在该行后加任何注释。
+&amp;#34;wdd&amp;#34;: &amp;#34;wangduanduan.github.io&amp;#34;, 3 commit
+4. 加入CNAME文件 我是用hexo和next主题作为博客的模板。其中我在gh-pages分支写博客，然后部署到master分支。
+我在我的gh-pages分支的source目录下加入CNAME文件, 内容只有一行
+wdd.js.org 将博客再次部署好，如果CNAME生效的话，你已经无法从原来的地址访问：wangduanduan.github.io， 这个博客了。
+5. 向js.org项目发起pull-request 找到你fork后的项目，点击 new pull request, 向原来的项目发起请求。
+然后你可以在js-org/dns.js.org项目的pull requests看到你的请求，当这个请求被合并时，你就拥有了js.org的二级域名。</description>
+    </item>
+    
+  </channel>
+</rss>

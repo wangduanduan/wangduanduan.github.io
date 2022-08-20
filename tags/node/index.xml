@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>node on 洞香春</title>
+    <link>https://wdd.js.org/tags/node/</link>
+    <description>Recent content in node on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 10 Aug 2018 10:18:57 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/node/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>NodeJS Events 模块笔记</title>
+      <link>https://wdd.js.org/posts/2018/deepin-nodejs-events/</link>
+      <pubDate>Fri, 10 Aug 2018 10:18:57 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/deepin-nodejs-events/</guid>
+      <description>1. 环境 node 8.11.3 2. 基本使用 // 01.js const EventEmitter = require(&amp;#39;events&amp;#39;); class MyEmitter extends EventEmitter {} const myEmitter = new MyEmitter(); myEmitter.on(&amp;#39;event&amp;#39;, () =&amp;gt; { console.log(&amp;#39;an event occurred!&amp;#39;); }); myEmitter.emit(&amp;#39;event&amp;#39;); 输出：
+an event occurred! 3. 传参与this指向 emit()方法可以传不限制数量的参数。 除了箭头函数外，在回调函数内部，this会被绑定到EventEmitter类的实例上 // 02.js const EventEmitter = require(&amp;#39;events&amp;#39;) class MyEmitter extends EventEmitter {} const myEmitter = new MyEmitter() myEmitter.on(&amp;#39;event&amp;#39;, function (a, b){ console.log(a, b, this, this === myEmitter) }) myEmitter.on(&amp;#39;event&amp;#39;, (a, b) =&amp;gt; { console.</description>
+    </item>
+    
+  </channel>
+</rss>

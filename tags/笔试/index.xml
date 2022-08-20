@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>笔试 on 洞香春</title>
+    <link>https://wdd.js.org/tags/%E7%AC%94%E8%AF%95/</link>
+    <description>Recent content in 笔试 on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 23 Feb 2018 15:18:26 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E7%AC%94%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>前端面试和笔试题目</title>
+      <link>https://wdd.js.org/posts/2018/front-end-interview-handbook/</link>
+      <pubDate>Fri, 23 Feb 2018 15:18:26 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/front-end-interview-handbook/</guid>
+      <description>1. 问答题 1.1. HTML相关 1.1.1. 的作用是什么？ 1.1.2. script, script async和script defer之间有什么区别？ 1.1.3. cookie, sessionStorage 和 localStorage之间有什么区别？ 1.1.4. 用过哪些html模板渲染工具？ 1.2. CSS相关 1.2.1. 简述CSS盒子模型 1.2.2. CSS有哪些选择器？ 1.2.3. CSS sprite是什么？ 1.2.4. 写一下你知道的前端UI框架？ 1.3. JS相关 1.3.1. js有哪些数据类型？ 1.3.2. js有哪些假值？ 1.3.3. js数字和字符串之间有什么快速转换的写法？ 1.3.4. 经常使用哪些ES6的语法？ 1.3.5. 什么是同源策略？ 1.3.6. 跨域有哪些解决方法？ 1.3.7. 网页进度条实现的原理 1.3.8. 请问console.log是同步的，还是异步的？ 1.3.9. 下面console输出的值是什么？ var scores = [10,11,12]; var total = 0; for(var score in scores){ total += score; } var average = total/scores.length; console.log(average); 1.</description>
+    </item>
+    
+  </channel>
+</rss>

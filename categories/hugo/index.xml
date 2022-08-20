@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>hugo on 洞香春</title>
+    <link>https://wdd.js.org/categories/hugo/</link>
+    <description>Recent content in hugo on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 27 May 2022 11:49:44 +0800</lastBuildDate><atom:link href="https://wdd.js.org/categories/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>hugo博客增加mermaid 绘图插件</title>
+      <link>https://wdd.js.org/posts/2022/02-hugo-add-mermaid/</link>
+      <pubDate>Fri, 27 May 2022 11:49:44 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2022/02-hugo-add-mermaid/</guid>
+      <description>增加mermaid shortcodes 在themes/YourTheme/layouts/shortcodes/mermaid.html 增加如下内容
+&amp;lt;script async type=&amp;#34;application/javascript&amp;#34; src=&amp;#34;https://cdn.jsdelivr.net/npm/mermaid@9.1.1/dist/mermaid.min.js&amp;#34;&amp;gt; var config = { startOnLoad:true, theme:&amp;#39;{{ if .Get &amp;#34;theme&amp;#34; }}{{ .Get &amp;#34;theme&amp;#34; }}{{ else }}dark{{ end }}&amp;#39;, align:&amp;#39;{{ if .Get &amp;#34;align&amp;#34; }}{{ .Get &amp;#34;align&amp;#34; }}{{ else }}center{{ end }}&amp;#39; }; mermaid.initialize(config); &amp;lt;/script&amp;gt; &amp;lt;div class=&amp;#34;mermaid&amp;#34;&amp;gt; {{.Inner}} &amp;lt;/div&amp;gt; 在blog中增加如下代码 Warning 注意下面的代码，你在实际写的时候，要把 /* 和 */ 删除 {{/*&amp;lt; mermaid align=&amp;#34;left&amp;#34; theme=&amp;#34;neutral&amp;#34; */&amp;gt;}} pie title French Words I Know &amp;#34;Merde&amp;#34; : 50 &amp;#34;Oui&amp;#34; : 35 &amp;#34;Alors&amp;#34; : 10 &amp;#34;Non&amp;#34; : 5 {{/*&amp;lt; /mermaid &amp;gt;*/}} pie title French Words I Know &#34;</description>
+    </item>
+    
+  </channel>
+</rss>

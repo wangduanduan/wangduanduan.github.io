@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>WebRTC on 洞香春</title>
+    <link>https://wdd.js.org/tags/webrtc/</link>
+    <description>Recent content in WebRTC on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 01 Jun 2022 08:27:53 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/webrtc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>WebRTC 人声检测与舒适噪音</title>
+      <link>https://wdd.js.org/freeswitch/webrtc-vad-cng/</link>
+      <pubDate>Wed, 01 Jun 2022 08:27:53 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/freeswitch/webrtc-vad-cng/</guid>
+      <description>人声检测 VAD 人声检测(VAD: Voice Activity Detection)是区分语音中是人说话的声音，还是其他例如环境音的一种功能。
+除此以外，人声检测还能用于减少网络中语音包传输的数据量，从而极大的降低语音的带宽，极限情况下能降低50%的带宽。
+在一个通话中，一般都是只有一个人说话，另一人听。很少可能是两个人都说话的。
+例如A在说话的时候，B可能在等待。
+虽然B在等待过程中，B的语音流依然再按照原始速度和编码再发给A, 即使这里面是环境噪音或者是无声。
+A ----&amp;gt; B # A在说话 A &amp;lt;--- B # B在等待过程中，B的语音流依然再按照原始速度和编码再发给A 如果B具有VAD检测功能，那么B就可以在不说话的时候，发送特殊标记的语音流或者通过减少语音流发送的频率，来减少无意义语音的发送。
+从而极大的降低B-&amp;gt;A的语音流。
+下图是Wireshark抓包的两种RTP包，g711编码的占214字节，但是用舒适噪音编码的只有63字节。将近减少了4倍的带宽。
+舒适噪音生成器 CNG 舒适噪音(CN stands for Comfort Noise), 是一种模拟的背景环境音。舒适噪音生成器在接收端根据发送到给的参数，来产生类似接收端的舒适噪音, 用来模拟发送方的噪音环境。
+CN也是一种RTP包的格式，定义在RFC 3389
+舒适噪音的payload, 也被称作静音插入描述帧(SID: a Silence Insertion Descriptor frame), 包括一个字节的数据，用来描述噪音的级别。也可以包含其他的额外的数据。早期版本的舒适噪音的格式定义在RFC 1890中，这个版本的格式只包含一个字段，就是噪音级别。
+噪音级别占用一个字节，其中第一个bit必须是0， 因此噪音级别有127中可能。
+0 1 2 3 4 5 6 7 +-+-+-+-+-+-+-+-+ |0| level | +-+-+-+-+-+-+-+-+ 跟着噪音级别的后续字节都是声音的频谱信息。
+Byte 1 2 3 ... M+1 +-----+-----+-----+-----+-----+ |level| N1 | N2 | .</description>
+    </item>
+    
+    <item>
+      <title>基于 WebRTC 构建 Web SIP Phone</title>
+      <link>https://wdd.js.org/posts/2018/webrtc-web-sip-phone/</link>
+      <pubDate>Sun, 11 Feb 2018 14:44:58 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/webrtc-web-sip-phone/</guid>
+      <description>0 阅前须知 本文并不是教程，只是实现方案 我只是从WEB端考虑这个问题，实际还需要后端sip服务器的配合 jsSIP有个非常不错的在线demo, 可以去哪里玩耍，很好玩呢 try jssip 1. 技术简介 WebRTC: WebRTC，名称源自网页即时通信（英语：Web Real-Time Communication）的缩写，是一个支持网页浏览器进行实时语音对话或视频对话的API。它于2011年6月1日开源并在Google、Mozilla、Opera支持下被纳入万维网联盟的W3C推荐标准 SIP: 会话发起协议（Session Initiation Protocol，缩写SIP）是一个由IETF MMUSIC工作组开发的协议，作为标准被提议用于创建，修改和终止包括视频，语音，即时通信，在线游戏和虚拟现实等多种多媒体元素在内的交互式用户会话。2000年11月，SIP被正式批准成为3GPP信号协议之一，并成为IMS体系结构的一个永久单元。SIP与H.323一样，是用于VoIP最主要的信令协议之一。 一般来说，要么使用实体话机，要么在系统上安装基于sip的客户端程序。实体话机硬件成本高，基于sip的客户端往往兼容性差，无法跨平台，易被杀毒软件查杀。
+而WebRTC或许是更好的解决方案，只要一个浏览器就可以实时语音视频通话，这是很不错的解决方案。WebSocket可以用来传递sip信令，而WebRTC用来实时传输语音视频流。
+2. 前端WebRTC实现方案 其实我们不需要去自己处理WebRTC的相关方法，或者去处理视频或者媒体流。市面上已经有不错的模块可供选择。
+2.1 jsSIP jsSIP是JavaScript SIP 库
+功能特点如下：
+可以在浏览器或者Nodejs中运行 使用WebSocket传递SIP协议 视频音频实时消息使用WebRTC 非常轻量 100%纯JavaScript 使用简单并且具有强大的Api 服务端支持 OverSIP, Kamailio, Asterisk, OfficeSIP，reSIProcate，Frafos ABC SBC，TekSIP 是RFC 7118 and OverSIP的作者写的 下面是使用JsSIP打电话的例子，非常简单吧
+// Create our JsSIP instance and run it: var socket = new JsSIP.WebSocketInterface(&amp;#39;wss://sip.myhost.com&amp;#39;); var configuration = { sockets : [ socket ], uri : &amp;#39;sip:alice@example.</description>
+    </item>
+    
+    <item>
+      <title>120行代码实现 浏览器WebRTC视频聊天</title>
+      <link>https://wdd.js.org/posts/2018/webrtc-tutorial-simple-video-chat/</link>
+      <pubDate>Fri, 09 Feb 2018 12:56:12 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/webrtc-tutorial-simple-video-chat/</guid>
+      <description>本例子是参考webrtc-tutorial-simple-video-chat做的。 这个教程应该主要是去宣传ScaleDrone的sdk, 他们的服务是收费的，但是免费的也可以用，就是有些次数限制。
+本栗子的地址 本栗子的pages地址
+因为使用的是ScaleDrone的js sdk, 后期很可能服务不稳定之类的
+1. 准备 使用最新版谷歌浏览器（62版） 视频聊天中 一个是windows, 一个是mac stun服务器使用谷歌的，trun使用ScaleDrone的sdk，这样我就不用管服务端了。 2. 先上效果图 3. 再上在线例子点击此处 4. 源码分析 // 产生随机数 if (!location.hash) { location.hash = Math.floor(Math.random() * 0xFFFFFF).toString(16); } // 获取房间号 var roomHash = location.hash.substring(1); // 放置你自己的频道id, 这是我注册了ScaleDrone 官网后，创建的channel // 你也可以自己创建 var drone = new ScaleDrone(&amp;#39;87fYv4ncOoa0Cjne&amp;#39;); // 房间名必须以 &amp;#39;observable-&amp;#39;开头 var roomName = &amp;#39;observable-&amp;#39; + roomHash; var configuration = { iceServers: [{ urls: &amp;#39;stun:stun.l.google.com:19302&amp;#39; // 使用谷歌的stun服务 }] }; var room; var pc; function onSuccess() {} function onError(error) { console.</description>
+    </item>
+    
+  </channel>
+</rss>

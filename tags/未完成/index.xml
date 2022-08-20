@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>未完成 on 洞香春</title>
+    <link>https://wdd.js.org/tags/%E6%9C%AA%E5%AE%8C%E6%88%90/</link>
+    <description>Recent content in 未完成 on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 06 Oct 2018 23:05:24 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E6%9C%AA%E5%AE%8C%E6%88%90/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>荣耀往往冠以虚伪 正能量满满的《无耻之徒》</title>
+      <link>https://wdd.js.org/posts/2018/shameless-and-glory/</link>
+      <pubDate>Sat, 06 Oct 2018 23:05:24 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/shameless-and-glory/</guid>
+      <description> 今年的国庆，我宅在家里，没有出去玩。因为在我们在法定节假日，最好不要出去旅游。
+因为这世界本来有很多路，走的人太多了，也就没了路。
+堵在高速，堵在景区，堵在厕所，堵在某个街角
+在家里刷完美剧《无耻之徒》八季，说心里话：这部剧刷新我的人生观，感觉自己在七天之内重生似的
+虚伪往往冠以荣耀，荣耀往往冠以虚荣 古龙小说有个特点，越是卑鄙无耻，虚荣腹黑的人，往往冠以正能量慢慢的名字，例如：小李飞刀中的总是喜欢主持正义的大侠赵正义。我觉得，古龙先生一定看过李宗吾的厚黑学，并且深有研究。
+无耻之徒中的frank，也是类似赵正义这类人。
+看剧过程中，几次忍不住想把frank掐死。但是某些时候，frank也会散发出一种大人物的闪光点。
+居中人物看似无耻，很黄很暴力，但是整部剧给人以正能量满满的感觉。反观国产脑残电视剧，哪些动不动说什么我已经等你五千年之类的狗屁对白，让我一听就觉得piece of shit。
+没有好人，也没有坏人，只是人罢了 回首往事，怎么可能没有后悔与遗憾，人生本来就没有完美的 无论如何，血缘关系是无法切断的关系 </description>
+    </item>
+    
+    <item>
+      <title>jQuery 与IE浏览器兼容性的思考</title>
+      <link>https://wdd.js.org/posts/2018/jquery-ie-browser-support/</link>
+      <pubDate>Sat, 01 Sep 2018 21:04:54 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/jquery-ie-browser-support/</guid>
+      <description>兼容性：对，说你呢！IE! 当我们在说浏览器兼容性的时候，其实我们大多数时候在说IE浏览器的兼容性。
+对，说你呢！IE!
+现在jQuery的最新版已经是3.3.1， 根据jQuery的官方说明。
+最新版的jQuery支持IE9+, 如果你想支持IE6-8，那么你最好去用jQuery 1.12。
+Current Active Support Desktop Internet Explorer: 9+ If you need to support older browsers like Internet Explorer 6-8, Opera 12.1x or Safari 5.1+, use jQuery 1.12. 来自 Browser Support
+jQuery的亮点 我只想安安静静的做东西，不想和各种浏览器diss或者battle。
+所以老司机总是选择一个合适的轮子，</description>
+    </item>
+    
+    <item>
+      <title>毕业后，青春像一艘船，沉入海底</title>
+      <link>https://wdd.js.org/posts/2018/the-rest-of-your-life/</link>
+      <pubDate>Tue, 14 Aug 2018 18:36:40 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/the-rest-of-your-life/</guid>
+      <description>大三那年的暑假 大三那年暑假，很多同学都回去了，寝室大楼空空如也。
+留在上海的同学都在各自找着兼职的工作，为了不显得无聊，我也在网上随便发了一些简历，试试看运气。
+写简历最难写的部分就是写你自己的长处是什么？搜索枯肠，觉得自己似乎也没什特长。感觉大学三年学到一些东西，又感觉什么都没学到。
+如果没有特长，总该也有点理想吧，比如想干点什么？ 似乎我也没什么想做的事情。
+小时候我们都有理想，慢慢长大后，理想越来越模糊，变得越来越迷茫。
+大学里，大部分的人都是在打游戏。我也曾迷恋过打游戏，但是因为自己比较菜，总是被虐，所以放弃了。
+但是我也不是那种天天对着笔记本看电视剧的人。
+回忆初三那年的暑假 记得，初三的暑假，我参加了一个学校看展的一个免费的计算机培训班。因为培训的老师说，培训结束前会有一个测试，成绩最好的会有几百块的奖励。
+为了几百块的奖励，我第一个背诵完五笔拆字法。随后老师教了我们PS, 就是photoshop。当时我的理解就是，ps可以做出很多搞笑的图片。
+为了成为一个有能力做出搞笑图片的人。我在高中和大学期间，断断续续的系统的自学了PS。
+下面给展示几张我的PS照片
+【毕业照】
+【帮别人做的艺术照】
+【刺客信条 换脸 我自己】
+【旅游照 换脸 我自己】
+【宿舍楼 上面ps了一条狼】
+古玩艺术电商中的店小二 基本上，我的PS技术还是能够找点兼职做的。没过多久，我收到了面试邀请，面试的公司位于一个古玩收藏品市场中。
+当然我面试成功了，开出的日薪也是非常诱人，每天35元。
+在上海，35元一天的工资，除去来回上下班做地铁和公交，还有中午饭的费用外，基本上不会剩下什么，有时候稍微午饭丰盛点，自己就要倒贴。但是这也是一次不错的尝试，至少有史以来，除去父母以外，我用能力问别人要钱了。
+35元的日薪持续很短一段时间，然后我就涨薪了，到达每天100元。在这个做兼职的地方，我最高拿到的日薪是200元。
+兼职期间我做了各式各样的工作：
+古玩艺术品摄影 海报制作 拍卖图册制作 linux运维 APP UI 设计 网页设计 python爬虫 兼职的日志过得很苦，单是还算充实。虽然工资不高，但是因为还没毕业，也没有奢望过高的工资。
+【上图 我在一个古玩店的拍摄玉器的时候，有个小女孩过来找我玩，我随手拍的】
+【上图 是在1号线 莲花路地铁站 因为错过了地铁拍的】
+【上图 是从1号线 莲花地铁站 转公交拍的】
+【每天早上起的很早，能够看到军训的学生在操场上奔跑】
+【在古玩店一般都要拍到很晚，因为是按张数算拍照工资，拍的越多，工资越高。还好晚上回公司 打车费用是可以报销的】
+【晚上还要回到学校，一般到学校就快晚上10点左右了】
+【毕业了，新校区依然很漂亮】
+【毕业了，老校区下了一场雨】
+【毕业了，青春像一艘船，沉入海底】
+【毕业了，我等的人，你在哪里？】</description>
+    </item>
+    
+    <item>
+      <title>Restful API 架构思考</title>
+      <link>https://wdd.js.org/posts/2018/think-about-restful-api/</link>
+      <pubDate>Thu, 07 Jun 2018 22:35:08 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/think-about-restful-api/</guid>
+      <description>1. 什么是REST? 2. REST API最为重要的约束 3. REST API HTTP方法 与 CURD 4. 状态码 5. RESTful架构设计 6. 文档 7. 版本 8. 深入理解状态与无状态 9. 参考 1. 什么是REST? 表现层状态转换（REST，英文：Representational State Transfer）是Roy Thomas Fielding博士于2000年在他的博士论文[1] 中提出来的一种万维网软件架构风格，目的是便于不同软件/程序在网络（例如互联网）中互相传递信息。表现层状态转换（REST，英文：Representational State Transfer）是根基于超文本传输协议(HTTP)之上而确定的一组约束和属性，是一种设计提供万维网络服务的软件构建风格。匹配或兼容于这种架构风格(简称为 REST 或 RESTful)的网络服务，允许客户端发出以统一资源标识符访问和操作网络资源的请求，而与预先定义好的无状态操作集一致化。wikipdeia
+REST API 不是一个标准或者一个是协议，仅仅是一种风格，一种style。
+RESTful API的简单定义可以轻松解释这个概念。 REST是一种架构风格，RESTful是它的解释。也就是说，如果您的后端服务器具有REST API，并且您（从网站/应用程序）向客户端请求此API，则您的客户端为RESTful。
+2. REST API最为重要的约束 Client-Server 通信只能由客户端单方面发起，表现为请求-响应的形式 Stateless 通信的会话状态（Session State）应该全部由客户端负责维护 Cache 响应内容可以在通信链的某处被缓存，以改善网络效率 Uniform Interface 通信链的组件之间通过统一的接口相互通信，以提高交互的可见性 Layered System 通过限制组件的行为（即每个组件只能“看到”与其交互的紧邻层），将架构分解为若干等级的层。 Code-On-Demand 支持通过下载并执行一些代码（例如Java Applet、Flash或JavaScript），对客户端的功能进行扩展。 3. REST API HTTP方法 与 CURD REST API 使用POST，GET, PUT, DELETE的HTTP方法来描述对资源的增、查、改、删。 这四个HTTP方法在数据层对应着SQL的插入、查询、更新、删除操作。</description>
+    </item>
+    
+    <item>
+      <title>无坚不摧：打造极大提高工作效率的装备库</title>
+      <link>https://wdd.js.org/posts/2018/tool-improve-work-efficiency/</link>
+      <pubDate>Fri, 02 Feb 2018 09:24:43 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/tool-improve-work-efficiency/</guid>
+      <description>1. Git Bash 2. Gow 1 2 3 4 5 6 7 8 9 10 awk basename bash bc bison bunzip2 bzip2 bzip2 bzip2recover cat chgrp chmod chown chroot cksum clear cp csplit curl cut dc dd df diff diff3 dirname dos2unix du egrep env expand expr factor fgrep flex fmt fold gawk gdbm3 gfind gow grep gsar gsort gzip head history5 hostid hostname id indent install join jwhois less lesskey libcurl libeay32 libiconv-2 libidn-11 libintl-2 libintl3 libssl32 ln ls m4 make md5sum mkdir mkfifo mknod msys-1 msys-regex-1 msys-termcap-0 mv nano ncftp nl od pageant paste patch pathchk pcre3 plink pr printenv printf pscp psftp putty puttygen pwd readline5 regex2 rm rmdir scp sdiff sed seq sftp sha1sum shar sleep split ssh ssleay32 su sum sync tac tail tar tee test touch tr uname unexpand uniq unix2dos unlink unrar unrar3 unshar uudecode uuencode vim wc wget whereis which whoami xargs yes zip zip32z64 3.</description>
+    </item>
+    
+  </channel>
+</rss>

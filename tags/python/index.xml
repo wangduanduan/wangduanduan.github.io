@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>python on 洞香春</title>
+    <link>https://wdd.js.org/tags/python/</link>
+    <description>Recent content in python on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 31 Jul 2018 22:35:51 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>python学习笔记 星号的作用</title>
+      <link>https://wdd.js.org/posts/2018/python-learn-note-01/</link>
+      <pubDate>Tue, 31 Jul 2018 22:35:51 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/python-learn-note-01/</guid>
+      <description>一个*的作用：打散或者聚合可迭代序列 代码如下：
+def showArgs(*args): print(args) showArgs() showArgs(&amp;#39;A&amp;#39;) showArgs(&amp;#39;A&amp;#39;, &amp;#39;B&amp;#39;, &amp;#39;C&amp;#39;) mylist = [&amp;#39;D&amp;#39;,&amp;#39;E&amp;#39;,&amp;#39;F&amp;#39;] mytuple = (&amp;#39;H&amp;#39;, &amp;#39;G&amp;#39;) myset = {&amp;#39;X&amp;#39;, &amp;#39;Y&amp;#39;, &amp;#39;Z&amp;#39;} showArgs(*mylist) showArgs(*mytuple) showArgs(*myset) showArgs(mylist) showArgs(mytuple) showArgs(myset) 代码输出
+() (&amp;#39;A&amp;#39;,) (&amp;#39;A&amp;#39;, &amp;#39;B&amp;#39;, &amp;#39;C&amp;#39;) (&amp;#39;D&amp;#39;, &amp;#39;E&amp;#39;, &amp;#39;F&amp;#39;) (&amp;#39;H&amp;#39;, &amp;#39;G&amp;#39;) (&amp;#39;Y&amp;#39;, &amp;#39;X&amp;#39;, &amp;#39;Z&amp;#39;) ([&amp;#39;D&amp;#39;, &amp;#39;E&amp;#39;, &amp;#39;F&amp;#39;],) ((&amp;#39;H&amp;#39;, &amp;#39;G&amp;#39;),) ({&amp;#39;Y&amp;#39;, &amp;#39;X&amp;#39;, &amp;#39;Z&amp;#39;},) 结论
+*作为函数形参时，可以将传入的实参收集到一个元组中 *作为函数实参时，可以将单个的列表，元组，集合打散成多个参数传入函数 效用：如果某个函数需要的参数是不定数量的参数，那么可以使用一个*号，将可迭代对象打散后传入，这样就可以避免循环了。
+两个*的作用：打散或者聚合字典 代码如下：
+def showArgs(**args): print(args) showArgs(name=&amp;#39;wdd&amp;#39;) myDict = {&amp;#39;name&amp;#39;:&amp;#39;wdd&amp;#39;} showArgs(**myDict) showArgs(myDict=&amp;#39;1&amp;#39;) showArgs(myDict) 代码输出：
+{&amp;#39;name&amp;#39;: &amp;#39;wdd&amp;#39;} {&amp;#39;name&amp;#39;: &amp;#39;wdd&amp;#39;} {&amp;#39;myDict&amp;#39;: &amp;#39;1&amp;#39;} Traceback (most recent call last): File &amp;#34;test3.</description>
+    </item>
+    
+    <item>
+      <title>python3入门书籍与在线资料</title>
+      <link>https://wdd.js.org/posts/2018/python-books-comments/</link>
+      <pubDate>Sun, 25 Feb 2018 22:44:19 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/python-books-comments/</guid>
+      <description>1. 书籍类 1.1. 老太婆一样的罗里吧嗦： Python学习手册（第4版） 这本书相当的啰嗦，讲的内容空洞乏力，一些概念蜻蜓点水，买了必定会后悔。
+1.2. 很有意思：Python编程：从入门到实践 这本书讲的知识点虽然不是很全面，但是要点都讲的很清晰，行文也很有意思，最后一些实践项目也很有趣。
+1.3. 干货满满：Python语言及其应用 这本书虽然不是非常有趣，但是都是干货满满，知识点讲解也是很到位，非常推荐初学者看看。
+2. 免费在线资料 2.1. 廖雪峰pthon3教程：中文，免费，零起点，完整示例，基于最新的Python 3版本 2.2. 菜鸟教程 python3 非常适合作为一个快速查找的手册
+2.3. 进阶 Python Cookbook 3 适合有一定python基础的同学看
+2.4. 把这个放在枕头下面 The Python Standard Library Python官方标准库参考手册，有什么需要刨根问底的问题需要查的时候，此处务必需要查阅一下。</description>
+    </item>
+    
+    <item>
+      <title>前端小白的python实战 报纸分词排序</title>
+      <link>https://wdd.js.org/posts/2018/python-paper-word-split/</link>
+      <pubDate>Thu, 08 Feb 2018 09:23:37 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/python-paper-word-split/</guid>
+      <description>先看效果：
+1. 环境 win7 64位 python 3.5 2. 目标 抓取一篇报纸，并提取出关键字，然后按照出现次数排序，用echarts在页面上显示出来。
+3. 工具选择 因为之前对nodejs的相关工具比较熟悉，在用python的时候，也想有类似的工具。所以就做了一个对比的表格。
+功能 nodejs版 python版 http工具 request requests 中文分词工具 node-segment, nodejieba(一直没有安装成功过) jieba(分词准确度比node-segment好) DOM解析工具 cheeio pyquery(这两个工具都是有类似jQuery那种选择DOM的接口，很方便) 函数编程工具 underscore.js underscore.py(underscore来处理集合比较方便) 服务器 express flask 4. 开始的噩梦：中文乱码 感觉每个学python的人都遇到过中文乱码的问题。我也不例外。
+首先要抓取网页，但是网页在控制台输出的时候，中文总是乱码。搞了好久，搞得我差点要放弃python。最终找到解决方法。 解决python3 UnicodeEncodeError: &amp;lsquo;gbk&amp;rsquo; codec can&amp;rsquo;t encode character &amp;lsquo;\xXX&amp;rsquo; in position XX
+过程很艰辛，但是从中也学到很多知识。
+import io import sys sys.stdout = io.TextIOWrapper(sys.stoodout.buffer,encoding=&amp;#39;gb18030&amp;#39;) 5. 函数式编程： 顺享丝滑 #filename word_rank.py import requests import io import re import sys import jieba as _jieba # 中文分词比较优秀的一个库 from pyquery import PyQuery as pq #类似于jquery、cheerio的库 from underscore import _ # underscore.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,2102 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Posts on 洞香春</title>
+    <link>https://wdd.js.org/posts/</link>
+    <description>Recent content in Posts on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 28 May 2022 21:08:43 +0800</lastBuildDate><atom:link href="https://wdd.js.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo博客常见问题以及解决方案</title>
+      <link>https://wdd.js.org/posts/2022/hugo-blog-faq/</link>
+      <pubDate>Sat, 28 May 2022 21:08:43 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2022/hugo-blog-faq/</guid>
+      <description>如何在markdown中插入图片 在static 目录中创建 images 目录，然后把图片放到images目录中。
+在文章中引用的时候
+![](/images/qianxun.jpeg#center) Warning 我之前创建的文件夹的名字叫做 img, 本地可以正常显示，但是部署之后，就无法显示图片了。
+最后我把img改成images才能正常在网页上显示。</description>
+    </item>
+    
+    <item>
+      <title>Shell 教程技巧</title>
+      <link>https://wdd.js.org/posts/2022/shell-101/</link>
+      <pubDate>Sat, 28 May 2022 12:39:50 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2022/shell-101/</guid>
+      <description>复制文本到剪贴板 sudo apt install xclip vim ~/.zshrc
+alias copy=&amp;#39;xclip -selection clipboard&amp;#39; 这样我们就可以用copy命令来考本文件内容到系统剪贴板了。
+copy aaa.txt 判断工作区是否clean if [ -z &amp;#34;$(git status --porcelain)&amp;#34; ]; then # Working directory clean else # Uncommitted changes fi </description>
+    </item>
+    
+    <item>
+      <title>C和gdb调试</title>
+      <link>https://wdd.js.org/posts/2022/c-and-gdb/</link>
+      <pubDate>Sat, 28 May 2022 12:35:26 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2022/c-and-gdb/</guid>
+      <description>开启coredump #如果该命令的返回值是0，则表示不开启coredump ulimit -c # 开启coredump ulimit -c unlimited 准备c文件 #include&amp;lt;stdio.h&amp;gt; void crash() { char * p = NULL; *p = 0; } int main(){ printf(&amp;#34;hello world 1&amp;#34;); int phone [4]; phone[232] = 12; crash(); return 0; } 编译执行 gcc -g hello.c -o hello ./hello 之后程序崩溃，产生core文件。
+gdb分析 gdb 启动的二进制文件 core文件
+gdb ./hello ./core 之后输入： bt full 可以查看到更详细的信息
+➜ c-sandbox gdb ./hello ./core GNU gdb (Raspbian 7.12-6) 7.12.0.20161007-git Copyright (C) 2016 Free Software Foundation, Inc.</description>
+    </item>
+    
+    <item>
+      <title>Tmux 常见问题以及解决方案</title>
+      <link>https://wdd.js.org/posts/2022/tmux-faq/</link>
+      <pubDate>Sat, 28 May 2022 12:30:58 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2022/tmux-faq/</guid>
+      <description>oh my tmux 关闭第二键ctrl-a ctrl-a可以用来移动光标到行首的，不要作为tmux的第二键
+set -gu prefix2 unbind C-a Tmux reload config :source-file ～/.tmux.conf tmux 显示时间 ctrl b + t tmux从当前目录打开新的窗口 bind &amp;#39;&amp;#34;&amp;#39; split-window -c &amp;#34;#{pane_current_path}&amp;#34; bind % split-window -h -c &amp;#34;#{pane_current_path}&amp;#34; bind c new-window -c &amp;#34;#{pane_current_path}&amp;#34; </description>
+    </item>
+    
+    <item>
+      <title>hugo博客增加mermaid 绘图插件</title>
+      <link>https://wdd.js.org/posts/2022/02-hugo-add-mermaid/</link>
+      <pubDate>Fri, 27 May 2022 11:49:44 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2022/02-hugo-add-mermaid/</guid>
+      <description>增加mermaid shortcodes 在themes/YourTheme/layouts/shortcodes/mermaid.html 增加如下内容
+&amp;lt;script async type=&amp;#34;application/javascript&amp;#34; src=&amp;#34;https://cdn.jsdelivr.net/npm/mermaid@9.1.1/dist/mermaid.min.js&amp;#34;&amp;gt; var config = { startOnLoad:true, theme:&amp;#39;{{ if .Get &amp;#34;theme&amp;#34; }}{{ .Get &amp;#34;theme&amp;#34; }}{{ else }}dark{{ end }}&amp;#39;, align:&amp;#39;{{ if .Get &amp;#34;align&amp;#34; }}{{ .Get &amp;#34;align&amp;#34; }}{{ else }}center{{ end }}&amp;#39; }; mermaid.initialize(config); &amp;lt;/script&amp;gt; &amp;lt;div class=&amp;#34;mermaid&amp;#34;&amp;gt; {{.Inner}} &amp;lt;/div&amp;gt; 在blog中增加如下代码 Warning 注意下面的代码，你在实际写的时候，要把 /* 和 */ 删除 {{/*&amp;lt; mermaid align=&amp;#34;left&amp;#34; theme=&amp;#34;neutral&amp;#34; */&amp;gt;}} pie title French Words I Know &amp;#34;Merde&amp;#34; : 50 &amp;#34;Oui&amp;#34; : 35 &amp;#34;Alors&amp;#34; : 10 &amp;#34;Non&amp;#34; : 5 {{/*&amp;lt; /mermaid &amp;gt;*/}} pie title French Words I Know &#34;</description>
+    </item>
+    
+    <item>
+      <title>一月份阅读计划</title>
+      <link>https://wdd.js.org/posts/2022/01-reading-plan/</link>
+      <pubDate>Tue, 04 Jan 2022 12:49:02 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2022/01-reading-plan/</guid>
+      <description> 序号 书名 3 4 5 6 7 8 9 1 经济学通识课 13 17 2 如何结交比你更优秀的人 29 35 3 人体简史 21 24 4 高效程序员的45个习惯 38 5 一本书看透股权架构 7 9 6 学习之道 16 22 7 梦幻花 0 8 月亮与六便士 21 9 Wireshark 网络分析就这么简单 38 49 10 信息简史 16 18 </description>
+    </item>
+    
+    <item>
+      <title>Gitlab 持续集成记录</title>
+      <link>https://wdd.js.org/posts/2021/gitlab-ci-cd/</link>
+      <pubDate>Fri, 31 Dec 2021 09:13:19 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2021/gitlab-ci-cd/</guid>
+      <description>安装gitlab runner 本机安装 之所以要本机安装，是因为要测试方便, 当然也能安装docker版本的。
+参考： - https://docs.gitlab.com/runner/install/
+# 本机安装 参考： - https://docs.gitlab.com/runner/install/linux-repository.html wget https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh chmod +x script.deb.sh # 我是deeepin操作系统，脚本无法识别，需要手工指定 sudo os=debian dist=buster ./script.deb.sh sudo apt-get install gitlab-runner gitlab-runner --h NAME: gitlab-runner - a GitLab Runner USAGE: gitlab-runner [global options] command [command options] [arguments...] VERSION: 14.6.0 (5316d4ac) AUTHOR: GitLab Inc. &amp;lt;support@gitlab.com&amp;gt; 注册runner 参考：
+https://docs.gitlab.com/runner/register/ 参考 https://docs.gitlab.com/runner/install/linux-repository.html 快速开始 </description>
+    </item>
+    
+    <item>
+      <title>开源免费的ssh gui clients</title>
+      <link>https://wdd.js.org/posts/2021/free-ssh-gui-clients/</link>
+      <pubDate>Wed, 29 Dec 2021 23:12:07 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2021/free-ssh-gui-clients/</guid>
+      <description>要求 [必须] 能够保存密码, 或者用私钥登录 [必须] 能够支持ftp/sftp [必须] 开源免费 [必须] 界面漂亮，支持中文字符 [可选] 支持同步ssh配置 [必须] 支持跨平台 ​
+Tabby A terminal for a more modern age (formerly Terminus) https://github.com/Eugeny/tabby https://tabby.sh/ 25.7k Star 基于electron, 主要开发语言typescript
+Electerm Terminal/ssh/sftp client(linux, mac, win) https://github.com/electerm/electerm https://electerm.github.io/electerm/ 4.8k star 基于electron, 主要开发语言javascript
+WindTerm A Quicker and better SSH/Telnet/Serial/Shell/Sftp client for DevOps.
+https://github.com/kingToolbox/WindTerm 2.6K star 主要开发语言: C</description>
+    </item>
+    
+    <item>
+      <title>exec user process caused no such file or diectory</title>
+      <link>https://wdd.js.org/posts/2022/docker-exec-user-process/</link>
+      <pubDate>Wed, 08 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2022/docker-exec-user-process/</guid>
+      <description>exec user process caused &amp;#34;no such file or diectory&amp;#34; 解决方案： 将镜像构建的 Dockerfile ENTRYPOINT [&amp;quot;/run.sh&amp;quot;] 改为下面的
+ENTRYPOINT [&amp;#34;sh&amp;#34;,&amp;#34;/run.sh&amp;#34;] 其实就是加了个sh</description>
+    </item>
+    
+    <item>
+      <title>如何学习网络协议？</title>
+      <link>https://wdd.js.org/posts/2019/books-about-network-protocol/</link>
+      <pubDate>Fri, 18 Jan 2019 21:32:08 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2019/books-about-network-protocol/</guid>
+      <description>如何学习网络协议？ 大学时，学到网络协议的7层模型时，老师教了大家一个顺口溜：物数网传会表应。并说这是重点，年年必考，5分的题目摆在这里，你们爱背不背。 考试的时候，果然遇到这个问题，搜索枯肠，只能想到这7个字的第一个字，因为这5分，差点挂科。 后来工作面试，面试官也是很喜欢七层模型，三次握手之类的问题，但是遇到这些问题时，总是觉得很心虚。
+1. 协议分层 四层网络协议模型中，应用层以下一般都是交给操作系统来处理。应用层对于四层模型来说，仅仅是冰山一角。海面下巨复杂的三层协议，都被操作系统给隐藏起来了，一般我们在页面上发起一个ajax请求，看见了network面板多了一个http请求，至于底层是如何实现的，我们并不关心。
+应⽤层负责处理特定的应⽤程序细节。 运输层运输层主要为两台主机上的应⽤程序提供端到端的通信。 网络层处理理分组在⽹网络中的活动，例例如分组的选路 链路层处理理与电缆(或其他任何传输媒介)的物理理接⼝口细节 下面重点讲一下运输层和网络层
+1.1. 运输层的两兄弟 运输层有两个比较重要的协议。tcp和udp。
+大哥tcp是比较严谨认真、温柔体贴、慢热内向的协议，发出去的消息，总是一个一个认真检查，等待对方回复和确认，如果一段时间内，对方没有回复确认消息，还会再次发送消息，如果对方回复说你发的太快了，tcp还会体贴的把发送消息的速度降低。
+弟弟udp则比较可爱呆萌、调皮好动、不负责任的协议。哥哥tcp所具有的特点，弟弟udp一个也没有。但是有的人说不清哪里好 但就是谁都替代不了，udp没有tcp那些复杂的校验和重传等复杂的步骤，所以它发送消息非常快，而且并不保证对方一定收到。如果对方收不到消息，那么udp就会呆萌的看着你，笑着对你说：我已经尽力了。一般语音而视频数据都是用udp协议传输的，因为音频或者视频卡了一下并不影响整体的质量，而对实时性的要求会更高。
+1.2. 运输层和网络层的区别 运输层关注的是端到端层面，及End1到End2，忽略中间的任何点。 网络层关注两点之间的层面，即hop1如何到hop2，hop2如何到hop3 网络层并不保证消息可靠性，可靠性上层的传输层负责。TCP采用超时重传，分组确认的机制，保证消息不会丢失。 从下图tcp, udp, ip协议中，可以发现
+传输层的tcp和udp都是有源端口和目的端口，但是没有ip字段 源ip和目的ip只在ip数据报中 理解各个协议，关键在于理解报文的各个字段的含义 1.3. ip和端口号的真正含义 上个章节讲到运输层和网络层的区别，其中端口号被封装在运输层，ip被封装到网络成，
+那么端口号和ip地址到底有什么区别呢？
+ip用来用来标记主机的位置 端口号用来标记该数据应该被目标主机上的哪个应用程序去处理 1.4. 数据在协议栈的流动 封装与分用 当发送消息时，数据在向下传递时，经过不同层次的协议处理，打上各种头部信息 当接受消息时，数据在向上传递，通过不同的头部信息字段，才知道要交给上层的那个模块来处理。比如一个ip包，如果没有头部信息，那么这个消息究竟是交给tcp协议来处理，还是udp来处理，就不得而知了 2. 深入阅读，好书推荐 《http权威指南》 有人说这本书太厚，偷偷告诉你，其实这本书并厚，因为这本书的后面的30%部分都是附录，这本书的精华是前50%的部分 《图解http》、《图解tcp/ip》这两本图解的书，知识点讲的都是比较通俗易懂的，适合入门 《tcp/ip 详解 卷1》这本书，让你知其然，更知其所以然 《tcp/ip 基础》、《tcp/ip 路由技术》这两本书，会让你从不同角度思考协议 《精通wireshark》、《wireshark网络分析实战》如果你看了很多书，却从来没有试过网络抓包，那你只是懂纸上谈兵罢了。你永远无法理解tcp三次握手的怦然心动，与四次分手的刻骨铭心。 </description>
+    </item>
+    
+    <item>
+      <title>呼叫中心简史</title>
+      <link>https://wdd.js.org/posts/2019/call-center-brief-history/</link>
+      <pubDate>Tue, 15 Jan 2019 21:04:11 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2019/call-center-brief-history/</guid>
+      <description>什么是呼叫中心？ 呼叫中心又称为客户服务中心。有以下关键词
+CTI 通信网络 计算机 企业级 高质量、高效率、全方位、综合信息服务 呼叫中心历史 1956年美国泛美航空公司建成世界第一家呼叫中心。
+阶段 行业范围 技术 功能与意义 第一代呼叫中心 民航 PBX、电话排队 主要服务由人工完成 第二代呼叫中心 银行、生活 IVR(交互式语音应答)、DTMF 显著提高工作效率，提供全天候服务 第三代呼叫中心 CTI(电脑计算机集成) 语音数据同步，客户信息存储与查阅，个性化服务，自动化 第四代呼叫中心 接入电子邮件、互联网、手机短信等 多渠道接入、多渠道统一排队 第五代呼叫中心 接入社交网络、社交媒体(微博、微信等) 文本交谈，音频视频沟通 呼叫中心分类 按呼叫方式分类 外呼型呼叫中心（如电话营销） 客服型呼叫中心（如客户服务） 混合型呼叫中心 （如营销和客服） 按技术架构分类 交换机 板卡 软交换（IPCC） 【交换机类型呼叫中心】</description>
+    </item>
+    
+    <item>
+      <title>时间花在哪里，你就会成为什么样的人</title>
+      <link>https://wdd.js.org/posts/2018/where-time-you-spend-what-you-will-be/</link>
+      <pubDate>Tue, 01 Jan 2019 21:02:08 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/where-time-you-spend-what-you-will-be/</guid>
+      <description>2008-2018 十年，往事如昨 2018年已经是昨天，今天是2019的第一天。
+2008年已经是10年前，10年前的傍晚，我走在南京仙林的一个大街上，提着一瓶矿泉水，擦着额头的汗水，仰头看着大屏幕上播放着北京奥运会的开幕式。
+10年前的夏天，我带着一步诺基亚手机功能机，独自一人去了南京。
+坐过绣球公园的石凳，穿过天妃宫的回廊，吹过阅江楼的凉爽的江风，踏着古老斑驳的城墙，在林荫小路的长椅上，我想着10年后我会在哪里？做着什么事情？
+往事如昨，而今将近而立，但是依然觉得自己还是10年的那个独自出去玩的小男孩。
+2018 读了10年都没有读完的书，五味杂陈 2018年，在我做手术前，我觉得自己出了工作的时间外，大多数时间都在看书。2018年这一年看的书，要比2008到2018年这十年间的看的书都要多。这都归功于我对每天的看书都有定量的计划，一旦按照这个计划实行几个月，积累的效果还是非常明显的。
+2018年，手机几乎成为人的四肢之外的第五肢。对大多人来说，上厕所可以不带纸，但是不能不带手机。
+各种APP, 都在极力的吸引用户多花点时间在自己身上 信息流充斥着各种毫无营养，专门吸人眼球的垃圾新闻，但是这种新闻的阅读量还是蛮大的 各种借钱，信用卡，花呗等都像青楼的小姐，妩媚的笑容，说道：官人，进来做一做 共享单车，在今年退潮之后，才发现自己都在裸泳 比特币，挖矿机。不知道谁割了谁的韭菜，总希望有下一个傻子来接盘，最后发现自己可能就是最后一个傻子 AI，人工智能很火，放佛就快要进入终结者那样的世界 锤子垮了，曾经吹过的牛逼，曾经理想主义终于脱去那又黑又亮的面具 图灵测试（The Turing test）由艾伦·麦席森·图灵发明，指测试者与被测试者（一个人和一台机器）隔开的情况下，通过一些装置（如键盘）向被测试者随意提问。 进行多次测试后，如果有超过30%的测试者不能确定出被测试者是人还是机器，那么这台机器就通过了测试，并被认为具有人类智能。图灵测试一词来源于计算机科学和密码学的先驱阿兰·麦席森·图灵写于1950年的一篇论文《计算机器与智能》，其中30%是图灵对2000年时的机器思考能力的一个预测，目前我们已远远落后于这个预测。
+最后说一下图灵测试，在AI方面，这个测试无人不知。一个机器如果通过了图灵测试，则说明该机器具有了只能。但是三体的作者大刘曾经说过一句话，给我一种醍醐灌顶的感觉，假如一个机器人有能力通过图灵测试，却假装无法通过，你说这个机器是否具有人工智能。所以大刘的这种说法才更加让人恐惧。机器人能通过图灵测试，只说明这个机器人具有了智能。但是现阶段的智能只不过是条件反射，或者是基于概率计算的结果。后者这种能通话测试，却假装无法通过的智能。这不仅仅是智能，而是机器的城府。
+有智能的机器并不可怕，有城府的机器人才是真正的可怕。
+如果梦中更加幸福快乐，为什么要回到现实 火影的最后，大筒木辉夜使用无限月读将世界上的所有人都带入梦境，每个人的查克拉都被吸取，并作为神树的养料。
+如果真的存在大筒木这样的上帝，那么时间就是查克拉。人类唯一真正拥有过的东西，时间，将作为神树的养料，从每个人身上提取。
+各种具有吸引力的术，其实可以理解为无限月读，让人沉醉于梦幻中。
+如果梦中更加幸福快乐，为什么要回到现实中承受压力与悲哀呢？ 目前我无法回复自己的这个问题，期待2019年我可以得到这个答案。
+工作方面 2019年，我会在做一些后端方面的工作，努力加油吧。</description>
+    </item>
+    
+    <item>
+      <title>v-for Vue风格指南</title>
+      <link>https://wdd.js.org/posts/2018/vue-style-guide/</link>
+      <pubDate>Wed, 19 Dec 2018 09:29:30 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/vue-style-guide/</guid>
+      <description>1. v-for设置key值 key的值应当是遍历元素的某个唯一属性，例如 item.id，而不是遍历的序号index。直接把key的值绑定为index, 可能会引起不必要的bug
+// good &amp;lt;ul&amp;gt; &amp;lt;li v-for=&amp;#34;(item,index) in list&amp;#34; :key=&amp;#34;item.id&amp;#34;&amp;gt; {{ todo.text }} &amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; // very bad &amp;lt;ul&amp;gt; &amp;lt;li v-for=&amp;#34;(item,index) in list&amp;#34; :key=&amp;#34;index&amp;#34;&amp;gt; {{ todo.text }} &amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; 如果要遍历的对象没有一个唯一的id, 非常建议给要遍历的元素加上唯一的id。推荐使用nanoid
+import nanoid from &amp;#39;nanoid&amp;#39; ... someAjax() .then((res)=&amp;gt;{ res.users.forEach((item)=&amp;gt;{ item.id = nanoid() }) this.users = res.users }) .catch((err)=&amp;gt;{ console.error(err) }) ... 2. v-for元素一定要是对象 除非是最简单的渲染，如果要在渲染期间改变某个元素值，那么只能将简单元素构造为对象。
+// very bad var example1 = new Vue({ el: &amp;#39;#example-1&amp;#39;, data: { items: [&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;c&amp;#39;] } }) &amp;lt;div id=&amp;#34;example-1&amp;#34;&amp;gt; &amp;lt;input v-for=&amp;#34;item in items&amp;#34; v-model=&amp;#34;item&amp;#34;&amp;gt; &amp;lt;/div&amp;gt; // good var example1 = new Vue({ el: &amp;#39;#example-1&amp;#39;, data: { items: [{id:1, value:&amp;#39;a&amp;#39;}, {id: 2, value:&amp;#39;b&amp;#39;}, {id:3, value:&amp;#39;c&amp;#39;}] } }) &amp;lt;div id=&amp;#34;example-1&amp;#34;&amp;gt; &amp;lt;input v-for=&amp;#34;item in items&amp;#34; :key=&amp;#34;item.</description>
+    </item>
+    
+    <item>
+      <title>深入理解 JavaScript中的变量、值、函数传参</title>
+      <link>https://wdd.js.org/posts/2018/deep-in-javascript-variable-value-arguments/</link>
+      <pubDate>Mon, 17 Dec 2018 15:24:15 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/deep-in-javascript-variable-value-arguments/</guid>
+      <description>1. demo 如果你对下面的代码没有任何疑问就能自信的回答出输出的内容，那么本篇文章就不值得你浪费时间了。
+var var1 = 1 var var2 = true var var3 = [1,2,3] var var4 = var3 function test (var1, var3) { var1 = &amp;#39;changed&amp;#39; var3[0] = &amp;#39;changed&amp;#39; var3 = &amp;#39;changed&amp;#39; } test(var1, var3) console.log(var1, var2, var3, var4) 2. 深入理解原始类型 原始类型有5个 Undefinded, Null, Boolean, Number, String
+2.1. 原始类型变量没有属性和方法 // 抬杠, 下面的length属性，toString方法怎么有属性和方法呢？ var a = &amp;#39;oooo&amp;#39; a.length a.toString 原始类型中，有三个特殊的引用类型Boolean, Number, String，在操作原始类型时，原始类型变量会转换成对应的基本包装类型变量去操作。参考JavaScript高级程序设计 5.6 基本包装类型。
+2.2. 原始类型值不可变 原始类型的变量的值是不可变的，只能给变量赋予新的值。
+下面给出例子
+// str1 开始的值是aaa var str1 = &amp;#39;aaa&amp;#39; // 首先创建一个能容纳6个字符串的新字符串 // 然后再这个字符串中填充 aaa和bbb // 最后销毁字符串 aaa和bbb // 而不能理解成在str1的值aaa后追加bbb str1 = str1 + &amp;#39;bbb&amp;#39; 其他原始类型的值也是不可变的, 例如数值类型的。</description>
+    </item>
+    
+    <item>
+      <title>WTF!! Vue数组splice方法无法正常工作</title>
+      <link>https://wdd.js.org/posts/2018/vue-array-splice-not-work/</link>
+      <pubDate>Wed, 12 Dec 2018 20:29:16 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/vue-array-splice-not-work/</guid>
+      <description>当函数执行到this.agents.splice()时，我设置了断点。发现传参index是0，但是页面上的列表项对应的第一行数据没有被删除，
+WTF！！！ 这是什么鬼！然后我打开Vue Devtools, 然后刷新了一下，发现那个数组的第一项还是存在的。什么鬼？？
+removeOneAgentByIndex: function (index) { this.agents.splice(index, 1) } 然后我就谷歌了一下，发现这个splice not working properly my object list VueJs, 大概意思是v-for的时候最好给列表项绑定:key=。然后我是试了这个方法，发现没啥作用。
+最终我决定，单步调试，如果我发现该问题出在Vue自身，那我就该抛弃Vue, 学习React了
+单步调试中出现一个异常的情况，removeOneAgentByIndex是被A函数调用的，A函数由websocket事件驱动。正常情况下应该触发一次的事件，服务端却发送了两次到客户端。由于事件重复，第一次执行A删除时，实际上removeOneAgentByIndex是执行成功了，但是重复的第二个事件到来时，A函数又往agents数组中添加了一项。导致看起来，removeOneAgentByIndex函数执行起来似乎没有设么作用。而且这两个重复的事件是在几乎是在同一时间发送到客户端，所以我几乎花了将近一个小时去解决这个bug。引起这个bug的原因是事件重复，所以我在前端代码中加入事件去重功能，最终解决这个问题。
+我记得之前看过一篇文章，一个开发者调通过回调函数计费，回调函数是由事件触发，但是没想到有时候事件会重发，导致重复计费。后来这名开发者在自己的代码中加入事件去重的功能，最终解决了这个问题。
+事后总结：我觉得我不该怀疑Vue这种库出现了问题，但是我又不禁去怀疑。
+通过这个bug, 我也学到了第二方法，可以删除Vue数组中的某一项，参考下面代码。
+// Only in 2.2.0+: Also works with Array + index. removeOneAgentByIndex: function (index) { this.$delete(this.agents, index) } 另外Vue devtools有时候并不会实时的观测到组件属性的变化，即使点了Refresh按钮。如果点了Refresh按钮还不行，那建议你重新打开谷歌浏览器的devtools面板。</description>
+    </item>
+    
+    <item>
+      <title>Docker镜像批量清理脚本</title>
+      <link>https://wdd.js.org/posts/2018/docker-images-clean-up/</link>
+      <pubDate>Tue, 04 Dec 2018 15:05:31 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/docker-images-clean-up/</guid>
+      <description>使用jenkins作为打包的工具，主机上的磁盘空间总是被慢慢被占满，直到jenkins无法运行。本文从几个方面来清理docker垃圾。
+批量删除已经退出的容器 docker ps -a | grep &amp;#34;Exited&amp;#34; | awk &amp;#39;{print $1 }&amp;#39; | xargs docker rm 批量删除带有none字段的镜像 $3一般就是取出每一行的镜像id字段
+# 方案1： 根据镜像id删除镜像 docker images| grep none |awk &amp;#39;{print $3 }&amp;#39;|xargs docker rmi # 方案2: 根据镜像名删除镜像 docker images | grep wecloud | awk &amp;#39;{print $1&amp;#34;:&amp;#34;$2}&amp;#39; | xargs docker rmi 方案1，根据镜像ID删除镜像时，有写镜像虽然镜像名不同，但是镜像ID都是相同的，这是后往往会删除失败。所以根据镜像名删除镜像的效果会更好。
+删除镜像定时任务脚本 #!/bin/bash # create by wangduanduan # when current free disk less then max free disk, you can remove docker images # GREEN=&amp;#39;\033[0;32m&amp;#39; RED=&amp;#39;\033[0;31m&amp;#39; NC=&amp;#39;\033[0m&amp;#39; max_free_disk=5 # 5G.</description>
+    </item>
+    
+    <item>
+      <title>Node.js 如何找出循环依赖的文件？如何解决循环依赖问题？</title>
+      <link>https://wdd.js.org/posts/2018/how-to-fix-circular-dependencies-in-node-js/</link>
+      <pubDate>Mon, 29 Oct 2018 09:21:03 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/how-to-fix-circular-dependencies-in-node-js/</guid>
+      <description>本文重点是讲解如何解决循环依赖这个问题。关心这个问题是如何产生的，可以自行谷歌。
+如何重现这个问题 // a.js const {sayB} = require(&amp;#39;./b.js&amp;#39;) sayB() function sayA () { console.log(&amp;#39;say A&amp;#39;) } module.exports = { sayA } // b.js const {sayA} = require(&amp;#39;./a.js&amp;#39;) sayA() function sayB () { console.log(&amp;#39;say B&amp;#39;) } module.exports = { sayB } 执行下面的代码
+➜ test git:(master) ✗ node a.js /Users/dd/wj-gitlab/tools/test/b.js:3 sayA() ^ TypeError: sayA is not a function at Object.&amp;lt;anonymous&amp;gt; (/Users/dd/wj-gitlab/tools/test/b.js:3:1) at Module._compile (module.js:635:30) at Object.Module._extensions..js (module.js:646:10) at Module.load (module.js:554:32) at tryModuleLoad (module.</description>
+    </item>
+    
+    <item>
+      <title>shields小徽章是如何生成的？以及搭建自己的shield服务器</title>
+      <link>https://wdd.js.org/posts/2018/how-to-make-shields-badge/</link>
+      <pubDate>Mon, 29 Oct 2018 09:14:43 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/how-to-make-shields-badge/</guid>
+      <description>shields小徽章介绍 一般开源项目都会有一些小徽章来标识项目的状态信息，并且这些信息是会自动更新的。在shields的官网https://shields.io/#/, 上面有各种各样的小图标，并且有很多自定义的方案。
+起因：如何给私有部署的jenkins制作shields服务？ 私有部署的jenkins是用来打包docker镜像的，而我想获取最新的项目打包的jenkins镜像信息。但是私有的jenkins项目信息，公网的shields服务是无法获取其信息的。那么如果搭建一个私有的shields服务呢？
+第一步：如何根据一些信息，制作svg图标 查看shields图标的源码，可以看到这些图标都是svg格式的图标。然后的思路就是，将文字信息转成svg图标。最后我发现这个思路是个死胡同，
+有个npm包叫做，text-to-svg, 似乎可以将文本转成svg, 但是看了文本转svg的效果，果断就放弃了。
+最后回到起点，看了shields官方仓库，发现一个templates目录，豁然开朗。原来svg图标是由svg的模板生成的，每次生成图标只需要将信息添加到模板中，然后就可以渲染出svg字符串了。
+顺着这个思路，发现一个包shields-lightweight
+var shields = require(&amp;#39;shields-lightweight&amp;#39;); var svgBadge = shields.svg(&amp;#39;subject&amp;#39;, &amp;#39;status&amp;#39;, &amp;#39;red&amp;#39;, &amp;#39;flat&amp;#39;); 这个包的确可以生成和shields一样的小徽章，但是如果徽章中有中文，那么中文就会溢出。因为一个中文字符的宽度要比一个英文字符宽很多。
+所以我就fork了这个项目，重写了图标宽度计算的方式。shields-less
+npm install shields-less var shieldsLess = require(&amp;#39;shields-less&amp;#39;) var svgBadge = shieldsLess.svg({ leftText: &amp;#39;npm 黄河远上白云间&amp;#39;, rightText: &amp;#39;hello 世界&amp;#39; }) var svgBadge2 = shieldsLess.svg({ leftText: &amp;#39;npm 黄河远上白云间&amp;#39;, rightText: &amp;#39;hello 世界&amp;#39;, style: &amp;#39;square&amp;#39; }) var svgBadge2 = shieldsLess.svg({ leftText: &amp;#39;npm 黄河远上白云间&amp;#39;, rightText: &amp;#39;hello 世界&amp;#39;, leftColor: &amp;#39;#e64a19&amp;#39;, rightColor: &amp;#39;#448aff&amp;#39;, style: &amp;#39;square&amp;#39; // just two style: square and plat(default) }) 渲染后的效果，查看在线demo: https://wdd.</description>
+    </item>
+    
+    <item>
+      <title>荣耀往往冠以虚伪 正能量满满的《无耻之徒》</title>
+      <link>https://wdd.js.org/posts/2018/shameless-and-glory/</link>
+      <pubDate>Sat, 06 Oct 2018 23:05:24 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/shameless-and-glory/</guid>
+      <description> 今年的国庆，我宅在家里，没有出去玩。因为在我们在法定节假日，最好不要出去旅游。
+因为这世界本来有很多路，走的人太多了，也就没了路。
+堵在高速，堵在景区，堵在厕所，堵在某个街角
+在家里刷完美剧《无耻之徒》八季，说心里话：这部剧刷新我的人生观，感觉自己在七天之内重生似的
+虚伪往往冠以荣耀，荣耀往往冠以虚荣 古龙小说有个特点，越是卑鄙无耻，虚荣腹黑的人，往往冠以正能量慢慢的名字，例如：小李飞刀中的总是喜欢主持正义的大侠赵正义。我觉得，古龙先生一定看过李宗吾的厚黑学，并且深有研究。
+无耻之徒中的frank，也是类似赵正义这类人。
+看剧过程中，几次忍不住想把frank掐死。但是某些时候，frank也会散发出一种大人物的闪光点。
+居中人物看似无耻，很黄很暴力，但是整部剧给人以正能量满满的感觉。反观国产脑残电视剧，哪些动不动说什么我已经等你五千年之类的狗屁对白，让我一听就觉得piece of shit。
+没有好人，也没有坏人，只是人罢了 回首往事，怎么可能没有后悔与遗憾，人生本来就没有完美的 无论如何，血缘关系是无法切断的关系 </description>
+    </item>
+    
+    <item>
+      <title>Express代理中间件问题与解决方案</title>
+      <link>https://wdd.js.org/posts/2018/express-middleware-order-proxy-problem/</link>
+      <pubDate>Sun, 30 Sep 2018 09:41:44 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/express-middleware-order-proxy-problem/</guid>
+      <description>前后端分离应用的架构 在前后端分离架构中，为了避免跨域以及暴露内部服务地址。一般来说，我会在Express这层中加入一个反向代理。
+所有向后端服务访问的请求，都通过代理转发到内部的各个服务。
+这个反向代理服务器，做起来很简单。用http-proxy-middleware这个模块，几行代码就可以搞定。
+// app.js Object.keys(proxyTable).forEach(function (context) { app.use(proxyMiddleware(context, proxyTable[context])) }) http-proxy-middleware实际上是对于node-http-proxy的更加简便的封装。node-http-proxy是http-proxy-middleware的底层包，如果node-http-proxy有问题，那么这个问题就会影响到http-proxy-middleware这个包。
+最近的bug http-proxy-middleware最近有个问题，请求体在被代理转发前，如果请求体被解析了。那么后端服务将会收不到请求结束的消息，从浏览器的网络面板可以看出，一个请求一直在pending状态。
+Cannot proxy after parsing body #299, 实际上这个问题在node-http-proxy也被提出过，而且处于open状态。POST fails/hangs examples to restream also not working #1279
+目前这个bug还是处于open状态，但是还是有解决方案的。就是将请求体解析的中间件挂载在代理之后。
+下面的代码，express.json()会对json格式的请求体进行解析。方案1在代理前就进行body解析，所有格式是json的请求体都会被解析。
+但是有些走代理的请求，如果我们并不关心请求体的内容是什么，实际上我们可以不解析那些走代理的请求。所以，可以先挂载代理中间件，然后挂载请求体解析中间件，最后挂载内部的一些接口服务。
+// 方案1 bad app.use(express.json()) Object.keys(proxyTable).forEach(function (context) { app.use(proxyMiddleware(context, proxyTable[context])) }) app.use(&amp;#39;/api&amp;#39;, (req, res, next)=&amp;gt; { }) // 方案2 good Object.keys(proxyTable).forEach(function (context) { app.use(proxyMiddleware(context, proxyTable[context])) }) app.use(express.json()) app.use(&amp;#39;/api&amp;#39;, (req, res, next)=&amp;gt; { }) 总结 经过这个问题，我对Express中间件的挂载顺序有了更加深刻的认识。
+同时，在使用第三方包的过程中，如果该包bug，那么也需要自行找出合适的解决方案。而这个能力，往往就是高手与新手的区别。</description>
+    </item>
+    
+    <item>
+      <title>什么样的嘻哈音乐会被听众喜欢</title>
+      <link>https://wdd.js.org/posts/2018/what-hip-hop-music-will-be-popular/</link>
+      <pubDate>Mon, 10 Sep 2018 22:07:47 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/what-hip-hop-music-will-be-popular/</guid>
+      <description>《中国新说唱 - 第九期》四位评委一致认为会被流行的歌曲，几乎都没有流行，反观那些评分较低的嘻哈歌曲，反而在各大音乐排行版上名列前茅。
+评委认为会流行的歌曲有以下特点
+词要简单，不要有深度，越简单约容易流行 要中西结合，国际化更好 对于第一点，无疑是在侮辱嘻哈音乐听众的智商。
+对于第二点，实际上只是在吹嘘罢了。难道山歌就一定比中英文结合的说明要层次低。
+纵观网易云音乐排行榜上的比较流行的嘻哈音乐，可以发现有以下特点。
+歌词有血有肉 节奏缓和，吐字清晰，容易模仿 爱情和青春主题更讨喜 对于第一点，如果你的歌词，只是再说自己有多牛逼，别人多low，那么你的歌一定火不了。
+对于第二点，虽然嘻哈音乐讲究说唱的速度，但是如果你的歌曲，整片速度快的都像在高速公路上飙车，那么没有人能跟上。观众顶多会送你一个老司机牌坊，然后就没有然后了。
+缓和的说唱，更容易打动人心。
+爱情和青春，永恒不变的讨喜主题。</description>
+    </item>
+    
+    <item>
+      <title>偷时间的人与王阳明心学</title>
+      <link>https://wdd.js.org/posts/2018/wangyangmin-school-of-mind/</link>
+      <pubDate>Mon, 10 Sep 2018 21:31:38 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/wangyangmin-school-of-mind/</guid>
+      <description>我们用自己的时间，交换到别人的快乐 关于王阳明的心学的书籍，我看过一本，但是没看完。
+虽然我没看，但是我似乎已经理解了心学。
+可以从我个人的角度说明
+上大学时，我有段时间迷上玩英雄联盟，但是因为玩的太菜，所以不久就放弃了。但是喜欢看一些关于游戏的直播视频。 有时候看歌唱比赛，觉得人家唱的那么好听，顿生仰慕之心，进而去了解这个人 喜欢看某个电视剧，然后就追着看了 刷某个APP, 一刷就几十分钟过去了 &amp;hellip; 做这些事情，都有一个特点，就是我们：我们用自己的时间，交换到别人的快乐，仿佛与魔鬼做了交易。
+从心学的角度来说明，我们总是从外界去求取快乐，求取自我实现。
+而王阳明老师交给我的是，你应该从你的内心发现快乐，不需要依赖外呼去实现内心的安静与愉悦。
+自己内心的愉悦是永恒的，从外界获取愉悦是短暂的。
+因为不想无聊，所以出卖自己的时间 用自己的时间去交换别人的快乐，还有另外一个原因。
+就是自己的时间太无聊，因为无法忍受无聊，所以要找点乐子。
+但是从深层次来讲，我们为什么会感到无聊呢？
+因为你无事可做啊？ 无事可做最无聊
+看着手机上满屏的APP图标，
+仿佛是路过青楼，
+每个APP都在妩媚的招手笑道：官人进来坐坐好吗？
+每个APP都希望你可以花费更多的时间在它上面，
+就像是后宫剧的争宠一样，
+因为时间就是流量，
+流量就是金钱
+我们被圈养成优秀的绵羊 屠夫一定不是最富有的，牧羊人一定是最富有的人。
+屠夫杀猪，猪感觉很痛，而且猪要是被杀了，就没办法再杀了
+牧羊人不一样，牧羊人有每次只褥一只的几根羊毛
+绵羊丝毫感觉不到，
+所以牧羊人必须驯服越来越多的绵羊
+让后让每个绵羊以毛质鲜亮为美
+毛质鲜亮浓密的绵羊，称为优秀的绵羊
+我们都慢慢被培养成优秀的绵羊</description>
+    </item>
+    
+    <item>
+      <title>负和游戏与嘻哈音乐</title>
+      <link>https://wdd.js.org/posts/2018/negative-game-and-hipop-music/</link>
+      <pubDate>Sat, 08 Sep 2018 15:54:33 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/negative-game-and-hipop-music/</guid>
+      <description>负和游戏 我很早就听过一个名词，叫做零和游戏，或者又叫做零和博弈。
+零和博弈表示所有博弈方的利益之和为零或一个常数，即一方有所得，其他方必有所失。 维基百科
+最近读的一本书 《以交易为生》，本来是耐着兴趣读下去的
+没想到读到某些地方，也给我醍醐灌顶的感觉
+世界上哪有零和游戏啊，都是负和游戏。
+你给张三转1000块，按理说你少了1000块，张三多了1000块，1000 - 1000 = 0 和为零。
+实际上呢，你转账时还需要付手续费吧。1000 - 1000 - 1 = -1
+同样的情况，坐庄的人总是需要抽成的。
+嘻哈音乐 去年爱奇艺的《中国有嘻哈》红遍大江南北
+所以今天又搞了个第二季
+任何事情，第一遍总是最好的，续集往往都不如人意。
+从谷歌趋势和百度统计来看，这档节目热度在平稳降低。
+另外，爱奇艺也有可能是有点心虚。以前视频下面都会写出播放量，但是现在都不显示播放量数据了，而是显示热度。
+说实在的17年中国有嘻哈能火，完全是因为它能够在众多娱乐节目中给人非常特别的感觉。
+但是18年中国新说唱，和其他节目有什么区别能，同质化严重。</description>
+    </item>
+    
+    <item>
+      <title>JavaScript Golang 与 武侠小说</title>
+      <link>https://wdd.js.org/posts/2018/js-go-gongfu-story/</link>
+      <pubDate>Fri, 07 Sep 2018 22:42:09 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/js-go-gongfu-story/</guid>
+      <description>2018年的学习计划是学习Go语言，
+同时读完kindle里面的300多本书。
+300多本书中，有古龙的武侠小说。
+在学习Go语言的时候，感觉Go语言真实到处都是规矩，一板一眼都仿佛是少林高僧般矜持。
+什么出家人不打诳语啦，酒肉穿肠过&amp;hellip;
+我并不是说有规矩不好，规矩是风格，没有什么好不好的。
+小孩子才说好坏，大人只说利弊。
+JavaScript就有点奇技淫巧了，似乎有点像李寻欢一样
+放荡不羁、忧郁伤感、被人误解
+但是NodeJs横空出世，方佛像小李飞刀
+没有人看出它是怎么出手的，但是它已经席卷了编程界
+但是我最近兴趣却是学习Go语言
+就像朱自清说的：酣眠必不可少，小睡也别有风味</description>
+    </item>
+    
+    <item>
+      <title>jQuery 与IE浏览器兼容性的思考</title>
+      <link>https://wdd.js.org/posts/2018/jquery-ie-browser-support/</link>
+      <pubDate>Sat, 01 Sep 2018 21:04:54 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/jquery-ie-browser-support/</guid>
+      <description>兼容性：对，说你呢！IE! 当我们在说浏览器兼容性的时候，其实我们大多数时候在说IE浏览器的兼容性。
+对，说你呢！IE!
+现在jQuery的最新版已经是3.3.1， 根据jQuery的官方说明。
+最新版的jQuery支持IE9+, 如果你想支持IE6-8，那么你最好去用jQuery 1.12。
+Current Active Support Desktop Internet Explorer: 9+ If you need to support older browsers like Internet Explorer 6-8, Opera 12.1x or Safari 5.1+, use jQuery 1.12. 来自 Browser Support
+jQuery的亮点 我只想安安静静的做东西，不想和各种浏览器diss或者battle。
+所以老司机总是选择一个合适的轮子，</description>
+    </item>
+    
+    <item>
+      <title>markdown博客图床上传的艰辛之路</title>
+      <link>https://wdd.js.org/posts/2018/the-hard-way-of-markdown-insert-images/</link>
+      <pubDate>Mon, 27 Aug 2018 13:46:11 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/the-hard-way-of-markdown-insert-images/</guid>
+      <description>写给所有用github pages做博客，又想搞个图床的人
+1. 适用场景 假如你用github page用markdown写个人博客的话，而你正好又用到一些图床的话，那你可以继续看下去。
+2. 图床分类 图床可以分为两类：
+云服务提供的对象存储: 例如七牛、阿里云提供的对象存储 专门的图床网站: 例如sm.ms, 路过图床，极简图床类似的，一般都是免费 先说云服务提供的对象存储。
+2.1. 七牛云 七牛图床也是推荐比较多的。而且七牛OSS在认证过后提供免费的10G存储空间，你看到的是免费，10G存储空间。
+但是还有些信息没有告诉你。
+免费的仅仅是存储空间，流量费超标了，还是要另算费用的哟 免费提供的外链仅仅是HTTP, HTTPS可是不免费的哟 免费提供的图片的外链是测试的域名，30天后会被回收的哟。也就是说，如果你用测试域名，那么你的图片很可能不知哪天就无法访问了。当然了，你也可以绑定一个正式的域名，但是你需要买个域名，对这个域名进行域名备案、公安网备案。如果你仅仅是为github pages搞个图床，那备案之路是不容易的，你要考虑是否值得。 2.2. 阿里云 如果你用阿里云的对象存储，阿里云是没有免空间的，但是其实空间并不贵，我之前买的9块钱40G一年的空间。而且阿里云提供正式的外链域名，域名是不会被回收的。
+但是如果你以为阿里云很划算的话，你就很傻很天真了。
+阿里云的对象存储计费是慢复杂的，而且不便宜。
+阿里云OSS计费由四个部分组成: 存储费用 + 流量费用 + 请求费用 + 数据处理费用
+至于具体计费细节我就不多说了，只说一个真实的故事。
+七牛云给出测试域名回收通告之后，当天我就把500多张图片，大概24MB左右，全部迁移到阿里云OSS。当晚凌晨左右，正在躺在床上看灌篮高手的正起劲的我，突然收到阿里云OSS欠费通知。于是我虎躯一震，翻身下床，打开电脑，还了欠费，删了OSS。
+总之，天下没有免费的午餐，出来混，总是要还的。
+2.3. 又拍云 又拍云提供的外链，也是需要绑定域名的，而且域名需要备案。
+2.4. 专门的图床网站 专门的图床网站，一般都是免费的。但是免费的，除非站长能力超强、票子超多，否则没有盈利模式的话，早晚可能还是免不了无法访问的结局。
+详情可以看一下， 盘点一下免费好用的图床
+3. 为了方便、还是为了折腾 给markdown图片一个图床，出发点是为了方便。为了markdown在迁移时，图片不会无法访问。
+但是我觉得在这个出发点上，我们越绕越远。为了方便，而折腾出一系列麻烦事。
+4. 解决思路 博客尽量少加图片 尽量将图片放在博客目录下，不使用图床 对于不重要的图片，可以使用免费图床 可以购买一些付费的专门的图床服务 5. 省钱还是省事，鱼与熊掌 想省钱，往往就不能省事，需要有折腾的耐力。
+有钱任性的话，什么事都好办了。想上哪个云，上哪个云。</description>
+    </item>
+    
+    <item>
+      <title>IE11跨域检查跨域设置</title>
+      <link>https://wdd.js.org/posts/2018/ie-cross-domain-settings/</link>
+      <pubDate>Thu, 23 Aug 2018 10:20:10 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/ie-cross-domain-settings/</guid>
+      <description>IE11有安全设置中有两个选项，
+跨域浏览窗口和框架 通过域访问数据源 如果上面两个选项被禁用，那么IE11会拒绝跨域请求。如果想要跨域成功，必须将上面两个选项设置为启用。
+第一步 打开IE11 点击浏览器右上角的齿轮图标 点击弹框上的 Internet选项 第二步 点击安全 点击Internet 点击自定义级别 第三步 找到跨域浏览窗口和框架
+如果这项是禁用的，那么要勾选启用。
+找到通过域访问数据源
+如果这项是禁用的，那么要勾选启用。
+最后在点击确定。
+最后，如果跨域浏览窗口和框架,通过域访问数据源都启用了，还是无法跨域。那么最好重启一下电脑。有些设置可能在重启后才会生效。</description>
+    </item>
+    
+    <item>
+      <title>毕业后，青春像一艘船，沉入海底</title>
+      <link>https://wdd.js.org/posts/2018/the-rest-of-your-life/</link>
+      <pubDate>Tue, 14 Aug 2018 18:36:40 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/the-rest-of-your-life/</guid>
+      <description>大三那年的暑假 大三那年暑假，很多同学都回去了，寝室大楼空空如也。
+留在上海的同学都在各自找着兼职的工作，为了不显得无聊，我也在网上随便发了一些简历，试试看运气。
+写简历最难写的部分就是写你自己的长处是什么？搜索枯肠，觉得自己似乎也没什特长。感觉大学三年学到一些东西，又感觉什么都没学到。
+如果没有特长，总该也有点理想吧，比如想干点什么？ 似乎我也没什么想做的事情。
+小时候我们都有理想，慢慢长大后，理想越来越模糊，变得越来越迷茫。
+大学里，大部分的人都是在打游戏。我也曾迷恋过打游戏，但是因为自己比较菜，总是被虐，所以放弃了。
+但是我也不是那种天天对着笔记本看电视剧的人。
+回忆初三那年的暑假 记得，初三的暑假，我参加了一个学校看展的一个免费的计算机培训班。因为培训的老师说，培训结束前会有一个测试，成绩最好的会有几百块的奖励。
+为了几百块的奖励，我第一个背诵完五笔拆字法。随后老师教了我们PS, 就是photoshop。当时我的理解就是，ps可以做出很多搞笑的图片。
+为了成为一个有能力做出搞笑图片的人。我在高中和大学期间，断断续续的系统的自学了PS。
+下面给展示几张我的PS照片
+【毕业照】
+【帮别人做的艺术照】
+【刺客信条 换脸 我自己】
+【旅游照 换脸 我自己】
+【宿舍楼 上面ps了一条狼】
+古玩艺术电商中的店小二 基本上，我的PS技术还是能够找点兼职做的。没过多久，我收到了面试邀请，面试的公司位于一个古玩收藏品市场中。
+当然我面试成功了，开出的日薪也是非常诱人，每天35元。
+在上海，35元一天的工资，除去来回上下班做地铁和公交，还有中午饭的费用外，基本上不会剩下什么，有时候稍微午饭丰盛点，自己就要倒贴。但是这也是一次不错的尝试，至少有史以来，除去父母以外，我用能力问别人要钱了。
+35元的日薪持续很短一段时间，然后我就涨薪了，到达每天100元。在这个做兼职的地方，我最高拿到的日薪是200元。
+兼职期间我做了各式各样的工作：
+古玩艺术品摄影 海报制作 拍卖图册制作 linux运维 APP UI 设计 网页设计 python爬虫 兼职的日志过得很苦，单是还算充实。虽然工资不高，但是因为还没毕业，也没有奢望过高的工资。
+【上图 我在一个古玩店的拍摄玉器的时候，有个小女孩过来找我玩，我随手拍的】
+【上图 是在1号线 莲花路地铁站 因为错过了地铁拍的】
+【上图 是从1号线 莲花地铁站 转公交拍的】
+【每天早上起的很早，能够看到军训的学生在操场上奔跑】
+【在古玩店一般都要拍到很晚，因为是按张数算拍照工资，拍的越多，工资越高。还好晚上回公司 打车费用是可以报销的】
+【晚上还要回到学校，一般到学校就快晚上10点左右了】
+【毕业了，新校区依然很漂亮】
+【毕业了，老校区下了一场雨】
+【毕业了，青春像一艘船，沉入海底】
+【毕业了，我等的人，你在哪里？】</description>
+    </item>
+    
+    <item>
+      <title>NodeJS Events 模块笔记</title>
+      <link>https://wdd.js.org/posts/2018/deepin-nodejs-events/</link>
+      <pubDate>Fri, 10 Aug 2018 10:18:57 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/deepin-nodejs-events/</guid>
+      <description>1. 环境 node 8.11.3 2. 基本使用 // 01.js const EventEmitter = require(&amp;#39;events&amp;#39;); class MyEmitter extends EventEmitter {} const myEmitter = new MyEmitter(); myEmitter.on(&amp;#39;event&amp;#39;, () =&amp;gt; { console.log(&amp;#39;an event occurred!&amp;#39;); }); myEmitter.emit(&amp;#39;event&amp;#39;); 输出：
+an event occurred! 3. 传参与this指向 emit()方法可以传不限制数量的参数。 除了箭头函数外，在回调函数内部，this会被绑定到EventEmitter类的实例上 // 02.js const EventEmitter = require(&amp;#39;events&amp;#39;) class MyEmitter extends EventEmitter {} const myEmitter = new MyEmitter() myEmitter.on(&amp;#39;event&amp;#39;, function (a, b){ console.log(a, b, this, this === myEmitter) }) myEmitter.on(&amp;#39;event&amp;#39;, (a, b) =&amp;gt; { console.</description>
+    </item>
+    
+    <item>
+      <title>python学习笔记 星号的作用</title>
+      <link>https://wdd.js.org/posts/2018/python-learn-note-01/</link>
+      <pubDate>Tue, 31 Jul 2018 22:35:51 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/python-learn-note-01/</guid>
+      <description>一个*的作用：打散或者聚合可迭代序列 代码如下：
+def showArgs(*args): print(args) showArgs() showArgs(&amp;#39;A&amp;#39;) showArgs(&amp;#39;A&amp;#39;, &amp;#39;B&amp;#39;, &amp;#39;C&amp;#39;) mylist = [&amp;#39;D&amp;#39;,&amp;#39;E&amp;#39;,&amp;#39;F&amp;#39;] mytuple = (&amp;#39;H&amp;#39;, &amp;#39;G&amp;#39;) myset = {&amp;#39;X&amp;#39;, &amp;#39;Y&amp;#39;, &amp;#39;Z&amp;#39;} showArgs(*mylist) showArgs(*mytuple) showArgs(*myset) showArgs(mylist) showArgs(mytuple) showArgs(myset) 代码输出
+() (&amp;#39;A&amp;#39;,) (&amp;#39;A&amp;#39;, &amp;#39;B&amp;#39;, &amp;#39;C&amp;#39;) (&amp;#39;D&amp;#39;, &amp;#39;E&amp;#39;, &amp;#39;F&amp;#39;) (&amp;#39;H&amp;#39;, &amp;#39;G&amp;#39;) (&amp;#39;Y&amp;#39;, &amp;#39;X&amp;#39;, &amp;#39;Z&amp;#39;) ([&amp;#39;D&amp;#39;, &amp;#39;E&amp;#39;, &amp;#39;F&amp;#39;],) ((&amp;#39;H&amp;#39;, &amp;#39;G&amp;#39;),) ({&amp;#39;Y&amp;#39;, &amp;#39;X&amp;#39;, &amp;#39;Z&amp;#39;},) 结论
+*作为函数形参时，可以将传入的实参收集到一个元组中 *作为函数实参时，可以将单个的列表，元组，集合打散成多个参数传入函数 效用：如果某个函数需要的参数是不定数量的参数，那么可以使用一个*号，将可迭代对象打散后传入，这样就可以避免循环了。
+两个*的作用：打散或者聚合字典 代码如下：
+def showArgs(**args): print(args) showArgs(name=&amp;#39;wdd&amp;#39;) myDict = {&amp;#39;name&amp;#39;:&amp;#39;wdd&amp;#39;} showArgs(**myDict) showArgs(myDict=&amp;#39;1&amp;#39;) showArgs(myDict) 代码输出：
+{&amp;#39;name&amp;#39;: &amp;#39;wdd&amp;#39;} {&amp;#39;name&amp;#39;: &amp;#39;wdd&amp;#39;} {&amp;#39;myDict&amp;#39;: &amp;#39;1&amp;#39;} Traceback (most recent call last): File &amp;#34;test3.</description>
+    </item>
+    
+    <item>
+      <title>jenkins构建镜像时，如何向镜像中注入动态环境变量？</title>
+      <link>https://wdd.js.org/posts/2018/inject-environment-variables-to-docker-from-jenkins-build/</link>
+      <pubDate>Mon, 23 Jul 2018 19:23:53 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/inject-environment-variables-to-docker-from-jenkins-build/</guid>
+      <description>STEP 1: jenkins Additional Build Arguments jenkins Docker Build and Publish插件有个高级选项，Additional Build Arguments
+可以在docker构建时，将额外的参数传递给dockerfile。
+$BUILD_NUMBER是jenkins自带的一个环境变量，每次构建后都会加1，如：1，2，3，它是一个动态的变量，不同的构建具有不同的构建序号。
+--build-arg my_build_number=&amp;#34;$BUILD_NUMBER&amp;#34; STEP 2: dockerfile arg dockerfile 增加如下参数。如果只做了第一步，但是没有在dockerfile中申明运行时会多传入哪些参数，构建就会失败。
+ARG 参数指定了构建时可以传递哪些参数进来，并且可以设置默认值，但是docker构建时传递的参数会覆盖默认值。
+ENV 指令将my_build_number设置为一个环境变量，它的值为ARG参数的值。
+如果你构建的程序是nodejs项目，你就可以通过process.env.my_build_number获取jenkins构建镜像时传入的参数。
+ARG my_build_number=&amp;#39;&amp;#39; ENV my_build_number ${my_build_number} </description>
+    </item>
+    
+    <item>
+      <title>jest jenkins搭建自动化测试CI教程</title>
+      <link>https://wdd.js.org/posts/2018/yarn-jenkins-ci-tutorial/</link>
+      <pubDate>Mon, 16 Jul 2018 20:58:21 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/yarn-jenkins-ci-tutorial/</guid>
+      <description>关于jest和jenkins集成，我走了一些弯路。之前一直用jenkins打包nodejs镜像。想做nodejs自动化接口测试时，我也按照打包镜像的套路走，感觉走到死胡同。网上搜jest jenkins integration, 感觉很多答案都不靠谱。终于自己走通了一遍。
+1. 安装jenkins nodejs插件 地址：https://plugins.jenkins.io/nodejs
+注意该插件要求jenkins版本不低于1.651.3 1.1. 安装方法 方法1：在jenkins插件管理，可选插件中搜索并安装 方法2：如果搜索不到nodejs, 可以在该插件的介绍页面选择latest.hpi, 下载这个文件，然后再插件管理》高级标签页面选择上传刚才的hpi文件。
+1.2. 插件初始化设置 在全局工具管理页面，路径为/configureTools/,
+点击Nodejs 安装这一栏，新增别名 选择Nodejs版本，建议不要最新版，最好和本地开发环境一样的版本即可 输入一些全局安装包，例如: yarn 最后别忘记点击保存 2. 创建一个任务 输入一个名称 选择FreeStyle风格 点击确定 3. 任务配置 3.1. 源码管理 源码管理当然选择私有部署的git仓库了 3.2. 触发器构建 记住方框里面的地址，这个地址需要填入到gilab响应仓库的settings&amp;gt;integrations&amp;gt;URL, 然后选择add webhook, 这边git一旦push, jenkins那边就会自动构建测试任务了。 【下图： 私有gitlab仓库集成设置】
+3.3. 构建环境选择nodejs 3.4. 构建 选择执行shell 在命令中输入如下代码 注意：第一次构建可能会很慢，因为要安装nodejs, npm, yarn之类的软件
+echo $PATH // 输出 path pwd // 输入当前目录 node --version // 输出node版本 yarn --version // 输出yarn版本 yarn --registry=https://registry.</description>
+    </item>
+    
+    <item>
+      <title>GitLab JenKins 自动化构建</title>
+      <link>https://wdd.js.org/posts/2018/gitlab-jenkins-ci-tutorial/</link>
+      <pubDate>Tue, 03 Jul 2018 17:56:05 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/gitlab-jenkins-ci-tutorial/</guid>
+      <description>1. jenkins项目配置 1.1. 构建触发器设置 方框位置打钩 注意：椭圆圈住的位置的URL在下文中会用到, 该URL是JenKins自动生成的 如果你的项目中看不到这一项，那么你需要安装Gitlab Plugin
+1.2. 构建 注意：$BUILD_NUMBER是JenKins自带的一个环境变量，表示当前构建的次数。加上这个之后，每次构建产生的tag都不一样。
+构建生成的项目名称如下图所示。
+Docker Build and Publish 高级设置
+Skip Push 默认情况该值处于选中状态，如果需要push到私有仓库，那么该项目要取消勾选。如果你构建的项目没有push到私有仓库，那么就是该值引起的问题
+其他参数可以自行设置。
+2. gitlab配置 2.1. 配置WebHooks 找到项目的 projectX &amp;gt; Settings &amp;gt; Integrations页面。
+在椭圆中填入1.1章节中的URL 选中Push events 点击Add webhook 添加成功后，会在Add webhook按钮下出现 Webhooks列表，你可以点击某一个webhook后的Test按钮进行测试。
+如果测试成功，jenkins那边会新建构建任务。
+如果测试失败，gitlab这边会给出具体的错误信息。
+3. 高级技巧 3.2 构建节流 在使用GitLab CI自动构建项目时。正常情况GitLab项目的每次push，JenKins都会自动打包。
+如果一样项目一分钟收到30次push, JenKins做30次打包是非常浪费资源的。通过设置构建节流，可以限制单位时间内JenKins的构建次数。
+下图设置Throttle Builds每小时只能构建一次，但是允许用户手动构建时，跳过构建节流的限制。
+3.1. JenKins环境变量 jenkins还有更多的环境变量，可以在构建时读取出来，方便参数化构建。
+例如你想获取当前构建的累积次数，可以用$BUILD_NUMBER
+环境变量 描述 BUILD_URL The URL where the results of this build can be found (e.</description>
+    </item>
+    
+    <item>
+      <title>JavaScript动态下载文件</title>
+      <link>https://wdd.js.org/posts/2018/js-download-file/</link>
+      <pubDate>Wed, 27 Jun 2018 09:09:01 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/js-download-file/</guid>
+      <description>需求描述 可以把字符串下载成txt文件 可以把对象序列化后下载json文件 下载由ajax请求返回的Excel, Word, pdf 等等其他文件 基本思想 downloadJsonIVR () { var data = {name: &amp;#39;age&amp;#39;} data = JSON.stringify(data) data = new Blob([data]) var a = document.createElement(&amp;#39;a&amp;#39;) var url = window.URL.createObjectURL(data) a.href = url a.download = &amp;#39;what-you-want.json&amp;#39; a.click() }, 从字符串下载文件 从ajax请求中下载文件 </description>
+    </item>
+    
+    <item>
+      <title>如无必要，请不要多安装任意一个npm包</title>
+      <link>https://wdd.js.org/posts/2018/add-npm-package-to-your-project-realy-necessary/</link>
+      <pubDate>Thu, 14 Jun 2018 21:41:52 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/add-npm-package-to-your-project-realy-necessary/</guid>
+      <description>1. 风雨总在阳光后 今天在使用一个npm包时，无论怎么搞，它的功能总是无法符合我的预期。
+于是我把这个包卸载了，自己写了几行代码，来替代这个包的功能，运行正常。
+这件事情引起我的反思，当初我用这个包，是因为这个包提供功能，可以让我少写几行代码。
+于是我就用了，感觉很好，天朗气清，惠风和畅。然而好景不长，风雨总在阳光后。
+npm包大多是开源的项目，你可以免费的使用这些包带来的好处。
+但是如果出现bug, 你也不要苛责哪些包的开发者，毕竟大多数开发者都是无私奉献，并没有从中取得什么好处。
+如果你自己可以几行代码就可以搞定的事情，就不要在npm包中找解决方案了。不要用偷懒的接口给自己以后的道路挖坑。
+2. 少的哲学 一个变量可以满足要求话， 就不要写两个变量， 因为变量是小鬼， 越多变量， 越难控制。
+一行代码可以完成的功能， 就不要写两行了， 因为代码行是用过的鞋垫， 行数越多， 味道越臭。
+最漂亮的函数体内只有一行代码， 如果做不到， 那么最多铺满编辑器的一屏， 不用滚动屏幕就可以看完整个函数体， 也不需要切换你脑子里的上下文环境和调用栈了。
+如果可以的话， 我想做一个不用写代码的程序员
+3. 代码可读性 如果你今天写的代码， 只有上帝和你自己能看懂， 那么一个月之后， 这些代码只有上帝能看懂。
+代码不是写给计算机看的， 而是写给人看的。 如果你写的代码只有编译器能看懂， 那么你那么叼， 你为什么不使用只有0和1的键盘呢？
+4. 有能力就自己动手 如果你自己造不了轮子， 没关系，大多数人都在使用别人造的轮子， 如果你造不了螺丝， 那你最好还是改行做点别的事情，
+如果你看不懂轮子的说明书， 因为那毕竟是英文啊！ 那有怎样，你自己写的代码不就是英文码 你既然这么害怕英文， 为什么不自己用中文写代码呢</description>
+    </item>
+    
+    <item>
+      <title>Restful API 架构思考</title>
+      <link>https://wdd.js.org/posts/2018/think-about-restful-api/</link>
+      <pubDate>Thu, 07 Jun 2018 22:35:08 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/think-about-restful-api/</guid>
+      <description>1. 什么是REST? 2. REST API最为重要的约束 3. REST API HTTP方法 与 CURD 4. 状态码 5. RESTful架构设计 6. 文档 7. 版本 8. 深入理解状态与无状态 9. 参考 1. 什么是REST? 表现层状态转换（REST，英文：Representational State Transfer）是Roy Thomas Fielding博士于2000年在他的博士论文[1] 中提出来的一种万维网软件架构风格，目的是便于不同软件/程序在网络（例如互联网）中互相传递信息。表现层状态转换（REST，英文：Representational State Transfer）是根基于超文本传输协议(HTTP)之上而确定的一组约束和属性，是一种设计提供万维网络服务的软件构建风格。匹配或兼容于这种架构风格(简称为 REST 或 RESTful)的网络服务，允许客户端发出以统一资源标识符访问和操作网络资源的请求，而与预先定义好的无状态操作集一致化。wikipdeia
+REST API 不是一个标准或者一个是协议，仅仅是一种风格，一种style。
+RESTful API的简单定义可以轻松解释这个概念。 REST是一种架构风格，RESTful是它的解释。也就是说，如果您的后端服务器具有REST API，并且您（从网站/应用程序）向客户端请求此API，则您的客户端为RESTful。
+2. REST API最为重要的约束 Client-Server 通信只能由客户端单方面发起，表现为请求-响应的形式 Stateless 通信的会话状态（Session State）应该全部由客户端负责维护 Cache 响应内容可以在通信链的某处被缓存，以改善网络效率 Uniform Interface 通信链的组件之间通过统一的接口相互通信，以提高交互的可见性 Layered System 通过限制组件的行为（即每个组件只能“看到”与其交互的紧邻层），将架构分解为若干等级的层。 Code-On-Demand 支持通过下载并执行一些代码（例如Java Applet、Flash或JavaScript），对客户端的功能进行扩展。 3. REST API HTTP方法 与 CURD REST API 使用POST，GET, PUT, DELETE的HTTP方法来描述对资源的增、查、改、删。 这四个HTTP方法在数据层对应着SQL的插入、查询、更新、删除操作。</description>
+    </item>
+    
+    <item>
+      <title>记一次如何解决谷歌浏览器占用过高cpu问题过程</title>
+      <link>https://wdd.js.org/posts/2018/how-to-fix-google-chrome-very-high-cpu-cost/</link>
+      <pubDate>Mon, 04 Jun 2018 17:58:24 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/how-to-fix-google-chrome-very-high-cpu-cost/</guid>
+      <description>1. 问题现象 有时候发现mac风扇响的厉害，于是我检查了mac系统的活动监视器，发现Google Chrome Helper占用99%的CPU。
+通常来说Chrome如果占用过高的内存，这并不是什么问题，毕竟Chrome的性能以及易用性是建立在占用很多内存的基础上的。但是无论什么程序，持续的占用超过80%的cpu，都是极不正常的。大多数程序都是占用维持在低于10%的CPU。
+活动监视器指出问题出现在Chrome浏览器。那么问题可以再次细分为三块。
+Chrome系统自身问题 一些插件，例如flash插件，扩展插件 网页程序js出现的问题 2. 从任务管理器着手 其实Chrome浏览器自身也是有任务管理器的，一般来说windows版chrome按住shift+esc就会调出任务管理器窗口。mac版调出任务管理器没有快捷，只能通过Window &amp;gt; Task Manager调出。
+调出任务管理器后，发现一个标签页，CPU占用率达到99%， 那就说明，应该是这个标签页中存在持续占用大量CPU计算的程序。
+最后找到这个页面，发现该页面背景图是一种动态粒子图。就是基于particles.js做的。我想，终于找到你了。
+于是我把这个动态图的相关js代码给注释掉，电脑的风扇也终于变得安静了。
+3. 问题总结 问题解决的总结：解决问题的方法时很简单的，基于一个现象，找到一个原因，基于这个原因再找到一个现象，然后一步一步缩小问题范围，逼近最终原因。
+机器CPU过高，一般都是可以从任务管理器着手解决。系统的任务管理器可以监控各个程序占用的CPU是否正常，通常程序自身也是有任务管理的。
+像谷歌浏览器这种软件，几乎本身就是一个操作系统，所以说它的任务管理器也是必不可少的。Chrome浏览器再带的任务管理器可以告诉你几个关键信息。
+任务占用的内存 任务占用的CPU 任务占用的网络流量大小 如果你一打开谷歌浏览器，你的电脑风扇就拼命转，那你最好打开谷歌浏览器的任务管理器看看。
+4. 关于动态背景图的思考 动态背景图往往都会给人很酷炫的感觉，但是这种背景图的制作并不是很复杂，如果你使用particles.js来制作，制作一些动态背景图只需要几行代码就可以搞定。但是这种酷炫的背后，CPU也在承受着压力。
+particles.js提供的demo效果图，在Chrome中CPU会被提高到100%。
+也有几家使用动态背景图的官网。我记得知乎以前就用过动态背景图，但是现在找不到了。另外一个使用动态背景图的是daocloud, CPU也是会在首页飙升到50%。
+所谓：强招必自损，动态背景图在给人以炫酷科技感的同时，也需要权衡这种技术对客户计算机的压力。
+另外，不要小看JavaScript, 它也可能引起大问题</description>
+    </item>
+    
+    <item>
+      <title>关于白血病的思考</title>
+      <link>https://wdd.js.org/posts/2018/think-about-leukemia/</link>
+      <pubDate>Sun, 03 Jun 2018 22:44:54 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/think-about-leukemia/</guid>
+      <description>最近有个朋友的孩子得了白血病，我曾经以为白血病就是血液是白色的，后来查了资料才知道，白血病的白字是白细胞的意思。
+虽然我对白血病不甚了解，我也知道这个病是很严重的，最低要花个四五十万，可能也是治不好。
+达尔文的物种进化论物竞天择，适者生存在人类面前似乎并不顶用。脖子短的长颈鹿慢慢饿死了，生存下来的都是脖子长的。按照这个道理，人类之中得了各种癌症的都会慢慢死去，逐渐减少，剩下的人应该都是健康的居多。但是事实呢，各种得了疑难杂症的人不仅没有减少，反而增多了。
+你不能因为一个人有某种癌症，就剥夺他繁衍后代的权利吧。
+最近在看一本书《我们为什么生病》，这本书我还没看完，但是获取到一点概念：生病的原因并不仅仅只有遗传因素，外界的因素往往也是至关重要的。
+以后我看完这本书时，再来补充内容吧。</description>
+    </item>
+    
+    <item>
+      <title>浏览器端数据库存储方案的整理 -- indexDB 和 localStorage</title>
+      <link>https://wdd.js.org/posts/2018/client-side-storage-about-indexdb/</link>
+      <pubDate>Sat, 02 Jun 2018 12:17:17 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/client-side-storage-about-indexdb/</guid>
+      <description>有些安全性不太重要的数据，我不想花大力气搞一台服务器，再安装mysql或者 monogdb，再写点rest接口。这也太麻烦了，浏览器里本来就有很好用的数据库。你为什么不尝试一下呢？
+1. 客户端存储目前有两个方案比较 方案 优点 缺点 localStorage 简单易用，同步操作 存储容量小，一般不超过10MB indexDB 接口都是异步的，操作不便 容量比localStorage大 如果要使用localStorage，那么存储量比较小。如果是用indexDB，那么最好找点开源库，直接封装友好的API, 来方便我们使用indexDB。
+下面介绍一些很好用的的库。
+2. 简介 2.1. localForage 离线存储， 提供强大的API封装IndexedDB,WebSQL,localStorage 12073 star https://github.com/localForage/localForage localforage.setItem(&amp;#39;key&amp;#39;, &amp;#39;value&amp;#39;, function (err) { // if err is non-null, we got an error localforage.getItem(&amp;#39;key&amp;#39;, function (err, value) { // if err is non-null, we got an error. otherwise, value is the value }); }); 2.2. Dexie.js 专业封装 IndexedDB 3040 star https://github.com/dfahlander/Dexie.js const db = new Dexie(&amp;#39;MyDatabase&amp;#39;); // Declare tables, IDs and indexes db.</description>
+    </item>
+    
+    <item>
+      <title>你应该尽早使用Vuex</title>
+      <link>https://wdd.js.org/posts/2018/you-should-use-vuex-early/</link>
+      <pubDate>Wed, 30 May 2018 21:13:46 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/you-should-use-vuex-early/</guid>
+      <description>之前做的一个项目，使用了Vuex。最近又做了一个项目，也打算用Vuex。只是某些Vuex的概念比较模糊了。所以打算写篇文章记录一下。
+我记得以前看过一篇文章，核心思想就是你应该尽早使用Vuex，但是在网上也搜不到了。
+无论谁来讲Vuex, 其实都没有官网讲的好，参见官网Vuex 是什么？, 如果你对Vuex有任何概念不清晰，官网都是最好的老师。
+官网最后说：
+如果您不打算开发大型单页应用，使用 Vuex 可能是繁琐冗余的。确实是如此——如果您的应用够简单，您最好不要使用 Vuex。一个简单的 global event bus 就足够您所需了。参考Creating a Global Event Bus with Vue.js
+但是，杀鸡用牛刀也未尝不可。
+程序员往往喜欢：Talk is cheap, show me the code。废话少说，放码过来。我也是，有时候想弄清楚一个问题，往往喜欢去直接看代码。但是对整体的设计原理概念不甚了解。
+但是，当我看到官网这张图，我盯着看了几分钟后，理解了这张图，也完全理解了Vuex。
+那么为什么要尽早使用Vuex呢？
+Vuex其实很简单，没你想象的那么复杂 越早Vuex使用越熟练，也能提高自己的知识储备 你迟早需要状态管理的，与其将来痛苦重构，不如尽早享受Vuex带来的畅爽感觉 至于怎么使用Vuex，我就不多说了。网上优秀的教程蛮多的。</description>
+    </item>
+    
+    <item>
+      <title>IE浏览器不支持location.origin</title>
+      <link>https://wdd.js.org/posts/2018/ie-not-support-location-origin/</link>
+      <pubDate>Thu, 24 May 2018 14:50:49 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/ie-not-support-location-origin/</guid>
+      <description>某些IE浏览器location.origin属性是undefined，所以如果你要使用该属性，那么要注意做个能力检测。
+if (!window.location.origin) { window.location.origin = window.location.protocol + &amp;#34;//&amp;#34; + window.location.hostname + (window.location.port ? &amp;#39;:&amp;#39; + window.location.port: &amp;#39;&amp;#39;); }i </description>
+    </item>
+    
+    <item>
+      <title>端到端测试哪家强？不容错过的Cypress</title>
+      <link>https://wdd.js.org/posts/2018/e2e-testing-hacker-news-with-cypress/</link>
+      <pubDate>Mon, 14 May 2018 10:43:02 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/e2e-testing-hacker-news-with-cypress/</guid>
+      <description>1. 目前E2E测试工具有哪些？ 项目 Web Star puppeteer Chromium (~170Mb Mac, ~282Mb Linux, ~280Mb Win) 31906 nightmare Electron 15502 nightwatch WebDriver 8135 protractor selenium 7532 casperjs PhantomJS 7180 cypress Electron 5303 Zombie 不需要 4880 testcafe 不需要 4645 CodeceptJS webdriverio 1665 端到端测试一般都需要一个Web容器，来运行前端应用。例如Chromium, Electron, PhantomJS, WebDriver等等。
+从体积角度考虑，这些Web容器体积一般都很大。
+从速度的角度考虑：PhantomJS, WebDriver &amp;lt; Electon, Chromium。
+而且每个工具的侧重点也不同，建议按照需要去选择。
+2. 优秀的端到端测试工具应该有哪些特点？ 安装简易：我希望它非常容易安装，最好可以一行命令就可以安装完毕 依赖较少：我只想做个E2E测试，不想安装jdk, python之类的东西 速度很快：运行测试用例的速度要快 报错详细：详细的报错 API完备：鼠标键盘操作接口，DOM查询接口等 Debug方便：出错了可以很方便的调试，而不是去猜 3. 为什么要用Cypress？ Cypress基本上拥有了上面的特点之外，还有以下特点。
+时光穿梭 测试运行时，Cypress会自动截图，你可以轻易的查看每个时间的截图 Debug友好 不需要再去猜测为什么测试有失败了，Cypress提供Chrome DevTools, 所以Debug是非常方便的。 实时刷新 Cypress检测测试用例改变后，会自动刷新 自动等待 不需要在使用wait类似的方法等待某个DOM出现，Cypress会自动帮你做这些 Spies, stubs, and clocks Verify and control the behavior of functions, server responses, or timers.</description>
+    </item>
+    
+    <item>
+      <title>抛弃时间的人，时间也抛弃他，时间记录工具分享</title>
+      <link>https://wdd.js.org/posts/2018/time-tracking-tools-overview/</link>
+      <pubDate>Fri, 27 Apr 2018 13:28:07 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/time-tracking-tools-overview/</guid>
+      <description>1. WakaTime 自动化时间记录工具 WakaTime致力为程序员提供于自动化时间记录功能，它提供很多的IDE插件，可以通过这些插件清晰的告诉你一些可视化的信息。
+WakeTime功能列表
+每个项目你所花费的时间 每种编程语言你所花费的时间 一天的平均编码信息 编辑器使用记录 可以生成日报，周报，月报，以邮件的形式发送给你 可以生成嵌入式的代码，以图片形式展现 &amp;hellip; 1.1. WakeTime Dashboard 欣赏 1.2. WakaTime插件 支持哪些IDE? 1.3. WakaTime 生成嵌入式图片代码 在线预览地址：https://wdd.js.org/about/
+2. RescueTime 拯救你的时间 RescueTime， RescueTime也是一款时间分析软件，支持多个平台。包括Mac, Windows, Linux, Android, Chrome插件，FireFox插件
+相比于WakaTime, RescueTime并不局限于IDE中，它可以记录更多维度的时间花费，包括如下。
+在每个应用上花费的时间 在每个网站花费的时间 按照天，周，月生成报表 可视化分析时间花费 2.1. RescueTime Dashboard 欣赏 3. 分析与对比 WakaTime比较适合IDE的时间记录，RescueTime记录的维度更广。两款软件都有免费版和收费版，其实免费版的功能都已经够用了。
+4. 关于时间 抛弃时间的人，时间也抛弃他。——莎士比亚 一个人越知道时间的价值，越倍觉失时的痛苦！——但丁 平庸的人关心怎样耗费时间，有才能的人竭力利用时间。——叔本华 逝者如斯夫，不舍昼夜。——孔子 </description>
+    </item>
+    
+    <item>
+      <title>掌握谷歌搜索高级指令</title>
+      <link>https://wdd.js.org/posts/2018/master-google-search-command/</link>
+      <pubDate>Thu, 26 Apr 2018 16:56:01 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/master-google-search-command/</guid>
+      <description>1. 谷歌搜索指令 2. 基本命令 3. 关键词使用 4. 特殊工具 4.1. define 快速返回关键词定义 4.2. 计算器 4.3. 单位转换 4.4. 时区查询 4.5. 地区查询 4.6. 天气查询 5. 参考 1. 谷歌搜索指令 2. 基本命令 符号 简介 语法 注意点 示例 | 包含A且必须包含B | A +B | A和+之间有空格 | Maxwell +wills | 包含A且不包含B | A -B | A和+之间有空格 | Maxwell -Absolom &amp;quot; &amp;quot; | 完整匹配AB | &amp;ldquo;AB&amp;rdquo; | | &amp;ldquo;Thomas Jefferson&amp;rdquo; OR | 包含A或者B | A OR B 或者 A | B | | nodejs OR webpack +-&amp;ldquo;OR | 指令可以组合，完成更复杂的查询 | | | beach -sandy +albert +nathaniel ~ | 包含A, 并且包含B的近义词 | A ~B | | github ~js .</description>
+    </item>
+    
+    <item>
+      <title>金钱游戏 - 银行造钱的秘密</title>
+      <link>https://wdd.js.org/posts/2018/the-secret-of-bank-create-money/</link>
+      <pubDate>Wed, 25 Apr 2018 13:33:52 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/the-secret-of-bank-create-money/</guid>
+      <description>1. 角色划分 名称 角色 账户 A 银行家 0 B 建筑商 100万 C 商人 0 2. 建筑商向银行存储100万 名称 角色 账户 A 银行家 100万 现金 B 建筑商 100万 支票 C 商人 0 2. 商人向银行贷款100万 此时银行的账户存款已经是0了，但是B还在银行存了100万。那银行究竟是还有100万呢, 还是一毛都没有了呢。
+此时建筑商如果要取现金，那么银行马上就要破产。
+名称 角色 账户 A 银行家 100现金 B 建筑商 100万 支票 C 商人 100万 支票 3. 商人需要建筑商来建造房子 商人需要建筑商来建筑房子，费用是100万，付给建筑商，建筑商又把100支票存到银行
+名称 角色 账户 A 银行家 100万现金 B 建筑商 200万 支票 C 商人 0 商人又从银行借钱100万，来付给建筑商建房子，建筑商把钱存到银行
+名称 角色 账户 A 银行家 100万现金 B 建筑商 300万 支票 C 商人 0 只要这个循环还在继续，你会发现，建筑商的账面上的支票越来越多，但是银行始终都是100万现金存在那里，从来都没动过。</description>
+    </item>
+    
+    <item>
+      <title>GitUp, 你不可错过的秀外慧中的git工具</title>
+      <link>https://wdd.js.org/posts/2018/gitup-the-git-gui-you-will-like/</link>
+      <pubDate>Tue, 24 Apr 2018 18:03:44 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/gitup-the-git-gui-you-will-like/</guid>
+      <description>大部分时间，我都是使用git命令行来完成各种git操作。
+然而有时候，想可视化的查看各个分支之间的关系时，还是觉得有个GUI工具比较完美。
+众里寻他千百度，默然回首，她在github上。
+GitUp, The Git interface you&#39;ve been missing all your life has finally arrived http://gitup.co/
+1. 功能介绍 1.1. 可视化、实时绘图、快速查看 仓库可视化: GitUp让你清晰明了的看到你的整个分支的迷宫 实时绘图: 你做的任何改变，都会立刻反应到GitUp的图形上，不用刷新，不用等待 快速查看: 高亮选中的commit，并且按空格键会查看到commit的详情 1.2. 远离脏乱、快速撤销、时光穿梭 远离脏乱: GitUp给你完整的，透明的控制本地仓库的能力，非常方便去取消你不想要的改变 快速撤销: 你只需要按 command + z就可以快速取消 快照穿梭: GitUp的快照功能提供一种时光穿梭的功能，你可以访问任何时间点的文件 1.3. 全功能、快捷键、改变！ 全功能: Rewrite, split, delete, and re-order commits, fixup and squash, cherry-pick, merge, rebase全都有, 而且非常快 快捷键: GitUp提供很多的快捷键 放弃原来的方法吧: 你只需要专心写代码，剩下的事情都交给GitUp来处理吧 1.4. 速度非常快 速度非常快: GitUp 加载和渲染超40000个commit的git仓库，只需要1秒之内。GitUp之所以这么快的原因是，GitUp绕过git的接口，直接与git本地数据库交互。所以，有些时候，GitUp要比git的原生命令要快的多。 1.5. 实时搜索 实时搜索: 你可以按照分支，tag, commmit消息，作者，甚至diff的内容进行搜索，GitUp会马上把结果提供给你。 1.6. 命令行工具 GitUp也提供命令行工具，可以在命令行中打开GitUp图形界面。</description>
+    </item>
+    
+    <item>
+      <title>当我们谈论工作经验时，我们在谈论什么</title>
+      <link>https://wdd.js.org/posts/2018/what-is-work-experience/</link>
+      <pubDate>Thu, 19 Apr 2018 18:53:54 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/what-is-work-experience/</guid>
+      <description>如何衡量工作经验 衡量工作经验的并不是一个数字, 比如说你工作2年了，他工作4年了。4的确是大于2的，但是这又能说明什么呢？我们需要的干货！硬货！而不是一个数字。
+那么，什么是干货, 硬货
+个人技术博客 技术文章 github项目 个人项目star数量 个人微信公众号的粉丝数量 一些解决问题的方法 向开源项目提交bug或者PR 这些东西才是HR真正想要看的东西，这些东西可以算作是资产。即使是你换工作了，这些资产都会始终跟着你自己。
+所谓工作经验，就是那些可以直接证明你的价值的东西</description>
+    </item>
+    
+    <item>
+      <title>Express静态文件浏览器缓存设置与缓存清除</title>
+      <link>https://wdd.js.org/posts/2018/express-static-file-cache-setting-and-cleaning/</link>
+      <pubDate>Sun, 08 Apr 2018 09:00:48 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/express-static-file-cache-setting-and-cleaning/</guid>
+      <description>1. Express设置缓存 Express设置静态文件的方法很简单，一行代码搞定。app.use(express.static(path.join(__dirname, &#39;public&#39;), {maxAge: MAX_AGE})), 注意MAX_AGE的单位是毫秒。这句代码的含义是让pulic目录下的所有文件都可以在浏览器中缓存，过期时长为MAX_AGE毫秒。
+app.use(express.static(path.join(__dirname, &amp;#39;public&amp;#39;), {maxAge: config.get(&amp;#39;maxAge&amp;#39;)})) 2. Express让浏览器清除缓存 缓存的好处是可以更快的访问服务，但是缓存也有坏处。例如设置缓存为10天，第二天的时候服务更新了。如果客户端不强制刷新页面的话，浏览器会一致使用更新前的静态文件，这样会导致一些BUG。你总当每次出问题时，客户打电话给你后，你让他强制刷新浏览器吧？
+所以，最好在服务重启后，重新让浏览器获取最新的静态文件。
+设置的方式是给每一个静态文件设置一个时间戳。
+例如：vendor/loadjs/load.js?_=123898923423&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+2.1. Express 路由 // /routes/index.js router.get(&amp;#39;/home&amp;#39;, function (req, res, next) { res.render(&amp;#39;home&amp;#39;, {config: config, serverStartTimestamp: new Date().getTime()}) }) 2.2. 视图文件 // views/home.html &amp;lt;script src=&amp;#34;vendor/loadjs/load.js?_=&amp;lt;%= serverStartTimestamp %&amp;gt;&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; 设置之后，每次服务更新或者重启，浏览器都会使用最新的时间戳serverStartTimestamp，去获取静态文件。
+2.3. 动态加载JS文件 有时候js文件并不是直接在HTML中引入，可能是使用了一些js文件加载库，例如requirejs, LABjs等。这些情况下，可以在全局设置环境变量SERVER_START_TIMESTAMP，用来表示服务启动的时间戳，在获取js的时候，将该时间戳拼接在路径上。
+注意：环境变量SERVER_START_TIMESTAMP，一定要在其他脚本使用前定义。
+// views/home.html &amp;lt;script&amp;gt; var SERVER_START_TIMESTAMP = &amp;lt;%= serverStartTimestamp %&amp;gt; &amp;lt;/script&amp;gt; // load.js &amp;#39;vendor/contact-center/skill.js?_=&amp;#39; + SERVER_START_TIMESTAMP </description>
+    </item>
+    
+    <item>
+      <title>Small is Powerful Vue mixins</title>
+      <link>https://wdd.js.org/posts/2018/small-is-powerful-vue-mixins/</link>
+      <pubDate>Fri, 30 Mar 2018 15:33:58 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/small-is-powerful-vue-mixins/</guid>
+      <description>small is beautiful new Vue({ el: &amp;#39;#app&amp;#39;, methods: { hello: function(){ console.log(&amp;#39;hello&amp;#39;) } }, created: function(){ this.hello() } }) big is ugly new Vue({ el: &amp;#39;#app&amp;#39;, methods: { hello: function(){ console.log(&amp;#39;hello&amp;#39;) }, hello1: function(){ console.log(&amp;#39;hello1&amp;#39;) }, hello2: function(){ console.log(&amp;#39;hello2&amp;#39;) }, hello3: function(){ console.log(&amp;#39;hello3&amp;#39;) }, // a lot of function be added, this is ugly helloN: function(){ console.log(&amp;#39;helloN&amp;#39;) }, }, created: function(){ this.hello() } }) mixins is powerful var mix = { created: function () { console.</description>
+    </item>
+    
+    <item>
+      <title>WebSocket断开原因分析</title>
+      <link>https://wdd.js.org/posts/2018/websocket-close-reasons/</link>
+      <pubDate>Thu, 29 Mar 2018 20:35:38 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/websocket-close-reasons/</guid>
+      <description>1. 把错误打印出来 WebSocket断开的原因有很多，最好在WebSocket断开时，将错误打印出来。
+在线demo地址：https://wdd.js.org/websocket-demos/
+ws.onerror = function (e) { console.log(&amp;#39;WebSocket发生错误: &amp;#39; + e.code) console.log(e) } 如果你想自己玩玩WebSocket, 但是你又不想自己部署一个WebSocket服务器，你可以使用ws = new WebSocket(&#39;wss://echo.websocket.org/&#39;), 你向echo.websocket.org发送消息，它会回复你同样的消息。
+2. 重要信息错误状态码 WebSocket断开时，会触发CloseEvent, CloseEvent会在连接关闭时发送给使用 WebSockets 的客户端. 它在 WebSocket 对象的 onclose 事件监听器中使用。CloseEvent的code字段表示了WebSocket断开的原因。可以从该字段中分析断开的原因。
+3. 关闭状态码表 一般来说1006的错误码出现的情况比较常见，该错误码一般出现在断网时。
+状态码 名称 描述 0–999 保留段, 未使用. 1000 CLOSE_NORMAL 正常关闭; 无论为何目的而创建, 该链接都已成功完成任务. 1001 CLOSE_GOING_AWAY 终端离开, 可能因为服务端错误, 也可能因为浏览器正从打开连接的页面跳转离开. 1002 CLOSE_PROTOCOL_ERROR 由于协议错误而中断连接. 1003 CLOSE_UNSUPPORTED 由于接收到不允许的数据类型而断开连接 (如仅接收文本数据的终端接收到了二进制数据). 1004 保留. 其意义可能会在未来定义. 1005 CLOSE_NO_STATUS 保留. 表示没有收到预期的状态码. 1006 CLOSE_ABNORMAL 保留. 用于期望收到状态码时连接非正常关闭 (也就是说, 没有发送关闭帧).</description>
+    </item>
+    
+    <item>
+      <title>js中的真值和假值</title>
+      <link>https://wdd.js.org/posts/2018/js-true-and-false-value/</link>
+      <pubDate>Tue, 27 Mar 2018 14:31:01 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/js-true-and-false-value/</guid>
+      <description>无论什么语言，都需要逻辑，而逻辑中，能否判断出真假，是最基本也是最重要技能之一。
+JS中的假值有6个 false &#39;&#39; undefinded null 0, +0, -0 NaN 有点类似假值的真值有两个 {} [] 空对象和空数组，很多初学者都很用把这两个当做假值。但是实际上他们是真值，你只需要记住，除了null之外的所有对象类型的数据，都是真值。
+typeof null // &amp;#39;object&amp;#39; 据说：typeof null返回对象这是一个js语言中的bug。实际上typeof null应该返回null才比较准确，但是这个bug已经存来好久了。几乎所有的代码里都这样去判断。如果把typeof null给改成返回null, 那么这必定会导致JS世界末日。
+我们承认JS并不完美，她有很多小缺点，但是这并不妨碍她吸引万千开发者拜倒在她的石榴裙下。
+就像一首歌唱的：有些人说不清哪里好 但就是谁都替代不了</description>
+    </item>
+    
+    <item>
+      <title>在实践中我遇到stompjs, websocket和nginx的问题与总结</title>
+      <link>https://wdd.js.org/posts/2018/stomp-over-websocket/</link>
+      <pubDate>Tue, 20 Mar 2018 22:09:34 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/stomp-over-websocket/</guid>
+      <description>1. AWS EC2 不支持WebSocket 直达解决方案 英文版
+简单说一下思路：WebSocket底层基于TCP协议的，如果你的服务器基于HTTP协议暴露80端口，那WebSocket肯定无法连接。你只要将HTTP协议修改成TCP协议就可以了。
+然后是安全组的配置：
+同样如果使用了NGINX作为反向代理，那么NGINX也需要做配置的。
+// https://gist.githubusercontent.com/unshift/324be6a8dc9e880d4d670de0dc97a8ce/raw/29507ed6b3c9394ecd7842f9d3228827cffd1c58/elasticbeanstalk_websockets files: &amp;#34;/etc/nginx/conf.d/01_websockets.conf&amp;#34; : mode: &amp;#34;000644&amp;#34; owner: root group: root content : | upstream nodejs { server 127.0.0.1:8081; keepalive 256; } server { listen 8080; location / { proxy_pass http://nodejs; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection &amp;#34;upgrade&amp;#34;; proxy_http_version 1.1; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; } } &amp;#34;/opt/elasticbeanstalk/hooks/appdeploy/enact/41_remove_eb_nginx_confg.sh&amp;#34;: mode: &amp;#34;000755&amp;#34; owner: root group: root content : | mv /etc/nginx/conf.</description>
+    </item>
+    
+    <item>
+      <title>笔记 编写可读性代码的艺术</title>
+      <link>https://wdd.js.org/posts/2018/art-of-readable-code/</link>
+      <pubDate>Thu, 15 Mar 2018 18:21:50 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/art-of-readable-code/</guid>
+      <description>1. 代码应当易于理解 唯一标准：让别人理解的时间最小 2. 把信息装到名字里 选择专业的词 避免泛泛的名字 使用具体的名字代替抽象的名字 为名字携带更多的信息 名字的作用域越大，最好名字越长 丢掉没用的词 单词 更多选择 send deliver, dispatch, announce, distribute,route find search, extract, locate, recover start launch, create, begin, open make create, set up, build, generate, compose, add ,new 3. 审美 我之前学设计的时候看过一本书，写给大家看的设计书（第3版）将这本书中的设计审美原理应用到写代码上，真实十分贴切，如果你读过此书，你的审美能力会大幅提高。
+对齐 重复 对比 亲密性 按照亲密关系分段 顺序 4. 写什么样的注释 不要写一眼就能看懂的注释，类似于此地无银三百两 与其写注释，不如把变量名函数名写好，可以从名字中理解 记录你的思想 加入评论 指出哪里有陷阱，需要注意 言简意赅，不要啰嗦 不要使用不明确的代词，不要像像算命先生，如何解释都对 5. 可读性控制流 追求最小理解时间，而不是最少代码行 尽可能提前return结果 少点嵌套，要尽可能扁平化 理解执行流程。有些是连续执行。有些是随时都可能执行，像事件回调 避免使用while, 一般我们循环都是为了遍历数组，为什么不用forEach呢？ 6. 拆分超长表达式 拆分超长的表达式 拆分巨大的语句 尽量把逻辑包裹在函数中，不要重复你自己 DRY 7.</description>
+    </item>
+    
+    <item>
+      <title>如何高效地报告 Bug</title>
+      <link>https://wdd.js.org/posts/2018/how-to-report-bug-effective/</link>
+      <pubDate>Thu, 15 Mar 2018 16:39:06 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/how-to-report-bug-effective/</guid>
+      <description> 1. 自问自答 该问题是否是必现的？ 该问题出现多久了？ 问题出现前后有没有什么异常？ 例如几分钟之前启动了其他的服务，有其他服务在更新 2. 要事实，不要推测 在bug报告里，要设法搞清什么是事实（例如：压测环境座席监控没有数据）。什么是推测（例如：我想问题可能出在XXX）。如果愿意的话，您可以省去推测，但是千万别省略事实。
+3. 要精确，不要模糊 3.1. 不要使用代词 3.2. 不要使用&amp;quot;没有&amp;quot; 4. 要详细，不要粗略 5. 建议要提供的数据 建议 错误日志, 程序员最喜欢bug里的错误日志，错误日志能说明一切，非常建议你能提供错误日志 必须 操作步骤, 有利于程序员去重现bug 可选 错误截图, 在描述不清楚的时候，错误截图时更好的方法 6. 参考 如何有效地报告 Bug </description>
+    </item>
+    
+    <item>
+      <title>状态码为200时 jQuery ajax报错</title>
+      <link>https://wdd.js.org/posts/2018/status-code-200-jquery-ajax-failed/</link>
+      <pubDate>Thu, 15 Mar 2018 14:17:59 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/status-code-200-jquery-ajax-failed/</guid>
+      <description>1. 问题现象 HTTP 状态码为 200 OK 时， jquery ajax报错
+2. 问题原因 jquery ajax的dataType字段包含：json, 但是服务端返回的数据不是规范的json格式，导致jquery解析json字符串报错，最终导致ajax报错。
+jQuery ajax 官方文档上说明：
+&amp;ldquo;json&amp;rdquo;: Evaluates the response as JSON and returns a JavaScript object. Cross-domain &amp;ldquo;json&amp;rdquo; requests are converted to &amp;ldquo;jsonp&amp;rdquo; unless the request includes jsonp: false in its request options. The JSON data is parsed in a strict manner; any malformed JSON is rejected and a parse error is thrown. As of jQuery 1.9, an empty response is also rejected; the server should return a response of null or {} instead.</description>
+    </item>
+    
+    <item>
+      <title>前端剪贴板复制功能实现原理</title>
+      <link>https://wdd.js.org/posts/2018/clipboard-copy-tutorial/</link>
+      <pubDate>Wed, 14 Mar 2018 14:19:12 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/clipboard-copy-tutorial/</guid>
+      <description>1. 兼容情况 如果想浏览器支持粘贴功能，那么浏览器必须支持，document.execCommand(&amp;lsquo;copy&amp;rsquo;)方法，也可以根据document.queryCommandEnabled(&amp;lsquo;copy&amp;rsquo;)，返回的true或者false判断浏览器是否支持copy命令。
+从下表可以看出，主流的浏览器都支持execCommand命令
+2. 复制的原理 查询元素 选中元素 执行复制命令 3. 代码展示 // html &amp;lt;input id=&amp;#34;username&amp;#34; value=&amp;#34;123456&amp;#34;&amp;gt; // 查询元素 var username = document.getElementById(‘username’) // 选中元素 username.select() // 执行复制 document.execCommand(&amp;#39;copy&amp;#39;) 注意: 以上代码只是简单示意，在实践过程中还有几个要判断的情况
+首要要去检测浏览器execCommand能力检测 选取元素时，有可能选取元素为空，要考虑这种情况的处理 4. 第三方方案 clipboard.js是一个比较方便的剪贴板库，功能蛮多的。
+&amp;lt;!-- Target --&amp;gt; &amp;lt;textarea id=&amp;#34;bar&amp;#34;&amp;gt;Mussum ipsum cacilds...&amp;lt;/textarea&amp;gt; &amp;lt;!-- Trigger --&amp;gt; &amp;lt;button class=&amp;#34;btn&amp;#34; data-clipboard-action=&amp;#34;cut&amp;#34; data-clipboard-target=&amp;#34;#bar&amp;#34;&amp;gt; Cut to clipboard &amp;lt;/button&amp;gt; 官方给的代码里有上面的一个示例，如果你用了这个示例，但是不起作用，那你估计是没有初始化ClipboardJS示例的。
+注意：下面的函数必须要主动调用，这样才能给响应的DOM元素注册事件。 ClipboardJS源代码压缩后大约有3kb，虽然很小了，但是如果你不需要它的这么多功能的话，其实你自己写几行代码就可以搞定复制功能。
+new ClipboardJS(&amp;#39;.btn&amp;#39;); </description>
+    </item>
+    
+    <item>
+      <title>你不知道的专业化道路</title>
+      <link>https://wdd.js.org/posts/2018/feature-of-dangerous-professional-skill/</link>
+      <pubDate>Sat, 10 Mar 2018 21:16:32 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/feature-of-dangerous-professional-skill/</guid>
+      <description>从分工到专业化 分工提高生产效率，专业化提高个人价值。很多人都认为，一旦我们进入了某一行，我们就应该在这个行业深挖到底。例如我是做前端的，我就会去学习各种前端的知识点，各种层出不穷的框架。我总是在如饥似渴的希望自己能够保持在深入学习的状态，我不想哪一天自己突然out了。
+专业化的危机在哪？ 以前我在上初中的时候，就稍稍的学习了一点点ActionScript的知识。可能有些人不知道ActionScript是干嘛的，它是在flash的环境中工作的，可以在flash里做一些动画和特效之类的。那时候flash是很火的技术，几乎所有的网站都是有flash的，所以会ActionScript语言的程序员，工资都不低。
+但是，你现在还听过什么ActionScript吗？ 它的宿主环境flash都已经被淘汰了，皮之不存毛将焉附。可想而知，flash的淘汰，同时也让时长淘汰了一批在ActionScript的专家。
+所以，专业化并不是一个安全的道路。准确来说，世界上本来就没有安全的路。大多说认为这条路安全，是因为他们总是以静态的眼光看这条路。说点题外话，如果你书读多了，你会发现，其实一直在你思想里的那些观念，那些故事，往往都是忽悠人的。你可以看看我的一个书单：2018年我的阅读计划。
+从企业的角度考虑，每个老板都想招在某一方面专家。但是从个人的角度考虑，如果你在专业化的道路钻研的非常深，或许有时候你应该放慢脚步，找个长椅，坐着想一想，如果你前面马上就是死路了，你应该怎么办？
+我们应该怎么办？ 世界上没有安全的路，世界上也没有一直安全的职业。一个职业的火爆，往往因为这个行业的火爆。而永远也没有永远火爆的行业，当退潮时，将会有大批的弄潮儿会搁浅，干死，窒息&amp;hellip;&amp;hellip;
+除去环境造成的扰动，人的身体也会随着年龄会慢慢老化。
+你可以想象一下，当你四十多岁时。那些新来的实习生，比你要的工资低，比你更容易接受这个行业的前沿知识，比你更加能加班，比你能力更强时，比你更听话时。你的优势在哪里？我相信到那时候，你的领导会毫不犹豫开了你。
+在此，你要改变。我给出以下几个角度，你可以自行延伸。
+开始锻炼身体 这是一切的基石 搞一搞副业，学习一下你喜欢的东西，你可以去深入学学如何做菜，如何摄影等等 学习理财知识，这是学校从没教你的，但是却是非常重要的东西 读书，越多越好 参考文献 专业主义 日 大前研一 富爸爸穷爸爸 罗伯特·清崎 / 莎伦·莱希特 国富论 英 亚当·斯密 失控 乌合之众 法 古斯塔夫·勒庞 未来世界的幸存者 阮一峰 新生 七年就是一辈子 李笑来 </description>
+    </item>
+    
+    <item>
+      <title>Chrome本地跨域origin-null-is-not-allowed问题分析与解决方案</title>
+      <link>https://wdd.js.org/posts/2018/origin-null-is-not-allowed/</link>
+      <pubDate>Fri, 09 Mar 2018 17:58:05 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/origin-null-is-not-allowed/</guid>
+      <description>1. 问题表现 以file:///xxx.html打开某个html文件，发送ajax请求时报错：
+Response to preflight request doesn&amp;#39;t pass access control check: The &amp;#39;Access-Control-Allow-Origin&amp;#39; header has a value &amp;#39;null&amp;#39; that is not equal to the supplied origin. Origin &amp;#39;null&amp;#39; is therefore not allowed access. 2. 问题原因 Origin null是本地文件系统，因此这表明您正在加载通过file：// URL进行加载调用的HTML页面（例如，只需在本地文件浏览器或类似文件中双击它）。不同的浏览器采用不同的方法将相同来源策略应用到本地文件。Chrome要求比较严格，不允许这种形势的跨域请求。而最好使用http:// 访问html.
+3. 解决方案 以下给出三个解决方案，第一个最快，第三个作为彻底。
+3.1. 方案1 给Chrome快捷方式中增加 &amp;ndash;allow-file-access-from-files 打开Chrome快捷方式的属性中设置：右击Chrome浏览器快捷方式，选择“属性”，在“目标”中加&amp;quot;&amp;ndash;allow-file-access-from-files&amp;quot;，注意前面有个空格，重启Chrome浏览器便可。
+3.2. 方案2 启动一个简单的静态文件服务器, 以http协议访问html 参见我的这篇文章: 一行命令搭建简易静态文件http服务器
+3.3. 方案3 服务端响应修改Access-Control-Allow-Origin : * response.addHeader(&amp;#34;Access-Control-Allow-Origin&amp;#34;,&amp;#34;*&amp;#34;) 4. 参考文章 如何解决XMLHttpRequest cannot load file~~~~~~~Origin &amp;rsquo;null&amp;rsquo; is therefore not allowed access 让chrome支持本地Ajax请求,Ajax请求status cancel Origin null is not allowed by Access-Control-Allow-Origin Origin null is not allowed by Access-Control-Allow-Origin </description>
+    </item>
+    
+    <item>
+      <title>曲线救国 使用googler命令行搜索</title>
+      <link>https://wdd.js.org/posts/2018/use-googler-for-serarch/</link>
+      <pubDate>Tue, 06 Mar 2018 11:15:38 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/use-googler-for-serarch/</guid>
+      <description>之前因为有优惠政策，于是我在xx云上买了一台位于香港的最低配置的服务器，期限三年，主要用来搭建ss, 用来跨栏。
+用了一段时间，感觉挺稳定的。后来一纸通知，收到了整改信息。于是我就把ss服务停了。
+三年的主机不能浪费，于是我就思考一下曲线救国的思路。
+即使用ssh链接上远程服务器后，使用googler命令进行搜索，然后点击链接，使用本地浏览器打开搜索结果
+关于googler可以查看，https://github.com/jarun/googler#installation</description>
+    </item>
+    
+    <item>
+      <title>python3入门书籍与在线资料</title>
+      <link>https://wdd.js.org/posts/2018/python-books-comments/</link>
+      <pubDate>Sun, 25 Feb 2018 22:44:19 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/python-books-comments/</guid>
+      <description>1. 书籍类 1.1. 老太婆一样的罗里吧嗦： Python学习手册（第4版） 这本书相当的啰嗦，讲的内容空洞乏力，一些概念蜻蜓点水，买了必定会后悔。
+1.2. 很有意思：Python编程：从入门到实践 这本书讲的知识点虽然不是很全面，但是要点都讲的很清晰，行文也很有意思，最后一些实践项目也很有趣。
+1.3. 干货满满：Python语言及其应用 这本书虽然不是非常有趣，但是都是干货满满，知识点讲解也是很到位，非常推荐初学者看看。
+2. 免费在线资料 2.1. 廖雪峰pthon3教程：中文，免费，零起点，完整示例，基于最新的Python 3版本 2.2. 菜鸟教程 python3 非常适合作为一个快速查找的手册
+2.3. 进阶 Python Cookbook 3 适合有一定python基础的同学看
+2.4. 把这个放在枕头下面 The Python Standard Library Python官方标准库参考手册，有什么需要刨根问底的问题需要查的时候，此处务必需要查阅一下。</description>
+    </item>
+    
+    <item>
+      <title>正则表达式在线工具集合</title>
+      <link>https://wdd.js.org/posts/2018/regex-online-tools/</link>
+      <pubDate>Sat, 24 Feb 2018 15:27:24 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/regex-online-tools/</guid>
+      <description>1. 功能最强：regex101 优点：
+支持多种语言, prec,php,javascript,python,golang 界面美观大方 支持错误提示，实时匹配 缺点：
+有时候加载速度太慢 2. 可视化正则绘图: Regulex 优点：
+实时根据正则表达式绘图 页面加载速度快 3. 可视化正则绘图：regexper 优点：
+根据正则表达式绘图 页面加载速度快 缺点：
+无法实时绘图，需要点击才可以 4. 专注于python正则：pyregex 专注python 页面加载速度快 </description>
+    </item>
+    
+    <item>
+      <title>前端面试和笔试题目</title>
+      <link>https://wdd.js.org/posts/2018/front-end-interview-handbook/</link>
+      <pubDate>Fri, 23 Feb 2018 15:18:26 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/front-end-interview-handbook/</guid>
+      <description>1. 问答题 1.1. HTML相关 1.1.1. 的作用是什么？ 1.1.2. script, script async和script defer之间有什么区别？ 1.1.3. cookie, sessionStorage 和 localStorage之间有什么区别？ 1.1.4. 用过哪些html模板渲染工具？ 1.2. CSS相关 1.2.1. 简述CSS盒子模型 1.2.2. CSS有哪些选择器？ 1.2.3. CSS sprite是什么？ 1.2.4. 写一下你知道的前端UI框架？ 1.3. JS相关 1.3.1. js有哪些数据类型？ 1.3.2. js有哪些假值？ 1.3.3. js数字和字符串之间有什么快速转换的写法？ 1.3.4. 经常使用哪些ES6的语法？ 1.3.5. 什么是同源策略？ 1.3.6. 跨域有哪些解决方法？ 1.3.7. 网页进度条实现的原理 1.3.8. 请问console.log是同步的，还是异步的？ 1.3.9. 下面console输出的值是什么？ var scores = [10,11,12]; var total = 0; for(var score in scores){ total += score; } var average = total/scores.length; console.log(average); 1.</description>
+    </item>
+    
+    <item>
+      <title>small is better than big 我的读书方法论</title>
+      <link>https://wdd.js.org/posts/2018/small-is-better-than-big/</link>
+      <pubDate>Tue, 13 Feb 2018 14:57:23 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/small-is-better-than-big/</guid>
+      <description>床底下秘密 我是一个毅力不是很够的人。我曾经下定决心要锻炼身体，买了一些健身器材，例如瑜伽垫，仰卧起坐的器材，俯卧撑的器材。然而三分钟的热度过后，我把瑜伽垫卷了起来，塞到床底下。把仰卧起坐的器材拆开，也塞到了床底下。
+所以每次我都不敢看床底下，那里塞满了我的羞愧。我常常想，我这不就是永远睡在羞愧之上吗？
+那么，是什么让我放弃了自己的目标，慢慢活成了自己讨厌的样子呢？
+之前和朋友聊天，我们有一段时间没见了。我突然觉得他也太能聊了，说了很多我不知道的新鲜事，还有一些可以让人茅塞顿开的想法。完了之后，他劝我让我多读书。我觉得这个想法很多。我是确实需要读书了。毕竟我的床底下已经没有空间再塞其他的东西了。
+于是我在多看阅读上买了一下电子书，在京东上买了一些实体书，然后又买了一个kindle。在读书的过程中，有时候作者也会推荐你看一些其他的书。我给自己定了2018年我的阅读计划，给自己定下要看哪些书。
+看书的方法 当我决定要看书，并且为此付出了不少的金钱的情况下。我是非常不愿因让我的金钱的付出白白打水漂的，毕竟买书以及买设备，这不是免费的服务。于是我给自己指定了一个非常完善的定量阅读标准
+读书方法v1.0.0 版 如下
+每天至少看三本书 每本书看50页 人要有标准才能判断是否达标，没有标准，没有数字化的支撑，那是很难以持续的。比如说中国的菜谱，做某道菜中写了一句：加入少许盐。中国人看了会想，那我就按照口味随便加点盐吧。外国人就会被搞得非常迷糊，少许是多少克盐？ 20g, 30g? 完全没有标准嘛。
+按照读书方法 v1.0.0版，我看了几天，这个效果是很好的。但是我很累，电子书50页可不是个小数目。有时候很难完成的。于是我必须要升级我的读书方法。
+读书方法v1.0.1 版 如下
+每天至少看三本书 每本书看10页 按照读书方法v1.0.1 版，我看了几天，虽然读书的进度很慢，但是我很容易有满足感，因为这个目标是很容易就达成的。因为你随便去上个厕所，看个10页电子书也是绰绰有余的。但是这个版本也有个问题。
+如果我今天看的这本书看的流连忘返，一不小心忘记看页码了，居然不知不觉读了38页，那么是不是已经消耗了未来几天的阅读量呢，明天这本书要不要度呢？ 所以，我要升级我的读书方法。
+读书方法v1.0.2版：
+每天至少读三本书 每本书至少读10页 我按照这个方法，感觉做的不错。每天都有一定的阅读量要看，而且阅读量不是很大，不会让我觉得很累。而且当我完成了这个目标，我是会获得不小的满足感。
+大目标分解成小目标去逐个击破，这是我这篇文章的核心观点。
+冲量公式 I = F x T 冲量是力的时间累积效应的量度，是矢量。如果物体所受的力是大小和方向都不变的恒力F，冲量I就是F和作用时间t的乘积。 冲量是描述力对物体作用的时间累积效应的物理量。力的冲量是一个过程量。在谈及冲量时，必须明确是哪个力在哪段时间上的冲量。
+个人好习惯的养成，不是一蹴而就的，而是类似于物理学冲量的概念：力在一段时间内的累积，是过程量
+三分钟的热度对应的冲量：I = F_max x T_min。使用很大的力，作用时间超短，基本上没啥效果，冲量趋近于零。
+微习惯对应的冲量：I = F_min x T_max。使用很小的力，做长时间的积累。冲量不会趋近于零，而是会慢慢增长，然后趋近于一个稳定水平。比如你给自己规定每天看1页书，但是大多数情况下，如果你做了看书的动作，基本上你看书的页数一定会大于1页。
+看什么样的书 我自己喜欢看计算机，心理学，历史人文方面的出版书籍。而我的选择标准有两个，符合任一一个，我都会去看。
+要有用。无论是对我的专业知识，还是对人际交往，金融理财等方面要用有益之处 要有趣。没趣的书我是断然不会去看的。 读书实际上是读人，一流作家写的一流的书，三流作家只能写出九流的书。</description>
+    </item>
+    
+    <item>
+      <title>vscode控制字符引起的问题以及解决思路</title>
+      <link>https://wdd.js.org/posts/2018/vscode-control-characters-problem/</link>
+      <pubDate>Sun, 11 Feb 2018 17:48:41 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/vscode-control-characters-problem/</guid>
+      <description>1. 环境 macOS Sierra 10.12.5 vscode 1.20.0 最新版 2. 如何重现这个问题 在使用中文输入法输入中文的时候，一直按后退键，例如输入sfsf，当你按了4下后退键时，你会发现，搜狗输入法弹出框虽然消失了，但是页面上还会剩下一个s, 这是你如何再次按一下后退的话，s就会变成bs, 变成隐藏字符。这个一般是右边有markdown渲染插件时才会出现。
+从更确切的角度说，是你的编辑器一旦开了webview，就会出现这个问题，即使是vscode的欢迎页，也是webview，也会导致这个问题。所以最好在写代码时尽量关闭webview。
+3. 如何让隐藏字符现身 Mac版的vscode控制字符一般是不会显示出来的，可以用一下的方法让其显示出来
+&amp;#34;editor.renderControlCharacters&amp;#34;: true 在编辑器中显示的像很小的BS, 表示backspace的意思。一般是在输入时，按了后退或者删除会偶尔出现这个字符。
+4. 隐藏的控制字符会出现什么问题？ 4.1. 控制字符在github上会出现问号 例如下图的的和同字之间就是出现一个隐藏字符，在github上就会出现一个带有背景的问号。
+4.2. 控制字符在Hexo NexT Local Search 会导致search.xml渲染失败，搜索框一直在转圈 如果你使用浏览器打开search.xml，会发现解析报错
+5. 如何解决 5.1. 手动删除隐藏字符 可以使用替换，先复制一个隐藏字符，然后把隐藏字符替换成空
+5.2. 使用插件 Remove backspace control character Remove backspace control character
+在本家chromium已被合并，因此，在8月上旬发行的vscode 1.15将会重新确定(vscode 1.15, electron 1.7.4)。事实上，到现在这个问题还是没解决的
+特点
+格式化程序，用于删除打开的文档中包含的控制字符。要被删除的控制字符默认如下。
+/[\u0000]|[\u0001]|[\u0002]|[\u0003]|[\u0004]|[\u0005]|[\u0006]|[\u0007]|[\u0008]|[\u000b]|[\u000c]|[\u000d]|[\u000e]|[\u000f]|[\u0010]|[\u0011]|[\u0012]|[\u0013]|[\u0014]|[\u0015]|[\u0016]|[\u0017]|[\u0018]|[\u0019]|[\u001a]|[\u001b]|[\u001c]|[\u001d]|[\u001e]|[\u001f]|[\u001c]|[\u007f]/gm 用法
+&amp;ldquo;editor.formatOnSave&amp;rdquo;: true 如果被设定,保存时启动 &amp;ldquo;editor.formatOnType&amp;rdquo;: true 在被设定的情况下，进行变换时;输入时启动 5.3. 坐等官方给出更好的解决方案 官方这个bug依然还是open状态。Using IME with markdown preview enabled, press ESC/BACKSPACE leads in control characters #37114</description>
+    </item>
+    
+    <item>
+      <title>VI必备常用场景快捷操作</title>
+      <link>https://wdd.js.org/posts/2018/vi-useful-expressions/</link>
+      <pubDate>Sun, 11 Feb 2018 15:37:33 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/vi-useful-expressions/</guid>
+      <description>1. 【字符串替换】快速修改配置文件版本号 语法：%s/str1/str2/g 将文件中所有的str1字符串替换成str2字符串。
+示例：某个服务从43版本升级到44版本
+// vi某个配置文件， 进入vi命令模式，输入 :%s/43/44/g 这样做的好处是不需要移动光标去查找，然后进入插入模式去修改版本，而是直接替换，这样比较快捷。
+注意：务必确认要被替换的字符串只有一个，否则可能造成误替换。
+更多用法：
+语法 功能 示例 :s/str1/str2/ 替换当前行第一个str1为str2 :s/44/45 :s/str1/str2/g 替换当前行所有的str1为str2 :s/44/45/g :%s/str1/str2/ 替换每一行第一个str1为str2 :%s/44/45 :%s/str1/str2/g 替换每一行所有的str1为str2 :%s/44/45/g 2. 光标移动 注意：可配合 :set nu显示行号
+语法 功能 示例 G 移动到这个档案的最后一行(常用) nG n 为数字。移动到这个档案的第 n 行。 20G 则会移动到这个档案的第20行 gg 移动到这个档案的第一行 n&amp;lt;Enter&amp;gt; n 为数字 光标向下移动 n 行 3&amp;lt;Enter&amp;gt; 向下移动三行 3. vi快捷手册 </description>
+    </item>
+    
+    <item>
+      <title>如何在vscode中用standard style 风格去验证 vue文件</title>
+      <link>https://wdd.js.org/posts/2018/vscode-lint-vue-file-by-standard-style/</link>
+      <pubDate>Sun, 11 Feb 2018 14:48:14 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/vscode-lint-vue-file-by-standard-style/</guid>
+      <description>1 JavaScript Standard Style简介 本工具通过以下三种方式为你（及你的团队）节省大量时间：
+无须配置。 史上最便捷的统一代码风格的方式，轻松拥有。 自动代码格式化。 只需运行 standard &amp;ndash;fix 从此和脏乱差的代码说再见。 提前发现风格及程序问题。 减少代码审查过程中反反复复的修改过程，节约时间。 无须犹豫。再也不用维护 .eslintrc, .jshintrc, or .jscsrc 。开箱即用。 安装：
+npm i standard -g 关于JavaScript 代码规范, 你可以点击链接看一下。
+2 如何在vscode中用JavaScript Standard Style风格去验证 vue文件 实际上JavaScript Standard Style有一个FAQ, 说明了如何使用。
+但是有一点非常重要的作者没有提到，就是eslint-plugin-html这个插件必须要安装3.x.x版本的, 现在eslint-plugin-html, 已经升级到4.x版本，默认不写版本号安装的就是4.x版本的，所以会出现问题。参考
+ESLint v4 is only supported by eslint-plugin-html v3, so you can&amp;rsquo;t use eslint-plugin-html v1.5.2 with it (I should add a warning about this when trying to use the plugin with an incompatible version on ESLint).</description>
+    </item>
+    
+    <item>
+      <title>基于 WebRTC 构建 Web SIP Phone</title>
+      <link>https://wdd.js.org/posts/2018/webrtc-web-sip-phone/</link>
+      <pubDate>Sun, 11 Feb 2018 14:44:58 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/webrtc-web-sip-phone/</guid>
+      <description>0 阅前须知 本文并不是教程，只是实现方案 我只是从WEB端考虑这个问题，实际还需要后端sip服务器的配合 jsSIP有个非常不错的在线demo, 可以去哪里玩耍，很好玩呢 try jssip 1. 技术简介 WebRTC: WebRTC，名称源自网页即时通信（英语：Web Real-Time Communication）的缩写，是一个支持网页浏览器进行实时语音对话或视频对话的API。它于2011年6月1日开源并在Google、Mozilla、Opera支持下被纳入万维网联盟的W3C推荐标准 SIP: 会话发起协议（Session Initiation Protocol，缩写SIP）是一个由IETF MMUSIC工作组开发的协议，作为标准被提议用于创建，修改和终止包括视频，语音，即时通信，在线游戏和虚拟现实等多种多媒体元素在内的交互式用户会话。2000年11月，SIP被正式批准成为3GPP信号协议之一，并成为IMS体系结构的一个永久单元。SIP与H.323一样，是用于VoIP最主要的信令协议之一。 一般来说，要么使用实体话机，要么在系统上安装基于sip的客户端程序。实体话机硬件成本高，基于sip的客户端往往兼容性差，无法跨平台，易被杀毒软件查杀。
+而WebRTC或许是更好的解决方案，只要一个浏览器就可以实时语音视频通话，这是很不错的解决方案。WebSocket可以用来传递sip信令，而WebRTC用来实时传输语音视频流。
+2. 前端WebRTC实现方案 其实我们不需要去自己处理WebRTC的相关方法，或者去处理视频或者媒体流。市面上已经有不错的模块可供选择。
+2.1 jsSIP jsSIP是JavaScript SIP 库
+功能特点如下：
+可以在浏览器或者Nodejs中运行 使用WebSocket传递SIP协议 视频音频实时消息使用WebRTC 非常轻量 100%纯JavaScript 使用简单并且具有强大的Api 服务端支持 OverSIP, Kamailio, Asterisk, OfficeSIP，reSIProcate，Frafos ABC SBC，TekSIP 是RFC 7118 and OverSIP的作者写的 下面是使用JsSIP打电话的例子，非常简单吧
+// Create our JsSIP instance and run it: var socket = new JsSIP.WebSocketInterface(&amp;#39;wss://sip.myhost.com&amp;#39;); var configuration = { sockets : [ socket ], uri : &amp;#39;sip:alice@example.</description>
+    </item>
+    
+    <item>
+      <title>you-dont-need-serial</title>
+      <link>https://wdd.js.org/posts/2018/you-dont-need-serial/</link>
+      <pubDate>Sun, 11 Feb 2018 14:35:59 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/you-dont-need-serial/</guid>
+      <description>1 You-Dont-Need-JavaScript CSS是强大的，你可以做很多事情没有JS。 本文教你使用原生CSS做下面的事情。
+内容目录
+手风琴/切换 圆盘传送带 检查复选框的计数器 翻转点击 Textfield上的浮动标签 字体（拉丁） 游戏 悬停/弹出信息 图片廊 菜单 移动菜单关闭画布 汉堡菜单 花式菜单 莫代尔/弹出 鼠标跟踪 视差滚动 标签 待办事项列表 提示 树视图 Twitter心动画 动态图像着色 连锁反应 响应式计数器显示不适合屏幕的项目数量 可以看一下纯CSS的例子
+2 You-Dont-Need-Lodash-Underscore Lodash和Underscore是伟大的现代JavaScript实用程序库，它们被前端开发人员广泛使用。但是，如果您将目标锁定为现代浏览器，则可能会发现，许多方法已经得到ES5和ES6的原生支持。如果你想要你的项目需要更少的依赖，并且你清楚的知道你的目标浏览器，那么你可能不需要Lodash / Underscore。
+来自开发者的声音
+在代码变臃肿之前，请使用原生JS对象和数组工具函数. —Cody Lindley, Author of jQuery Cookbook and JavaScript Enlightenment
+你可能不需要lodash. 有许多好用的原生方法了. —Daniel Lamb, Computer Scientist, Technical Reviewer of Secrets of the JavaScript Ninja and Functional Programming in JavaScript
+我想不是，但我想要它. —Tero Parviainen, Author of build-your-own-angular</description>
+    </item>
+    
+    <item>
+      <title>不常用却很有妙用的事件及方法</title>
+      <link>https://wdd.js.org/posts/2018/useful-browser-events/</link>
+      <pubDate>Sun, 11 Feb 2018 14:34:17 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/useful-browser-events/</guid>
+      <description>1 visibilitychange事件 触发条件：浏览器标签页被隐藏或显示的时候会触发visibilitychange事件.
+使用场景：当标签页显示或者隐藏时，触发一些业务逻辑
+document.addEventListener(&amp;#34;visibilitychange&amp;#34;, function() { console.log( document.visibilityState ); }); 2 storage事件 触发条件：使用localStorage or sessionStorage存储或者修改某个本地存储时
+使用场景：标签页间通信
+// AB页面同源 // 在A 页面 window.addEventListener(&amp;#39;storage&amp;#39;, (e) =&amp;gt; {console.log(e)}) // 在B 页面，向120打个电话 localStorage.setItem(&amp;#39;makeCall&amp;#39;,&amp;#39;120&amp;#39;) // 然后可以在A页面间有输出, 可以看出A页面 收到了B页面的通知 ...key: &amp;#34;makeCall&amp;#34;, oldValue: &amp;#34;119&amp;#34;, newValue: &amp;#34;120&amp;#34;, ... 3 beforeunload事件 触发条件：当页面的资源将要卸载(及刷新或者关闭标签页前). 当页面依然可见，并且该事件可以被取消只时
+使用场景：关闭或者刷新页面时弹窗确认，关闭页面时向后端发送报告等
+window.addEventListener(&amp;#34;beforeunload&amp;#34;, function (e) { var confirmationMessage = &amp;#34;\o/&amp;#34;; e.returnValue = confirmationMessage; // Gecko, Trident, Chrome 34+ return confirmationMessage; // Gecko, WebKit, Chrome &amp;lt;34 }); 4 navigator.</description>
+    </item>
+    
+    <item>
+      <title>trim-everything trim所有数据类型</title>
+      <link>https://wdd.js.org/posts/2018/trim-every-thing/</link>
+      <pubDate>Sun, 11 Feb 2018 14:28:22 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/trim-every-thing/</guid>
+      <description>trim-everything trim所有字段，因为底层使用的JSON.stringify作为遍历器，所以如果字段的值是function，那么会被trim掉。
+项目地址：trim-everything
+安装 npm i -S trim-everything yarn add trim-everything 特点 trim undefined trim null trim number trim string trim object trim array 零依赖 开始 下面使用jest做的测试用例，可以从中看出trim的用法。
+/* global test, expect */ const trim = require(&amp;#39;trim-everything&amp;#39;) test(&amp;#39;trim undefined&amp;#39;, () =&amp;gt; { expect(trim()).toBeUndefined() }) test(&amp;#39;trim null&amp;#39;, () =&amp;gt; { expect(trim(null)).toBeNull() }) test(&amp;#39;trim number&amp;#39;, () =&amp;gt; { expect(trim(12.12)).toBe(12.12) }) test(&amp;#39;trim string&amp;#39;, () =&amp;gt; { expect(trim(&amp;#39; 12abcd &amp;#39;)).toBe(&amp;#39;12abcd&amp;#39;) }) test(&amp;#39;trim object&amp;#39;, () =&amp;gt; { expect(trim({ userName: &amp;#39; wangdd &amp;#39;, age: 12, some: false, address: &amp;#39; shanghai&amp;#39; })) .</description>
+    </item>
+    
+    <item>
+      <title>mac vscode 更新失败 Permission denied解决办法</title>
+      <link>https://wdd.js.org/posts/2018/mac-vscode-update-permission-denied/</link>
+      <pubDate>Sun, 11 Feb 2018 14:20:01 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/mac-vscode-update-permission-denied/</guid>
+      <description>0. 现象 Could not create temporary directory: Permission denied
+1. 问题起因 在 /Users/username/Library/Caches/目录下，有以下两个文件， 可以看到，他们两个的用户是不一样的，一个是root一个username, 一般来说，我是以username来使用我的mac的。就是因为这两个文件的用户不一样，导致了更新失败。
+drwxr-xr-x 6 username staff 204B Jan 17 20:33 com.microsoft.VSCode drwxr--r-- 2 root staff 68B Dec 17 13:51 com.microsoft.VSCode.ShipIt 2. 解决方法 注意： 先把vscode 完全关闭
+// 1. 这一步是需要输入密码的 sudo chown $USER ~/Library/Caches/com.microsoft.VSCode.ShipIt/ // 2. 这一步是不需要输入密码的, 如果不进行第一步，第二步会报错 sudo chown $USER ~/Library/Caches/com.microsoft.VSCode.ShipIt/* // 3. 更新xattr xattr -dr com.apple.quarantine /Applications/Visual\ Studio\ Code.app 3. 打开vscode Code &amp;gt; Check for Updates, 点击之后，你会发现Check for Updates已经变成灰色了，那么你需要稍等片刻，马上就可以更新，之后会跳出提示，让你重启vscode, 然后重启一下vscode, 就ok了。</description>
+    </item>
+    
+    <item>
+      <title>IE11 0x2ee4 bug 以及类似问题解决方法</title>
+      <link>https://wdd.js.org/posts/2018/ie11-0x2ee4-bug/</link>
+      <pubDate>Sun, 11 Feb 2018 14:12:19 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/ie11-0x2ee4-bug/</guid>
+      <description>一千个IE浏览器访问同一个页面，可能报一千种错误。前端激进派对IE恨得牙痒痒，但是无论你爱，或者不爱，IE就在那里，不来不去。
+一些银行，以及政府部门，往往都是指定必须使用IE浏览器。所以，一些仅在IE浏览器上出现的问题。总结起来问题的原因很简单：IE的配置不正确
+下面就将一个我曾经遇到的问题: IE11 0x2ee4， 以及其他的问题的解决方案
+1. IE11 SCRIPT7002: XMLHttpRequest: 网络错误 0x2ee4 背景介绍：在一个HTTPS域向另外一个HTTPS域发送跨域POTST请求时
+这个问题在浏览器的输出内容如下，怪异的是，并不是所有IE11都会报这个错误。
+SCRIPT7002: XMLHttpRequest: 网络错误 0x2ee4, 由于出现错误 00002ee4 而导致此项操作无法完成 stackoverflow上有个答案，它的思路是：在post请求发送之前，先进行一次get操作 这个方式我试过，是可行的。但是深层次的原因我不是很明白。
+然而真相总有大白的一天，其实深层次的原因是，IE11的配置。
+去掉检查证书吊销的的检查，解决0x2ee4的问题
+解决方法
+去掉check for server certificate revocation*， 也有可能你那边是中文翻译的：叫检查服务器证书是否已吊销 去掉检查发型商证书是否已吊销 点击确定 重启计算机 2 其他常规设置 2.1 去掉兼容模式， 使用Edge文档模式 下图中红色框里的按钮也要取消勾选 2.2 有些使用activeX，还是需要检查是否启用的 2.3 允许跨域 如果你的接口跨域了，还要检查浏览器是否允许跨域，否则浏览器可能默认就禁止跨域的
+设置方法
+internet选项 安全 自定义级别 启用通过跨域访问数据源 启用跨域浏览窗口和框架 确定 然后重启电脑 </description>
+    </item>
+    
+    <item>
+      <title>Mac版：上传图片到远程图床哪家强？</title>
+      <link>https://wdd.js.org/posts/2018/tool-upload-img-to-cloud/</link>
+      <pubDate>Sun, 11 Feb 2018 14:09:09 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/tool-upload-img-to-cloud/</guid>
+      <description>markdown写文档虽然如行云流水，但是一旦需要引入图片了。往往需要四五步操作，如果图片仅仅保存在本地，那么复制markdown时，图片路径往往都不对了，还要重新上传一遍图片，很是麻烦。
+因此，最好把图片直接上传到图床上，然后通过公网链接来引入图片。图床选择上，我选择七牛云。
+我在网上找到了3个不错的工具，在此记录一下。
+1. 三个工具分析一览 这些工具在上传图片成功后，会把链接保存在剪贴板中，在markdown文件中只需要粘贴一下就可以了。
+名称 | 收费标准 | 优点 | 缺点 | 推荐指数 | 说明 | 下载地址 &amp;mdash;|&amp;mdash;|&amp;mdash;|&amp;mdash;|&amp;mdash;- ipic | 50元/年 | 支持很多的云服务，压缩，拖拽上传 | 死贵, 免费版只能用新浪图床，图片很可能会丢失 | A |功能很多，价钱死贵 | 可通过mac app store 下载 UCQCloud | 免费 | 免费，支持压缩，拖拽上传，截图上传 | 仅支持七牛，服务器仅支持华东和华北 | AAA | 免费，功能够用 | UCQCloud1.3.3.dmg cuImage | 终身1元 | 剪贴板上传，压缩上传，拖拽上传，快捷键上传，自动把链接转成markdown的形式 | 仅支持七牛 | AAAA | cuImage的压缩率要比UCQCloud高很多 | 可通过mac app store 下载
+总体来说：如果你用七牛图床，cuImage是性价比最高, 用户体验最好的
+2. 三个工具操作截图与简介 3.</description>
+    </item>
+    
+    <item>
+      <title>Vue&#43;ElementUI 手把手教你做一个audio组件</title>
+      <link>https://wdd.js.org/posts/2018/vue-elementui-audio-component/</link>
+      <pubDate>Fri, 09 Feb 2018 13:44:13 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/vue-elementui-audio-component/</guid>
+      <description>1. 简介 1.1. 相关技术 Vue Vue-cli ElementUI yarn (之前我用npm, 并使用cnpm的源，但是用了yarn之后，我发现它比cnpm的速度还快，功能更好，我就毫不犹豫选择yarn了) Audio相关API和事件 1.2. 从本教程你会学到什么？ Vue单文件组件开发知识 Element UI基本用法 Audio原生API及Audio相关事件 音频播放器的基本原理 音频的播放暂停控制 更新音频显示时间 音频进度条控制与跳转 音频音量控制 音频播放速度控制 音频静音控制 音频下载控制 个性化配置与排他性播放 一点点ES6语法 2. 学前准备 基本上不需要什么准备，但是如果你能先看一下Aduio相关API和事件将会更好
+Audio: 如果你愿意一层一层剥开我的心 使用 HTML5 音频和视频 3. 在线demon 没有在线demo的教程都是耍流氓
+查看在线demon 项目地址 4. 开始编码 5. 项目初始化 ➜ test vue init webpack element-audio A newer version of vue-cli is available. latest: 2.9.2 installed: 2.9.1 ? Project name element-audio ? Project description A Vue.js project ?</description>
+    </item>
+    
+    <item>
+      <title>奇技淫巧：css实现整个表单只读 form readonly</title>
+      <link>https://wdd.js.org/posts/2018/css-form-readonly/</link>
+      <pubDate>Fri, 09 Feb 2018 13:31:38 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/css-form-readonly/</guid>
+      <description>一般的方法往往给表单的各个input、select等加上readonly，但是这个方法有很多缺点。此处就不一一赘述。
+我说的方法只需要给表单加上一个类，就可以让表单只读。
+&amp;lt;form class=&amp;#34;form-readonly&amp;#34;&amp;gt;&amp;lt;/form&amp;gt; 1. 方法1: 用:before给form做个看不见的蒙版，遮住下面所有的元素，使之不响应任何事件 .form-readonly{ position: relative; } .form-readonly:before{ content: &amp;#34;&amp;#34;; z-index: 1; position: absolute; top: 0; right: 0; bottom: 0; left: 0; } 2. 方法2: 用pointer-events:none, 让所有事件穿透form .form-readonly{ pointer-events:none; } 关于pointer-events属性，可以看看这个介绍：https://segmentfault.com/a/1190000011182335</description>
+    </item>
+    
+    <item>
+      <title>你不知道的JSON.stringify()妙用</title>
+      <link>https://wdd.js.org/posts/2018/json-stringify-powerful/</link>
+      <pubDate>Fri, 09 Feb 2018 13:27:15 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/json-stringify-powerful/</guid>
+      <description>1. 语法 JSON.stringify(value[, replacer[, space]]) 一般用法：
+var user = {name: &amp;#39;andy&amp;#39;, isDead: false, age: 11, addr: &amp;#39;shanghai&amp;#39;}; JSON.stringify(user); &amp;#34;{&amp;#34;name&amp;#34;:&amp;#34;andy&amp;#34;,&amp;#34;isDead&amp;#34;:false,&amp;#34;age&amp;#34;:11,&amp;#34;addr&amp;#34;:&amp;#34;shanghai&amp;#34;}&amp;#34; 2. 扩展用法 2.1. replacer replacer可以是函数或者是数组。
+功能1: 改变属性值 将isDead属性的值翻译成0或1，0对应false,1对应true
+var user = {name: &amp;#39;andy&amp;#39;, isDead: false, age: 11, addr: &amp;#39;shanghai&amp;#39;}; JSON.stringify(user, function(key, value){ if(key === &amp;#39;isDead&amp;#39;){ return value === true ? 1 : 0; } return value; }); &amp;#34;{&amp;#34;name&amp;#34;:&amp;#34;andy&amp;#34;,&amp;#34;isDead&amp;#34;:0,&amp;#34;age&amp;#34;:11,&amp;#34;addr&amp;#34;:&amp;#34;shanghai&amp;#34;}&amp;#34; 功能2：删除某个属性 将isDead属性删除，如果replacer的返回值是undefined,那么该属性会被删除。
+var user = {name: &amp;#39;andy&amp;#39;, isDead: false, age: 11, addr: &amp;#39;shanghai&amp;#39;}; JSON.</description>
+    </item>
+    
+    <item>
+      <title>手写可配置的express &amp; nodejs的代理</title>
+      <link>https://wdd.js.org/posts/2018/write-configurable-nodejs-http-proxy/</link>
+      <pubDate>Fri, 09 Feb 2018 13:24:35 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/write-configurable-nodejs-http-proxy/</guid>
+      <description>注意：该文章中设置代理的方法存在很大的问题，请不要在使用。这里只作为记录。 非常推荐你使用http-proxy-middleware，作为生产环境代理的包。你可以看我的这篇文章，里面有一个非常小巧的写法，可以实现各种代理的方法，Express 代理中间件的写法 关于该文章中设置代理会产生的问题，在这篇文章中我会做详细的说明, TCP链接高Recv-Q的原因以及解决方法
+nodejs比较好的代理包有：node-http-proxy和http-proxy-middleware。这两个我都用过，它们的优点自不用说，只说说缺点：它们不能从配置文件里读取代理配置。每添加一个拦截路径都需要多加一个接口调用。
+所以，我需要自己写一个http代理，要包含一下功能：
+从配置文件里读取代理配置 可以路径重写 这样做的好处是：新增服务只需要在配置文件上加上该服务，无需修改业务逻辑
+1. /config/default.js module.exports = { &amp;#34;ENV&amp;#34;:&amp;#34;dev&amp;#34;, &amp;#34;PORT&amp;#34;:&amp;#34;8088&amp;#34;, &amp;#34;maxAge&amp;#34;: 10, &amp;#34;proxy&amp;#34;:{ &amp;#34;olap&amp;#34;:{ &amp;#34;host&amp;#34;:&amp;#34;172.16.200.225&amp;#34;, &amp;#34;port&amp;#34;:&amp;#34;8092&amp;#34;, &amp;#34;form&amp;#34;:&amp;#34;&amp;#34;, &amp;#34;to&amp;#34;:&amp;#34;&amp;#34; }, &amp;#34;qc&amp;#34;:{ &amp;#34;host&amp;#34;:&amp;#34;192.168.40.231&amp;#34;, &amp;#34;port&amp;#34;:&amp;#34;30088&amp;#34; }, &amp;#34;api&amp;#34;:{ &amp;#34;host&amp;#34;:&amp;#34;192.168.40.231&amp;#34;, &amp;#34;port&amp;#34;:&amp;#34;30412&amp;#34; }, &amp;#34;ocm&amp;#34;:{ &amp;#34;host&amp;#34;: process.env.ocm_host || &amp;#34;192.168.40.119&amp;#34;, &amp;#34;port&amp;#34;: process.env.ocm_port || &amp;#34;31003&amp;#34; } } } 2. /app.js 将所有要走代理的路径前必需加上 /p, 这个是我的个人配置，当然也可以是其他的名字。
+var express = require(&amp;#39;express&amp;#39;); var compression = require(&amp;#39;compression&amp;#39;); var path = require(&amp;#39;path&amp;#39;); var config = require(&amp;#39;config&amp;#39;); var log4js = require(&amp;#39;log4js&amp;#39;); var wsProxyConfig = config.</description>
+    </item>
+    
+    <item>
+      <title>ECharts 轮流高亮中国地图各个省份</title>
+      <link>https://wdd.js.org/posts/2018/echarts-highlight-china-map/</link>
+      <pubDate>Fri, 09 Feb 2018 13:16:53 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/echarts-highlight-china-map/</guid>
+      <description>1. 小栗子 最早我是想通过dispatchAction方法去改变选中的省份，但是没有起作用，如果你知道这个方法怎么实现，麻烦你可以告诉我。 我实现的方法是另外一种。
+dispatchAction({ type: &amp;#39;geoSelect&amp;#39;, // 可选，系列 index，可以是一个数组指定多个系列 seriesIndex?: number|Array, // 可选，系列名称，可以是一个数组指定多个系列 seriesName?: string|Array, // 数据的 index，如果不指定也可以通过 name 属性根据名称指定数据 dataIndex?: number, // 可选，数据名称，在有 dataIndex 的时候忽略 name?: string }) 后来我改变了一个方法。这个方法的核心思路是定时获取图标的配置，然后更新配置，最后在设置配置。
+var myChart = echarts.init(document.getElementById(&amp;#39;china-map&amp;#39;)); var COLORS = [&amp;#34;#070093&amp;#34;, &amp;#34;#1c3fbf&amp;#34;, &amp;#34;#1482e5&amp;#34;, &amp;#34;#70b4eb&amp;#34;, &amp;#34;#b4e0f3&amp;#34;, &amp;#34;#ffffff&amp;#34;]; // 指定图表的配置项和数据 var option = { tooltip: { trigger: &amp;#39;item&amp;#39;, formatter: &amp;#39;{b}&amp;#39; }, series: [ { name: &amp;#39;中国&amp;#39;, type: &amp;#39;map&amp;#39;, mapType: &amp;#39;china&amp;#39;, selectedMode : &amp;#39;single&amp;#39;, label: { normal: { show: true }, emphasis: { show: true } }, data:[ // 默认高亮安徽省 {name:&amp;#39;安徽&amp;#39;, selected:true} ], itemStyle: { normal: { areaColor: &amp;#39;rgba(255,255,255,0.</description>
+    </item>
+    
+    <item>
+      <title>Python3笔记 列表方法详解</title>
+      <link>https://wdd.js.org/posts/2018/python3-list-methods-collect/</link>
+      <pubDate>Fri, 09 Feb 2018 13:15:13 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/python3-list-methods-collect/</guid>
+      <description>1. 使用[]或者list()创建列表 user = [] user = list() 2. 使用list() 可以将其他类型转换成列表 # 将字符串转成列表 &amp;gt;&amp;gt;&amp;gt; list(&amp;#39;abcde&amp;#39;) [&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;c&amp;#39;, &amp;#39;d&amp;#39;, &amp;#39;e&amp;#39;] # 将元祖转成列表 &amp;gt;&amp;gt;&amp;gt; list((&amp;#39;a&amp;#39;,&amp;#39;b&amp;#39;,&amp;#39;c&amp;#39;)) [&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;c&amp;#39;] 3. 使用[offset]获取元素 或 修改元素 &amp;gt;&amp;gt;&amp;gt; users = [&amp;#39;a&amp;#39;,&amp;#39;b&amp;#39;,&amp;#39;c&amp;#39;,&amp;#39;d&amp;#39;,&amp;#39;e&amp;#39;] # 可以使用整数来获取某个元素 &amp;gt;&amp;gt;&amp;gt; users[0] &amp;#39;a&amp;#39; # 可以使用负整数来表示从尾部获取某个元素 &amp;gt;&amp;gt;&amp;gt; users[-1] &amp;#39;e&amp;#39; # 数组越界会报错 &amp;gt;&amp;gt;&amp;gt; users[100] Traceback (most recent call last): File &amp;#34;&amp;lt;stdin&amp;gt;&amp;#34;, line 1, in &amp;lt;module&amp;gt; IndexError: list index out of range &amp;gt;&amp;gt;&amp;gt; users[-100] Traceback (most recent call last): File &amp;#34;&amp;lt;stdin&amp;gt;&amp;#34;, line 1, in &amp;lt;module&amp;gt; IndexError: list index out of range # 修改某个元素 &amp;gt;&amp;gt;&amp;gt; users[0] = &amp;#39;wdd&amp;#39; &amp;gt;&amp;gt;&amp;gt; users [&amp;#39;wdd&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;c&amp;#39;, &amp;#39;d&amp;#39;, &amp;#39;e&amp;#39;] &amp;gt;&amp;gt;&amp;gt; 4.</description>
+    </item>
+    
+    <item>
+      <title>我苦苦寻找诡异的bug原因，其实是我的无知</title>
+      <link>https://wdd.js.org/posts/2018/real-reason-of-my-bugs/</link>
+      <pubDate>Fri, 09 Feb 2018 13:13:12 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/real-reason-of-my-bugs/</guid>
+      <description>1. 问题1：chosen插件无法显示图标 问题现象 在我本地调试的时候，我使用了一个多选下拉框的插件，就是chosen, 不知道为什么，这个多选框上面的图标不见了。我找了半天没有找到原因，然后我把我的机器的内网地址给我同事，让他访问我机器，当它访问到这个页面时。他的电脑上居然显示出了这个下拉框的图标。
+这是什么鬼？, 为什么同样的代码，在我的电脑上显示不出图标，但是在他的电脑上可以显示。有句名言说的好：没有什么bug是一遍调试解决不了的，如果有，就再仔细调试一遍。于是我就再次调试一遍。
+我发现了一些第一遍没有注意到的东西媒体查询，就是在css里有这样的语句：
+@media 从这里作为切入口，我发现：媒体查询的类会覆盖它原生的类的属性
+由于我的电脑视网膜屏幕，分辨率比较高，触发了媒体查询，这就导致了媒体查询的类覆盖了原生的类。而覆盖后的类，使用了chosen-sprite@2x.png作为图标的背景图片。但是这个图片并没有被放在这个插件的目录下，有的只有chosen-sprite.png这个图片。在一般情况下，都是用chosen-sprite.png作为背景图片的。这就解释了：为什么同事的电脑上出现了图标，但是我的电脑上没有出现这个图标。
+总结: 如果你要使用一个插件，你最好把这个插件的所有文件都放在同一个目录下。而不要只放一些你认为有用的文件。最后：媒体查询的相关知识也是必要的。
+2. 问题2：jQuery 与 Vue之间的暧昧 jQuery流派代表着直接操纵DOM的流派，Vue流派代表着操纵数据的流派。
+如果在项目里，你使用了一些jQuery插件，也使用了Vue，这就可能导致一些问题。
+举个例子：
+&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;&amp;lt;/title&amp;gt; &amp;lt;script src=&amp;#34;https://cdn.bootcss.com/vue/2.4.4/vue.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script src=&amp;#34;https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; 姓名 &amp;lt;input type=&amp;#34;text&amp;#34; v-model=&amp;#34;userName&amp;#34;&amp;gt; &amp;lt;br/&amp;gt; 年龄 &amp;lt;input type=&amp;#34;text&amp;#34; id=&amp;#34;userAge&amp;#34; v-model=&amp;#34;userAge&amp;#34;&amp;gt; &amp;lt;br/&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; new Vue({ el: &amp;#39;#app&amp;#39;, data: { userName: &amp;#39;&amp;#39;, userAge: 12 } }); $(&amp;#39;#userAge&amp;#39;).val(14); &amp;lt;/script&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 在页面刚打开时：姓名输入框是空的，年龄输入框是14。但是一旦你在姓名输入框输入任何字符时，年龄输入框的值就会变成12。
+如果你仔细看过Vue官方文档，你会很容易定位问题所在。
+v-model 会忽略所有表单元素的 value、checked、selected 特性的初始值。因为它会选择 Vue 实例数据来作为具体的值。你应该通过 JavaScript 在组件的 data 选项中声明初始值。---Vue官方文档 你可以用 v-model 指令在表单控件元素上创建双向数据绑定。它会根据控件类型自动选取正确的方法来更新元素。尽管有些神奇，但 v-model 本质上不过是语法糖，它负责监听用户的输入事件以更新数据，并特别处理一些极端的例子。</description>
+    </item>
+    
+    <item>
+      <title>一行命令搭建简易静态文件http服务器</title>
+      <link>https://wdd.js.org/posts/2018/one-command-create-static-file-server/</link>
+      <pubDate>Fri, 09 Feb 2018 13:01:14 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/one-command-create-static-file-server/</guid>
+      <description>简易服务器：在命令执行的所在路径启动一个http服务器，然后你可以通过浏览器访问该路径下的所有文件。
+在局域网内传文件，或者自己测试使用都是非常方便的。
+1. 基于python 1.1. 基于Python2 python -m SimpleHTTPServer port
+&amp;gt; python -m SimpleHTTPServer 8099 Serving HTTP on 0.0.0.0 port 8099 ... 127.0.0.1 - - [24/Oct/2017 11:07:56] &amp;#34;GET / HTTP/1.1&amp;#34; 200 - 1.2. 基于python3 python3 -m http.server port
+&amp;gt; python3 -m http.server 8099 Serving HTTP on 0.0.0.0 port 8099 (http://0.0.0.0:8099/) ... 127.0.0.1 - - [24/Oct/2017 11:05:06] &amp;#34;GET / HTTP/1.1&amp;#34; 200 - 127.0.0.1 - - [24/Oct/2017 11:05:06] code 404, message File not found 127.</description>
+    </item>
+    
+    <item>
+      <title>top-javascript-tools-in-2017</title>
+      <link>https://wdd.js.org/posts/2018/top-javascript-tools-in-2017/</link>
+      <pubDate>Fri, 09 Feb 2018 12:59:38 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/top-javascript-tools-in-2017/</guid>
+      <description>原文地址 git地址
+1. 基础工具 accounting.js async axios chance date-fns format.js immutable is.js lodash Math.js Moment.js Numeral.js string.js underscore.js voca wait xregexp.com 2. 编译 / 类型检查 Babel TypeScript Flow 3. 代码分析引擎 Tern 4. JavaScript兼容性检查器 jscc.info/ 5. Linting/ Hinting &amp;amp; Style Linter eslint 6. 单元测试 AVA Jasmine Mocha Tape 7. 单元测试断言库 Chai expect.js should.js 8. 单元测试数据模拟 sinon.js Kakapo.js mockjs 9. E2E测试 puppeteer 10. 代码格式化 / 整洁 esformatter js-beautify jsfmt prettier 11. 性能测试 benchmark.</description>
+    </item>
+    
+    <item>
+      <title>120行代码实现 浏览器WebRTC视频聊天</title>
+      <link>https://wdd.js.org/posts/2018/webrtc-tutorial-simple-video-chat/</link>
+      <pubDate>Fri, 09 Feb 2018 12:56:12 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/webrtc-tutorial-simple-video-chat/</guid>
+      <description>本例子是参考webrtc-tutorial-simple-video-chat做的。 这个教程应该主要是去宣传ScaleDrone的sdk, 他们的服务是收费的，但是免费的也可以用，就是有些次数限制。
+本栗子的地址 本栗子的pages地址
+因为使用的是ScaleDrone的js sdk, 后期很可能服务不稳定之类的
+1. 准备 使用最新版谷歌浏览器（62版） 视频聊天中 一个是windows, 一个是mac stun服务器使用谷歌的，trun使用ScaleDrone的sdk，这样我就不用管服务端了。 2. 先上效果图 3. 再上在线例子点击此处 4. 源码分析 // 产生随机数 if (!location.hash) { location.hash = Math.floor(Math.random() * 0xFFFFFF).toString(16); } // 获取房间号 var roomHash = location.hash.substring(1); // 放置你自己的频道id, 这是我注册了ScaleDrone 官网后，创建的channel // 你也可以自己创建 var drone = new ScaleDrone(&amp;#39;87fYv4ncOoa0Cjne&amp;#39;); // 房间名必须以 &amp;#39;observable-&amp;#39;开头 var roomName = &amp;#39;observable-&amp;#39; + roomHash; var configuration = { iceServers: [{ urls: &amp;#39;stun:stun.l.google.com:19302&amp;#39; // 使用谷歌的stun服务 }] }; var room; var pc; function onSuccess() {} function onError(error) { console.</description>
+    </item>
+    
+    <item>
+      <title>如何写好技术文档?</title>
+      <link>https://wdd.js.org/posts/2018/how-to-write-a-technical-document/</link>
+      <pubDate>Fri, 09 Feb 2018 12:52:57 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/how-to-write-a-technical-document/</guid>
+      <description>本文来自于公司内部的一个分享。 在文档方面，对内的一些接口文档主要是用swagger来写的。虽然可以在线测试，比较方便。但是也存在着一些更新不及时，swgger文档无法导出成文件的问题。 在对外提供的文档方面：我主要负责做一个浏览器端的一个js sdk。文档还算可以github地址，所以想把一些写文档的心得分享给大家。
+1. 衡量好文档的唯一标准是什么？ Martin(Bob大叔)曾在《代码整洁之道》一书打趣地说：当你的代码在做 Code Review 时，审查者要是愤怒地吼道：
+“What the fuck is this shit?” “Dude, What the fuck！” 等言辞激烈的词语时，那说明你写的代码是 Bad Code，如果审查者只是漫不经心的吐出几个
+“What the fuck?”，
+那说明你写的是 Good Code。衡量代码质量的唯一标准就是每分钟骂出“WTF” 的频率。
+衡量文档的标准也是如此。
+2. 好文档的特点 简洁：一句话可以说完的事情，就不要分两句话来说。并不是文档越厚越好，太厚的文档大多没人看。 准确: 字段类型，默认值，备注，是否必填等属性说明。 逻辑性: 文档如何划分？ 利于查看。 demo胜千言: 好的demo胜过各种字段说明，可以复制下来直接使用。 读者心: 从读者的角度考虑, 方法尽量简洁。可以传递一个参数搞定的事情，绝对不要让用户去传两个参数。 及时更新: 不更新的文档比bug更严重。 向后兼容: 不要随意废弃已有的接口或者某个字段，除非你考虑到这样做的后果。 建立文档词汇表：每个概念只有一个名字，不要随意起名字，名不正则言不顺。 格式统一：例如时间格式。我曾见过2017-09-12 09:32:23, 或2017.09.12 09:32:23或2017.09.12 09:32:23。变量名user_name, userName。 使用专业词语：不要过于口语化 3. 总结: 写出好文档要有以下四点 逻辑性：便于查找 专业性: 值得信赖，质量保证 责任心：及时更新，准确性，向后兼容 读者心：你了解的东西，别人可能并不清楚。从读者的角度去考虑，他们需要什么，而不是一味去强调你能提供什么。 4. 写文档的工具 markdown: 方便快捷，可以导出各种格式的文件 swagger: 功能强大，需要部署，不方便传递文件 5.</description>
+    </item>
+    
+    <item>
+      <title>Vue &#43; Vue-router &#43; Element-ui 搭建一个非常简单的dashboard demo</title>
+      <link>https://wdd.js.org/posts/2018/vue-vue-router-elementui-stupid-simple-dashboard/</link>
+      <pubDate>Fri, 09 Feb 2018 12:02:05 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/vue-vue-router-elementui-stupid-simple-dashboard/</guid>
+      <description>做完这个demo后，你会体会到，Vue组件化，webpack, Vue-router等，并不是很难学习，你需要的只是拿起斧头的勇气
+在做demo的过程中，我遇到一个问题，就是vue-router懒加载一直实现不了，纠结了半天。后来回到原点，去vue-route官网看文档，发现是因为syntax-dynamic-import插件没有安装。
+所以说：你以为的bug, 实际上是你没看透文档
+初次学习这个教程，你不需要有任何担忧某些东西不会，你也不需要写任何代码。因为基本上所有代码都是从element官网上拷贝的，你所做的只是把他们组装在一起罢了。
+在线预览 仓库地址：https://github.com/wangduanduan/vue-el-dashboard
+效果图： 使用到的技术：
+Vue Vue-router Element-ui webpack Normalize.css vue-awesome babel 1. vue-cli 安装模板 ➜ vue-el-dashboard git:(master) vue init webpack ? Generate project in current directory? Yes ? Project name vue-el-dashboard ? Project description A Vue.js project ? Author wangdd &amp;lt;wangdd@welljoint.com&amp;gt; ? Vue build standalone ? Install vue-router? Yes ? Use ESLint to lint your code? Yes ? Pick an ESLint preset Standard ?</description>
+    </item>
+    
+    <item>
+      <title>笔记 node最佳实践1 项目工程最佳实践</title>
+      <link>https://wdd.js.org/posts/2018/nodejs-project-best-struct/</link>
+      <pubDate>Fri, 09 Feb 2018 11:56:11 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/nodejs-project-best-struct/</guid>
+      <description> 原文阅读: nodebestpractices
+1. 工程结构最佳实践 1.1. 组件化 bad: 按照功能划分
+controllers api.js home.js order.js product.js user.js models order.js product.js user.js test testOrder.js testProduct.js testUser.js good：按照组件划分
+order product user index.js user.js userApi.js userError.js userTesting.js userAction.js 1.2. 层次化 不要在express中写太多业务逻辑，express专注web层 业务层要单独抽出 数据库层单独抽出 1.3. NPM化 把常用组件做成NPM包
+1.4. 分离Express的 app 和 server 1.5. 配置化 环境感知： 根据不同环境使用不同配置 </description>
+    </item>
+    
+    <item>
+      <title>grep awk 搜索日志常用命令</title>
+      <link>https://wdd.js.org/posts/2018/grep-awk-search-log/</link>
+      <pubDate>Fri, 09 Feb 2018 10:45:31 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/grep-awk-search-log/</guid>
+      <description>1. grep 常用参数 参考： GNU Grep 3.0
+--color:高亮显示匹配到的字符串 -v：显示不能被pattern匹配到的 -i：忽略字符大小写 -o：仅显示匹配到的字符串 -q：静默模式，不输出任何信息 -A#：after，匹配到的后#行 -B#：before，匹配到的前#行 -C#：context，匹配到的前后各#行 -E：使用ERE，支持使用扩展的正则表达式 －c：只输出匹配行的计数。 －I：不区分大 小写(只适用于单字符)。 －h：查询多文件时不显示文件名。 －l：查询多文件时只输出包含匹配字符的文件名。 －n：显示匹配行及 行号。 - m: 匹配多少个关键词之后就停止搜索 －s：不显示不存在或无匹配文本的错误信息。 －v：显示不包含匹配文本的所有行。 2. 普通：搜索trace.log 中含有ERROR字段的日志 grep ERROR trace.log 3. 输出文件：可以将日志输出文件中 grep ERROR trace.log &amp;gt; error.log
+4. 反向：搜索不包含ERROR字段的日志 grep -v ERROR trace.log
+5. 向前：搜索包含ERROR,并且显示ERROR前10行的日志 grep -B 10 ERROR trace.log
+6. 向后：搜索包含ERROR字段，并且显示ERROR后10行的日志 grep -A 10 ERROR trace.log
+7. 上下文：搜索包含ERROR字段，并且显示ERROR字段前后10行的日志 grep -C 10 ERROR trace.log
+8. 多字段：搜索包含ERROR和DEBUG字段的日志 gerp -E &#39;ERROR|DEBUG&#39; trace.</description>
+    </item>
+    
+    <item>
+      <title>我的谷歌浏览器插件集（15个）</title>
+      <link>https://wdd.js.org/posts/2018/my-chrome-extensions-collection/</link>
+      <pubDate>Fri, 09 Feb 2018 10:27:34 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/my-chrome-extensions-collection/</guid>
+      <description>1. 广告拦截：AdBlock 2. 获取网页样式：CSS Peeper 3. 扩展管理：扩展管理器（Extension Manager） 4. json格式化：JSON-handle 5. 多点高亮查找：Multi-highlight 6. github源码阅读：Octotree 7. http接口调试：Postman 8. 脚本增强：Tampermonkey 9. 脚本注入：Script Injector 10. 键步如飞：Vimium 11. Vue开发利器：Vue.js devtools 12. 前端资讯：掘金 13. 让不支持markdown的富文本编辑器支持markdown: Markdown Here 14. 多标签页时，自动释放内存，开100个标签页也毫无压力：The Great Suspender 15. 接口测试：Restlet Client - REST API Testing restlet Client和post man功能差不多，restlet更轻量，只在新开一个标签页。postman 需要打开一个app。</description>
+    </item>
+    
+    <item>
+      <title>哑代理 - TCP链接高Recv-Q，内存泄露的罪魁祸首</title>
+      <link>https://wdd.js.org/posts/2018/tcp-high-recv-q-or-send-q-reasons/</link>
+      <pubDate>Thu, 08 Feb 2018 21:58:31 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/tcp-high-recv-q-or-send-q-reasons/</guid>
+      <description>1. 问题现象 使用netstat -ntp命令时发现，Recv-Q 1692012 异常偏高（正常情况下，该值应该是0），导致应用占用过多的内存。
+tcp 1692012 0 172.17.72.4:48444 10.254.149.149:58080 ESTABLISHED 27/node 问题原因：代理的转发时，没有删除逐跳首部
+2. 什么是Hop-by-hop 逐跳首部？ http首部可以分为两种
+端到端首部 End-to-end: 端到端首部代理在转发时必须携带的 逐跳首部 Hop-by-hop: 逐跳首部只对单次转发有效，代理在转发时，必须删除这些首部 逐跳首部有以下几个, 这些首部在代理进行转发前必须删除
+Connetion Keep-Alive Proxy-Authenticate Proxy-Authortization Trailer TE Transfer-Encodeing Upgrade 3. 什么是哑代理？ 很多老的或简单的代理都是盲中继(blind relay),它们只是将字节从一个连接转发到另一个连接中去,不对Connection首部进行特殊的处理。
+(1)在图4-15a中 Web客户端向代理发送了一条报文,其中包含了Connection:Keep-Alive首部,如果可能的话请求建立一条keep-alive连接。客户端等待响应,以确定对方是否认可它对keep-alive信道的请求。
+(2) 哑代理收到了这条HTTP请求,但它并不理解 Connection首部(只是将其作为一个扩展首部对待)。代理不知道keep-alive是什么意思,因此只是沿着转发链路将报文一字不漏地发送给服务器(图4-15b)。但Connection首部是个逐跳首部,只适用于单条传输链路,不应该沿着传输链路向下传输。接下来,就要发生一些很糟糕的事情了。
+(3) 在图4-15b中,经过中继的HTTP请求抵达了Web服务器。当Web服务器收到经过代理转发的Connection: Keep-Alive首部时,会误以为代理(对服务器来说,这个代理看起来就和所有其他客户端一样)希望进行keep-alive对话!对Web服务器来说这没什么问题——它同意进行keep-alive对话,并在图4-15c中回送了一个Connection: Keep-Alive响应首部。所以,此时W eb服务器认为它在与代理进行keep-alive对话,会遵循keep-alive的规则。但代理却对keep-alive一无所知。不妙。
+(4) 在图4-15d中,哑代理将Web服务器的响应报文回送给客户端,并将来自Web服务器的Connection: Keep-Alive首部一起传送过去。客户端看到这个首部,就会认为代理同意进行keep-alive对话。所以,此时客户端和服务器都认为它们在进行keep-alive对话,但与它们进行对话的代理却对keep-alive一无所知。
+(5) 由于代理对keep-alive一无所知,所以会将收到的所有数据都回送给客户端,然后等待源端服务器关闭连接。但源端服务器会认为代理已经显式地请求它将连接保持在打开状态了,所以不会去关闭连接。这样,代理就会挂在那里等待连接的关闭。
+(6) 客户端在图4-15d中收到了回送的响应报文时,会立即转向下一条请求,在keep-alive连接上向代理发送另一条请求(参见图4-15e)。而代理并不认为同一条连接上会有其他请求到来,请求被忽略,浏览器就在这里转圈,不会有任何进展了。
+(7) 这种错误的通信方式会使浏览器一直处于挂起状态,直到客户端或服务器将连接超时,并将其关闭为止。 &amp;ndash;《HTTP权威指南》
+这是HTTP权威指南中，关于HTTP哑代理的描述。这里这里说了哑代理会造成的一个问题。
+这种错误的通信方式会使浏览器一直处于挂起状态,直到客户端或服务器将连接超时,并将其关闭为止。 实际上，我认为哑代理还是造成以下问题的原因
+TCP链接高Recv-Q tcp链接不断开，导致服务器内存过高，内存泄露 节点iowait高 在我们自己的代理的代码中，我有发现，在代理进行转发时，只删除了headers.host, 并没有删除headers.Connection等逐跳首部的字段
+delete req.headers.host var option = { url: url, headers: req.</description>
+    </item>
+    
+    <item>
+      <title>一些关于Hexo的疑问</title>
+      <link>https://wdd.js.org/posts/2018/something-you-may-dont-konw-about-hexo/</link>
+      <pubDate>Thu, 08 Feb 2018 21:29:18 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/something-you-may-dont-konw-about-hexo/</guid>
+      <description>1. 文件名重复了怎么办？ 使用hexo new filename命令用来新建一个文章，但是如果你创建文章时，已经存在了同样的一个文件名，那么Hexo会怎样处理？
+报错 覆盖之前的文章 在文件名后面加个序号 实际上Hexo使用第三个方式来处理，例如
+// 执行下面命令两次，会产生两个文件 filename.md, filename-1.md hexo new filename hexo new filename 所以，在创建文章时，你根本不需要考虑文章重名的事情，Hexo会自动帮你加上序号后处理。</description>
+    </item>
+    
+    <item>
+      <title>Hexo NexT主题设置封面的方法</title>
+      <link>https://wdd.js.org/posts/2018/hexo-next-theme-set-cover/</link>
+      <pubDate>Thu, 08 Feb 2018 21:09:50 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/hexo-next-theme-set-cover/</guid>
+      <description> 默认情况下NexT主题的首页，每篇文章几乎都会全部渲染出来。这是这样来看，首页就会变得非常长，不利于快速浏览。
+而我希望首页可以尽量缩短，每个文章只需要稍微一点介绍，如果有图片，就设置一张封面就好了。
+下面是具体的设置步骤
+1. Next主题设置摘要 filename: themes/next/_config.yml，将auto_excerpt.enable设置成true，length属性表示摘要的字数限制。
+auto_excerpt: enable: true length: 150 2. 文章具体设置 在 &amp;lt;!-- more --&amp;gt;上面放一张图片就可以了
+--- title: Hexo NexT主题设置封面的方法 date: 2018-02-08 21:09:50 tags: - hexo --- ![](https://wdd.js.org/img/images/20180208212257_BZZjA5_1200px-The_Great_Wave_off_Kanagawa.jpeg) 文章摘要 &amp;lt;!-- more --&amp;gt; 文章正文 </description>
+    </item>
+    
+    <item>
+      <title>寻一片净土 书写我自己的芳华</title>
+      <link>https://wdd.js.org/posts/2018/write-blog-belong-myself/</link>
+      <pubDate>Thu, 08 Feb 2018 20:18:42 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/write-blog-belong-myself/</guid>
+      <description>我曾经在csdn上写过博客
+后来因为csdn的广告太多，我就不再csdn上写了
+我也曾在博客园上写过博客
+后来因为博客园上对markdown支持不够好，所以我也放弃了
+我也曾在segmentfault上写过博客
+它上面的markdown编辑器也还好用
+但是有时候不知道是什么原因
+它的markdown编辑器有时候太卡了，而且经常会出现上传图片失败
+最让我不能容忍的是
+你在SegmentFault删除自己的博客，那其实是逻辑删除
+别人还是可以通过连接去访问的
+而且SegmentFault上的广告也开始慢慢变多了
+而且SegmentFault上对文章的限制也是比较多的
+大树底下好乘凉，但是你的流量也是需要给大树的
+互联网时代，看似任何服务都是免费的
+其实免费的才是最贵的
+你用了别人的服务，无论如何，你总要提供给别人价值
+无论怎样，你总要做出你的回报
+但是，无论如何，我总是需要一个更加独立的领地
+她可以完全属于我
+无论是野草还是野花
+无论是杨柳依依还是雨雪霏霏
+我都可以放肆潇洒
+我需要一片净土
+来书写我自己的芳华
+所以，最近一直在把SegmentFault上的文章搬迁到github pages上
+另外图片全部存在七牛云上
+使用hexo next主题，做一个完全自主的静态博客</description>
+    </item>
+    
+    <item>
+      <title>定时器学习：利用定时器分解耗时任务案例</title>
+      <link>https://wdd.js.org/posts/2018/settimeout-to-splice-big-work/</link>
+      <pubDate>Thu, 08 Feb 2018 14:09:54 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/settimeout-to-splice-big-work/</guid>
+      <description>对于执行时间过长的脚本，有的浏览器会弹出警告，说页面无响应。有的浏览器会直接终止脚本。总而言之，浏览器不希望某一个代码块长时间处于运行状态，因为js是单线程的。一个代码块长时间运行，将会导致其他任何任务都必须等待。从用户体验上来说，很有可能发生页面渲染卡顿或者点击事件无响应的状态。
+如果一段脚本的运行时间超过5秒，有些浏览器（比如Firefox和Opera）将弹出一个对话框警告用户该脚本“无法响应”。而其他浏览器，比如iPhone上的浏览器，将默认终止运行时间超过5秒钟的脚本。&amp;ndash;《JavaScript忍者秘籍》
+JavaScript忍者秘籍里有个很好的比喻：页面上发生的各种事情就好像一群人在讨论事情，如果有个人一直在说个不停，其他人肯定不乐意。我们希望有个裁判，定时的切换其他人来说话。
+Js利用定时器来分解任务，关键点有两个。
+按什么维度去分解任务
+任务的现场保存与现场恢复
+1. 例子 要求：动态创建一个表格，一共10000行，每行10个单元格
+1.1. 一次性创建 &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;utf-8&amp;#34;&amp;gt; &amp;lt;title&amp;gt;&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;table&amp;gt; &amp;lt;tbody&amp;gt;&amp;lt;/tbody&amp;gt; &amp;lt;/table&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; var tbody = document.getElementsByTagName(&amp;#39;tbody&amp;#39;)[0]; var allLines = 10000; // 每次渲染的行数 console.time(&amp;#39;wd&amp;#39;); for(var i=0; i&amp;lt;allLines; i++){ var tr = document.createElement(&amp;#39;tr&amp;#39;); for(var j=0; j&amp;lt;10; j++){ var td = document.createElement(&amp;#39;td&amp;#39;); td.appendChild(document.createTextNode(i+&amp;#39;,&amp;#39;+j)); tr.appendChild(td); } tbody.appendChild(tr); } console.timeEnd(&amp;#39;wd&amp;#39;); &amp;lt;/script&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 总共耗时180ms, 浏览器已经给出警告！[Violation] &#39;setTimeout&#39; handler took 53ms。
+1.2. 分批次动态创建 &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;utf-8&amp;#34;&amp;gt; &amp;lt;title&amp;gt;&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;table&amp;gt; &amp;lt;tbody&amp;gt;&amp;lt;/tbody&amp;gt; &amp;lt;/table&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; var tbody = document.</description>
+    </item>
+    
+    <item>
+      <title>关于JavaScropt函数式编程，我多么希望能早点看到这本书</title>
+      <link>https://wdd.js.org/posts/2018/js-functional-programming/</link>
+      <pubDate>Thu, 08 Feb 2018 14:06:22 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/js-functional-programming/</guid>
+      <description>我父亲以前跟我说过，有些事物在你得到之前是无足轻重的，得到之后就不可或缺了。微波炉是这样，智能手机是这样，互联网也是这样——老人们在没有互联网的时候过得也很充实。对我来说，函数的柯里化（curry）也是这样。
+然后我继续看了这本书的中文版。有些醍醐灌顶的感觉。 随之在github搜了一下。 我想，即使付费，我也愿意看。
+中文版地址：https://www.gitbook.com/book/llh911001/mostly-adequate-guide-chinese/details github原文地址：https://github.com/MostlyAdequate/mostly-adequate-guide
+1. 后记 其实我是想学点函数柯里化的东西，然后用谷歌搜索了一下。第一个结果就是这本书。非常感谢谷歌搜索，如果我用百度，可能就没有缘分遇到这本书了。</description>
+    </item>
+    
+    <item>
+      <title>终于找到你！如何将前端console.log的日志保存成文件?</title>
+      <link>https://wdd.js.org/posts/2018/save-console-log-as-file/</link>
+      <pubDate>Thu, 08 Feb 2018 13:56:40 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/save-console-log-as-file/</guid>
+      <description>本篇文章来自一个需求，前端websocket会收到各种消息，但是调试的时候，我希望把websoekt推送过来的消息都保存到一个文件里，如果出问题的时候，我可以把这些消息的日志文件提交给后端开发区分析错误。但是在浏览器里，js一般是不能写文件的。鼠标另存为的方法也是不太好，因为会保存所有的console.log的输出。于是，终于找到这个debugout.js。
+debugout.js的原理是将所有日志序列化后，保存到一个变量里。当然这个变量不会无限大，因为默认的最大日志限制是2500行，这个是可配置的。另外，debugout.js也支持在localStorage里存储日志的。
+1. debugout.js 一般来说，可以使用打开console面板，然后右键save，是可以将console.log输出的信息另存为log文件的。但是这就把所有的日志都包含进来了，如何只保存我想要的日志呢？
+（调试输出）从您的日志中生成可以搜索，时间戳，下载等的文本文件。 参见下面的一些例子。
+Debugout的log（）接受任何类型的对象，包括函数。 Debugout不是一个猴子补丁，而是一个单独的记录类，你使用而不是控制台。
+调试的一些亮点：
+在运行时或任何时间获取整个日志或尾部 搜索并切片日志 更好地了解可选时间戳的使用模式 在一个地方切换实时日志记录（console.log） 可选地将输出存储在window.localStorage中，并在每个会话中持续添加到同一个日志 可选地，将日志上限为X个最新行以限制内存消耗 下图是使用downloadLog方法下载的日志文件。
+官方提供的demo示例，欢迎试玩。http://inorganik.github.io/debugout.js/
+2. 使用 在脚本顶部的全局命名空间中创建一个新的调试对象，并使用debugout的日志方法替换所有控制台日志方法：
+var bugout = new debugout(); // instead of console.log(&amp;#39;some object or string&amp;#39;) bugout.log(&amp;#39;some object or string&amp;#39;); 3. API log() -像console.log(), 但是会自动存储 getLog() - 返回所有日志 tail(numLines) - 返回尾部执行行日志，默认100行 search(string) - 搜索日志 getSlice(start, numLines) - 日志切割 downloadLog() - 下载日志 clear() - 清空日志 determineType() - 一个更细粒度的typeof为您提供方便 4. 可选配置 ··· // log in real time (forwards to console.</description>
+    </item>
+    
+    <item>
+      <title>如何浏览器里调试iframe里层的代码？</title>
+      <link>https://wdd.js.org/posts/2018/debug-code-in-iframe/</link>
+      <pubDate>Thu, 08 Feb 2018 13:53:48 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/debug-code-in-iframe/</guid>
+      <description>之前一直非常痛苦，在iframe外层根本获取不了里面的信息，后来使用了postMessage用传递消息来实现，但是用起来还是非常不方便。
+其实浏览器本身是可以选择不同的iframe的执行环境的。例如有个变量是在iframe里面定义的，你只需要切换到这个iframe的执行环境，你就可以随意操作这个环境的任何变量了。
+这个小技巧，对于调试非常有用，但是我直到今天才发现。
+1. Chrome 这个小箭头可以让你选择不同的iframe的执行环境，可以切换到你的iframe环境里。
+2. IE 如图所示是ie11的dev tool点击下来箭头，也可以选择不同的iframe执行环境。
+3. 其他浏览器 其他浏览器可以自行摸索一下。。。（G_H）</description>
+    </item>
+    
+    <item>
+      <title>8行代码的模板字符串替换函数</title>
+      <link>https://wdd.js.org/posts/2018/a-very-simple-template-function/</link>
+      <pubDate>Thu, 08 Feb 2018 13:51:13 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/a-very-simple-template-function/</guid>
+      <description>1. 特点 无依赖 无检查 无错误处理 无逻辑 无配置 2. 代码 function render(tpl, data){ var re = /{{([^}]+)?}}/; var match = &amp;#39;&amp;#39;; while(match = re.exec(tpl)){ tpl = tpl.replace(match[0],data[match[1]]); } return tpl; } 3. demo var tpl = &amp;#39;/cube_xinbao_dial_result/{{action}}/{{report_type}}/{{query}}/?userId={{userId}}&amp;#39;; var data = {report_type:1, query: &amp;#39;2323&amp;#39;, action: &amp;#39;todolist&amp;#39;,userId: &amp;#39;23234234&amp;#39;} function render(tpl, data){ var re = /{{([^}]+)?}}/; var match = &amp;#39;&amp;#39;; while(match = re.exec(tpl)){ tpl = tpl.replace(match[0],data[match[1]]); } return tpl; } console.log(render(tpl,data)); &amp;gt; /cube_xinbao_dial_result/todolist/1/2323/?userId=23234234 </description>
+    </item>
+    
+    <item>
+      <title>谷歌浏览器 audio如何隐藏下载按钮</title>
+      <link>https://wdd.js.org/posts/2018/audio-hide-download-icon/</link>
+      <pubDate>Thu, 08 Feb 2018 13:46:45 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/audio-hide-download-icon/</guid>
+      <description>当我们使用原生的audio标签时，可以看到如下的效果。
+那么如何让下载按钮隐藏掉呢？
+1. controlsList=&amp;ldquo;nodownload&amp;rdquo; // 这个方法只支持 Chrome 58+， 低于该版本的是没有无法隐藏的 &amp;lt;audio src=&amp;#34;/i/horse.ogg&amp;#34; controls=&amp;#34;controls&amp;#34; controlsList=&amp;#34;nodownload&amp;#34;&amp;gt; Your browser does not support the audio element. &amp;lt;/audio&amp;gt; controlsList属性只兼容Chrome 58+以上，具体可以参考controlslist.html ，controlsList在线例子
+nodownload: 不要下载 nofullscreen: 不要全屏 noremoteplayback: 不要远程回放 2. css方式来隐藏 // 这个方式兼容所有版本的谷歌浏览器 audio::-webkit-media-controls { overflow: hidden !important } audio::-webkit-media-controls-enclosure { width: calc(100% + 32px); margin-left: auto; } 3. 即使让下载按钮隐藏了，如何禁止右键下载？ // 给audio标签禁止右键，来禁止下载 &amp;lt;audio src=&amp;#34;/i/horse.ogg&amp;#34; controls=&amp;#34;controls&amp;#34; controlsList=&amp;#34;nodownload&amp;#34; oncontextmenu=&amp;#34;return false&amp;#34;&amp;gt; Your browser does not support the audio element. &amp;lt;/audio&amp;gt; 4. 第三方插件: audiojs 项目地址: https://github.</description>
+    </item>
+    
+    <item>
+      <title>Audio 如果你愿意一层一层剥开我的心</title>
+      <link>https://wdd.js.org/posts/2018/audio-heart-detail/</link>
+      <pubDate>Thu, 08 Feb 2018 09:44:01 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/audio-heart-detail/</guid>
+      <description>我觉得DOM就好像是元素周期表里的元素，JS就好像是实验器材，通过各种化学反应，产生各种魔术。
+1. Audio 通过打开谷歌浏览器的dev tools -&amp;gt; Settings -&amp;gt; Elements -&amp;gt; Show user agent shadow DOM, 你可以看到其实Audio标签也是由常用的 input标签和div等标签合成的。
+2. 基本用法 1 &amp;lt;audio src=&amp;#34;http://65.ierge.cn/12/186/372266.mp3&amp;#34;&amp;gt; Your browser does not support the audio element. &amp;lt;/audio&amp;gt; &amp;lt;br&amp;gt; 2 &amp;lt;audio src=&amp;#34;http://65.ierge.cn/12/186/372266.mp3&amp;#34; controls=&amp;#34;controls&amp;#34;&amp;gt; Your browser does not support the audio element. &amp;lt;/audio&amp;gt; &amp;lt;br&amp;gt; // controlsList属性目前只支持 chrome 58+ 3 &amp;lt;audio src=&amp;#34;http://65.ierge.cn/12/186/372266.mp3&amp;#34; controls=&amp;#34;controls&amp;#34; controlsList=&amp;#34;nodownload&amp;#34;&amp;gt; Your browser does not support the audio element. &amp;lt;/audio&amp;gt; &amp;lt;br&amp;gt; 4 &amp;lt;audio controls=&amp;#34;controls&amp;#34;&amp;gt; &amp;lt;source src=&amp;#34;http://65.</description>
+    </item>
+    
+    <item>
+      <title>github上的那些前端神器</title>
+      <link>https://wdd.js.org/posts/2018/github-powerful-tools-recommend/</link>
+      <pubDate>Thu, 08 Feb 2018 09:38:32 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/github-powerful-tools-recommend/</guid>
+      <description>1. serve: 在任意目录开启静态文件服务器 https://github.com/zeit/serve 2. lambda-view：优雅的看js源码 https://github.com/Jianru-Lin/lambda-view 3. ConEmu：windows命令行从未如此迷人 https://github.com/Maximus5/ConEmu 4. Wox：天下武功，唯快不破 https://github.com/Wox-launcher/Wox 5. gow：谁说windows不能用linux命令 https://github.com/bmatzelle/gow 6. vimium：像用vim一样用chrome浏览器 https://github.com/philc/vimium 7. localtunnel：将内网地址转化成公网地址 https://github.com/localtunnel/localtunnel 8. Browsersync：省时省力的浏览器同步测试工具 地址：http://www.browsersync.cn/
+9. PM2: 集负载均衡、热更新、监控等功能于一身的Node.js应用程序的生产流程管理器 地址：https://github.com/Unitech/pm2</description>
+    </item>
+    
+    <item>
+      <title>gitbook 前端好书推荐</title>
+      <link>https://wdd.js.org/posts/2018/gitbook-good-book-recommend/</link>
+      <pubDate>Thu, 08 Feb 2018 09:35:03 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/gitbook-good-book-recommend/</guid>
+      <description>1. Front-End Developer Handbook 2017 地址：https://frontendmasters.com/books/front-end-handbook/2017/ 这是任何人都可以用来了解前端开发实践的指南。它大致概述并讨论了前端工程的实践：如何学习它，以及在2017年实践时使用什么工具。
+这是专门为潜在的和目前实践的前端开发人员提供专业资源，以配备学习材料和开发工具。其次，管理者，首席技术官，导师和猎头人士可以使用它来了解前端开发的实践。
+手册的内容有利于网络技术（HTML，CSS，DOM和JavaScript）以及直接构建在这些开放技术之上的解决方案。本书中引用和讨论的材料是课堂上最好的或目前提出的问题。
+该书不应被视为对前端开发人员可用的所有资源的全面概述。这本书的价值被简单，集中和及时地组织起来，仅仅是足够的绝对信息，以免任何人在任何一个特定的主题上压倒一切。
+目的是每年发布一次内容更新。
+手册分为三部分。
+第一部分。前端实践
+第一部分广泛描述了前端工程的实践。
+第二部分：学习前端发展
+第二部分指出了自主导向和直接的资源，用于学习成为前端开发人员。
+第三部分：前端开发工具
+第三部分简要解释和识别交易工具。
+2. JS函数式编程指南 英文版地址： 中文版地址：https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/
+这本书的主题是函数范式（functional paradigm），我们将使用 JavaScript 这个世界上最流行的函数式编程语言来讲述这一主题。有人可能会觉得选择 JavaScript 并不明智，因为当前的主流观点认为它是一门命令式（imperative）的语言，并不适合用来讲函数式。但我认为，这是学习函数式编程的最好方式，因为：
+你很有可能在日常工作中使用它
+这让你有机会在实际的编程过程中学以致用，而不是在空闲时间用一门深奥的函数式编程语言做一些玩具性质的项目。
+你不必从头学起就能开始编写程序
+在纯函数式编程语言中，你必须使用 monad 才能打印变量或者读取 DOM 节点。JavaScript 则简单得多，可以作弊走捷径，因为毕竟我们的目的是学写纯函数式代码。JavaScript 也更容易入门，因为它是一门混合范式的语言，你随时可以在感觉吃力的时候回退到原有的编程习惯上去。
+这门语言完全有能力书写高级的函数式代码
+只需借助一到两个微型类库，JavaScript 就能模拟 Scala 或 Haskell 这类语言的全部特性。虽然面向对象编程（Object-oriented programing）主导着业界，但很明显这种范式在 JavaScript 里非常笨拙，用起来就像在高速公路上露营或者穿着橡胶套鞋跳踢踏舞一样。我们不得不到处使用 bind 以免 this 不知不觉地变了，语言里没有类可以用（目前还没有），我们还发明了各种变通方法来应对忘记调用 new 关键字后的怪异行为，私有成员只能通过闭包（closure）才能实现，等等。对大多数人来说，函数式编程看起来更加自然。+
+以上说明，强类型的函数式语言毫无疑问将会成为本书所示范式的最佳试验场。JavaScript 是我们学习这种范式的一种手段，将它应用于什么地方则完全取决于你自己。幸运的是，所有的接口都是数学的，因而也是普适的。最终你会发现你习惯了 swiftz、scalaz、haskell 和 purescript，以及其他各种数学偏向的语言。
+3. 前端开发笔记本 地址：http://chanshuyi.github.io/frontend_notebook/
+前端开发笔记本涵括了大部分前端开发所需的知识点，主要包括5大部分：《页面制作》、《JavaScript程序设计》、《DOM编程》、《页面架构》、《前端产品架构》。</description>
+    </item>
+    
+    <item>
+      <title>Nodejs Express dockerfile最佳实践</title>
+      <link>https://wdd.js.org/posts/2018/nodejs-best-dockerfile/</link>
+      <pubDate>Thu, 08 Feb 2018 09:28:04 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/nodejs-best-dockerfile/</guid>
+      <description>1. 少啰嗦，先看代码 1.1. package.json { &amp;#34;name&amp;#34;: &amp;#34;xxx&amp;#34;, &amp;#34;version&amp;#34;: &amp;#34;0.0.0&amp;#34;, &amp;#34;private&amp;#34;: true, &amp;#34;scripts&amp;#34;: { &amp;#34;start&amp;#34;: &amp;#34;node ./bin/www&amp;#34;, &amp;#34;forever&amp;#34;: &amp;#34;node_modules/forever/bin/forever bin/www&amp;#34; }, &amp;#34;dependencies&amp;#34;: { &amp;#34;async&amp;#34;: &amp;#34;0.9.0&amp;#34;, &amp;#34;body-parser&amp;#34;: &amp;#34;1.13.2&amp;#34;, &amp;#34;compression&amp;#34;: &amp;#34;1.6.2&amp;#34;, &amp;#34;config&amp;#34;: &amp;#34;1.12.0&amp;#34;, &amp;#34;connect-multiparty&amp;#34;: &amp;#34;2.0.0&amp;#34;, &amp;#34;cookie-parser&amp;#34;: &amp;#34;1.3.5&amp;#34;, &amp;#34;debug&amp;#34;: &amp;#34;2.2.0&amp;#34;, &amp;#34;ejs&amp;#34;: &amp;#34;2.3.3&amp;#34;, &amp;#34;express&amp;#34;: &amp;#34;4.13.1&amp;#34;, &amp;#34;forever&amp;#34;: &amp;#34;0.15.3&amp;#34;, &amp;#34;http-proxy-middleware&amp;#34;: &amp;#34;0.17.3&amp;#34;, &amp;#34;log4js&amp;#34;: &amp;#34;0.6.24&amp;#34;, &amp;#34;serve-favicon&amp;#34;: &amp;#34;2.3.0&amp;#34; } } 1.2. dockerfile FROM node:9.2.1-alpine RUN apk update &amp;amp;&amp;amp; apk add bash tzdata \ &amp;amp;&amp;amp; cp -r -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime WORKDIR /app COPY package.</description>
+    </item>
+    
+    <item>
+      <title>表单验证工具 jquery-validation Vs Parsley</title>
+      <link>https://wdd.js.org/posts/2018/jquery-validation-vs-parsley/</link>
+      <pubDate>Thu, 08 Feb 2018 09:26:00 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/jquery-validation-vs-parsley/</guid>
+      <description>1. 基本对比 名称 gitbub地址 stars 文档地址 jquery-validation 这里 7859(截止7/21) 这里 Parsley.js 这里 7979(截止7/21) 这里 2. 强烈推荐Parsley 这两个表格验证插件我都用过，最早用的是jqueryValidataion, 现在用Parsley。 这两个插件都依赖jQuery。但是如果说那个跟好用的话，真心推荐Parsley。Parsley号称不用写一行代码就能验证表单。另外从star的数量上也可以看出来Parsley更流行。而且Parsley支持在html中就将错误信息定义在里面。
+Parsley优势
+直观的DOM API: 像没有其他表单验证库一样，只需用HTML格式写入您的要求，Parsley将会做剩下的所有事情！不需要编写一行代码来验证表单。 动态表单验证： parsley现在更聪明，它会自动检测您的表单的修改并相应地调整其验证。简单地添加，删除或编辑字段，parsley将会自动验证。 还有好多&amp;hellip; &amp;lt;form&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; required=&amp;#34;&amp;#34; data-parsley-checkphonenum data-parsley-checkphonenum-message=&amp;#34;手机号码格式有误&amp;#34; name=&amp;#34;phoneNum&amp;#34; class=&amp;#34;form-control&amp;#34; placeholder=&amp;#34;请填写手机号&amp;#34;&amp;gt; &amp;lt;/form&amp;gt; //验证表单 // 注意 checkphonenum是我自定义的验证规则，添加到parsley里面的 $(&amp;#39;from&amp;#39;).parsley().validate(); </description>
+    </item>
+    
+    <item>
+      <title>前端小白的python实战 报纸分词排序</title>
+      <link>https://wdd.js.org/posts/2018/python-paper-word-split/</link>
+      <pubDate>Thu, 08 Feb 2018 09:23:37 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/python-paper-word-split/</guid>
+      <description>先看效果：
+1. 环境 win7 64位 python 3.5 2. 目标 抓取一篇报纸，并提取出关键字，然后按照出现次数排序，用echarts在页面上显示出来。
+3. 工具选择 因为之前对nodejs的相关工具比较熟悉，在用python的时候，也想有类似的工具。所以就做了一个对比的表格。
+功能 nodejs版 python版 http工具 request requests 中文分词工具 node-segment, nodejieba(一直没有安装成功过) jieba(分词准确度比node-segment好) DOM解析工具 cheeio pyquery(这两个工具都是有类似jQuery那种选择DOM的接口，很方便) 函数编程工具 underscore.js underscore.py(underscore来处理集合比较方便) 服务器 express flask 4. 开始的噩梦：中文乱码 感觉每个学python的人都遇到过中文乱码的问题。我也不例外。
+首先要抓取网页，但是网页在控制台输出的时候，中文总是乱码。搞了好久，搞得我差点要放弃python。最终找到解决方法。 解决python3 UnicodeEncodeError: &amp;lsquo;gbk&amp;rsquo; codec can&amp;rsquo;t encode character &amp;lsquo;\xXX&amp;rsquo; in position XX
+过程很艰辛，但是从中也学到很多知识。
+import io import sys sys.stdout = io.TextIOWrapper(sys.stoodout.buffer,encoding=&amp;#39;gb18030&amp;#39;) 5. 函数式编程： 顺享丝滑 #filename word_rank.py import requests import io import re import sys import jieba as _jieba # 中文分词比较优秀的一个库 from pyquery import PyQuery as pq #类似于jquery、cheerio的库 from underscore import _ # underscore.</description>
+    </item>
+    
+    <item>
+      <title>【笔记】 程序员修炼之道 从小工到专家</title>
+      <link>https://wdd.js.org/posts/2018/how-to-be-a-better-programer/</link>
+      <pubDate>Thu, 08 Feb 2018 09:21:11 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/how-to-be-a-better-programer/</guid>
+      <description> 1 关心你的技艺 2 思考你的工作 3 在所有的弱点中，最大的弱点就是害怕暴露弱点 4 提供各种选择，不要找各种蹩脚的借口 5 不要容忍破窗户 6 作变化的催化剂 7 记住大方向 8 让质量成为需求问题 9 知识也会贬值，定期为你的知识投资 每年至少学习一种编程语言 每季度至少读一本技术书籍 也要阅读非技术书籍 上课 上网 玩玩UNIX 跟上潮流 10 批判的分析你读到的和听到的 11 我相信，被打量要被忽略要好 12 你说什么和你怎样说同样重要 13 不要重复你自己, 也不要重复别人 14 糟糕的代码才需要许多注释 15 让复用变得容易 16 消除无关事物之间的影响 (解耦性，正交性) 17 编码 让你的代码保持解耦 避免使用全局数据 避免编写相似的函数 18 如果某个想法是你唯一的想法，再没有什么比这更危险的事情了 19 不存在最终决定 20 稍后就是永不 21 用曳光弹找到目标 22 语言的界限就是一个人世界的界限 23 靠近问题编程 24 估算，避免发生意外 25 用纯文本保存知识 26 利用命令shells的力量 27 用好一种编辑器，彻底了解它，确保你的编辑器能在所有平台上使用 (我现在最爱是vscode, 曾经最爱是sublime) 可配置 可扩展 可编辑 语法高亮 自动完成 自动缩进 跨平台 启动快 占用内存小 漂亮 28 总是使用源码控制 29 要修正问题，而不是发出职责 (关于调试，bug) 30 不要恐慌 (我曾经差点因为上线的之前的重大问题产生辞职的想法) 31 不要假定，要证明 32 你不可能写出完美的软件 33 如果它不可能发生，用断言确保它不会发生 34 将异常用于异常的问题 35 要有始有终 36 使模块之间的耦合减至最小 37 要配置，不要集成 (可配置) 38 将抽象放进代码，将细节放进元数据 39 分析工作流，以改善并发性 40 用服务进行设计 41 总是为并发进行设计 42 将视图与模型分离 43 小心那些替你编写大量代码的工具，除非你了解它在做什么 44 不要靠巧合编程 45 估算你算法的阶 46 早重构，常重构 47 为测试而设计 48 不要搜集需求，挖掘他们 49 与用户一起工作，以像用户一样思考 50 需求不是架构，需求不是设计，也不是用户界面，而是需求。 51 抽象比细节活的更长久 52 使用项目词汇表 (名不正则言不顺) 53 昂贵的工具不一定能制作出更好的设计 54 早测试，常测试，自动测试 55 要到通过全部测试，编码才算完成 56 把网收紧，一个bug只抓一次 57 温和的超出用户的期望 58 在你的作品上签名 59 建立自己的藏书库 </description>
+    </item>
+    
+    <item>
+      <title>定位神器：1秒定位DOM元素绑定的事件代码的位置</title>
+      <link>https://wdd.js.org/posts/2018/visual-event-tool/</link>
+      <pubDate>Thu, 08 Feb 2018 09:15:20 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/visual-event-tool/</guid>
+      <description>1. VisualEvent github地址： https://github.com/DataTables/VisualEvent
+2. 使用教程 打开http://sprymedia.co.uk/VisualEvent/这个页面，然后将visual Event连接拖动到浏览器的书签栏上 随便打开一个页面，然后点击VisualEvent书签后，页面就变成这样了。鼠标移动到蓝色或者黄色边框的元素上，相应得逻辑代码就会出现。截图左下角蓝色长条上有一些有用的信息，最左边有个关闭的按钮。
+3. 最后 VisualEvent并不是万能的，Vue绑定的事件它就无法检测出来。当然Vue的事件是直接写在Dom上的，根本无需定位。 工欲善其事必先利其器，多一个工具总是好的，万一真有需要呢。</description>
+    </item>
+    
+    <item>
+      <title>可能被遗漏的https与http的知识点</title>
+      <link>https://wdd.js.org/posts/2018/you-dont-know-https-and-http/</link>
+      <pubDate>Thu, 08 Feb 2018 09:10:59 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/you-dont-know-https-and-http/</guid>
+      <description>1. HTTPS域向HTTP域发送请求会被浏览器直接拒绝，HTTP向HTTPS则不会 例如在github pages页面，这是一个https页面，如果在这个页面向http发送请求，那么会直接被浏览器拒绝，并在控制台输出下面的报错信息。
+jquery-1.11.3.min.js:5 Mixed Content: The page at &amp;#39;https://wangduanduan.github.io/ddddddd/&amp;#39; was loaded over HTTPS, but requested an insecure XMLHttpRequest endpoint &amp;#39;http://cccccc/log/conf?token=welljoint&amp;#39;. This request has been blocked; the content must be served over HTTPS. 如果你在做第三方集成的系统，如果他们是在浏览器中直接调用你提供的接口，那么最好你使用https协议，这样无论对方是https还是http都可以访问。（相信我，这个很重要，我曾经经历过上线后遇到这个问题，然后连夜申请证书，把http升级到https的痛苦经历）
+2. HTTPS的默认端口是443，而不是443 如果443端口已经被其他服务占用了，那么使用其他任何没有被占用的端口都可以用作HTTPS服务，只不过在请求的时候需要加上端口号罢了。
+3. 如何快速隐藏一个DOM元素 选中一个元素，然后按h,这时候就会在选中的DOM元素上加上__web-inspector-hide-shortcut__类，这个类会让元素隐藏。谷歌和火狐上都可以，IE上没有试过行不行。</description>
+    </item>
+    
+    <item>
+      <title>直接在Chrome DevTools调试Node.js</title>
+      <link>https://wdd.js.org/posts/2018/debug-nodejs-in-chrome-devtool/</link>
+      <pubDate>Wed, 07 Feb 2018 14:15:43 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/debug-nodejs-in-chrome-devtool/</guid>
+      <description>英文好的，直接看原文
+https://blog.hospodarets.com/nodejs-debugging-in-chrome-devtools
+1. 要求 Node.js 6.3+ Chrome 55+ 2. 操作步骤 1 打开连接 chrome://flags/#enable-devtools-experiments 2 开启开发者工具实验性功能 3 重启浏览器 4 打开 DevTools Setting -&amp;gt; Experiments tab 5 按6次shift后，隐藏的功能会出现，勾选&amp;quot;Node debugging&amp;quot; 3. 运行程序 必须要有 --inspect
+&amp;gt; node --inspect www Debugger listening on port 9229. Warning: This is an experimental feature and could change at any time. To start debugging, open the following URL in Chrome: chrome-devtools://devtools/remote/serve_file/@60cd6e859b9f557d2312f5bf532f6aec5f284980/inspector.html?experiments=true&amp;amp;v8only=true&amp;amp;ws=localhost:9229/78a884f4-8c2e-459e-93f7-e1cbe87cf5cf 将这个地址粘贴到谷歌浏览器：chrome-devtools://devtools/remote/serve_file/@60cd6e859b9f557d2312f5bf532f6aec5f284980/inspector.html?experiments=true&amp;amp;v8only=true&amp;amp;ws=localhost:9229/78a884f4-8c2e-459e-93f7-e1cbe87cf5cf
+程序后端输出的日志也回输出到谷歌浏览器的console里面，同时也可以在Sources里进行断点调试了。 </description>
+    </item>
+    
+    <item>
+      <title>12个值得关注的顶级JS库</title>
+      <link>https://wdd.js.org/posts/2018/top-11-javascript-libraries-are-worth-your-attention/</link>
+      <pubDate>Wed, 07 Feb 2018 14:08:10 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/top-11-javascript-libraries-are-worth-your-attention/</guid>
+      <description>本文是译文，原文是https://da-14.com/blog/top-11-javascript-libraries-are-worth-your-attention 我在原文的基础上加了百度的Echats图表库，这个也是毫不逊色其他图表库的。另外Handsontable电子表格库也是蛮好玩的。
+前端开发工具在过去几年中取得了进步和成功。这些日子，JS库和框架可以简化工作流程，提高开发过程，并在响应式设计方面提供更好的功能。
+考虑到一个长的JavaScript库列表，它可能是挑战选择，那是值得的时间和精力。我们已经讨论了最好的JavaScript框架，今天我们想研究JS库中的新星。你可能听说过像jQuery或React这样的大名字，这是最有用的JavaScript库之一，虽然有很多其他解决方案。
+一些库是几乎必须在每个其他项目应用，而其他的更集中和用于执行应用程序中的特定功能。为了清楚起见，我们按类型分组了最好的JavaScript库，所以让我们开始。
+1. 图表类 1.1. D3 D3.js（数据驱动文档）通常被称为最强大的开源JavaScript可视化库。它的生态系统包括几十个插件和其他库建立在D3js的顶部。同时，支持社区和大量的文档可以帮助您立即开始。
+D3符合W3C网络标准，几乎支持所有现代浏览器。尽管事实上它不包括任何预先构建的图表，它提供了许多例子和“输入和退出”选择，容易的调试过程和强大的转换等有用的功能。
+1.2. Chart.js Chart.js是一个简单的开源解决方案，用于小项目和这些情况下，当你需要快速创建图表。它有八种图表类型和混合它们的能力，外加令人惊叹的动画选项开箱。强烈建议使用此JavaScript图形库，以便简单的设置过程，工作灵活性和全面的文档，尽管其功能相当有限。 Chartist.js具有类似的功能，而它是基于SVG，而不是HTML5画布在Chartjs。
+1.3. FusionCharts FusionCharts是迄今为止最好的JavaScript图表库。作为设计师和开发者最全面的解决方案，它包括90多种图表类型和1000个地图，将Google图表和MetricsGraphics保留在后面。
+今天FusionCharts可以拥有超过24,000个客户，其中包括白宫，Oracle，IBM，微软，谷歌等等。作为最流行的JavaScript库之一，它是高度可扩展的，并与各种设备和浏览器，包括IE 6,7和8兼容。但是，水印版本可以免费使用商业和个人项目，但删除水印你需要购买许可证。
+1.4. Google Charts Google图表允许您构建从纯色图表到复杂树形图的所有内容。它配备了广泛的预构建的图表库，各种数据工具和多个自定义选项。 HTML5和SVG上的基础图表​​此库确保跨浏览器和跨平台兼容性，而对于较旧的IE版本，它包括VML。
+由于详细的文档，代码注释和分步说明，Google Charts工具可以成为任何人谁想要使用JavaScript构建图表的一个很好的起点。但是，由于文件是从Google的服务器上传的，因此您的Web JavaScript应用程序应该在线以查看图表。
+1.5. Echarts（百度出品） 更小文件 更大作为
+更小体积的文件，满足更轻便的使用需求 更灵活的打包方式，可自由选择你需要的图表和组件 移动端强势来袭
+良好的自适应效果 专属的移动端交互体验 更丰富的可视化效果
+新增更多图表类型，更好的满足不同数据的处理需求 更多的搭配方案让你的数据呈现方式更个性和完美 2. 动画 2.1. GSAP GSAP（GreenSock动画平台）是一个先进的动画解决方案，由全球最大的企业使用创建惊人的互动动画，没有麻烦。它被超过200万网站雇用，在他们的客户中，你可以找到像福特，耐克，Adobe，微软，三星和许多其他的伟大的名字。
+GSAP与新旧浏览器以及移动设备高度兼容。在顶级功能SVG支持，使任何DOM元素可拖动，可旋转或可滑动滚动和快速性能的能力。它还带有定向旋转，3D变换，模块化架构，快速加载，零依赖性等等。
+2.2. Bounce.js Bounce.js是一个整洁的JavaScript动画库，使您能够创建有吸引力的CSS3动力的动画，像饼图一样简单。它有10个预设，如旋转，旋风，果冻，公路跑步者和其他人，以生成平滑的动画，任何网页设计或自定义项目。
+这个库是绝对免费的和MIT许可的，它是一个不错的选择，在那些情况下，当你不需要一个长列表的动画类型，寻找实验或只是尝试你的手在动画。
+3. Animate.css Animate.css是一个平滑的CSS库，允许您添加整洁的动画到所选对象。它具有超过50种不同的预设，可以应用于文本，形式，对象和CSS3的图片。由于小文件大小，跨浏览器支持和易于使用它可以是一个非常适合移动项目，滑块，主页等。
+4. 时间日期 4.1. Moment.js Moment.js是一个简单和轻量级的日期库，使解析，操作和格式化日期和时间容易和准确。它具有多语言支持，持续时间，日历时间和各种插件，以获得诸如时区支持，Twitter集成等功能。但重要的是，它消除了使用本机JavaScript日期对象的需要，随后促进复杂解析过程和减少代码量。
+4.2. Date-fns Date-fns是一个高级工具集，用于在浏览器和Node.js中操作时间和日期。它提供了140多个有用的功能，可以通过简单的API轻松访问。由于模块化结构，它允许您只选择您当前需要的项目的那些功能。
+5. 其他 5.1. Math.js Math.js是JavaScript引擎的开源数学库。它有许多函数和常量，灵活的表达式解析器，以及支持复杂和大数字，单位，字符串，分数，矩阵，数组和符号计算。
+5.2. Handsontable Handsontable是一个无障碍的JavaScript电子表格库用于构建一流的Web应用程序。它可以轻松地扩展和修改与自定义插件。由开发人员为开发人员建造，它确保快速和容易的开始，方便的模块化结构和活跃的社区支持。这个表库包括超过30个功能的免费版本和额外的10+功能的专业版。目前Handsontable用于销售报告，人力规划，数据合并，数据库编辑等领域。</description>
+    </item>
+    
+    <item>
+      <title>【译】13简单的优秀编码规则（从我15年的经验）</title>
+      <link>https://wdd.js.org/posts/2018/few-simple-rules-for-good-coding-my-15-years-experience/</link>
+      <pubDate>Wed, 07 Feb 2018 14:03:12 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/few-simple-rules-for-good-coding-my-15-years-experience/</guid>
+      <description>原文地址：https://hackernoon.com/few-simple-rules-for-good-coding-my-15-years-experience-96cb29d4acd9#.ddzpjb80c
+嗨，我的工作作为一个程序员超过15年，并使用许多不同的语言，范例，框架和其他狗屎。我想和大家分享我写好代码的规则。
+1. 优化VS可读性 去他妈的优化 始终编​​写易于阅读且对开发人员可理解的代码。因为在硬可读代码上花费的时间和资源将远远高于从优化中获得的。 如果你需要进行优化，那么使它像DI的独立模块，具有100％的测试覆盖率，并且不会被触及至少一年。
+2. 架构第一 我看到很多人说“我们需要快速做事，我们没有时间做架构”。其中约99％的人因为这样的想法而遇到了大问题。 编写代码而不考虑其架构是没有用的，就像没有实现它们的计划一样，梦想你的愿望。 在编写代码的第一行之前，你应该明白它将要做什么，它将如何使用，模块，服务如何相互工作，它将有什么结构，如何进行测试和调试，以及如何更新。
+3. 测试覆盖率 测试是好事，但他们并不总是负担得起，对项目有意义。
+当你需要测试：
+当你编写模块时，微服务将不会被触及至少一个月。 当你编写开源代码。 当你编写涉及金融渠道的核心代码或代码。 当您有代码更新的同时更新测试的资源。 当你不需要测试时：
+当你是一个创业。 当你有小团队和代码更改是快速。 当你编写的脚本，可以简单地通过他们的输出手动测试。 记住，带有严格测试的代码可能比没有测试的代码更有害。
+4. 保持简单，极度简单 不要编写复杂的代码。更多更简单，那么更少的错误它可能有和更少的时间来调试它们。代码应该做的只是它需要没有非常多的抽象和其他OOP shit（尤其是涉及java开发人员）+ 20％的东西可能需要在将来以简单的方式更新它。
+5. 注释 出现注释说明你的代码不够好。好的代码应该是可以理解的，没有一行注释。但是如何为新开发人员节省时间？ - 编写简单的内联文档描述什么和如何方法工作。这将节省很多时间来理解，甚至更多 - 它将给人们更多的机会来提出更好的实施这种方法。并且它将是全球代码文档的良好开端。
+6. 硬耦合VS较小耦合 始终尝试使用微服务架构。单片软件可以比微服务软件运行得更快，但只能在一个服务器的上下文中运行。 微服务使您可以不仅在许多服务器上，而且有时甚至在一台机器上（我的意思是过程分发）高效地分发您的软件。
+7. 代码审查 代码审查可以是好的，也以是坏的。 您可以组织代码审查，只有当您有开发人员了解95％的代码，谁可以监控所有更新，而不浪费很多时间。在其他情况下，这将是只是耗时，每个人都会讨厌这个。
+在这部分有很多问题，所以更深入地描述这一点。
+许多人认为代码审查是一个很好的方式教新手，或者工作在不同部分的代码的队友。但是代码审查的主要目标是保持代码质量，而不是教学。让我们想象你的团队制作代码用于控制核反应堆或太空火箭发动机的冷却系统。你在非常硬的逻辑中犯了巨大的错误，然后你给这个代码审查新的家伙。你怎么认为会发生意外的风险？ - 我的练习率超过70％。
+良好的团队是每个人都有自己的角色，负责确切的工作。如果有人想要理解另一段代码，那么他去一个负责任去问他。你不可能知道一切，更好的优秀的理解小块代码而不是理解所有。
+8. 重构没啥用 在我的职业生涯中，我听到很多次“不要担心，我们以后会重构它”。在未来，这会导致大的技术债务或从头开始删除所有的代码和写作。
+所以，不要得到一个债务，除非你有钱从头开发你的软件几次。
+9. 当你累了或在一个坏的心情不要写代码。 当开发人员厌倦时，他们正在制造2到5倍或者更多的bug。所以工作更多是非常糟糕的做法。这就是为什么越来越多的国家思考6小时工作日，其中一些已经有了。精神工作不同于使用你的二头肌。
+10. 不要一次写全部 - 使开发迭代 在编写代码分析和预测之前，您的客户/客户真正需要什么，然后选择您可以在短期内以高质量开发的MVF（最有价值的功能）。使用这样的迭代来部署质量更新，而不是腰部时间和资源对不合理的愿望和牺牲与质量。
+11. 自动化VS手动 自动化是长期的100％成功。所以如果你有资源自动化的东西，现在应该做。你可能认为“只需要5分钟，为什么我应该自动化？但让我计算这个。例如，它是5个开发人员的日常任务。 5分钟* 5天* 21天* 12个月= 6 300分钟= 105小时= 13.</description>
+    </item>
+    
+    <item>
+      <title>15行代码为segmentfault增加头条文章排序功能</title>
+      <link>https://wdd.js.org/posts/2018/sort-for-sf/</link>
+      <pubDate>Wed, 07 Feb 2018 14:00:46 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/sort-for-sf/</guid>
+      <description>有个需求，想看点赞最多的头条，但是页面没有这种按钮。怎么办？自己写吧。
+先看效果 再看代码
+var rows = $(&amp;#39;.news__item&amp;#39;).each(function(){ var key = +$(this).find(&amp;#39;.news__item-zan-number&amp;#39;).text(); $(this).data(&amp;#39;key&amp;#39;, key); }).get(); rows.sort(function(a,b){ var keyA = $(a).data(&amp;#39;key&amp;#39;); var keyB = $(b).data(&amp;#39;key&amp;#39;); if(keyA&amp;lt;keyB){return -1;} else{return 1;} }); $.each(rows, function(index, row){ $(&amp;#39;.news__list&amp;#39;).prepend(row); }); </description>
+    </item>
+    
+    <item>
+      <title>可视化交互阅读JS源代码</title>
+      <link>https://wdd.js.org/posts/2018/visual-reading-js-code/</link>
+      <pubDate>Wed, 07 Feb 2018 13:57:25 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/visual-reading-js-code/</guid>
+      <description>1. 曾经，你可以能习惯这样阅读javascript 2. 现在，你可以用这个姿势阅读 3. 怎么做呢? 3.1. step1: npm install -g lambda-view 3.2. step2: // 阅读本地代码 lv targer.js // 阅读远程代码 lv https://code.jquery.com/jquery-3.1.1.js // 阅读多个代码 lv file1.js file2.js file3.js // 阅读所有 lv *.js 4. 项目地址：https://github.com/Jianru-Lin/lambda-view 5. 欢迎试玩！ </description>
+    </item>
+    
+    <item>
+      <title>谷歌浏览器： Snippets小程序哪家强？</title>
+      <link>https://wdd.js.org/posts/2018/chrome-snippets-collect/</link>
+      <pubDate>Wed, 07 Feb 2018 13:48:55 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/chrome-snippets-collect/</guid>
+      <description>Snippets是可以在Chrome DevTools的“源”面板中创建和执行的小脚本。 您可以从任何页面访问和运行它们。 当您运行代码段时，它会从当前打开的页面的上下文执行。
+1. 显示所有元素的边框，看页面布局非常方便 [].forEach.call($$(&amp;#34;*&amp;#34;),function(a){ a.style.outline=&amp;#34;1px solid #&amp;#34;+(~~(Math.random()*(1&amp;lt;&amp;lt;24))).toString(16) }); 2. allcolors.js 从页面上的元素中使用的计算样式打印所有颜色。 使用样式化的console.log调用来可视化每种颜色。
+// allcolors.js // https://github.com/bgrins/devtools-snippets // Print out CSS colors used in elements on the page. (function () { // Should include colors from elements that have a border color but have a zero width? var includeBorderColorsWithZeroWidth = false; var allColors = {}; var props = [&amp;#34;background-color&amp;#34;, &amp;#34;color&amp;#34;, &amp;#34;border-top-color&amp;#34;, &amp;#34;border-right-color&amp;#34;, &amp;#34;border-bottom-color&amp;#34;, &amp;#34;border-left-color&amp;#34;]; var skipColors = { &amp;#34;rgb(0, 0, 0)&amp;#34;: 1, &amp;#34;rgba(0, 0, 0, 0)&amp;#34;: 1, &amp;#34;rgb(255, 255, 255)&amp;#34;: 1 }; [].</description>
+    </item>
+    
+    <item>
+      <title>nodejs 日志插件比较 VS 自定义日志插件</title>
+      <link>https://wdd.js.org/posts/2018/nodejs-log-packages/</link>
+      <pubDate>Wed, 07 Feb 2018 13:46:51 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/nodejs-log-packages/</guid>
+      <description>1. morgan 【优点】morgan配置非常简单 【优点】支持自定义日志格式 【优点】支持日志分机 【优点】支持日志压缩：使用rotating-file-stream 【缺点】无法同时往console和文件中写日志 2. log4js-node 【优点】配置简单 【优点】支持同时往控制台和文件中写数据 【优点】支持按照时间或文件大小分割文件 【优点】支持文件压缩 &amp;#34;use strict&amp;#34;; var path = require(&amp;#39;path&amp;#39;) , log4js = require(&amp;#39;../lib/log4js&amp;#39;); log4js.configure( { appenders: [ { type: &amp;#34;file&amp;#34;, filename: &amp;#34;important-things.log&amp;#34;, maxLogSize: 10*1024*1024, // = 10Mb numBackups: 5, // keep five backup files compress: true, // compress the backups encoding: &amp;#39;utf-8&amp;#39;, mode: parseInt(&amp;#39;0640&amp;#39;, 8), flags: &amp;#39;w+&amp;#39; }, { type: &amp;#34;dateFile&amp;#34;, filename: &amp;#34;more-important-things.log&amp;#34;, pattern: &amp;#34;yyyy-MM-dd-hh&amp;#34;, compress: true }, { type: &amp;#34;stdout&amp;#34; } ] } ); var logger = log4js.</description>
+    </item>
+    
+    <item>
+      <title>JavaScript 高级技巧</title>
+      <link>https://wdd.js.org/posts/2018/js-high-skills/</link>
+      <pubDate>Wed, 07 Feb 2018 10:14:56 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/js-high-skills/</guid>
+      <description>0.1. 安全类型检测 javascript内置类型检测并不可靠 safari某些版本（&amp;lt;4）typeof正则表达式返回为function 建议使用Object.prototype.toString.call()方法检测数据类型
+function isArray(value){ return Object.prototype.toString.call(value) === &amp;#34;[object Array]&amp;#34;; } function isFunction(value){ return Object.prototype.toString.call(value) === &amp;#34;[object Function]&amp;#34;; } function isRegExp(value){ return Object.prototype.toString.call(value) === &amp;#34;[object RegExp]&amp;#34;; } function isNativeJSON(){ return window.JSON &amp;amp;&amp;amp; Object.prototype.toString.call(JSON) === &amp;#34;[object JSON]&amp;#34;; } 对于ie中一COM对象形式实现的任何函数，isFunction都返回false，因为他们并非原生的javascript函数。
+在web开发中，能够区分原生与非原生的对象非常重要。只有这样才能确切知道某个对象是否有哪些功能
+以上所有的正确性的前提是：Object.prototype.toString没有被修改过
+0.2. 作用域安全的构造函数 function Person(name){ this.name = name; } //使用new来创建一个对象 var one = new Person(&amp;#39;wdd&amp;#39;); //直接调用构造函数 Person(); 由于this是运行时分配的，如果你使用new来操作，this指向的就是one。如果直接调用构造函数，那么this会指向全局对象window,然后你的代码就会覆盖window的原生name。如果有其他地方使用过window.name, 那么你的函数将会埋下一个深藏的bug。
+==那么，如何才能创建一个作用域安全的构造函数？== 方法1
+function Person(name){ if(this instanceof Person){ this.name = name; } else{ return new Person(name); } } 1.</description>
+    </item>
+    
+    <item>
+      <title>从一个小场景学会使用 apply方法</title>
+      <link>https://wdd.js.org/posts/2018/how-to-use-apply/</link>
+      <pubDate>Wed, 07 Feb 2018 10:12:36 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/how-to-use-apply/</guid>
+      <description>1. 需求 需要自定义一个log方法，这个方法可以像原生的console.log一样 在开发环境我希望调用这个log会输出日志信息，生产环境我希望即使调用了这个方法，也不会输出日志信息。 2. 实现这个log 可能要使用apply或者call方法 log的参数个数和类型都是不固定的 call的参数个数是固定的，要排除它 apply的参数是需要一个数组，这个合适，可以使用arguments来当做数组传递 3. 代码 var MyLog = { silent: false, log: function(){ if(!this.silent){ console.log.apply(this, arguments); } } }; 4. 试用 &amp;gt; MyLog.log(1,2,3, &amp;#39;4545&amp;#39;); 1 2 3 &amp;#34;4545&amp;#34; undefined &amp;gt; MyLog.silent = true true &amp;gt; MyLog.log(1,2,3, &amp;#39;4545&amp;#39;); undefined 5. 后记 不要随处使用console.log，因为这样当你不需要日志输出的时候，你就要到处填坑了 不要使用alert，这个很烦人 </description>
+    </item>
+    
+    <item>
+      <title>突然觉得自己好像没学过JS</title>
+      <link>https://wdd.js.org/posts/2018/i-realy-dont-know-js/</link>
+      <pubDate>Wed, 07 Feb 2018 10:09:42 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/i-realy-dont-know-js/</guid>
+      <description>0.1. 先看题：mean的值是什么？ var scores = [10,11,12]; var total = 0; for(var score in scores){ total += score; } var mean = total/scores.length; console.log(mean); 0.2. 是11？ 恭喜你：答错了！
+0.3. 是1？ 恭喜你：答错了！
+0.4. 正确答案： 4 解释： for in 循环循环的值永远是key, key是一个字符串。所以total的值是：&amp;lsquo;0012&amp;rsquo;。它是一个字符串，字符串&#39;0012&amp;rsquo;/3,0012会被转换成12，然后除以3，结果是4。
+0.5. 后记 这个示例是来自《编写高质量JavaScript的68个方法》的第49条：数组迭代要优先使用for循环而不是for in循环。 既然已经发布，就可能有好事者拿出去当面试题。这个题目很有可能坑一堆人。其中包括我。
+这里涉及到许多js的基础知识.
+for in 循环是循环对象的索引属性，key是一个字符串。 数值类型和字符串相加，会自动转换为字符串 字符串除以数值类型，会先把字符串转为数值，最终结果为数值 正确方法
+var scores = [10,11,12]; var total = 0; for(var i=0, n=scores.length; i &amp;lt; n; i++){ total += scores[i]; } var mean = total/scores.</description>
+    </item>
+    
+    <item>
+      <title>Vue&#43;websocket&#43;stompjs 实时监控坐席状态demo</title>
+      <link>https://wdd.js.org/posts/2018/vue-ws-monitor-agent-status/</link>
+      <pubDate>Wed, 07 Feb 2018 09:36:49 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/vue-ws-monitor-agent-status/</guid>
+      <description>由于是前后端分离的demo, 程序的后端我不管，我只负责把前端做好，这只是个demo， 还有很多不完善的地方。
+2018-01-09新增： 后端的MQ事件结构现在也改了，该demo只能看看了。
+html
+&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html lang=&amp;#34;zh-cn&amp;#34;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;utf-8&amp;#34;&amp;gt; &amp;lt;link href=&amp;#34;http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css&amp;#34; rel=&amp;#34;stylesheet&amp;#34;&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;table class=&amp;#34;table&amp;#34; id=&amp;#34;event-queue&amp;#34;&amp;gt; &amp;lt;thead&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;th&amp;gt;当前状态&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;状态改变时间&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;姓名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;工号&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;分机号&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;对方号码&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;呼入数&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;呼出数&amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;/thead&amp;gt; &amp;lt;tbody&amp;gt; &amp;lt;tr v-for=&amp;#34;item in eventQueue&amp;#34;&amp;gt; &amp;lt;td&amp;gt;{{item.agentStatus | transAgentStatus}}&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;{{item.agentStatusTime}}&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;{{item.userName}}&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;{{item.loginName}}&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;{{item.deviceId}}&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;/tbody&amp;gt; &amp;lt;/table&amp;gt; &amp;lt;script src=&amp;#34;http://cdn.bootcss.com/vue/1.0.26/vue.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script src=&amp;#34;js/websocket-suport.min.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script src=&amp;#34;js/main.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; js
+var tm = (function(){ var App = function(){}; var app = App.</description>
+    </item>
+    
+    <item>
+      <title>自从装了windows神器，再也不用羡慕mac了</title>
+      <link>https://wdd.js.org/posts/2018/windows-powerful-tools/</link>
+      <pubDate>Wed, 07 Feb 2018 09:24:18 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/windows-powerful-tools/</guid>
+      <description>1. 命令行神器 1.1. GOW Gow（Gnu On Windows）是Cygwin的轻量级替代品。 它使用一个方便的NSIS安装程序，安装超过100个非常有用的开源UNIX应用程序，编译为本机win32二进制文件。 它被设计为尽可能小，大约18 MB，而不是Cygwin，它可以运行超过100 MB根据选项。
+1.2. 强烈推荐 ConEmu 非常强大，可以在里面愉快的ctrl+v,ctrl+c 用过你才知道好用 https://conemu.github.io/
+2. 搜索神器 2.1. Wox Windows下一款最接近 Alfred 的软件启动/文件搜索利器
+2.2. Everything 快速批量查找文件的利器
+3. 包管理神器 4. Chocolatey 安装软件再也不用烦恼 教程
+5. 健康管理神器 6. f.lux 有没有注意到人们在夜间发短信的怪异蓝色发光？或者醒来准备写下一个伟大的想法，并被你的电脑屏幕蒙蔽？白天，电脑屏幕看起来很好，他们的设计看起来像太阳。但是，在晚上9点，晚上10点或凌晨3点，你可能不应该看太阳。f.lux修复这个：它使你的电脑显示器的颜色适应一天的时间，在夜间温暖和白天喜欢阳光。甚至有可能你因为你的电脑而停滞太晚。你可以使用f.lux因为它使你睡得更好，或者你可以只使用它，只是因为它使你的电脑看起来更好。
+7. 谷歌浏览器插件神器 7.1. 强烈推荐vimium 速度起飞，只用键盘就可以完全操纵谷歌浏览器
+7.2. shortKeys vimium的快捷键其实已经足够多了，但是如果你想有更多自定义的快捷键，例如：关闭右侧的标签页，这个快捷键。你可以试试shortKeys。唯一遗憾的是，这里面也没有关闭其他标签页的快捷键，如果你知道有哪些工具可以做到，麻烦请告诉我。
+7.3. infinity新标签页 8. 参考 http://www.jeffjade.com/2016/01/13/2016-01-13-windows-software-cmder/ http://www.jeffjade.com/2015/10/19/2015-10-18-Efficacious-win-software/ https://www.zhihu.com/question/22919326 https://blogs.msdn.microsoft.com/scott_hanselman/2013/07/31/windows/ </description>
+    </item>
+    
+    <item>
+      <title>发起Ajax请求当页面onunload</title>
+      <link>https://wdd.js.org/posts/2018/send-ajax-when-page-unload/</link>
+      <pubDate>Wed, 07 Feb 2018 09:18:54 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/send-ajax-when-page-unload/</guid>
+      <description>0.1. 同步Ajax 这种需求主要用于当浏览器关闭，或者刷新时，向后端发起Ajax请求。
+window.onunload = function(){ $.ajax({url:&amp;#34;http://localhost:8888/test.php?&amp;#34;, async:false}); }; 使用async：false参数使请求同步（默认是异步的）。
+同步请求锁定浏览器，直到完成。 如果请求是异步的，页面只是继续卸载。 它足够快，以至于该请求甚至没有时间触发。服务端很可能收不到请求。
+0.2. navigator.sendBeacon 优点：简洁、异步、非阻塞 缺点：这是实验性的技术，并非所有浏览器都支持。其中IE和safari不支持该技术。
+示例：
+window.addEventListener(&amp;#39;unload&amp;#39;, logData, false); function logData() { navigator.sendBeacon(&amp;#34;/log&amp;#34;, analyticsData); } 参考：http://stackoverflow.com/questions/1821625/ajax-request-with-jquery-on-page-unload 参考：https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon</description>
+    </item>
+    
+    <item>
+      <title>无坚不摧：打造极大提高工作效率的装备库</title>
+      <link>https://wdd.js.org/posts/2018/tool-improve-work-efficiency/</link>
+      <pubDate>Fri, 02 Feb 2018 09:24:43 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/tool-improve-work-efficiency/</guid>
+      <description>1. Git Bash 2. Gow 1 2 3 4 5 6 7 8 9 10 awk basename bash bc bison bunzip2 bzip2 bzip2 bzip2recover cat chgrp chmod chown chroot cksum clear cp csplit curl cut dc dd df diff diff3 dirname dos2unix du egrep env expand expr factor fgrep flex fmt fold gawk gdbm3 gfind gow grep gsar gsort gzip head history5 hostid hostname id indent install join jwhois less lesskey libcurl libeay32 libiconv-2 libidn-11 libintl-2 libintl3 libssl32 ln ls m4 make md5sum mkdir mkfifo mknod msys-1 msys-regex-1 msys-termcap-0 mv nano ncftp nl od pageant paste patch pathchk pcre3 plink pr printenv printf pscp psftp putty puttygen pwd readline5 regex2 rm rmdir scp sdiff sed seq sftp sha1sum shar sleep split ssh ssleay32 su sum sync tac tail tar tee test touch tr uname unexpand uniq unix2dos unlink unrar unrar3 unshar uudecode uuencode vim wc wget whereis which whoami xargs yes zip zip32z64 3.</description>
+    </item>
+    
+    <item>
+      <title>git合并上游仓库即同步fork后的仓库</title>
+      <link>https://wdd.js.org/posts/2018/fork-sync-learn/</link>
+      <pubDate>Wed, 31 Jan 2018 17:16:44 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/fork-sync-learn/</guid>
+      <description>1. 前提说明 仓库A: http://gitlab.tt.cc:30000/fe/omp.git 仓库B: 仓库Bfork自仓库A, 仓库A的地址是：http://gitlab.tt.cc:30000/wangdd/omp.git 某一时刻，仓库A更新了。仓库B需要同步上游分支的更新。
+2. 本地操作 // 1 查看远程分支 ➜ omp git:(master) git remote -v origin	http://gitlab.tt.cc:30000/wangdd/omp.git (fetch) origin	http://gitlab.tt.cc:30000/wangdd/omp.git (push) // 2 添加一个远程同步的上游仓库 ➜ omp git:(master) git remote add upstream http://gitlab.tt.cc:30000/fe/omp.git ➜ omp git:(master) git remote -v origin	http://gitlab.tt.cc:30000/wangdd/omp.git (fetch) origin	http://gitlab.tt.cc:30000/wangdd/omp.git (push) upstream	http://gitlab.tt.cc:30000/fe/omp.git (fetch) upstream	http://gitlab.tt.cc:30000/fe/omp.git (push) // 3 拉去上游分支到本地，并且会被存储在一个新分支upstream/master ➜ omp git:(master) git fetch upstream remote: Counting objects: 4, done. remote: Compressing objects: 100% (4/4), done.</description>
+    </item>
+    
+    <item>
+      <title>linux常用命令使用场景总结</title>
+      <link>https://wdd.js.org/posts/2018/linux-common-cmds/</link>
+      <pubDate>Wed, 31 Jan 2018 09:58:33 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/linux-common-cmds/</guid>
+      <description>1. lsof: 根据端口号查监听的进程号 参考
+使用模型：lsof -i :port
+已知某服务占用8088端口，请查出使用该端口的进程号
+lsof -i :8088 lsof（list open files）是一个查看当前系统文件的工具。在linux环境下，任何事物都以文件的形式存在，通过文件不仅仅可以访问常规数据，还可以访问网络连接和硬件。如传输控制协议 (TCP) 和用户数据报协议 (UDP) 套接字等，系统在后台都为该应用程序分配了一个文件描述符，该文件描述符提供了大量关于这个应用程序本身的信息。lsof命令详情
+2. grep: 搜索神器 参考： GNU Grep 3.0
+--color:高亮显示匹配到的字符串 -v：显示不能被pattern匹配到的 -i：忽略字符大小写 -o：仅显示匹配到的字符串 -q：静默模式，不输出任何信息 -A#：after，匹配到的后#行 -B#：before，匹配到的前#行 -C#：context，匹配到的前后各#行 -E：使用ERE，支持使用扩展的正则表达式 －c：只输出匹配行的计数。 －I：不区分大 小写(只适用于单字符)。 －h：查询多文件时不显示文件名。 －l：查询多文件时只输出包含匹配字符的文件名。 －n：显示匹配行及 行号。 - m: 匹配多少个关键词之后就停止搜索 －s：不显示不存在或无匹配文本的错误信息。 －v：显示不包含匹配文本的所有行。 2.1. 普通：搜索trace.log 中含有ERROR字段的日志 grep ERROR trace.log 2.2. 输出文件：可以将日志输出文件中 grep ERROR trace.log &amp;gt; error.log
+2.3. 反向：搜索不包含ERROR字段的日志 grep -v ERROR trace.log
+2.4. 向前：搜索包含ERROR,并且显示ERROR前10行的日志 grep -B 10 ERROR trace.</description>
+    </item>
+    
+    <item>
+      <title>猴子都能懂的教程：向kindle推送电子书</title>
+      <link>https://wdd.js.org/posts/2018/send-book-to-kindle/</link>
+      <pubDate>Tue, 30 Jan 2018 19:55:43 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/send-book-to-kindle/</guid>
+      <description>原文链接
+读书，嗯，读书
+1. 教程目的 通过邮件向kindle推送一本电子书 2. 前期准备 一台可以上网的电脑 一个电子书 一个kindle 3. 你的kindle邮箱是什么？ 登录亚马逊，地址：https://www.amazon.cn/ref=nav_logo 鼠标移动到导航栏上的我的账户 点击下拉框中的：管理我的内容和设备 会出现下面tab页面 =&amp;gt; 设置 =&amp;gt; 个人文档设置 =&amp;gt; 里面会有电子邮件地址 里面的邮箱即为你邮件发送的收件方地址。例如：abcd@kindle.cc 4. 如何设置邮箱白名单？ 并不是所有邮件都能发送到abcd@kindle.cc, 需要在上一步的同一个页面设置已认可的发件人电子邮箱, 只有来自认可的邮箱的电子书，亚马逊才会接受。你需要添加认可的电子邮箱。例如发件的邮箱写为：abcd@qq.com
+5. 邮件该怎么写？ 必须使用上一步白名单里面的邮箱来发送
+收件人写你的kindle邮箱 主题写：Convert 在邮件的附件中添加准备好的电子书 点击发送 6. 在哪里查找已经发送的电子书？ 还是在管理我的内容和设备页面 点击我的内容 在显示中选择：个人文档 例如你可以在截图中看到，我刚刚上传的一本：you dont konw js 如果没有找到你已经发送的书籍，请再次检查一下，你的kindle邮箱和白名单中的邮箱是否正确
+7. 如何向kindle推送电子书 紧接着上一步.
+选择要发送的书籍 点击发送 在出现的弹出框中，在下拉框中选择你的kindle设备 点击发送 kindle链接WiFi，进入我的图书馆，点击设备，同步 8. 使用体验的思考？ 之前用多看阅读，WIFI传书非常方便。kindle的上传图书其实蛮复杂的，过程中可能直接过滤掉一些用户。
+我在想为什么亚马逊不在：管理我的内容和设备页面添加一个上传图书的按钮呢？
+9. 重点划线 一封电子邮件最多只能包含25个附件，并且最多只能发送至15个不同的〖发送至Kindle〗电子邮箱。文档的总大小不得超过50MB。 在电子邮件主题中输入“Convert”以将您的文档转换为Kindle格式，然后再将其发送至您的设备以及【管理我的内容和设备】页面中的【我的内容】 如果您的设备或阅读软件暂时无法连接无线网络，我们最多可以为您保存个人文档60天 Kindle个人文档服务支持以下文件类型： Kindle格式（.MOBI、.AZW） Microsoft Word（.DOC、.DOCX） HTML（.HTML、.HTM） RTF (.RTF) Text (.</description>
+    </item>
+    
+    <item>
+      <title>查询字符串的最小数据集</title>
+      <link>https://wdd.js.org/posts/2018/query-string-mds/</link>
+      <pubDate>Tue, 30 Jan 2018 10:45:37 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/query-string-mds/</guid>
+      <description>1. 什么是查询字符串？ 给个例子：
+https://en.wikipedia.org/w/load.php?debug=false&amp;amp;lang=en&amp;amp;modules=startup&amp;amp;only=scripts&amp;amp;skin=vector 查询字符串是url中问号后边的部分，形式如：key1=value1&amp;amp;key2=value2&amp;amp;key3=value3。这部分称为查询(query)组件。
+2. 查询组件的最小数据集 参数名： 是否必须： 是否是精确查询： 描述： 示例：必须要有，比如说如果查询的是一个时间。那么时间的格式有很多种，务必给出示例 约束： 字符串：最小长度，最大长度。[3,10] 数值型：取值区间。[4, 10] 枚举型：枚举字符串。1代表男，0代表女 3. 举例说明：一个用户查询的接口 参数名 是否必须 是否是精确查询 描述 示例 约束 email 否 是 邮箱 test@tt.cc 长度：[6, 10] age 否 是 年龄 18 取值：[0, 110] gender 否 是 性别 1 1代表男，0代表女 userName 否 否 用户名 alex 长度：[4, 40] token 是 是 认证令牌 90sdflkajf0asdflkja 长度：60 registerBeginTime 否 是 开始注册时间，返回的结果都是该时间以后的数据 2018-09-20 17:23:00 长度：19 很多资源
+4. 参考 wikipedia:Query_string </description>
+    </item>
+    
+    <item>
+      <title>如何写好接口文档？</title>
+      <link>https://wdd.js.org/posts/2018/how-to-write-better-api-docs/</link>
+      <pubDate>Mon, 29 Jan 2018 22:01:55 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/how-to-write-better-api-docs/</guid>
+      <description>1. HTTP携带信息的方式 url headers body: 包括请求体，响应体 2. 分离通用信息 一般来说，headers里的信息都是通用的，可以提前说明，作为默认参数
+3. 路径中的参数表达式 URL中参数表达式使用{}的形式，参数包裹在大括号之中{paramName}
+例如：
+/api/user/{userId} /api/user/{userType}?age={age}&amp;amp;gender={gender} 4. 数据模型定义 数据模型定义包括：
+路径与查询字符串参数模型 请求体参数模型 响应体参数模型 数据模型的最小数据集：
+名称 是否必须 说明 “最小数据集”（MDS）是指通过收集最少的数据，较好地掌握一个研究对象所具有的特点或一件事情、一份工作所处的状态，其核心是针对被观察的对象建立起一套精简实用的数据指标。最小数据集的概念起源于美国的医疗领域。最小数据集的产生源于信息交换的需要，就好比上下级质量技术监督部门之间、企业与质量技术监督部门之间、质量技术监督部门与社会公众之间都存在着信息交换的需求。
+一些文档里可能会加入字段的类型，但是我认为这是没必要的。以为HTTP传输的数据往往都需要序列化，大部分数据类型都是字符串。一些特殊的类型，例如枚举类型的字符串，可以在说明里描述。
+另外：数据模型非常建议使用表格来表现。
+举个栗子🌰：
+名称 是否必须 说明 userType 是 用户类型。commom表示普通用户，vip表示vip用户 age 否 用户年龄 gender 否 用户性别。1表示男，0表示女 5. 请求示例 // general POST http://www.testapi.com/api/user // request payload { &amp;#34;name&amp;#34;: &amp;#34;qianxun&amp;#34;, &amp;#34;age&amp;#34;: 14, &amp;#34;like&amp;#34;: [&amp;#34;music&amp;#34;, &amp;#34;reading&amp;#34;], &amp;#34;userType&amp;#34;: &amp;#34;vip&amp;#34; } // response { &amp;#34;id&amp;#34;: &amp;#34;asdkfjalsdkf&amp;#34; } 6. 异常处理 异常处理最小数据集</description>
+    </item>
+    
+    <item>
+      <title>ztree-note</title>
+      <link>https://wdd.js.org/posts/2018/ztree-note/</link>
+      <pubDate>Mon, 29 Jan 2018 21:47:32 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/ztree-note/</guid>
+      <description>1. ztree获得顶层节点 treeObj.getNodesByParam(&amp;#39;level&amp;#39;,0,null); </description>
+    </item>
+    
+    <item>
+      <title>thinkpad 系列恢复F1-F12原始功能，切换ctrl和fn的位置</title>
+      <link>https://wdd.js.org/posts/2018/thinkpad-f1-f12/</link>
+      <pubDate>Mon, 29 Jan 2018 21:46:43 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/thinkpad-f1-f12/</guid>
+      <description>1. 实验准备 T450笔记本 2. 进入BIOS 重启电脑 一直不停按enter 按F1 选择Keyboard/mouse 3. 恢复F1-F2恢复原始功能: fn and ctrl key swap [enabled]
+4. 切换ctrl和ctrl的位置: F1-F12 as primary function [enabled]
+5. 保存，退出 </description>
+    </item>
+    
+    <item>
+      <title>win7 ie11 开发者工具打开后一片空白</title>
+      <link>https://wdd.js.org/posts/2018/ie11-without-devtool/</link>
+      <pubDate>Mon, 29 Jan 2018 21:43:12 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/ie11-without-devtool/</guid>
+      <description>解决方法安装Windows7补丁：KB3008923； 下载地址： http://www.microsoft.com/en-us/download/details.aspx?id=45134 （32位） http://www.microsoft.com/zh-CN/download/details.aspx?id=45154 （64位）</description>
+    </item>
+    
+    <item>
+      <title>CSTA 呼叫模型简介</title>
+      <link>https://wdd.js.org/posts/2018/csta-call-model-overview/</link>
+      <pubDate>Mon, 29 Jan 2018 21:35:24 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/csta-call-model-overview/</guid>
+      <description>1. 内容概要 CSTA协议与标准概述 CSTA OpenScape 语音架构概述 2. CSTA协议标准 2.1. 什么是CSTA ? CSTA：电脑支持通讯程序(Computer Supported TelecommunicationsApplications)
+基本的呼叫模型在1992建立，后来随着行业发展，呼叫模型也被加强和扩展，例如新的协议等等
+CSTA是一个应用层接口，用来监控呼叫，设备和网络
+CSTA创建了一个通讯程序的抽象层:
+CSTA并不依赖任何底层的信令协议 E.g.H.323,SIP,Analog,T1,ISDN,etc. CSTA并不要求用户必须使用某些设备 E.g.intelligentendpoints,low-function/stimulusdevices,SIPSignalingmodels-3PCC vs. Peer/Peer 适用不同的操作模式
+第三方呼叫控制 一方呼叫控制 CSTA的设计目标是为了提高各种CSTA实现之间的移植性
+规范化呼叫模型和行为 完成服务、事件定义 规范化标准 3. CSTA 标准的进化史 阶段1 (发布于 June ’92)
+40 特性, 66 页 (服务定义) 专注于呼叫控制 阶段2 (发布于 Dec. ’94)
+77 特性, 145 页 (服务定义) I/O &amp;amp; 语音单元服务, 更多呼叫控制服务 阶段3 - CSTA Phase II Features &amp;amp; versit CTI Technology
+发布于 Dec. ‘98 136 特性, 650 页 (服务定义) 作为ISO 标准发布于 July 2000 发布 CSTA XML (ECMA-323) June 2004 发布 “Using CSTA with Voice Browsers” (TR/85) Dec.</description>
+    </item>
+    
+    <item>
+      <title>ssh 无密码登录远程服务器</title>
+      <link>https://wdd.js.org/posts/2018/ssh-login-without-password/</link>
+      <pubDate>Mon, 29 Jan 2018 21:27:38 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/ssh-login-without-password/</guid>
+      <description>1. 前提说明 A(本机 mac item2) B(远程机器 ip:a.b.c.d centos)
+2. 过程1 3. 生成public_key与private_key 在本机上输入，可以一路回车，不用说明
+ssh-keygen -t rsa 最终会在~/.ssh/下生成两个文件
+id_rsa id_rsa.pub 4. 将public_key上传到远程服务器 注意：在本机上输入
+// 回车之后，需要输入远程主机B的登录密码 scp ~/.ssh/id_rsa.pub root@a.b.c.d:/root/.ssh 5. 登录远程主机 在本机上输入
+// 需要输入远程主机的密码 ssh root@a.b.c.d // 进到远程主机~/.ssh/目录下, 此目录下应该已经有了之前上传的id_rsa.pub文件 // 如果目录下没有authorized_keys文件，那么将id_rsa.pub改名成authorized_keys mv id_rsa.pub authorized_keys // 如果远程目录下已经存在authorized_keys文件，可以将id_rsa.pub追加进去 cat id_rsa.pub &amp;gt;&amp;gt; authorized_keys 6. 本机配置 注意，此时需要退出ssh, 在本机上执行以下命令
+vi ~/.ssh/config 在config文件中追加以下内容，并保存退出 Host serverName Hostname a.b.c.d Port 22 User root IdentityFile ~/.ssh/id_rsa 然后试一下，只需要ssh serverName, 就可以直接登录远程服务器，是不是很爽
+7. 参考文献 scp 命令教程 mac用iterm2实现ssh，怎么像SecureCRT一样保存IP和账号密码？ 8.</description>
+    </item>
+    
+    <item>
+      <title>组织在召唤：如何免费获取一个js.org的二级域名</title>
+      <link>https://wdd.js.org/posts/2018/how-to-get-jsorg-sub-domain/</link>
+      <pubDate>Mon, 29 Jan 2018 18:08:03 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/how-to-get-jsorg-sub-domain/</guid>
+      <description>之前我是使用wangduanduan.github.io作为我的博客地址，后来觉得麻烦，有把博客关了。最近有想去折腾折腾。 先看效果：wdd.js.org
+如果你不了解js.org可以看看我的这篇文章:一个值得所有前端开发者关注的网站js.org
+1. 前提 已经有了github pages的一个博客，并且博客中有内容，没有内容会审核不通过的。我第一次申请域名，就是因为内容太少而审核不通过。 2. 想好自己要什么域名？ 比如你想要一个：wdd.js.org的域名，你先在浏览器里访问这个地址，看看有没有人用过，如果已经有人用过，那么你就只能想点其他的域名了。
+3. fork js.org的项目，添加自己的域名 1 fork https://github.com/js-org/dns.js.org 2 修改你fork后的仓库中的cnames_active.js文件，加上自己的一条域名，最好要按照字母顺序
+如下图所示，我在第1100行加入。注意，不要在该行后加任何注释。
+&amp;#34;wdd&amp;#34;: &amp;#34;wangduanduan.github.io&amp;#34;, 3 commit
+4. 加入CNAME文件 我是用hexo和next主题作为博客的模板。其中我在gh-pages分支写博客，然后部署到master分支。
+我在我的gh-pages分支的source目录下加入CNAME文件, 内容只有一行
+wdd.js.org 将博客再次部署好，如果CNAME生效的话，你已经无法从原来的地址访问：wangduanduan.github.io， 这个博客了。
+5. 向js.org项目发起pull-request 找到你fork后的项目，点击 new pull request, 向原来的项目发起请求。
+然后你可以在js-org/dns.js.org项目的pull requests看到你的请求，当这个请求被合并时，你就拥有了js.org的二级域名。</description>
+    </item>
+    
+    <item>
+      <title>不常用却很有妙用的事件及方法</title>
+      <link>https://wdd.js.org/posts/2018/browser-events/</link>
+      <pubDate>Mon, 29 Jan 2018 14:15:25 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/browser-events/</guid>
+      <description>1. visibilitychange事件 触发条件：浏览器标签页被隐藏或显示的时候会触发visibilitychange事件.
+使用场景：当标签页显示或者隐藏时，触发一些业务逻辑
+document.addEventListener(&amp;#34;visibilitychange&amp;#34;, function() { console.log( document.visibilityState ); }); 2. storage事件 触发条件：使用localStorage or sessionStorage存储或者修改某个本地存储时
+使用场景：标签页间通信
+// AB页面同源 // 在A 页面 window.addEventListener(&amp;#39;storage&amp;#39;, (e) =&amp;gt; {console.log(e)}) // 在B 页面，向120打个电话 localStorage.setItem(&amp;#39;makeCall&amp;#39;,&amp;#39;120&amp;#39;) // 然后可以在A页面间有输出, 可以看出A页面 收到了B页面的通知 ...key: &amp;#34;makeCall&amp;#34;, oldValue: &amp;#34;119&amp;#34;, newValue: &amp;#34;120&amp;#34;, ... 3. beforeunload事件 触发条件：当页面的资源将要卸载(及刷新或者关闭标签页前). 当页面依然可见，并且该事件可以被取消只时
+使用场景：关闭或者刷新页面时弹窗确认，关闭页面时向后端发送报告等
+window.addEventListener(&amp;#34;beforeunload&amp;#34;, function (e) { var confirmationMessage = &amp;#34;\o/&amp;#34;; e.returnValue = confirmationMessage; // Gecko, Trident, Chrome 34+ return confirmationMessage; // Gecko, WebKit, Chrome &amp;lt;34 }); 4.</description>
+    </item>
+    
+    <item>
+      <title>Nodejs 服务端框架合集(78个)</title>
+      <link>https://wdd.js.org/posts/2018/nodejs-server-frameworks/</link>
+      <pubDate>Mon, 29 Jan 2018 14:13:44 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/nodejs-server-frameworks/</guid>
+      <description>没有什么事情是一个框架解决不了的，如果有，就再找一个。
+Photo by 贝莉儿 NG on Unsplash
+1. MVC frameworks 2. Sinatra-like 这些框架提供了丰富的配置，比Rails-like或full-stack少。
+Express hapi flatiron locomotive total.js koa.js TWEE.IO diet.js Flicker.js ZinkyJS 2.1. Rails-like 正确呈现您的项目。从包含的模板创建自己的艺术
+Nodal Strapi CompoundJS geddy Sails.js Adonis RhapsodyJS ThinkJS Trails KambojaJS JS-Web 3. Full-stack frameworks 这就是Node.js真正闪耀的地方。全栈MVC框架与脚手架，模板引擎，websocket和持久性库捆绑在一起，允许您构建实时可伸缩的Web应用程序。
+Catberry.js AllcountJS Derby Feathers SocketCluster SocketStream MEAN.js MEAN.io Meteor Meatier TWEE.IO Mojito Seeds.js SANE COKE Sleekjs Danf Catberry Nuke.js We.js seneca.js Keystone.js Horizon Apogeu 4. REST API frameworks 对于那些使用富客户端/前端MVC框架（或不）的客户，只需要启动一个快速的Node.</description>
+    </item>
+    
+    <item>
+      <title>You-Dont-Need 你不需要系列</title>
+      <link>https://wdd.js.org/posts/2018/you-dont-need/</link>
+      <pubDate>Mon, 29 Jan 2018 14:11:36 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/you-dont-need/</guid>
+      <description>1. You-Dont-Need-JavaScript CSS是强大的，你可以做很多事情没有JS。 本文教你使用原生CSS做下面的事情。
+内容目录
+手风琴/切换 圆盘传送带 检查复选框的计数器 翻转点击 Textfield上的浮动标签 字体（拉丁） 游戏 悬停/弹出信息 图片廊 菜单 移动菜单关闭画布 汉堡菜单 花式菜单 莫代尔/弹出 鼠标跟踪 视差滚动 标签 待办事项列表 提示 树视图 Twitter心动画 动态图像着色 连锁反应 响应式计数器显示不适合屏幕的项目数量 可以看一下纯CSS的例子
+2. You-Dont-Need-Lodash-Underscore Lodash和Underscore是伟大的现代JavaScript实用程序库，它们被前端开发人员广泛使用。但是，如果您将目标锁定为现代浏览器，则可能会发现，许多方法已经得到ES5和ES6的原生支持。如果你想要你的项目需要更少的依赖，并且你清楚的知道你的目标浏览器，那么你可能不需要Lodash / Underscore。
+来自开发者的声音
+在代码变臃肿之前，请使用原生JS对象和数组工具函数. —Cody Lindley, Author of jQuery Cookbook and JavaScript Enlightenment
+你可能不需要lodash. 有许多好用的原生方法了. —Daniel Lamb, Computer Scientist, Technical Reviewer of Secrets of the JavaScript Ninja and Functional Programming in JavaScript
+我想不是，但我想要它. —Tero Parviainen, Author of build-your-own-angular</description>
+    </item>
+    
+    <item>
+      <title>Nodejs alpine 基础docker镜像构建</title>
+      <link>https://wdd.js.org/posts/2018/nodejs-alpine-docker/</link>
+      <pubDate>Mon, 29 Jan 2018 14:10:15 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/nodejs-alpine-docker/</guid>
+      <description>1. 系统环境 centos7 内核：3.10.0-514.26.2.el7.x86_64 安装docker要求内核版本不低于3.10 2. 安装docker yum install docker // 安装docker systemctl start docker.service // 启动docker systemctl enable docker.service // 设置开机启动 3. Nodejs 镜像选择 REPOSITORY TAG IMAGE ID CREATED SIZE docker.io/node 9.2.1-slim 69c9f9292fa4 3 days ago 230 MB docker.io/node 9.2.1-alpine afdc3aaaf748 3 days ago 67.46 MB docker.io/node latest 727b047a1f4e 3 days ago 675.6 MB docker.io/iron/node latest 9ca501065d18 20 months ago 18.56 MB 选择镜像的标准
+官方的 经常维护的 体积小的 要有yarn 和 npm node版本要高 最终选择 node:9.</description>
+    </item>
+    
+    <item>
+      <title>油猴子脚本 - 我的地盘我做主</title>
+      <link>https://wdd.js.org/posts/2018/tampermonkey/</link>
+      <pubDate>Mon, 29 Jan 2018 13:58:37 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/tampermonkey/</guid>
+      <description>当你用浏览器访问某个网页时，你可曾想过，你看到的这个网页，实际上是属于你自己的。
+打个比喻：访问某个网站就好像是网购了一筐鸡蛋，鸡蛋虽然是养鸡场生产的，但是这个蛋我怎么吃，你养鸡场管不着。
+当然了，对于很多人来说，鸡蛋没有别的吃法，鸡蛋只能煮着吃。
+你可以看如下的页面：当你在某搜索引擎上搜索前端开发时
+大多数人看到的页面是这样的, 满屏的广告，满屏的推广，满屏的排名，满屏的中间地址跳转，满屏的流量劫持, 还有莆田系
+但是有些人的页面却是这样的：清晰，自然，链接直达，清水出芙蓉，天然去雕饰 这就是油猴子脚本干的事情， 当然，它能干的事情，远不止如此。它是齐天大圣孙悟空，有七十二变。
+1. 什么是油猴子脚本？ Greasemonkey，简称GM，中文俗称为“油猴”，是Firefox的一个附加组件。它让用户安装一些脚本使大部分HTML为主的网页于用户端直接改变得更方便易用。随着Greasemonkey脚本常驻于浏览器，每次随着目的网页打开而自动做修改，使得运行脚本的用户印象深刻地享受其固定便利性。
+Greasemonkey可替网页加入些新功能（例如在亚马逊书店嵌入商品比价功能）、修正网页错误、组合来自不同网页的数据、或者数繁不及备载的其他功能。写的好的Greasemonkey脚本甚至可让其输出与被修改的页面集成得天衣无缝，像是原本网页里的一部分。 来自维基百科
+2. 如何安装油猴子插件？ 在google商店搜索Tampermonkey, 安装量最高的就是它。
+3. 如何写油猴子脚本？ 油猴子脚本有个新建脚本页面，在此页面可以创建脚本。具体教程可以参考。
+中文 GreaseMonkey 用户脚本开发手册 GreaseMonkey（油猴子）脚本开发 深入浅出 Greasemonkey Greasemonkey Hacks/Getting Started 4. 如何使用他人的脚本？ greasyfork网站提供很多脚本，它仿佛是代码界的github, 可以在该网站搜到很多有意思的脚本。
+5. 有哪些好用的脚本？ 有哪些超神的油猴脚本?
+或者你可以在greasyfork网站查看一些下载量排行</description>
+    </item>
+    
+    <item>
+      <title>【译】一个值得所有前端开发者关注的网站 js.org</title>
+      <link>https://wdd.js.org/posts/2018/js-org/</link>
+      <pubDate>Mon, 29 Jan 2018 13:52:42 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/js-org/</guid>
+      <description>二十年后，域js.org第一次注册，它终于服务于其明显的目的 - JavaScript社区。
+从一开始，对JavaScript的看法各不相同 - 有些人喜欢的语言，有人讨厌它。但是，对于使JavaScript成为最受欢迎的编程语言之一的社区的威力，应该毫无疑问。 为了与社区的自由开放的心态保持一致，JS.ORG为开发人员及其项目免费提供了子域名。自第一步以来，我们还专注于跟踪JavaScript趋势并传播有关它的新闻。
+贡献是欢迎：如果你有热情开始一个合作项目，或者如果你想成为JS.ORG的成员，并贡献JS.ORG，随时与我联系。
+1. DNS 如果您是JavaScript开发人员，您可能已经听说过 - 或者甚至已经使用GitHub页面来托管您的内容。 DNS.JS.ORG补充GitHub提供的免费网络空间，并提供了一个适合您项目的自由和时尚的网址。
+2. STARTS STATS.JS.ORG获取GitHub上最重要的JavaScript项目的统计参数，并将它们填充到10k行的巨型表中。这个项目旨在使JavaScript的趋势可见。
+3. NEWS 你有什么东西要与社区分享或想阅读其他JavaScript爱好者的东西吗？ NEWS.JS.ORG提供了一种方便的传播，消费和讨论JavaScript项目。
+4. WASM WebAssembly（或简称wasm）是一种用于Web平台上的低级代码的新的二进制语法。 WASM.NEWS是JS.ORG计划的一个分支，并作为这个即将到来的主题的新闻聚合。</description>
+    </item>
+    
+    <item>
+      <title>追本溯源：substr与substring历史漫话</title>
+      <link>https://wdd.js.org/posts/2018/substr-and-substring-history/</link>
+      <pubDate>Mon, 29 Jan 2018 13:46:31 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/substr-and-substring-history/</guid>
+      <description>引子： 很多时候，当我要字符串截取时，我会想到substr和substring的方法，但是具体要怎么传参数时，我总是记不住。哪个应该传个字符串长度，哪个又应该传个开始和结尾的下标，如果我不去查查这两个函数，我始终不敢去使用它们。所以我总是觉得，这个两个方法名起的真是蹩脚。然而事实是这样的吗？
+看来是时候扒一扒这两个方法的历史了。
+1. 基因追本溯源 在编程语言的历史长河中，曾经出现过很多编程语言。然而大浪淘沙，铅华洗尽之后，很多早已折戟沉沙，有些却依旧光彩夺目。那么stubstr与substring的DNA究竟来自何处？
+1950与1960年代
+1954 - FORTRAN 1958 - LISP 1959 - COBOL 1964 - BASIC 1970 - Pascal 1967-1978：确立了基础范式
+1972 - C语言 1975 - Scheme 1978 - SQL (起先只是一种查询语言，扩充之后也具备了程序结构) 1980年代：增强、模块、性能
+1983 - C++ (就像有类别的C) 1988 - Tcl 1990年代：互联网时代
+1991 - Python 1991 - Visual Basic 1993 - Ruby 1995 - Java 1995 - Delphi (Object Pascal) 1995 - JavaScript 1995 - PHP 2009 - Go 2014 - Swift (编程语言) 1.</description>
+    </item>
+    
+    <item>
+      <title>熟练使用使用jQuery Promise (Deferred)</title>
+      <link>https://wdd.js.org/posts/2018/jquery-deferred/</link>
+      <pubDate>Mon, 29 Jan 2018 13:43:23 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/jquery-deferred/</guid>
+      <description>1. 情景再现 以前用nodejs写后端程序时，遇到Promise这个概念，这个东西好呀！不用谢一层一层回调，直接用类似于jQuery的连缀方式。后来遇到bluebird这个库，它就是Promise库中很有名的。我希望可以把Promise用在前端的ajax请求上，但是我不想又引入bluebird。后来发现，jquery本身就具有类似于Promise的东西。于是我就jquery的Promise写一些异步请求。
+2. 不堪回首 看看一看我以前写异步请求的方式
+// 函数定义 function sendRequest(req,successCallback,errorCallback){ $.ajax({ ... ... success:function(res){ successCallback(res); }, error:function(res){ errorCallback(res); } }); } // 函数调用,这个函数的匿名函数写的时候很容易出错，而且有时候难以理解 sendRequest(req,function(res){ //请求成功 ... },function(res){ //请求失败 ... }); 3. 面朝大海 下面是我希望的异步调用方式
+sendRequest(req) .done(function(res){ //请求成功 ... }) .fail(function(req){ //请求失败 ... }); 4. 废话少说，放‘码’过来 talk is cheap, show me the code
+// 最底层的发送异步请求，做成Promise的形式 App.addMethod(&amp;#39;_sendRequest&amp;#39;,function(path,method,payload){ var dfd = $.Deferred(); $.ajax({ url:path, type:method || &amp;#34;get&amp;#34;, headers:{ sessionId:session.id || &amp;#39;&amp;#39; }, data:JSON.stringify(payload), dataType:&amp;#34;json&amp;#34;, contentType : &amp;#39;application/json; charset=UTF-8&amp;#39;, success:function(data){ dfd.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://wdd.js.org/posts/2018/cypress-basic-tutor/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/cypress-basic-tutor/</guid>
+      <description>title: cypress基础教程 tags:
+cypress 端到端测试 categories: [] date: 2018-07-12 16:43:00 1. 软件安装. 2. 安装cypress 安装cypress客户端：http://download.cypress.io/desktop 安装vscode编辑器：https://code.visualstudio.com/Download 3. 初始化 假如项目目录是 /test 打开cypress客户端， 点击箭头位置，通过资源管理器选择/test目录 如果/test没有cypress目录，那么cypress就会在test目录下新建cypress目录，并初始化一些文件 4. cypress目录分析 - cypress // cypress目录 ---- fixtures 测试数据配置文件，可以使用fixture方法读取 ---- integration 测试脚本文件 ---- plugin 插件文件 ---- support 支持文件 - cypress.json // cypress全局配置文件 5. 基本例子 一般流程
+访问某个页面 查找DOM进行交互，例如输入，点击，选择之类 进行断言 describe(&amp;#39;Hacker News登录测试&amp;#39;, () =&amp;gt; { it(&amp;#39;登录页面&amp;#39;, () =&amp;gt; { cy.visit(&amp;#39;https://news.ycombinator.com/login?goto=news&amp;#39;) cy.get(&amp;#39;input[name=&amp;#34;acct&amp;#34;]&amp;#39;).eq(0).type(&amp;#39;test&amp;#39;) cy.get(&amp;#39;input[name=&amp;#34;pw&amp;#34;]&amp;#39;).eq(0).type(&amp;#39;123456&amp;#39;) cy.get(&amp;#39;input[value=&amp;#34;login&amp;#34;]&amp;#39;).click() cy.get(&amp;#39;body&amp;#39;).should(&amp;#39;contain&amp;#39;, &amp;#39;Bad login&amp;#39;) }) }) 6. DOM选取 参考： https://docs.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Shells on 洞香春</title>
+    <link>https://wdd.js.org/shell/</link>
+    <description>Recent content in Shells on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 05 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wdd.js.org/shell/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>grep常用参考</title>
+      <link>https://wdd.js.org/shell/grep-docs/</link>
+      <pubDate>Sun, 05 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/shell/grep-docs/</guid>
+      <description>1. grep 常用参数 参考： GNU Grep 3.0
+--color:高亮显示匹配到的字符串 -v：显示不能被pattern匹配到的 -i：忽略字符大小写 -o：仅显示匹配到的字符串 -q：静默模式，不输出任何信息 -A#：after，匹配到的后#行 -B#：before，匹配到的前#行 -C#：context，匹配到的前后各#行 -E：使用ERE，支持使用扩展的正则表达式 －c：只输出匹配行的计数。 －I：不区分大 小写(只适用于单字符)。 －h：查询多文件时不显示文件名。 －l：查询多文件时只输出包含匹配字符的文件名。 －n：显示匹配行及 行号。 - m: 匹配多少个关键词之后就停止搜索 －s：不显示不存在或无匹配文本的错误信息。 －v：显示不包含匹配文本的所有行。 2. 普通：搜索trace.log 中含有ERROR字段的日志 grep ERROR trace.log 3. 输出文件：可以将日志输出文件中 grep ERROR trace.log &amp;gt; error.log 4. 反向：搜索不包含ERROR字段的日志 grep -v ERROR trace.log 5. 向前：搜索包含ERROR,并且显示ERROR前10行的日志 grep -B 10 ERROR trace.log 6. 向后：搜索包含ERROR字段，并且显示ERROR后10行的日志 grep -A 10 ERROR trace.log 7. 上下文：搜索包含ERROR字段，并且显示ERROR字段前后10行的日志 grep -C 10 ERROR trace.log 8. 多字段：搜索包含ERROR和DEBUG字段的日志 gerp -E &amp;#39;ERROR|DEBUG&amp;#39; trace.</description>
+    </item>
+    
+    <item>
+      <title>Shell 书籍和资料收藏</title>
+      <link>https://wdd.js.org/shell/star-collect/</link>
+      <pubDate>Sun, 05 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/shell/star-collect/</guid>
+      <description>shell 自动化测试 https://github.com/bats-core/bats-core shell精进 https://github.com/NARKOZ/hacker-scripts https://github.com/trimstray/the-book-of-secret-knowledge https://legacy.gitbook.com/book/learnbyexample/command-line-text-processing https://github.com/dylanaraps/pure-bash-bible https://github.com/dylanaraps/pure-sh-bible https://github.com/Idnan/bash-guide https://github.com/denysdovhan/bash-handbook https://pubs.opengroup.org/onlinepubs/9699919799/utilities/contents.html https://github.com/jlevy/the-art-of-command-line https://google.github.io/styleguide/shell.xml https://wiki.bash-hackers.org/start https://linuxguideandhints.com/ 安全加固 https://www.lisenet.com/2017/centos-7-server-hardening-guide/ https://highon.coffee/blog/security-harden-centos-7/ https://github.com/trimstray/the-practical-linux-hardening-guide https://github.com/decalage2/awesome-security-hardening https://www.hackingarticles.in/ https://github.com/toniblyx/my-arsenal-of-aws-security-tools </description>
+    </item>
+    
+    <item>
+      <title>Ack 在contab中无法查到关键词</title>
+      <link>https://wdd.js.org/shell/contab-ack/</link>
+      <pubDate>Fri, 18 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/shell/contab-ack/</guid>
+      <description>手工执行，可以获得预期结果，但是在crontab中，却查不到结果。
+stage_count=$(ack -h &amp;#34;\- name:&amp;#34; -t yaml | wc -l) 最终使用--nofilter参数，解决了问题。
+stage_count=$(ack --nofilter -h &amp;#34;\- name:&amp;#34; -t yaml | wc -l) 参考
+https://stackoverflow.com/questions/55777520/ack-fails-in-cronjob-but-runs-fine-from-commandline </description>
+    </item>
+    
+    <item>
+      <title>常用shell技巧</title>
+      <link>https://wdd.js.org/shell/all-in-one/</link>
+      <pubDate>Tue, 07 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/shell/all-in-one/</guid>
+      <description>命令行编辑 向左移动光标	ctrl + b 向右移动光标	ctrl + f 移动光标到行尾	ctrl + e 移动光标到行首	ctrl + a 清除前面一个词	ctrl + w 清除光标到行首	ctrl + u 清除光标到行尾	ctrl + k 命令行搜索	ctrl + r 解压与压缩 1、压缩命令： 命令格式：
+tar -zcvf 压缩文件名 .tar.gz 被压缩文件名 可先切换到当前目录下，压缩文件名和被压缩文件名都可加入路径。
+2、解压缩命令： 命令格式：
+tar -zxvf 压缩文件名.tar.gz 解压缩后的文件只能放在当前的目录。
+crontab 每隔x秒执行一次 每隔5秒
+* * * * * for i in {1..12}; do /bin/cmd -arg1 ; sleep 5; done 每隔15秒
+* * * * * /bin/cmd -arg1 * * * * * sleep 15; /bin/cmd -arg1 * * * * * sleep 30; /bin/cmd -arg1 * * * * * sleep 45; /bin/cmd -arg1 awk从第二行开始读取 awk &amp;#39;NR&amp;gt;2{print $1}&amp;#39; 查找大文件，并清空文件内容 find /var/log -type f -size +1M -exec truncate --size 0 &amp;#39;{}&amp;#39; &amp;#39;;&amp;#39; switch case 语句 echo &amp;#39;Input a number between 1 to 4&amp;#39; echo &amp;#39;Your number is:\c&amp;#39; read aNum case $aNum in 1) echo &amp;#39;You select 1&amp;#39; ;; 2) echo &amp;#39;You select 2&amp;#39; ;; 3) echo &amp;#39;You select 3&amp;#39; ;; 4) echo &amp;#39;You select 4&amp;#39; ;; *) echo &amp;#39;You do not select a number between 1 to 4&amp;#39; ;; esac 以$开头的特殊变量 echo $$ # 进程pid echo $# # 收到的参数个数 echo $@ # 列表方式的参数 $1 $2 $3 echo $?</description>
+    </item>
+    
+  </channel>
+</rss>

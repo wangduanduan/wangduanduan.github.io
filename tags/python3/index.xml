@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>python3 on 洞香春</title>
+    <link>https://wdd.js.org/tags/python3/</link>
+    <description>Recent content in python3 on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 09 Feb 2018 13:15:13 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/python3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python3笔记 列表方法详解</title>
+      <link>https://wdd.js.org/posts/2018/python3-list-methods-collect/</link>
+      <pubDate>Fri, 09 Feb 2018 13:15:13 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/python3-list-methods-collect/</guid>
+      <description>1. 使用[]或者list()创建列表 user = [] user = list() 2. 使用list() 可以将其他类型转换成列表 # 将字符串转成列表 &amp;gt;&amp;gt;&amp;gt; list(&amp;#39;abcde&amp;#39;) [&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;c&amp;#39;, &amp;#39;d&amp;#39;, &amp;#39;e&amp;#39;] # 将元祖转成列表 &amp;gt;&amp;gt;&amp;gt; list((&amp;#39;a&amp;#39;,&amp;#39;b&amp;#39;,&amp;#39;c&amp;#39;)) [&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;c&amp;#39;] 3. 使用[offset]获取元素 或 修改元素 &amp;gt;&amp;gt;&amp;gt; users = [&amp;#39;a&amp;#39;,&amp;#39;b&amp;#39;,&amp;#39;c&amp;#39;,&amp;#39;d&amp;#39;,&amp;#39;e&amp;#39;] # 可以使用整数来获取某个元素 &amp;gt;&amp;gt;&amp;gt; users[0] &amp;#39;a&amp;#39; # 可以使用负整数来表示从尾部获取某个元素 &amp;gt;&amp;gt;&amp;gt; users[-1] &amp;#39;e&amp;#39; # 数组越界会报错 &amp;gt;&amp;gt;&amp;gt; users[100] Traceback (most recent call last): File &amp;#34;&amp;lt;stdin&amp;gt;&amp;#34;, line 1, in &amp;lt;module&amp;gt; IndexError: list index out of range &amp;gt;&amp;gt;&amp;gt; users[-100] Traceback (most recent call last): File &amp;#34;&amp;lt;stdin&amp;gt;&amp;#34;, line 1, in &amp;lt;module&amp;gt; IndexError: list index out of range # 修改某个元素 &amp;gt;&amp;gt;&amp;gt; users[0] = &amp;#39;wdd&amp;#39; &amp;gt;&amp;gt;&amp;gt; users [&amp;#39;wdd&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;c&amp;#39;, &amp;#39;d&amp;#39;, &amp;#39;e&amp;#39;] &amp;gt;&amp;gt;&amp;gt; 4.</description>
+    </item>
+    
+  </channel>
+</rss>

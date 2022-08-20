@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>vi on 洞香春</title>
+    <link>https://wdd.js.org/tags/vi/</link>
+    <description>Recent content in vi on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 11 Feb 2018 15:37:33 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/vi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VI必备常用场景快捷操作</title>
+      <link>https://wdd.js.org/posts/2018/vi-useful-expressions/</link>
+      <pubDate>Sun, 11 Feb 2018 15:37:33 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/vi-useful-expressions/</guid>
+      <description>1. 【字符串替换】快速修改配置文件版本号 语法：%s/str1/str2/g 将文件中所有的str1字符串替换成str2字符串。
+示例：某个服务从43版本升级到44版本
+// vi某个配置文件， 进入vi命令模式，输入 :%s/43/44/g 这样做的好处是不需要移动光标去查找，然后进入插入模式去修改版本，而是直接替换，这样比较快捷。
+注意：务必确认要被替换的字符串只有一个，否则可能造成误替换。
+更多用法：
+语法 功能 示例 :s/str1/str2/ 替换当前行第一个str1为str2 :s/44/45 :s/str1/str2/g 替换当前行所有的str1为str2 :s/44/45/g :%s/str1/str2/ 替换每一行第一个str1为str2 :%s/44/45 :%s/str1/str2/g 替换每一行所有的str1为str2 :%s/44/45/g 2. 光标移动 注意：可配合 :set nu显示行号
+语法 功能 示例 G 移动到这个档案的最后一行(常用) nG n 为数字。移动到这个档案的第 n 行。 20G 则会移动到这个档案的第20行 gg 移动到这个档案的第一行 n&amp;lt;Enter&amp;gt; n 为数字 光标向下移动 n 行 3&amp;lt;Enter&amp;gt; 向下移动三行 3. vi快捷手册 </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>visibilitychange on 洞香春</title>
+    <link>https://wdd.js.org/tags/visibilitychange/</link>
+    <description>Recent content in visibilitychange on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 11 Feb 2018 14:34:17 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/visibilitychange/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>不常用却很有妙用的事件及方法</title>
+      <link>https://wdd.js.org/posts/2018/useful-browser-events/</link>
+      <pubDate>Sun, 11 Feb 2018 14:34:17 +0000</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2018/useful-browser-events/</guid>
+      <description>1 visibilitychange事件 触发条件：浏览器标签页被隐藏或显示的时候会触发visibilitychange事件.
+使用场景：当标签页显示或者隐藏时，触发一些业务逻辑
+document.addEventListener(&amp;#34;visibilitychange&amp;#34;, function() { console.log( document.visibilityState ); }); 2 storage事件 触发条件：使用localStorage or sessionStorage存储或者修改某个本地存储时
+使用场景：标签页间通信
+// AB页面同源 // 在A 页面 window.addEventListener(&amp;#39;storage&amp;#39;, (e) =&amp;gt; {console.log(e)}) // 在B 页面，向120打个电话 localStorage.setItem(&amp;#39;makeCall&amp;#39;,&amp;#39;120&amp;#39;) // 然后可以在A页面间有输出, 可以看出A页面 收到了B页面的通知 ...key: &amp;#34;makeCall&amp;#34;, oldValue: &amp;#34;119&amp;#34;, newValue: &amp;#34;120&amp;#34;, ... 3 beforeunload事件 触发条件：当页面的资源将要卸载(及刷新或者关闭标签页前). 当页面依然可见，并且该事件可以被取消只时
+使用场景：关闭或者刷新页面时弹窗确认，关闭页面时向后端发送报告等
+window.addEventListener(&amp;#34;beforeunload&amp;#34;, function (e) { var confirmationMessage = &amp;#34;\o/&amp;#34;; e.returnValue = confirmationMessage; // Gecko, Trident, Chrome 34+ return confirmationMessage; // Gecko, WebKit, Chrome &amp;lt;34 }); 4 navigator.</description>
+    </item>
+    
+  </channel>
+</rss>
