@@ -27,15 +27,5 @@ removeOneAgentByIndex: function (index) { this.agents.splice(index, 1) } 然后�
 // Only in 2.2.0+: Also works with Array + index. removeOneAgentByIndex: function (index) { this.$delete(this.agents, index) } 另外Vue devtools有时候并不会实时的观测到组件属性的变化，即使点了Refresh按钮。如果点了Refresh按钮还不行，那建议你重新打开谷歌浏览器的devtools面板。</description>
     </item>
     
-    <item>
-      <title>如何高效地报告 Bug</title>
-      <link>https://wdd.js.org/posts/2018/how-to-report-bug-effective/</link>
-      <pubDate>Thu, 15 Mar 2018 16:39:06 +0000</pubDate>
-      
-      <guid>https://wdd.js.org/posts/2018/how-to-report-bug-effective/</guid>
-      <description> 1. 自问自答 该问题是否是必现的？ 该问题出现多久了？ 问题出现前后有没有什么异常？ 例如几分钟之前启动了其他的服务，有其他服务在更新 2. 要事实，不要推测 在bug报告里，要设法搞清什么是事实（例如：压测环境座席监控没有数据）。什么是推测（例如：我想问题可能出在XXX）。如果愿意的话，您可以省去推测，但是千万别省略事实。
-3. 要精确，不要模糊 3.1. 不要使用代词 3.2. 不要使用&amp;quot;没有&amp;quot; 4. 要详细，不要粗略 5. 建议要提供的数据 建议 错误日志, 程序员最喜欢bug里的错误日志，错误日志能说明一切，非常建议你能提供错误日志 必须 操作步骤, 有利于程序员去重现bug 可选 错误截图, 在描述不清楚的时候，错误截图时更好的方法 6. 参考 如何有效地报告 Bug </description>
-    </item>
-    
   </channel>
 </rss>

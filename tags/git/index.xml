@@ -22,15 +22,6 @@ copy aaa.txt 判断工作区是否clean if [ -z &amp;#34;$(git status --porcelai
     </item>
     
     <item>
-      <title>无坚不摧：打造极大提高工作效率的装备库</title>
-      <link>https://wdd.js.org/posts/2018/tool-improve-work-efficiency/</link>
-      <pubDate>Fri, 02 Feb 2018 09:24:43 +0000</pubDate>
-      
-      <guid>https://wdd.js.org/posts/2018/tool-improve-work-efficiency/</guid>
-      <description>1. Git Bash 2. Gow 1 2 3 4 5 6 7 8 9 10 awk basename bash bc bison bunzip2 bzip2 bzip2 bzip2recover cat chgrp chmod chown chroot cksum clear cp csplit curl cut dc dd df diff diff3 dirname dos2unix du egrep env expand expr factor fgrep flex fmt fold gawk gdbm3 gfind gow grep gsar gsort gzip head history5 hostid hostname id indent install join jwhois less lesskey libcurl libeay32 libiconv-2 libidn-11 libintl-2 libintl3 libssl32 ln ls m4 make md5sum mkdir mkfifo mknod msys-1 msys-regex-1 msys-termcap-0 mv nano ncftp nl od pageant paste patch pathchk pcre3 plink pr printenv printf pscp psftp putty puttygen pwd readline5 regex2 rm rmdir scp sdiff sed seq sftp sha1sum shar sleep split ssh ssleay32 su sum sync tac tail tar tee test touch tr uname unexpand uniq unix2dos unlink unrar unrar3 unshar uudecode uuencode vim wc wget whereis which whoami xargs yes zip zip32z64 3.</description>
-    </item>
-    
-    <item>
       <title>git合并上游仓库即同步fork后的仓库</title>
       <link>https://wdd.js.org/posts/2018/fork-sync-learn/</link>
       <pubDate>Wed, 31 Jan 2018 17:16:44 +0000</pubDate>

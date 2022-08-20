@@ -9,16 +9,7 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 08 Feb 2018 09:28:04 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Nodejs Express dockerfile最佳实践</title>
-      <link>https://wdd.js.org/posts/2018/nodejs-best-dockerfile/</link>
-      <pubDate>Thu, 08 Feb 2018 09:28:04 +0000</pubDate>
-      
-      <guid>https://wdd.js.org/posts/2018/nodejs-best-dockerfile/</guid>
-      <description>1. 少啰嗦，先看代码 1.1. package.json { &amp;#34;name&amp;#34;: &amp;#34;xxx&amp;#34;, &amp;#34;version&amp;#34;: &amp;#34;0.0.0&amp;#34;, &amp;#34;private&amp;#34;: true, &amp;#34;scripts&amp;#34;: { &amp;#34;start&amp;#34;: &amp;#34;node ./bin/www&amp;#34;, &amp;#34;forever&amp;#34;: &amp;#34;node_modules/forever/bin/forever bin/www&amp;#34; }, &amp;#34;dependencies&amp;#34;: { &amp;#34;async&amp;#34;: &amp;#34;0.9.0&amp;#34;, &amp;#34;body-parser&amp;#34;: &amp;#34;1.13.2&amp;#34;, &amp;#34;compression&amp;#34;: &amp;#34;1.6.2&amp;#34;, &amp;#34;config&amp;#34;: &amp;#34;1.12.0&amp;#34;, &amp;#34;connect-multiparty&amp;#34;: &amp;#34;2.0.0&amp;#34;, &amp;#34;cookie-parser&amp;#34;: &amp;#34;1.3.5&amp;#34;, &amp;#34;debug&amp;#34;: &amp;#34;2.2.0&amp;#34;, &amp;#34;ejs&amp;#34;: &amp;#34;2.3.3&amp;#34;, &amp;#34;express&amp;#34;: &amp;#34;4.13.1&amp;#34;, &amp;#34;forever&amp;#34;: &amp;#34;0.15.3&amp;#34;, &amp;#34;http-proxy-middleware&amp;#34;: &amp;#34;0.17.3&amp;#34;, &amp;#34;log4js&amp;#34;: &amp;#34;0.6.24&amp;#34;, &amp;#34;serve-favicon&amp;#34;: &amp;#34;2.3.0&amp;#34; } } 1.2. dockerfile FROM node:9.2.1-alpine RUN apk update &amp;amp;&amp;amp; apk add bash tzdata \ &amp;amp;&amp;amp; cp -r -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime WORKDIR /app COPY package.</description>
-    </item>
-    
+    <lastBuildDate>Wed, 07 Feb 2018 14:15:43 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>直接在Chrome DevTools调试Node.js</title>
       <link>https://wdd.js.org/posts/2018/debug-nodejs-in-chrome-devtool/</link>
@@ -30,30 +21,6 @@ https://blog.hospodarets.com/nodejs-debugging-in-chrome-devtools
 1. 要求 Node.js 6.3+ Chrome 55+ 2. 操作步骤 1 打开连接 chrome://flags/#enable-devtools-experiments 2 开启开发者工具实验性功能 3 重启浏览器 4 打开 DevTools Setting -&amp;gt; Experiments tab 5 按6次shift后，隐藏的功能会出现，勾选&amp;quot;Node debugging&amp;quot; 3. 运行程序 必须要有 --inspect
 &amp;gt; node --inspect www Debugger listening on port 9229. Warning: This is an experimental feature and could change at any time. To start debugging, open the following URL in Chrome: chrome-devtools://devtools/remote/serve_file/@60cd6e859b9f557d2312f5bf532f6aec5f284980/inspector.html?experiments=true&amp;amp;v8only=true&amp;amp;ws=localhost:9229/78a884f4-8c2e-459e-93f7-e1cbe87cf5cf 将这个地址粘贴到谷歌浏览器：chrome-devtools://devtools/remote/serve_file/@60cd6e859b9f557d2312f5bf532f6aec5f284980/inspector.html?experiments=true&amp;amp;v8only=true&amp;amp;ws=localhost:9229/78a884f4-8c2e-459e-93f7-e1cbe87cf5cf
 程序后端输出的日志也回输出到谷歌浏览器的console里面，同时也可以在Sources里进行断点调试了。 </description>
-    </item>
-    
-    <item>
-      <title>Nodejs 服务端框架合集(78个)</title>
-      <link>https://wdd.js.org/posts/2018/nodejs-server-frameworks/</link>
-      <pubDate>Mon, 29 Jan 2018 14:13:44 +0000</pubDate>
-      
-      <guid>https://wdd.js.org/posts/2018/nodejs-server-frameworks/</guid>
-      <description>没有什么事情是一个框架解决不了的，如果有，就再找一个。
-Photo by 贝莉儿 NG on Unsplash
-1. MVC frameworks 2. Sinatra-like 这些框架提供了丰富的配置，比Rails-like或full-stack少。
-Express hapi flatiron locomotive total.js koa.js TWEE.IO diet.js Flicker.js ZinkyJS 2.1. Rails-like 正确呈现您的项目。从包含的模板创建自己的艺术
-Nodal Strapi CompoundJS geddy Sails.js Adonis RhapsodyJS ThinkJS Trails KambojaJS JS-Web 3. Full-stack frameworks 这就是Node.js真正闪耀的地方。全栈MVC框架与脚手架，模板引擎，websocket和持久性库捆绑在一起，允许您构建实时可伸缩的Web应用程序。
-Catberry.js AllcountJS Derby Feathers SocketCluster SocketStream MEAN.js MEAN.io Meteor Meatier TWEE.IO Mojito Seeds.js SANE COKE Sleekjs Danf Catberry Nuke.js We.js seneca.js Keystone.js Horizon Apogeu 4. REST API frameworks 对于那些使用富客户端/前端MVC框架（或不）的客户，只需要启动一个快速的Node.</description>
-    </item>
-    
-    <item>
-      <title>Nodejs alpine 基础docker镜像构建</title>
-      <link>https://wdd.js.org/posts/2018/nodejs-alpine-docker/</link>
-      <pubDate>Mon, 29 Jan 2018 14:10:15 +0000</pubDate>
-      
-      <guid>https://wdd.js.org/posts/2018/nodejs-alpine-docker/</guid>
-      <description>1. 系统环境 centos7 内核：3.10.0-514.26.2.el7.x86_64 安装docker要求内核版本不低于3.10 2. 安装docker yum install docker // 安装docker systemctl start docker.service // 启动docker systemctl enable docker.service // 设置开机启动 3. Nodejs 镜像选择 REPOSITORY TAG IMAGE ID CREATED SIZE docker.io/node 9.2.1-slim 69c9f9292fa4 3 days ago 230 MB docker.io/node 9.2.1-alpine afdc3aaaf748 3 days ago 67.46 MB docker.io/node latest 727b047a1f4e 3 days ago 675.6 MB docker.io/iron/node latest 9ca501065d18 20 months ago 18.56 MB 选择镜像的标准
-官方的 经常维护的 体积小的 要有yarn 和 npm node版本要高 最终选择 node:9.</description>
     </item>
     
   </channel>

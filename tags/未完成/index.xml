@@ -9,39 +9,7 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 06 Oct 2018 23:05:24 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E6%9C%AA%E5%AE%8C%E6%88%90/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>荣耀往往冠以虚伪 正能量满满的《无耻之徒》</title>
-      <link>https://wdd.js.org/posts/2018/shameless-and-glory/</link>
-      <pubDate>Sat, 06 Oct 2018 23:05:24 +0000</pubDate>
-      
-      <guid>https://wdd.js.org/posts/2018/shameless-and-glory/</guid>
-      <description> 今年的国庆，我宅在家里，没有出去玩。因为在我们在法定节假日，最好不要出去旅游。
-因为这世界本来有很多路，走的人太多了，也就没了路。
-堵在高速，堵在景区，堵在厕所，堵在某个街角
-在家里刷完美剧《无耻之徒》八季，说心里话：这部剧刷新我的人生观，感觉自己在七天之内重生似的
-虚伪往往冠以荣耀，荣耀往往冠以虚荣 古龙小说有个特点，越是卑鄙无耻，虚荣腹黑的人，往往冠以正能量慢慢的名字，例如：小李飞刀中的总是喜欢主持正义的大侠赵正义。我觉得，古龙先生一定看过李宗吾的厚黑学，并且深有研究。
-无耻之徒中的frank，也是类似赵正义这类人。
-看剧过程中，几次忍不住想把frank掐死。但是某些时候，frank也会散发出一种大人物的闪光点。
-居中人物看似无耻，很黄很暴力，但是整部剧给人以正能量满满的感觉。反观国产脑残电视剧，哪些动不动说什么我已经等你五千年之类的狗屁对白，让我一听就觉得piece of shit。
-没有好人，也没有坏人，只是人罢了 回首往事，怎么可能没有后悔与遗憾，人生本来就没有完美的 无论如何，血缘关系是无法切断的关系 </description>
-    </item>
-    
-    <item>
-      <title>jQuery 与IE浏览器兼容性的思考</title>
-      <link>https://wdd.js.org/posts/2018/jquery-ie-browser-support/</link>
-      <pubDate>Sat, 01 Sep 2018 21:04:54 +0000</pubDate>
-      
-      <guid>https://wdd.js.org/posts/2018/jquery-ie-browser-support/</guid>
-      <description>兼容性：对，说你呢！IE! 当我们在说浏览器兼容性的时候，其实我们大多数时候在说IE浏览器的兼容性。
-对，说你呢！IE!
-现在jQuery的最新版已经是3.3.1， 根据jQuery的官方说明。
-最新版的jQuery支持IE9+, 如果你想支持IE6-8，那么你最好去用jQuery 1.12。
-Current Active Support Desktop Internet Explorer: 9+ If you need to support older browsers like Internet Explorer 6-8, Opera 12.1x or Safari 5.1+, use jQuery 1.12. 来自 Browser Support
-jQuery的亮点 我只想安安静静的做东西，不想和各种浏览器diss或者battle。
-所以老司机总是选择一个合适的轮子，</description>
-    </item>
-    
+    <lastBuildDate>Tue, 14 Aug 2018 18:36:40 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E6%9C%AA%E5%AE%8C%E6%88%90/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>毕业后，青春像一艘船，沉入海底</title>
       <link>https://wdd.js.org/posts/2018/the-rest-of-your-life/</link>
@@ -92,15 +60,6 @@ jQuery的亮点 我只想安安静静的做东西，不想和各种浏览器diss
 REST API 不是一个标准或者一个是协议，仅仅是一种风格，一种style。
 RESTful API的简单定义可以轻松解释这个概念。 REST是一种架构风格，RESTful是它的解释。也就是说，如果您的后端服务器具有REST API，并且您（从网站/应用程序）向客户端请求此API，则您的客户端为RESTful。
 2. REST API最为重要的约束 Client-Server 通信只能由客户端单方面发起，表现为请求-响应的形式 Stateless 通信的会话状态（Session State）应该全部由客户端负责维护 Cache 响应内容可以在通信链的某处被缓存，以改善网络效率 Uniform Interface 通信链的组件之间通过统一的接口相互通信，以提高交互的可见性 Layered System 通过限制组件的行为（即每个组件只能“看到”与其交互的紧邻层），将架构分解为若干等级的层。 Code-On-Demand 支持通过下载并执行一些代码（例如Java Applet、Flash或JavaScript），对客户端的功能进行扩展。 3. REST API HTTP方法 与 CURD REST API 使用POST，GET, PUT, DELETE的HTTP方法来描述对资源的增、查、改、删。 这四个HTTP方法在数据层对应着SQL的插入、查询、更新、删除操作。</description>
-    </item>
-    
-    <item>
-      <title>无坚不摧：打造极大提高工作效率的装备库</title>
-      <link>https://wdd.js.org/posts/2018/tool-improve-work-efficiency/</link>
-      <pubDate>Fri, 02 Feb 2018 09:24:43 +0000</pubDate>
-      
-      <guid>https://wdd.js.org/posts/2018/tool-improve-work-efficiency/</guid>
-      <description>1. Git Bash 2. Gow 1 2 3 4 5 6 7 8 9 10 awk basename bash bc bison bunzip2 bzip2 bzip2 bzip2recover cat chgrp chmod chown chroot cksum clear cp csplit curl cut dc dd df diff diff3 dirname dos2unix du egrep env expand expr factor fgrep flex fmt fold gawk gdbm3 gfind gow grep gsar gsort gzip head history5 hostid hostname id indent install join jwhois less lesskey libcurl libeay32 libiconv-2 libidn-11 libintl-2 libintl3 libssl32 ln ls m4 make md5sum mkdir mkfifo mknod msys-1 msys-regex-1 msys-termcap-0 mv nano ncftp nl od pageant paste patch pathchk pcre3 plink pr printenv printf pscp psftp putty puttygen pwd readline5 regex2 rm rmdir scp sdiff sed seq sftp sha1sum shar sleep split ssh ssleay32 su sum sync tac tail tar tee test touch tr uname unexpand uniq unix2dos unlink unrar unrar3 unshar uudecode uuencode vim wc wget whereis which whoami xargs yes zip zip32z64 3.</description>
     </item>
     
   </channel>
