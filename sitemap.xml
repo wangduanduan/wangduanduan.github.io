@@ -2,6 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://wdd.js.org/opensips/01/</loc>
+    <lastmod>2022-09-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/opensips/02/</loc>
+    <lastmod>2022-09-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/opensips/</loc>
+    <lastmod>2022-09-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/</loc>
+    <lastmod>2022-09-02T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://wdd.js.org/network/</loc>
     <lastmod>2022-06-30T00:00:00+00:00</lastmod>
   </url><url>
@@ -12,9 +24,6 @@
     <lastmod>2022-06-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/network/wireshark-extra-cli/</loc>
-    <lastmod>2022-06-30T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/</loc>
     <lastmod>2022-06-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/network/rp_filter/</loc>
