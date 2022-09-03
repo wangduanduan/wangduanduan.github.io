@@ -9,11 +9,11 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 07 Feb 2018 14:15:43 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 07 Feb 2018 14:15:43 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>直接在Chrome DevTools调试Node.js</title>
       <link>https://wdd.js.org/posts/2018/debug-nodejs-in-chrome-devtool/</link>
-      <pubDate>Wed, 07 Feb 2018 14:15:43 +0000</pubDate>
+      <pubDate>Wed, 07 Feb 2018 14:15:43 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/debug-nodejs-in-chrome-devtool/</guid>
       <description>英文好的，直接看原文

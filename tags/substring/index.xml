@@ -9,11 +9,11 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 29 Jan 2018 13:46:31 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/substring/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 29 Jan 2018 13:46:31 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/substring/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>追本溯源：substr与substring历史漫话</title>
       <link>https://wdd.js.org/posts/2018/substr-and-substring-history/</link>
-      <pubDate>Mon, 29 Jan 2018 13:46:31 +0000</pubDate>
+      <pubDate>Mon, 29 Jan 2018 13:46:31 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/substr-and-substring-history/</guid>
       <description>引子： 很多时候，当我要字符串截取时，我会想到substr和substring的方法，但是具体要怎么传参数时，我总是记不住。哪个应该传个字符串长度，哪个又应该传个开始和结尾的下标，如果我不去查查这两个函数，我始终不敢去使用它们。所以我总是觉得，这个两个方法名起的真是蹩脚。然而事实是这样的吗？

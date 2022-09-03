@@ -9,11 +9,11 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 08 Apr 2018 09:00:48 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 08 Apr 2018 09:00:48 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Express静态文件浏览器缓存设置与缓存清除</title>
       <link>https://wdd.js.org/posts/2018/express-static-file-cache-setting-and-cleaning/</link>
-      <pubDate>Sun, 08 Apr 2018 09:00:48 +0000</pubDate>
+      <pubDate>Sun, 08 Apr 2018 09:00:48 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/express-static-file-cache-setting-and-cleaning/</guid>
       <description>1. Express设置缓存 Express设置静态文件的方法很简单，一行代码搞定。app.use(express.static(path.join(__dirname, &#39;public&#39;), {maxAge: MAX_AGE})), 注意MAX_AGE的单位是毫秒。这句代码的含义是让pulic目录下的所有文件都可以在浏览器中缓存，过期时长为MAX_AGE毫秒。

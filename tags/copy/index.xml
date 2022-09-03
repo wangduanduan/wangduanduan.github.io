@@ -9,11 +9,11 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 14 Mar 2018 14:19:12 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/copy/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 14 Mar 2018 14:19:12 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/copy/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>前端剪贴板复制功能实现原理</title>
       <link>https://wdd.js.org/posts/2018/clipboard-copy-tutorial/</link>
-      <pubDate>Wed, 14 Mar 2018 14:19:12 +0000</pubDate>
+      <pubDate>Wed, 14 Mar 2018 14:19:12 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/clipboard-copy-tutorial/</guid>
       <description>1. 兼容情况 如果想浏览器支持粘贴功能，那么浏览器必须支持，document.execCommand(&amp;lsquo;copy&amp;rsquo;)方法，也可以根据document.queryCommandEnabled(&amp;lsquo;copy&amp;rsquo;)，返回的true或者false判断浏览器是否支持copy命令。

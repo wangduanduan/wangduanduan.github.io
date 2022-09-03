@@ -9,11 +9,11 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 09 Feb 2018 13:16:53 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/echarts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 09 Feb 2018 13:16:53 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/echarts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ECharts 轮流高亮中国地图各个省份</title>
       <link>https://wdd.js.org/posts/2018/echarts-highlight-china-map/</link>
-      <pubDate>Fri, 09 Feb 2018 13:16:53 +0000</pubDate>
+      <pubDate>Fri, 09 Feb 2018 13:16:53 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/echarts-highlight-china-map/</guid>
       <description>1. 小栗子 最早我是想通过dispatchAction方法去改变选中的省份，但是没有起作用，如果你知道这个方法怎么实现，麻烦你可以告诉我。 我实现的方法是另外一种。

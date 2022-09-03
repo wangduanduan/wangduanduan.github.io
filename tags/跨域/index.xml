@@ -9,11 +9,11 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 09 Mar 2018 17:58:05 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E8%B7%A8%E5%9F%9F/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 09 Mar 2018 17:58:05 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E8%B7%A8%E5%9F%9F/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Chrome本地跨域origin-null-is-not-allowed问题分析与解决方案</title>
       <link>https://wdd.js.org/posts/2018/origin-null-is-not-allowed/</link>
-      <pubDate>Fri, 09 Mar 2018 17:58:05 +0000</pubDate>
+      <pubDate>Fri, 09 Mar 2018 17:58:05 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/origin-null-is-not-allowed/</guid>
       <description>1. 问题表现 以file:///xxx.html打开某个html文件，发送ajax请求时报错：

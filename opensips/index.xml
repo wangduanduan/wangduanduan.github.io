@@ -9,26 +9,68 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 02 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wdd.js.org/opensips/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 Sep 2022 15:54:57 +0800</lastBuildDate><atom:link href="https://wdd.js.org/opensips/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>01: 学习建议</title>
-      <link>https://wdd.js.org/opensips/01/</link>
-      <pubDate>Fri, 02 Sep 2022 00:00:00 +0000</pubDate>
+      <title>SIP协议拾遗补缺</title>
+      <link>https://wdd.js.org/opensips/sip-notes/</link>
+      <pubDate>Sat, 03 Sep 2022 15:54:57 +0800</pubDate>
       
-      <guid>https://wdd.js.org/opensips/01/</guid>
-      <description>1. 概念理解 务必要能理解SIP的重要概念，特别是事务、Dialog。参考https://www.yuque.com/wangdd/opensips/fx5pyy 概念是非常重要的东西，不理解概念，越学就会越吃力 2. 时序图 时序图是非常重要的，培训时，一般我会要求学员务必能够手工绘制时序图。因为只有能够手工绘制时序图了，在排查问题时，才能够从抓包工具给出的时序图中分析出问题所在。
-RFC3665 https://datatracker.ietf.org/doc/html/rfc3665 中提供了很多经典的时序图，建议可以去临摹。</description>
+      <guid>https://wdd.js.org/opensips/sip-notes/</guid>
+      <description>1. sip协议由request-uri路由，而不是to字段 sip消息再经过ua发送出去时，request-uri可能会被重写，而to字段，一般是不变的
+2. 主叫生成callId和from tag, 响应to tag由另一方生成 totag的作用可以用来区分初始化请求和序列化请求
+3. sip消息有哪些头字段是必须的？ Via Max-Forwards (请求消息必须有这个头，响应消息一般没有这个头) 感谢 @genmzy 提示。 From To Call-ID CSeq 4. 被叫在向主叫发消息时，from和to字段为什么没变？ from和to字段用来表名sip 请求的方向，而不是sip消息的方向。主叫发起的请求，那么在这个dialog中，所有的sip消息，主叫和被叫字段都不会变。
+5. 为什么所有via头中的branch都以z9hG4bK开头 这个头是rfc3261中规定的，表示她是经过严格规则生成的，可以用来标记事务。
+6. sip有两种url, 是什么？有什么区别 用户uri: AOR address of record, 例如from和to字段中的url 设备uri: 例如 contact头 用户uri用来唯一认证用户，设备uri用来唯一认证设备。 用户uri往往需要查询数据库，而设备uri来自设备自己的网络地址，不需要查询数据库。 一个用户可能有多个设备 7. sip注册实际上绑定用户url和设备ip地址 我并不能直接联系你，我只能用我的手机拨打你的手机。
+8. 呼叫结束了，为什么呼叫的状态信息还需要维持一段时间？ 重传的invite消息，可能包含相同的callI和cseq, 为了影响到之后的呼叫，需要耗尽网络中重传的包。
+9. sip 网关是干什么的？ 网关的两侧通信协议是不同的，网关负责将协议翻译成彼此可以理解的协议。sip网关也是如此。电话网络的通信协议不仅仅只有sip， 还有其他的各种信令，如七号信令，ISDN, ISUP, CAS等。
+10. sip结构组件 SIP User Agents Presence Agents B2B User Agents SIp Gateways SIP Server 代理服务器 注册服务器 重定向服务器 11.</description>
     </item>
     
     <item>
-      <title>02: SIP协议简介</title>
-      <link>https://wdd.js.org/opensips/02/</link>
-      <pubDate>Fri, 02 Sep 2022 00:00:00 +0000</pubDate>
+      <title>Trunk Pbx Gateway</title>
+      <link>https://wdd.js.org/opensips/trunk-pbx-gateway/</link>
+      <pubDate>Sat, 03 Sep 2022 15:24:44 +0800</pubDate>
       
-      <guid>https://wdd.js.org/opensips/02/</guid>
+      <guid>https://wdd.js.org/opensips/trunk-pbx-gateway/</guid>
+      <description>传统中继 sip trunk中继 安全可靠：SIP Trunk设备和ITSP之间只需建立唯一的、安全的、具有QoS保证的SIP Trunk链路。通过该链路来承载企业的多路并发呼叫，运营商只需对该链路进行鉴权，不再对承载于该链路上的每一路SIP呼叫进行鉴权。 节约硬件成本：企业内部通信由企业IP-PBX负责。企业所有外出通信都通过SIP Trunk交由ITSP，再由ITSP中的设备发送到PSTN网络，企业不再需要维护原有的传统PSTN中继链路，节省了硬件和维护成本。 节约话费成本：企业可以通过设置目的地址任意选择并连接到多个ITSP，充分利用遍布全球各地的ITSP，节省通话费用。 功能强大：部署SIP Trunk设备后，全网可以使用SIP协议，可以更好的支持语音、会议、即时消息等IP通信业务。 处理信令和媒体：SIP Trunk设备不同于SIP代理服务器。SIP Trunk设备接收到用户的呼叫请求后，会代表用户向ITSP发起新呼叫请求。在转发过程中，SIP Trunk设备不但要对信令消息进行中继转发，对RTP媒体消息也需要进行中继转发。在整个过程中，SIP Trunk设备两端的设备（企业内部和企业外部设备）均认为和其交互的是SIP Trunk设备本身。 参考 http://www.h3c.com/cn/d_201009/688762_30003_0.htm https://getvoip.com/blog/2013/01/24/differences-between-sip-trunking-and-hosted-pbx/ https://www.onsip.com/blog/hosted-pbx-vs-sip-trunking https://baike.baidu.com/item/sip%20trunk/1499860 </description>
+    </item>
+    
+    <item>
+      <title>Path头简史</title>
+      <link>https://wdd.js.org/opensips/sip-path/</link>
+      <pubDate>Sat, 03 Sep 2022 14:51:32 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/sip-path/</guid>
+      <description>RFC3261并没有介绍关于Path头的定义，因为这个头是在RFC3327中定义的，Path头作为一个SIP的扩展头。
+RFC3327的标题是：Session Initiation Protocol (SIP) Extension Header Field for Registering Non-Adjacent Contacts。
+从这个标题可以看出，Path头是作为Register请求的一个消息头，一般这个头只在注册消息上才有。
+这个头的格式如下。
+Path: &amp;lt;sip:P1.EXAMPLEVISITED.COM;lr&amp;gt; 从功能上说，Path头和record-route头的功能非常相似，但是也不同。
+看下面的一个场景，uac通过p1和p2, 将注册请求发送到uas, 在某一时刻，uac作为被叫，INVITE请求要从uas发送到uac, 这时候，INVITE请求应该怎么走？
+假如我们希望INVITE请求要经过p2,p2,然后再发送到uac, Path头的作用就是这个。
+注册请求经过P1时，P1在注册消息上加上p1地址的path头 注册请求经过P2时，P2在注册消息上加上p2地址的path头 注册请求到达uas时，uas从Contact头上获取到uac的地址信息，然后从两个Path头上获取到如下信息：如果要打电话给uac, Path头会转变为route头，用来定义INVITE请求的路径。 简单定义：Path头用来一般在注册消息里，Path头定义了uac作为被叫时，INVITE请求的发送路径。
+参考 https://voipmagazine.wordpress.com/tag/path-header/ https://datatracker.ietf.org/doc/html/rfc3327 </description>
+    </item>
+    
+    <item>
+      <title>Via route Record-Route的区别</title>
+      <link>https://wdd.js.org/opensips/via-route-record-route/</link>
+      <pubDate>Sat, 03 Sep 2022 02:00:00 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/via-route-record-route/</guid>
+      <description>sequenceDiagram title French Words I Know autonumber participant a participant p1 participant p2 participant p3 participant b a-&gt;&gt;p1 : INVITE route: p1, via: a p1-&gt;&gt;p2: INVITE via: a,p1, rr: p1 p2-&gt;&gt;p3: INVITE via: a,p1,p2 rr: p1,p2 p3-&gt;&gt;b: INVITE via: a,p1,p2,p3 rr: p1,p2,p3 b--&gt;&gt;p3: 180 via: a,p1,p2,p3 rr: p1,p2,p3 p3--&gt;&gt;p2: 180 via: a,p1,p2 rr: p1,p2,p3 p2--&gt;&gt;p1: 180 via: a,p1 rr: p1,p2,p3 p1--&gt;&gt;a: 180 via: a rr: p1,p2,p3 b--&gt;&gt;p3: 200 OK via: a,p1,p2,p3 rr: p1,p2,p3 p3--&gt;&gt;p2: 200 Ok via: a,p1,p2 rr: p1,p2,p3 p2--&gt;&gt;p1: 200 Ok via: a,p1 rr: p1,p2,p3 p1--&gt;&gt;a: 200 Ok via: a rr: p1,p2,p3 a-&gt;&gt;p1 : ACK via: a, route: p1,p2,p3 p1-&gt;&gt;p2: ACK via: a,p1, route: p2,p3 p2-&gt;&gt;p3: ACK via: a,p1,p2 route: p3 p3-&gt;&gt;b: ACK via: a,p1,p2,p3 rr代表record-route头。</description>
+    </item>
+    
+    <item>
+      <title>SIP协议简介</title>
+      <link>https://wdd.js.org/opensips/sip-overview/</link>
+      <pubDate>Fri, 02 Sep 2022 01:00:00 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/sip-overview/</guid>
       <description>SIP是VoIP的基石，相当于HTTP协议在Web服务器里的角色。如果你熟悉HTTP协议，那么你可以在SIP协议中找到许多和HTTP中熟悉的东西，例如请求头，请求体，响应码之类概念，这是因为SIP协议的设计，很大程度上参考了HTTP协议。
 如果想要学习VoIP，那么SIP协议是你务必掌握敲门砖。
-1. SIP组件 UAC: 例如sip终端，软电话，话机 UAS: sip服务器 UA: ua既可以当做uac也可以当做uas 代理服务器 重定向服务器 注册服务器 网关 PSTN 公共交换电话网 2. SBC 边界会话控制器 3. sip注册过程 下面简化注册逻辑，省略了验证和过期等字段：
+1. SIP组件 UAC: 例如sip终端，软电话，话机 UAS: sip服务器 UA: ua既可以当做uac也可以当做uas 代理服务器 重定向服务器 注册服务器 网关 PSTN 公共交换电话网 2. SBC 边界会话控制器 SBC是Session Border Controller的缩写，具有一下几个功能。
+拓扑隐藏：隐藏所有内部网络的信息。 媒体流管理：设置语音流编码规则，转换等 增加能力：例如Refer, 3CPP 维护NAT映射： 访问控制 媒体加密：例如外部网络用SRTP, 内部网络用RTP 3. sip注册过程 下面简化注册逻辑，省略了验证和过期等字段：
 对于分机来说，注册服务器的地址是需要设置的 分机向注册服务器发请求，说：你好，注册服务器，我是8005，我的地址是200.180.1.1，以后你可以用这个地址联系我。 注册服务器回复：好的，注册成功 4. sip服务器的类型 4.1. 代理服务器 4.2. 重定向服务器 4.3. 背靠背UA服务器 背靠背UA服务器有两个作用
 隐藏网络拓扑结构 有些时候，路由无法到达，只能用背靠背UA服务器 5. 常用sip请求方法 比较常用的是下面的
 常用的几个是：register, invite, ack, bye, cancel。除了cancel和ack不需要认证外，其余的请求都需要认证。 register自不必说，invite和bye是需要认证的。
@@ -36,7 +78,17 @@ RFC3665 https://datatracker.ietf.org/doc/html/rfc3665 中提供了很多经典�
 invite除了re-invite的情况，其余的都属于初始化请求，需要着重关心的。而对于bye这种序列化请求，只需要按照record-route去路由。
 6. sip响应状态码 7. sip对话流程图 从上图可以看出，从invite请求到200ok之间的信令，都经过了代理服务器。但是200ok之后的ack，确没有经过代理服务器，如果想要所有信令都经过代理服务器，需要在sip消息头record-routing 指定代理服务器的地址
 8. 请求与响应报文 9. 事务与对话的区别 重点：
-从INVITE请求到最终的响应（注意1xx不是最终响应，非1xx的都是最终响应）之间，称为事务。一个事务可以带有多个消息组成，并经过多个ua。 ack请求比较特殊，但是ack不是事务。如果被叫接通后，超时未收到主叫方的ack, 会怎样？是否会再次发送200OK tcp三次握手建立连接，sip：invite-&amp;gt;200ok-&amp;gt;ack，可以理解为三次握手建立对话。 bye请求和200ok算作一个事务 dialog建立的前提是呼叫接通，如果呼叫没有接通，则没有dialog。 dialog可以由三个元素唯一确定。callId, from字段中的tag, to字段中的tag。 10. sip底层协议 SIP协议的结构 SIP协议是一个分层的协议，意味着各层之间是相互独立的</description>
+从INVITE请求到最终的响应（注意1xx不是最终响应，非1xx的都是最终响应）之间，称为事务。一个事务可以带有多个消息组成，并经过多个ua。 ack请求比较特殊，但是ack不是事务。如果被叫接通后，超时未收到主叫方的ack, 会怎样？是否会再次发送200OK tcp三次握手建立连接，sip：invite-&amp;gt;200ok-&amp;gt;ack，可以理解为三次握手建立对话。 bye请求和200ok算作一个事务 dialog建立的前提是呼叫接通，如果呼叫没有接通，则没有dialog。 dialog可以由三个元素唯一确定。callId, from字段中的tag, to字段中的tag。 10.</description>
+    </item>
+    
+    <item>
+      <title>学习建议</title>
+      <link>https://wdd.js.org/opensips/study-tips/</link>
+      <pubDate>Fri, 02 Sep 2022 00:00:00 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/study-tips/</guid>
+      <description>1. 概念理解 务必要能理解SIP的重要概念，特别是事务、Dialog。参考https://www.yuque.com/wangdd/opensips/fx5pyy 概念是非常重要的东西，不理解概念，越学就会越吃力 2. 时序图 时序图是非常重要的，培训时，一般我会要求学员务必能够手工绘制时序图。因为只有能够手工绘制时序图了，在排查问题时，才能够从抓包工具给出的时序图中分析出问题所在。
+RFC3665 https://datatracker.ietf.org/doc/html/rfc3665 中提供了很多经典的时序图，建议可以去临摹。</description>
     </item>
     
   </channel>

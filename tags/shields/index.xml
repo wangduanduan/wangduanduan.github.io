@@ -9,11 +9,11 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 29 Oct 2018 09:14:43 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/shields/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 29 Oct 2018 09:14:43 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/shields/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>shields小徽章是如何生成的？以及搭建自己的shield服务器</title>
       <link>https://wdd.js.org/posts/2018/how-to-make-shields-badge/</link>
-      <pubDate>Mon, 29 Oct 2018 09:14:43 +0000</pubDate>
+      <pubDate>Mon, 29 Oct 2018 09:14:43 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/how-to-make-shields-badge/</guid>
       <description>shields小徽章介绍 一般开源项目都会有一些小徽章来标识项目的状态信息，并且这些信息是会自动更新的。在shields的官网https://shields.io/#/, 上面有各种各样的小图标，并且有很多自定义的方案。

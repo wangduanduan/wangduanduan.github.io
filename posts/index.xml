@@ -9,7 +9,23 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 28 May 2022 21:08:43 +0800</lastBuildDate><atom:link href="https://wdd.js.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 Sep 2022 10:20:48 +0800</lastBuildDate><atom:link href="https://wdd.js.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo Timezone没有设置， 导致页面无法渲染</title>
+      <link>https://wdd.js.org/posts/2022/hugo-timezone/</link>
+      <pubDate>Sat, 03 Sep 2022 10:20:48 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2022/hugo-timezone/</guid>
+      <description>写好了博客，但是没有在网页上渲染出来，岂不是很气人！
+我的archtypes/default.md配置如下
+--- title: &amp;#34;{{ replace .Name &amp;#34;-&amp;#34; &amp;#34; &amp;#34; | title }}&amp;#34; date: &amp;#34;{{ now.Format &amp;#34;2006-01-02 15:04:05&amp;#34; }}&amp;#34; draft: false --- 当使用 hugo new 创建一个文章的时候，有如下的头
+--- title: &amp;#34;01: 学习建议&amp;#34; date: &amp;#34;2022-09-03 10:23:10&amp;#34; draft: false --- Hugo 默认采用的是 格林尼治平时 (GMT)，比北京时间 (UTC+8) 晚了 8 个小时，Hugo 在生成静态页面的时候，不会生成超过当前时间的文章。
+如果把北京时间当作格林尼治时间来计算，那么肯定还没有超过当前时间。
+所以我们要给站点设置时区。
+在config.yaml增加如下内容
+timeZone: &amp;#34;Asia/Shanghai&amp;#34; </description>
+    </item>
+    
     <item>
       <title>Hugo博客常见问题以及解决方案</title>
       <link>https://wdd.js.org/posts/2022/hugo-blog-faq/</link>
@@ -68,7 +84,7 @@ set -gu prefix2 unbind C-a Tmux reload config :source-file ～/.tmux.conf tmux �
     <item>
       <title>exec user process caused no such file or diectory</title>
       <link>https://wdd.js.org/posts/2022/docker-exec-user-process/</link>
-      <pubDate>Wed, 08 Jul 2020 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 08 Jul 2020 00:00:00 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2022/docker-exec-user-process/</guid>
       <description>exec user process caused &amp;#34;no such file or diectory&amp;#34; 解决方案： 将镜像构建的 Dockerfile ENTRYPOINT [&amp;quot;/run.sh&amp;quot;] 改为下面的
@@ -78,7 +94,7 @@ ENTRYPOINT [&amp;#34;sh&amp;#34;,&amp;#34;/run.sh&amp;#34;] 其实就是加了�
     <item>
       <title>如何学习网络协议？</title>
       <link>https://wdd.js.org/posts/2019/books-about-network-protocol/</link>
-      <pubDate>Fri, 18 Jan 2019 21:32:08 +0000</pubDate>
+      <pubDate>Fri, 18 Jan 2019 21:32:08 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2019/books-about-network-protocol/</guid>
       <description>如何学习网络协议？ 大学时，学到网络协议的7层模型时，老师教了大家一个顺口溜：物数网传会表应。并说这是重点，年年必考，5分的题目摆在这里，你们爱背不背。 考试的时候，果然遇到这个问题，搜索枯肠，只能想到这7个字的第一个字，因为这5分，差点挂科。 后来工作面试，面试官也是很喜欢七层模型，三次握手之类的问题，但是遇到这些问题时，总是觉得很心虚。
@@ -96,7 +112,7 @@ ip用来用来标记主机的位置 端口号用来标记该数据应该被目�
     <item>
       <title>呼叫中心简史</title>
       <link>https://wdd.js.org/posts/2019/call-center-brief-history/</link>
-      <pubDate>Tue, 15 Jan 2019 21:04:11 +0000</pubDate>
+      <pubDate>Tue, 15 Jan 2019 21:04:11 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2019/call-center-brief-history/</guid>
       <description>什么是呼叫中心？ 呼叫中心又称为客户服务中心。有以下关键词
@@ -107,7 +123,7 @@ CTI 通信网络 计算机 企业级 高质量、高效率、全方位、综合�
     <item>
       <title>时间花在哪里，你就会成为什么样的人</title>
       <link>https://wdd.js.org/posts/2018/where-time-you-spend-what-you-will-be/</link>
-      <pubDate>Tue, 01 Jan 2019 21:02:08 +0000</pubDate>
+      <pubDate>Tue, 01 Jan 2019 21:02:08 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/where-time-you-spend-what-you-will-be/</guid>
       <description>2008-2018 十年，往事如昨 2018年已经是昨天，今天是2019的第一天。
@@ -130,7 +146,7 @@ CTI 通信网络 计算机 企业级 高质量、高效率、全方位、综合�
     <item>
       <title>深入理解 JavaScript中的变量、值、函数传参</title>
       <link>https://wdd.js.org/posts/2018/deep-in-javascript-variable-value-arguments/</link>
-      <pubDate>Mon, 17 Dec 2018 15:24:15 +0000</pubDate>
+      <pubDate>Mon, 17 Dec 2018 15:24:15 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/deep-in-javascript-variable-value-arguments/</guid>
       <description>1. demo 如果你对下面的代码没有任何疑问就能自信的回答出输出的内容，那么本篇文章就不值得你浪费时间了。
@@ -144,7 +160,7 @@ var var1 = 1 var var2 = true var var3 = [1,2,3] var var4 = var3 function test (v
     <item>
       <title>WTF!! Vue数组splice方法无法正常工作</title>
       <link>https://wdd.js.org/posts/2018/vue-array-splice-not-work/</link>
-      <pubDate>Wed, 12 Dec 2018 20:29:16 +0000</pubDate>
+      <pubDate>Wed, 12 Dec 2018 20:29:16 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/vue-array-splice-not-work/</guid>
       <description>当函数执行到this.agents.splice()时，我设置了断点。发现传参index是0，但是页面上的列表项对应的第一行数据没有被删除，
@@ -161,7 +177,7 @@ removeOneAgentByIndex: function (index) { this.agents.splice(index, 1) } 然后�
     <item>
       <title>Node.js 如何找出循环依赖的文件？如何解决循环依赖问题？</title>
       <link>https://wdd.js.org/posts/2018/how-to-fix-circular-dependencies-in-node-js/</link>
-      <pubDate>Mon, 29 Oct 2018 09:21:03 +0000</pubDate>
+      <pubDate>Mon, 29 Oct 2018 09:21:03 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/how-to-fix-circular-dependencies-in-node-js/</guid>
       <description>本文重点是讲解如何解决循环依赖这个问题。关心这个问题是如何产生的，可以自行谷歌。
@@ -172,7 +188,7 @@ removeOneAgentByIndex: function (index) { this.agents.splice(index, 1) } 然后�
     <item>
       <title>shields小徽章是如何生成的？以及搭建自己的shield服务器</title>
       <link>https://wdd.js.org/posts/2018/how-to-make-shields-badge/</link>
-      <pubDate>Mon, 29 Oct 2018 09:14:43 +0000</pubDate>
+      <pubDate>Mon, 29 Oct 2018 09:14:43 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/how-to-make-shields-badge/</guid>
       <description>shields小徽章介绍 一般开源项目都会有一些小徽章来标识项目的状态信息，并且这些信息是会自动更新的。在shields的官网https://shields.io/#/, 上面有各种各样的小图标，并且有很多自定义的方案。
@@ -189,7 +205,7 @@ npm install shields-less var shieldsLess = require(&amp;#39;shields-less&amp;#39
     <item>
       <title>Express代理中间件问题与解决方案</title>
       <link>https://wdd.js.org/posts/2018/express-middleware-order-proxy-problem/</link>
-      <pubDate>Sun, 30 Sep 2018 09:41:44 +0000</pubDate>
+      <pubDate>Sun, 30 Sep 2018 09:41:44 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/express-middleware-order-proxy-problem/</guid>
       <description>前后端分离应用的架构 在前后端分离架构中，为了避免跨域以及暴露内部服务地址。一般来说，我会在Express这层中加入一个反向代理。
@@ -208,7 +224,7 @@ Cannot proxy after parsing body #299, 实际上这个问题在node-http-proxy也
     <item>
       <title>IE11跨域检查跨域设置</title>
       <link>https://wdd.js.org/posts/2018/ie-cross-domain-settings/</link>
-      <pubDate>Thu, 23 Aug 2018 10:20:10 +0000</pubDate>
+      <pubDate>Thu, 23 Aug 2018 10:20:10 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/ie-cross-domain-settings/</guid>
       <description>IE11有安全设置中有两个选项，
@@ -224,7 +240,7 @@ Cannot proxy after parsing body #299, 实际上这个问题在node-http-proxy也
     <item>
       <title>毕业后，青春像一艘船，沉入海底</title>
       <link>https://wdd.js.org/posts/2018/the-rest-of-your-life/</link>
-      <pubDate>Tue, 14 Aug 2018 18:36:40 +0000</pubDate>
+      <pubDate>Tue, 14 Aug 2018 18:36:40 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/the-rest-of-your-life/</guid>
       <description>大三那年的暑假 大三那年暑假，很多同学都回去了，寝室大楼空空如也。
@@ -264,7 +280,7 @@ Cannot proxy after parsing body #299, 实际上这个问题在node-http-proxy也
     <item>
       <title>NodeJS Events 模块笔记</title>
       <link>https://wdd.js.org/posts/2018/deepin-nodejs-events/</link>
-      <pubDate>Fri, 10 Aug 2018 10:18:57 +0000</pubDate>
+      <pubDate>Fri, 10 Aug 2018 10:18:57 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/deepin-nodejs-events/</guid>
       <description>1. 环境 node 8.11.3 2. 基本使用 // 01.js const EventEmitter = require(&amp;#39;events&amp;#39;); class MyEmitter extends EventEmitter {} const myEmitter = new MyEmitter(); myEmitter.on(&amp;#39;event&amp;#39;, () =&amp;gt; { console.log(&amp;#39;an event occurred!&amp;#39;); }); myEmitter.emit(&amp;#39;event&amp;#39;); 输出：
@@ -274,7 +290,7 @@ an event occurred! 3. 传参与this指向 emit()方法可以传不限制数量�
     <item>
       <title>JavaScript动态下载文件</title>
       <link>https://wdd.js.org/posts/2018/js-download-file/</link>
-      <pubDate>Wed, 27 Jun 2018 09:09:01 +0000</pubDate>
+      <pubDate>Wed, 27 Jun 2018 09:09:01 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/js-download-file/</guid>
       <description>需求描述 可以把字符串下载成txt文件 可以把对象序列化后下载json文件 下载由ajax请求返回的Excel, Word, pdf 等等其他文件 基本思想 downloadJsonIVR () { var data = {name: &amp;#39;age&amp;#39;} data = JSON.stringify(data) data = new Blob([data]) var a = document.createElement(&amp;#39;a&amp;#39;) var url = window.URL.createObjectURL(data) a.href = url a.download = &amp;#39;what-you-want.json&amp;#39; a.click() }, 从字符串下载文件 从ajax请求中下载文件 </description>
@@ -283,7 +299,7 @@ an event occurred! 3. 传参与this指向 emit()方法可以传不限制数量�
     <item>
       <title>Restful API 架构思考</title>
       <link>https://wdd.js.org/posts/2018/think-about-restful-api/</link>
-      <pubDate>Thu, 07 Jun 2018 22:35:08 +0000</pubDate>
+      <pubDate>Thu, 07 Jun 2018 22:35:08 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/think-about-restful-api/</guid>
       <description>1. 什么是REST? 2. REST API最为重要的约束 3. REST API HTTP方法 与 CURD 4. 状态码 5. RESTful架构设计 6. 文档 7. 版本 8. 深入理解状态与无状态 9. 参考 1. 什么是REST? 表现层状态转换（REST，英文：Representational State Transfer）是Roy Thomas Fielding博士于2000年在他的博士论文[1] 中提出来的一种万维网软件架构风格，目的是便于不同软件/程序在网络（例如互联网）中互相传递信息。表现层状态转换（REST，英文：Representational State Transfer）是根基于超文本传输协议(HTTP)之上而确定的一组约束和属性，是一种设计提供万维网络服务的软件构建风格。匹配或兼容于这种架构风格(简称为 REST 或 RESTful)的网络服务，允许客户端发出以统一资源标识符访问和操作网络资源的请求，而与预先定义好的无状态操作集一致化。wikipdeia
@@ -295,7 +311,7 @@ RESTful API的简单定义可以轻松解释这个概念。 REST是一种架构�
     <item>
       <title>记一次如何解决谷歌浏览器占用过高cpu问题过程</title>
       <link>https://wdd.js.org/posts/2018/how-to-fix-google-chrome-very-high-cpu-cost/</link>
-      <pubDate>Mon, 04 Jun 2018 17:58:24 +0000</pubDate>
+      <pubDate>Mon, 04 Jun 2018 17:58:24 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/how-to-fix-google-chrome-very-high-cpu-cost/</guid>
       <description>1. 问题现象 有时候发现mac风扇响的厉害，于是我检查了mac系统的活动监视器，发现Google Chrome Helper占用99%的CPU。
@@ -319,7 +335,7 @@ particles.js提供的demo效果图，在Chrome中CPU会被提高到100%。
     <item>
       <title>IE浏览器不支持location.origin</title>
       <link>https://wdd.js.org/posts/2018/ie-not-support-location-origin/</link>
-      <pubDate>Thu, 24 May 2018 14:50:49 +0000</pubDate>
+      <pubDate>Thu, 24 May 2018 14:50:49 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/ie-not-support-location-origin/</guid>
       <description>某些IE浏览器location.origin属性是undefined，所以如果你要使用该属性，那么要注意做个能力检测。
@@ -329,7 +345,7 @@ if (!window.location.origin) { window.location.origin = window.location.protocol
     <item>
       <title>端到端测试哪家强？不容错过的Cypress</title>
       <link>https://wdd.js.org/posts/2018/e2e-testing-hacker-news-with-cypress/</link>
-      <pubDate>Mon, 14 May 2018 10:43:02 +0000</pubDate>
+      <pubDate>Mon, 14 May 2018 10:43:02 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/e2e-testing-hacker-news-with-cypress/</guid>
       <description>1. 目前E2E测试工具有哪些？ 项目 Web Star puppeteer Chromium (~170Mb Mac, ~282Mb Linux, ~280Mb Win) 31906 nightmare Electron 15502 nightwatch WebDriver 8135 protractor selenium 7532 casperjs PhantomJS 7180 cypress Electron 5303 Zombie 不需要 4880 testcafe 不需要 4645 CodeceptJS webdriverio 1665 端到端测试一般都需要一个Web容器，来运行前端应用。例如Chromium, Electron, PhantomJS, WebDriver等等。
@@ -343,7 +359,7 @@ if (!window.location.origin) { window.location.origin = window.location.protocol
     <item>
       <title>掌握谷歌搜索高级指令</title>
       <link>https://wdd.js.org/posts/2018/master-google-search-command/</link>
-      <pubDate>Thu, 26 Apr 2018 16:56:01 +0000</pubDate>
+      <pubDate>Thu, 26 Apr 2018 16:56:01 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/master-google-search-command/</guid>
       <description>1. 谷歌搜索指令 2. 基本命令 3. 关键词使用 4. 特殊工具 4.1. define 快速返回关键词定义 4.2. 计算器 4.3. 单位转换 4.4. 时区查询 4.5. 地区查询 4.6. 天气查询 5. 参考 1. 谷歌搜索指令 2. 基本命令 符号 简介 语法 注意点 示例 | 包含A且必须包含B | A +B | A和+之间有空格 | Maxwell +wills | 包含A且不包含B | A -B | A和+之间有空格 | Maxwell -Absolom &amp;quot; &amp;quot; | 完整匹配AB | &amp;ldquo;AB&amp;rdquo; | | &amp;ldquo;Thomas Jefferson&amp;rdquo; OR | 包含A或者B | A OR B 或者 A | B | | nodejs OR webpack +-&amp;ldquo;OR | 指令可以组合，完成更复杂的查询 | | | beach -sandy +albert +nathaniel ~ | 包含A, 并且包含B的近义词 | A ~B | | github ~js .</description>
@@ -352,7 +368,7 @@ if (!window.location.origin) { window.location.origin = window.location.protocol
     <item>
       <title>金钱游戏 - 银行造钱的秘密</title>
       <link>https://wdd.js.org/posts/2018/the-secret-of-bank-create-money/</link>
-      <pubDate>Wed, 25 Apr 2018 13:33:52 +0000</pubDate>
+      <pubDate>Wed, 25 Apr 2018 13:33:52 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/the-secret-of-bank-create-money/</guid>
       <description>1. 角色划分 名称 角色 账户 A 银行家 0 B 建筑商 100万 C 商人 0 2. 建筑商向银行存储100万 名称 角色 账户 A 银行家 100万 现金 B 建筑商 100万 支票 C 商人 0 2. 商人向银行贷款100万 此时银行的账户存款已经是0了，但是B还在银行存了100万。那银行究竟是还有100万呢, 还是一毛都没有了呢。
@@ -365,7 +381,7 @@ if (!window.location.origin) { window.location.origin = window.location.protocol
     <item>
       <title>Express静态文件浏览器缓存设置与缓存清除</title>
       <link>https://wdd.js.org/posts/2018/express-static-file-cache-setting-and-cleaning/</link>
-      <pubDate>Sun, 08 Apr 2018 09:00:48 +0000</pubDate>
+      <pubDate>Sun, 08 Apr 2018 09:00:48 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/express-static-file-cache-setting-and-cleaning/</guid>
       <description>1. Express设置缓存 Express设置静态文件的方法很简单，一行代码搞定。app.use(express.static(path.join(__dirname, &#39;public&#39;), {maxAge: MAX_AGE})), 注意MAX_AGE的单位是毫秒。这句代码的含义是让pulic目录下的所有文件都可以在浏览器中缓存，过期时长为MAX_AGE毫秒。
@@ -382,7 +398,7 @@ app.use(express.static(path.join(__dirname, &amp;#39;public&amp;#39;), {maxAge: 
     <item>
       <title>WebSocket断开原因分析</title>
       <link>https://wdd.js.org/posts/2018/websocket-close-reasons/</link>
-      <pubDate>Thu, 29 Mar 2018 20:35:38 +0000</pubDate>
+      <pubDate>Thu, 29 Mar 2018 20:35:38 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/websocket-close-reasons/</guid>
       <description>1. 把错误打印出来 WebSocket断开的原因有很多，最好在WebSocket断开时，将错误打印出来。
@@ -396,7 +412,7 @@ ws.onerror = function (e) { console.log(&amp;#39;WebSocket发生错误: &amp;#39
     <item>
       <title>js中的真值和假值</title>
       <link>https://wdd.js.org/posts/2018/js-true-and-false-value/</link>
-      <pubDate>Tue, 27 Mar 2018 14:31:01 +0000</pubDate>
+      <pubDate>Tue, 27 Mar 2018 14:31:01 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/js-true-and-false-value/</guid>
       <description>无论什么语言，都需要逻辑，而逻辑中，能否判断出真假，是最基本也是最重要技能之一。
@@ -409,7 +425,7 @@ typeof null // &amp;#39;object&amp;#39; 据说：typeof null返回对象这是�
     <item>
       <title>在实践中我遇到stompjs, websocket和nginx的问题与总结</title>
       <link>https://wdd.js.org/posts/2018/stomp-over-websocket/</link>
-      <pubDate>Tue, 20 Mar 2018 22:09:34 +0000</pubDate>
+      <pubDate>Tue, 20 Mar 2018 22:09:34 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/stomp-over-websocket/</guid>
       <description>1. AWS EC2 不支持WebSocket 直达解决方案 英文版
@@ -422,7 +438,7 @@ typeof null // &amp;#39;object&amp;#39; 据说：typeof null返回对象这是�
     <item>
       <title>状态码为200时 jQuery ajax报错</title>
       <link>https://wdd.js.org/posts/2018/status-code-200-jquery-ajax-failed/</link>
-      <pubDate>Thu, 15 Mar 2018 14:17:59 +0000</pubDate>
+      <pubDate>Thu, 15 Mar 2018 14:17:59 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/status-code-200-jquery-ajax-failed/</guid>
       <description>1. 问题现象 HTTP 状态码为 200 OK 时， jquery ajax报错
@@ -434,7 +450,7 @@ jQuery ajax 官方文档上说明：
     <item>
       <title>前端剪贴板复制功能实现原理</title>
       <link>https://wdd.js.org/posts/2018/clipboard-copy-tutorial/</link>
-      <pubDate>Wed, 14 Mar 2018 14:19:12 +0000</pubDate>
+      <pubDate>Wed, 14 Mar 2018 14:19:12 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/clipboard-copy-tutorial/</guid>
       <description>1. 兼容情况 如果想浏览器支持粘贴功能，那么浏览器必须支持，document.execCommand(&amp;lsquo;copy&amp;rsquo;)方法，也可以根据document.queryCommandEnabled(&amp;lsquo;copy&amp;rsquo;)，返回的true或者false判断浏览器是否支持copy命令。
@@ -449,7 +465,7 @@ new ClipboardJS(&amp;#39;.btn&amp;#39;); </description>
     <item>
       <title>Chrome本地跨域origin-null-is-not-allowed问题分析与解决方案</title>
       <link>https://wdd.js.org/posts/2018/origin-null-is-not-allowed/</link>
-      <pubDate>Fri, 09 Mar 2018 17:58:05 +0000</pubDate>
+      <pubDate>Fri, 09 Mar 2018 17:58:05 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/origin-null-is-not-allowed/</guid>
       <description>1. 问题表现 以file:///xxx.html打开某个html文件，发送ajax请求时报错：
@@ -463,7 +479,7 @@ Response to preflight request doesn&amp;#39;t pass access control check: The &am
     <item>
       <title>正则表达式在线工具集合</title>
       <link>https://wdd.js.org/posts/2018/regex-online-tools/</link>
-      <pubDate>Sat, 24 Feb 2018 15:27:24 +0000</pubDate>
+      <pubDate>Sat, 24 Feb 2018 15:27:24 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/regex-online-tools/</guid>
       <description>1. 功能最强：regex101 优点：
@@ -477,7 +493,7 @@ Response to preflight request doesn&amp;#39;t pass access control check: The &am
     <item>
       <title>前端面试和笔试题目</title>
       <link>https://wdd.js.org/posts/2018/front-end-interview-handbook/</link>
-      <pubDate>Fri, 23 Feb 2018 15:18:26 +0000</pubDate>
+      <pubDate>Fri, 23 Feb 2018 15:18:26 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/front-end-interview-handbook/</guid>
       <description>1. 问答题 1.1. HTML相关 1.1.1. 的作用是什么？ 1.1.2. script, script async和script defer之间有什么区别？ 1.1.3. cookie, sessionStorage 和 localStorage之间有什么区别？ 1.1.4. 用过哪些html模板渲染工具？ 1.2. CSS相关 1.2.1. 简述CSS盒子模型 1.2.2. CSS有哪些选择器？ 1.2.3. CSS sprite是什么？ 1.2.4. 写一下你知道的前端UI框架？ 1.3. JS相关 1.3.1. js有哪些数据类型？ 1.3.2. js有哪些假值？ 1.3.3. js数字和字符串之间有什么快速转换的写法？ 1.3.4. 经常使用哪些ES6的语法？ 1.3.5. 什么是同源策略？ 1.3.6. 跨域有哪些解决方法？ 1.3.7. 网页进度条实现的原理 1.3.8. 请问console.log是同步的，还是异步的？ 1.3.9. 下面console输出的值是什么？ var scores = [10,11,12]; var total = 0; for(var score in scores){ total += score; } var average = total/scores.length; console.log(average); 1.</description>
@@ -486,7 +502,7 @@ Response to preflight request doesn&amp;#39;t pass access control check: The &am
     <item>
       <title>small is better than big 我的读书方法论</title>
       <link>https://wdd.js.org/posts/2018/small-is-better-than-big/</link>
-      <pubDate>Tue, 13 Feb 2018 14:57:23 +0000</pubDate>
+      <pubDate>Tue, 13 Feb 2018 14:57:23 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/small-is-better-than-big/</guid>
       <description>床底下秘密 我是一个毅力不是很够的人。我曾经下定决心要锻炼身体，买了一些健身器材，例如瑜伽垫，仰卧起坐的器材，俯卧撑的器材。然而三分钟的热度过后，我把瑜伽垫卷了起来，塞到床底下。把仰卧起坐的器材拆开，也塞到了床底下。
@@ -515,7 +531,7 @@ Response to preflight request doesn&amp;#39;t pass access control check: The &am
     <item>
       <title>基于 WebRTC 构建 Web SIP Phone</title>
       <link>https://wdd.js.org/posts/2018/webrtc-web-sip-phone/</link>
-      <pubDate>Sun, 11 Feb 2018 14:44:58 +0000</pubDate>
+      <pubDate>Sun, 11 Feb 2018 14:44:58 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/webrtc-web-sip-phone/</guid>
       <description>0 阅前须知 本文并不是教程，只是实现方案 我只是从WEB端考虑这个问题，实际还需要后端sip服务器的配合 jsSIP有个非常不错的在线demo, 可以去哪里玩耍，很好玩呢 try jssip 1. 技术简介 WebRTC: WebRTC，名称源自网页即时通信（英语：Web Real-Time Communication）的缩写，是一个支持网页浏览器进行实时语音对话或视频对话的API。它于2011年6月1日开源并在Google、Mozilla、Opera支持下被纳入万维网联盟的W3C推荐标准 SIP: 会话发起协议（Session Initiation Protocol，缩写SIP）是一个由IETF MMUSIC工作组开发的协议，作为标准被提议用于创建，修改和终止包括视频，语音，即时通信，在线游戏和虚拟现实等多种多媒体元素在内的交互式用户会话。2000年11月，SIP被正式批准成为3GPP信号协议之一，并成为IMS体系结构的一个永久单元。SIP与H.323一样，是用于VoIP最主要的信令协议之一。 一般来说，要么使用实体话机，要么在系统上安装基于sip的客户端程序。实体话机硬件成本高，基于sip的客户端往往兼容性差，无法跨平台，易被杀毒软件查杀。
@@ -530,7 +546,7 @@ Response to preflight request doesn&amp;#39;t pass access control check: The &am
     <item>
       <title>不常用却很有妙用的事件及方法</title>
       <link>https://wdd.js.org/posts/2018/useful-browser-events/</link>
-      <pubDate>Sun, 11 Feb 2018 14:34:17 +0000</pubDate>
+      <pubDate>Sun, 11 Feb 2018 14:34:17 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/useful-browser-events/</guid>
       <description>1 visibilitychange事件 触发条件：浏览器标签页被隐藏或显示的时候会触发visibilitychange事件.
@@ -545,7 +561,7 @@ window.addEventListener(&amp;#34;beforeunload&amp;#34;, function (e) { var confi
     <item>
       <title>mac vscode 更新失败 Permission denied解决办法</title>
       <link>https://wdd.js.org/posts/2018/mac-vscode-update-permission-denied/</link>
-      <pubDate>Sun, 11 Feb 2018 14:20:01 +0000</pubDate>
+      <pubDate>Sun, 11 Feb 2018 14:20:01 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/mac-vscode-update-permission-denied/</guid>
       <description>0. 现象 Could not create temporary directory: Permission denied
@@ -557,7 +573,7 @@ drwxr-xr-x 6 username staff 204B Jan 17 20:33 com.microsoft.VSCode drwxr--r-- 2 
     <item>
       <title>IE11 0x2ee4 bug 以及类似问题解决方法</title>
       <link>https://wdd.js.org/posts/2018/ie11-0x2ee4-bug/</link>
-      <pubDate>Sun, 11 Feb 2018 14:12:19 +0000</pubDate>
+      <pubDate>Sun, 11 Feb 2018 14:12:19 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/ie11-0x2ee4-bug/</guid>
       <description>一千个IE浏览器访问同一个页面，可能报一千种错误。前端激进派对IE恨得牙痒痒，但是无论你爱，或者不爱，IE就在那里，不来不去。
@@ -577,7 +593,7 @@ internet选项 安全 自定义级别 启用通过跨域访问数据源 启用�
     <item>
       <title>Vue&#43;ElementUI 手把手教你做一个audio组件</title>
       <link>https://wdd.js.org/posts/2018/vue-elementui-audio-component/</link>
-      <pubDate>Fri, 09 Feb 2018 13:44:13 +0000</pubDate>
+      <pubDate>Fri, 09 Feb 2018 13:44:13 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/vue-elementui-audio-component/</guid>
       <description>1. 简介 1.1. 相关技术 Vue Vue-cli ElementUI yarn (之前我用npm, 并使用cnpm的源，但是用了yarn之后，我发现它比cnpm的速度还快，功能更好，我就毫不犹豫选择yarn了) Audio相关API和事件 1.2. 从本教程你会学到什么？ Vue单文件组件开发知识 Element UI基本用法 Audio原生API及Audio相关事件 音频播放器的基本原理 音频的播放暂停控制 更新音频显示时间 音频进度条控制与跳转 音频音量控制 音频播放速度控制 音频静音控制 音频下载控制 个性化配置与排他性播放 一点点ES6语法 2. 学前准备 基本上不需要什么准备，但是如果你能先看一下Aduio相关API和事件将会更好
@@ -588,7 +604,7 @@ Audio: 如果你愿意一层一层剥开我的心 使用 HTML5 音频和视频 3
     <item>
       <title>你不知道的JSON.stringify()妙用</title>
       <link>https://wdd.js.org/posts/2018/json-stringify-powerful/</link>
-      <pubDate>Fri, 09 Feb 2018 13:27:15 +0000</pubDate>
+      <pubDate>Fri, 09 Feb 2018 13:27:15 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/json-stringify-powerful/</guid>
       <description>1. 语法 JSON.stringify(value[, replacer[, space]]) 一般用法：
@@ -601,7 +617,7 @@ var user = {name: &amp;#39;andy&amp;#39;, isDead: false, age: 11, addr: &amp;#39
     <item>
       <title>ECharts 轮流高亮中国地图各个省份</title>
       <link>https://wdd.js.org/posts/2018/echarts-highlight-china-map/</link>
-      <pubDate>Fri, 09 Feb 2018 13:16:53 +0000</pubDate>
+      <pubDate>Fri, 09 Feb 2018 13:16:53 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/echarts-highlight-china-map/</guid>
       <description>1. 小栗子 最早我是想通过dispatchAction方法去改变选中的省份，但是没有起作用，如果你知道这个方法怎么实现，麻烦你可以告诉我。 我实现的方法是另外一种。
@@ -612,7 +628,7 @@ var myChart = echarts.init(document.getElementById(&amp;#39;china-map&amp;#39;))
     <item>
       <title>一行命令搭建简易静态文件http服务器</title>
       <link>https://wdd.js.org/posts/2018/one-command-create-static-file-server/</link>
-      <pubDate>Fri, 09 Feb 2018 13:01:14 +0000</pubDate>
+      <pubDate>Fri, 09 Feb 2018 13:01:14 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/one-command-create-static-file-server/</guid>
       <description>简易服务器：在命令执行的所在路径启动一个http服务器，然后你可以通过浏览器访问该路径下的所有文件。
@@ -625,7 +641,7 @@ var myChart = echarts.init(document.getElementById(&amp;#39;china-map&amp;#39;))
     <item>
       <title>120行代码实现 浏览器WebRTC视频聊天</title>
       <link>https://wdd.js.org/posts/2018/webrtc-tutorial-simple-video-chat/</link>
-      <pubDate>Fri, 09 Feb 2018 12:56:12 +0000</pubDate>
+      <pubDate>Fri, 09 Feb 2018 12:56:12 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/webrtc-tutorial-simple-video-chat/</guid>
       <description>本例子是参考webrtc-tutorial-simple-video-chat做的。 这个教程应该主要是去宣传ScaleDrone的sdk, 他们的服务是收费的，但是免费的也可以用，就是有些次数限制。
@@ -637,7 +653,7 @@ var myChart = echarts.init(document.getElementById(&amp;#39;china-map&amp;#39;))
     <item>
       <title>如何写好技术文档?</title>
       <link>https://wdd.js.org/posts/2018/how-to-write-a-technical-document/</link>
-      <pubDate>Fri, 09 Feb 2018 12:52:57 +0000</pubDate>
+      <pubDate>Fri, 09 Feb 2018 12:52:57 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/how-to-write-a-technical-document/</guid>
       <description>本文来自于公司内部的一个分享。 在文档方面，对内的一些接口文档主要是用swagger来写的。虽然可以在线测试，比较方便。但是也存在着一些更新不及时，swgger文档无法导出成文件的问题。 在对外提供的文档方面：我主要负责做一个浏览器端的一个js sdk。文档还算可以github地址，所以想把一些写文档的心得分享给大家。
@@ -652,7 +668,7 @@ var myChart = echarts.init(document.getElementById(&amp;#39;china-map&amp;#39;))
     <item>
       <title>哑代理 - TCP链接高Recv-Q，内存泄露的罪魁祸首</title>
       <link>https://wdd.js.org/posts/2018/tcp-high-recv-q-or-send-q-reasons/</link>
-      <pubDate>Thu, 08 Feb 2018 21:58:31 +0000</pubDate>
+      <pubDate>Thu, 08 Feb 2018 21:58:31 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/tcp-high-recv-q-or-send-q-reasons/</guid>
       <description>1. 问题现象 使用netstat -ntp命令时发现，Recv-Q 1692012 异常偏高（正常情况下，该值应该是0），导致应用占用过多的内存。
@@ -676,7 +692,7 @@ delete req.headers.host var option = { url: url, headers: req.</description>
     <item>
       <title>定时器学习：利用定时器分解耗时任务案例</title>
       <link>https://wdd.js.org/posts/2018/settimeout-to-splice-big-work/</link>
-      <pubDate>Thu, 08 Feb 2018 14:09:54 +0000</pubDate>
+      <pubDate>Thu, 08 Feb 2018 14:09:54 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/settimeout-to-splice-big-work/</guid>
       <description>对于执行时间过长的脚本，有的浏览器会弹出警告，说页面无响应。有的浏览器会直接终止脚本。总而言之，浏览器不希望某一个代码块长时间处于运行状态，因为js是单线程的。一个代码块长时间运行，将会导致其他任何任务都必须等待。从用户体验上来说，很有可能发生页面渲染卡顿或者点击事件无响应的状态。
@@ -693,7 +709,7 @@ Js利用定时器来分解任务，关键点有两个。
     <item>
       <title>关于JavaScropt函数式编程，我多么希望能早点看到这本书</title>
       <link>https://wdd.js.org/posts/2018/js-functional-programming/</link>
-      <pubDate>Thu, 08 Feb 2018 14:06:22 +0000</pubDate>
+      <pubDate>Thu, 08 Feb 2018 14:06:22 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/js-functional-programming/</guid>
       <description>我父亲以前跟我说过，有些事物在你得到之前是无足轻重的，得到之后就不可或缺了。微波炉是这样，智能手机是这样，互联网也是这样——老人们在没有互联网的时候过得也很充实。对我来说，函数的柯里化（curry）也是这样。
@@ -705,7 +721,7 @@ Js利用定时器来分解任务，关键点有两个。
     <item>
       <title>终于找到你！如何将前端console.log的日志保存成文件?</title>
       <link>https://wdd.js.org/posts/2018/save-console-log-as-file/</link>
-      <pubDate>Thu, 08 Feb 2018 13:56:40 +0000</pubDate>
+      <pubDate>Thu, 08 Feb 2018 13:56:40 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/save-console-log-as-file/</guid>
       <description>本篇文章来自一个需求，前端websocket会收到各种消息，但是调试的时候，我希望把websoekt推送过来的消息都保存到一个文件里，如果出问题的时候，我可以把这些消息的日志文件提交给后端开发区分析错误。但是在浏览器里，js一般是不能写文件的。鼠标另存为的方法也是不太好，因为会保存所有的console.log的输出。于是，终于找到这个debugout.js。
@@ -723,7 +739,7 @@ var bugout = new debugout(); // instead of console.log(&amp;#39;some object or s
     <item>
       <title>如何浏览器里调试iframe里层的代码？</title>
       <link>https://wdd.js.org/posts/2018/debug-code-in-iframe/</link>
-      <pubDate>Thu, 08 Feb 2018 13:53:48 +0000</pubDate>
+      <pubDate>Thu, 08 Feb 2018 13:53:48 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/debug-code-in-iframe/</guid>
       <description>之前一直非常痛苦，在iframe外层根本获取不了里面的信息，后来使用了postMessage用传递消息来实现，但是用起来还是非常不方便。
@@ -737,7 +753,7 @@ var bugout = new debugout(); // instead of console.log(&amp;#39;some object or s
     <item>
       <title>Audio 如果你愿意一层一层剥开我的心</title>
       <link>https://wdd.js.org/posts/2018/audio-heart-detail/</link>
-      <pubDate>Thu, 08 Feb 2018 09:44:01 +0000</pubDate>
+      <pubDate>Thu, 08 Feb 2018 09:44:01 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/audio-heart-detail/</guid>
       <description>我觉得DOM就好像是元素周期表里的元素，JS就好像是实验器材，通过各种化学反应，产生各种魔术。
@@ -748,7 +764,7 @@ var bugout = new debugout(); // instead of console.log(&amp;#39;some object or s
     <item>
       <title>可能被遗漏的https与http的知识点</title>
       <link>https://wdd.js.org/posts/2018/you-dont-know-https-and-http/</link>
-      <pubDate>Thu, 08 Feb 2018 09:10:59 +0000</pubDate>
+      <pubDate>Thu, 08 Feb 2018 09:10:59 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/you-dont-know-https-and-http/</guid>
       <description>1. HTTPS域向HTTP域发送请求会被浏览器直接拒绝，HTTP向HTTPS则不会 例如在github pages页面，这是一个https页面，如果在这个页面向http发送请求，那么会直接被浏览器拒绝，并在控制台输出下面的报错信息。
@@ -760,7 +776,7 @@ jquery-1.11.3.min.js:5 Mixed Content: The page at &amp;#39;https://wangduanduan.
     <item>
       <title>直接在Chrome DevTools调试Node.js</title>
       <link>https://wdd.js.org/posts/2018/debug-nodejs-in-chrome-devtool/</link>
-      <pubDate>Wed, 07 Feb 2018 14:15:43 +0000</pubDate>
+      <pubDate>Wed, 07 Feb 2018 14:15:43 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/debug-nodejs-in-chrome-devtool/</guid>
       <description>英文好的，直接看原文
@@ -773,7 +789,7 @@ https://blog.hospodarets.com/nodejs-debugging-in-chrome-devtools
     <item>
       <title>【译】13简单的优秀编码规则（从我15年的经验）</title>
       <link>https://wdd.js.org/posts/2018/few-simple-rules-for-good-coding-my-15-years-experience/</link>
-      <pubDate>Wed, 07 Feb 2018 14:03:12 +0000</pubDate>
+      <pubDate>Wed, 07 Feb 2018 14:03:12 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/few-simple-rules-for-good-coding-my-15-years-experience/</guid>
       <description>原文地址：https://hackernoon.com/few-simple-rules-for-good-coding-my-15-years-experience-96cb29d4acd9#.ddzpjb80c
@@ -801,7 +817,7 @@ https://blog.hospodarets.com/nodejs-debugging-in-chrome-devtools
     <item>
       <title>JavaScript 高级技巧</title>
       <link>https://wdd.js.org/posts/2018/js-high-skills/</link>
-      <pubDate>Wed, 07 Feb 2018 10:14:56 +0000</pubDate>
+      <pubDate>Wed, 07 Feb 2018 10:14:56 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/js-high-skills/</guid>
       <description>0.1. 安全类型检测 javascript内置类型检测并不可靠 safari某些版本（&amp;lt;4）typeof正则表达式返回为function 建议使用Object.prototype.toString.call()方法检测数据类型
@@ -816,7 +832,7 @@ function Person(name){ if(this instanceof Person){ this.name = name; } else{ ret
     <item>
       <title>突然觉得自己好像没学过JS</title>
       <link>https://wdd.js.org/posts/2018/i-realy-dont-know-js/</link>
-      <pubDate>Wed, 07 Feb 2018 10:09:42 +0000</pubDate>
+      <pubDate>Wed, 07 Feb 2018 10:09:42 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/i-realy-dont-know-js/</guid>
       <description>0.1. 先看题：mean的值是什么？ var scores = [10,11,12]; var total = 0; for(var score in scores){ total += score; } var mean = total/scores.length; console.log(mean); 0.2. 是11？ 恭喜你：答错了！
@@ -831,7 +847,7 @@ var scores = [10,11,12]; var total = 0; for(var i=0, n=scores.length; i &amp;lt;
     <item>
       <title>发起Ajax请求当页面onunload</title>
       <link>https://wdd.js.org/posts/2018/send-ajax-when-page-unload/</link>
-      <pubDate>Wed, 07 Feb 2018 09:18:54 +0000</pubDate>
+      <pubDate>Wed, 07 Feb 2018 09:18:54 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/send-ajax-when-page-unload/</guid>
       <description>0.1. 同步Ajax 这种需求主要用于当浏览器关闭，或者刷新时，向后端发起Ajax请求。
@@ -845,7 +861,7 @@ window.addEventListener(&amp;#39;unload&amp;#39;, logData, false); function logD
     <item>
       <title>git合并上游仓库即同步fork后的仓库</title>
       <link>https://wdd.js.org/posts/2018/fork-sync-learn/</link>
-      <pubDate>Wed, 31 Jan 2018 17:16:44 +0000</pubDate>
+      <pubDate>Wed, 31 Jan 2018 17:16:44 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/fork-sync-learn/</guid>
       <description>1. 前提说明 仓库A: http://gitlab.tt.cc:30000/fe/omp.git 仓库B: 仓库Bfork自仓库A, 仓库A的地址是：http://gitlab.tt.cc:30000/wangdd/omp.git 某一时刻，仓库A更新了。仓库B需要同步上游分支的更新。
@@ -855,7 +871,7 @@ window.addEventListener(&amp;#39;unload&amp;#39;, logData, false); function logD
     <item>
       <title>如何写好接口文档？</title>
       <link>https://wdd.js.org/posts/2018/how-to-write-better-api-docs/</link>
-      <pubDate>Mon, 29 Jan 2018 22:01:55 +0000</pubDate>
+      <pubDate>Mon, 29 Jan 2018 22:01:55 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/how-to-write-better-api-docs/</guid>
       <description>1. HTTP携带信息的方式 url headers body: 包括请求体，响应体 2. 分离通用信息 一般来说，headers里的信息都是通用的，可以提前说明，作为默认参数
@@ -873,7 +889,7 @@ window.addEventListener(&amp;#39;unload&amp;#39;, logData, false); function logD
     <item>
       <title>win7 ie11 开发者工具打开后一片空白</title>
       <link>https://wdd.js.org/posts/2018/ie11-without-devtool/</link>
-      <pubDate>Mon, 29 Jan 2018 21:43:12 +0000</pubDate>
+      <pubDate>Mon, 29 Jan 2018 21:43:12 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/ie11-without-devtool/</guid>
       <description>解决方法安装Windows7补丁：KB3008923； 下载地址： http://www.microsoft.com/en-us/download/details.aspx?id=45134 （32位） http://www.microsoft.com/zh-CN/download/details.aspx?id=45154 （64位）</description>
@@ -882,7 +898,7 @@ window.addEventListener(&amp;#39;unload&amp;#39;, logData, false); function logD
     <item>
       <title>CSTA 呼叫模型简介</title>
       <link>https://wdd.js.org/posts/2018/csta-call-model-overview/</link>
-      <pubDate>Mon, 29 Jan 2018 21:35:24 +0000</pubDate>
+      <pubDate>Mon, 29 Jan 2018 21:35:24 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/csta-call-model-overview/</guid>
       <description>1. 内容概要 CSTA协议与标准概述 CSTA OpenScape 语音架构概述 2. CSTA协议标准 2.1. 什么是CSTA ? CSTA：电脑支持通讯程序(Computer Supported TelecommunicationsApplications)
@@ -900,7 +916,7 @@ CSTA并不依赖任何底层的信令协议 E.g.H.323,SIP,Analog,T1,ISDN,etc. CS
     <item>
       <title>组织在召唤：如何免费获取一个js.org的二级域名</title>
       <link>https://wdd.js.org/posts/2018/how-to-get-jsorg-sub-domain/</link>
-      <pubDate>Mon, 29 Jan 2018 18:08:03 +0000</pubDate>
+      <pubDate>Mon, 29 Jan 2018 18:08:03 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/how-to-get-jsorg-sub-domain/</guid>
       <description>之前我是使用wangduanduan.github.io作为我的博客地址，后来觉得麻烦，有把博客关了。最近有想去折腾折腾。 先看效果：wdd.js.org
@@ -919,7 +935,7 @@ wdd.js.org 将博客再次部署好，如果CNAME生效的话，你已经无法�
     <item>
       <title>不常用却很有妙用的事件及方法</title>
       <link>https://wdd.js.org/posts/2018/browser-events/</link>
-      <pubDate>Mon, 29 Jan 2018 14:15:25 +0000</pubDate>
+      <pubDate>Mon, 29 Jan 2018 14:15:25 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/browser-events/</guid>
       <description>1. visibilitychange事件 触发条件：浏览器标签页被隐藏或显示的时候会触发visibilitychange事件.
@@ -934,7 +950,7 @@ window.addEventListener(&amp;#34;beforeunload&amp;#34;, function (e) { var confi
     <item>
       <title>油猴子脚本 - 我的地盘我做主</title>
       <link>https://wdd.js.org/posts/2018/tampermonkey/</link>
-      <pubDate>Mon, 29 Jan 2018 13:58:37 +0000</pubDate>
+      <pubDate>Mon, 29 Jan 2018 13:58:37 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/tampermonkey/</guid>
       <description>当你用浏览器访问某个网页时，你可曾想过，你看到的这个网页，实际上是属于你自己的。
@@ -955,7 +971,7 @@ Greasemonkey可替网页加入些新功能（例如在亚马逊书店嵌入商�
     <item>
       <title>追本溯源：substr与substring历史漫话</title>
       <link>https://wdd.js.org/posts/2018/substr-and-substring-history/</link>
-      <pubDate>Mon, 29 Jan 2018 13:46:31 +0000</pubDate>
+      <pubDate>Mon, 29 Jan 2018 13:46:31 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/substr-and-substring-history/</guid>
       <description>引子： 很多时候，当我要字符串截取时，我会想到substr和substring的方法，但是具体要怎么传参数时，我总是记不住。哪个应该传个字符串长度，哪个又应该传个开始和结尾的下标，如果我不去查查这两个函数，我始终不敢去使用它们。所以我总是觉得，这个两个方法名起的真是蹩脚。然而事实是这样的吗？
@@ -971,7 +987,7 @@ Greasemonkey可替网页加入些新功能（例如在亚马逊书店嵌入商�
     <item>
       <title>熟练使用使用jQuery Promise (Deferred)</title>
       <link>https://wdd.js.org/posts/2018/jquery-deferred/</link>
-      <pubDate>Mon, 29 Jan 2018 13:43:23 +0000</pubDate>
+      <pubDate>Mon, 29 Jan 2018 13:43:23 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/jquery-deferred/</guid>
       <description>1. 情景再现 以前用nodejs写后端程序时，遇到Promise这个概念，这个东西好呀！不用谢一层一层回调，直接用类似于jQuery的连缀方式。后来遇到bluebird这个库，它就是Promise库中很有名的。我希望可以把Promise用在前端的ajax请求上，但是我不想又引入bluebird。后来发现，jquery本身就具有类似于Promise的东西。于是我就jquery的Promise写一些异步请求。

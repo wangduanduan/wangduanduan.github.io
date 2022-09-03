@@ -9,11 +9,11 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 08 Feb 2018 13:56:40 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/console/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 08 Feb 2018 13:56:40 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/console/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>终于找到你！如何将前端console.log的日志保存成文件?</title>
       <link>https://wdd.js.org/posts/2018/save-console-log-as-file/</link>
-      <pubDate>Thu, 08 Feb 2018 13:56:40 +0000</pubDate>
+      <pubDate>Thu, 08 Feb 2018 13:56:40 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/save-console-log-as-file/</guid>
       <description>本篇文章来自一个需求，前端websocket会收到各种消息，但是调试的时候，我希望把websoekt推送过来的消息都保存到一个文件里，如果出问题的时候，我可以把这些消息的日志文件提交给后端开发区分析错误。但是在浏览器里，js一般是不能写文件的。鼠标另存为的方法也是不太好，因为会保存所有的console.log的输出。于是，终于找到这个debugout.js。

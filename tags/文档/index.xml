@@ -9,11 +9,11 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 09 Feb 2018 12:52:57 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E6%96%87%E6%A1%A3/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 09 Feb 2018 12:52:57 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E6%96%87%E6%A1%A3/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>如何写好技术文档?</title>
       <link>https://wdd.js.org/posts/2018/how-to-write-a-technical-document/</link>
-      <pubDate>Fri, 09 Feb 2018 12:52:57 +0000</pubDate>
+      <pubDate>Fri, 09 Feb 2018 12:52:57 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/how-to-write-a-technical-document/</guid>
       <description>本文来自于公司内部的一个分享。 在文档方面，对内的一些接口文档主要是用swagger来写的。虽然可以在线测试，比较方便。但是也存在着一些更新不及时，swgger文档无法导出成文件的问题。 在对外提供的文档方面：我主要负责做一个浏览器端的一个js sdk。文档还算可以github地址，所以想把一些写文档的心得分享给大家。

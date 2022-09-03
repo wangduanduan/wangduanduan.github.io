@@ -9,11 +9,11 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 05 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://wdd.js.org/shell/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://wdd.js.org/shell/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>grep常用参考</title>
       <link>https://wdd.js.org/shell/grep-docs/</link>
-      <pubDate>Sun, 05 Jun 2022 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 05 Jun 2022 00:00:00 +0800</pubDate>
       
       <guid>https://wdd.js.org/shell/grep-docs/</guid>
       <description>1. grep 常用参数 参考： GNU Grep 3.0
@@ -23,7 +23,7 @@
     <item>
       <title>Shell 书籍和资料收藏</title>
       <link>https://wdd.js.org/shell/star-collect/</link>
-      <pubDate>Sun, 05 Jun 2022 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 05 Jun 2022 00:00:00 +0800</pubDate>
       
       <guid>https://wdd.js.org/shell/star-collect/</guid>
       <description>shell 自动化测试 https://github.com/bats-core/bats-core shell精进 https://github.com/NARKOZ/hacker-scripts https://github.com/trimstray/the-book-of-secret-knowledge https://legacy.gitbook.com/book/learnbyexample/command-line-text-processing https://github.com/dylanaraps/pure-bash-bible https://github.com/dylanaraps/pure-sh-bible https://github.com/Idnan/bash-guide https://github.com/denysdovhan/bash-handbook https://pubs.opengroup.org/onlinepubs/9699919799/utilities/contents.html https://github.com/jlevy/the-art-of-command-line https://google.github.io/styleguide/shell.xml https://wiki.bash-hackers.org/start https://linuxguideandhints.com/ 安全加固 https://www.lisenet.com/2017/centos-7-server-hardening-guide/ https://highon.coffee/blog/security-harden-centos-7/ https://github.com/trimstray/the-practical-linux-hardening-guide https://github.com/decalage2/awesome-security-hardening https://www.hackingarticles.in/ https://github.com/toniblyx/my-arsenal-of-aws-security-tools </description>
@@ -32,7 +32,7 @@
     <item>
       <title>Ack 在contab中无法查到关键词</title>
       <link>https://wdd.js.org/shell/contab-ack/</link>
-      <pubDate>Fri, 18 Jun 2021 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 18 Jun 2021 00:00:00 +0800</pubDate>
       
       <guid>https://wdd.js.org/shell/contab-ack/</guid>
       <description>手工执行，可以获得预期结果，但是在crontab中，却查不到结果。
@@ -44,7 +44,7 @@ https://stackoverflow.com/questions/55777520/ack-fails-in-cronjob-but-runs-fine-
     <item>
       <title>常用shell技巧</title>
       <link>https://wdd.js.org/shell/all-in-one/</link>
-      <pubDate>Tue, 07 Jan 2020 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 07 Jan 2020 00:00:00 +0800</pubDate>
       
       <guid>https://wdd.js.org/shell/all-in-one/</guid>
       <description>命令行编辑 向左移动光标	ctrl + b 向右移动光标	ctrl + f 移动光标到行尾	ctrl + e 移动光标到行首	ctrl + a 清除前面一个词	ctrl + w 清除光标到行首	ctrl + u 清除光标到行尾	ctrl + k 命令行搜索	ctrl + r 解压与压缩 1、压缩命令： 命令格式：

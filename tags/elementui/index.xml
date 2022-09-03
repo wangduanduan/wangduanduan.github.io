@@ -9,11 +9,11 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 09 Feb 2018 13:44:13 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/elementui/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 09 Feb 2018 13:44:13 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/elementui/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Vue&#43;ElementUI 手把手教你做一个audio组件</title>
       <link>https://wdd.js.org/posts/2018/vue-elementui-audio-component/</link>
-      <pubDate>Fri, 09 Feb 2018 13:44:13 +0000</pubDate>
+      <pubDate>Fri, 09 Feb 2018 13:44:13 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/vue-elementui-audio-component/</guid>
       <description>1. 简介 1.1. 相关技术 Vue Vue-cli ElementUI yarn (之前我用npm, 并使用cnpm的源，但是用了yarn之后，我发现它比cnpm的速度还快，功能更好，我就毫不犹豫选择yarn了) Audio相关API和事件 1.2. 从本教程你会学到什么？ Vue单文件组件开发知识 Element UI基本用法 Audio原生API及Audio相关事件 音频播放器的基本原理 音频的播放暂停控制 更新音频显示时间 音频进度条控制与跳转 音频音量控制 音频播放速度控制 音频静音控制 音频下载控制 个性化配置与排他性播放 一点点ES6语法 2. 学前准备 基本上不需要什么准备，但是如果你能先看一下Aduio相关API和事件将会更好

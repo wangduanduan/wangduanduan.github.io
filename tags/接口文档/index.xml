@@ -9,11 +9,11 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 29 Jan 2018 22:01:55 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 29 Jan 2018 22:01:55 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>如何写好接口文档？</title>
       <link>https://wdd.js.org/posts/2018/how-to-write-better-api-docs/</link>
-      <pubDate>Mon, 29 Jan 2018 22:01:55 +0000</pubDate>
+      <pubDate>Mon, 29 Jan 2018 22:01:55 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/how-to-write-better-api-docs/</guid>
       <description>1. HTTP携带信息的方式 url headers body: 包括请求体，响应体 2. 分离通用信息 一般来说，headers里的信息都是通用的，可以提前说明，作为默认参数

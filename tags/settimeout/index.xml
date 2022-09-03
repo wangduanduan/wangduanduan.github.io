@@ -9,11 +9,11 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 08 Feb 2018 14:09:54 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/settimeout/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 08 Feb 2018 14:09:54 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/settimeout/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>定时器学习：利用定时器分解耗时任务案例</title>
       <link>https://wdd.js.org/posts/2018/settimeout-to-splice-big-work/</link>
-      <pubDate>Thu, 08 Feb 2018 14:09:54 +0000</pubDate>
+      <pubDate>Thu, 08 Feb 2018 14:09:54 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/settimeout-to-splice-big-work/</guid>
       <description>对于执行时间过长的脚本，有的浏览器会弹出警告，说页面无响应。有的浏览器会直接终止脚本。总而言之，浏览器不希望某一个代码块长时间处于运行状态，因为js是单线程的。一个代码块长时间运行，将会导致其他任何任务都必须等待。从用户体验上来说，很有可能发生页面渲染卡顿或者点击事件无响应的状态。

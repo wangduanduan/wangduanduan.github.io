@@ -9,11 +9,11 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 09 Feb 2018 13:01:14 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 09 Feb 2018 13:01:14 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>一行命令搭建简易静态文件http服务器</title>
       <link>https://wdd.js.org/posts/2018/one-command-create-static-file-server/</link>
-      <pubDate>Fri, 09 Feb 2018 13:01:14 +0000</pubDate>
+      <pubDate>Fri, 09 Feb 2018 13:01:14 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/one-command-create-static-file-server/</guid>
       <description>简易服务器：在命令执行的所在路径启动一个http服务器，然后你可以通过浏览器访问该路径下的所有文件。

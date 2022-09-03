@@ -9,11 +9,11 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 08 Feb 2018 09:10:59 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/http/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 08 Feb 2018 09:10:59 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/http/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>可能被遗漏的https与http的知识点</title>
       <link>https://wdd.js.org/posts/2018/you-dont-know-https-and-http/</link>
-      <pubDate>Thu, 08 Feb 2018 09:10:59 +0000</pubDate>
+      <pubDate>Thu, 08 Feb 2018 09:10:59 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/you-dont-know-https-and-http/</guid>
       <description>1. HTTPS域向HTTP域发送请求会被浏览器直接拒绝，HTTP向HTTPS则不会 例如在github pages页面，这是一个https页面，如果在这个页面向http发送请求，那么会直接被浏览器拒绝，并在控制台输出下面的报错信息。

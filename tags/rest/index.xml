@@ -9,11 +9,11 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 07 Jun 2018 22:35:08 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/rest/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 07 Jun 2018 22:35:08 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/rest/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Restful API 架构思考</title>
       <link>https://wdd.js.org/posts/2018/think-about-restful-api/</link>
-      <pubDate>Thu, 07 Jun 2018 22:35:08 +0000</pubDate>
+      <pubDate>Thu, 07 Jun 2018 22:35:08 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/think-about-restful-api/</guid>
       <description>1. 什么是REST? 2. REST API最为重要的约束 3. REST API HTTP方法 与 CURD 4. 状态码 5. RESTful架构设计 6. 文档 7. 版本 8. 深入理解状态与无状态 9. 参考 1. 什么是REST? 表现层状态转换（REST，英文：Representational State Transfer）是Roy Thomas Fielding博士于2000年在他的博士论文[1] 中提出来的一种万维网软件架构风格，目的是便于不同软件/程序在网络（例如互联网）中互相传递信息。表现层状态转换（REST，英文：Representational State Transfer）是根基于超文本传输协议(HTTP)之上而确定的一组约束和属性，是一种设计提供万维网络服务的软件构建风格。匹配或兼容于这种架构风格(简称为 REST 或 RESTful)的网络服务，允许客户端发出以统一资源标识符访问和操作网络资源的请求，而与预先定义好的无状态操作集一致化。wikipdeia

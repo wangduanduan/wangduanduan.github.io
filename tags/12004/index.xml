@@ -9,11 +9,11 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 11 Feb 2018 14:12:19 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/12004/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 Feb 2018 14:12:19 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/12004/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>IE11 0x2ee4 bug 以及类似问题解决方法</title>
       <link>https://wdd.js.org/posts/2018/ie11-0x2ee4-bug/</link>
-      <pubDate>Sun, 11 Feb 2018 14:12:19 +0000</pubDate>
+      <pubDate>Sun, 11 Feb 2018 14:12:19 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/ie11-0x2ee4-bug/</guid>
       <description>一千个IE浏览器访问同一个页面，可能报一千种错误。前端激进派对IE恨得牙痒痒，但是无论你爱，或者不爱，IE就在那里，不来不去。

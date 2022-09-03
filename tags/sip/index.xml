@@ -9,11 +9,11 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 11 Feb 2018 14:44:58 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/sip/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 Feb 2018 14:44:58 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/sip/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>基于 WebRTC 构建 Web SIP Phone</title>
       <link>https://wdd.js.org/posts/2018/webrtc-web-sip-phone/</link>
-      <pubDate>Sun, 11 Feb 2018 14:44:58 +0000</pubDate>
+      <pubDate>Sun, 11 Feb 2018 14:44:58 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/webrtc-web-sip-phone/</guid>
       <description>0 阅前须知 本文并不是教程，只是实现方案 我只是从WEB端考虑这个问题，实际还需要后端sip服务器的配合 jsSIP有个非常不错的在线demo, 可以去哪里玩耍，很好玩呢 try jssip 1. 技术简介 WebRTC: WebRTC，名称源自网页即时通信（英语：Web Real-Time Communication）的缩写，是一个支持网页浏览器进行实时语音对话或视频对话的API。它于2011年6月1日开源并在Google、Mozilla、Opera支持下被纳入万维网联盟的W3C推荐标准 SIP: 会话发起协议（Session Initiation Protocol，缩写SIP）是一个由IETF MMUSIC工作组开发的协议，作为标准被提议用于创建，修改和终止包括视频，语音，即时通信，在线游戏和虚拟现实等多种多媒体元素在内的交互式用户会话。2000年11月，SIP被正式批准成为3GPP信号协议之一，并成为IMS体系结构的一个永久单元。SIP与H.323一样，是用于VoIP最主要的信令协议之一。 一般来说，要么使用实体话机，要么在系统上安装基于sip的客户端程序。实体话机硬件成本高，基于sip的客户端往往兼容性差，无法跨平台，易被杀毒软件查杀。

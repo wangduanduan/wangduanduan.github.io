@@ -9,11 +9,11 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 11 Feb 2018 14:12:19 +0000</lastBuildDate><atom:link href="https://wdd.js.org/tags/ie11/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 Feb 2018 14:12:19 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/ie11/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>IE11 0x2ee4 bug 以及类似问题解决方法</title>
       <link>https://wdd.js.org/posts/2018/ie11-0x2ee4-bug/</link>
-      <pubDate>Sun, 11 Feb 2018 14:12:19 +0000</pubDate>
+      <pubDate>Sun, 11 Feb 2018 14:12:19 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/ie11-0x2ee4-bug/</guid>
       <description>一千个IE浏览器访问同一个页面，可能报一千种错误。前端激进派对IE恨得牙痒痒，但是无论你爱，或者不爱，IE就在那里，不来不去。
@@ -33,7 +33,7 @@ internet选项 安全 自定义级别 启用通过跨域访问数据源 启用�
     <item>
       <title>win7 ie11 开发者工具打开后一片空白</title>
       <link>https://wdd.js.org/posts/2018/ie11-without-devtool/</link>
-      <pubDate>Mon, 29 Jan 2018 21:43:12 +0000</pubDate>
+      <pubDate>Mon, 29 Jan 2018 21:43:12 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2018/ie11-without-devtool/</guid>
       <description>解决方法安装Windows7补丁：KB3008923； 下载地址： http://www.microsoft.com/en-us/download/details.aspx?id=45134 （32位） http://www.microsoft.com/zh-CN/download/details.aspx?id=45154 （64位）</description>
