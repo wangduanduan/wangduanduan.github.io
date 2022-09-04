@@ -3,12 +3,15 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://wdd.js.org/opensips/</loc>
-    <lastmod>2022-09-03T15:54:57+08:00</lastmod>
+    <lastmod>2022-09-03T20:36:45+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/opensips/sip-notes/</loc>
-    <lastmod>2022-09-03T15:54:57+08:00</lastmod>
+    <loc>https://wdd.js.org/opensips/sip-with-sdp/</loc>
+    <lastmod>2022-09-03T20:36:45+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/</loc>
+    <lastmod>2022-09-03T20:36:45+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/opensips/sip-notes/</loc>
     <lastmod>2022-09-03T15:54:57+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/opensips/trunk-pbx-gateway/</loc>

@@ -9,7 +9,24 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 03 Sep 2022 15:54:57 +0800</lastBuildDate><atom:link href="https://wdd.js.org/opensips/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 Sep 2022 20:36:45 +0800</lastBuildDate><atom:link href="https://wdd.js.org/opensips/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SIP和SDP的关系</title>
+      <link>https://wdd.js.org/opensips/sip-with-sdp/</link>
+      <pubDate>Sat, 03 Sep 2022 20:36:45 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/sip-with-sdp/</guid>
+      <description>1. 什么是SDP? SDP是Session Description Protocol的缩写，翻译过来就是会话描述协议，这个协议通常存储各种和媒体相关的信息，例如支持哪些媒体编码, 媒体端口是多少？媒体IP地址是多少之类的。
+SDP一般作为SIP消息的body部分。如下所示
+INVITE sip:bob@biloxi.example.com SIP/2.0 Via: SIP/2.0/TCP client.atlanta.example.com:5060;branch=z9hG4bK74bf9 Max-Forwards: 70 From: Alice &amp;lt;sip:alice@atlanta.example.com&amp;gt;;tag=9fxced76sl To: Bob &amp;lt;sip:bob@biloxi.example.com&amp;gt; Call-ID: 3848276298220188511@atlanta.example.com CSeq: 1 INVITE Contact: &amp;lt;sip:alice@client.atlanta.example.com;transport=tcp&amp;gt; Content-Type: application/sdp Content-Length: 151 v=0 o=alice 2890844526 2890844526 IN IP4 client.atlanta.example.com s=- c=IN IP4 192.0.2.101 t=0 0 m=audio 49172 RTP/AVP 0 a=rtpmap:0 PCMU/8000 刚开始我一直认为某些sip消息一定带有sdp，例如invite消息。某些sip请求一定没有携带sdp。
+实际上sip消息和sdp并没有硬性的附属关系。sip是用来传输信令的，sdp是用来描述媒体流信息的。
+如果信令不需要携带媒体流信息，就可以不用携带sdp。
+一般情况下，invite请求都会带有sdp信息，但是某些时候也会没有。例如3PCC(third party call control), 第三方呼叫控制，是指由第三方负责协商媒体信息。
+常见的一个场景
+2. SDP字段介绍 2.1. v= 版本号 当前sdp的版本号是0，所以常见的都是v=0
+2.2. o= 发起者id o=的格式</description>
+    </item>
+    
     <item>
       <title>SIP协议拾遗补缺</title>
       <link>https://wdd.js.org/opensips/sip-notes/</link>
@@ -49,7 +66,7 @@ Path: &amp;lt;sip:P1.EXAMPLEVISITED.COM;lr&amp;gt; 从功能上说，Path头和r
 看下面的一个场景，uac通过p1和p2, 将注册请求发送到uas, 在某一时刻，uac作为被叫，INVITE请求要从uas发送到uac, 这时候，INVITE请求应该怎么走？
 假如我们希望INVITE请求要经过p2,p2,然后再发送到uac, Path头的作用就是这个。
 注册请求经过P1时，P1在注册消息上加上p1地址的path头 注册请求经过P2时，P2在注册消息上加上p2地址的path头 注册请求到达uas时，uas从Contact头上获取到uac的地址信息，然后从两个Path头上获取到如下信息：如果要打电话给uac, Path头会转变为route头，用来定义INVITE请求的路径。 简单定义：Path头用来一般在注册消息里，Path头定义了uac作为被叫时，INVITE请求的发送路径。
-参考 https://voipmagazine.wordpress.com/tag/path-header/ https://datatracker.ietf.org/doc/html/rfc3327 </description>
+参考 </description>
     </item>
     
     <item>
