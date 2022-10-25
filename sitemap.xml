@@ -2,13 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://wdd.js.org/network/</loc>
+    <lastmod>2022-10-25T09:12:00+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/network/wireshark/</loc>
+    <lastmod>2022-10-25T09:12:00+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/</loc>
+    <lastmod>2022-10-25T09:12:00+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/network/tcpdump/</loc>
+    <lastmod>2022-10-25T09:09:05+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/network/httpry/</loc>
+    <lastmod>2022-10-25T09:07:04+08:00</lastmod>
+  </url><url>
     <loc>https://wdd.js.org/opensips/</loc>
     <lastmod>2022-09-03T20:36:45+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/opensips/sip-with-sdp/</loc>
-    <lastmod>2022-09-03T20:36:45+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/</loc>
     <lastmod>2022-09-03T20:36:45+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/opensips/sip-notes/</loc>
@@ -34,9 +46,6 @@
   </url><url>
     <loc>https://wdd.js.org/opensips/study-tips/</loc>
     <lastmod>2022-09-02T00:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/network/</loc>
-    <lastmod>2022-06-30T00:00:00+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/network/tshark/</loc>
     <lastmod>2022-06-30T00:00:00+08:00</lastmod>

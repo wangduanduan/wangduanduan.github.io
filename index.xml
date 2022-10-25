@@ -9,7 +9,44 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 03 Sep 2022 20:36:45 +0800</lastBuildDate><atom:link href="https://wdd.js.org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 Oct 2022 09:12:00 +0800</lastBuildDate><atom:link href="https://wdd.js.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Wireshark抓包教程</title>
+      <link>https://wdd.js.org/network/wireshark/</link>
+      <pubDate>Tue, 25 Oct 2022 09:12:00 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/network/wireshark/</guid>
+      <description>1. HTTP抓包例子 案例：本地向 http://192.168.40.134:31204/some-api，如何过滤？
+http and ip.addr == 192.168.40.134 and tcp.port == 31204 语句分析：
+http 表示我只需要http的包 ip.addr 表示只要源ip或者目标ip地址中包含192.168.40.134 tcp.port 表示只要源端口或者目标端口中包含31204 2. 为什么我写的表达式总是不对呢？😂 很多时候，你写的表达式背景色变成红色，说明表达式错误了，例如下图：http and ip.port == 31204
+写出ip.port这个语句，往往是对传输协议理解不清晰。😅
+ip是网络层的协议，port是传输层tcp或者udp中使用的。例如你写tcp.port == 80，udp.port ==3000这样是没问题的。但是port不能跟在ip的后面，如果你不清楚怎么写，你可以选择wireshark的智能提示。
+智能提示会提示所有可用的表达式。
+3. 常用过滤表达式 一般我们的过滤都是基于协议，ip地址或者端口号进行过滤的，
+3.1. 基于协议的过滤 直接输入协议名进行过滤
+3.2. 基于IP地址的过滤 3.3. 基于端口的过滤 基于端口的过滤一般就两种
+tcp.port == xxx udp.port == xxx 3.4. 基于host的过滤 4. 比较运算符支持 == 等于 != 不等于 &amp;gt; 大于 &amp;lt; 小于 &amp;gt;= 大于等于 &amp;lt;= 小于等于 ip.addr == 192.168.2.4 5. 逻辑运算符 and 条件与 or 条件或 xor 仅能有一个条件为真 not 所有条件都不能为真 ip.</description>
+    </item>
+    
+    <item>
+      <title>Tcpdump抓包教程</title>
+      <link>https://wdd.js.org/network/tcpdump/</link>
+      <pubDate>Tue, 25 Oct 2022 09:09:05 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/network/tcpdump/</guid>
+      <description>查看帮助文档 从帮助文档可以看出，包过滤的表达式一定要放在最后一个参数
+tcpdump [ -AbdDefhHIJKlLnNOpqStuUvxX# ] [ -B buffer_size ] [ -c count ] [ --count ] [ -C file_size ] [ -E spi@ipaddr algo:secret,... ] [ -F file ] [ -G rotate_seconds ] [ -i interface ] [ --immediate-mode ] [ -j tstamp_type ] [ -m module ] [ -M secret ] [ --number ] [ --print ] [ -Q in|out|inout ] [ -r file ] [ -s snaplen ] [ -T type ] [ --version ] [ -V file ] [ -w file ] [ -W filecount ] [ -y datalinktype ] [ -z postrotate-command ] [ -Z user ] [ --time-stamp-precision=tstamp_precision ] [ --micro ] [ --nano ] [ expression ] 列出所有网卡 tcpdump -D 1.</description>
+    </item>
+    
+    <item>
+      <title>http抓包工具httpry使用</title>
+      <link>https://wdd.js.org/network/httpry/</link>
+      <pubDate>Tue, 25 Oct 2022 09:07:04 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/network/httpry/</guid>
+      <description>git clone https://gitee.com/nuannuande/httpry.git cd httpry yum install libpcap-devel -y make make install cp -f httpry /usr/sbin/ httpry -i eth0 </description>
+    </item>
+    
     <item>
       <title>SIP和SDP的关系</title>
       <link>https://wdd.js.org/opensips/sip-with-sdp/</link>
