@@ -9,7 +9,61 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 25 Oct 2022 09:12:00 +0800</lastBuildDate><atom:link href="https://wdd.js.org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 Oct 2022 12:56:41 +0800</lastBuildDate><atom:link href="https://wdd.js.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ubuntu 使用过程中遇到的问题以及解决方案</title>
+      <link>https://wdd.js.org/posts/2022/ubuntu-tips/</link>
+      <pubDate>Tue, 25 Oct 2022 12:56:41 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2022/ubuntu-tips/</guid>
+      <description>1. ubuntu wine 微信中文乱码 修改文件 /opt/deepinwine/tools/run.sh /opt/deepinwine/tools/run_v2.sh 将WINE_CMD那行中加入LC_ALL=zh_CN.UTF-8
+WINE_CMD=&amp;#34;LC_ALL=zh_CN.UTF-8 deepin-wine&amp;#34; 参考 https://gitee.com/wszqkzqk/deepin-wine-for-ubuntu
+2. ubuntu 20.04 wine 微信 qq 截图时黑屏 之前截图都是好的的，不知道为什么，今天截图时，点击了微信的截图按钮后，屏幕除了状态栏，都变成黑色的了。
+各种搜索引擎搜了一遍，没有发现解决方案。
+最后决定思考最近对系统做了什么变更，最近我好像给系统安装了新的主题，然后在登录时，选择了新的主题，而没有选择默认的ubuntu主题。
+在登录界面的右下角，有个按钮，点击之后，可以选择主题。
+最近我都是选择其他的主题，没有选择默认的ubuntu主题，然后我就注销之后，重新在登录时选择默认的ubuntu主题后，再次打开微信截图，功能恢复正常。
+所以说，既然选择ubuntu了，就没必要搞些花里胡哨的东西。ubuntu默认的主题挺好看的，而且支持自带主题的设置，就没必要再折腾了。
+3. [open] ubuntu 20.04 锁屏后 解锁屏幕非常慢 super + l可以用来锁屏，锁屏之后屏幕变成黑屏。
+黑屏之后，如果需要唤醒屏幕，可以随便在键盘上按键，去唤醒屏幕。但是这个唤醒的过程感觉很慢，基本上要随便按键接近十几秒，屏幕才能被点亮，网上搜了下，但是没有找到原因。
+但是有个解决办法，就是在黑屏状态下，不要随便输入，而要输入正确的密码，然后按回车键， 这样会快很多。
+也就是说，系统运行正常，可能是显示器的问题。
+4. ubuntu 20.04 xorg 高cpu 桌面卡死 sudo systemctl restart gdm 5. ubuntu 状态栏显示网速 sudo add-apt-repository ppa:fossfreedom/indicator-sysmonitor sudo apt-get install indicator-sysmonitor 在任务启动中选择System Monitor
+在配置中可以选择开机启动
+在高级中可以设置显示哪些列， 我只关系网速，所以只写了{net}
+6. 在命令行查看图片 实际上终端并不能显示图片，而是调用了外部的程序取显示图片。
+eog 是 Eye Of Gnome 的缩写， 它其实是个图片查看器。</description>
+    </item>
+    
+    <item>
+      <title>树莓派初始化配置</title>
+      <link>https://wdd.js.org/posts/2022/raspi-config/</link>
+      <pubDate>Tue, 25 Oct 2022 12:12:05 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2022/raspi-config/</guid>
+      <description>我已经装过几次树莓派的系统了，记录一些使用心得。
+1. 选择哪个版本 最好用无桌面版，无桌面版更加稳定。我之前用过几次桌面版，桌面版存在以下问题。
+使用偶尔感觉会卡 经常使用一天之后，第二天要重启系统。 2. 关于初始设置 默认的用户是 pi，默认的密码是raspberry 登录成功之后，sudo passwd pi 来修改pi用户的密码 登录之后，sudo passwd root 来设置root的用户密码 3. 开启ssh 远程登录服务 raspi-config 4. root用户ssh登录 默认树莓派是禁止使用root远程登录的，想要开启的话，需要编辑/etc/ssh/sshd_config文件，增加一行PermitRootLogin yes, 然后重启ssh服务
+vi /etc/ssh/sshd_config PermitRootLogin yes sudo systemctl restart ssh // chong 5. 关于联网 联网有两个方案
+用网线连接，简单方便，但是有条线子，总会把桌面搞得很乱 使用wifi连接，简单方便 使用wifi连接，一种方式是编辑配置文件，这个比较麻烦。我建议使用树莓派提供的raspi-config命令来设置wifi。
+在命令行中输入：raspi-config, 可以看到如下界面
+按下箭头，选择NetWork Options，按回车确认 进入网络设置后，按下箭头，选择N2 Wi-fi 然后就很简单了，输入wifi名称和wifi密码，最好你的wifi名称是英文的，出现中文会很尴尬的。 6. 如何找到树莓派的IP地址 某些情况下，树莓派在断电重启之后会获得新的IP地址。在没有显示器的情况下，如果找到树莓派的IP呢？
+树莓派的MAC地址是：b8:27:eb:6c 开头
+所以你只需要输入: arp -a 就会打印网络中的主机以及MAC地址，找以b8:e7:eb:6c开头的，很可能就是树莓派。
+7. 设置清华镜像源 https://mirrors.tuna.tsinghua.edu.cn/help/raspbian/</description>
+    </item>
+    
+    <item>
+      <title>utimer task &lt;tm-utimer&gt; already scheduled</title>
+      <link>https://wdd.js.org/opensips/utime-task-scheduled/</link>
+      <pubDate>Tue, 25 Oct 2022 12:06:54 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/utime-task-scheduled/</guid>
+      <description>可能和avp_db_query有关 https://opensips.org/pipermail/users/2018-October/040157.html What we found is that the warning go away if we comment out the single avp_db_query that is being used in our config.
+_ The avp_db_query is not executed at the start, but only when specific header is present. Yet the fooding start immediately after opensips start. The mere presence of the avp_db_query function in config without execution is enough to have the issue._
+可能和openssl库有关 https://github.com/OpenSIPS/opensips/issues/1771#issuecomment-517744489 ere are your results.</description>
+    </item>
+    
     <item>
       <title>Wireshark抓包教程</title>
       <link>https://wdd.js.org/network/wireshark/</link>

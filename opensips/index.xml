@@ -9,7 +9,18 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 03 Sep 2022 20:36:45 +0800</lastBuildDate><atom:link href="https://wdd.js.org/opensips/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 Oct 2022 12:06:54 +0800</lastBuildDate><atom:link href="https://wdd.js.org/opensips/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>utimer task &lt;tm-utimer&gt; already scheduled</title>
+      <link>https://wdd.js.org/opensips/utime-task-scheduled/</link>
+      <pubDate>Tue, 25 Oct 2022 12:06:54 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/utime-task-scheduled/</guid>
+      <description>可能和avp_db_query有关 https://opensips.org/pipermail/users/2018-October/040157.html What we found is that the warning go away if we comment out the single avp_db_query that is being used in our config.
+_ The avp_db_query is not executed at the start, but only when specific header is present. Yet the fooding start immediately after opensips start. The mere presence of the avp_db_query function in config without execution is enough to have the issue._
+可能和openssl库有关 https://github.com/OpenSIPS/opensips/issues/1771#issuecomment-517744489 ere are your results.</description>
+    </item>
+    
     <item>
       <title>SIP和SDP的关系</title>
       <link>https://wdd.js.org/opensips/sip-with-sdp/</link>
