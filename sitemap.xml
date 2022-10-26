@@ -2,13 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://wdd.js.org/posts/</loc>
-    <lastmod>2022-10-25T12:56:41+08:00</lastmod>
+    <loc>https://wdd.js.org/container/</loc>
+    <lastmod>2022-10-26T08:59:44+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/posts/2022/ubuntu-tips/</loc>
-    <lastmod>2022-10-25T12:56:41+08:00</lastmod>
+    <loc>https://wdd.js.org/container/terminating-with-grace/</loc>
+    <lastmod>2022-10-26T08:59:44+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/</loc>
+    <lastmod>2022-10-26T08:59:44+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/container/k8s-network/</loc>
+    <lastmod>2022-10-26T08:57:54+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/journal/</loc>
+    <lastmod>2022-10-26T08:44:12+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/linux/</loc>
+    <lastmod>2022-10-26T08:44:12+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/2022/linux-journal/</loc>
+    <lastmod>2022-10-26T08:44:12+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/</loc>
+    <lastmod>2022-10-26T08:44:12+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/</loc>
+    <lastmod>2022-10-26T08:44:12+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/2022/ubuntu-tips/</loc>
     <lastmod>2022-10-25T12:56:41+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2022/raspi-config/</loc>
@@ -69,9 +90,6 @@
     <lastmod>2022-06-13T00:00:00+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/network/</loc>
-    <lastmod>2022-06-13T00:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/</loc>
     <lastmod>2022-06-13T00:00:00+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/shell/grep-docs/</loc>
