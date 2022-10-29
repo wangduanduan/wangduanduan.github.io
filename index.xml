@@ -9,7 +9,251 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 26 Oct 2022 08:59:44 +0800</lastBuildDate><atom:link href="https://wdd.js.org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 29 Oct 2022 11:52:59 +0800</lastBuildDate><atom:link href="https://wdd.js.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JavaScript内存泄露分析</title>
+      <link>https://wdd.js.org/fe/memory-leak-ppt/</link>
+      <pubDate>Sat, 29 Oct 2022 11:52:59 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/memory-leak-ppt/</guid>
+      <description>参考: http://slides.com/gruizdevilla/memory
+内存是一张图 原始类型，只能作为叶子。原始类型不能引用其他类型 数字 字符串 布尔值 除了原始类型之外，其他类型都是对象，其实就是键值对 数组是一种特殊对象，它的键是连续的数字 内存从根开始 在浏览器中，根对象是window 在nodejs中，根对象是global 任何从根无法到达的对象，都会被GC回收，例如下图的节点9和10 根节点的GC是无法控制的 路径 从根节点开始到特定对象的路径，如下图的1-2-4-6-8 支配项 每个对象有且仅有一个支配项，支配项对对象可能不是直接引用 举例子 节点1支配节点2 节点2支持节点3、4、6 节点3支配节点5 节点6支配节点7 节点5支配节点8 上面的例子有个不好理解的是节点2为什么支配了节点6？如果节点A存在于从根节点到节点B的每一个路径中，那么A就是B的支配项。2存在于1-2-4-6，也存在于1-2-3-6，所以节点2支配节点6 V8 新生代与老生代 v8内存分为新生代和老生代内存，两块内存使用不同的内存GC策略 相比而言，新生代GC很快，老生代则较慢 新生代的内存在某些条件下会被转到老生代内存区 GC发生时，用可能应用会暂停 解除引用的一些错误 var a = {name: &amp;#39;wdd&amp;#39;} delete a.name // 这回让对象a变成慢对象 var a = {name: &amp;#39;wdd&amp;#39;} a.name = null // 这个则更好 关于slow Object V8 optimizing compiler makes assumptions on your code to make optimizations. It transparently creates hidden classes that represent your objects.</description>
+    </item>
+    
+    <item>
+      <title>JS内存泄漏分享</title>
+      <link>https://wdd.js.org/fe/memory-leak-sharing/</link>
+      <pubDate>Sat, 29 Oct 2022 11:47:38 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/memory-leak-sharing/</guid>
+      <description>什么是内存泄漏？ 单位时间内的内存变化量可能有三个值
+正数：内存可能存在泄漏。生产环境，如果服务在启动后，该值一直是正值，从未出现负值或者趋近于0的值，那么极大的可能是存在内存泄漏的。 趋近于0的值: 内存稳定维持 负数：内存在释放 实际上，在观察内存变化量时，需要有两个前提条件
+一定的负载压力：因为在开发或者功能测试环境，很少的用户，服务的压力很小，是很难观测到内存泄漏问题的。所以务必在一定的负载压力下观测。 至少要观测一天：内存上涨并不一定意味着存在内存泄漏问题。在一个工作日中，某些时间点，是用户使用的高峰期，服务的负载很高，自然内存使用会增长。关键在于在高峰期过后的低谷期时，内存是否回下降到正常值。如果内存在低谷期时依然维持着高峰期时的内存使用，那么非常大可能是存在内存泄漏了。 下图是两个服务的。从第一天的0点开始观测服务的内存，一直到第二天的12点。正常的服务会随着负载的压力增加或者减少内存使用。而存在内存泄漏的服务，内存一直在上升，并且负载压力越大，上升的越快。
+有没有可能避免内存泄漏？ 除非你不写代码，否者你是无法避免内存泄漏的问题的。
+第一，即使你是非常精通某个语言，也是有很多关于如何避免内存泄漏的经验。但是你的代码里仍然可能会包含其他库或者其他同事写的代码，那些代码里是无法保证是否存在内存泄漏问题的。 第二，内存泄漏的代码有时候非常难以察觉。例如console.log打印的太快，占用太多的buffer。网络流量激增，占用太多的Recv_Q，node无法及时处理。写文件太慢，没有处理“后压”相关的逻辑等等。
+为什么要关注内存泄漏？ 为什么要关注内存泄漏？我们客户的服务器可是有500G内存的
+你可能有个很豪的金主。但是你不要忘记一个故事。
+传说国际象棋是由一位印度数学家发明的。国王十分感谢这位数学家，于是就请他自己说出想要得到什么奖赏。这位数学家想了一分钟后就提出请求——把1粒米放在棋盘的第1格里，2粒米放在第2格，4粒米放在第3格，8粒米放在第4格，依次类推，每个方格中的米粒数量都是之前方格中的米粒数量的2倍。
+国王欣然应允，诧异于数学家竟然只想要这么一点的赏赐——但随后却大吃了一惊。当他开始叫人把米放在棋盘上时，最初几个方格中的米粒少得像几乎不存在一样。但是，往第16个方格上放米粒时，就需要拿出1公斤的大米。而到了第20格时，他的那些仆人则需要推来满满一手推车的米。国王根本无法提供足够的大米放在棋盘上的第64格上去。因为此时，棋盘上米粒的数量会达到惊人的18 446 744 073 709 551 615粒。如果我们在伦敦市中心再现这一游戏，那么第64格中的米堆将延伸至M25环城公路，其高度将超过所有建筑的高度。事实上，这一堆米粒比过去1000年来全球大米的生产总量还要多得多。
+对于内存泄漏来说，可能500G都是不够用的。
+实际上操作系统对进程使用内存资源是有限制的，我们关注内存泄漏，实际上是关注内存泄漏会引起的最终问题：out of memory。如果进程使用的资源数引起了操作系统的注意，很可能进程被操作系统杀死。
+然后你的客户可能正在使用你的服务完成一个重要的事情，接着你们的客户投诉热线回被打爆，然后是你的老板，你的领导找你谈话~~~
+基本类型 vs 引用类型 基本类型：undefined, null, boolean, number, string。基本类型是按值访问 引用类型的值实际上是指向内存中的对象 上面的说法来自《JavaScript高级程序设计》。但是对于基本类型字符串的定义，实际上我是有些不认同的。有些人也认为字符串不属于基本类型。
+就是关于字符串，我曾思考过，在JavaScript里，字符串的最大长度是多少，字符串最多能装下多少个字符？
+我个人认为，一个变量有固定的大小的内存占用，才是基本类型。例如数字，null, 布尔值，这些值很容易能理解他们会占用固定的内存大小。但是字符串就不一样了。字符串的长度是不固定，在不同的浏览器中，有些字符串最大可能占用256M的内存，甚至更多。
+可以参考这个问题：https://stackoverflow.com/questions/34957890/javascript-string-size-limit-256-mb-for-me-is-it-the-same-for-all-browsers
+内存是一张图 1代表根节点，在NodeJS里是global对象，在浏览器中是window对象 2-6代表对象 7-8代表原始类型。分别有三种，字符串，数字，布尔值 9-10代表从根节点无法到达的对象 注意，作为原始类型的值，在内存图中只能是叶子节点。 ** 从跟节点R0无法到达的节点9,10，将会在GC时被清除。
+保留路径的含义是从跟对象到某一节点的最短路径。例如1-&amp;gt;2-&amp;gt;4-&amp;gt;6。
+对象保留树 节点： 构造函数的名称 边缘：对象的key 距离: 节点到跟节点的最短距离 支配项(Dominators) 每个对象有且仅有一个支配项 如果B存在从根节点到A节点之间的所有路径中，那么B是A的支配项，即B支配A。 下图中
+1支配2 2支配3,4,6 (想想2为什么没有支配5？) 3支配5 6支配7 5支配8 理解支配项的意义在于理解如何将资源释放。如下图所示，如果目标是释放节点6的占用资源，仅仅释放节点3或者节点4是没有用的，必需释放其支配项节点2，才能将节点6释放。 对象大小 对象自身占用大小：shadow size 通过保持对其他对象的引用隐式占用，这种方式可以阻止这些对象被垃圾回收器（简称 GC）自动处置 对象的大小的单位是字节 分析工具 heapsnapshot import {writeHeapSnapshot} from &amp;#39;v8&amp;#39; router.</description>
+    </item>
+    
+    <item>
+      <title>NodeJS Out of Memory: Backpressuring in Streams</title>
+      <link>https://wdd.js.org/fe/oom-backpressuring-in-streams/</link>
+      <pubDate>Sat, 29 Oct 2022 11:46:07 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/oom-backpressuring-in-streams/</guid>
+      <description>今天我收集了一份大概有40万行的日志，为了充分利用这份日志，我决定把日志给解析，解析完了之后，再写入mysql数据库。
+首先，对于40万行的日志，肯定不能一次性读取到内存。
+所以我用了NodeJs内置的readline模块。
+const readline = require(&amp;#39;readline&amp;#39;) let line_no = 0 let rl = readline.createInterface({ input: fs.createReadStream(&amp;#39;./my.log&amp;#39;) }) rl.on(&amp;#39;line&amp;#39;, function(line) { line_no++; console.log(line) }) // end rl.on(&amp;#39;close&amp;#39;, function(line) { console.log(&amp;#39;Total lines : &amp;#39; + line_no); }) 数据解析以及写入到这块我没有贴代码。代码的执行是正常的，但是一段时间之后，程序就报错Out Of Memory。
+代码执行是在nodejs 10.16.3上运行的，谷歌搜了一下解决方案，看到有人说nodejs升级到12.x版本就可以解决这个问题。我抱着试试看的想法，升级了nodejs到最新版，果然没有再出现OOM的问题。
+后来我想，我终于深刻理解了NodeJS官网上的这篇文章 Backpressuring in Streams，以前我也度过几遍，但是不太了解，这次接合实际情况。有了深刻理解。
+NodeJS在按行读取本地文件时，大概可以达到每秒1000行的速度，然而数据写入到MySql，大概每秒100次插入的样子。
+本身网络上存在的延迟就要比读取本地磁盘要慢，读到太多的数据无法处理，只能暂时积压到内存中，然而内存有限，最终OOM的异常就抛出了。
+NodeJS 12.x应该解决了这个问题。
+参考 https://nodejs.org/en/docs/guides/backpressuring-in-streams/ </description>
+    </item>
+    
+    <item>
+      <title>new Date(&#39;time string&#39;)的陷阱</title>
+      <link>https://wdd.js.org/fe/trap-of-new-date/</link>
+      <pubDate>Sat, 29 Oct 2022 11:44:26 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/trap-of-new-date/</guid>
+      <description>一般情况下，建议你不要用new Date(&amp;ldquo;time string&amp;rdquo;)的方式去做时间解析。因为不同浏览器，可能接受的time string的格式都不一样。
+你最好不要去先入为主，认为浏览器会支持的你的格式。
+常见的格式 2010-10-10 19:00:00 就这种格式，在IE11上是不接受的。
+下面的比较，在IE11上返回false, 在chrome上返回true。原因就在于，IE11不支持这种格式。
+new Date() &amp;gt; new Date(&amp;#39;2010-10-10 19:00:00&amp;#39;) 所以在时间处理上，最好选用比价靠谱的第三方库，例如dayjs， moment等等。
+千万不要先入为主！！</description>
+    </item>
+    
+    <item>
+      <title>IE8/9 支持WebSocket方案，flash安全策略</title>
+      <link>https://wdd.js.org/fe/ie89-websocket-flash/</link>
+      <pubDate>Sat, 29 Oct 2022 11:43:23 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/ie89-websocket-flash/</guid>
+      <description>IE8/9原生是不支持WebSocket的，但是我们可以使用flash去模拟一个WebSocket接口出来。
+这方面，https://github.com/gimite/web-socket-js 已经可以使用。
+除了客户端之外，服务端需要做个flash安全策略设置。
+这里的服务端是指WebSocet服务器所在的服务端。默认端口是843端口。
+客户端使用flash模拟WebSocket时，会打开一个到服务端843端口的TCP链接。
+并且发送数据：
+&amp;lt;policy-file-request&amp;gt;. 服务端需要回应下面类似的内容
+&amp;lt;?xml version=&amp;#34;1.0&amp;#34;?&amp;gt; &amp;lt;!DOCTYPE cross-domain-policy SYSTEM &amp;#34;/xml/dtds/cross-domain-policy.dtd&amp;#34;&amp;gt; &amp;lt;cross-domain-policy&amp;gt; &amp;lt;site-control permitted-cross-domain-policies=&amp;#34;all&amp;#34;/&amp;gt; &amp;lt;allow-access-from domain=&amp;#34;*&amp;#34; to-ports=&amp;#34;*&amp;#34; secure=&amp;#34;false&amp;#34;/&amp;gt; &amp;lt;allow-http-request-headers-from domain=&amp;#34;*&amp;#34; headers=&amp;#34;*&amp;#34;/&amp;gt; &amp;lt;/cross-domain-policy&amp;gt; Node.js实现 policy.js module.exports.policyFile = `&amp;lt;?xml version=&amp;#34;1.0&amp;#34;?&amp;gt; &amp;lt;!DOCTYPE cross-domain-policy SYSTEM &amp;#34;/xml/dtds/cross-domain-policy.dtd&amp;#34;&amp;gt; &amp;lt;cross-domain-policy&amp;gt; &amp;lt;site-control permitted-cross-domain-policies=&amp;#34;all&amp;#34;/&amp;gt; &amp;lt;allow-access-from domain=&amp;#34;*&amp;#34; to-ports=&amp;#34;*&amp;#34; secure=&amp;#34;false&amp;#34;/&amp;gt; &amp;lt;allow-http-request-headers-from domain=&amp;#34;*&amp;#34; headers=&amp;#34;*&amp;#34;/&amp;gt; &amp;lt;/cross-domain-policy&amp;gt;` index.js const Net = require(&amp;#39;net&amp;#39;) const {policyFile} = require(&amp;#39;./policy&amp;#39;) const port = 843 console.log(policyFile) const server = new Net.Server() server.listen(port, function() { console.log(`Server listening for connection requests on socket localhost:${port}`); }); server.</description>
+    </item>
+    
+    <item>
+      <title>为什么vscode会占用大量CPU资源？</title>
+      <link>https://wdd.js.org/fe/vscode-high-cpu/</link>
+      <pubDate>Sat, 29 Oct 2022 11:42:19 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/vscode-high-cpu/</guid>
+      <description>电脑的风扇声突然响了起来，我知道有某个进程在占用大量CPU资源。
+在任务管理器中，可以看到vscode占用的的CPU资源达到150。说明问题出在vscode上。
+在vscode中，按F1, 输入： show running extensions 可以查看所有插件的运行状况。
+其中需要关注最重要的指标就是活动时间：如果某个插件的活动时间明显是其他插件的好多倍，那问题就可能出在这个插件上。要么禁用该插件，要么卸载该插件。</description>
+    </item>
+    
+    <item>
+      <title>js中二进制的操作</title>
+      <link>https://wdd.js.org/fe/bin-number-operator/</link>
+      <pubDate>Sat, 29 Oct 2022 11:41:13 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/bin-number-operator/</guid>
+      <description>js原生支持16进制、10进制、8进制的直接定义
+var a = 21 // 十进制 var b = 0xee // 十六进制, 238 var c = 013 // 八进制 11 十进制转二进制字符串 var a = 21 // 十进制 a.toString(2) // &amp;#34;10101&amp;#34; 二进制转10进制 var d = &amp;#34;10101&amp;#34; parseInt(&amp;#39;10101&amp;#39;,2) // 21 </description>
+    </item>
+    
+    <item>
+      <title>NodeJS边下载边解压gz文件</title>
+      <link>https://wdd.js.org/fe/nodejs-stream-unzip/</link>
+      <pubDate>Sat, 29 Oct 2022 11:39:37 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/nodejs-stream-unzip/</guid>
+      <description>const fs = require(&amp;#39;fs&amp;#39;) var request = require(&amp;#39;request&amp;#39;) const zlib = require(&amp;#39;zlib&amp;#39;) const log = require(&amp;#39;./log.js&amp;#39;) const fileType = &amp;#39;&amp;#39; let endCount = 0 module.exports = (item) =&amp;gt; { return new Promise((resolve, reject) =&amp;gt; { request.get(item.url) .on(&amp;#39;error&amp;#39;, (error) =&amp;gt; { log.error(`下载失败${item.name}`) reject(error) }) .pipe(zlib.createGunzip()) .pipe(fs.createWriteStream(item.name + fileType)) .on(&amp;#39;finish&amp;#39;, (res) =&amp;gt; { log.info(`${++endCount} 完成下载 ${item.name + fileType}`) resolve(res) }) }) } </description>
+    </item>
+    
+    <item>
+      <title>V8 Profile</title>
+      <link>https://wdd.js.org/fe/v8-profile/</link>
+      <pubDate>Sat, 29 Oct 2022 11:37:55 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/v8-profile/</guid>
+      <description>下面的命令可以生成一个v8的日志如 isolate-0x102d4e000-86008-v8.log
+&amp;ndash;log-source-code 不是必传的字段，加了该字段可以在定位到源码 node --prof --log-source-code index.js 下一步是将log文件转成json
+node --prof-process --preprocess isolate-0x102d4e000-86008-v8.log &amp;gt; v8.json 然后打开 https://wangduanduan.gitee.io/v8-profiling/ 这个页面，选择v8.json
+下图横坐标是时间，纵坐标是cpu百分比。
+选择Bottom Up之后，展开JS unoptimized, 可以发现占用cpu比较高的代码的位置。</description>
+    </item>
+    
+    <item>
+      <title>前端必会的nginx知识点</title>
+      <link>https://wdd.js.org/fe/nginx-tips/</link>
+      <pubDate>Sat, 29 Oct 2022 11:36:19 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/nginx-tips/</guid>
+      <description>1. 启动？停止？reload配置 nginx -s reload # 热重启 nginx -s reopen # 重启Nginx nginx -s stop # 快速关闭 nginx -s quit # 等待工作进程处理完成后关闭 nginx -T # 查看配置文件的实际内容 2. nginx如何做反向http代理 location ^~ /api { proxy_pass http://192.168.40.174:32020; } 3. nginx要如何配置才能处理跨域问题 location ^~ /p/asm { proxy_pass http://192.168.40.174:32020; add_header &amp;#39;Access-Control-Allow-Origin&amp;#39; &amp;#39;*&amp;#39; always; add_header &amp;#39;Access-Control-Allow-Credentials&amp;#39; &amp;#39;true&amp;#39; always; add_header &amp;#39;Access-Control-Allow-Methods&amp;#39; &amp;#39;GET,POST,PUT,DELETE,PATCH,OPTIONS&amp;#39;; add_header &amp;#39;Access-Control-Allow-Headers&amp;#39; &amp;#39;Content-Type,ssid&amp;#39;; if ($request_method = &amp;#39;OPTIONS&amp;#39;) {return 204;} proxy_redirect off; proxy_set_header Host $host; } 4. 如何拦截某个请求，直接返回某个状态码？ location ^~ /p/asm { return 204 &amp;#34;OK&amp;#34;; } 5.</description>
+    </item>
+    
+    <item>
+      <title>WebSocket断开码测试</title>
+      <link>https://wdd.js.org/fe/websocket-disconnect-test/</link>
+      <pubDate>Sat, 29 Oct 2022 11:34:02 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/websocket-disconnect-test/</guid>
+      <description>WebSocket断开码，一般是用到的是从1000-1015。
+正常的断开码是1000。其他的都是异常断开。
+场景 服务端断开码 备注 刷新浏览器页面 1001 终端离开, 可能因为服务端错误, 也可能因为浏览器正从打开连接的页面跳转离开. 关闭浏览器tab页面 1001 终端离开, 可能因为服务端错误, 也可能因为浏览器正从打开连接的页面跳转离开. 关闭浏览器, 所有标签页都会关闭。 1001 可以发现。无论是刷新，关闭tab页面还是关闭浏览器，错误码都是1001 ws.close() 1005 主动调用close, 不传递错误码。对服务端来说，也是异常断开。1005表示没有收到预期的状态码. ws.close(1000) 1000 正常的关闭，客户端必需传递正确的错误原因码。原因码不是随便填入的。比如 ws.close(1009)aFailed to execute &amp;lsquo;close&amp;rsquo; on &amp;lsquo;WebSocket&amp;rsquo;: The code must be either 1000, or between 3000 and 4999. 1009 is neither. 客户端断网 </description>
+    </item>
+    
+    <item>
+      <title>Node.js读取wav文件</title>
+      <link>https://wdd.js.org/fe/nodejs-read-wav-file/</link>
+      <pubDate>Sat, 29 Oct 2022 11:32:32 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/nodejs-read-wav-file/</guid>
+      <description>相比于普通的文件，二进制的文件略显神秘。本次就为大家揭开二进制文件的面纱。
+WAV文件的格式 下图是一个普通的wav文件的格式。其中除了最后的data部分，其他的每个格子都占用了固定大小的字节数。
+知道字节数之后，就需要按照正确的字节序读区。字节序读反了，可能读出一堆乱码。 关于字节序，可以参考阮一峰老师写的理解字节序这篇文章。
+step1: 读取文件 const fs = require(&amp;#39;fs&amp;#39;) const path = require(&amp;#39;path&amp;#39;) const file = fs.readFileSync(path.join(__dirname, &amp;#39;./a.wav&amp;#39;)) console.log(file) 原始的打印，二进制以16进制的方式显示。看不出其中有何含义。
+node main.js &amp;lt;Buffer 52 49 46 46 a4 23 48 00 57 41 56 45 66 6d 74 20 10 00 00 00 01 00 02 00 40 1f 00 00 00 7d 00 00 04 00 10 00 64 61 74 61 80 23 48 00 00 00 00 00 00 00 .</description>
+    </item>
+    
+    <item>
+      <title>记一次WebRTC无回铃音问题排查</title>
+      <link>https://wdd.js.org/fe/webrtc-has-no-earlymedia/</link>
+      <pubDate>Sat, 29 Oct 2022 11:31:05 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/webrtc-has-no-earlymedia/</guid>
+      <description>什么是回铃音？ 回铃音的特点
+回铃音是由运营商送给手机的，而不是由被叫送给主叫的。 回铃音的播放阶段是在被叫接听前播放，被叫一旦接听，回铃音则播放结束 回铃音一般是450Hz, 嘟一秒，停4秒，5秒一个周期 回铃音分为三种
+舒适噪音阶段：就是嘟一秒，停4秒的阶段 彩铃阶段：有的手机，在接听之前，会向主叫方播放个性化的语音，例如放点流行音乐之类的 定制回音阶段：例如被叫放立即把电话给拒绝了，但是主叫放这边并没有挂电话，而是在播放：对不起，您拨打的电话无人接听，请稍后再播 问题现象 WebRTC拨打出去之后，在客户接听之前，听不到任何回铃音。在客户接听之后，可以短暂的听到一点点回铃音。 问题排查思路 服务端问题 客户端问题 网络问题 网络架构 首先根据网络架构图，我决定在a点和b点进行抓包 抓包之后用wireshark进行分析。得出以下结论
+sip服务器AB之间用的是g711编码，语音流没有加密。从b点抓的包，能够从中提取出SIP服务器B向sip服务器A发送的语音流，可以听到回铃音。说明SIP服务器A是收到了回铃音的。 ab两点之间的WebRTC语音流是加密的，无法分析出其中是否含有语音流。 虽然无法提取出WebRTC语音流。但是通过wireshark Statistics -&amp;gt; Conversation 分析，得出结论：在电话接通之前，a点收到的udp包和从b点发出的udp包的数量是是一致的。说明webrtc客户端实际上是收到了语音流。只不过客户端没有播放。然后问题定位到客户端的js库。 通过分析客户端库的代码，定位到具体代码的位置。解决问题，并向开源库提交了修复bug的的pull request。实际上只是修改了一行代码。https://github.com/versatica/JsSIP/pull/669 问题总结 解决问题看似很简单，但是需要的很强的问题分析能力，并且对网络协议，网络架构，wireshark抓包分析都要精通，才能真正的看到深层次的东西。</description>
+    </item>
+    
+    <item>
+      <title>WebRTC getUserMedia DOMException Requested Device not found</title>
+      <link>https://wdd.js.org/fe/webrtc-domexception/</link>
+      <pubDate>Sat, 29 Oct 2022 11:29:00 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/webrtc-domexception/</guid>
+      <description>在PC端，使用WebRTC通话一般都会使用耳麦，如果耳麦有问题，可能就会报这个错。 所以最好多换几个耳麦，试试。</description>
+    </item>
+    
+    <item>
+      <title>stompjs 使用x-queue-name指定队列名</title>
+      <link>https://wdd.js.org/fe/stompjs-set-queue-name/</link>
+      <pubDate>Sat, 29 Oct 2022 11:26:30 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/stompjs-set-queue-name/</guid>
+      <description>client.onConnect = function (frame) { console.log(&amp;#39;onConnect&amp;#39;, frame) client.subscribe(&amp;#39;/topic/event.agent.*.abc_cc&amp;#39;, function (msg) { console.log(msg) }, { id: &amp;#39;wdd&amp;#39;, &amp;#39;x-queue-name&amp;#39;: &amp;#39;wdd-queue&amp;#39; }) } 在mq管理端：
+Optional Arguments Optional queue arguments, also known as &amp;ldquo;x-arguments&amp;rdquo; because of their field name in the AMQP 0-9-1 protocol, is a map (dictionary) of arbitrary key/value pairs that can be provided by clients when a queue is declared. -https://www.rabbitmq.com/queues.html</description>
+    </item>
+    
+    <item>
+      <title>parseInt(0.0000005)为什么等于5？</title>
+      <link>https://wdd.js.org/fe/parseint-with-little-number/</link>
+      <pubDate>Sat, 29 Oct 2022 11:22:57 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/parseint-with-little-number/</guid>
+      <description>最近看了一篇文章，里面提出一个问题？
+parseInt(0.0000005)为什么等于5？
+最终也给出了解释，parseInt的第一个参数，如果不是字符串的话, 将会调用ToString方法，将其转为字符串。
+string The value to parse. If this argument is not a string, then it is converted to one using theToStringabstract operation. Leadingwhitespacein this argument is ignored. MDN
+我们在console面板上直接输入0.0000005回车之后发现是5e-7。我们使用toSting()方法转换之后发现是字符串5e7
+字符串5e-7转成整数5是没什么疑问的，问题在于为什么0.0000005转成5e-7。而如果少一个零，就可以看到console会原样输出。
+数值类型如何转字符串？ 对于数值类型，是使用Number.toString()方法转换的。
+Number.toString(x)的算法分析 这个算法并没有像我们想象的那么简单。
+先说一些简单场景
+简单场景 Number.toString(x) 如果x是NaN, 返回&amp;quot;NaN&amp;quot; 如果x是+0或者-0， 返回&amp;quot;0&amp;quot; 如果x是负数返回, 返回Number.toString(-x) 如果x是正无穷，返回&amp;quot;Infinity&amp;quot; 复杂场景 可以看出，0.0000005并不在简单场景中。下面就进入到复杂场景了。
+会用到一个公式
+k,s,n都是整数 k大于等于1 10的k-1次方小于等于s, 且s小于等于10的k次方 10的n-k次方属于实数 0.0000005可以表示为5*10的-7次方。代入上面的公式，可以算出: k=1, s=5, n=-6。
+参考 https://dmitripavlutin.com/parseint-mystery-javascript/ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt https://tc39.es/ecma262/#sec-numeric-types-number-tostring </description>
+    </item>
+    
+    <item>
+      <title>{} Object.create({}) Object.create{null}的区别？</title>
+      <link>https://wdd.js.org/fe/js-object-create/</link>
+      <pubDate>Sat, 29 Oct 2022 11:20:09 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/js-object-create/</guid>
+      <description>let a = {} let b = Object.create({}) let c = Object.create(null) console.log(a,b,c) 上面三个对象的区别是什么？</description>
+    </item>
+    
+    <item>
+      <title>奥科网关 Rtp Broken Connection</title>
+      <link>https://wdd.js.org/opensips/rtp-broken-connection/</link>
+      <pubDate>Sat, 29 Oct 2022 10:11:59 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/rtp-broken-connection/</guid>
+      <description>通话10多秒后，fs对两个call leg发送bye消息。
+Bye消息给的原因是 Reason: Q.850 ;cause=31 ;text=”local, RTP Broken Connection”
+在通话的前10多秒，SIP信令正常，双方也能听到对方的声音。
+首先排查了下fs日志，没发现什么异常。然后根据这个报错内容，在网上搜了下。
+发现了这篇文章 https://www.wavecoreit.com/blog/serverconfig/call-drop-transfer-rtp-broken-connection/
+这篇文章给出的解决办法是通过配置了奥科AudioCodes网关来解决的。
+然后咨询了下客户，证实他们用的也是奥科网关。所以就参考教程，配制了一下。
+主要是在两个地方进行配置
+Click Setup -&amp;gt; Signaling&amp;amp;Media -&amp;gt; Expand Coders &amp;amp; Profiles -&amp;gt; Click IP Profiles -&amp;gt; Edityour SFB Profile -&amp;gt; Broken Connection Mode-&amp;gt; Select Ignore -&amp;gt; Click Apply
+Expand SIP Definitions -&amp;gt; Click SIP Definitions General Settings -&amp;gt; Broken Connection Mode -&amp;gt; Select Ignore -&amp;gt; Click Apply -&amp;gt; Click Save
+这两个地方，都是配置Broken Connection Mode，选择ignore来设置的。
+关于RTP的connection mode，有时间再研究下。</description>
+    </item>
+    
     <item>
       <title>优雅停止的pod</title>
       <link>https://wdd.js.org/container/terminating-with-grace/</link>
@@ -628,6 +872,19 @@ dlv test moduleName/demo &amp;gt; b demo_test.go:200 # 在文件的对应行设�
     </item>
     
     <item>
+      <title>Js Trailing Commas</title>
+      <link>https://wdd.js.org/fe/js-trailing-commas/</link>
+      <pubDate>Sat, 10 Jul 2021 14:03:00 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/js-trailing-commas/</guid>
+      <description>简介 看下面的代码，如果我们要新增加一行&amp;quot;ccc&amp;quot;, 实际我们的目的是增加一行，但是对于像git这种版本控制系统来说，我们改动了两行。
+第三行进行了修改 第四行增加了 我们为什么要改动两行呢？因为如果不在第三行上的末尾加上逗号就增加第四行，则会报错语法错误。
+var names = [ &amp;#34;aaa&amp;#34;, &amp;#34;bbb&amp;#34; ] var names = [ &amp;#34;aaa&amp;#34;, &amp;#34;bbb&amp;#34;, &amp;#34;ccc&amp;#34; ] 尾逗号的提案就是允许再一些场景下，允许再尾部增加逗号。
+var name = [ &amp;#34;aaa&amp;#34;, &amp;#34;bbb&amp;#34;, ] 那么我们再新增加一行的情况下，则只需要增加一行，而不需要修改之前行的代码。
+var name = [ &amp;#34;aaa&amp;#34;, &amp;#34;bbb&amp;#34;, &amp;#34;ccc&amp;#34;, ] 兼容性 除了IE浏览器没有对尾逗号全面支持以外，其他浏览器以及Node环境都已经全满支持 JSON是不支持尾逗号的，尾逗号只能在代码里面用 注意在包含尾逗号时数组长度的计算 [,,,].length // 3 [,,,1].length // 4 [,,,1,].length // 4 [1,,,].lenght // 3 使用场景 数组中使用 var abc = [ 1, 2, 3, ] 对象字面量中使用 var info = { name: &amp;#34;li&amp;#34;, age: 12, } 作为形参使用 function say ( name, age, ) { } 作为实参使用 say( &amp;#34;li&amp;#34;, 12, ) 在import中使用 import { A, B, C, } from &amp;#39;D&amp;#39; 参考 https://developer.</description>
+    </item>
+    
+    <item>
       <title>Ack 在contab中无法查到关键词</title>
       <link>https://wdd.js.org/shell/contab-ack/</link>
       <pubDate>Fri, 18 Jun 2021 00:00:00 +0800</pubDate>
@@ -637,6 +894,38 @@ dlv test moduleName/demo &amp;gt; b demo_test.go:200 # 在文件的对应行设�
 stage_count=$(ack -h &amp;#34;\- name:&amp;#34; -t yaml | wc -l) 最终使用--nofilter参数，解决了问题。
 stage_count=$(ack --nofilter -h &amp;#34;\- name:&amp;#34; -t yaml | wc -l) 参考
 https://stackoverflow.com/questions/55777520/ack-fails-in-cronjob-but-runs-fine-from-commandline </description>
+    </item>
+    
+    <item>
+      <title>Js 101 Question</title>
+      <link>https://wdd.js.org/fe/js-101-question/</link>
+      <pubDate>Wed, 02 Jun 2021 13:44:00 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/js-101-question/</guid>
+      <description>const a = {} function test1 (a) { a = { name: &amp;#39;wdd&amp;#39; } } function test2 () { test1(a) } function test3 () { console.log(a) } test2() test3() </description>
+    </item>
+    
+    <item>
+      <title>Perf Test Express Fastify</title>
+      <link>https://wdd.js.org/fe/perf-test-express-fastify/</link>
+      <pubDate>Mon, 31 May 2021 13:28:00 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/perf-test-express-fastify/</guid>
+      <description>机器信息：4C32G 测试工具：wrk Node: v14.17.0
+express.js
+&amp;#39;use strict&amp;#39; const express = require(&amp;#39;express&amp;#39;) const app = express() app.get(&amp;#39;/&amp;#39;, function (req, res) { res.json({ hello: &amp;#39;world&amp;#39; }) }) app.listen(3000) fastify.js
+&amp;#39;use strict&amp;#39; const fastify = require(&amp;#39;fastify&amp;#39;)() fastify.get(&amp;#39;/&amp;#39;, function (req, reply) { reply.send({ hello: &amp;#39;world&amp;#39; }) }) fastify.listen(3000) ~ 测试结果 # express.js Running 10s test @ http://127.0.0.1:3000 12 threads and 400 connections Thread Stats Avg Stdev Max +/- Stdev Latency 55.36ms 11.53ms 173.22ms 93.16% Req/Sec 602.</description>
+    </item>
+    
+    <item>
+      <title>Fatal process OOM in insufficient memory to create an Isolate</title>
+      <link>https://wdd.js.org/fe/oom-in-insufficient-memory/</link>
+      <pubDate>Fri, 21 May 2021 12:01:00 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/oom-in-insufficient-memory/</guid>
+      <description>环境： ARM64
+&amp;lt;--- Last few GCs ---&amp;gt; &amp;lt;--- JS stacktrace ---&amp;gt; # # Fatal process OOM in insufficient memory to create an Isolate # 在Dockerfile上设置max-old-space-size的node.js启动参数， 亲测有效。
+CMD node --report-on-fatalerror --max-old-space-size=1536 dist/index.js Currently, by default v8 has a memory limit of 512mb on 32-bit and 1gb on 64-bit systems. You can raise the limit by setting &amp;ndash;max-old-space-size to a maximum of ~1gb for 32-bit and ~1.7gb for 64-bit systems. But it is recommended to split your single process into several workers if you are hitting memory limits.</description>
     </item>
     
     <item>
@@ -655,6 +944,17 @@ https://stackoverflow.com/questions/55777520/ack-fails-in-cronjob-but-runs-fine-
 虚无感 VIM一般都运行在终端之上，给人感觉云里雾里，虚无缥缈。而编辑器就不同了，你看到的文件夹，打开的文件，对你来说就像是身上穿的衣服，手里搬的砖。终端呢，黑乎乎的，没啥颜色与图标，看起来那么不切实际，仿佛是天边的云彩，千变万化，无法琢磨。
 恐惧感 很多人可能做过那种梦，就是在梦里感觉自己在自由落体，然后惊醒。在你使用VIM的时候，可能也会有这种感觉。例如，一个文件我写了几百行了，万一ssh远程连接断了，或者说终端崩溃了，我写的文件会不会丢呢？为了安全起见，还是不用VIM吧。
 挫折感 使用VIM的时候，你必然要经历过很多困难，这些困难让你感觉到挫折，失去了继续学习的欲望。内心的另外一个人可能会说，我只想安安静静地做一个写代码的美男子，为什么要折腾这毫无颜值、难用的VIM呢？</description>
+    </item>
+    
+    <item>
+      <title>离线安装nodejs</title>
+      <link>https://wdd.js.org/fe/install-nodejs-offline/</link>
+      <pubDate>Thu, 13 May 2021 09:43:00 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/install-nodejs-offline/</guid>
+      <description>1. 选择安装包 访问 https://nodejs.org/en/download/ 选择Linux Binaries(x64) 2. 解压 下载后的文件是一个tar.xz的文件。
+xz -d node-xxxx.tar.zx // 解压xz tar -xvf node-xxxx.tar // 拿出文件夹 解压后的目录如下，其中
+➜ node-v14.17.0-linux-x64 ll total 600K drwxr-xr-x 2 wangdd staff 4.0K May 13 09:34 bin -rw-r--r-- 1 wangdd staff 469K May 12 02:14 CHANGELOG.md drwxr-xr-x 3 wangdd staff 4.0K May 13 09:34 include drwxr-xr-x 3 wangdd staff 4.0K May 13 09:34 lib -rw-r--r-- 1 wangdd staff 79K May 12 02:14 LICENSE -rw-r--r-- 1 wangdd staff 30K May 12 02:14 README.</description>
     </item>
     
     <item>
@@ -686,6 +986,32 @@ GOPATH=&amp;#34;/Users/wangdd/go” /Users/wangdd/go/pkg/mod total 0 drwxr-xr-x 
     </item>
     
     <item>
+      <title>Nodejs诊断报告</title>
+      <link>https://wdd.js.org/fe/nodejs-report/</link>
+      <pubDate>Thu, 13 Aug 2020 11:25:00 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/nodejs-report/</guid>
+      <description>在v11.7.0中加入实验性功能，诊断报告。诊断报告的输出是一个json文件，包括以下信息。
+进程信息 操作系统信息 堆栈信息 内存资源使用 libuv状态 环境变量 共享库 诊断报告的原始信息 如何产生诊断报告 必需使用 &amp;ndash;experimental-report 来启用 process.report.writeReport() 来输出诊断报告 node --experimental-report --diagnostic-report-filename=YYYYMMDD.HHMMSS.PID.SEQUENCE#.txt --eval &amp;#34;process.report.writeReport(&amp;#39;report.json&amp;#39;)&amp;#34; Writing Node.js report to file: report.json Node.js report completed 用编辑器打开诊断报告，可以看到类似下面的内容。
+如何从诊断报告中分析问题？ 诊断报告很长，不太好理解。IBM开发了report-toolkit工具，可以用来分析。 要求：node &amp;gt; 11.8.0
+npm install report-toolkit --global 或者 yarn global add report-toolkit 查看帮助信息
+rtk --help 自动出发报告 node --experimental-report \ --diagnostic-report-on-fatalerror \ --diagnostic-report-uncaught-exception \ index.js $ node –help grep report --experimental-report enable report generation 启用report功能 --diagnostic-report-on-fatalerror generate diagnostic report on fatal (internal) errors 产生报告当发生致命错误 --diagnostic-report-on-signal generate diagnostic report upon receiving signals 产生报告当收到信号 --diagnostic-report-signal=.</description>
+    </item>
+    
+    <item>
+      <title>Webrtc Notes</title>
+      <link>https://wdd.js.org/fe/webrtc-notes/</link>
+      <pubDate>Mon, 13 Jul 2020 10:00:00 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/webrtc-notes/</guid>
+      <description>标准文档 WebRTC https://w3c.github.io/webrtc-pc/ MediaStream https://www.w3.org/TR/mediacapture-streams/ 实现接口 MediaStream: 获取媒体流，例如从用户的摄像机或者麦克风 RTCPeerConnection: 音频或者视频呼叫，以及加密和带宽管理 RTCDataChannel: 端到端的数据交互 WebRTC架构 架构图颜色标识说明：
+紫色部分是Web开发者API层 蓝色实线部分是面向浏览器厂商的API层 蓝色虚线部分浏览器厂商可以自定义实现 WebRTC有三个模块：
+Voice Engine（音频引擎） Voice Engine包含iSAC/iLBC Codec（音频编解码器，前者是针对宽带和超宽带，后者是针对窄带） NetEQ for voice（处理网络抖动和语音包丢失） Echo Canceler（回声消除器）/ Noise Reduction（噪声抑制） Video Engine（视频引擎） VP8 Codec（视频图像编解码器） Video jitter buffer（视频抖动缓冲器，处理视频抖动和视频信息包丢失） Image enhancements（图像质量增强） Transport SRTP（安全的实时传输协议，用以音视频流传输） Multiplexing（多路复用） P2P，STUN+TURN+ICE（用于NAT网络和防火墙穿越的） 除此之外，安全传输可能还会用到DTLS（数据报安全传输），用于加密传输和密钥协商 整个WebRTC通信是基于UDP的 WebRTC底层协议 WebRTC 核心的协议都是在右侧基于 UDP 基础上搭建起来的。
+其中，ICE、STUN、TURN 用于内网穿透, 解决了获取与绑定外网映射地址，以及 keep alive 机制
+DTLS 用于对传输内容进行加密，可以看做是 UDP 版的 TLS。由于 WebRTC 对安全比较重视，这一层是必须的。所有WebRTC组件都必须加密，并且其JavaScript API只能用于安全源（HTTPS或本地主机）。信令机制并不是由WebRTC标准定义的，所以您必须确保使用安全协议。 SRTP 与 SRTCP 是对媒体数据的封装与传输控制协议 SCTP 是流控制传输协议，提供类似 TCP 的特性，SCTP 可以基于 UDP 上构建，在 WebRTC 里是在 DTLS 协议之上 RTCPeerConnection 用来建立和维护端到端连接，并提供高效的音视频流传输 RTCDataChannel 用来支持端到端的任意二进制数据传输 WebRTC 协议栈解释</description>
+    </item>
+    
+    <item>
       <title>exec user process caused no such file or diectory</title>
       <link>https://wdd.js.org/posts/2022/docker-exec-user-process/</link>
       <pubDate>Wed, 08 Jul 2020 00:00:00 +0800</pubDate>
@@ -693,6 +1019,44 @@ GOPATH=&amp;#34;/Users/wangdd/go” /Users/wangdd/go/pkg/mod total 0 drwxr-xr-x 
       <guid>https://wdd.js.org/posts/2022/docker-exec-user-process/</guid>
       <description>exec user process caused &amp;#34;no such file or diectory&amp;#34; 解决方案： 将镜像构建的 Dockerfile ENTRYPOINT [&amp;quot;/run.sh&amp;quot;] 改为下面的
 ENTRYPOINT [&amp;#34;sh&amp;#34;,&amp;#34;/run.sh&amp;#34;] 其实就是加了个sh</description>
+    </item>
+    
+    <item>
+      <title>Nodejs Gc Times</title>
+      <link>https://wdd.js.org/fe/nodejs-gc-times/</link>
+      <pubDate>Fri, 12 Jun 2020 11:14:00 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/nodejs-gc-times/</guid>
+      <description>GC释放时机 当HeapUsed接近最大堆内存时，出发GC释放。 下图是深夜，压力比较小的时候。 下图是上午工作时间
+内存泄漏 OOM </description>
+    </item>
+    
+    <item>
+      <title>Nodejs Mem Usage</title>
+      <link>https://wdd.js.org/fe/nodejs-mem-usage/</link>
+      <pubDate>Wed, 10 Jun 2020 14:24:00 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/nodejs-mem-usage/</guid>
+      <description>process.memoryUsage() { rss: 4935680, heapTotal: 1826816, heapUsed: 650472, external: 49879, arrayBuffers: 9386 } heapTotal 和 heapUsed指向V8&amp;rsquo;s 内存使用 external 指向 C++ 对象的内存使用， C++对象绑定js对象，并且由V8管理 rss, 实际占用内存，包括C++, js对象和代码三块的总计。使用 ps aux命令输出时，rss的值对应了RSS列的数值 node js 所有buffer占用的内存 heapTotal and heapUsed refer to V8&amp;rsquo;s memory usage. external refers to the memory usage of C++ objects bound to JavaScript objects managed by V8. rss, Resident Set Size, is the amount of space occupied in the main memory device (that is a subset of the total allocated memory) for the process, including all C++ and JavaScript objects and code.</description>
+    </item>
+    
+    <item>
+      <title>Nodejs Memory Model</title>
+      <link>https://wdd.js.org/fe/nodejs-memory-model/</link>
+      <pubDate>Wed, 10 Jun 2020 14:21:00 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/nodejs-memory-model/</guid>
+      <description>v8内存模型 Code Segment: 代码被实际执行 Stack 本地变量 指向引用的变量 流程控制，例如函数 Heap V8负责管理 HeapTotal 堆的总大小 HeapUsed 实际使用的大小 Shallow size of an object: 对象自身占用的内存 Retained size of an object: 对象及其依赖对象删除后回释放的内存 </description>
+    </item>
+    
+    <item>
+      <title>Copy as CURL and Copy Response</title>
+      <link>https://wdd.js.org/fe/copy-as-curl-and-copy-response/</link>
+      <pubDate>Sun, 01 Mar 2020 19:48:00 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/copy-as-curl-and-copy-response/</guid>
+      <description>网页上的报错，一般都会和HTTP请求出错有关。 在Chrome浏览器中，按F12或者command+option+i可以打开Dev tools，在网络面板中可以找到报错的的HTTP请求。
+通过提交Copy as cURL 和 Copy response的内容，就会非常准确的把问题报告给开发。开发也会非常快速的定位问题。</description>
     </item>
     
     <item>
@@ -708,6 +1072,51 @@ tar -zxvf 压缩文件名.tar.gz 解压缩后的文件只能放在当前的目�
 crontab 每隔x秒执行一次 每隔5秒
 * * * * * for i in {1..12}; do /bin/cmd -arg1 ; sleep 5; done 每隔15秒
 * * * * * /bin/cmd -arg1 * * * * * sleep 15; /bin/cmd -arg1 * * * * * sleep 30; /bin/cmd -arg1 * * * * * sleep 45; /bin/cmd -arg1 awk从第二行开始读取 awk &amp;#39;NR&amp;gt;2{print $1}&amp;#39; 查找大文件，并清空文件内容 find /var/log -type f -size +1M -exec truncate --size 0 &amp;#39;{}&amp;#39; &amp;#39;;&amp;#39; switch case 语句 echo &amp;#39;Input a number between 1 to 4&amp;#39; echo &amp;#39;Your number is:\c&amp;#39; read aNum case $aNum in 1) echo &amp;#39;You select 1&amp;#39; ;; 2) echo &amp;#39;You select 2&amp;#39; ;; 3) echo &amp;#39;You select 3&amp;#39; ;; 4) echo &amp;#39;You select 4&amp;#39; ;; *) echo &amp;#39;You do not select a number between 1 to 4&amp;#39; ;; esac 以$开头的特殊变量 echo $$ # 进程pid echo $# # 收到的参数个数 echo $@ # 列表方式的参数 $1 $2 $3 echo $?</description>
+    </item>
+    
+    <item>
+      <title>Gitbook好书推荐</title>
+      <link>https://wdd.js.org/fe/gitbook-good-book/</link>
+      <pubDate>Tue, 15 Oct 2019 22:01:00 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/gitbook-good-book/</guid>
+      <description>1. Front-End Developer Handbook 2017 地址：https://frontendmasters.com/books/front-end-handbook/2017/ 这是任何人都可以用来了解前端开发实践的指南。它大致概述并讨论了前端工程的实践：如何学习它，以及在2017年实践时使用什么工具。
+这是专门为潜在的和目前实践的前端开发人员提供专业资源，以配备学习材料和开发工具。其次，管理者，首席技术官，导师和猎头人士可以使用它来了解前端开发的实践。
+手册的内容有利于网络技术（HTML，CSS，DOM和JavaScript）以及直接构建在这些开放技术之上的解决方案。本书中引用和讨论的材料是课堂上最好的或目前提出的问题。
+该书不应被视为对前端开发人员可用的所有资源的全面概述。这本书的价值被简单，集中和及时地组织起来，仅仅是足够的绝对信息，以免任何人在任何一个特定的主题上压倒一切。
+目的是每年发布一次内容更新。
+手册分为三部分。
+第一部分。前端实践
+第一部分广泛描述了前端工程的实践。
+第二部分：学习前端发展
+第二部分指出了自主导向和直接的资源，用于学习成为前端开发人员。
+第三部分：前端开发工具
+第三部分简要解释和识别交易工具。
+2. JS函数式编程指南 英文版地址： 中文版地址：https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/
+这本书的主题是函数范式（functional paradigm），我们将使用 JavaScript 这个世界上最流行的函数式编程语言来讲述这一主题。有人可能会觉得选择 JavaScript 并不明智，因为当前的主流观点认为它是一门命令式（imperative）的语言，并不适合用来讲函数式。但我认为，这是学习函数式编程的最好方式，因为：
+你很有可能在日常工作中使用它
+这让你有机会在实际的编程过程中学以致用，而不是在空闲时间用一门深奥的函数式编程语言做一些玩具性质的项目。
+你不必从头学起就能开始编写程序
+在纯函数式编程语言中，你必须使用 monad 才能打印变量或者读取 DOM 节点。JavaScript 则简单得多，可以作弊走捷径，因为毕竟我们的目的是学写纯函数式代码。JavaScript 也更容易入门，因为它是一门混合范式的语言，你随时可以在感觉吃力的时候回退到原有的编程习惯上去。
+这门语言完全有能力书写高级的函数式代码
+只需借助一到两个微型类库，JavaScript 就能模拟 Scala 或 Haskell 这类语言的全部特性。虽然面向对象编程（Object-oriented programing）主导着业界，但很明显这种范式在 JavaScript 里非常笨拙，用起来就像在高速公路上露营或者穿着橡胶套鞋跳踢踏舞一样。我们不得不到处使用 bind 以免 this 不知不觉地变了，语言里没有类可以用（目前还没有），我们还发明了各种变通方法来应对忘记调用 new 关键字后的怪异行为，私有成员只能通过闭包（closure）才能实现，等等。对大多数人来说，函数式编程看起来更加自然。+
+以上说明，强类型的函数式语言毫无疑问将会成为本书所示范式的最佳试验场。JavaScript 是我们学习这种范式的一种手段，将它应用于什么地方则完全取决于你自己。幸运的是，所有的接口都是数学的，因而也是普适的。最终你会发现你习惯了 swiftz、scalaz、haskell 和 purescript，以及其他各种数学偏向的语言。
+3. 前端开发笔记本 地址：http://chanshuyi.github.io/frontend_notebook/
+前端开发笔记本涵括了大部分前端开发所需的知识点，主要包括5大部分：《页面制作》、《JavaScript程序设计》、《DOM编程》、《页面架构》、《前端产品架构》。</description>
+    </item>
+    
+    <item>
+      <title>Regex Tools</title>
+      <link>https://wdd.js.org/fe/regex-tools/</link>
+      <pubDate>Sat, 13 Jul 2019 09:53:00 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/regex-tools/</guid>
+      <description>regex101: 功能最强 https://regex101.com/
+regex101的功能最强，支持php, js, python, 和go的正则表达式
+Regulex：正则可视化 https://jex.im/regulex/#!flags=&amp;amp;re=%5E(a%7Cb)*%3F%24
+regulex仅支持js的正则，
+regexper：正则可视化 https://regexper.com/
+pyregex：专注python正则 http://www.pyregex.com/</description>
     </item>
     
     <item>
