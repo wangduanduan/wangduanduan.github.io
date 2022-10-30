@@ -9,7 +9,48 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 29 Oct 2022 11:52:59 +0800</lastBuildDate><atom:link href="https://wdd.js.org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 30 Oct 2022 21:11:16 +0800</lastBuildDate><atom:link href="https://wdd.js.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SIP相关RFC协议</title>
+      <link>https://wdd.js.org/opensips/ch1/sip-rfcs/</link>
+      <pubDate>Sun, 30 Oct 2022 21:11:16 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch1/sip-rfcs/</guid>
+      <description>RFC 名称 https://tools.ietf.org/html/rfc3261 SIP: Session Initiation Protocol https://tools.ietf.org/html/rfc3665 Session Initiation Protocol (SIP) Basic Call Flow Examples https://tools.ietf.org/html/rfc6141 Re-INVITE and Target-Refresh Request Handling in the Session Initiation Protocol (SIP) https://tools.ietf.org/html/rfc4566 SDP: Session Description Protocol https://tools.ietf.org/html/rfc4028 Session Timers in the Session Initiation Protocol (SIP) https://tools.ietf.org/html/rfc1889 RTP: A Transport Protocol for Real-Time Applications https://tools.ietf.org/html/rfc2326 Real Time Streaming Protocol (RTSP) https://tools.ietf.org/html/rfc2327 SDP: Session Description Protocol https://tools.ietf.org/html/rfc3015 Megaco Protocol Version 1.0 https://tools.ietf.org/html/rfc1918 Address Allocation for Private Internets https://tools.</description>
+    </item>
+    
+    <item>
+      <title>STUN协议笔记</title>
+      <link>https://wdd.js.org/opensips/ch1/stun-notes/</link>
+      <pubDate>Sun, 30 Oct 2022 20:22:09 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch1/stun-notes/</guid>
+      <description>title: &amp;ldquo;STUN协议笔记&amp;rdquo; date: &amp;ldquo;2022-01-06 17:54:10&amp;rdquo; draft: false STUN是Simple Traversal of User Datagram Protocol (UDP) through Network Address Translators (NAT’s)的缩写 传输层底层用的是UDP 主要用来NAT穿透 主要用来解决voip领域的单方向通话(one-way)的问题 目的是让NAT后面的设备能发现自己的公网IP以及NAT的类型 让外部设备能够找到合适的端口和内部设备通信 刷新NAT绑定，类似keep-alive机制。否则端口映射可能因为超时被释放 STUN是cs架构的协议 客户端端192.168.1.3，使用5060端口，发送stun请求到 64.25.58.65， 经过了192.168.1.1的网关之后 网关将源ip改为212.128.56.125， 端口改为15050 stun服务器将请求发送到 网关的外网端口15050，然后网关将请求转发给192.168.1.3:5060 stun message type which typically is one of the below: - 0x0001 : Binding Request - 0x0101 : Binding Response
+0x0111 : Binding Error Response 0x0002 : Shared Secret Request 0x0102 : Shared Secret Response 0x0112 : Shared Secret Error Response **0x0001: MAPPED-ADDRESS - **This attribute contains an IP address and port.</description>
+    </item>
+    
+    <item>
+      <title>SIP信令和媒体都绕不开的NAT问题</title>
+      <link>https://wdd.js.org/opensips/ch1/nat-sip-rtp/</link>
+      <pubDate>Sun, 30 Oct 2022 19:37:02 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch1/nat-sip-rtp/</guid>
+      <description>什么是NAT? NAT(网络地址转换)， 具体可以参考百科 https://baike.baidu.com/item/nat/320024。
+NAT是用来解决IPv4的地址不够的问题。
+例如上图，内网的主机，在访问外网时，源192.168的网址，会被改写成1.2.3.4。所以在server端看来，请求是从1.2.3.4发送过来的。
+NAT一般会改写请求的源IP包的源IP地址，也可能会改写tcp或者udp的源端口地址。
+NAT地址范围 互联网地址分配机构保留了三类网址只能由于私有地址，这些地址只能由于NAT内部，不能用于公网。
+如果在sip消息中，Contact头中的地址是192.168开头，聪明的服务器应该知道，这个请求来自NAT内部。
+10.0.0.0 - 10.255.255.255 (10/8 prefix) 172.16.0.0 - 172.31.255.255 (172.16/12 prefix) 192.168.0.0 - 192.168.255.255 (192.168/16 prefix) NAT 工作原理 NAT内部流量流出时，源IP和源端口都被改写，目标地址和端口不会改写。源ip和端口与被改写后的ip和端口存在一段时间的映射关系，当响应回来时，根据这个映射关系，NAT设备知道这个包应该发给内网的哪个设备。
+NAT分类 静态NAT: 每个内部主机都永久映射一个外部公网IP 动态NAT: 每个内部主机都动态映射一个外部公网IP 网络地址端口转换: 内部主机映射到外部不同端口上 由于静态NAT和动态NAT并不能节省公网IP, 常用的都是网络地址端口转换，即NAPT。
+NAPT 网络地址端口转换分类 全锥型NAT 限制锥型NAT： 限制主机 端口限制NAT：限制主机和端口 Full Cone NAT 全锥型NAT 打洞过程
+来自nat内部ip1:port1地址在经过路由器时，路由器会打洞ip1&amp;rsquo;:port1&#39; 任何服务器只要把包发到ip1&amp;rsquo;:port1&amp;rsquo;，路由器都会把这个包发到ip1:port1。也就是说，即使刚开始打洞的包是发给server1的，如果server2知道这个洞的信息，那么server2也可以通过这洞，将消息发给ip1:port1 Restricted Cone NAT 限制锥型NAT 限制锥型打洞过程和全锥型差不多，只不过增加了限制。
+如果内部主机是把包发到server1的，即使server2知道打洞的信息，它发的包也不会被转给内部主机。 Port Restricted Cone NAT 端口限制NAT 端口限制NAT要比上述两种NAT的限制更为严格
+内部主机如果将消息发到server1的5080端口，那么这个端口只允许server1的5080端口发消息回来 server1的其他端口发消息到这个洞都会被拒绝 SIP信令NAT穿越 NAT内部消息发到fs时，会携带如下信息。假如fs对NAT一无所知，如果后续有呼叫，fs是无法将消息发到192.168.0.102的，因为192.168.0.102是内网地址。
+但是fs足够聪明，它会从分析包的源ip和源端口，从而正确的将sip消息送到NAT设备上。
+Via: SIP/2.0/UDP 192.168.1.160:11266;branch=z9hG4bK-d8754z-1f2cd509;rport Contact: &amp;lt;sip:flavio@192.</description>
+    </item>
+    
     <item>
       <title>JavaScript内存泄露分析</title>
       <link>https://wdd.js.org/fe/memory-leak-ppt/</link>
@@ -236,10 +277,10 @@ k,s,n都是整数 k大于等于1 10的k-1次方小于等于s, 且s小于等于10
     
     <item>
       <title>奥科网关 Rtp Broken Connection</title>
-      <link>https://wdd.js.org/opensips/rtp-broken-connection/</link>
+      <link>https://wdd.js.org/opensips/ch1/rtp-broken-connection/</link>
       <pubDate>Sat, 29 Oct 2022 10:11:59 +0800</pubDate>
       
-      <guid>https://wdd.js.org/opensips/rtp-broken-connection/</guid>
+      <guid>https://wdd.js.org/opensips/ch1/rtp-broken-connection/</guid>
       <description>通话10多秒后，fs对两个call leg发送bye消息。
 Bye消息给的原因是 Reason: Q.850 ;cause=31 ;text=”local, RTP Broken Connection”
 在通话的前10多秒，SIP信令正常，双方也能听到对方的声音。
@@ -342,10 +383,10 @@ vi /etc/ssh/sshd_config PermitRootLogin yes sudo systemctl restart ssh // chong 
     
     <item>
       <title>utimer task &lt;tm-utimer&gt; already scheduled</title>
-      <link>https://wdd.js.org/opensips/utime-task-scheduled/</link>
+      <link>https://wdd.js.org/opensips/ch1/utime-task-scheduled/</link>
       <pubDate>Tue, 25 Oct 2022 12:06:54 +0800</pubDate>
       
-      <guid>https://wdd.js.org/opensips/utime-task-scheduled/</guid>
+      <guid>https://wdd.js.org/opensips/ch1/utime-task-scheduled/</guid>
       <description>可能和avp_db_query有关 https://opensips.org/pipermail/users/2018-October/040157.html What we found is that the warning go away if we comment out the single avp_db_query that is being used in our config.
 _ The avp_db_query is not executed at the start, but only when specific header is present. Yet the fooding start immediately after opensips start. The mere presence of the avp_db_query function in config without execution is enough to have the issue._
 可能和openssl库有关 https://github.com/OpenSIPS/opensips/issues/1771#issuecomment-517744489 ere are your results.</description>
@@ -390,10 +431,10 @@ tcpdump [ -AbdDefhHIJKlLnNOpqStuUvxX# ] [ -B buffer_size ] [ -c count ] [ --coun
     
     <item>
       <title>SIP和SDP的关系</title>
-      <link>https://wdd.js.org/opensips/sip-with-sdp/</link>
+      <link>https://wdd.js.org/opensips/ch1/sip-with-sdp/</link>
       <pubDate>Sat, 03 Sep 2022 20:36:45 +0800</pubDate>
       
-      <guid>https://wdd.js.org/opensips/sip-with-sdp/</guid>
+      <guid>https://wdd.js.org/opensips/ch1/sip-with-sdp/</guid>
       <description>1. 什么是SDP? SDP是Session Description Protocol的缩写，翻译过来就是会话描述协议，这个协议通常存储各种和媒体相关的信息，例如支持哪些媒体编码, 媒体端口是多少？媒体IP地址是多少之类的。
 SDP一般作为SIP消息的body部分。如下所示
 INVITE sip:bob@biloxi.example.com SIP/2.0 Via: SIP/2.0/TCP client.atlanta.example.com:5060;branch=z9hG4bK74bf9 Max-Forwards: 70 From: Alice &amp;lt;sip:alice@atlanta.example.com&amp;gt;;tag=9fxced76sl To: Bob &amp;lt;sip:bob@biloxi.example.com&amp;gt; Call-ID: 3848276298220188511@atlanta.example.com CSeq: 1 INVITE Contact: &amp;lt;sip:alice@client.atlanta.example.com;transport=tcp&amp;gt; Content-Type: application/sdp Content-Length: 151 v=0 o=alice 2890844526 2890844526 IN IP4 client.atlanta.example.com s=- c=IN IP4 192.0.2.101 t=0 0 m=audio 49172 RTP/AVP 0 a=rtpmap:0 PCMU/8000 刚开始我一直认为某些sip消息一定带有sdp，例如invite消息。某些sip请求一定没有携带sdp。
@@ -407,10 +448,10 @@ INVITE sip:bob@biloxi.example.com SIP/2.0 Via: SIP/2.0/TCP client.atlanta.exampl
     
     <item>
       <title>SIP协议拾遗补缺</title>
-      <link>https://wdd.js.org/opensips/sip-notes/</link>
+      <link>https://wdd.js.org/opensips/ch1/sip-notes/</link>
       <pubDate>Sat, 03 Sep 2022 15:54:57 +0800</pubDate>
       
-      <guid>https://wdd.js.org/opensips/sip-notes/</guid>
+      <guid>https://wdd.js.org/opensips/ch1/sip-notes/</guid>
       <description>1. sip协议由request-uri路由，而不是to字段 sip消息再经过ua发送出去时，request-uri可能会被重写，而to字段，一般是不变的
 2. 主叫生成callId和from tag, 响应to tag由另一方生成 totag的作用可以用来区分初始化请求和序列化请求
 3. sip消息有哪些头字段是必须的？ Via Max-Forwards (请求消息必须有这个头，响应消息一般没有这个头) 感谢 @genmzy 提示。 From To Call-ID CSeq 4. 被叫在向主叫发消息时，from和to字段为什么没变？ from和to字段用来表名sip 请求的方向，而不是sip消息的方向。主叫发起的请求，那么在这个dialog中，所有的sip消息，主叫和被叫字段都不会变。
@@ -423,19 +464,19 @@ INVITE sip:bob@biloxi.example.com SIP/2.0 Via: SIP/2.0/TCP client.atlanta.exampl
     
     <item>
       <title>Trunk Pbx Gateway</title>
-      <link>https://wdd.js.org/opensips/trunk-pbx-gateway/</link>
+      <link>https://wdd.js.org/opensips/ch1/trunk-pbx-gateway/</link>
       <pubDate>Sat, 03 Sep 2022 15:24:44 +0800</pubDate>
       
-      <guid>https://wdd.js.org/opensips/trunk-pbx-gateway/</guid>
+      <guid>https://wdd.js.org/opensips/ch1/trunk-pbx-gateway/</guid>
       <description>传统中继 sip trunk中继 安全可靠：SIP Trunk设备和ITSP之间只需建立唯一的、安全的、具有QoS保证的SIP Trunk链路。通过该链路来承载企业的多路并发呼叫，运营商只需对该链路进行鉴权，不再对承载于该链路上的每一路SIP呼叫进行鉴权。 节约硬件成本：企业内部通信由企业IP-PBX负责。企业所有外出通信都通过SIP Trunk交由ITSP，再由ITSP中的设备发送到PSTN网络，企业不再需要维护原有的传统PSTN中继链路，节省了硬件和维护成本。 节约话费成本：企业可以通过设置目的地址任意选择并连接到多个ITSP，充分利用遍布全球各地的ITSP，节省通话费用。 功能强大：部署SIP Trunk设备后，全网可以使用SIP协议，可以更好的支持语音、会议、即时消息等IP通信业务。 处理信令和媒体：SIP Trunk设备不同于SIP代理服务器。SIP Trunk设备接收到用户的呼叫请求后，会代表用户向ITSP发起新呼叫请求。在转发过程中，SIP Trunk设备不但要对信令消息进行中继转发，对RTP媒体消息也需要进行中继转发。在整个过程中，SIP Trunk设备两端的设备（企业内部和企业外部设备）均认为和其交互的是SIP Trunk设备本身。 参考 http://www.h3c.com/cn/d_201009/688762_30003_0.htm https://getvoip.com/blog/2013/01/24/differences-between-sip-trunking-and-hosted-pbx/ https://www.onsip.com/blog/hosted-pbx-vs-sip-trunking https://baike.baidu.com/item/sip%20trunk/1499860 </description>
     </item>
     
     <item>
       <title>Path头简史</title>
-      <link>https://wdd.js.org/opensips/sip-path/</link>
+      <link>https://wdd.js.org/opensips/ch1/sip-path/</link>
       <pubDate>Sat, 03 Sep 2022 14:51:32 +0800</pubDate>
       
-      <guid>https://wdd.js.org/opensips/sip-path/</guid>
+      <guid>https://wdd.js.org/opensips/ch1/sip-path/</guid>
       <description>RFC3261并没有介绍关于Path头的定义，因为这个头是在RFC3327中定义的，Path头作为一个SIP的扩展头。
 RFC3327的标题是：Session Initiation Protocol (SIP) Extension Header Field for Registering Non-Adjacent Contacts。
 从这个标题可以看出，Path头是作为Register请求的一个消息头，一般这个头只在注册消息上才有。
@@ -465,19 +506,19 @@ timeZone: &amp;#34;Asia/Shanghai&amp;#34; </description>
     
     <item>
       <title>Via route Record-Route的区别</title>
-      <link>https://wdd.js.org/opensips/via-route-record-route/</link>
+      <link>https://wdd.js.org/opensips/ch1/via-route-record-route/</link>
       <pubDate>Sat, 03 Sep 2022 02:00:00 +0800</pubDate>
       
-      <guid>https://wdd.js.org/opensips/via-route-record-route/</guid>
+      <guid>https://wdd.js.org/opensips/ch1/via-route-record-route/</guid>
       <description>sequenceDiagram title French Words I Know autonumber participant a participant p1 participant p2 participant p3 participant b a-&gt;&gt;p1 : INVITE route: p1, via: a p1-&gt;&gt;p2: INVITE via: a,p1, rr: p1 p2-&gt;&gt;p3: INVITE via: a,p1,p2 rr: p1,p2 p3-&gt;&gt;b: INVITE via: a,p1,p2,p3 rr: p1,p2,p3 b--&gt;&gt;p3: 180 via: a,p1,p2,p3 rr: p1,p2,p3 p3--&gt;&gt;p2: 180 via: a,p1,p2 rr: p1,p2,p3 p2--&gt;&gt;p1: 180 via: a,p1 rr: p1,p2,p3 p1--&gt;&gt;a: 180 via: a rr: p1,p2,p3 b--&gt;&gt;p3: 200 OK via: a,p1,p2,p3 rr: p1,p2,p3 p3--&gt;&gt;p2: 200 Ok via: a,p1,p2 rr: p1,p2,p3 p2--&gt;&gt;p1: 200 Ok via: a,p1 rr: p1,p2,p3 p1--&gt;&gt;a: 200 Ok via: a rr: p1,p2,p3 a-&gt;&gt;p1 : ACK via: a, route: p1,p2,p3 p1-&gt;&gt;p2: ACK via: a,p1, route: p2,p3 p2-&gt;&gt;p3: ACK via: a,p1,p2 route: p3 p3-&gt;&gt;b: ACK via: a,p1,p2,p3 rr代表record-route头。</description>
     </item>
     
     <item>
       <title>SIP协议简介</title>
-      <link>https://wdd.js.org/opensips/sip-overview/</link>
+      <link>https://wdd.js.org/opensips/ch1/sip-overview/</link>
       <pubDate>Fri, 02 Sep 2022 01:00:00 +0800</pubDate>
       
-      <guid>https://wdd.js.org/opensips/sip-overview/</guid>
+      <guid>https://wdd.js.org/opensips/ch1/sip-overview/</guid>
       <description>SIP是VoIP的基石，相当于HTTP协议在Web服务器里的角色。如果你熟悉HTTP协议，那么你可以在SIP协议中找到许多和HTTP中熟悉的东西，例如请求头，请求体，响应码之类概念，这是因为SIP协议的设计，很大程度上参考了HTTP协议。
 如果想要学习VoIP，那么SIP协议是你务必掌握敲门砖。
 1. SIP组件 UAC: 例如sip终端，软电话，话机 UAS: sip服务器 UA: ua既可以当做uac也可以当做uas 代理服务器 重定向服务器 注册服务器 网关 PSTN 公共交换电话网 2. SBC 边界会话控制器 SBC是Session Border Controller的缩写，具有一下几个功能。
@@ -494,10 +535,10 @@ invite除了re-invite的情况，其余的都属于初始化请求，需要着�
     
     <item>
       <title>学习建议</title>
-      <link>https://wdd.js.org/opensips/study-tips/</link>
+      <link>https://wdd.js.org/opensips/ch1/study-tips/</link>
       <pubDate>Fri, 02 Sep 2022 00:00:00 +0800</pubDate>
       
-      <guid>https://wdd.js.org/opensips/study-tips/</guid>
+      <guid>https://wdd.js.org/opensips/ch1/study-tips/</guid>
       <description>1. 概念理解 务必要能理解SIP的重要概念，特别是事务、Dialog。参考https://www.yuque.com/wangdd/opensips/fx5pyy 概念是非常重要的东西，不理解概念，越学就会越吃力 2. 时序图 时序图是非常重要的，培训时，一般我会要求学员务必能够手工绘制时序图。因为只有能够手工绘制时序图了，在排查问题时，才能够从抓包工具给出的时序图中分析出问题所在。
 RFC3665 https://datatracker.ietf.org/doc/html/rfc3665 中提供了很多经典的时序图，建议可以去临摹。</description>
     </item>
@@ -2998,6 +3039,32 @@ code 断开原因码 reason 具体原因 wasClean 是否是正常断开 官方�
     </item>
     
     <item>
+      <title>媒体路径与信令路径</title>
+      <link>https://wdd.js.org/opensips/ch1/sip-rtp-path/</link>
+      <pubDate>Wed, 24 Jun 2020 09:11:35 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch1/sip-rtp-path/</guid>
+      <description>一般的sip网关同时具有信令和媒体处理的能力，如下图。
+但是也有信令和媒体分开的网关。在和网关信令交互过程中，网关会将媒体地址放到sdp中。
+难点就来了，在nat存在的场景下，你并不知道sdp里的媒体地址是否是真实的地址。
+那么你就要选择，是相信sdp中的媒体地址，还是把sip信令的源ip作为媒体地址呢？</description>
+    </item>
+    
+    <item>
+      <title>媒体协商 offer/answer模型</title>
+      <link>https://wdd.js.org/opensips/ch1/offer-answer/</link>
+      <pubDate>Wed, 24 Jun 2020 08:51:48 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch1/offer-answer/</guid>
+      <description>
+1. 简介 媒体协商用来交换呼叫双方的媒体能力。如
+支持的编码类型有哪些 采样频率是多少 媒体端口，ip信息 &amp;hellip; 媒体协商使用的是请求和应答模型。即一方向另一方发送含有sdp信息的消息，然后另一方更具对方提供的编码以及自己支持的编码，如果协商成功，则将协商后的消息sdp再次发送给对方。
+2. 常见的几个协商方式 2.1 在INVITE中offer 2.2 在200 OK 中offer 2.3 在UPDATE中offer 2.4 在PRACK中offer 3. 常见的几个问题 一般呼叫到中继测时，中继回的183信令是会携带sdp信息的 一般打到分机时，分机回的180信令是没有sdp信息的 不要先入为主的认为，某些请求一定带有sdp，某些请求一定没有sdp。而应当去测试请求或者响应消息上有没有携带sdp信息。
+携带sdp信息的sip消息会出现下面的头
+Content-Type: application/sdp </description>
+    </item>
+    
+    <item>
       <title>fping 网络状态监控测试</title>
       <link>https://wdd.js.org/posts/old-blog/qtdzvr/</link>
       <pubDate>Sat, 20 Jun 2020 17:06:42 +0800</pubDate>
@@ -3413,6 +3480,22 @@ lsof -c 进程名lsof -p 进程号lsof filename # 查看某个文件被哪个进
     </item>
     
     <item>
+      <title>漫话NAT的历史todo</title>
+      <link>https://wdd.js.org/opensips/ch1/story-of-nat/</link>
+      <pubDate>Fri, 10 Apr 2020 13:18:53 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch1/story-of-nat/</guid>
+      <description>设想一下，如果国家规定，给孩子起名字的时候，不能和已经使用过的活着的人名字相同，会发生什么事情？
+除非把名字起得越来越长，否则名字很快就不够用了。
+在1993年的时候，有人就遇到类似的问题，因为IP地址快被用完了。
+他们想出两个方案：
+短期方案：CIDR(Classless InterDomain Routing) 长期方案：开发新的具有更大地址空间的互联网协议。可以认为是目前的IPv6 当然了长期方案不是一蹴而就的，短期方案才是解决眼前问题的方案。
+a very small percentage of hosts in a stub domain are communicating outside of the domain at any given time
+短期的方案基于一个逻辑事实：在一个网络中，只有非常少的几个主机需要跟外部网络交流。也就是说，大部分的主机都在内部交流。那么内部交流的这些主机，实际上并不需要给设置公网IP。（但是这个只是1993年的那个时期的事实）**可以类比于，班级内部之间的学生交流很多。班级与班级之间的交流，估计只有班长之间交流。
+参考 https://tools.ietf.org/html/rfc1631 https://tools.ietf.org/html/rfc1996 https://tools.ietf.org/html/rfc2663 https://tools.ietf.org/html/rfc2993 </description>
+    </item>
+    
+    <item>
       <title>window轻量级抓包工具RawCap介绍</title>
       <link>https://wdd.js.org/posts/old-blog/pfkelh/</link>
       <pubDate>Thu, 09 Apr 2020 16:58:20 +0800</pubDate>
@@ -3578,6 +3661,23 @@ lnav的特点
       <description>1. 选肉 **猪肉，肥瘦相间的五花肉才最好吃。**精瘦肉吃起来会太柴，太肥的肉会显得太腻。五花肉则刚刚好，不柴也不腻。
 2. 炒干 烧好的猪肉中如果有生水的味道，则口感不好，而且会显得肉不够熟。
 3. 具体步骤 五花肉洗净，切片。放入干净的炒锅中，然后开火烧 将五花肉的水分烧干，并且冒油，肉面发黄 放入姜葱蒜，小米椒，加入生抽，料酒，食盐爆炒。如果猪油比较少，则可以放入适量食用油 然后可以按需加入蔬菜。例如花菜、或者芹菜、或者小青椒 炒到蔬菜9成熟，然后出锅 </description>
+    </item>
+    
+    <item>
+      <title>深入理解SIP ACK 方法</title>
+      <link>https://wdd.js.org/opensips/ch1/sip-ack/</link>
+      <pubDate>Wed, 19 Feb 2020 19:17:16 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch1/sip-ack/</guid>
+      <description>ACK的特点 ACK仅用于对INVITE消息的最终响应进行确认 ACK的CSeq的号码必须和INVITE的CSeq号码相同，这是用来保证ACK对对哪一个INVITE进行确认的唯一标志。另外CSeq的方法会改为ACK ACK分为两种 失败请求的确认；例如对4XX, 5XX请求的确认。在对失败的请求进行确认时，ACK是逐跳的。 成功的请求的确认；对200的确认，此时ACK是端到端的。 ACK一般不会带有SDP信息。如果INVITE消息没有带有SDP，那么ACK消息中一般会带有ACK ACK与事务的关系 如果请求成功，那么后续的ACK消息是单独的事物 如果请求失败，那么后续的ACK消息和之前的INVITE是属于相同的事务 逐跳ACK VS 端到端ACK 逐跳在英文中叫做: hop-by-hop端到端在英文中叫做：end-to-end
+ACK如何路由 ack是序列化请求，所谓序列化请求，是指sip to 字段中已经有tag。有to tag是到达对端的唯一标志。
+没有to tag请求称为初始化请求，有totag称为序列化请求。
+初始化请求做路径发现，往往需要做一些数据库查询，DNS查询。而序列化请求不需要查询数据库，因为路径已经发现过了。
+实战场景：分机A, SIP服务器S, 分机B, A呼叫B，详细介绍一下到ACK的过程。
+分机A向SIP服务器S发送请求：INVITE B SIP服务器 首先在数据库中查找B的实际注册地址 修改Contact头为分机A的外网地址和端口。因为由于存在NAT, 分机A一般不知道自己的公网地址。 record_route 将消息发送给B 分机B: 收到来自SIP服务器的INVITE消息 从INVITE中取出Contact, 获取对端的，其实也就是分机A的实际地址 如果所有条件都满足，分机B会向SIP服务器发送180响应，然后发送200响应 由于180响应和200响应和INVITE都属于一个事务，响应会按照Via的地址，先发送给SIP服务器 SIP服务器： SIP服务器会首先修改180响应的Contac头，把分机B的内网地址改为外网地址 SIP服务器根据Via头，将消息发送给分机A 对于200 OK的消息，和180的处理是相同的 分机A: 分机收到180消息后，从Contact头中能够获取分机B的外网地址 分机A在发送ACK时，request url地址是分机B的地址，但是由于sip服务器的record_route动作首先会将消息发送给SIP服务器，SIP服务器会按照request url的地址，将ack发送给分机B。 ACK的路由不需要做数据库查询，ACK的request url一般是对端UAC的地址。在存在route头时，ACK会按照route字段去路由。
+ACK丢失了会怎样？ 如果被叫在一定时间内没有收到ACK, 那么被叫会周期性的重发200OK。如果在超时的时候，还没有收到ACK, 就发发送BYE消息来挂断呼叫。很多呼叫在30秒自动挂断，往往就是因为丢失了ACK。
+那么ACK为什么会丢失呢？可能有以下的原因，大部分原因和NAT有关！
+SIP服务器没有做fix_nat_contact, 导致主叫可能不知道实际被叫的外网地址 ACK与媒体流的关系 并不是说被叫收到ACK后，媒体流才开始。往往在180或者183时，双方已经能够听到对方的声音了。</description>
     </item>
     
     <item>
@@ -4050,6 +4150,16 @@ domain 表示通信域，最长见的有以下两个域 AF_INET 因特网通信 
     </item>
     
     <item>
+      <title>深入NAT网络</title>
+      <link>https://wdd.js.org/opensips/ch1/deep-in-nat/</link>
+      <pubDate>Tue, 05 Nov 2019 16:29:43 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch1/deep-in-nat/</guid>
+      <description> NAT的产生原因是IPv4的地址不够用，网络中的部分主机只能公用一个外网IP。 NAT工作在网络层和传输层，主要是对IP地址和端口号的改变 NAT的优点 节约公网IP 安全性更好，所有流量都需要经过入口的防火墙 NAT的缺点 对于UPD应用不够友好 NAT 工作原理 内部的设备X, 经过NAT设备后，NAT设备会改写源IP和端口 NAT 类型 1. 全锥型 每个内部主机都有一个静态绑定的外部ip:port 任何主机发往NAT设备上特定ip:port的包，都会被转发给绑定的主机 这种方式的缺点很明显，黑客可以使用端口扫描工具，扫描出暴露的端口，然后通过这个端口攻击内部主机 在内部主机没有往外发送流量时，外部流量也能够进入内部主机 -
+2. 限制锥形 NAT上的ip:port与内部主机是动态绑定的 如果内部主机没有向某个主机先发送过包，那么NAT会拒绝外部主机进入的流量 3. 端口限制型 端口限制型除了有限制锥型的要求外，还增加了端口的限制 4. 对称型 对称型最难穿透，因为每次交互NAT都会使用不同的端口号，所以内外网端口映射根本无法预测 NAT对比表格 NAT类型 收数据前是否需要先发送数据 是否能够预测下一次的NAT打开的端口对 是否限制包的目的ip:port 全锥形 否 是 否 限制锥形 是 是 仅限制IP 端口限制型 是 是 是 对称型 是 否 是 </description>
+    </item>
+    
+    <item>
       <title>打印易于提取关键词的日志</title>
       <link>https://wdd.js.org/posts/old-blog/xa694b/</link>
       <pubDate>Fri, 01 Nov 2019 09:30:37 +0800</pubDate>
@@ -4473,6 +4583,15 @@ git命令虽然多，但是经常使用的不超过8个。
     </item>
     
     <item>
+      <title>CSTA 呼叫模型简介</title>
+      <link>https://wdd.js.org/opensips/ch1/csta-call-model/</link>
+      <pubDate>Tue, 15 Oct 2019 21:43:41 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch1/csta-call-model/</guid>
+      <description>1. 内容概要 CSTA协议与标准概述 CSTA OpenScape 语音架构概述 2. CSTA协议标准 2.1. 什么是CSTA ? CSTA：电脑支持通讯程序(Computer Supported TelecommunicationsApplications) 基本的呼叫模型在1992建立，后来随着行业发展，呼叫模型也被加强和扩展，例如新的协议等等 CSTA是一个应用层接口，用来监控呼叫，设备和网络 CSTA创建了一个通讯程序的抽象层: CSTA并不依赖任何底层的信令协议 E.g.H.323,SIP,Analog,T1,ISDN,etc. CSTA并不要求用户必须使用某些设备 E.g.intelligentendpoints,low-function/stimulusdevices,SIPSignalingmodels-3PCC vs. Peer/Peer 适用不同的操作模式 第三方呼叫控制 一方呼叫控制 CSTA的设计目标是为了提高各种CSTA实现之间的移植性 规范化呼叫模型和行为 完成服务、事件定义 规范化标准 3. CSTA 标准的进化史 阶段1 (发布于 June ’92) 40 特性, 66 页 (服务定义) 专注于呼叫控制 阶段2 (发布于 Dec. ’94) 77 特性, 145 页 (服务定义) I/O &amp;amp; 语音单元服务, 更多呼叫控制服务 阶段3 - CSTA Phase II Features &amp;amp; versit CTI Technology 发布于 Dec. ‘98 136 特性, 650 页 (服务定义) 作为ISO 标准发布于 July 2000 发布 CSTA XML (ECMA-323) June 2004 发布 “Using CSTA with Voice Browsers” (TR/85) Dec.</description>
+    </item>
+    
+    <item>
       <title>awk、grep、cut、sort、uniq简单命令玩转日志分析与统计</title>
       <link>https://wdd.js.org/shell/grep-awk-sort/</link>
       <pubDate>Tue, 15 Oct 2019 21:35:15 +0800</pubDate>
@@ -4632,6 +4751,20 @@ nginx_second,tag=ip169 value=21 1592638800000000000 nginx_second,tag=ip169 value
     </item>
     
     <item>
+      <title>UA应答模式的实现</title>
+      <link>https://wdd.js.org/opensips/ch1/ua-answer-mode/</link>
+      <pubDate>Thu, 26 Sep 2019 20:37:08 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch1/ua-answer-mode/</guid>
+      <description>Notify 使用noify消息，通知分机应答，这个notify一般发送在分机回180响应之后
+Answer-mode Answer-Mode一般有两个值 Auto: UA收到INVITE之后，立即回200OK，没有180的过程 Manual: UA收到INVITE之后，等待用户手工点击应答 通常Answer-Mode还会跟着require, 表示某个应答方式如果不被允许，应当回403 Forbidden 作为响应。
+Answer-Mode: Auto;require 和Answer-mode头类似的有个SIP头叫做：Priv-Answer-Mode，这个功能和Answer-Mode类似，但是他有个特点。
+如果UA设置了免打扰，Priv-Answer-Mode头会无视免打扰这个选项，强制让分机应答，这个头适合用于紧急呼叫。
+结论 如果要实现分机的自动应答，显然Answer-Mode的应答速度回更快。但是对于依赖180响应的系统，可能要考虑这种没有180相应的情况。
+要记住，在SIP消息里，对于UA来说，1xx的响应都是不必须的可以缺少的。</description>
+    </item>
+    
+    <item>
       <title>致命女人 Why Women Kill</title>
       <link>https://wdd.js.org/posts/old-blog/zgwg91/</link>
       <pubDate>Thu, 26 Sep 2019 20:12:48 +0800</pubDate>
@@ -4679,6 +4812,20 @@ LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 </description>
       
       <guid>https://wdd.js.org/posts/old-blog/yko32n/</guid>
       <description>git config --global --unset http.proxy </description>
+    </item>
+    
+    <item>
+      <title>NAT解决方法</title>
+      <link>https://wdd.js.org/opensips/ch1/fix-nat/</link>
+      <pubDate>Tue, 17 Sep 2019 08:58:52 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch1/fix-nat/</guid>
+      <description>解决信令的过程 NAT检测 使用rport解决Via 在初始化请求和响应中修改Contact头 处理来自NAT内部的注册请求 Ping客户端使NAT映射保持打开 处理序列化请求 实现NAT检测 nat_uac_test 使用函数 nat_uac_test
+1 搜索Contact头存在于RFC 1918 中的地址 2 检测Via头中的received参数和源地址是否相同 4 最顶部的Via出现在RFC1918 / RFC6598地址中 8 搜索SDP头出现RFC1918 / RFC6598地址 16 测试源端口是否和Via头中的端口不同 32 比较Contact中的地址和源信令的地址 64 比较Contact中的端口和源信令的端口 上边的测试都是可以组合的，并且任何一个测试通过，则返回true。
+例如下面的测试19，实际上是1+2+16三项测试的组合
+nat_uac_test(&amp;#34;19&amp;#34;) 使用rport和receive参数标记Via头 从NAT内部出去的呼叫，往往可能不知道自己的出口IP和端口，只有远端的SIP服务器收到请求后，才能知道UAC的真是出口IP和端口。出口IP用received=x.x.x.x，出口端口用rport=xx。当有消息发到UAC时，应当发到received和rport所指定的地址和端口。
+# 原始的Via Via: SIP/2.0/UDP 192.168.4.48:5062;branch=z9hG4bK523223793;rport # 经过opensips处理后的Via Via: SIP/2.0/UDP 192.168.4.48:5062;received=192.168.4.48;branch=z9hG4bK523223793;rport=5062 修复Contact头 Via头和Contact头是比较容易混淆的概念，但是两者的功能完全不同。Via头使用来导航183和200响应应该如何按照原路返回。Contact用来给序列化请求，例如BYE和UPDATE导航。如果Contact头不正确，可能会导致呼叫无法挂断。那么就需要用fix_nated_contact()函数去修复Contact头。另外，对于183和200的响应也需要去修复Contact头。
+处理注册请求 RFC 1918 地址组 10.0.0.0 - 10.255.255.255 (10/8 prefix) 172.16.0.0 - 172.31.255.255 (172.16/12 prefix) 192.168.0.0 - 192.168.255.255 (192.168/16 prefix) 参考 http://www.rfcreader.com/#rfc1918 </description>
     </item>
     
     <item>
@@ -4743,6 +4890,15 @@ LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 </description>
       
       <guid>https://wdd.js.org/posts/old-blog/guvnbd/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>SIP注册调研</title>
+      <link>https://wdd.js.org/opensips/ch1/sip-register/</link>
+      <pubDate>Mon, 19 Aug 2019 21:30:52 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch1/sip-register/</guid>
+      <description>sequenceDiagram autonumber participant a as 192.168.0.123:55647 participant b as 1.2.3.4:5060 participant c as 172.10.10.3:49543 a-&gt;&gt;b: register cseq=1, callId=1 b--&gt;&gt;a: 401 Unauthorized a-&gt;&gt;b: register cseq=2, callid=1 b--&gt;&gt;a: 200 a-&gt;&gt;b: register cseq=3, callId=1 b--&gt;&gt;a: 401 Unauthorized a-&gt;&gt;b: register cseq=4, callid=1 b--&gt;&gt;a: 200 c-&gt;&gt;b: register cseq=5, callid=1 b--&gt;&gt;c: 401 Unauthorized c-&gt;&gt;b: register cseq=6, callid=1 b--&gt;&gt;c: 500 Service Unavailable c-&gt;&gt;b: register cseq=7, callid=2 b--&gt;&gt;c: 401 Unauthorized c-&gt;&gt;b: register cseq=8, callid=2 b--&gt;&gt;c: 200 c-&gt;&gt;b: register cseq=9, callid=2 b--&gt;&gt;c: 401 Unauthorized c-&gt;&gt;b: register cseq=10, callid=2 b--&gt;&gt;c: 200 c-&gt;&gt;b: register cseq=11, callid=2 b--&gt;&gt;c: 401 Unauthorized c-&gt;&gt;b: register cseq=12, callid=2 b--&gt;&gt;c: 500 Service Unavailable a-&gt;&gt;b: register cseq=13, callId=3 b--&gt;&gt;a: 401 Unauthorized a-&gt;&gt;b: register cseq=14, callid=3 b--&gt;&gt;a: 200 a-&gt;&gt;b: register cseq=15, callId=3 b--&gt;&gt;a: 401 Unauthorized a-&gt;&gt;b: register cseq=16, callid=3 b--&gt;&gt;a: 200 a-&gt;&gt;b: register cseq=17, callId=3 b--&gt;&gt;a: 401 Unauthorized a-&gt;&gt;b: register cseq=18, callid=3 b--&gt;&gt;a: 200 a-&gt;&gt;b: register cseq=19, callId=3 b--&gt;&gt;a: 401 Unauthorized a-&gt;&gt;b: register cseq=20, callid=3 b--&gt;&gt;a: 200 服务端设置的过期时间是120s 客户端每隔115s注册一次, callid和之前的保持不变 当网络变了之后，由于ip地址改变，客户端的在115秒注册，此时服务端还未超时，所以给客户端响应报错500 客户端在等了8秒之后，等待服务端超时，然后再次注册，再次注册时，callid改变 因为服务端已经超时，所以能够注册成功 需要注意的是，在一个注册周期内，客户端的注册信息包括IP、端口、协议、CallID都不能变，一旦改变了。如果服务端的记录还没有失效，新的注册就会失败。</description>
     </item>
     
     <item>
@@ -5090,6 +5246,15 @@ pyregex：专注python正则 http://www.pyregex.com/</description>
       
       <guid>https://wdd.js.org/posts/old-blog/ya30bi/</guid>
       <description>上传文件 import requests headers = { &amp;#34;ssid&amp;#34;:&amp;#34;1234&amp;#34; } files = {&amp;#39;file&amp;#39;: open(&amp;#39;yourfile.tar.gz&amp;#39;, &amp;#39;rb&amp;#39;)} url=&amp;#34;http://localhost:1345/fileUpload/&amp;#34; r = requests.post(url, files=files, headers=headers) print(r.status_code) </description>
+    </item>
+    
+    <item>
+      <title>from vs to vs request-url之间的关系</title>
+      <link>https://wdd.js.org/opensips/ch1/from-to-request-url/</link>
+      <pubDate>Thu, 11 Jul 2019 07:38:53 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch1/from-to-request-url/</guid>
+      <description>from字段用来标记请求的发起者ID to字段用来标记请求接受者的ID to字段并不能用于路由，request-url可以用来路由 一般情况下，sip消息再传输过程中，from和to字段都不会改，而request-url很可能会因为路由而改变 对于最初的请求，除了注册请求之外，request-url和to字段中的url一致 from字段：The From header field is a required header field that indicates the originator of the request. It is one of two addresses used to identify the dialog. The From header field contains a URI, but it may not contain the transport, maddr, or ttl URI parameters. A From header field may contain a tag used to identify a particular call. A From header field may contain a display name, in which case the URI is enclosed in &amp;lt; &amp;gt;.</description>
     </item>
     
     <item>

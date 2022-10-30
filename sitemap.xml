@@ -2,13 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://wdd.js.org/opensips/</loc>
+    <lastmod>2022-10-30T21:11:16+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/opensips/ch1/sip-rfcs/</loc>
+    <lastmod>2022-10-30T21:11:16+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/</loc>
+    <lastmod>2022-10-30T21:11:16+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/opensips/ch1/stun-notes/</loc>
+    <lastmod>2022-10-30T20:22:09+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/opensips/ch1/nat-sip-rtp/</loc>
+    <lastmod>2022-10-30T19:37:02+08:00</lastmod>
+  </url><url>
     <loc>https://wdd.js.org/fe/memory-leak-ppt/</loc>
     <lastmod>2022-10-29T11:52:59+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/fe/</loc>
-    <lastmod>2022-10-29T11:52:59+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/</loc>
     <lastmod>2022-10-29T11:52:59+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/fe/memory-leak-sharing/</loc>
@@ -59,10 +71,7 @@
     <loc>https://wdd.js.org/fe/js-object-create/</loc>
     <lastmod>2022-10-29T11:20:09+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/opensips/</loc>
-    <lastmod>2022-10-29T10:11:59+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/opensips/rtp-broken-connection/</loc>
+    <loc>https://wdd.js.org/opensips/ch1/rtp-broken-connection/</loc>
     <lastmod>2022-10-29T10:11:59+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/container/</loc>
@@ -95,7 +104,7 @@
     <loc>https://wdd.js.org/posts/2022/raspi-config/</loc>
     <lastmod>2022-10-25T12:12:05+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/opensips/utime-task-scheduled/</loc>
+    <loc>https://wdd.js.org/opensips/ch1/utime-task-scheduled/</loc>
     <lastmod>2022-10-25T12:06:54+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/network/</loc>
@@ -110,28 +119,28 @@
     <loc>https://wdd.js.org/network/httpry/</loc>
     <lastmod>2022-10-25T09:07:04+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/opensips/sip-with-sdp/</loc>
+    <loc>https://wdd.js.org/opensips/ch1/sip-with-sdp/</loc>
     <lastmod>2022-09-03T20:36:45+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/opensips/sip-notes/</loc>
+    <loc>https://wdd.js.org/opensips/ch1/sip-notes/</loc>
     <lastmod>2022-09-03T15:54:57+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/opensips/trunk-pbx-gateway/</loc>
+    <loc>https://wdd.js.org/opensips/ch1/trunk-pbx-gateway/</loc>
     <lastmod>2022-09-03T15:24:44+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/opensips/sip-path/</loc>
+    <loc>https://wdd.js.org/opensips/ch1/sip-path/</loc>
     <lastmod>2022-09-03T14:51:32+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2022/hugo-timezone/</loc>
     <lastmod>2022-09-03T10:20:48+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/opensips/via-route-record-route/</loc>
+    <loc>https://wdd.js.org/opensips/ch1/via-route-record-route/</loc>
     <lastmod>2022-09-03T02:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/opensips/sip-overview/</loc>
+    <loc>https://wdd.js.org/opensips/ch1/sip-overview/</loc>
     <lastmod>2022-09-02T01:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/opensips/study-tips/</loc>
+    <loc>https://wdd.js.org/opensips/ch1/study-tips/</loc>
     <lastmod>2022-09-02T00:00:00+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/old-blog/vl3zhk/</loc>
@@ -803,6 +812,12 @@
     <loc>https://wdd.js.org/posts/old-blog/sbhglg/</loc>
     <lastmod>2020-06-24T11:09:02+08:00</lastmod>
   </url><url>
+    <loc>https://wdd.js.org/opensips/ch1/sip-rtp-path/</loc>
+    <lastmod>2020-06-24T09:11:35+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/opensips/ch1/offer-answer/</loc>
+    <lastmod>2020-06-24T08:51:48+08:00</lastmod>
+  </url><url>
     <loc>https://wdd.js.org/posts/old-blog/qtdzvr/</loc>
     <lastmod>2020-06-20T17:06:42+08:00</lastmod>
   </url><url>
@@ -905,6 +920,9 @@
     <loc>https://wdd.js.org/posts/old-blog/oczker/</loc>
     <lastmod>2020-04-23T21:06:33+08:00</lastmod>
   </url><url>
+    <loc>https://wdd.js.org/opensips/ch1/story-of-nat/</loc>
+    <lastmod>2020-04-10T13:18:53+08:00</lastmod>
+  </url><url>
     <loc>https://wdd.js.org/posts/old-blog/pfkelh/</loc>
     <lastmod>2020-04-09T16:58:20+08:00</lastmod>
   </url><url>
@@ -946,6 +964,9 @@
   </url><url>
     <loc>https://wdd.js.org/posts/old-blog/edtzzx/</loc>
     <lastmod>2020-02-26T20:37:52+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/opensips/ch1/sip-ack/</loc>
+    <lastmod>2020-02-19T19:17:16+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/old-blog/mrgkvf/</loc>
     <lastmod>2020-02-16T14:55:15+08:00</lastmod>
@@ -1073,6 +1094,9 @@
     <loc>https://wdd.js.org/posts/old-blog/ahpfg2/</loc>
     <lastmod>2019-11-10T16:32:22+08:00</lastmod>
   </url><url>
+    <loc>https://wdd.js.org/opensips/ch1/deep-in-nat/</loc>
+    <lastmod>2019-11-05T16:29:43+08:00</lastmod>
+  </url><url>
     <loc>https://wdd.js.org/posts/old-blog/xa694b/</loc>
     <lastmod>2019-11-01T09:30:37+08:00</lastmod>
   </url><url>
@@ -1163,6 +1187,9 @@
     <loc>https://wdd.js.org/posts/old-blog/qzbgvf/</loc>
     <lastmod>2019-10-15T21:45:31+08:00</lastmod>
   </url><url>
+    <loc>https://wdd.js.org/opensips/ch1/csta-call-model/</loc>
+    <lastmod>2019-10-15T21:43:41+08:00</lastmod>
+  </url><url>
     <loc>https://wdd.js.org/shell/grep-awk-sort/</loc>
     <lastmod>2019-10-15T21:35:15+08:00</lastmod>
   </url><url>
@@ -1205,6 +1232,9 @@
     <loc>https://wdd.js.org/posts/old-blog/swoxa5/</loc>
     <lastmod>2019-10-06T19:41:44+08:00</lastmod>
   </url><url>
+    <loc>https://wdd.js.org/opensips/ch1/ua-answer-mode/</loc>
+    <lastmod>2019-09-26T20:37:08+08:00</lastmod>
+  </url><url>
     <loc>https://wdd.js.org/posts/old-blog/zgwg91/</loc>
     <lastmod>2019-09-26T20:12:48+08:00</lastmod>
   </url><url>
@@ -1219,6 +1249,9 @@
   </url><url>
     <loc>https://wdd.js.org/posts/old-blog/yko32n/</loc>
     <lastmod>2019-09-17T16:06:48+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/opensips/ch1/fix-nat/</loc>
+    <lastmod>2019-09-17T08:58:52+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/old-blog/gce55l/</loc>
     <lastmod>2019-09-16T20:26:29+08:00</lastmod>
@@ -1237,6 +1270,9 @@
   </url><url>
     <loc>https://wdd.js.org/posts/old-blog/guvnbd/</loc>
     <lastmod>2019-08-25T08:24:32+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/opensips/ch1/sip-register/</loc>
+    <lastmod>2019-08-19T21:30:52+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/old-blog/ghmklw/</loc>
     <lastmod>2019-08-17T18:56:28+08:00</lastmod>
@@ -1336,6 +1372,9 @@
   </url><url>
     <loc>https://wdd.js.org/posts/old-blog/ya30bi/</loc>
     <lastmod>2019-07-12T11:21:23+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/opensips/ch1/from-to-request-url/</loc>
+    <lastmod>2019-07-11T07:38:53+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/old-blog/pxdvcx/</loc>
     <lastmod>2019-07-09T09:49:33+08:00</lastmod>
