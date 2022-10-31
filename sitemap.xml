@@ -3,12 +3,15 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://wdd.js.org/opensips/</loc>
-    <lastmod>2022-10-30T21:11:16+08:00</lastmod>
+    <lastmod>2022-10-31T14:41:43+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/opensips/ch1/sip-rfcs/</loc>
-    <lastmod>2022-10-30T21:11:16+08:00</lastmod>
+    <loc>https://wdd.js.org/opensips/core-vars/</loc>
+    <lastmod>2022-10-31T14:41:43+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/</loc>
+    <lastmod>2022-10-31T14:41:43+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/opensips/ch1/sip-rfcs/</loc>
     <lastmod>2022-10-30T21:11:16+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/opensips/ch1/stun-notes/</loc>

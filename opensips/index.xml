@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>OpenSIPS中文实战系列 on 洞香春</title>
+    <title>OpenSIPS2.4.X 中文实战系列 on 洞香春</title>
     <link>https://wdd.js.org/opensips/</link>
-    <description>Recent content in OpenSIPS中文实战系列 on 洞香春</description>
+    <description>Recent content in OpenSIPS2.4.X 中文实战系列 on 洞香春</description>
     <image>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 30 Oct 2022 21:11:16 +0800</lastBuildDate><atom:link href="https://wdd.js.org/opensips/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 31 Oct 2022 14:41:43 +0800</lastBuildDate><atom:link href="https://wdd.js.org/opensips/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>核心变量</title>
+      <link>https://wdd.js.org/opensips/core-vars/</link>
+      <pubDate>Mon, 31 Oct 2022 14:41:43 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/core-vars/</guid>
+      <description>脚本变量 avp 变量 伪变量 SIP 头, $(hrd(name)) $(hdr(name)[N]) - represents the body of the N-th header identified by &amp;rsquo;name&amp;rsquo;. If [N] is omitted then the body of the first header is printed. The first header is got when N=0, for the second N=1, a.s.o. To print the last header of that type, use -1, no other negative values are supported now. No white spaces are allowed inside the specifier (before }, before or after {, [, ] symbols).</description>
+    </item>
+    
     <item>
       <title>SIP相关RFC协议</title>
       <link>https://wdd.js.org/opensips/ch1/sip-rfcs/</link>
@@ -198,11 +207,10 @@ RFC3665 https://datatracker.ietf.org/doc/html/rfc3665 中提供了很多经典�
       <pubDate>Wed, 24 Jun 2020 08:51:48 +0800</pubDate>
       
       <guid>https://wdd.js.org/opensips/ch1/offer-answer/</guid>
-      <description>
-1. 简介 媒体协商用来交换呼叫双方的媒体能力。如
-支持的编码类型有哪些 采样频率是多少 媒体端口，ip信息 &amp;hellip; 媒体协商使用的是请求和应答模型。即一方向另一方发送含有sdp信息的消息，然后另一方更具对方提供的编码以及自己支持的编码，如果协商成功，则将协商后的消息sdp再次发送给对方。
-2. 常见的几个协商方式 2.1 在INVITE中offer 2.2 在200 OK 中offer 2.3 在UPDATE中offer 2.4 在PRACK中offer 3. 常见的几个问题 一般呼叫到中继测时，中继回的183信令是会携带sdp信息的 一般打到分机时，分机回的180信令是没有sdp信息的 不要先入为主的认为，某些请求一定带有sdp，某些请求一定没有sdp。而应当去测试请求或者响应消息上有没有携带sdp信息。
-携带sdp信息的sip消息会出现下面的头
+      <description>1. 简介 媒体协商用来交换呼叫双方的媒体能力。如
+支持的编码类型有哪些 采样频率是多少 媒体端口，ip 信息 &amp;hellip; 媒体协商使用的是请求和应答模型。即一方向另一方发送含有 sdp 信息的消息，然后另一方更具对方提供的编码以及自己支持的编码，如果协商成功，则将协商后的消息 sdp 再次发送给对方。
+2. 常见的几个协商方式 2.1 在 INVITE 中 offer 2.2 在 200 OK 中 offer 2.3 在 UPDATE 中 offer 2.4 在 PRACK 中 offer 3. 常见的几个问题 一般呼叫到中继测时，中继回的 183 信令是会携带 sdp 信息的 一般打到分机时，分机回的 180 信令是没有 sdp 信息的 不要先入为主的认为，某些请求一定带有 sdp，某些请求一定没有 sdp。而应当去测试请求或者响应消息上有没有携带 sdp 信息。
+携带 sdp 信息的 sip 消息会出现下面的头
 Content-Type: application/sdp </description>
     </item>
     
@@ -214,11 +222,11 @@ Content-Type: application/sdp </description>
       <guid>https://wdd.js.org/opensips/ch1/story-of-nat/</guid>
       <description>设想一下，如果国家规定，给孩子起名字的时候，不能和已经使用过的活着的人名字相同，会发生什么事情？
 除非把名字起得越来越长，否则名字很快就不够用了。
-在1993年的时候，有人就遇到类似的问题，因为IP地址快被用完了。
+在 1993 年的时候，有人就遇到类似的问题，因为 IP 地址快被用完了。
 他们想出两个方案：
-短期方案：CIDR(Classless InterDomain Routing) 长期方案：开发新的具有更大地址空间的互联网协议。可以认为是目前的IPv6 当然了长期方案不是一蹴而就的，短期方案才是解决眼前问题的方案。
+短期方案：CIDR(Classless InterDomain Routing) 长期方案：开发新的具有更大地址空间的互联网协议。可以认为是目前的 IPv6 当然了长期方案不是一蹴而就的，短期方案才是解决眼前问题的方案。
 a very small percentage of hosts in a stub domain are communicating outside of the domain at any given time
-短期的方案基于一个逻辑事实：在一个网络中，只有非常少的几个主机需要跟外部网络交流。也就是说，大部分的主机都在内部交流。那么内部交流的这些主机，实际上并不需要给设置公网IP。（但是这个只是1993年的那个时期的事实）**可以类比于，班级内部之间的学生交流很多。班级与班级之间的交流，估计只有班长之间交流。
+短期的方案基于一个逻辑事实：在一个网络中，只有非常少的几个主机需要跟外部网络交流。也就是说，大部分的主机都在内部交流。那么内部交流的这些主机，实际上并不需要给设置公网 IP。（但是这个只是 1993 年的那个时期的事实）**可以类比于，班级内部之间的学生交流很多。班级与班级之间的交流，估计只有班长之间交流。
 参考 https://tools.ietf.org/html/rfc1631 https://tools.ietf.org/html/rfc1996 https://tools.ietf.org/html/rfc2663 https://tools.ietf.org/html/rfc2993 </description>
     </item>
     
@@ -255,7 +263,7 @@ SIP服务器没有做fix_nat_contact, 导致主叫可能不知道实际被叫的
       <pubDate>Tue, 15 Oct 2019 21:43:41 +0800</pubDate>
       
       <guid>https://wdd.js.org/opensips/ch1/csta-call-model/</guid>
-      <description>1. 内容概要 CSTA协议与标准概述 CSTA OpenScape 语音架构概述 2. CSTA协议标准 2.1. 什么是CSTA ? CSTA：电脑支持通讯程序(Computer Supported TelecommunicationsApplications) 基本的呼叫模型在1992建立，后来随着行业发展，呼叫模型也被加强和扩展，例如新的协议等等 CSTA是一个应用层接口，用来监控呼叫，设备和网络 CSTA创建了一个通讯程序的抽象层: CSTA并不依赖任何底层的信令协议 E.g.H.323,SIP,Analog,T1,ISDN,etc. CSTA并不要求用户必须使用某些设备 E.g.intelligentendpoints,low-function/stimulusdevices,SIPSignalingmodels-3PCC vs. Peer/Peer 适用不同的操作模式 第三方呼叫控制 一方呼叫控制 CSTA的设计目标是为了提高各种CSTA实现之间的移植性 规范化呼叫模型和行为 完成服务、事件定义 规范化标准 3. CSTA 标准的进化史 阶段1 (发布于 June ’92) 40 特性, 66 页 (服务定义) 专注于呼叫控制 阶段2 (发布于 Dec. ’94) 77 特性, 145 页 (服务定义) I/O &amp;amp; 语音单元服务, 更多呼叫控制服务 阶段3 - CSTA Phase II Features &amp;amp; versit CTI Technology 发布于 Dec. ‘98 136 特性, 650 页 (服务定义) 作为ISO 标准发布于 July 2000 发布 CSTA XML (ECMA-323) June 2004 发布 “Using CSTA with Voice Browsers” (TR/85) Dec.</description>
+      <description>1. 内容概要 CSTA 协议与标准概述 CSTA OpenScape 语音架构概述 2. CSTA 协议标准 2.1. 什么是 CSTA ? CSTA：电脑支持通讯程序(Computer Supported TelecommunicationsApplications) 基本的呼叫模型在 1992 建立，后来随着行业发展，呼叫模型也被加强和扩展，例如新的协议等等 CSTA 是一个应用层接口，用来监控呼叫，设备和网络 CSTA 创建了一个通讯程序的抽象层: CSTA 并不依赖任何底层的信令协议 E.g.H.323,SIP,Analog,T1,ISDN,etc. CSTA 并不要求用户必须使用某些设备 E.g.intelligentendpoints,low-function/stimulusdevices,SIPSignalingmodels-3PCC vs. Peer/Peer 适用不同的操作模式 第三方呼叫控制 一方呼叫控制 CSTA 的设计目标是为了提高各种 CSTA 实现之间的移植性 规范化呼叫模型和行为 完成服务、事件定义 规范化标准 3. CSTA 标准的进化史 阶段 1 (发布于 June ’92) 40 特性, 66 页 (服务定义) 专注于呼叫控制 阶段 2 (发布于 Dec. ’94) 77 特性, 145 页 (服务定义) I/O &amp;amp; 语音单元服务, 更多呼叫控制服务 阶段 3 - CSTA Phase II Features &amp;amp; versit CTI Technology 发布于 Dec.</description>
     </item>
     
     <item>
