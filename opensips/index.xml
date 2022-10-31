@@ -9,16 +9,7 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 31 Oct 2022 14:41:43 +0800</lastBuildDate><atom:link href="https://wdd.js.org/opensips/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>核心变量</title>
-      <link>https://wdd.js.org/opensips/core-vars/</link>
-      <pubDate>Mon, 31 Oct 2022 14:41:43 +0800</pubDate>
-      
-      <guid>https://wdd.js.org/opensips/core-vars/</guid>
-      <description>脚本变量 avp 变量 伪变量 SIP 头, $(hrd(name)) $(hdr(name)[N]) - represents the body of the N-th header identified by &amp;rsquo;name&amp;rsquo;. If [N] is omitted then the body of the first header is printed. The first header is got when N=0, for the second N=1, a.s.o. To print the last header of that type, use -1, no other negative values are supported now. No white spaces are allowed inside the specifier (before }, before or after {, [, ] symbols).</description>
-    </item>
-    
+    <lastBuildDate>Sun, 30 Oct 2022 21:11:16 +0800</lastBuildDate><atom:link href="https://wdd.js.org/opensips/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SIP相关RFC协议</title>
       <link>https://wdd.js.org/opensips/ch1/sip-rfcs/</link>
