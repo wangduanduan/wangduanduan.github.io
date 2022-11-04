@@ -9,7 +9,16 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 29 Oct 2022 11:52:59 +0800</lastBuildDate><atom:link href="https://wdd.js.org/fe/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 04 Nov 2022 08:42:15 +0800</lastBuildDate><atom:link href="https://wdd.js.org/fe/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JS 考题</title>
+      <link>https://wdd.js.org/fe/js-questions/</link>
+      <pubDate>Fri, 04 Nov 2022 08:42:15 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/js-questions/</guid>
+      <description>1. 分析输出 for (var i = 0; i &amp;lt; 3; i++) { setTimeout(() =&amp;gt; console.log(i), 1) } for (let i = 0; i &amp;lt; 3; i++) { setTimeout(() =&amp;gt; console.log(i), 1) } 2. 分析输出 const shape = { radius: 10, diameter() { return this.radius * 2 }, perimeter: () =&amp;gt; 2 * Math.PI * this.radius, } shape.diameter() shape.perimeter() 3. 分析输出 const a = {} function test1(a) { a = { name: &amp;#39;wdd&amp;#39;, } } function test2() { test1(a) } function test3() { console.</description>
+    </item>
+    
     <item>
       <title>JavaScript内存泄露分析</title>
       <link>https://wdd.js.org/fe/memory-leak-ppt/</link>

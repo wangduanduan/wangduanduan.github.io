@@ -2,13 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://wdd.js.org/fe/js-questions/</loc>
+    <lastmod>2022-11-04T08:42:15+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/fe/</loc>
+    <lastmod>2022-11-04T08:42:15+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/</loc>
+    <lastmod>2022-11-04T08:42:15+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/2022/deepin-install-man/</loc>
+    <lastmod>2022-11-03T11:55:51+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/</loc>
+    <lastmod>2022-11-03T11:55:51+08:00</lastmod>
+  </url><url>
     <loc>https://wdd.js.org/2.4.x-docs/</loc>
     <lastmod>2022-10-31T14:41:43+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/2.4.x-docs/core-vars/</loc>
-    <lastmod>2022-10-31T14:41:43+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/</loc>
     <lastmod>2022-10-31T14:41:43+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/opensips/</loc>
@@ -24,9 +36,6 @@
     <lastmod>2022-10-30T19:37:02+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/fe/memory-leak-ppt/</loc>
-    <lastmod>2022-10-29T11:52:59+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/fe/</loc>
     <lastmod>2022-10-29T11:52:59+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/fe/memory-leak-sharing/</loc>
@@ -96,9 +105,6 @@
     <lastmod>2022-10-26T08:44:12+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2022/linux-journal/</loc>
-    <lastmod>2022-10-26T08:44:12+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/</loc>
     <lastmod>2022-10-26T08:44:12+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/</loc>
