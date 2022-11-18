@@ -40,16 +40,6 @@ The / characters may be uniformly replaced by any other single character within 
     </item>
     
     <item>
-      <title>sed替换</title>
-      <link>https://wdd.js.org/shell/set-replace/</link>
-      <pubDate>Thu, 08 Jul 2021 09:17:30 +0800</pubDate>
-      
-      <guid>https://wdd.js.org/shell/set-replace/</guid>
-      <description>直接在原文的基础上修改 sed -i &amp;#39;s/ABC/abc/g&amp;#39; some.txt 多次替换 方案 1 使用分号 sed &amp;#39;s/ABC/abc/g;s/DEF/def/g&amp;#39; some.txt 方案 2 多次使用-e sed -e &amp;#39;s/ABC/abc/g&amp;#39; -e &amp;#39;s/DEF/def/g&amp;#39; some.txt 转译/ 如果替换或者被替换的字符中本来就有/, 那么替换就会无法达到预期效果，那么我们可以用其他的字符来替代/。
-The / characters may be uniformly replaced by any other single character within any given s command. The / character (or whatever other character is used in its stead) can appear in the regexp or replacement only if it is preceded by a \ character. https://www.gnu.org/software/sed/manual/sed.html</description>
-    </item>
-    
-    <item>
       <title>Ack 在contab中无法查到关键词</title>
       <link>https://wdd.js.org/shell/contab-ack/</link>
       <pubDate>Fri, 18 Jun 2021 00:00:00 +0800</pubDate>
