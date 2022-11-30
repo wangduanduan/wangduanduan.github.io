@@ -181,6 +181,42 @@ RFC3665 https://datatracker.ietf.org/doc/html/rfc3665 中提供了很多经典�
     </item>
     
     <item>
+      <title>RTP 不连续的timestamp和SSRC</title>
+      <link>https://wdd.js.org/opensips/ch4/rtp-timestamp/</link>
+      <pubDate>Mon, 10 Jan 2022 22:05:10 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch4/rtp-timestamp/</guid>
+      <description>最近遇到一些和媒体流相关的问题，使用wireshark分析之后，总算有些眉目。然而我深感对RTP协议的理解，还是趋于表面。所以我决定，深入的学习一下RTP协议。
+和rtp相关的协议有两个rfc, 分别是
+1996的的 RFC 1889 2003年的 RFC 3550 RFC 3550是对RFC 1889的稍微改进，然而大体上是没什么改变的。所以我们可以直接看RFC 3550。
+RTP 底层用的是UDP协议 RTP 的使用场景是传输实时数据，例如语音，视频，模拟数据等等 RTP 并不保证QoS Synchronization source (SSRC): The source of a stream of RTP packets, identified by a 32-bit numeric SSRC identifier carried in the RTP header so as not to be dependent upon the network address. All packets from a synchronization source form part of the same timing and sequence number space, so a receiver groups packets by synchronization source for playback.</description>
+    </item>
+    
+    <item>
+      <title>生产环境监控告警</title>
+      <link>https://wdd.js.org/opensips/ch3/prd-warning/</link>
+      <pubDate>Thu, 19 Aug 2021 20:08:28 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch3/prd-warning/</guid>
+      <description>日志监控 务必监控opensips日志，如果其中出现了CRITICAL关键字, 很可能马上opensips就要崩溃。
+第一要发出告警信息。第二要有主动的自动重启策略，例如使用systemd启动的话，服务崩溃会会立马被重启。或者用docker或者k8s，这些虚拟化技术，可以让容器崩溃后自动重启。
+指标监控 opensips有内部的统计模块，可以很方便的通过opensipsctl或者相关的http的mi接口获取到内部的统计数据。
+以下给出几个关键的统计指标：
+&amp;rsquo;total_size&amp;rsquo;, 全部内存 &amp;lsquo;used_size&amp;rsquo;, 使用的内存 &amp;lsquo;real_used_size&amp;rsquo;, 真是使用的内存 &amp;lsquo;max_used_size&amp;rsquo;, 最大使用的内存 &amp;lsquo;free_size&amp;rsquo;, 空闲内存 &amp;lsquo;fragments&amp;rsquo;, &amp;lsquo;active_dialogs&amp;rsquo;, 接通状态的通话 &amp;rsquo;early_dialogs&amp;rsquo;, 振铃状态的通话 &amp;lsquo;inuse_transactions&amp;rsquo;, 正在使用的事务 &amp;lsquo;waiting_udp&amp;rsquo;, 堆积的udp消息 &amp;lsquo;waiting_tcp&amp;rsquo; 堆积的tcp消息 当然还有很多的一些指标，可以使用：opensipsctl fifo get_statistics all来获取。</description>
+    </item>
+    
+    <item>
+      <title>SIP消息格式CRLF</title>
+      <link>https://wdd.js.org/opensips/ch3/sip-crlf/</link>
+      <pubDate>Fri, 25 Dec 2020 17:44:31 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch3/sip-crlf/</guid>
+      <description> generic-message = start-line *message-header CRLF [ message-body ] start-line = Request-Line / Status-Line 其中在rfc2543中规定
+CR = %d13 ; US-ASCII CR, carriage return character LF = %d10 ; US-ASCII LF, line feed character 项目 十进制 字符串表示 CR 13 \r LF 10 \n 也就是说在一个SIP消息中
+headline\r\n key:v\r\n \r\n some_body\r\n 所以CRLF就是 \r\n 参考 https://tools.ietf.org/html/rfc3261 https://tools.ietf.org/html/rfc2543 </description>
+    </item>
+    
+    <item>
       <title>媒体路径与信令路径</title>
       <link>https://wdd.js.org/opensips/ch1/sip-rtp-path/</link>
       <pubDate>Wed, 24 Jun 2020 09:11:35 +0800</pubDate>
@@ -203,6 +239,15 @@ RFC3665 https://datatracker.ietf.org/doc/html/rfc3665 中提供了很多经典�
 2. 常见的几个协商方式 2.1 在 INVITE 中 offer 2.2 在 200 OK 中 offer 2.3 在 UPDATE 中 offer 2.4 在 PRACK 中 offer 3. 常见的几个问题 一般呼叫到中继测时，中继回的 183 信令是会携带 sdp 信息的 一般打到分机时，分机回的 180 信令是没有 sdp 信息的 不要先入为主的认为，某些请求一定带有 sdp，某些请求一定没有 sdp。而应当去测试请求或者响应消息上有没有携带 sdp 信息。
 携带 sdp 信息的 sip 消息会出现下面的头
 Content-Type: application/sdp </description>
+    </item>
+    
+    <item>
+      <title>rtpproxy录音</title>
+      <link>https://wdd.js.org/opensips/ch4/rtp-record/</link>
+      <pubDate>Thu, 14 May 2020 16:13:10 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch4/rtp-record/</guid>
+      <description>-a -R -r /recording -S spool -P -a 所有的通话都录音 -R 不要把RTCP也写文件 -r 指定录音文件的位置 -S 临时文件的位置，注意不要和录音文件位置相同 -P 录成pcap文件的格式，而不要录成默认的 Ad-hoc的模式 </description>
     </item>
     
     <item>
@@ -239,6 +284,40 @@ SIP服务器没有做fix_nat_contact, 导致主叫可能不知道实际被叫的
     </item>
     
     <item>
+      <title>rtp编码表</title>
+      <link>https://wdd.js.org/opensips/ch4/codec-table/</link>
+      <pubDate>Sat, 07 Dec 2019 09:10:33 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch4/codec-table/</guid>
+      <description>v=0 o=WMSWMS 1562204406 1562204407 IN IP4 192.168.40.79 s=WMSWMS c=IN IP4 192.168.40.79 t=0 0 m=audio 31114 RTP/AVP 0 8 9 101 a=rtpmap:0 PCMU/8000 a=rtpmap:8 PCMA/8000 a=rtpmap:9 G722/8000 a=rtpmap:101 telephone-event/8000 a=fmtp:101 0-16 a=ptime:20 上面的SDP协议，我们只关注媒体编码部分，其中
+m=audio 31114 RTP/AVP 0 8 9 101 a=rtpmap:0 PCMU/8000 a=rtpmap:8 PCMA/8000 a=rtpmap:9 G722/8000 m字段audio说明是音频 31114是rtp的发送端口，一般rtp端口都是偶数，偶数后面的一个奇数端口是给rtcp端口的 0 8 9 101就是媒体编码，每个整数代表一个编码，其中96以下的是都是用IANA规定的，可以不用下面的rtpmap字段去指定，96以上的属于动态编码，需要用rtpmap去指定 上面是整个编码表，我们只需要记住几个就可以:
+0 PCMU/8000 3 GSM/8000 8 PCMA/8000 9 G722/8000 18 G729/8000 102 DTMF/8000 a=rtpmap:101 telephone-event/8000a=fmtp:101 0-16上面的字段描述的是DTMP的支持。DTMF标准，所有SIP实体至少支持0-15的DTMF事件。
+0-9是数字 10是* 11是# 12-15对应A,B,C,D 参考 https://www.</description>
+    </item>
+    
+    <item>
+      <title>opensips介绍</title>
+      <link>https://wdd.js.org/opensips/ch3/about-opensips/</link>
+      <pubDate>Tue, 19 Nov 2019 18:37:40 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch3/about-opensips/</guid>
+      <description>
+1. OpenSIPS架构 OpenSIPS主要有两部分构成，
+core: 提供底层工具、接口、资源 module：模块是一些共享的库，在启动时按需加载。有些模块是用于在opensips脚本中提供功能，而有些模块是作为底层，为其他模块提供功能。 2. OpenSIP 核心 2.1. 传输层 传输层提供了对于各种协议的支持，如TCP、UDP、TLS、WebSocket
+2.2. SIP工厂层 SIP工厂层提供了对SIP协议的解析和构建。OpenSIPS实现了一种懒解析功能，懒解析的效率非常高。
+懒解析：懒解析就是只去解析SIP头，并不解析SIP头的字段内容。而是在需要读取头字段内容时，才去解析。所以可以理解为按需解析。有点类似于一些文件系统的写时复制功能。
+**惰性应用：**有一点非常重要，当你通过脚本提供的函数去改变SIP消息时，所作出的改变并不是实时作用到SIP消息上，而是在先存起来，而是当所有的SIP消息处理完成后才会去应用这些改变。举例来说，你首先通过函数给SIP消息添加了某个头，然后你通过函数去获取这个头的时，发现这个头并不存在，但是SIP消息再发送出去后，又携带了你添加的这个头。
+2.3. 路由脚本解析与执行 OpenSIPS在启动后，会将opensips.cfg解析并加载到内存中。一旦OpenSIPS正常运行了，opensips.cfg文件即使删了也不会影响到OpenSIPS的运行了。
+但是OpenSIPS并不支持热脚本更新，如果你改了脚本，让让运行的OpenSIPS具有添加的功能，那么必须将OpensSIPS重启。
+OpenSIPS的脚本有点类似于C或者Shell语言，如果你Shell写的很溜，OpenSIPS的脚本理解起来也会非常容易。
+2.4. 内存与锁管理 出于性能考虑，OpenSIPS自己内部实现了内存和锁的管理，这部分在内容在脚本中是不可见的。
+2.5. 脚本变量和脚本函数 OpenSIPS核心提供的脚本变量和函数比较有限，外围的模块提供和很多的变量和函数。这些变量和函数的存在，都是为了让你易于获取SIP消息的某些字段，或者对SIP消息进行修改。
+2.6. SQL接口类 OpenSIPS 核心实现了接口的定义，但是并没有实现接口。接口的实现由外部的模块提供，这样做的函数可以使用不同的数据库。
+2.7. MI管理接口 mi接口用来管理OpenSIPS, 可以实现以下功能
+向OpenSIPS 发送数据 从OpenSIPS 获取数据 触发OpenSIPS 的内部行为 </description>
+    </item>
+    
+    <item>
       <title>深入NAT网络</title>
       <link>https://wdd.js.org/opensips/ch1/deep-in-nat/</link>
       <pubDate>Tue, 05 Nov 2019 16:29:43 +0800</pubDate>
@@ -272,6 +351,45 @@ Answer-Mode: Auto;require 和Answer-mode头类似的有个SIP头叫做：Priv-An
     </item>
     
     <item>
+      <title>opensips日志写入elasticsearch</title>
+      <link>https://wdd.js.org/opensips/ch3/elk/</link>
+      <pubDate>Thu, 19 Sep 2019 09:01:40 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch3/elk/</guid>
+      <description>
+构造json $json(body) := &amp;#34;{}&amp;#34;; $json(body/time) = $time(%F %T-0300); $json(body/sipRequest) = “INVITE”; $json(body/ipIntruder) = $si; $json(body/destNum) = $rU; $json(body/userAgent) = $ua; $json(body/country)=$var(city); $json(body/location)=$var(latlon); $json(body/ipHost) = $Ri; 使用async rest_post写数据 async好像存在于2.1版本及其以上， 异步的好处是不会阻止脚本的继续执行 async(rest_post(&amp;#34;http://user:password@w.x.y.z:9200/opensips/1&amp;#34;, &amp;#34;$json(body)&amp;#34;, &amp;#34;$var(ctype)&amp;#34;, &amp;#34;$var(ct)&amp;#34;, &amp;#34;$var(rcode)&amp;#34;),resume) </description>
+    </item>
+    
+    <item>
+      <title>回铃音</title>
+      <link>https://wdd.js.org/opensips/ch2/xchqma/</link>
+      <pubDate>Wed, 18 Sep 2019 09:53:22 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch2/xchqma/</guid>
+      <description>
+特点分析 回铃音有以下特点
+回铃音是由运营商送给手机的，而不是由被叫送给主叫的。 回铃音的播放阶段是在被叫接听前播放，被叫一旦接听，回铃音则播放结束 回铃音一般是450Hz, 嘟一秒，停4秒，5秒一个周期 常见问题 听不到回铃音 【现象】打同一个号码，有些手机能听到回铃音，有些手机听不到回铃音【排查思路】
+有些手机volte开启后，可能会导致无回铃音，所以可以关闭volte试试 被叫的运营商，主叫手机的运营商 参考资料 https://zh.wikipedia.org/wiki/%E5%9B%9E%E9%93%83%E9%9F%B3 https://baike.baidu.com/item/%E5%9B%9E%E9%93%83%E9%9F%B3/1014322 http://www.it9000.cn/tech/CTI/signal.html </description>
+    </item>
+    
+    <item>
+      <title>几种常用电话信号音的含义</title>
+      <link>https://wdd.js.org/opensips/ch2/ox06wd/</link>
+      <pubDate>Wed, 18 Sep 2019 09:10:24 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch2/ox06wd/</guid>
+      <description>
+几种常用电话信号音的含义 信号频率：（450±25）HZ：拨号音、回铃音、忙音、长途通知音、空号音（950±25）HZ：催挂音
+拨号音 摘机后受话器中便有一种“嗡&amp;ndash;”的连续音，这种声音就是拨号音，它表示自动交换机或对方呼叫中心系统已经做好了接续准备，允许用户拨号
+回铃音 拨完被叫号，若听到“嘟&amp;ndash;嘟&amp;ndash;”的断续音（响1s，断4s），便是回铃音，表示被叫话机正在响铃，可静候接话；如果振铃超过10余次，仍无人讲话，说明对方无人接电话，应放好手柄稍后再拨。
+忙音 当主叫用户在拨号过程中或拨完被叫电话号码后，若听到“嘟、嘟、嘟……”的短促音（响0.35s，断0.35s），这就是忙音，表示线路已经被占满或被叫电话机正在使用
+长途通知音 当主叫用户和被叫用户正在进行市内通话时，听到“嘟、嘟、嘟……”的短促音（响0.2s，断0.2s，响0.2s，间歇0.6s），这便是长途电话通知音，表示有长途电话插入，提醒主被叫用户双方尽快结束市内通话，准备接听长途电话。
+空号音 当用户拨完号码后听到不等间隔断续信号音（重复3次0.1s响，0.1s断后，0.4s响0.4s断），这便是空号音，表示通知主叫用户所呼叫的被叫号码为空号或受限制的号码。
+催挂音 如果用户听到连续信号音，响度变化为5级，由低级逐步升高，则是催挂音。通知久不挂机的用户迅速挂机。
+参考 http://www.it9000.cn/tech/CTI/signal.html </description>
+    </item>
+    
+    <item>
       <title>NAT解决方法</title>
       <link>https://wdd.js.org/opensips/ch1/fix-nat/</link>
       <pubDate>Tue, 17 Sep 2019 08:58:52 +0800</pubDate>
@@ -286,6 +404,52 @@ nat_uac_test(&amp;#34;19&amp;#34;) 使用rport和receive参数标记Via头 从NA
     </item>
     
     <item>
+      <title>常见媒体流编码及其特点</title>
+      <link>https://wdd.js.org/opensips/ch4/media-codec/</link>
+      <pubDate>Fri, 13 Sep 2019 09:04:12 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch4/media-codec/</guid>
+      <description> 编码 带宽 MOS 环境 特点 说明 G.711 64 kbps 4.45 LAN/WAN 语音质量高，适合对接网关 G.711实际上就是PCM, 是最基本的编码方式。PCM又分为两类PCMA(g711a), PCMU(g711u)。中国使用的是PCMA G.729 8 kbps 4.04 WAN 带宽占用率很小，同时能保证不错的语音质量 分为G729a和G729b两种，G729之所以带宽占用是G711的1/8, 是因为G729的压缩算法不同。G729传输的不是真正的语音，而是语音压缩后的结果。G729的编解码是由专利的，也就说不免费。 G.722 64 kbps 4.5 LAN 语音质量高 HD hd语音 GSM 13.3 kbps 3.01 iLBA 13.3 15.2 抗丢包 OPUS 6-510 kbps - INTERNET OPUS的带宽范围跨度很广，适合语音和视屏 MOS值，Mean Opinion Score，用来定义语音质量。满分为5分，最低1分。
+MOS 质量 5 极好的 4 不错的 3 还行吧 2 中等差 1 最差 通常的打包是20ms一个包，那么一秒就会传输1000/20=50个包。如果采样评率是8000Hz, 那么每个包的会携带 8000/50=160个采样数据。在PCMA或者PCMU中，每个采样数据占用1字节。因此20ms的一个包就携带160字节的数据。
+在RTP包协议中，160字节还要加上12个自己的RTP头。 在fs上可以使用下面的命令查看fs支持的编码。
+show codec </description>
+    </item>
+    
+    <item>
+      <title>centos7 安装opensips</title>
+      <link>https://wdd.js.org/opensips/ch3/centos-install/</link>
+      <pubDate>Thu, 05 Sep 2019 12:09:35 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch3/centos-install/</guid>
+      <description>
+安装依赖 yum update &amp;amp;&amp;amp; yum install epel-release yum install openssl-devel mariadb-devel libmicrohttpd-devel \ libcurl-devel libconfuse-devel ncurses-devel 编译 下面的脚本，默认将opensips安装在/usr/local/etc/目录下
+&amp;gt; cd opensips-2.4.6 # 编译 &amp;gt; make all -j4 include_modules=&amp;#34;db_mysql httpd db_http regex rest_client carrierroute dialplan&amp;#34; # 安装 &amp;gt; make install include_modules=&amp;#34;db_mysql httpd db_http regex rest_client carrierroute dialplan&amp;#34; 如果想要指定安装位置，可以使用prefix参数指定，例如指定安装在/usr/aaa目录
+&amp;gt; cd opensips-2.4.6 # 编译 &amp;gt; make all -j4 prefix=/usr/aaa include_modules=&amp;#34;db_mysql httpd db_http regex rest_client carrierroute dialplan&amp;#34; # 安装 &amp;gt; make install prefix=/usr/aaa include_modules=&amp;#34;db_mysql httpd db_http regex rest_client carrierroute dialplan&amp;#34; </description>
+    </item>
+    
+    <item>
+      <title>模块缓存策略与reload方法</title>
+      <link>https://wdd.js.org/opensips/ch3/cache-reload/</link>
+      <pubDate>Tue, 20 Aug 2019 09:11:21 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch3/cache-reload/</guid>
+      <description>
+常见的问题 有时候如果你直接在数据库中改动某些值，但是opensips并没有按照预设的值去执行，那么你就要尝试使用mi命令去reload相关模块。
+有缓存模块 opensips在启动时，会将某些模块所使用的表一次性全部加载到数据库，状态变化时，再回写到数据库。有一下模块列表：
+dispather load_balancer carrierroute dialplan &amp;hellip; 判断一个模块是否是一次性加载到内存的，有个简便方法，看这个模块是否提供类似于 xx_reload的mi接口，有reload的mi接口，就说明这个模块是使用一次性读取，变化回写的方式读写数据库。
+将模块一次性加载到内存的好处时不用每次都查数据库，运行速度会大大提升。
+以dispather为例子，opensips在启动时会从数据库总加载一系列的目标到内存中，然后按照设定值，周期性的向目标发送options包，如果目标挂掉，三次未响应，opensips将会将该目标的状态设置为非0值，表示该地址不可用，同时将该状态回写到数据库。
+无缓存模块 无缓存的模块每次都会向数据库查询数据。常见的模块有alias_db，该模块的说明
+ALIAS_DB module can be used as an alternative for user aliases via usrloc. The main feature is that it does not store all adjacent data as for user location and always uses database for search (no memory caching).
+ALIAS_DB一般用于呼入时接入号的查询，在多租户的情况下，如果大多数租户都是使用呼入的场景，那么ALIAS_DB模块可能会是一个性能瓶颈，建议将该模块使用一些内存数据库替代。
+从浏览器reload模块 opensips在加载了httpd和mi_http模块之后，可以在opensips主机的8888端口访问到管理页面，具体地址如：http://opensips_host:8888/mi
+这个页面可以看到opensips所加载的模块，然后我们点击carrierroute, 可以看到该模块所支持的管理命令列表，如下图左侧列表所示，其中cr_reload_routes就是一个管理命令。
+然后我们点击cr_reload_routes连接，跳转到下图所示页面。参数可以不用填写，直接点击submit就可以。正常情况下回返回 200 : OK，就说明reload模块成功。
+使用curl命令reload模块 如果因为某些原因，无法访问web界面，那么可以使用curl等http命令行工具执行curl命令，例如
+curl http://192.168.40.98:8888/mi/carrierroute/cr_reload_routes?arg= </description>
+    </item>
+    
+    <item>
       <title>SIP注册调研</title>
       <link>https://wdd.js.org/opensips/ch1/sip-register/</link>
       <pubDate>Mon, 19 Aug 2019 21:30:52 +0800</pubDate>
@@ -295,12 +459,93 @@ nat_uac_test(&amp;#34;19&amp;#34;) 使用rport和receive参数标记Via头 从NA
     </item>
     
     <item>
+      <title>核心MI命令</title>
+      <link>https://wdd.js.org/opensips/ch3/core-mi/</link>
+      <pubDate>Thu, 18 Jul 2019 13:54:58 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch3/core-mi/</guid>
+      <description>在所有的fifo命令中，which命令比较重要，因为它可以列出所有的其他命令。
+有些mi命令是存在于各个模块之中，所以加载的模块不通。opensipsctl fifo which输出的命令也不通。
+获取执行参数 opensipsctl fifo arg 列出TCP连接数量 opensipsctl fifo list_tcp_conns 查看进程信息 opensipsctl fifo ps 查看opensips运行时长 opensipsctl fifo uptime 查看所有支持的指令 opensipsctl fifo which 获取统计数据 opensipsctl fifo get_statistics rcv_requests 重置统计数据 opensipsctl fifo get_statistics received_replies get_statistics reset_statistics uptime version pwd arg which ps kill debug cache_store cache_fetch cache_remove event_subscribe events_list subscribers_list list_tcp_conns help list_blacklists regex_reload t_uac_dlg t_uac_cancel t_hash t_reply ul_rm ul_rm_contact ul_dump ul_flush ul_add ul_show_contact ul_sync domain_reload domain_dump dlg_list dlg_list_ctx dlg_end_dlg dlg_db_sync dlg_restore_db profile_get_size profile_list_dlgs profile_get_values list_all_profiles nh_enable_ping cr_reload_routes cr_dump_routes cr_replace_host cr_deactivate_host cr_activate_host cr_add_host cr_delete_host dp_reload dp_translate address_reload address_dump subnet_dump allow_uri dr_reload dr_gw_status dr_carrier_status lb_reload lb_resize lb_list lb_status httpd_list_root_path sip_trace rtpengine_enable rtpengine_show rtpengine_reload teardown </description>
+    </item>
+    
+    <item>
       <title>from vs to vs request-url之间的关系</title>
       <link>https://wdd.js.org/opensips/ch1/from-to-request-url/</link>
       <pubDate>Thu, 11 Jul 2019 07:38:53 +0800</pubDate>
       
       <guid>https://wdd.js.org/opensips/ch1/from-to-request-url/</guid>
       <description>from字段用来标记请求的发起者ID to字段用来标记请求接受者的ID to字段并不能用于路由，request-url可以用来路由 一般情况下，sip消息再传输过程中，from和to字段都不会改，而request-url很可能会因为路由而改变 对于最初的请求，除了注册请求之外，request-url和to字段中的url一致 from字段：The From header field is a required header field that indicates the originator of the request. It is one of two addresses used to identify the dialog. The From header field contains a URI, but it may not contain the transport, maddr, or ttl URI parameters. A From header field may contain a tag used to identify a particular call. A From header field may contain a display name, in which case the URI is enclosed in &amp;lt; &amp;gt;.</description>
+    </item>
+    
+    <item>
+      <title>opensips监控</title>
+      <link>https://wdd.js.org/opensips/ch3/opensips-monitor/</link>
+      <pubDate>Tue, 02 Jul 2019 22:09:10 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch3/opensips-monitor/</guid>
+      <description>**opensipsctl fifo get_statistics all **命令可以获取所有统计数据，在所有统计数据中，我们只关心内存，事务和回话的数量。然后将数据使用curl工具写入到influxdb中。
+opensipsctl fifo reset_statistics all 重置统计数据
+常用指令 命令 描述 opensipsctl fifo which 显示所有可用命令 opensipsctl fifo ps 显示所有进程 opensipsctl fifo get_statistics all 获取所有统计信息 opensipsctl fifo get_statistics core: 获取内核统计信息 opensipsctl fifo get_statistics net: 获取网路统计信息 opensipsctl fifo get_statistics pkmem: 获取私有内存相关信息 opensipsctl fifo get_statistics tm: 获取事务模块统计信息 opensipsctl fifo get_statistics sl: 获取sl模块统计信息 opensipsctl fifo get statistics shmem: 获取共享内存相关信息 opensipsctl fifo get statistics usrloc: 获取 opensipsctl fifo get statistics registrar: 获取注册统计信息 opensipsctl fifo get statistics uri: 获取uri统计信息 opensipsctl fifo get statistics load: 获取负载信息 opensipsctl fifo reset_statistics all 重置所有统计信息 shmem:total_size:: 6467616768 shmem:used_size:: 4578374040 shmem:real_used_size:: 4728909408 shmem:max_used_size:: 4728909408 shmem:free_size:: 1738707360 shmem:fragments:: 1 # 事务 tm:UAS_transactions:: 296337 tm:UAC_transactions:: 30 tm:2xx_transactions:: 174737 tm:3xx_transactions:: 0 tm:4xx_transactions:: 110571 tm:5xx_transactions:: 2170 tm:6xx_transactions:: 0 tm:inuse_transactions:: 289651 dialog:active_dialogs:: 156 dialog:early_dialogs:: 680 dialog:processed_dialogs:: 104061 dialog:expired_dialogs:: 964 dialog:failed_dialogs:: 78457 dialog:create_sent:: 0 dialog:update_sent:: 0 dialog:delete_sent:: 0 dialog:create_recv:: 0 dialog:update_recv:: 0 dialog:delete_recv:: 0 CONF_DB_URL=&amp;#34;ip:port&amp;#34; # influxdb地址 CONF_DB_NAME=&amp;#34;dbname&amp;#34; # influxdb数据库名 CONF_OPENSIPS_ROLE=&amp;#34;a&amp;#34; # 角色，随便写个字符串 PATH=&amp;#34;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin&amp;#34; LOCAL_IP=`ip route get 8.</description>
+    </item>
+    
+    <item>
+      <title>opensips centos7 安装与升级</title>
+      <link>https://wdd.js.org/opensips/ch3/centos7-2.4/</link>
+      <pubDate>Tue, 02 Jul 2019 19:42:05 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch3/centos7-2.4/</guid>
+      <description>环境声明 系统 centos7 已经安装opensips 2.2 需要升级目标 opensips 2.4.6 要求：当前系统上没有部署mysql服务端程序 升级步骤 升级分为两步
+opensips 应用升级，包括源码的下载，编译等等 opensips 数据库升级，使用opensipsdbctl工具迁移老的数据 Edge: opensips应用升级 升级过程以Makefile交付，可以先新建一个空的目录，如 /root/opensips-update/
+# file: /root/opensips-update/Makefile VERSION=2.4.6 download: wget https://opensips.org/pub/opensips/$(VERSION)/opensips-$(VERSION).tar.gz; tar -zxvf opensips-$(VERSION).tar.gz; build: cd opensips-$(VERSION); make all -j4 include_modules=&amp;#34;db_mysql httpd db_http siprec&amp;#34;; # siprec是可选的 make install include_modules=&amp;#34;db_mysql httpd db_http siprec&amp;#34;; # siprec是可选的 新建空目录/root/opensips-update/ 在新目录中创建名为 Makefile的文件, 内容如上面所示 执行 make download 执行 make build Core: opensips应用升级 make all -j4 include_modules=&amp;#34;db_mysql httpd&amp;#34; make install include_modules=&amp;#34;db_mysql httpd&amp;#34; 可能遇到的报错以及解决方案 主要的问题可能是某些包冲突，或者某些库没有安装依赖。在解决问题后，需要重新编译。</description>
+    </item>
+    
+    <item>
+      <title>设置独立日志文件</title>
+      <link>https://wdd.js.org/opensips/ch3/log/</link>
+      <pubDate>Sun, 16 Jun 2019 10:33:15 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch3/log/</guid>
+      <description>设置独立日志 默认情况下，opensips的日志会写在系统日志文件/var/log/message中，为了避免难以查阅日志，我们可以将opensips的日志写到单独的日志文件中。
+环境说明
+debian buster
+这个需要做两步。
+第一步，配置opensips.cfg文件
+log_facility=LOG_LOCAL0 第二步, 创建日志配置文件
+echo &amp;#34;local0.* -/var/log/opensips.log&amp;#34; &amp;gt; /etc/rsyslog.d/opensips.conf 第三步，创建日志文件
+touch /var/log/opensips.log 第四步，重启rsyslog和opensips
+service rsyslog restart opensipsctl restart 第五步，验证结果
+tail /var/log/opensips.log 日志回滚 为了避免日志文件占用过多磁盘空间，需要做日志回滚。
+安装logrotate apt install logrotate -y 日志回滚配置文件 /etc/logrotate.d/opensips
+/var/log/opensips.log { noolddir size 10M rotate 100 copytruncate compress sharedscripts postrotate /bin/kill -HUP `cat /var/run/syslogd.pid 2&amp;gt; /dev/null` 2&amp;gt; /dev/null || true /bin/kill -HUP `cat /var/run/rsyslogd.pid 2&amp;gt; /dev/null` 2&amp;gt; /dev/null || true endscript } 配置定时任务</description>
+    </item>
+    
+    <item>
+      <title>opensips管理命令</title>
+      <link>https://wdd.js.org/opensips/ch3/opensipsctl/</link>
+      <pubDate>Thu, 13 Jun 2019 22:03:19 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch3/opensipsctl/</guid>
+      <description>可以使用一下命令查找opensips的相关文件夹
+find / -name opensips -type d 一般来说，重要的是opensips.cfg文件，这个文件一般位于/usr/local/etc/opensips/或者/usr/etc/opensips中。主要还是要看安装时选择的默认路径。
+其中1.x版本的配置文件一般位于/usr/etc/opensips目录中，2.x版本的配置一般位于/usr/local/etc/opensips目录中。
+下面主要讲解几个命令。
+配置文件校验 校验opensips.cfg脚本是否合法, 如果有问题，会提示那行代码有问题，但是报错位置好像一直不准确。很多时候可能是忘记写分好了。
+opensips -C opensips.cfg 启动关闭与重启 使用opensipsctl命令做数据库操作前，需要先配置opensipsctlrc文件
+opensips start|stop|restart opensipsctl start|stop|restart 资源创建 opensipsdbctl create # 创建数据库 opensipsctl domain add abc.cc #创建域名 opensipsctl add 1001@test.cc 12346 # 新增用户 opensipsctl rm 1001@test.cc # 删除用户 opensipsctl passwdd 1001@test.cc 09879 # 修改密码 opensipsctl -h 显示所有可用命令
+/usr/local/sbin/opensipsctl $Revision: 4448 $ Existing commands: -- command &amp;#39;start|stop|restart|trap&amp;#39; trap ............................... trap with gdb OpenSIPS processes restart ............................ restart OpenSIPS start .</description>
+    </item>
+    
+    <item>
+      <title>debian jessie opensips 2.4.7 安装</title>
+      <link>https://wdd.js.org/opensips/ch3/install-opensips/</link>
+      <pubDate>Thu, 13 Jun 2019 21:53:16 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch3/install-opensips/</guid>
+      <description>
+1. 安装依赖 apt-get update -qq &amp;amp;&amp;amp; apt-get install -y build-essential net-tools \ bison flex m4 pkg-config libncurses5-dev rsyslog libmysqlclient-dev \ libssl-dev mysql-client libmicrohttpd-dev libcurl4-openssl-dev uuid-dev \ libpcre3-dev libconfuse-dev libxml2-dev libhiredis-dev wget lsof 2. 编译 下载opensips-2.4.7的源码，然后解压。
+include_moduls可以按需指定，你可以只写你需要的模块。
+cd /usr/local/src/opensips-2.4.7 make all -j4 include_modules=&amp;#34;db_mysql httpd db_http siprec regex rest_client carrierroute dialplan b2b_logic cachedb_redis proto_tls proto_wss tls_mgm&amp;#34; make install include_modules=&amp;#34;db_mysql httpd db_http siprec regex rest_client carrierroute dialplan b2b_logic cachedb_redis proto_tls proto_wss tls_mgm&amp;#34; </description>
     </item>
     
   </channel>
