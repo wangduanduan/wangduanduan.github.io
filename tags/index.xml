@@ -9,7 +9,16 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 26 Oct 2022 08:44:12 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 Dec 2022 09:49:29 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>git</title>
+      <link>https://wdd.js.org/tags/git/</link>
+      <pubDate>Thu, 01 Dec 2022 09:49:29 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/tags/git/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>journal</title>
       <link>https://wdd.js.org/tags/journal/</link>
@@ -61,15 +70,6 @@
       <pubDate>Sat, 28 May 2022 21:08:43 +0800</pubDate>
       
       <guid>https://wdd.js.org/tags/hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>git</title>
-      <link>https://wdd.js.org/tags/git/</link>
-      <pubDate>Sat, 28 May 2022 12:39:50 +0800</pubDate>
-      
-      <guid>https://wdd.js.org/tags/git/</guid>
       <description></description>
     </item>
     

@@ -2,13 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://wdd.js.org/categories/</loc>
+    <lastmod>2022-12-01T09:49:29+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/git/</loc>
+    <lastmod>2022-12-01T09:49:29+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/categories/git/</loc>
+    <lastmod>2022-12-01T09:49:29+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/git/</loc>
+    <lastmod>2022-12-01T09:49:29+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/</loc>
+    <lastmod>2022-12-01T09:49:29+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/</loc>
+    <lastmod>2022-12-01T09:49:29+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/git/clean-all-history/</loc>
+    <lastmod>2022-12-01T09:49:29+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/git/remote-url/</loc>
+    <lastmod>2022-12-01T09:46:13+08:00</lastmod>
+  </url><url>
     <loc>https://wdd.js.org/fe/js-questions/</loc>
     <lastmod>2022-11-04T08:42:15+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/fe/</loc>
-    <lastmod>2022-11-04T08:42:15+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/</loc>
     <lastmod>2022-11-04T08:42:15+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2022/deepin-install-man/</loc>
@@ -105,9 +126,6 @@
     <lastmod>2022-10-26T08:44:12+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2022/linux-journal/</loc>
-    <lastmod>2022-10-26T08:44:12+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/</loc>
     <lastmod>2022-10-26T08:44:12+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2022/ubuntu-tips/</loc>
@@ -260,9 +278,6 @@
     <loc>https://wdd.js.org/freeswitch/media-settings/</loc>
     <lastmod>2022-05-28T14:50:55+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/tags/git/</loc>
-    <lastmod>2022-05-28T12:39:50+08:00</lastmod>
-  </url><url>
     <loc>https://wdd.js.org/tags/shell/</loc>
     <lastmod>2022-05-28T12:39:50+08:00</lastmod>
   </url><url>
@@ -304,9 +319,6 @@
   </url><url>
     <loc>https://wdd.js.org/vim/vim-tips/</loc>
     <lastmod>2022-05-27T19:25:48+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/categories/</loc>
-    <lastmod>2022-05-27T11:49:44+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/categories/hugo/</loc>
     <lastmod>2022-05-27T11:49:44+08:00</lastmod>
