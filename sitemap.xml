@@ -3,7 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://wdd.js.org/categories/</loc>
-    <lastmod>2022-12-01T09:49:29+08:00</lastmod>
+    <lastmod>2022-12-01T10:08:38+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/mrcp/</loc>
+    <lastmod>2022-12-01T10:08:38+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/categories/mrcp/</loc>
+    <lastmod>2022-12-01T10:08:38+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/2022/mrcp-notes/</loc>
+    <lastmod>2022-12-01T10:08:38+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/</loc>
+    <lastmod>2022-12-01T10:08:38+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/rfc/</loc>
+    <lastmod>2022-12-01T10:08:38+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/</loc>
+    <lastmod>2022-12-01T10:08:38+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/</loc>
+    <lastmod>2022-12-01T10:08:38+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/git/</loc>
     <lastmod>2022-12-01T09:49:29+08:00</lastmod>
@@ -12,12 +33,6 @@
     <lastmod>2022-12-01T09:49:29+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/git/</loc>
-    <lastmod>2022-12-01T09:49:29+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/</loc>
-    <lastmod>2022-12-01T09:49:29+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/</loc>
     <lastmod>2022-12-01T09:49:29+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/git/clean-all-history/</loc>
@@ -33,9 +48,6 @@
     <lastmod>2022-11-04T08:42:15+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2022/deepin-install-man/</loc>
-    <lastmod>2022-11-03T11:55:51+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/</loc>
     <lastmod>2022-11-03T11:55:51+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/2.4.x-docs/</loc>
