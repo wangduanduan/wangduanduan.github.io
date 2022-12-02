@@ -5060,10 +5060,10 @@ Answer-Mode: Auto;require 和Answer-mode头类似的有个SIP头叫做：Priv-An
     
     <item>
       <title>回铃音</title>
-      <link>https://wdd.js.org/opensips/ch2/xchqma/</link>
+      <link>https://wdd.js.org/opensips/ch2/early-media/</link>
       <pubDate>Wed, 18 Sep 2019 09:53:22 +0800</pubDate>
       
-      <guid>https://wdd.js.org/opensips/ch2/xchqma/</guid>
+      <guid>https://wdd.js.org/opensips/ch2/early-media/</guid>
       <description>特点分析 回铃音有以下特点
 回铃音是由运营商送给手机的，而不是由被叫送给主叫的。 回铃音的播放阶段是在被叫接听前播放，被叫一旦接听，回铃音则播放结束 回铃音一般是450Hz, 嘟一秒，停4秒，5秒一个周期 常见问题 听不到回铃音 【现象】打同一个号码，有些手机能听到回铃音，有些手机听不到回铃音【排查思路】
 有些手机volte开启后，可能会导致无回铃音，所以可以关闭volte试试 被叫的运营商，主叫手机的运营商 参考资料 https://zh.wikipedia.org/wiki/%E5%9B%9E%E9%93%83%E9%9F%B3 https://baike.baidu.com/item/%E5%9B%9E%E9%93%83%E9%9F%B3/1014322 http://www.it9000.cn/tech/CTI/signal.html </description>
@@ -5071,10 +5071,10 @@ Answer-Mode: Auto;require 和Answer-mode头类似的有个SIP头叫做：Priv-An
     
     <item>
       <title>几种常用电话信号音的含义</title>
-      <link>https://wdd.js.org/opensips/ch2/ox06wd/</link>
+      <link>https://wdd.js.org/opensips/ch2/early-media-type/</link>
       <pubDate>Wed, 18 Sep 2019 09:10:24 +0800</pubDate>
       
-      <guid>https://wdd.js.org/opensips/ch2/ox06wd/</guid>
+      <guid>https://wdd.js.org/opensips/ch2/early-media-type/</guid>
       <description>几种常用电话信号音的含义 信号频率：（450±25）HZ：拨号音、回铃音、忙音、长途通知音、空号音（950±25）HZ：催挂音
 拨号音 摘机后受话器中便有一种“嗡&amp;ndash;”的连续音，这种声音就是拨号音，它表示自动交换机或对方呼叫中心系统已经做好了接续准备，允许用户拨号
 回铃音 拨完被叫号，若听到“嘟&amp;ndash;嘟&amp;ndash;”的断续音（响1s，断4s），便是回铃音，表示被叫话机正在响铃，可静候接话；如果振铃超过10余次，仍无人讲话，说明对方无人接电话，应放好手柄稍后再拨。
