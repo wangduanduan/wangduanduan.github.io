@@ -333,10 +333,10 @@ k,s,n都是整数 k大于等于1 10的k-1次方小于等于s, 且s小于等于10
     
     <item>
       <title>奥科网关 Rtp Broken Connection</title>
-      <link>https://wdd.js.org/opensips/ch1/rtp-broken-connection/</link>
+      <link>https://wdd.js.org/opensips/ch7/rtp-broken-connection/</link>
       <pubDate>Sat, 29 Oct 2022 10:11:59 +0800</pubDate>
       
-      <guid>https://wdd.js.org/opensips/ch1/rtp-broken-connection/</guid>
+      <guid>https://wdd.js.org/opensips/ch7/rtp-broken-connection/</guid>
       <description>通话10多秒后，fs对两个call leg发送bye消息。
 Bye消息给的原因是 Reason: Q.850 ;cause=31 ;text=”local, RTP Broken Connection”
 在通话的前10多秒，SIP信令正常，双方也能听到对方的声音。
@@ -1119,6 +1119,23 @@ let g:netrw_banner = 0 let g:netrw_liststyle = 3 let g:netrw_winsize = 25 5. 如
     </item>
     
     <item>
+      <title>opensips 477 Send failed (477/TM)</title>
+      <link>https://wdd.js.org/opensips/ch7/tm-send-failed/</link>
+      <pubDate>Fri, 08 Apr 2022 22:32:27 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch7/tm-send-failed/</guid>
+      <description>这个报错比较容易出现在tcp转udp的场景，可以看以下的时序图
+ab之间用tcp通信，bc之间用udp通信。在通话建立后，c给b发送了bye请求，但是b发送给了c 477。正常来说b应该把bye转发给a.
+那么问题出在哪里呢？
+问题就出在update请求的响应上，update的响应200ok中带有Contact头，如果是Contact是个nat的地址，没有经过fixed nat, 那么b是无法直接给nat内部的地址发送请求的。
+处理的办法也很简单，就是在收到a返回的200ok时，执行fix_nated_contact()
+遇到这种问题，往往进入一种思维误区，就是在INVITE请求成功后，fix了nat Contact后，Contact头是不会变的。
+但是实际上，很多SIP请求，例如NOTIFY, UPDATE都会携带请求和响应都会携带Contact, 如果只处理了INVITE的Contact头，没有处理其他携带Contact的sip请求或者响应，就必然也会遇到类似的问题。
+我们知道SIP的Contact后，决定了序列化请求的request url。如果Contact处理的有问题，必然在按照request url转发的时候出现问题。
+综上所述：无论请求还是响应，都要考虑这个消息是否携带了Contact头，以及是否需要fix nat Contact。</description>
+    </item>
+    
+    <item>
       <title>macbook pro 使用1664天的感受</title>
       <link>https://wdd.js.org/posts/old-blog/er3vob/</link>
       <pubDate>Mon, 04 Apr 2022 21:29:13 +0800</pubDate>
@@ -1135,6 +1152,21 @@ let g:netrw_banner = 0 let g:netrw_liststyle = 3 let g:netrw_winsize = 25 5. 如
 本来想买14寸的macbook pro m1的，但是重量的增加以及很丑的刘海也是我不能忍的。
 所以我觉得我会买一台轻便点的windows笔记本，而且windows还有一个很吸引我的点，就是linux子系统。这个linux子系统，要比mac的系统更加linux。
 各位同学有没有推荐的windows的轻便笔记本呢？</description>
+    </item>
+    
+    <item>
+      <title>拓扑隐藏学习以及实践</title>
+      <link>https://wdd.js.org/opensips/ch8/topology-hiding/</link>
+      <pubDate>Thu, 31 Mar 2022 20:34:02 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch8/topology-hiding/</guid>
+      <description>1. 拓扑隐藏功能 删除Via头 删除Route 删除Record-Route 修改Contact 可选隐藏Call-ID 如下图所示，根据SIP的Via, Route, Record-Route的头，往往可以推测服务内部的网络结构。
+我们不希望别人知道的我们的内部网络结构。我们只希望只能看到C这个sip server。经过拓扑隐藏过后
+用户看不到关于a、b的via, route, record-route头 用户看到的Contact头被修改成C的IP地址 可以选择把原始的Call-ID也修改 当然，拓扑隐藏除了可以隐藏一些信息，也有一个其他的好处：减少SIP消息包的长度。如果SIP消息用UDP传输，减少包的体积，可以大大降低UDP分片的可能性。
+所以，综上所述：拓扑隐藏有以下好处
+隐藏服务内部网络结构 减少SIP包的体积 2. 脚本例子 拓扑隐藏的实现并不复杂。首先要加载拓扑隐藏的模块
+loadmodule &amp;#34;topology_hiding.so&amp;#34; 2.1 初始化路由的处理 在初始化路由里，只需要调用topology_hiding()
+U 表示不隐藏Contact的用户名信息 C 表示隐藏Call-ID # if it&amp;#39;s an INVITE dialog, we can create the dialog now, will lead to cleaner SIP messages if (is_method(&amp;#34;INVITE&amp;#34;)) create_dialog(); # we do topology hiding, preserving the Contact Username and also hiding the Call-ID topology_hiding(&amp;#34;UC&amp;#34;); t_relay(); exit; 2.</description>
     </item>
     
     <item>
@@ -1165,6 +1197,19 @@ Van Jacobson Sally Floyd Vern Paxson Steve McCanne 这个实验室主要的研�
 包过滤的语法非常蹩脚 协议编解码能力非常弱 性能也非常弱 总之一句话，他们认为etherfind不行。
 工欲善其事，必先利其器。所以他们就想创造一个新的工具。这个工具必须要有以下的特征
 能够从协议栈底层过滤包 把高级的过滤语法能够编译的底层的代码 能够在驱动层进行过滤 创建了一个内核模块叫做 Berkeley Packet Filter(BPF) 参考 https://baike.baidu.com/item/ARPAnet/3562284 </description>
+    </item>
+    
+    <item>
+      <title>tshark 快速分析语音流问题</title>
+      <link>https://wdd.js.org/opensips/tools/tshark/</link>
+      <pubDate>Tue, 08 Mar 2022 11:02:18 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/tools/tshark/</guid>
+      <description>wireshark安装之后，tshark也会自动安装。tshark也可以单独安装。
+如果我们想快速的分析语音刘相关的问题，可以参考下面的一个命令。
+语音卡顿，常见的原因就是网络丢包，tshark在命令行中快速输出语音流的丢包率。
+如下所示，rtp的丢包率分别是2.5%和4.6%。
+tshark -r abc.pcap -q -z rtp,streams ========================= RTP Streams ======================== Start time End time Src IP addr Port Dest IP addr Port SSRC Payload Pkts Lost Min Delta(ms) Mean Delta(ms) Max Delta(ms) Min Jitter(ms) Mean Jitter(ms) Max Jitter(ms) Problems? 2.666034 60.446026 192.168.69.12 18892 192.168.68.111 26772 0x76EFFF66 g711A 2807 72 (2.5%) 0.011 20.592 120.002 0.001 0.074 2.430 X 0.548952 60.467686 192.168.68.111 26772 192.168.69.12 18892 0xA655E7B6 g711A 2215 106 (4.</description>
     </item>
     
     <item>
@@ -1359,6 +1404,30 @@ m4 -D DB_ADDR=1.2.3.4:3306 -D LOCAL_IP=192.168.2.2 -D MAX_LEN=2048 1.m4 db_addr=
     </item>
     
     <item>
+      <title>sendmsg failed on 0: Socket operation on non-socket</title>
+      <link>https://wdd.js.org/opensips/ch7/sendmsg-failed/</link>
+      <pubDate>Thu, 16 Sep 2021 10:04:16 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch7/sendmsg-failed/</guid>
+      <description>ERROR:core:tcp_init_listener: could not get TCP protocol number CRITICAL:core:send_fd: sendmsg failed on 0: Socket operation on non-socket ERROR:core:send2child: send_fd failed 不要将tcp_child设置为0</description>
+    </item>
+    
+    <item>
+      <title>信令路径逃逸分析</title>
+      <link>https://wdd.js.org/opensips/ch7/escape-msg/</link>
+      <pubDate>Wed, 15 Sep 2021 19:18:55 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch7/escape-msg/</guid>
+      <description>问题表现 在经过初始化请求之后，路径发现完成。在这个dialog中所有的请求，正常来ua1和ua2之间的所有请求，都应该经过us1和us2。
+如下图所示：
+某些时候，ua1可能直接把BYE消息直接发送给ua2, 但是一般ua1和ua2是存在uat网络的，所以这个BYE消息，ua2很可能收不到。
+问题的表现就是电话无法正常挂断。
+问题分析 可能原因1: us1和us2没有做record-route, 导致请求直接根据某个请求的响应消息的Contact头，直接发送了。 可能原因2: 某些请求的拓扑隐藏没有做好 拓扑隐藏问题具体分析 假如我们在us1上正确的做了拓扑隐藏，那么ua1的所有收到的响应，它的Contact头的地址都会改成us1的地址。那么ua1是无论如何都获取不到ua2的直接地址的。
+但是，假如某个消息处理的不对呢？
+注意180响应5到6, 其中us1正确的修改了Contact头 ua1收到180后，立即发送了notify消息 如果us1没有正确处理notify的响应的Contact头，us1就会把ua2的Contact信息发送给ua1。有些notify的响应带有Contact头，有些没带有。 但是这里会出现一个竞争条件，invite的200ok和notify的200ok，消息到达的顺序，将影响ua2的Contact信息 如果ua1后收到invite的200ok, 此时ua1获取ua2的地址是us1 如果ua2后收到notify的200ok, 此时ua2获取的ua2的地址就是ua2 所以问题的表现可能是有偶现的，这种问题处理其实是比较棘手的 当然也是有解决方案的 方案1， us1对notify正确处理响应消息Contact, 将其修改成us1 方案2，us1直接删除notify响应消息的Contact头 </description>
+    </item>
+    
+    <item>
       <title>vscode 终端重复输出命令名</title>
       <link>https://wdd.js.org/posts/old-blog/tik8v9/</link>
       <pubDate>Tue, 14 Sep 2021 08:37:51 +0800</pubDate>
@@ -1373,12 +1442,39 @@ echo $TERM screen-256color 如果输出$TERM是screen-256color，那必然是你
     </item>
     
     <item>
+      <title>heplify SIP信令抓包客户端</title>
+      <link>https://wdd.js.org/opensips/tools/heplify/</link>
+      <pubDate>Sun, 12 Sep 2021 20:49:51 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/tools/heplify/</guid>
+      <description>hepfily是个独立的抓包程序，类似于tcpdump之类的，网络抓包程序，可以把抓到的sip包，编码为hep格式。然后送到hep server上，由hepserver负责包的整理和存储。
+heplify安装非常简单，在仓库的release页面，可以下载二进程程序。二进程程序赋予可执行权限后，可以直接在x86架构的机器上运行。
+因为heplify是go语言写的，你也可以基于源码，编译其他架构的二进制程序。
+https://github.com/sipcapture/heplify
+-i 设定抓包的网卡 -m 设置抓包模式为SIP -hs 设置hep server的地址 -p 设置日志文件的日志 -dim 设置过滤一些不关心的sip包 -pr 设置抓包的端口范围 nohup ./heplify \ -i eno1 \ -m SIP \ -hs 192.168.1.2:9060 \ -p &amp;#34;/var/log/&amp;#34; \ -dim OPTIONS,REGISTER \ -pr &amp;#34;18627-18628&amp;#34; &amp;amp; opensips模块本身就有proto_hep模块支持hep抓包，为什么我还要用heplify来抓包呢？
+低于2.2版本的opensips不支持hep抓包 opensips的hep抓包还是不太稳定。我曾遇到过因为hep抓包导致opensips崩溃的事故。如果用外部的抓包程序，即使抓包有问题，还是不会影响到opensips。 </description>
+    </item>
+    
+    <item>
       <title>lt运营商的瞒天过海之计</title>
       <link>https://wdd.js.org/posts/old-blog/itik3h/</link>
       <pubDate>Sun, 12 Sep 2021 17:35:46 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/old-blog/itik3h/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>核心变量解读-100%</title>
+      <link>https://wdd.js.org/opensips/ch5/core-var-2/</link>
+      <pubDate>Thu, 09 Sep 2021 09:04:21 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch5/core-var-2/</guid>
+      <description>简介 OpenSIPS的路由脚本提供了几种不同类型的变量。不同类型的变量有以下几个方面的差异。
+变量的可见性 变量引用的值 变量的读写性质：有些变量是只读的，有些变量可读可写 变量是否有多个值：有些变量只有一个值，有些变量有多个值 语法 $(&amp;lt;context&amp;gt;name(subname)[index]{tramsformation}) 除了name以外 ，其他都是可选的值。
+name(必传)：变量名的类型，例如pvar, avp, ru, DLG_status等等 subname: 变量名称，例如hdr(From), avp(name) index: 索引，某些变量可以有多个值，类似于数组。可以用索引去引用对应的元素。从0开始，也可以是负值如-1, 表示倒数第一个。 transformation: 转换。做一些格式转换，字符串截取等等操作 context: 上下文。OpenSIP有两个上下午，请求request、相应reply。想想一个场景，你在一个相应路由里如何拿到请求路由的某个值呢？ 可以使用$(ru). 或者在一个失败路由里获取一个Concact的信息$(hdr(Contact)) 举例：
+仅仅通过类型来引用：$ru 通过类型和名称来引用：$hrd(Contact), 引用某个SIP header的值 通过类型和索引来引用：$(ct[0]) 通过类型、名称、索引来引用：$(avp(addr)[0]) 变量的类型 脚本变量 脚本变量只有一个值 脚本变量可读可写 脚本变量在路由及其子路由中都是可见的 脚本变量使用前务必先初始化，否则可能会引用到之前的值 脚本变量的值可以是字符串，也可以是整数类型 脚本变量读写比avp变量快 脚本变量会持久存在一个OpenSIPS进程中 将脚本变量设置为NULL, 实际上是将变量的值设置为&#39;0&amp;rsquo;, 脚本变量没有NULL值。 脚本变量之存在与一个路由中 使用举例
+route{ $var(a) = 19 $var(a) = &amp;#34;wdd&amp;#34; $var(a) = &amp;#34;wdd&amp;#34; + &amp;#34;@&amp;#34; + $td; if(route(check_out, 1)){ xlog(&amp;#34;check error&amp;#34;); } } route[check_out]{ # 注意，这里$var(a)的值就不存在了 xlog(&amp;#34;$var(a)&amp;#34;); if ($param(1) &amp;gt; 1) { return (-1); } return(1); } avp变量 avp变量一般会关联到一个sip消息或者SIP事务上.</description>
     </item>
     
     <item>
@@ -1402,6 +1498,38 @@ echo $TERM screen-256color 如果输出$TERM是screen-256color，那必然是你
 指标监控 opensips有内部的统计模块，可以很方便的通过opensipsctl或者相关的http的mi接口获取到内部的统计数据。
 以下给出几个关键的统计指标：
 &amp;rsquo;total_size&amp;rsquo;, 全部内存 &amp;lsquo;used_size&amp;rsquo;, 使用的内存 &amp;lsquo;real_used_size&amp;rsquo;, 真是使用的内存 &amp;lsquo;max_used_size&amp;rsquo;, 最大使用的内存 &amp;lsquo;free_size&amp;rsquo;, 空闲内存 &amp;lsquo;fragments&amp;rsquo;, &amp;lsquo;active_dialogs&amp;rsquo;, 接通状态的通话 &amp;rsquo;early_dialogs&amp;rsquo;, 振铃状态的通话 &amp;lsquo;inuse_transactions&amp;rsquo;, 正在使用的事务 &amp;lsquo;waiting_udp&amp;rsquo;, 堆积的udp消息 &amp;lsquo;waiting_tcp&amp;rsquo; 堆积的tcp消息 当然还有很多的一些指标，可以使用：opensipsctl fifo get_statistics all来获取。</description>
+    </item>
+    
+    <item>
+      <title>opensips崩溃分析</title>
+      <link>https://wdd.js.org/opensips/ch7/crash/</link>
+      <pubDate>Thu, 19 Aug 2021 19:30:14 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch7/crash/</guid>
+      <description>core dump文件在哪里？ 一般情况下，opensips在崩溃的时候，会产生core dump文件。这个文件一般位于跟目录下，名字如core.xxxx等的。
+core dump文件一般大约有1G左右，所以当产生core dump的时候，要保证系统的磁盘空间是否足够。
+如何开启core dump？ 第一，opensips脚本中有个参数叫做disable_core_dump， 这个参数默认为no, 也就是启用core dump, 可以将这个参数设置为no, 来禁用core dump。但是生产环境一般建议还是开启core dump, 否则服务崩溃了，就只能看日志，无法定位到具体的崩溃代码的位置。
+disable_core_dump=yes 第二，还需要在opensips启动之前，运行：ulimit -c unlimited, 这个命令会让opensips core dump的时候，不会限制core dump文件的大小。一般来说core dump文件的大小是共享内存 + 私有内存。
+第三，opensips进程的用户如果不是root, 那么可能没有权限将core dump文件写到/目录下。有两个解决办法，
+用root用户启动opensips进程 使用-w 参数配置opensips的工作目录，core dump文件将会写到对应的目录中。例如：opensips -w /var/log 如果core dump失败是因为权限的问题， opensips的日志文件中将会打印：
+Can&amp;#39;t open &amp;#39;core.xxxx&amp;#39; at &amp;#39;/&amp;#39;: Permission denied 如何分析core dump文件？ 使用gdb
+gdb $(which opensips) core.12333 # 进入gdb调试之后, 输入bt full, 会打印详细的错误栈信息 bt full 没有产生core dump文件，如何分析崩溃原因？ 使用objdump。
+一般来说opensips崩溃后，日志文件中一般会出现下面的信息
+kernel: opensips[8954]: segfault at 1ea72b5 ip 00000000004be532 sp 00007ffe9e1e6df0 error 4 in opensips[400000+203000] 我们从中取出几个关键词</description>
+    </item>
+    
+    <item>
+      <title>opensips无法启动</title>
+      <link>https://wdd.js.org/opensips/ch7/can-not-run/</link>
+      <pubDate>Thu, 19 Aug 2021 19:19:52 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch7/can-not-run/</guid>
+      <description>排查日志 opensips的log_stderror参数决定写日志的位置，
+yes 写日志到标准错误 no 写日志到syslog服务(默认) 如果使用默认的syslog服务，那么日志将会可能写到以下两个文件中。
+/var/log/messages /var/log/syslog 一般情况下，分析/var/log/messages日志，可以定位到无法启动的原因。
+如果日志文件中无法定位到具体原因，那么就可以将log_stderror设置为yes。
+注意：往标准错误中打印的日志，往往比网日志文件中打印的更详细。而且有些时候，我发现这个错误在标准错误中打印了，但是却不会输出到日志文件中。
+所以，看标准错误的日志，往往更容易定位到问题。</description>
     </item>
     
     <item>
@@ -1632,6 +1760,16 @@ https://stackoverflow.com/questions/55777520/ack-fails-in-cronjob-but-runs-fine-
 2. 如何指定测试用例的名称去执行测试用例？ This can then be selected with the -k flag to pytest - e.g. pass pytest -k fake to run all tests with ‘fake’ in the name.
 3. 用什么指令来保存http请求的响应体？ save
 4. 有哪些判断值类型的关键词？ !anyint: Matches any integer !anyfloat: Matches any float (note that this will NOT match integers!) !</description>
+    </item>
+    
+    <item>
+      <title>baresip 非常好用的终端SIP UA</title>
+      <link>https://wdd.js.org/opensips/tools/baresip/</link>
+      <pubDate>Tue, 08 Jun 2021 16:27:36 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/tools/baresip/</guid>
+      <description>安装 安装前要先安装依赖
+https://github.com/baresip/re https://github.com/baresip/rem openssl git clone https://github.com/baresip/baresip cd baresip make sudo make install 指令 /about About box/accept Accept incoming call/answermode Set answer mode/apistate User Agent state/auloop Start audio-loop /auloop_stop Stop audio-loop/auplay Switch audio player/ausrc Switch audio source/callstat Call status/conf_reload Reload config file/config Print configuration/contact_next Set next contact/contact_prev Set previous contact/contacts List contacts/dial .. Dial/dialcontact Dial current contact/hangup Hangup call/help Help menu/insmod Load module/listcalls List active calls/loglevel Log level toggle/main Main loop debug/memstat Memory status/message Message current contact/modules Module debug/netstat Network debug/options Options/play Play audio file/quit Quit/reginfo Registration info/rmmod Unload module/sipstat SIP debug/sysinfo System info/timers Timer debug/uadel Delete User-Agent/uafind Find User-Agent /uanew Create User-Agent/uanext Toggle UAs/uastat UA debug/uuid Print UUID/vidloop Start video-loop /vidloop stop Stop video-loop/vidsrc Switch video source</description>
     </item>
     
     <item>
@@ -1992,6 +2130,18 @@ To hate is to study, to study is to understand, to understand is to appreciate, 
     </item>
     
     <item>
+      <title>模块传参的重构</title>
+      <link>https://wdd.js.org/opensips/ch8/fork/</link>
+      <pubDate>Tue, 27 Apr 2021 13:36:22 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch8/fork/</guid>
+      <description>写过opensips脚本的同学，往往对函数的传参感到困惑。
+例如：
+ds_select_dst()可以接受整数或者值为正数的变量作为第一个参数，但是nat_uac_test()的第一个参数就只能是整数，而不能是变量 为什么rl_check()可以接受格式化的字符串，而save()只能接受字符串。 为什么ds_select_dst(&amp;quot;1&amp;quot;, &amp;quot;4&amp;quot;) 作为整数也要加上双引号？ 为什么变量要加上双引号？ ds_select_dst(&amp;quot;$var(aa)&amp;quot;, &amp;quot;4&amp;quot;) 为什么t_on_branch(&amp;quot;1&amp;quot;)路由的钩子要加上双引号？ 为什么route(go_to_something);这里又不需要加上引号？ ds_select_dst(&amp;#34;1&amp;#34;, &amp;#34;0&amp;#34;); $var(aa)=1; ds_select_dst(&amp;#34;$var(aa)&amp;#34;, &amp;#34;0&amp;#34;); rl_check(&amp;#34;gw_$ru&amp;#34;, &amp;#34;$var(limit)&amp;#34;); #格式化的gw_$ru save(&amp;#34;location&amp;#34;); #单纯的字符串作为参数 从3.0开始，传参可以更加自然。
+整数可以直接传参，不用加双引号 do_something(1, 1); 输入或者输出的$var(), 不用加双引号，加了反而会报错 do_something($var(a), $var(b)); 格式化字符串，需要加双引号 do_something(1, &amp;#34;$var(bb)_$var(b)&amp;#34;); 参考 https://blog.opensips.org/2019/11/05/the-module-function-interface-rework-in-opensips-3-0/ https://www.opensips.org/Documentation/Script-Syntax-3-0# </description>
+    </item>
+    
+    <item>
       <title>GIT上游之同步</title>
       <link>https://wdd.js.org/posts/old-blog/zx0g32/</link>
       <pubDate>Sun, 25 Apr 2021 12:15:56 +0800</pubDate>
@@ -2082,6 +2232,17 @@ https://apple.stackexchange.com/questions/112350/cmdtab-does-not-work-on-hidden-
     </item>
     
     <item>
+      <title>rtpengine 增加对ilbc编解码的支持</title>
+      <link>https://wdd.js.org/opensips/ch9/rtpengine-ilbc/</link>
+      <pubDate>Sun, 18 Apr 2021 21:28:20 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch9/rtpengine-ilbc/</guid>
+      <description>ilbc的编码特定是占用带宽小，并且抗丢表。但是rtpengine是不支持ilbc编码的，可以参考的资料有以下两个
+https://github.com/sipwise/rtpengine/issues/897 https://sr-users.sip-router.narkive.com/f3jhDeyU/rtpengine-and-ilbc-support 使用rtpengine --codecs可以打印出rtpengine支持的编解码
+rtpengine --codecs PCMA: fully supported PCMU: fully supported G723: fully supported G722: fully supported QCELP: supported for decoding only G729: supported for decoding only speex: fully supported GSM: fully supported iLBC: not supported opus: fully supported vorbis: fully supported ac3: fully supported eac3: fully supported ATRAC3: supported for decoding only ATRAC-X: supported for decoding only AMR: fully supported AMR-WB: fully supported PCM-S16LE: fully supported MP3: fully supported 下面的操作基于debian:9-slim的基础镜像构建的，在构建rtpengine之前，我们先编译ilbc的依赖库</description>
+    </item>
+    
+    <item>
       <title>windows wsl 鱼与熊掌的方案</title>
       <link>https://wdd.js.org/posts/old-blog/ln78ga/</link>
       <pubDate>Sat, 10 Apr 2021 17:56:02 +0800</pubDate>
@@ -2128,6 +2289,24 @@ https://apple.stackexchange.com/questions/112350/cmdtab-does-not-work-on-hidden-
     </item>
     
     <item>
+      <title>UDP分片导致SIP消息丢失</title>
+      <link>https://wdd.js.org/opensips/ch7/big-udp-msg/</link>
+      <pubDate>Thu, 08 Apr 2021 14:33:49 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch7/big-udp-msg/</guid>
+      <description>现象 有了开源的框架，我们可以很方便的运行一个VOIP系统。但是维护一个VOIP系统并非那么简单。特别是如果经常出现一些偶发的问题，需要用经验丰富的运维人员来从不同层面分析。
+其中UDP分片，也可能是原因之一。
+简介 以太网的最大MTU一般是1500字节，减去20字节的IP首部，8字节的UDP首部，UDP能承载的数据最大是1472字节。
+如果一个SIP消息的报文超过1472就会分片。（实际上，如果网络的MTU比1500更小，那么达到分片的尺寸也会变小）
+如下图，发送方通过以太网发送了4个报文，ABCD。其中D报文太了，而被分割成了三个报文。在传输过程中，D的一个分片丢失，接收方由于无法重新组装D报文，所以就将D报文的所有分片都丢弃。
+这将会导致一下问题
+发送方因接收不到响应，所以产生了重传 丢弃的分片导致其他的分片浪费了带宽 IP分片是对发送者来说是简单的，但是对于接收者来说，分片的组装将会占用更多的资源 RFC 3261中给出建议，某些情况下可以使用TCP来传输。
+当MTU是未知的情况下，如果消息超过1300字节，则选择使用TCP传输 当MTU是已知情况下，SIP的消息的大小如果大于MTU-200, 则需要使用TCP传输。留下200字节的余量，是因为SIP消息的响应可能大于SIP消息的请求，为了避免响应消息超过MTU，所以要留下200字节的余量。 If a request is within 200 bytes of the path MTU, or if it is larger than 1300 bytes and the path MTU is unknown, the request MUST be sent
+using an RFC 2914 [43] congestion controlled transport protocol, such
+as TCP. If this causes a change in the transport protocol from the</description>
+    </item>
+    
+    <item>
       <title>无名英雄 Readline</title>
       <link>https://wdd.js.org/posts/old-blog/sr456z/</link>
       <pubDate>Thu, 08 Apr 2021 13:40:57 +0800</pubDate>
@@ -2149,6 +2328,15 @@ tcpdump: eno1: You don&amp;#39;t have permission to capture on that device (sock
 有没有右手不离开键盘本位，不需要低头看键盘的解决方案呢？
 答案就是： sudo !! !!会被解释成为上一条执行的命令。sudo !!就会变成使用sudo执行上一条命令。
 快试试看吧 sudo bang bang</description>
+    </item>
+    
+    <item>
+      <title>subscribe场景测试</title>
+      <link>https://wdd.js.org/opensips/tools/sipp-subscriber/</link>
+      <pubDate>Thu, 08 Apr 2021 12:32:49 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/tools/sipp-subscriber/</guid>
+      <description>时序图 场景解释 step1: SUBSCRIBE 客户端想要订阅某个分机的状态 step2: 200 Ok 服务端接受了这个订阅消息 step3: NOTIFY 服务端向客户端返回他的订阅目标的状态 step4: 200 Ok 客户端返回表示接受 场景文件 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;iso-8859-2&amp;#34; ?&amp;gt; &amp;lt;!DOCTYPE scenario SYSTEM &amp;#34;sipp.dtd&amp;#34;&amp;gt; &amp;lt;scenario name=&amp;#34;subscibe wait notify&amp;#34;&amp;gt; &amp;lt;send retrans=&amp;#34;500&amp;#34;&amp;gt; &amp;lt;![CDATA[ SUBSCRIBE sip:[my_monitor]@[my_domain] SIP/2.0 Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch] From: sipp &amp;lt;sip:[my_ext]@[my_domain]&amp;gt;;tag=[call_number] To: &amp;lt;sip:[my_monitor]@[my_domain]:[remote_port]&amp;gt; Call-ID: [call_id] CSeq: [cseq] SUBSCRIBE Contact: sip:[my_ext]@[local_ip]:[local_port] Max-Forwards: 10 Event: dialog Expires: 120 User-Agent: SIPp/Win32 Accept: application/dialog-info+xml, multipart/related, application/rlmi+xml Content-Length: 0 ]]&amp;gt; &amp;lt;/send&amp;gt; &amp;lt;recv response=&amp;#34;200&amp;#34; rtd=&amp;#34;true&amp;#34;&amp;gt; &amp;lt;/recv&amp;gt; &amp;lt;recv request=&amp;#34;NOTIFY&amp;#34; crlf=&amp;#34;true&amp;#34; rrs=&amp;#34;true&amp;#34;&amp;gt; &amp;lt;/recv&amp;gt; &amp;lt;send&amp;gt; &amp;lt;!</description>
     </item>
     
     <item>
@@ -2311,6 +2499,21 @@ keepalive 要点关注 每隔大约45秒，客户端会像服务端发送一个k
     </item>
     
     <item>
+      <title>SIP feature codes SIP功能码</title>
+      <link>https://wdd.js.org/opensips/ch9/feature-code/</link>
+      <pubDate>Wed, 17 Mar 2021 10:57:45 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch9/feature-code/</guid>
+      <description>功能描述 用户可以拨打一个特殊的号码，用来触发特定的功能。常见的功能码一般以 * 开头，例如
+*1 组内代接 *1(EXT) 代接指定的分机 *2 呼叫转移 **87 请勿打扰 &amp;hellip; 上面的栗子，具体的功能码，对应的业务逻辑是可配置的。
+场景举例 我的分机是8001，我看到8008的分机正在振铃，此时我需要把电话接起来。但是我不能走到8008的工位上去接电话，我必须要在自己的工位上接电话。
+那么我在自己的分机上输入*18008 这时SIP服务端就知道你想代8008接听正在振铃的电话。
+说起来功能码就是一种使用话机上按键的一组暗号。
+话机上一般只有0-9*#，一共12个按键。没法办用其他的编码告诉服务端自己想做什么，所以只能用功能码。
+参考 https://www.ipcomms.net/support/myoffice-pbx/feature-codes https://www.cisco.com/c/en/us/td/docs/voice_ip_comm/cucme/admin/configuration/manual/cmeadm/cmefacs.pdf https://help.yeastar.com/en/s-series/topic/feature_code.html?hl=feature%2Ccode&amp;amp;_ga=2.76562834.622619423.1615949948-1155631884.1615949948 </description>
+    </item>
+    
+    <item>
       <title>gitlab release</title>
       <link>https://wdd.js.org/posts/old-blog/sadl0h/</link>
       <pubDate>Fri, 12 Mar 2021 13:50:01 +0800</pubDate>
@@ -2344,6 +2547,24 @@ rfcreader是一个在线的网站，可以阅读和搜索rfc文档。
 只需要把下面的两行取消注释
 set -gu prefix2 unbind C-a 复制模式支持jk上下移动 set -g mode-keys vi 在相同的目录打开新的窗口或者标签页 tmux_conf_new_window_retain_current_path=true tmux_conf_new_pane_retain_current_path=true 隐藏系统运行时间信息 状态栏的系统运行时长似乎没什么用，可以隐藏
 tmux_conf_theme_status_left=&amp;#34; ❐ #S &amp;#34; </description>
+    </item>
+    
+    <item>
+      <title>ACK 无法正常送到FS</title>
+      <link>https://wdd.js.org/opensips/ch7/miss-ack/</link>
+      <pubDate>Tue, 09 Mar 2021 17:10:54 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch7/miss-ack/</guid>
+      <description>通过sngrep抓包发现，通话正常，ACK无法送到FS。导致通话一段时间后，FS因为没有收到ACK，就发送了BYE来挂断呼叫。
+sngrep定位到问题可能出在OpenSIPS上，然后分析opensips的日志。
+Mar 9 16:58:00 dd opensips[84]: ERROR:dialog:dlg_validate_dialog: failed to validate remote contact: dlg=[sip:9999@192.168.2.161:5080;transport=udp] , req =[sip:192.168.2.109:18627;lr;ftag=CX3CDinLARXn1ZRNIlPaFexgirQczdr7;did=4c1.a9657441] 上面的日志，提示问题出在dialog验证上，dialog验证失败的原因可能与contact头有关。
+然后我有仔细的分析了一下SIP转包。发现contact中的ip地址192.168.2.161并不是fs的地址。但是它为什么会出现在fs回的200ok中呢？
+这是我就想起了fs vars.xml，其中有几个参数是用来配置服务器的ip地址的。
+由于我的fs是个树莓派，ip是自动分配的，重启之后，可能获取了新的ip。但是老的ip地址，还是存在于vars.xml中。
+然后我就去排查了一下fs的var.xml， 发现下面三个参数都是192.168.2.161， 但是实际上树莓派的地址已经不是这个了。
+bind_server_ip external_rtp_ip external_sip_ip 解决方案：改变fs vars.xml中的地址配置信息，然后重启fs。
+除了fs的原因，还有一部分原因可能是错误的使用了fix_nated_contact。**务必记住：对于位于边界的SIP服务器来说，对于进入的SIP请求，一般需要fix_nated_contaced。对于这个请求的响应，则不需要进行nat处理。
+深入思考一下，为什么concact头修改的错了，往往ack就会有问题呢？ 实际上ack请求的url部分，就是由响应消息的contact头的ulr部分。</description>
     </item>
     
     <item>
@@ -2631,6 +2852,16 @@ Media Resource Broker (MRB) entity, which manages the availability of Media Serv
       
       <guid>https://wdd.js.org/posts/old-blog/nh68ws/</guid>
       <description>4种NAT类型 NAT类型 接收数据前是否要先发送数据 有没有可能检测下一个IP:PORT对是否打开 是否限制发包目的的IP:PORT 全锥型 no yes no 限制锥型 yes yes only IP 端口限制型 yes yes yes 对称型 yes no yes NAT穿透 • STUN: Simple traversal of UDP over NAT• TURN: Traversal of UDP over Relay NAT• ALG: Application Layer Gateways• MANUAL: Manual configuration (port forwarding)• UPNP: Universal Plug and Play</description>
+    </item>
+    
+    <item>
+      <title>BLF指示灯</title>
+      <link>https://wdd.js.org/opensips/ch9/blf/</link>
+      <pubDate>Fri, 20 Nov 2020 15:45:56 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch9/blf/</guid>
+      <description>What Is a Busy Lamp Field (BLF) and Why Do You Need It? Busy lamp field is a presence indicator that allows you to see who in your organization is available (or not) for a phone call at any given time.
+The term “busy lamp field” sounds a bit more involved than it really is. Put simply, it just means the ability to see who in your organization is available or not for a phone call at any given time.</description>
     </item>
     
     <item>
@@ -3016,6 +3247,31 @@ ctags -R # 当前目录及其子目录生成ctags文件 进入vim vim main.c # :
     </item>
     
     <item>
+      <title>siphub 轻量级实时SIP信令收包的服务</title>
+      <link>https://wdd.js.org/opensips/tools/siphub/</link>
+      <pubDate>Thu, 06 Aug 2020 11:19:01 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/tools/siphub/</guid>
+      <description>o我写siphub的原因是homer太难用了！！经常查不到想查的数据，查询的速度也很慢。
+项目地址：https://github.com/wangduanduan/siphub
+架构 SIP服务器例如OpenSIPS或者FS可以通过hep协议将数据写到siphub, siphub将数据规整之后写入MySql, siphub同时也提供Web页面来查询和展示SIP消息。 功能介绍 sip-hub是一个专注sip信令的搜索以及时序图可视化展示的服务。
+相比于Homer, sip-hub做了大量的功能简化。同时也提供了一些个性化的查询，例如被叫后缀查询，仅域名查询等。
+sip-hub服务仅有3个页面
+sip消息搜索页面，用于按照主被叫、域名和时间范围搜索呼叫记录 时序图展示页面，用于展示SIP时序图和原始SIP消息 可以导入导出SIP消息 可以查找A-Leg 监控功能 大量简化搜索结果页面。siphub的搜索结果页面，每个callId相同的消息，只展示一条。 相关截图 搜索页面 siphub的搜索结果仅仅展示callId相同的最早的一条记录，这样就避免了像homer那种，看起来很多个消息，实际上都是属于一个INVITE的。 From字段和To字段都支持域名查询：@test.cc From字段也支持后缀查询，例如1234这种号码，可以只输入234就能查到，但是后缀要写完整，只查23是查不到的。 To字段仅仅支持精确查询 信令展示页面 点击对应的消息，详情也会自动跳转出来。 安装 首先需要安装MySql数据库，并在其中建立一个名为siphub的数据库 运行 dbHost 数据库地址 dbUser 数据库用户 dbName 数据库名 dataKeepDays 抓包保存天数 3000端口是web页面端口 9060是hep消息收取端口 docker run -d -p 3000:3000 -p 9060:9060/udp \ --env NODE_ENV=production \ --env dbHost=1.2.3.4 \ --env dbUser=root \ --env dbPwd=123456 \ --env dbName=siphub \ --env dataKeepDays=3 \ --name siphub wangduanduan/siphub 集成 OpenSIPS集成 test witch OpenSIPS 2.</description>
+    </item>
+    
+    <item>
+      <title>sipsak</title>
+      <link>https://wdd.js.org/opensips/tools/sipsak/</link>
+      <pubDate>Fri, 31 Jul 2020 19:16:36 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/tools/sipsak/</guid>
+      <description>sipsak is a command line tool which can send simple requests to a SIP server. It can run additional tests on a SIP server which are usefull for admins and developers of SIP enviroments.
+https://github.com/nils-ohlmeier/sipsak
+安装 apt-get install sipsak 发送options sipsak -vv -p 192.168.2.63:5060 -s sip:8001@test.cc man SIPSAK(1) User Manuals SIPSAK(1) NAME sipsak - a utility for various tests on sip servers and user agents SYNOPSIS sipsak [-dFGhiILnNMRSTUVvwz] [-a PASSWORD ] [-b NUMBER ] [-c SIPURI ] [-C SIPURI ] [-D NUMBER ] [-e NUMBER ] [-E STRING ] [-f FILE ] [-g STRING ] [-H HOSTNAME ] [-j STRING ] [-J STRING ] [-l PORT ] [-m NUMBER ] [-o NUMBER ] [-p HOSTNAME ] [-P NUMBER ] [-q REGEXP ] [-r PORT ] [-t NUMBER ] [-u STRING ] [-W NUMBER ] [-x NUMBER ] -s SIPURI DESCRIPTION sipsak is a SIP stress and diagnostics utility.</description>
+    </item>
+    
+    <item>
       <title>5G时代 视频沟通会代替音频吗？</title>
       <link>https://wdd.js.org/posts/old-blog/sgqpw4/</link>
       <pubDate>Mon, 27 Jul 2020 22:56:49 +0800</pubDate>
@@ -3097,6 +3353,39 @@ apt-get install m4 能否举个m4例子？ hello-world.</description>
 Voice Engine（音频引擎） Voice Engine包含iSAC/iLBC Codec（音频编解码器，前者是针对宽带和超宽带，后者是针对窄带） NetEQ for voice（处理网络抖动和语音包丢失） Echo Canceler（回声消除器）/ Noise Reduction（噪声抑制） Video Engine（视频引擎） VP8 Codec（视频图像编解码器） Video jitter buffer（视频抖动缓冲器，处理视频抖动和视频信息包丢失） Image enhancements（图像质量增强） Transport SRTP（安全的实时传输协议，用以音视频流传输） Multiplexing（多路复用） P2P，STUN+TURN+ICE（用于NAT网络和防火墙穿越的） 除此之外，安全传输可能还会用到DTLS（数据报安全传输），用于加密传输和密钥协商 整个WebRTC通信是基于UDP的 WebRTC底层协议 WebRTC 核心的协议都是在右侧基于 UDP 基础上搭建起来的。
 其中，ICE、STUN、TURN 用于内网穿透, 解决了获取与绑定外网映射地址，以及 keep alive 机制
 DTLS 用于对传输内容进行加密，可以看做是 UDP 版的 TLS。由于 WebRTC 对安全比较重视，这一层是必须的。所有WebRTC组件都必须加密，并且其JavaScript API只能用于安全源（HTTPS或本地主机）。信令机制并不是由WebRTC标准定义的，所以您必须确保使用安全协议。 SRTP 与 SRTCP 是对媒体数据的封装与传输控制协议 SCTP 是流控制传输协议，提供类似 TCP 的特性，SCTP 可以基于 UDP 上构建，在 WebRTC 里是在 DTLS 协议之上 RTCPeerConnection 用来建立和维护端到端连接，并提供高效的音视频流传输 RTCDataChannel 用来支持端到端的任意二进制数据传输 WebRTC 协议栈解释</description>
+    </item>
+    
+    <item>
+      <title>通话质量差</title>
+      <link>https://wdd.js.org/opensips/ch7/poor-quality/</link>
+      <pubDate>Wed, 08 Jul 2020 18:50:35 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch7/poor-quality/</guid>
+      <description>通话质量差，一般可能以下因素有关。
+媒体服务器或者媒体代理服务器CPU, 内存异常 通信网络差 中继或者网关送过来的本来音质就不好。 解决思路：
+这个需要监控媒体服务器或者媒体代理CPU，内存是否正常 也可以在媒体代理上用tupdump抓包，然后用wireshark分析 调听服务端的录音，看看服务端录音是否也存在音质差的问题 </description>
+    </item>
+    
+    <item>
+      <title>一方听不到另外一方的声音</title>
+      <link>https://wdd.js.org/opensips/ch7/one-leg-audio/</link>
+      <pubDate>Wed, 08 Jul 2020 18:49:58 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch7/one-leg-audio/</guid>
+      <description> 这个问题很大可能和和SDP没有正确修改有关。需要排查SIP信令的sdp地址是否正确。 防火墙策略问题：有的网络允许udp出去，但是不允许udp进来。需要设置防火墙策略。 udp端口范围太小。一般一个通话需要占用4个udp端口。如果开放的udp端口太少，在通话达到一定数量后，就会出现一部分呼叫没有可用端口。 用户设备的问题。例如用户的电脑声卡或者扬声器出现问题。 由于网络的复杂性，还有很多可能 一般遇到这个问题，可以按照如下的思路排查：
+服务端有录音功能的，可以先在服务端听录音，看看服务端录音里是否正常。一般来说有四种情况。 两方的录音都没有 主叫方有，被叫方没有 被叫方有，主叫方没有 主被叫都有。但是就是一方听不到另一方。 通过排查服务端的录音，就可以大致知道到底是AB两个leg, 每个leg上的语音流收发的情况。
+从信令的的sdp中分析，这个需要一定的SIP协议的分析能力。有些时候，sdp里面的媒体地址不正确，也会导致媒体流无法正常首发。 NAT策略。NAT一般有四种，用的比较多的是端口限制型。这种NAT要求外网流量在进入NAT内部时，必需先有内部的流量出去。当内部流量出去之后，这个NAT洞才会出现，外部的流量才能从这个洞进入。如果NAT内部设备一直不发送rtp包，那么外部的流量即使进来，也会被防火墙拦截掉。 无论是运维人员还是开发人员，在遇到媒体流问题时，一定要先搞清楚整个软交换的网络拓扑架构。否则只能南辕北辙。 sngrep -cr, 加上r这个参数，可以实时观察媒体流的流动情况。是个非常好的功能。但是对于那种加密的媒体流，sngrep是抓不到的，这点要注意。常见的WebRTC的媒体流就是加密的。 最终如果还是解决不了，那么只能祭出最后的杀器：tcpdump + wireshark。服务端抓包的话，虽然sngrep可以抓包，但是比较浪费内存还可能会出现丢包。最好用tcpdump抓包成文件，然后在wireshark上分析。 </description>
+    </item>
+    
+    <item>
+      <title>30秒自动挂断</title>
+      <link>https://wdd.js.org/opensips/ch7/30-seconds-drop/</link>
+      <pubDate>Wed, 08 Jul 2020 18:47:06 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch7/30-seconds-drop/</guid>
+      <description>在通话接近30秒时，呼叫自动挂断。
+有很大的可能和丢失了ACK有关。这个需要用sngrep去抓包看SIP时序图来确定是否是ACK丢失。
+丢失ACK的原因很大可能是NAT没有处理好，或者是网络协议不匹配等等。</description>
     </item>
     
     <item>
@@ -3242,6 +3531,15 @@ Content-Type: application/sdp </description>
     </item>
     
     <item>
+      <title>wireshark 播放抓包文件</title>
+      <link>https://wdd.js.org/opensips/tools/wireshark-player-pcap/</link>
+      <pubDate>Tue, 23 Jun 2020 18:00:05 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/tools/wireshark-player-pcap/</guid>
+      <description>Decode As Udp wireshark 有时候并不能把udp包识别为rtp包，所以这边可能需要手动设置解码方式</description>
+    </item>
+    
+    <item>
       <title>fping 网络状态监控测试</title>
       <link>https://wdd.js.org/posts/old-blog/qtdzvr/</link>
       <pubDate>Sat, 20 Jun 2020 17:06:42 +0800</pubDate>
@@ -3377,6 +3675,124 @@ docker版本不一样 脚本不一样 镜像的问题 &amp;hellip; 从各种角�
       <guid>https://wdd.js.org/opensips/ch6/acc/</guid>
       <description>opensips 1.x 使用各种flag去设置一个呼叫是否需要记录。从opensips 2.2开始，不再使用flag的方式，而使用 do_accounting() 函数去标记是否需要记录呼叫。
 注意 do_accounting()函数并不是收到SIP消息后立即写呼叫记录，也仅仅是做一个标记。实际的写数据库或者写日志发生在事务或者dialog完成的时候。</description>
+    </item>
+    
+    <item>
+      <title>serial_183</title>
+      <link>https://wdd.js.org/opensips/ch8/serial-183/</link>
+      <pubDate>Thu, 28 May 2020 10:01:57 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch8/serial-183/</guid>
+      <description># # this example shows how to use forking on failure # log_level=3 log_stderror=1 listen=192.168.2.16 # ------------------ module loading ---------------------------------- #set module path mpath=&amp;#34;/usr/local/lib/opensips/modules/&amp;#34; # Uncomment this if you want to use SQL database loadmodule &amp;#34;tm.so&amp;#34; loadmodule &amp;#34;sl.so&amp;#34; loadmodule &amp;#34;maxfwd.so&amp;#34; # ------------------------- request routing logic ------------------- # main routing logic route{ # initial sanity checks -- messages with # max_forwards==0, or excessively long requests if (!mf_process_maxfwd_header(&amp;#34;10&amp;#34;)) { sl_send_reply(&amp;#34;483&amp;#34;,&amp;#34;Too Many Hops&amp;#34;); exit; }; if ($ml &amp;gt;= 2048 ) { sl_send_reply(&amp;#34;513&amp;#34;, &amp;#34;Message too big&amp;#34;); exit; }; # skip register for testing purposes if (is_methos(&amp;#34;REGISTER&amp;#34;)) { sl_send_reply(&amp;#34;200&amp;#34;, &amp;#34;ok&amp;#34;); exit; }; if (is_method(&amp;#34;INVITE&amp;#34;)) { seturi(&amp;#34;sip:xxx@192.</description>
+    </item>
+    
+    <item>
+      <title>replicate</title>
+      <link>https://wdd.js.org/opensips/ch8/replicate/</link>
+      <pubDate>Thu, 28 May 2020 10:01:28 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch8/replicate/</guid>
+      <description># # demo script showing how to set-up usrloc replication # # ----------- global configuration parameters ------------------------ log_level=3 # logging level (cmd line: -dddddddddd) log_stderror=yes # (cmd line: -E) # ------------------ module loading ---------------------------------- #set module path mpath=&amp;#34;/usr/local/lib/opensips/modules/&amp;#34; loadmodule &amp;#34;db_mysql.so&amp;#34; loadmodule &amp;#34;sl.so&amp;#34; loadmodule &amp;#34;tm.so&amp;#34; loadmodule &amp;#34;maxfwd.so&amp;#34; loadmodule &amp;#34;usrloc.so&amp;#34; loadmodule &amp;#34;registrar.so&amp;#34; loadmodule &amp;#34;auth.so&amp;#34; loadmodule &amp;#34;auth_db.so&amp;#34; # ----------------- setting module-specific parameters --------------- # digest generation secret; use the same in backup server; # also, make sure that the backup server has sync&amp;#39;ed time modparam(&amp;#34;auth&amp;#34;, &amp;#34;secret&amp;#34;, &amp;#34;alsdkhglaksdhfkloiwr&amp;#34;) # ------------------------- request routing logic ------------------- # main routing logic route{ # initial sanity checks -- messages with # max_forwars==0, or excessively long requests if (!</description>
+    </item>
+    
+    <item>
+      <title>redirect</title>
+      <link>https://wdd.js.org/opensips/ch8/redirect/</link>
+      <pubDate>Thu, 28 May 2020 10:01:07 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch8/redirect/</guid>
+      <description># # $Id$ # # this example shows use of ser as stateless redirect server # # ------------------ module loading ---------------------------------- #set module path mpath=&amp;#34;/usr/local/lib/opensips/modules/&amp;#34; loadmodule &amp;#34;sl.so&amp;#34; # ------------------------- request routing logic ------------------- # main routing logic route{ # for testing purposes, simply okay all REGISTERs if ($rm==&amp;#34;REGISTER&amp;#34;) { log(&amp;#34;REGISTER&amp;#34;); sl_send_reply(&amp;#34;200&amp;#34;, &amp;#34;ok&amp;#34;); return; }; # rewrite current URI, which is always part of destination ser rewriteuri(&amp;#34;sip:parallel@siphub.net:9&amp;#34;); # append one more URI to the destination ser append_branch(&amp;#34;sip:redirect@siphub.</description>
+    </item>
+    
+    <item>
+      <title>pstn</title>
+      <link>https://wdd.js.org/opensips/ch8/pstn/</link>
+      <pubDate>Thu, 28 May 2020 10:00:46 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch8/pstn/</guid>
+      <description># # $Id$ # # example: ser configured as PSTN gateway guard; PSTN gateway is located # at 192.168.0.10 # # ------------------ module loading ---------------------------------- #set module path mpath=&amp;#34;/usr/local/lib/opensips/modules/&amp;#34; loadmodule &amp;#34;sl.so&amp;#34; loadmodule &amp;#34;tm.so&amp;#34; loadmodule &amp;#34;acc.so&amp;#34; loadmodule &amp;#34;rr.so&amp;#34; loadmodule &amp;#34;maxfwd.so&amp;#34; loadmodule &amp;#34;db_mysql.so&amp;#34; loadmodule &amp;#34;auth.so&amp;#34; loadmodule &amp;#34;auth_db.so&amp;#34; loadmodule &amp;#34;group.so&amp;#34; loadmodule &amp;#34;uri.so&amp;#34; # ----------------- setting module-specific parameters --------------- modparam(&amp;#34;auth_db&amp;#34;, &amp;#34;db_url&amp;#34;,&amp;#34;mysql://opensips:opensipsrw@localhost/opensips&amp;#34;) modparam(&amp;#34;auth_db&amp;#34;, &amp;#34;calculate_ha1&amp;#34;, yes) modparam(&amp;#34;auth_db&amp;#34;, &amp;#34;password_column&amp;#34;, &amp;#34;password&amp;#34;) # -- acc params -- modparam(&amp;#34;acc&amp;#34;, &amp;#34;log_level&amp;#34;, 1) # that is the flag for which we will account -- don&amp;#39;t forget to # set the same one :-) modparam(&amp;#34;acc&amp;#34;, &amp;#34;log_flag&amp;#34;, 1 ) # ------------------------- request routing logic ------------------- # main routing logic route{ /* ********* ROUTINE CHECKS ********************************** */ # filter too old messages if (!</description>
+    </item>
+    
+    <item>
+      <title>nathelper</title>
+      <link>https://wdd.js.org/opensips/ch8/nathelper/</link>
+      <pubDate>Thu, 28 May 2020 10:00:24 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch8/nathelper/</guid>
+      <description># # simple quick-start config script including nathelper support # This default script includes nathelper support. To make it work # you will also have to install Maxim&amp;#39;s RTP proxy. The proxy is enforced # if one of the parties is behind a NAT. # # If you have an endpoing in the public internet which is known to # support symmetric RTP (Cisco PSTN gateway or voicemail, for example), # then you don&amp;#39;t have to force RTP proxy.</description>
+    </item>
+    
+    <item>
+      <title>msilo</title>
+      <link>https://wdd.js.org/opensips/ch8/msilo/</link>
+      <pubDate>Thu, 28 May 2020 10:00:04 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch8/msilo/</guid>
+      <description># # MSILO usage example # # $ID: daniel $ # children=2 check_via=no # (cmd. line: -v) dns=off # (cmd. line: -r) rev_dns=off # (cmd. line: -R) # ------------------ module loading ---------------------------------- #set module path mpath=&amp;#34;/usr/local/lib/opensips/modules/&amp;#34; loadmodule &amp;#34;textops.so&amp;#34; loadmodule &amp;#34;sl.so&amp;#34; loadmodule &amp;#34;db_mysql.so&amp;#34; loadmodule &amp;#34;maxfwd.so&amp;#34; loadmodule &amp;#34;tm.so&amp;#34; loadmodule &amp;#34;usrloc.so&amp;#34; loadmodule &amp;#34;registrar.so&amp;#34; loadmodule &amp;#34;msilo.so&amp;#34; # ----------------- setting module-specific parameters --------------- # -- registrar params -- modparam(&amp;#34;registrar&amp;#34;, &amp;#34;default_expires&amp;#34;, 120) # -- usrloc params -- modparam(&amp;#34;usrloc&amp;#34;, &amp;#34;db_mode&amp;#34;, 0) # -- msilo params -- modparam(&amp;#34;msilo&amp;#34;, &amp;#34;db_url&amp;#34;, &amp;#34;mysql://opensips:opensipsrw@localhost/opensips&amp;#34;) # -- tm params -- modparam(&amp;#34;tm&amp;#34;, &amp;#34;fr_timer&amp;#34;, 10 ) modparam(&amp;#34;tm&amp;#34;, &amp;#34;fr_inv_timer&amp;#34;, 15 ) modparam(&amp;#34;tm&amp;#34;, &amp;#34;wt_timer&amp;#34;, 10 ) route{ if ( !</description>
+    </item>
+    
+    <item>
+      <title>loggin</title>
+      <link>https://wdd.js.org/opensips/ch8/logging/</link>
+      <pubDate>Thu, 28 May 2020 09:59:45 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch8/logging/</guid>
+      <description># # logging example # # ------------------ module loading ---------------------------------- port=5060 log_stderror=yes log_level=3 # ------------------------- request routing logic ------------------- # main routing logic route{ # for testing purposes, simply okay all REGISTERs if (is_method(&amp;#34;REGISTER&amp;#34;)) { log(1, &amp;#34;REGISTER received\n&amp;#34;); } else { log(1, &amp;#34;non-REGISTER received\n&amp;#34;); }; if ($ru=~&amp;#34;sip:.*[@:]siphub.net&amp;#34;) { xlog(&amp;#34;request for siphub.net received\n&amp;#34;); } else { xlog(&amp;#34;request for other domain [$rd] received\n&amp;#34;); }; } </description>
+    </item>
+    
+    <item>
+      <title>httpd</title>
+      <link>https://wdd.js.org/opensips/ch8/httpd/</link>
+      <pubDate>Thu, 28 May 2020 09:59:25 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch8/httpd/</guid>
+      <description># # $Id$ # # this example shows use of opensips&amp;#39;s provisioning interface # # ------------------ module loading ---------------------------------- #set module path mpath=&amp;#34;/usr/local/lib64/opensips/modules/&amp;#34; loadmodule &amp;#34;db_mysql.so&amp;#34; loadmodule &amp;#34;httpd.so&amp;#34; modparam(&amp;#34;httpd&amp;#34;, &amp;#34;port&amp;#34;, 8888) loadmodule &amp;#34;mi_http.so&amp;#34; loadmodule &amp;#34;pi_http.so&amp;#34; modparam(&amp;#34;pi_http&amp;#34;, &amp;#34;framework&amp;#34;, &amp;#34;/usr/local/src/opensips/examples/pi_framework.xml&amp;#34;) loadmodule &amp;#34;mi_xmlrpc_ng.so&amp;#34; # ------------------------- request routing logic ------------------- # main routing logic route{ exit; } </description>
+    </item>
+    
+    <item>
+      <title>flag_reply</title>
+      <link>https://wdd.js.org/opensips/ch8/flag-reply/</link>
+      <pubDate>Thu, 28 May 2020 09:58:33 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch8/flag-reply/</guid>
+      <description># # simple quick-start config script # # ----------- global configuration parameters ------------------------ log_level=3 # logging level (cmd line: -dddddddddd) log_stderror=no # (cmd line: -E) check_via=no	# (cmd. line: -v) dns=no # (cmd. line: -r) rev_dns=no # (cmd. line: -R) children=4 port=5060 # ------------------ module loading ---------------------------------- #set module path mpath=&amp;#34;/usr/local/lib/opensips/modules/&amp;#34; # Uncomment this if you want to use SQL database #loadmodule &amp;#34;db_mysql.so&amp;#34; loadmodule &amp;#34;sl.so&amp;#34; loadmodule &amp;#34;tm.so&amp;#34; loadmodule &amp;#34;rr.so&amp;#34; loadmodule &amp;#34;maxfwd.</description>
+    </item>
+    
+    <item>
+      <title>exec</title>
+      <link>https://wdd.js.org/opensips/ch8/exec/</link>
+      <pubDate>Thu, 28 May 2020 09:58:09 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch8/exec/</guid>
+      <description># # $Id$ # # simple quick-start config script # # ----------- global configuration parameters ------------------------ #set module path mpath=&amp;#34;/usr/local/lib/opensips/modules/&amp;#34; loadmodule &amp;#34;sl.so&amp;#34; loadmodule &amp;#34;tm.so&amp;#34; loadmodule &amp;#34;usrloc.so&amp;#34; loadmodule &amp;#34;registrar.so&amp;#34; loadmodule &amp;#34;exec.so&amp;#34; # ----------------- setting module-specific parameters --------------- route{ # uri for my domain ? if (is_myself(&amp;#34;$rd&amp;#34;)) { if ($rm==&amp;#34;REGISTER&amp;#34;) { save(&amp;#34;location&amp;#34;); return; }; # native SIP destinations are handled using our USRLOC DB if (!lookup(&amp;#34;location&amp;#34;)) { # proceed to email notification if ($rm==&amp;#34;INVITE&amp;#34;) route(1) else sl_send_reply(&amp;#34;404&amp;#34;, &amp;#34;Not Found&amp;#34;); exit; }; }; # user found, forward to his current uri now if (!</description>
+    </item>
+    
+    <item>
+      <title>acc</title>
+      <link>https://wdd.js.org/opensips/ch8/acc/</link>
+      <pubDate>Thu, 28 May 2020 09:57:46 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch8/acc/</guid>
+      <description># # $Id$ # # example: accounting calls to nummerical destinations # # ------------------ module loading ---------------------------------- #set module path mpath=&amp;#34;/usr/local/lib/opensips/modules/&amp;#34; loadmodule &amp;#34;tm.so&amp;#34; loadmodule &amp;#34;acc.so&amp;#34; loadmodule &amp;#34;sl.so&amp;#34; loadmodule &amp;#34;maxfwd.so&amp;#34; loadmodule &amp;#34;rr.so&amp;#34; # ----------------- setting module-specific parameters --------------- # -- acc params -- # set the reporting log level modparam(&amp;#34;acc&amp;#34;, &amp;#34;log_level&amp;#34;, 1) # number of flag, which will be used for accounting; if a message is # labeled with this flag, its completion status will be reported modparam(&amp;#34;acc&amp;#34;, &amp;#34;log_flag&amp;#34;, 1 ) # ------------------------- request routing logic ------------------- # main routing logic route{ /* ********* ROUTINE CHECKS ********************************** */ # filter too old messages if (!</description>
+    </item>
+    
+    <item>
+      <title>acc-mysql</title>
+      <link>https://wdd.js.org/opensips/ch8/acc-mysql/</link>
+      <pubDate>Thu, 28 May 2020 09:57:04 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch8/acc-mysql/</guid>
+      <description># # Sample config for MySQL accouting with OpenSIPS # # - db_mysql module must be compiled and installed # # - new columns have to be added since by default only few are recorded # - here are full SQL statements to create acc and missed_calls tables # # CREATE TABLE `acc` ( # `id` int(10) unsigned NOT NULL auto_increment, # `method` varchar(16) NOT NULL default &amp;#39;&amp;#39;, # `from_tag` varchar(64) NOT NULL default &amp;#39;&amp;#39;, # `to_tag` varchar(64) NOT NULL default &amp;#39;&amp;#39;, # `callid` varchar(128) NOT NULL default &amp;#39;&amp;#39;, # `sip_code` char(3) NOT NULL default &amp;#39;&amp;#39;, # `sip_reason` varchar(32) NOT NULL default &amp;#39;&amp;#39;, # `time` datetime NOT NULL default &amp;#39;0000-00-00 00:00:00&amp;#39;, # `src_ip` varchar(64) NOT NULL default &amp;#39;&amp;#39;, # `dst_user` varchar(64) NOT NULL default &amp;#39;&amp;#39;, # `dst_domain` varchar(128) NOT NULL default &amp;#39;&amp;#39;, # `src_user` varchar(64) NOT NULL default &amp;#39;&amp;#39;, # `src_domain` varchar(128) NOT NULL default &amp;#39;&amp;#39;, # INDEX acc_callid (`callid`), # PRIMARY KEY (`id`) # ); # # CREATE TABLE `missed_calls` ( # `id` int(10) unsigned NOT NULL auto_increment, # `method` varchar(16) NOT NULL default &amp;#39;&amp;#39;, # `from_tag` varchar(64) NOT NULL default &amp;#39;&amp;#39;, # `to_tag` varchar(64) NOT NULL default &amp;#39;&amp;#39;, # `callid` varchar(128) NOT NULL default &amp;#39;&amp;#39;, # `sip_code` char(3) NOT NULL default &amp;#39;&amp;#39;, # `sip_reason` varchar(32) NOT NULL default &amp;#39;&amp;#39;, # `time` datetime NOT NULL default &amp;#39;0000-00-00 00:00:00&amp;#39;, # `src_ip` varchar(64) NOT NULL default &amp;#39;&amp;#39;, # `dst_user` varchar(64) NOT NULL default &amp;#39;&amp;#39;, # `dst_domain` varchar(128) NOT NULL default &amp;#39;&amp;#39;, # `src_user` varchar(64) NOT NULL default &amp;#39;&amp;#39;, # `src_domain` varchar(128) NOT NULL default &amp;#39;&amp;#39;, # INDEX acc_callid (`callid`), # PRIMARY KEY (`id`) # ); # # # ----------- global configuration parameters ------------------------ log_level=3 # debug level (cmd line: -dddddddddd) log_stderror=no # (cmd line: -E) /* Uncomment these lines to enter debugging mode */ #debug_mode=yes check_via=no	# (cmd.</description>
+    </item>
+    
+    <item>
+      <title>script_trace 打印opensips的脚本执行过程</title>
+      <link>https://wdd.js.org/opensips/ch7/cfg-trace/</link>
+      <pubDate>Wed, 27 May 2020 16:54:47 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch7/cfg-trace/</guid>
+      <description>script_trace是核心函数，不需要引入模块。
+script_trace([log_level, pv_format_string[, info_string]]) This function start the script tracing - this helps to better understand the flow of execution in the OpenSIPS script, like what function is executed, what line it is, etc. Moreover, you can also trace the values of pseudo-variables, as script execution progresses. The blocks of the script where script tracing is enabled will print a line for each individual action that is done (e.g. assignments, conditional tests, module functions, core functions, etc.</description>
     </item>
     
     <item>
@@ -3686,6 +4102,16 @@ lsof -c 进程名lsof -p 进程号lsof filename # 查看某个文件被哪个进
     </item>
     
     <item>
+      <title>回音问题调研</title>
+      <link>https://wdd.js.org/opensips/ch7/echo-back/</link>
+      <pubDate>Wed, 22 Apr 2020 15:12:11 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch7/echo-back/</guid>
+      <description> 回音现象 说话人能在麦克风中听到自己的说话声。
+回音的可能原因 有的开发，喜欢用分机打自己的号码，你分机和你的手机离得太近，自然回产生回音的。 参考资料 http://www.voiptroubleshooter.com/problems/echo.html https://www.lifewire.com/how-to-stop-producing-echo-3426515 https://www.voipmechanic.com/voip-top-5-complaints.htm https://getvoip.com/blog/2012/12/18/the-biggest-causes-behind-echo-in-voip/ https://blog.csdn.net/huoppo/article/details/6643066 </description>
+    </item>
+    
+    <item>
       <title>漫话NAT的历史todo</title>
       <link>https://wdd.js.org/opensips/ch1/story-of-nat/</link>
       <pubDate>Fri, 10 Apr 2020 13:18:53 +0800</pubDate>
@@ -3711,6 +4137,15 @@ a very small percentage of hosts in a stub domain are communicating outside of t
 使用RawCap命令需要使用管理员权限打开CMD，然后进入到RawCap.exe的目录。例如F:\Tools
 显示网卡列表 输入RawCap.exe &amp;ndash;help, 可以显示命令的使用帮助、网卡列表还有使用例子。
 F:\Tools&amp;gt;RawCap.exe --help NETRESEC RawCap version 0.2.0.0 Usage: RawCap.exe [OPTIONS] &amp;lt;interface&amp;gt; &amp;lt;pcap_target&amp;gt; &amp;lt;interface&amp;gt; can be an interface number or IP address &amp;lt;pcap_target&amp;gt; can be filename, stdout (-) or named pipe (starting with \\.\pipe\) OPTIONS: -f Flush data to file after each packet (no buffer) -c &amp;lt;count&amp;gt; Stop sniffing after receiving &amp;lt;count&amp;gt; packets -s &amp;lt;sec&amp;gt; Stop sniffing after &amp;lt;sec&amp;gt; seconds -m Disable automatic creation of RawCap firewall entry -q Quiet, don&amp;#39;t print packet count to standard out INTERFACES: 0.</description>
+    </item>
+    
+    <item>
+      <title>默认脚本</title>
+      <link>https://wdd.js.org/opensips/ch8/default/</link>
+      <pubDate>Tue, 07 Apr 2020 13:18:04 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch8/default/</guid>
+      <description># # OpenSIPS residential configuration script # by OpenSIPS Solutions &amp;lt;team@opensips-solutions.com&amp;gt; # # This script was generated via &amp;#34;make menuconfig&amp;#34;, from # the &amp;#34;Residential&amp;#34; scenario. # You can enable / disable more features / functionalities by # re-generating the scenario with different options.# # # Please refer to the Core CookBook at: # http://www.opensips.org/Resources/DocsCookbooks # for a explanation of possible statements, functions and parameters. # ####### Global Parameters ######### log_level=3 log_stderror=no log_facility=LOG_LOCAL0 children=4 /* uncomment the following lines to enable debugging */ #debug_mode=yes /* uncomment the next line to enable the auto temporary blacklisting of not available destinations (default disabled) */ #disable_dns_blacklist=no /* uncomment the next line to enable IPv6 lookup after IPv4 dns lookup failures (default disabled) */ #dns_try_ipv6=yes /* comment the next line to enable the auto discovery of local aliases based on reverse DNS on IPs */ auto_aliases=no listen=udp:127.</description>
     </item>
     
     <item>
@@ -3819,6 +4254,15 @@ lnav的特点
     </item>
     
     <item>
+      <title>Wireshark SIP 抓包</title>
+      <link>https://wdd.js.org/opensips/tools/wireshark-sip/</link>
+      <pubDate>Mon, 09 Mar 2020 12:19:37 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/tools/wireshark-sip/</guid>
+      <description>1. 打开wireshark，并选择网卡 在过滤条件中输入sip 2. 选择电话-&amp;gt; VoIP Calls 3. 选中一条呼叫记录-&amp;gt;然后点击 Flow Sequence 4. 查看消息的详情 </description>
+    </item>
+    
+    <item>
       <title>IP协议 Protocol</title>
       <link>https://wdd.js.org/network/ip-protocol/</link>
       <pubDate>Thu, 05 Mar 2020 12:48:10 +0800</pubDate>
@@ -3867,6 +4311,24 @@ lnav的特点
       <description>1. 选肉 **猪肉，肥瘦相间的五花肉才最好吃。**精瘦肉吃起来会太柴，太肥的肉会显得太腻。五花肉则刚刚好，不柴也不腻。
 2. 炒干 烧好的猪肉中如果有生水的味道，则口感不好，而且会显得肉不够熟。
 3. 具体步骤 五花肉洗净，切片。放入干净的炒锅中，然后开火烧 将五花肉的水分烧干，并且冒油，肉面发黄 放入姜葱蒜，小米椒，加入生抽，料酒，食盐爆炒。如果猪油比较少，则可以放入适量食用油 然后可以按需加入蔬菜。例如花菜、或者芹菜、或者小青椒 炒到蔬菜9成熟，然后出锅 </description>
+    </item>
+    
+    <item>
+      <title>ISUP SIP ISDN对照码表</title>
+      <link>https://wdd.js.org/opensips/ch9/isup-sip-isdn/</link>
+      <pubDate>Thu, 20 Feb 2020 22:34:47 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch9/isup-sip-isdn/</guid>
+      <description>ISUP to SIP ISUP Cause Value SIP Response Normal event 1 – unallocated number 404 Not Found 2 – no route to network 404 Not Found 3 – no route to destination 404 Not Found 16 – normal call clearing &amp;mdash; (*) 17 – user busy 486 Busy here 18 – no user responding 408 Request Timeout 19 – no answer from the user 480 Temporarily unavailable 20 – subscriber absent 480 Temporarily unavailable 21 – call rejected 403 Forbidden (+) 22 – number changed (s/o diagnostic) 410 Gone 23 – redirection to new destination 410 Gone 26 – non-selected user clearing 404 Not Found (=) 27 – destination out of order 502 Bad Gateway 28 – address incomplete 484 Address incomplete 29 – facility rejected 510 Not implemented 31 – normal unspecified 480 Temporarily unavailable Resource unavailable 34 – no circuit available 503 Service unavailable 38 – network out of order 503 Service unavailable 41 – temporary failure 503 Service unavailable 42 – switching equipment congestion 503 Service unavailable 47 – resource unavailable 503 Service unavailable Service or option not available 55 – incoming calls barred within CUG 403 Forbidden 57 – bearer capability not authorized 403 Forbidden 58 – bearer capability not presently available 503 Service unavailable 65 – bearer capability not implemented 488 Not Acceptable here 70 – Only restricted digital information bearer capability is available (National use) 488 Not Acceptable here 79 – service or option not implemented 501 Not implemented Invalid message 87 – user not member of CUG 403 Forbidden 88 – incompatible destination 503 Service unavailable 102 – Call Setup Time-out Failure 504 Gateway timeout 111 – Protocol Error Unspecified 500 Server internal error Interworking 127 – Internal Error - interworking unspecified 500 Server internal error (*) ISDN Cause 16 will usually result in a BYE or CANCEL(+) If the cause location is user then the 6xx code could be given rather than the 4xx code.</description>
+    </item>
+    
+    <item>
+      <title>rtpengine</title>
+      <link>https://wdd.js.org/opensips/ch9/rtpengine-manu/</link>
+      <pubDate>Thu, 20 Feb 2020 10:28:41 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch9/rtpengine-manu/</guid>
+      <description>帮助文档 Usage: rtpengine [OPTION...] - next-generation media proxy Application Options: -v, &amp;ndash;version Print build time and exit &amp;ndash;config-file=FILE Load config from this file &amp;ndash;config-section=STRING Config file section to use &amp;ndash;log-facility=daemon|local0|&amp;hellip;|local7 Syslog facility to use for logging **-L, &amp;ndash;log-level=INT ** Mask log priorities above this level 取值从0-7， 7 debug 6 info 5 notice **-E, &amp;ndash;log-stderr ** Log on stderr instead of syslog &amp;ndash;no-log-timestamps Drop timestamps from log lines to stderr &amp;ndash;log-mark-prefix Prefix for sensitive log info &amp;ndash;log-mark-suffix Suffix for sensitive log info **-p, &amp;ndash;pidfile=FILE ** Write PID to file **-f, &amp;ndash;foreground ** Don&amp;rsquo;t fork to background -t, &amp;ndash;table=INT Kernel table to use -F, &amp;ndash;no-fallback Only start when kernel module is available **-i, &amp;ndash;interface=[NAME/]IP[!</description>
     </item>
     
     <item>
@@ -4020,6 +4482,15 @@ crontab 每隔x秒执行一次 每隔5秒
     </item>
     
     <item>
+      <title>opensips 与 webrtc资料整理</title>
+      <link>https://wdd.js.org/opensips/ch9/webrtc-pdf/</link>
+      <pubDate>Tue, 31 Dec 2019 09:25:42 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch9/webrtc-pdf/</guid>
+      <description>参考 https://www.opensips.org/Documentation/Tutorials-WebSocket-2-2 https://opensips.org/pub/events/2016-05-10_OpenSIPS-Summit_Amsterdam/Pete_Kelly-OpenSIPS_Summit2016-OpenSIPSandWebRTC.pdf pdf附件 Eric_Tamme-OpenSIPS_Summit_Austin_2015-WebRTC_with_OpenSIPS.pdf Pete_Kelly-OpenSIPS_Summit2016-OpenSIPSandWebRTC.pdf </description>
+    </item>
+    
+    <item>
       <title>手工安装oh-my-zsh</title>
       <link>https://wdd.js.org/shell/manu-install-ohmyzsh/</link>
       <pubDate>Fri, 27 Dec 2019 09:29:41 +0800</pubDate>
@@ -4170,6 +4641,15 @@ m=audio 31114 RTP/AVP 0 8 9 101 a=rtpmap:0 PCMU/8000 a=rtpmap:8 PCMA/8000 a=rtpm
     </item>
     
     <item>
+      <title>tcp-dump</title>
+      <link>https://wdd.js.org/opensips/tools/tcp-dump/</link>
+      <pubDate>Wed, 04 Dec 2019 11:08:27 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/tools/tcp-dump/</guid>
+      <description>sngrep长时间抓包会导致内存堆积，所以sngrep只适合短时间分析抓包，长时间抓包需要用tcp-dump</description>
+    </item>
+    
+    <item>
       <title>无标题</title>
       <link>https://wdd.js.org/posts/old-blog/aev8t0/</link>
       <pubDate>Mon, 02 Dec 2019 14:00:56 +0800</pubDate>
@@ -4285,6 +4765,19 @@ IP数据报 = IP首部(20字节) + TCP首部(20字节) + 应用数据 # 针对TC
     </item>
     
     <item>
+      <title>homer: 统一的sip包集中处理工具</title>
+      <link>https://wdd.js.org/opensips/tools/homer/</link>
+      <pubDate>Tue, 26 Nov 2019 19:58:54 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/tools/homer/</guid>
+      <description>相比于sngrep, Homer能够保存从历史记录中搜索SIP包信息。除此以外，Homer可以很方便的与OpenSIPS或FS进行集成。
+最精简版本的Homer部署需要三个服务。
+postgres 数据库，用来存储SIP信息 heplify-server 用来处理Hep消息，存储到数据库 homer-app 前端搜索查询界面 这三个服务都可以用docker镜像的方式部署，非常方便。
+说实话：homer实际上并不好用。你可以对比一下siphub就知道了。
+参考资料 https://blog.opensips.org/2017/03/22/capturing-beyond-sip/https://www.opensips.org/Documentation/Tutorials-Tracing</description>
+    </item>
+    
+    <item>
       <title>技巧1</title>
       <link>https://wdd.js.org/network/kttu4i/</link>
       <pubDate>Mon, 25 Nov 2019 20:24:24 +0800</pubDate>
@@ -4328,6 +4821,27 @@ domain 表示通信域，最长见的有以下两个域 AF_INET 因特网通信 
 除非是动辄几千的会员，我会考虑自己是否真正需要。一百左右的年费会员，在上海，也就是喝三四杯奶茶的价钱。
 所以，我就买了会员。
 买了会员有什么感觉，感觉我可能会多创建几个知识库吧。</description>
+    </item>
+    
+    <item>
+      <title>WebRTC简介</title>
+      <link>https://wdd.js.org/opensips/ch9/notes/</link>
+      <pubDate>Sat, 23 Nov 2019 10:51:20 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch9/notes/</guid>
+      <description>WebRTC 功能 音频视频通话 视频会议 数据传输 WebRTC 架构 对等实体之间通过信令服务传递信令 对等实体之间的媒体流可以直接传递，无需中间服务器 内部结构 紫色部分是Web开发者API层 蓝色实线部分是面向浏览器厂商的API层 蓝色虚线部分浏览器厂商可以自定义实现 WebRTC有三个模块：
+Voice Engine（音频引擎） Voice Engine包含iSAC/iLBC Codec（音频编解码器，前者是针对宽带和超宽带，后者是针对窄带） NetEQ for voice（处理网络抖动和语音包丢失） Echo Canceler（回声消除器）/ Noise Reduction（噪声抑制） Video Engine（视频引擎） VP8 Codec（视频图像编解码器） Video jitter buffer（视频抖动缓冲器，处理视频抖动和视频信息包丢失） Image enhancements（图像质量增强） Transport SRTP（安全的实时传输协议，用以音视频流传输） Multiplexing（多路复用） P2P，STUN+TURN+ICE（用于NAT网络和防火墙穿越的） 除此之外，安全传输可能还会用到DTLS（数据报安全传输），用于加密传输和密钥协商 整个WebRTC通信是基于UDP的 WebRTC 如何通信 getUserMedia用来捕获本地的语音流或者视频流 RTCPeerConnection用来代表WebRTC链接，用来处理对等实体之间的流数据 RTCDataChannel 用来传递各种数据 WebRTC 的核心组件 音视频引擎：OPUS、VP8 / VP9、H264 传输层协议：底层传输协议为 UDP 媒体协议：SRTP / SRTCP 数据协议：DTLS / SCTP P2P 内网穿透：STUN / TURN / ICE / Trickle ICE 信令与 SDP 协商：HTTP / WebSocket / SIP、 Offer Answer 模型 WebRTC 音频和视频引擎 最底层是硬件设备，上面是音频捕获模块和视频捕获模块 中间部分为音视频引擎。音频引擎负责音频采集和传输，具有降噪、回声消除等功能。视频引擎负责网络抖动优化，互联网传输编解码优化 在音视频引擎之上是 一套 C++ API，在 C++ 的 API 之上是提供给浏览器的Javascript API WebRTC 底层协议 WebRTC 核心的协议都是在右侧基于 UDP 基础上搭建起来的 其中，ICE、STUN、TURN 用于内网穿透, 解决了获取与绑定外网映射地址，以及 keep alive 机制 DTLS 用于对传输内容进行加密，可以看做是 UDP 版的 TLS。由于 WebRTC 对安全比较重视，这一层是必须的。所有WebRTC组件都必须加密，并且其JavaScript API只能用于安全源（HTTPS或本地主机）。信令机制并不是由WebRTC标准定义的，所以您必须确保使用安全协议。 SRTP 与 SRTCP 是对媒体数据的封装与传输控制协议 SCTP 是流控制传输协议，提供类似 TCP 的特性，SCTP 可以基于 UDP 上构建，在 WebRTC 里是在 DTLS 协议之上 RTCPeerConnection 用来建立和维护端到端连接，并提供高效的音视频流传输 RTCDataChannel 用来支持端到端的任意二进制数据传输 WebRTC 协议栈解释 ICE：互动式连接建立（RFC 5245） STUN：用于NAT的会话遍历实用程序（RFC 5389） TURN：在NAT周围使用继电器进行遍历（RFC 5766） SDP：会话描述协议（RFC 4566） DTLS：数据报传输层安全性（RFC 6347） SCTP：流控制传输协议（RFC 4960） SRTP：安全实时传输协议（RFC 3711） 浏览器和某些非浏览器之间的呼叫，有些时候以为没有DTLS指纹，而导致呼叫失败。如下图使用JsSIP, 一个sipPhone和WebRTC之间的呼叫，因为没有携带DTLS指纹而导致呼叫失败。</description>
+    </item>
+    
+    <item>
+      <title>WebRTC学习资料分享</title>
+      <link>https://wdd.js.org/opensips/ch9/webrtc-ref/</link>
+      <pubDate>Sat, 23 Nov 2019 10:49:56 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch9/webrtc-ref/</guid>
+      <description>目前在做基于WebRTC的语音和视频终端，语音和视频通话的质量都不错。感谢WebRTC，站在巨人的肩膀上，我们可以看得更远。
+WebRTC浏览器兼容性 github demos 下面两个都是github项目，项目中有各种WebRTC的demo。除了demo之外，这两个项目的issuese也是非常值得看的，可以解决常见的问题
+https://webrtc.github.io/samples/ https://github.com/muaz-khan/WebRTC-Experiment 相关资料网站 webrtc官网： https://webrtc.org/ webrtchacks： https://webrtchacks.com/ webrtc官网： https://webrtc.org.cn/ webrtc安全相关： http://webrtc-security.github.io/ webrtc谷歌开发者教程： https://codelabs.developers.google.com/codelabs/webrtc-web/ sdp for webrtc https://tools.ietf.org/id/draft-nandakumar-rtcweb-sdp-01.html 各种资料 https://webrtc.org/start/ https://www.w3.org/TR/webrtc/ 浏览器内核 webkit官网：https://webkit.org/ WebRTC相关库 webrtc-adapter https://github.com/webrtchacks/adapter WebRTC周边js库 库 地址 Addlive http://www.addlive.com/platform-overview/ Apidaze https://developers.apidaze.io/webrtc Bistri http://developers.bistri.com/webrtc-sdk/#js-sdk Crocodile https://www.crocodilertc.net/documentation/javascript/ EasyRTC http://www.easyrtc.com/docs/ Janus http://janus.conf.meetecho.com/docs/JS.html JsSIP http://jssip.net/documentation/ Openclove http://developer.openclove.com/docs/read/ovxjs_api_doc Oracle http://docs.oracle.com/cd/E40972_01/doc.70/e49239/index.html Peerjs http://peerjs.com/docs/#api Phono http://phono.com/docs Plivo https://plivo.com/docs/sdk/web/ Pubnub http://www.pubnub.com/docs/javascript/javascript-sdk.html Quobis https://quobis.atlassian.net/wiki/display/QoffeeSIP/API SimpleWebRTC from &amp;amp;Yet http://simplewebrtc.com/ SIPML5 http://sipml5.org/docgen/symbols/SIPml.html TenHands https://www.tenhands.net/developer/docs.htm TokBox http://tokbox.</description>
     </item>
     
     <item>
@@ -4874,6 +5388,16 @@ WinMerge-2.16.4-Setup.exe.zip</description>
     </item>
     
     <item>
+      <title>ERROR:carrierroute:carrier_tree_fixup: default_carrier not found</title>
+      <link>https://wdd.js.org/opensips/ch7/without-default-carrier/</link>
+      <pubDate>Sat, 12 Oct 2019 12:17:27 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch7/without-default-carrier/</guid>
+      <description>route_tree表中需要增加carrier
+id carrier 0 default </description>
+    </item>
+    
+    <item>
       <title>手工安装git最新版</title>
       <link>https://wdd.js.org/posts/old-blog/gxkb91/</link>
       <pubDate>Sat, 12 Oct 2019 11:25:20 +0800</pubDate>
@@ -5142,6 +5666,15 @@ show codec </description>
     </item>
     
     <item>
+      <title>pjsip</title>
+      <link>https://wdd.js.org/opensips/tools/pjsip/</link>
+      <pubDate>Sun, 08 Sep 2019 13:02:46 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/tools/pjsip/</guid>
+      <description>环境说明 centos7.6 docker 容器 过程 wget https://www.pjsip.org/release/2.9/pjproject-2.9.zip unzip pjproject-2.9.zip cd pjproject-2.9 chmod +x configure aconfigure yum install gcc gcc-c++ make -y make dep make make install yum install centos-release-scl yum install rh-python36 参考 https://www.pjsip.org/download.htm https://trac.pjsip.org/repos/wiki/Getting-Started https://trac.pjsip.org/repos/wiki/Getting-Started/Autoconf https://linuxize.com/post/how-to-install-python-3-on-centos-7/ </description>
+    </item>
+    
+    <item>
       <title>关注点分离的问题</title>
       <link>https://wdd.js.org/posts/old-blog/xi7kpf/</link>
       <pubDate>Fri, 06 Sep 2019 12:37:25 +0800</pubDate>
@@ -5184,6 +5717,15 @@ show codec </description>
       <description>安装依赖 yum update &amp;amp;&amp;amp; yum install epel-release yum install openssl-devel mariadb-devel libmicrohttpd-devel \ libcurl-devel libconfuse-devel ncurses-devel 编译 下面的脚本，默认将opensips安装在/usr/local/etc/目录下
 &amp;gt; cd opensips-2.4.6 # 编译 &amp;gt; make all -j4 include_modules=&amp;#34;db_mysql httpd db_http regex rest_client carrierroute dialplan&amp;#34; # 安装 &amp;gt; make install include_modules=&amp;#34;db_mysql httpd db_http regex rest_client carrierroute dialplan&amp;#34; 如果想要指定安装位置，可以使用prefix参数指定，例如指定安装在/usr/aaa目录
 &amp;gt; cd opensips-2.4.6 # 编译 &amp;gt; make all -j4 prefix=/usr/aaa include_modules=&amp;#34;db_mysql httpd db_http regex rest_client carrierroute dialplan&amp;#34; # 安装 &amp;gt; make install prefix=/usr/aaa include_modules=&amp;#34;db_mysql httpd db_http regex rest_client carrierroute dialplan&amp;#34; </description>
+    </item>
+    
+    <item>
+      <title>SIPp：sip压测模拟ua工具</title>
+      <link>https://wdd.js.org/opensips/tools/sipp/</link>
+      <pubDate>Wed, 04 Sep 2019 12:47:07 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/tools/sipp/</guid>
+      <description>安装 SIPp 3.3 # 解压 tar -zxvf sipp-3.3.990.tar.gz # centos 安装依赖 yum install lksctp-tools-devel libpcap-devel gcc-c++ gcc -y # ubuntu 安装以来 apt-get install -y pkg-config dh-autoreconf ncurses-dev build-essential libssl-dev libpcap-dev libncurses5-dev libsctp-dev lksctp-tools ./configure --with-sctp --with-pcap make &amp;amp;&amp;amp; make install sipp -v SIPp v3.4-beta1 (aka v3.3.990)-SCTP-PCAP built Oct 6 2019, 20:12:17. This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.</description>
     </item>
     
     <item>
@@ -5389,6 +5931,15 @@ awk &amp;#39;{print $3}&amp;#39; test.log // $3表示第三列 cut -d &amp;#34; 
       
       <guid>https://wdd.js.org/posts/old-blog/ut5mz6/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>opensips启动失败没有任何报错日志</title>
+      <link>https://wdd.js.org/opensips/ch7/without-log/</link>
+      <pubDate>Fri, 02 Aug 2019 17:48:49 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch7/without-log/</guid>
+      <description> 将opensips.cfg文件中的，log_stderror的值改为yes, 让出错直接输出到标准错误流上，然后opensips start 如果第一步还是没有日志输出，则opensips -f opensips.cfg </description>
     </item>
     
     <item>
@@ -5697,6 +6248,64 @@ DOCKER_STORAGE_OPTIONS=&amp;#34;-s overlay&amp;#34; systemctl daemon-reload serv
     </item>
     
     <item>
+      <title>opensips-summit-fraud</title>
+      <link>https://wdd.js.org/opensips/ch8/fraud/</link>
+      <pubDate>Tue, 02 Jul 2019 22:35:03 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch8/fraud/</guid>
+      <description># # $Id$ # # OpenSIPS residential configuration script # by OpenSIPS Solutions &amp;lt;team@opensips-solutions.com&amp;gt; # # This script was generated via &amp;#34;make menuconfig&amp;#34;, from # the &amp;#34;Residential&amp;#34; scenario. # You can enable / disable more features / functionalities by # re-generating the scenario with different options.# # # Please refer to the Core CookBook at: # http://www.opensips.org/Resources/DocsCookbooks # for a explanation of possible statements, functions and parameters. # ####### Global Parameters ######### log_level=3 log_stderror=yes log_facility=LOG_LOCAL0 children=4 memdump=-1 /* uncomment the following line to enable debugging */ #debug_mode=yes /* uncomment the next line to enable the auto temporary blacklisting of not available destinations (default disabled) */ #disable_dns_blacklist=no /* uncomment the next line to enable IPv6 lookup after IPv4 dns lookup failures (default disabled) */ #dns_try_ipv6=yes /* comment the next line to enable the auto discovery of local aliases based on revers DNS on IPs */ auto_aliases=no listen=udp:127.</description>
+    </item>
+    
+    <item>
+      <title>cluecon-fslb</title>
+      <link>https://wdd.js.org/opensips/ch8/fs-loadbalance/</link>
+      <pubDate>Tue, 02 Jul 2019 22:34:43 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch8/fs-loadbalance/</guid>
+      <description># # OpenSIPS residential configuration script # by OpenSIPS Solutions &amp;lt;team@opensips-solutions.com&amp;gt; # # This script was generated via &amp;#34;make menuconfig&amp;#34;, from # the &amp;#34;Residential&amp;#34; scenario. # You can enable / disable more features / functionalities by # re-generating the scenario with different options.# # # Please refer to the Core CookBook at: # http://www.opensips.org/Resources/DocsCookbooks # for a explanation of possible statements, functions and parameters. # ####### Global Parameters ######### log_level=3 memdump=1 log_stderror=yes log_facility=LOG_LOCAL0 children=10 /* uncomment the following lines to enable debugging */ #debug_mode=yes /* uncomment the next line to enable the auto temporary blacklisting of not available destinations (default disabled) */ #disable_dns_blacklist=no /* uncomment the next line to enable IPv6 lookup after IPv4 dns lookup failures (default disabled) */ #dns_try_ipv6=yes /* comment the next line to enable the auto discovery of local aliases based on revers DNS on IPs */ auto_aliases=no listen=udp:192.</description>
+    </item>
+    
+    <item>
+      <title>freeswitch-dtmf-language</title>
+      <link>https://wdd.js.org/opensips/ch8/dtmf-lan/</link>
+      <pubDate>Tue, 02 Jul 2019 22:34:27 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch8/dtmf-lan/</guid>
+      <description># # OpenSIPS residential configuration script # by OpenSIPS Solutions &amp;lt;team@opensips-solutions.com&amp;gt; # # This script was generated via &amp;#34;make menuconfig&amp;#34;, from # the &amp;#34;Residential&amp;#34; scenario. # You can enable / disable more features / functionalities by # re-generating the scenario with different options.# # # Please refer to the Core CookBook at: # http://www.opensips.org/Resources/DocsCookbooks # for a explanation of possible statements, functions and parameters. # ####### Global Parameters ######### log_level=4 log_stderror=no log_facility=LOG_LOCAL0 children=4 /* uncomment the following lines to enable debugging */ #debug_mode=yes /* uncomment the next line to enable the auto temporary blacklisting of not available destinations (default disabled) */ #disable_dns_blacklist=no /* uncomment the next line to enable IPv6 lookup after IPv4 dns lookup failures (default disabled) */ #dns_try_ipv6=yes /* comment the next line to enable the auto discovery of local aliases based on revers DNS on IPs */ auto_aliases=no listen = udp:10.</description>
+    </item>
+    
+    <item>
+      <title>mid-registrar</title>
+      <link>https://wdd.js.org/opensips/ch8/mid-register/</link>
+      <pubDate>Tue, 02 Jul 2019 22:32:02 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch8/mid-register/</guid>
+      <description># # $Id$ # # OpenSIPS residential configuration script # by OpenSIPS Solutions &amp;lt;team@opensips-solutions.com&amp;gt; # # This script was generated via &amp;#34;make menuconfig&amp;#34;, from # the &amp;#34;Residential&amp;#34; scenario. # You can enable / disable more features / functionalities by # re-generating the scenario with different options.# # # Please refer to the Core CookBook at: # http://www.opensips.org/Resources/DocsCookbooks # for a explanation of possible statements, functions and parameters. # ####### Global Parameters ######### log_level=4 log_stderror=yes log_facility=LOG_LOCAL0 children=4 /* uncomment the following line to enable debugging */ #debug_mode=yes /* uncomment the next line to enable the auto temporary blacklisting of not available destinations (default disabled) */ #disable_dns_blacklist=no /* uncomment the next line to enable IPv6 lookup after IPv4 dns lookup failures (default disabled) */ #dns_try_ipv6=yes /* comment the next line to enable the auto discovery of local aliases based on revers DNS on IPs */ auto_aliases=no listen=udp:10.</description>
+    </item>
+    
+    <item>
+      <title>siprec</title>
+      <link>https://wdd.js.org/opensips/ch8/siprec/</link>
+      <pubDate>Tue, 02 Jul 2019 22:31:18 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch8/siprec/</guid>
+      <description># # OpenSIPS residential configuration script # by OpenSIPS Solutions &amp;lt;team@opensips-solutions.com&amp;gt; # # This script was generated via &amp;#34;make menuconfig&amp;#34;, from # the &amp;#34;Residential&amp;#34; scenario. # You can enable / disable more features / functionalities by # re-generating the scenario with different options.# # # Please refer to the Core CookBook at: # http://www.opensips.org/Resources/DocsCookbooks # for a explanation of possible statements, functions and parameters. # ####### Global Parameters ######### log_level=3 log_stderror=no log_facility=LOG_LOCAL0 children=4 /* uncomment the following lines to enable debugging */ #debug_mode=yes /* uncomment the next line to enable the auto temporary blacklisting of not available destinations (default disabled) */ #disable_dns_blacklist=no /* uncomment the next line to enable IPv6 lookup after IPv4 dns lookup failures (default disabled) */ #dns_try_ipv6=yes /* comment the next line to enable the auto discovery of local aliases based on revers DNS on IPs */ auto_aliases=no listen=udp:127.</description>
+    </item>
+    
+    <item>
+      <title>sngrep: 最好用的sip可视化抓包工具</title>
+      <link>https://wdd.js.org/opensips/tools/sngrep/</link>
+      <pubDate>Tue, 02 Jul 2019 22:19:09 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/tools/sngrep/</guid>
+      <description>1. 安装 1.1. centos vim /etc/yum.repos.d/irontec.repo
+[irontec] name=Irontec RPMs repository baseurl=http://packages.irontec.com/centos/$releasever/$basearch/ rpm &amp;ndash;import http://packages.irontec.com/public.keyyum install sngrep
+1.2 debian/ubuntu # debian 安装sngrep echo &amp;#34;deb http://packages.irontec.com/debian jessie main&amp;#34; &amp;gt;&amp;gt; /etc/apt/sources.list wget http://packages.irontec.com/public.key -q -O - | apt-key add - apt-get install sngrep -y debian buster 即 debian10以上可以直接 apt-get install sngrep 1.3 arch/manjaro yay -Syu sngrep 参考： https://aur.archlinux.org/packages/sngrep/
+如果报错，编辑 /etc/makepkg.conf文件，删除其中的-Werror=format-security
+CFLAGS=&amp;#34;-march=x86-64 -mtune=generic -O2 -pipe -fno-plt -fexceptions \ -Wp,-D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security \ -fstack-clash-protection -fcf-protection&amp;#34; 2.</description>
+    </item>
+    
+    <item>
       <title>opensips监控</title>
       <link>https://wdd.js.org/opensips/ch3/opensips-monitor/</link>
       <pubDate>Tue, 02 Jul 2019 22:09:10 +0800</pubDate>
@@ -5750,6 +6359,25 @@ opensips 应用升级，包括源码的下载，编译等等 opensips 数据库�
 graph是用来标记无向图，里面只能用&amp;ndash;，不能用-&amp;gt;，否则无法显然出图片 digraph用来标记有向图，里面只用用-&amp;gt; 不能用&amp;ndash;, 否则无法显然出图片 graph easy { a -- b; } 连线加个备注 graph easy{ a--b [label=&amp;#34;你真漂亮&amp;#34;] } 你真漂亮，要大点，红色显眼点 graph easy{ a--b [label=&amp;#34;你真漂亮&amp;#34;, fontcolor=red, fontsize=34] } 两个圆，一个带有箭头的线 注意，这里用的digraph， 用来表示有向图
 digraph easy { a -&amp;gt; b; } 如何画虚线呢？ digraph easy { a -&amp;gt; b [style=dashed]; } 椭圆太单调了，有没有其他形状？ shape
 box 矩形 polygon ellipse circle 圆形 point egg 蛋形 triangle 三角形 plaintext 使用文字 diamond 钻石型 trapezium 梯形 parallelogram 斜的长方形 house hexagon octagon doublecircle doubleoctagon tripleoctagon invtriangle invtrapezium invhouse Mdiamond Msquare Mcircle none record Mrecord graph easy { node [shape=box] a -- b; } 形状也可以直接给节点定义。</description>
+    </item>
+    
+    <item>
+      <title>rtpproxy学习</title>
+      <link>https://wdd.js.org/opensips/ch9/rtpproxy/</link>
+      <pubDate>Thu, 20 Jun 2019 21:24:10 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch9/rtpproxy/</guid>
+      <description>rtppoxy能提供什么功能？ VoIP NAT穿透 传输声音、视频等任何RTP流 播放预先设置的呼入放音 RTP包重新分片 包传输优化 VoIP VPN 穿透 实时流复制 rtpproxy一般和那些软件集成？ opensips Kamailio Sippy B2BUA freeswitch reSIProcate B2BUA rtpporxy的工作原理 启动参数介绍 参数 功能说明 例子 -l ipv4监听的地址 -l 192.168.3.47 -6 ipv6监听的地址 -s 控制Socket, 通过这个socket来修改，创建或者删除rtp session -s udp:192.168.3.49:6890 -F 默认情况下，rtpproxy会警告用户以超级用户的身份运行rtpproxy并且不允许远程控制。使用-F可以关闭这个限制 -m 最小使用的端口号，默认35000 -m 20000 -M 最大使用的端口号，默认65000 -M 50000 -L 单个进程最多可以使用的文件描述符。rtpproxy要求每个session使用4个文件描述符。 -L 20000 -d 日志级别，可选DBUG, INFO, WARN, ERR and CRIT, 默认DBUG -d ERR -A 广播地址，用于rtpprxy在NAT防火墙内部时使用 -A 171.16.200.13 -f 让rtpproxy前台运行，在做rtpproxy容器化时，启动脚本必须带有-f，否则容器运行后会立即退出 -V 输出rtpproxy的版本 参考 https://www.rtpproxy.org/ https://www.</description>
+    </item>
+    
+    <item>
+      <title>sdp协议简介</title>
+      <link>https://wdd.js.org/opensips/ch9/sdp/</link>
+      <pubDate>Thu, 20 Jun 2019 15:29:36 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch9/sdp/</guid>
+      <description>sdp栗子 v=0 o=- 7158718066157017333 2 IN IP4 127.0.0.1 s=- t=0 0 a=group:BUNDLE 0 a=msid-semantic: WMS byn72RFJBCUzdSPhnaBU4vSz7LFwfwNaF2Sy m=audio 64030 UDP/TLS/RTP/SAVPF 111 103 104 9 0 8 106 105 13 110 112 113 126 c=IN IP4 192.168.2.180 Session描述 **
+v= (protocol version number, currently only 0) o= (originator and session identifier : username, id, version number, network address) s= (session name : mandatory with at least one UTF-8-encoded character) i=* (session title or short information) u=* (URI of description) e=* (zero or more email address with optional name of contacts) p=* (zero or more phone number with optional name of contacts) c=* (connection information—not required if included in all media) b=* (zero or more bandwidth information lines) One or more Time descriptions (&amp;#34;t=&amp;#34; and &amp;#34;r=&amp;#34; lines; see below) z=* (time zone adjustments) k=* (encryption key) a=* (zero or more session attribute lines) Zero or more Media descriptions (each one starting by an &amp;#34;m=&amp;#34; line; see below) 时间描述(必须) t= (time the session is active) r=* (zero or more repeat times) 媒体描述(可选) m= (media name and transport address) i=* (media title or information field) c=* (connection information — optional if included at session level) b=* (zero or more bandwidth information lines) k=* (encryption key) a=* (zero or more media attribute lines — overriding the Session attribute lines) </description>
     </item>
     
     <item>

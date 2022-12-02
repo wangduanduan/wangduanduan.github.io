@@ -1,0 +1,515 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>SIPp：sip压测模拟ua工具 | 洞香春</title><meta name=keywords content><meta name=description content="安装 SIPp 3.3 # 解压 tar -zxvf sipp-3.3.990.tar.gz # centos 安装依赖 yum install lksctp-tools-devel libpcap-devel gcc-c++ gcc -y # ubuntu 安装以来 apt-get install -y pkg-config dh-autoreconf ncurses-dev build-essential libssl-dev libpcap-dev libncurses5-dev libsctp-dev lksctp-tools ./configure --with-sctp --with-pcap make && make install sipp -v SIPp v3.4-beta1 (aka v3.3.990)-SCTP-PCAP built Oct 6 2019, 20:12:17. This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version."><meta name=author content="王端端"><link rel=canonical href=https://wdd.js.org/opensips/tools/sipp/><link crossorigin=anonymous href=/assets/css/stylesheet.min.ceab085cbbf58c0ec96f6d415d51b3b44e204edfd71a45b4fa2d4aac13f119d0.css integrity="sha256-zqsIXLv1jA7Jb21BXVGztE4gTt/XGkW0+i1KrBPxGdA=" rel="preload stylesheet" as=style><link crossorigin=anonymous herf=/font-awesome/css/font-awesome.min.css rel=stylesheet type=text/css><link rel=preload href=/cowboy.ico as=image><script defer crossorigin=anonymous src=/assets/js/highlight.min.b95bacdc39e37a332a9f883b1e78be4abc1fdca2bc1f2641f55e3cd3dabd4d61.js integrity="sha256-uVus3DnjejMqn4g7Hni+Srwf3KK8HyZB9V4809q9TWE=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://wdd.js.org/cowboy.ico><link rel=icon type=image/png sizes=16x16 href=https://wdd.js.org/cowboy.ico><link rel=icon type=image/png sizes=32x32 href=https://wdd.js.org/cowboy.ico><link rel=apple-touch-icon href=https://wdd.js.org/cowboy.ico><link rel=mask-icon href=https://wdd.js.org/cowboy.ico><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><meta name=generator content="Hugo 0.107.0"><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><meta property="og:title" content="SIPp：sip压测模拟ua工具"><meta property="og:description" content="安装 SIPp 3.3 # 解压 tar -zxvf sipp-3.3.990.tar.gz # centos 安装依赖 yum install lksctp-tools-devel libpcap-devel gcc-c++ gcc -y # ubuntu 安装以来 apt-get install -y pkg-config dh-autoreconf ncurses-dev build-essential libssl-dev libpcap-dev libncurses5-dev libsctp-dev lksctp-tools ./configure --with-sctp --with-pcap make && make install sipp -v SIPp v3.4-beta1 (aka v3.3.990)-SCTP-PCAP built Oct 6 2019, 20:12:17. This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version."><meta property="og:type" content="article"><meta property="og:url" content="https://wdd.js.org/opensips/tools/sipp/"><meta property="og:image" content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta property="article:section" content="opensips"><meta property="article:published_time" content="2019-09-04T12:47:07+08:00"><meta property="article:modified_time" content="2019-09-04T12:47:07+08:00"><meta property="og:site_name" content="洞香春"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="SIPp：sip压测模拟ua工具"><meta name=twitter:description content="安装 SIPp 3.3 # 解压 tar -zxvf sipp-3.3.990.tar.gz # centos 安装依赖 yum install lksctp-tools-devel libpcap-devel gcc-c++ gcc -y # ubuntu 安装以来 apt-get install -y pkg-config dh-autoreconf ncurses-dev build-essential libssl-dev libpcap-dev libncurses5-dev libsctp-dev lksctp-tools ./configure --with-sctp --with-pcap make && make install sipp -v SIPp v3.4-beta1 (aka v3.3.990)-SCTP-PCAP built Oct 6 2019, 20:12:17. This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"OpenSIPS2.4.X 中文实战系列","item":"https://wdd.js.org/opensips/"},{"@type":"ListItem","position":3,"name":"SIPp：sip压测模拟ua工具","item":"https://wdd.js.org/opensips/tools/sipp/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"SIPp：sip压测模拟ua工具","name":"SIPp：sip压测模拟ua工具","description":"安装 SIPp 3.3 # 解压 tar -zxvf sipp-3.3.990.tar.gz # centos 安装依赖 yum install lksctp-tools-devel libpcap-devel gcc-c++ gcc -y # ubuntu 安装以来 apt-get install -y pkg-config dh-autoreconf ncurses-dev build-essential libssl-dev libpcap-dev libncurses5-dev libsctp-dev lksctp-tools ./configure --with-sctp --with-pcap make \u0026amp;\u0026amp; make install sipp -v SIPp v3.4-beta1 (aka v3.3.990)-SCTP-PCAP built Oct 6 2019, 20:12:17. This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.","keywords":[],"articleBody":"安装 SIPp 3.3 # 解压 tar -zxvf sipp-3.3.990.tar.gz # centos 安装依赖 yum install lksctp-tools-devel libpcap-devel gcc-c++ gcc -y # ubuntu 安装以来 apt-get install -y pkg-config dh-autoreconf ncurses-dev build-essential libssl-dev libpcap-dev libncurses5-dev libsctp-dev lksctp-tools ./configure --with-sctp --with-pcap make \u0026\u0026 make install sipp -v SIPp v3.4-beta1 (aka v3.3.990)-SCTP-PCAP built Oct 6 2019, 20:12:17. This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. 附件 sipp-3.3.990.tar.gz\n使用默认场景 uas sipp -sn uas -i 192.168.2.101 -sn 表示使用默认场景文件 uas 作为sip服务器 uac 作为sip客户端 -i 设置本地ip给Contact头 demo场景 sipp模拟sip服务器，当收到invite之后，先返回100，然后返回183，然后返回500\n首先我们将sipp内置的uas场景文件拿出来，基于这个场景文件做修改\n生成配置文件 sipp -sd uas \u003e uas.xml 编辑配置文件\n启动uas\nsipp -sf uas.xml -i 192.168.40.77 -p 18627 -bg -skip_rlimit 帮助文档 Usage: sipp remote_host[:remote_port] [options] Available options: -v : Display version and copyright information. -aa : Enable automatic 200 OK answer for INFO, UPDATE and NOTIFY messages. -auth_uri : Force the value of the URI for authentication. By default, the URI is composed of remote_ip:remote_port. -au : Set authorization username for authentication challenges. Default is taken from -s argument -ap : Set the password for authentication challenges. Default is 'password' -base_cseq : Start value of [cseq] for each call. -bg : Launch SIPp in background mode. -bind_local : Bind socket to local IP address, i.e. the local IP address is used as the source IP address. If SIPp runs in server mode it will only listen on the local IP address instead of all IP addresses. -buff_size : Set the send and receive buffer size. -calldebug_file : Set the name of the call debug file. -calldebug_overwrite: Overwrite the call debug file (default true). -cid_str : Call ID string (default %u-%p@%s). %u=call_number, %s=ip_address, %p=process_number, %%=% (in any order). -ci : Set the local control IP address -cp : Set the local control port number. Default is 8888. -d : Controls the length of calls. More precisely, this controls the duration of 'pause' instructions in the scenario, if they do not have a 'milliseconds' section. Default value is 0 and default unit is milliseconds. -deadcall_wait : How long the Call-ID and final status of calls should be kept to improve message and error logs (default unit is ms). -default_behaviors: Set the default behaviors that SIPp will use. Possbile values are: - all\tUse all default behaviors - none\tUse no default behaviors - bye\tSend byes for aborted calls - abortunexp\tAbort calls on unexpected messages - pingreply\tReply to ping requests If a behavior is prefaced with a -, then it is turned off. Example: all,-bye -error_file : Set the name of the error log file. -error_overwrite : Overwrite the error log file (default true). -f : Set the statistics report frequency on screen. Default is 1 and default unit is seconds. -fd : Set the statistics dump log report frequency. Default is 60 and default unit is seconds. -i : Set the local IP address for 'Contact:','Via:', and 'From:' headers. Default is primary host IP address. -inf : Inject values from an external CSV file during calls into the scenarios. First line of this file say whether the data is to be read in sequence (SEQUENTIAL), random (RANDOM), or user (USER) order. Each line corresponds to one call and has one or more ';' delimited data fields. Those fields can be referred as [field0], [field1], ... in the xml scenario file. Several CSV files can be used simultaneously (syntax: -inf f1.csv -inf f2.csv ...) -infindex : file field Create an index of file using field. For example -inf users.csv -infindex users.csv 0 creates an index on the first key. -ip_field : Set which field from the injection file contains the IP address from which the client will send its messages. If this option is omitted and the '-t ui' option is present, then field 0 is assumed. Use this option together with '-t ui' -l : Set the maximum number of simultaneous calls. Once this limit is reached, traffic is decreased until the number of open calls goes down. Default: (3 * call_duration (s) * rate). -log_file : Set the name of the log actions log file. -log_overwrite : Overwrite the log actions log file (default true). -lost : Set the number of packets to lose by default (scenario specifications override this value). -rtcheck : Select the retransmisison detection method: full (default) or loose. -m : Stop the test and exit when 'calls' calls are processed -mi : Set the local media IP address (default: local primary host IP address) -master : 3pcc extended mode: indicates the master number -max_recv_loops : Set the maximum number of messages received read per cycle. Increase this value for high traffic level. The default value is 1000. -max_sched_loops : Set the maximum number of calsl run per event loop. Increase this value for high traffic level. The default value is 1000. -max_reconnect : Set the the maximum number of reconnection. -max_retrans : Maximum number of UDP retransmissions before call ends on timeout. Default is 5 for INVITE transactions and 7 for others. -max_invite_retrans: Maximum number of UDP retransmissions for invite transactions before call ends on timeout. -max_non_invite_retrans: Maximum number of UDP retransmissions for non-invite transactions before call ends on timeout. -max_log_size : What is the limit for error and message log file sizes. -max_socket : Set the max number of sockets to open simultaneously. This option is significant if you use one socket per call. Once this limit is reached, traffic is distributed over the sockets already opened. Default value is 50000 -mb : Set the RTP echo buffer size (default: 2048). -message_file : Set the name of the message log file. -message_overwrite: Overwrite the message log file (default true). -mp : Set the local RTP echo port number. Default is 6000. -nd : No Default. Disable all default behavior of SIPp which are the following: - On UDP retransmission timeout, abort the call by sending a BYE or a CANCEL - On receive timeout with no ontimeout attribute, abort the call by sending a BYE or a CANCEL - On unexpected BYE send a 200 OK and close the call - On unexpected CANCEL send a 200 OK and close the call - On unexpected PING send a 200 OK and continue the call - On any other unexpected message, abort the call by sending a BYE or a CANCEL -nr : Disable retransmission in UDP mode. -nostdin : Disable stdin. -p : Set the local port number. Default is a random free port chosen by the system. -pause_msg_ign : Ignore the messages received during a pause defined in the scenario -periodic_rtd : Reset response time partition counters each logging interval. -plugin : Load a plugin. -r : Set the call rate (in calls per seconds). This value can bechanged during test by pressing '+','_','*' or '/'. Default is 10. pressing '+' key to increase call rate by 1 * rate_scale, pressing '-' key to decrease call rate by 1 * rate_scale, pressing '*' key to increase call rate by 10 * rate_scale, pressing '/' key to decrease call rate by 10 * rate_scale. If the -rp option is used, the call rate is calculated with the period in ms given by the user. -rp : Specify the rate period for the call rate. Default is 1 second and default unit is milliseconds. This allows you to have n calls every m milliseconds (by using -r n -rp m). Example: -r 7 -rp 2000 ==\u003e 7 calls every 2 seconds. -r 10 -rp 5s =\u003e 10 calls every 5 seconds. -rate_scale : Control the units for the '+', '-', '*', and '/' keys. -rate_increase : Specify the rate increase every -fd units (default is seconds). This allows you to increase the load for each independent logging period. Example: -rate_increase 10 -fd 10s ==\u003e increase calls by 10 every 10 seconds. -rate_max : If -rate_increase is set, then quit after the rate reaches this value. Example: -rate_increase 10 -rate_max 100 ==\u003e increase calls by 10 until 100 cps is hit. -no_rate_quit : If -rate_increase is set, do not quit after the rate reaches -rate_max. -recv_timeout : Global receive timeout. Default unit is milliseconds. If the expected message is not received, the call times out and is aborted. -send_timeout : Global send timeout. Default unit is milliseconds. If a message is not sent (due to congestion), the call times out and is aborted. -sleep : How long to sleep for at startup. Default unit is seconds. -reconnect_close : Should calls be closed on reconnect? -reconnect_sleep : How long (in milliseconds) to sleep between the close and reconnect? -ringbuffer_files: How many error/message files should be kept after rotation? -ringbuffer_size : How large should error/message files be before they get rotated? -rsa : Set the remote sending address to host:port for sending the messages. -rtp_echo : Enable RTP echo. RTP/UDP packets received on port defined by -mp are echoed to their sender. RTP/UDP packets coming on this port + 2 are also echoed to their sender (used for sound and video echo). -rtt_freq : freq is mandatory. Dump response times every freq calls in the log file defined by -trace_rtt. Default value is 200. -s : Set the username part of the resquest URI. Default is 'service'. -sd : Dumps a default scenario (embeded in the sipp executable) -sf : Loads an alternate xml scenario file. To learn more about XML scenario syntax, use the -sd option to dump embedded scenarios. They contain all the necessary help. -shortmessage_file: Set the name of the short message log file. -shortmessage_overwrite: Overwrite the short message log file (default true). -oocsf : Load out-of-call scenario. -oocsn : Load out-of-call scenario. -skip_rlimit : Do not perform rlimit tuning of file descriptor limits. Default: false. -slave : 3pcc extended mode: indicates the slave number -slave_cfg : 3pcc extended mode: indicates the file where the master and slave addresses are stored -sn : Use a default scenario (embedded in the sipp executable). If this option is omitted, the Standard SipStone UAC scenario is loaded. Available values in this version: - 'uac' : Standard SipStone UAC (default). - 'uas' : Simple UAS responder. - 'regexp' : Standard SipStone UAC - with regexp and variables. - 'branchc' : Branching and conditional branching in scenarios - client. - 'branchs' : Branching and conditional branching in scenarios - server. Default 3pcc scenarios (see -3pcc option): - '3pcc-C-A' : Controller A side (must be started after all other 3pcc scenarios) - '3pcc-C-B' : Controller B side. - '3pcc-A' : A side. - '3pcc-B' : B side. -stat_delimiter : Set the delimiter for the statistics file -stf : Set the file name to use to dump statistics -t : Set the transport mode: - u1: UDP with one socket (default), - un: UDP with one socket per call, - ui: UDP with one socket per IP address The IP addresses must be defined in the injection file. - t1: TCP with one socket, - tn: TCP with one socket per call, - l1: TLS with one socket, - ln: TLS with one socket per call, - s1: SCTP with one socket (default), - sn: SCTP with one socket per call, - c1: u1 + compression (only if compression plugin loaded), - cn: un + compression (only if compression plugin loaded). This plugin is not provided with sipp. -timeout : Global timeout. Default unit is seconds. If this option is set, SIPp quits after nb units (-timeout 20s quits after 20 seconds). -timeout_error : SIPp fails if the global timeout is reached is set (-timeout option required). -timer_resol : Set the timer resolution. Default unit is milliseconds. This option has an impact on timers precision.Small values allow more precise scheduling but impacts CPU usage.If the compression is on, the value is set to 50ms. The default value is 10ms. -T2 : Global T2-timer in milli seconds -sendbuffer_warn : Produce warnings instead of errors on SendBuffer failures. -trace_msg : Displays sent and received SIP messages in ","wordCount":"2713","inLanguage":"en","datePublished":"2019-09-04T12:47:07+08:00","dateModified":"2019-09-04T12:47:07+08:00","author":{"@type":"Person","name":"王端端"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://wdd.js.org/opensips/tools/sipp/"},"publisher":{"@type":"Organization","name":"洞香春","logo":{"@type":"ImageObject","url":"https://wdd.js.org/cowboy.ico"}}}</script></head><body class=dark id=top><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script>
+<script>localStorage.getItem("pref-theme")==="light"&&document.body.classList.remove("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://wdd.js.org accesskey=h title="洞香春 (Alt + H)"><img src=/cowboy.ico alt=logo aria-label=logo height=35>洞香春</a>
+<span class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></span></div><ul id=menu><li><a href=https://wdd.js.org/freeswitch/ title=FreeSWITCH><span>FreeSWITCH</span></a></li><li><a href=https://wdd.js.org/fe/ title=Frontend><span>Frontend</span></a></li><li><a href=https://wdd.js.org/golang/ title=Golang><span>Golang</span></a></li><li><a href=https://wdd.js.org/container/ title=k8s/docker><span>k8s/docker</span></a></li><li><a href=https://wdd.js.org/network/ title=Network><span>Network</span></a></li><li><a href=https://wdd.js.org/opensips/ title=OpenSIPS><span>OpenSIPS</span></a></li><li><a href=https://wdd.js.org/shell/ title=Shell><span>Shell</span></a></li><li><a href=https://wdd.js.org/vim/ title=VIM><span>VIM</span></a></li><li><a href=https://wdd.js.org/categories/ title=分类><span>分类</span></a></li><li><a href=https://wdd.js.org/search/ title=搜索><span>搜索</span></a></li><li><a href=https://wdd.js.org/tags/ title=标签><span>标签</span></a></li><li><a href=https://wdd.js.org/archives/ title=归档><span>归档</span></a></li><li><a href=https://wdd.js.org/about/ title=我><span>我</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://wdd.js.org>Home</a>&nbsp;»&nbsp;<a href=https://wdd.js.org/opensips/>OpenSIPS2.4.X 中文实战系列</a></div><h1 class=post-title>SIPp：sip压测模拟ua工具</h1><div class=post-meta><span title='2019-09-04 12:47:07 +0800 CST'>2019-09-04 12:47:07</span>&nbsp;·&nbsp;13 min&nbsp;·&nbsp;王端端&nbsp;&nbsp;| 本文总阅读量<span id=busuanzi_value_page_pv></span>次</div></header><aside id=toc-container class="toc-container wide"><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#%e5%ae%89%e8%a3%85 aria-label=安装>安装</a></li><li><a href=#%e9%99%84%e4%bb%b6 aria-label=附件>附件</a></li><li><a href=#%e4%bd%bf%e7%94%a8%e9%bb%98%e8%ae%a4%e5%9c%ba%e6%99%af aria-label=使用默认场景>使用默认场景</a><ul><li><a href=#uas aria-label=uas>uas</a></li></ul></li><li><a href=#demo%e5%9c%ba%e6%99%af aria-label=demo场景>demo场景</a></li><li><a href=#%e5%b8%ae%e5%8a%a9%e6%96%87%e6%a1%a3 aria-label=帮助文档>帮助文档</a></li><li><a href=#%e5%8f%82%e8%80%83 aria-label=参考>参考</a></li><li><a href=#%e5%ae%9e%e6%88%98%e8%84%9a%e6%9c%ac%e5%ad%a6%e4%b9%a0 aria-label=实战脚本学习>实战脚本学习</a></li><li><a href=#%e4%b8%ad%e6%96%87%e6%95%99%e7%a8%8b aria-label=中文教程>中文教程</a></li></ul></div></details></div></aside><script>let activeElement,elements;window.addEventListener("DOMContentLoaded",function(){checkTocPosition(),elements=document.querySelectorAll("h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]"),activeElement=elements[0];const t=encodeURI(activeElement.getAttribute("id")).toLowerCase();document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active")},!1),window.addEventListener("resize",function(){checkTocPosition()},!1),window.addEventListener("scroll",()=>{activeElement=Array.from(elements).find(e=>{if(getOffsetTop(e)-window.pageYOffset>0&&getOffsetTop(e)-window.pageYOffset<window.innerHeight/2)return e})||activeElement,elements.forEach(e=>{const t=encodeURI(e.getAttribute("id")).toLowerCase();e===activeElement?document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active"):document.querySelector(`.inner ul li a[href="#${t}"]`).classList.remove("active")})},!1);const main=parseInt(getComputedStyle(document.body).getPropertyValue("--article-width"),10),toc=parseInt(getComputedStyle(document.body).getPropertyValue("--toc-width"),10),gap=parseInt(getComputedStyle(document.body).getPropertyValue("--gap"),10);function checkTocPosition(){const e=document.body.scrollWidth;e-main-toc*2-gap*4>0?document.getElementById("toc-container").classList.add("wide"):document.getElementById("toc-container").classList.remove("wide")}function getOffsetTop(e){if(!e.getClientRects().length)return 0;let t=e.getBoundingClientRect(),n=e.ownerDocument.defaultView;return t.top+n.pageYOffset}</script><div class=post-content><h1 id=安装>安装<a hidden class=anchor aria-hidden=true href=#安装>#</a></h1><ul><li>SIPp 3.3</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 解压</span>
+</span></span><span style=display:flex><span>tar -zxvf sipp-3.3.990.tar.gz
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># centos 安装依赖</span>
+</span></span><span style=display:flex><span>yum install lksctp-tools-devel libpcap-devel gcc-c++ gcc -y
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ubuntu 安装以来</span>
+</span></span><span style=display:flex><span>apt-get install -y pkg-config dh-autoreconf ncurses-dev build-essential libssl-dev libpcap-dev libncurses5-dev libsctp-dev lksctp-tools
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>./configure --with-sctp --with-pcap
+</span></span><span style=display:flex><span>make <span style=color:#f92672>&amp;&amp;</span> make install
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>sipp -v
+</span></span><span style=display:flex><span>SIPp v3.4-beta1 <span style=color:#f92672>(</span>aka v3.3.990<span style=color:#f92672>)</span>-SCTP-PCAP built Oct  <span style=color:#ae81ff>6</span> 2019, 20:12:17.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span> This program is free software; you can redistribute it and/or
+</span></span><span style=display:flex><span> modify it under the terms of the GNU General Public License as
+</span></span><span style=display:flex><span> published by the Free Software Foundation; either version <span style=color:#ae81ff>2</span> of
+</span></span><span style=display:flex><span> the License, or <span style=color:#f92672>(</span>at your option<span style=color:#f92672>)</span> any later version.
+</span></span></code></pre></div><h1 id=附件>附件<a hidden class=anchor aria-hidden=true href=#附件>#</a></h1><p><a href="https://www.yuque.com/attachments/yuque/0/2019/gz/280451/1570361385989-dc5d2db9-e445-4e47-bc4e-98dc3e755838.gz?_lake_card=%7B%22uid%22%3A%221570361384718-0%22%2C%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2019%2Fgz%2F280451%2F1570361385989-dc5d2db9-e445-4e47-bc4e-98dc3e755838.gz%22%2C%22name%22%3A%22sipp-3.3.990.tar.gz%22%2C%22size%22%3A422956%2C%22type%22%3A%22application%2Fx-gzip%22%2C%22ext%22%3A%22gz%22%2C%22progress%22%3A%7B%22percent%22%3A0%7D%2C%22status%22%3A%22done%22%2C%22percent%22%3A0%2C%22id%22%3A%226Yf7Z%22%2C%22card%22%3A%22file%22%7D">sipp-3.3.990.tar.gz</a></p><h1 id=使用默认场景>使用默认场景<a hidden class=anchor aria-hidden=true href=#使用默认场景>#</a></h1><h2 id=uas>uas<a hidden class=anchor aria-hidden=true href=#uas>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>sipp -sn uas -i 192.168.2.101
+</span></span></code></pre></div><ul><li>-sn 表示使用默认场景文件<ul><li>uas 作为sip服务器</li><li>uac 作为sip客户端</li></ul></li><li>-i 设置本地ip给Contact头</li></ul><h1 id=demo场景>demo场景<a hidden class=anchor aria-hidden=true href=#demo场景>#</a></h1><p>sipp模拟sip服务器，当收到invite之后，先返回100，然后返回183，然后返回500</p><p>首先我们将sipp内置的uas场景文件拿出来，基于这个场景文件做修改</p><ol><li>生成配置文件</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>sipp -sd uas &gt; uas.xml
+</span></span></code></pre></div><ol start=2><li><p>编辑配置文件</p></li><li><p>启动uas</p></li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>sipp -sf uas.xml -i 192.168.40.77 -p <span style=color:#ae81ff>18627</span> -bg -skip_rlimit
+</span></span></code></pre></div><h1 id=帮助文档>帮助文档<a hidden class=anchor aria-hidden=true href=#帮助文档>#</a></h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span>Usage:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  sipp remote_host<span style=color:#f92672>[</span>:remote_port<span style=color:#f92672>]</span> <span style=color:#f92672>[</span>options<span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  Available options:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -v               : Display version and copyright information.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -aa              : Enable automatic <span style=color:#ae81ff>200</span> OK answer <span style=color:#66d9ef>for</span> INFO, UPDATE and
+</span></span><span style=display:flex><span>                      NOTIFY messages.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -auth_uri        : Force the value of the URI <span style=color:#66d9ef>for</span> authentication.
+</span></span><span style=display:flex><span>                      By default, the URI is composed of
+</span></span><span style=display:flex><span>                      remote_ip:remote_port.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -au              : Set authorization username <span style=color:#66d9ef>for</span> authentication challenges.
+</span></span><span style=display:flex><span>                      Default is taken from -s argument
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -ap              : Set the password <span style=color:#66d9ef>for</span> authentication challenges. Default
+</span></span><span style=display:flex><span>                      is <span style=color:#e6db74>&#39;password&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -base_cseq       : Start value of <span style=color:#f92672>[</span>cseq<span style=color:#f92672>]</span> <span style=color:#66d9ef>for</span> each call.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -bg              : Launch SIPp in background mode.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -bind_local      : Bind socket to local IP address, i.e. the local IP
+</span></span><span style=display:flex><span>                      address is used as the source IP address.  If SIPp runs
+</span></span><span style=display:flex><span>                      in server mode it will only listen on the local IP
+</span></span><span style=display:flex><span>                      address instead of all IP addresses.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -buff_size       : Set the send and receive buffer size.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -calldebug_file  : Set the name of the call debug file.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -calldebug_overwrite: Overwrite the call debug file <span style=color:#f92672>(</span>default true<span style=color:#f92672>)</span>.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -cid_str         : Call ID string <span style=color:#f92672>(</span>default %u-%p@%s<span style=color:#f92672>)</span>.  %u<span style=color:#f92672>=</span>call_number,
+</span></span><span style=display:flex><span>                      %s<span style=color:#f92672>=</span>ip_address, %p<span style=color:#f92672>=</span>process_number, %%<span style=color:#f92672>=</span>% <span style=color:#f92672>(</span>in any order<span style=color:#f92672>)</span>.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -ci              : Set the local control IP address
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -cp              : Set the local control port number. Default is 8888.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -d               : Controls the length of calls. More precisely, this
+</span></span><span style=display:flex><span>                      controls the duration of <span style=color:#e6db74>&#39;pause&#39;</span> instructions in the
+</span></span><span style=display:flex><span>                      scenario, <span style=color:#66d9ef>if</span> they <span style=color:#66d9ef>do</span> not have a <span style=color:#e6db74>&#39;milliseconds&#39;</span> section.
+</span></span><span style=display:flex><span>                      Default value is <span style=color:#ae81ff>0</span> and default unit is milliseconds.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -deadcall_wait   : How long the Call-ID and final status of calls should be
+</span></span><span style=display:flex><span>                      kept to improve message and error logs <span style=color:#f92672>(</span>default unit is
+</span></span><span style=display:flex><span>                      ms<span style=color:#f92672>)</span>.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -default_behaviors: Set the default behaviors that SIPp will use.  Possbile
+</span></span><span style=display:flex><span>                      values are:
+</span></span><span style=display:flex><span>                      - all	Use all default behaviors
+</span></span><span style=display:flex><span>                      - none	Use no default behaviors
+</span></span><span style=display:flex><span>                      - bye	Send byes <span style=color:#66d9ef>for</span> aborted calls
+</span></span><span style=display:flex><span>                      - abortunexp	Abort calls on unexpected messages
+</span></span><span style=display:flex><span>                      - pingreply	Reply to ping requests
+</span></span><span style=display:flex><span>                      If a behavior is prefaced with a -, <span style=color:#66d9ef>then</span> it is turned
+</span></span><span style=display:flex><span>                      off.  Example: all,-bye
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -error_file      : Set the name of the error log file.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -error_overwrite : Overwrite the error log file <span style=color:#f92672>(</span>default true<span style=color:#f92672>)</span>.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -f               : Set the statistics report frequency on screen. Default is
+</span></span><span style=display:flex><span>                      <span style=color:#ae81ff>1</span> and default unit is seconds.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -fd              : Set the statistics dump log report frequency. Default is
+</span></span><span style=display:flex><span>                      <span style=color:#ae81ff>60</span> and default unit is seconds.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -i               : Set the local IP address <span style=color:#66d9ef>for</span> <span style=color:#e6db74>&#39;Contact:&#39;</span>,<span style=color:#e6db74>&#39;Via:&#39;</span>, and
+</span></span><span style=display:flex><span>                      <span style=color:#e6db74>&#39;From:&#39;</span> headers. Default is primary host IP address.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -inf             : Inject values from an external CSV file during calls into
+</span></span><span style=display:flex><span>                      the scenarios.
+</span></span><span style=display:flex><span>                      First line of this file say whether the data is to be
+</span></span><span style=display:flex><span>                      read in sequence <span style=color:#f92672>(</span>SEQUENTIAL<span style=color:#f92672>)</span>, random <span style=color:#f92672>(</span>RANDOM<span style=color:#f92672>)</span>, or user
+</span></span><span style=display:flex><span>                      <span style=color:#f92672>(</span>USER<span style=color:#f92672>)</span> order.
+</span></span><span style=display:flex><span>                      Each line corresponds to one call and has one or more
+</span></span><span style=display:flex><span>                      <span style=color:#e6db74>&#39;;&#39;</span> delimited data fields. Those fields can be referred
+</span></span><span style=display:flex><span>                      as <span style=color:#f92672>[</span>field0<span style=color:#f92672>]</span>, <span style=color:#f92672>[</span>field1<span style=color:#f92672>]</span>, ... in the xml scenario file.
+</span></span><span style=display:flex><span>                      Several CSV files can be used simultaneously <span style=color:#f92672>(</span>syntax:
+</span></span><span style=display:flex><span>                      -inf f1.csv -inf f2.csv ...<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -infindex        : file field
+</span></span><span style=display:flex><span>                      Create an index of file using field.  For example -inf
+</span></span><span style=display:flex><span>                      users.csv -infindex users.csv <span style=color:#ae81ff>0</span> creates an index on the
+</span></span><span style=display:flex><span>                      first key.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -ip_field        : Set which field from the injection file contains the IP
+</span></span><span style=display:flex><span>                      address from which the client will send its messages.
+</span></span><span style=display:flex><span>                      If this option is omitted and the <span style=color:#e6db74>&#39;-t ui&#39;</span> option is
+</span></span><span style=display:flex><span>                      present, <span style=color:#66d9ef>then</span> field <span style=color:#ae81ff>0</span> is assumed.
+</span></span><span style=display:flex><span>                      Use this option together with <span style=color:#e6db74>&#39;-t ui&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -l               : Set the maximum number of simultaneous calls. Once this
+</span></span><span style=display:flex><span>                      limit is reached, traffic is decreased <span style=color:#66d9ef>until</span> the number
+</span></span><span style=display:flex><span>                      of open calls goes down. Default:
+</span></span><span style=display:flex><span>                        <span style=color:#f92672>(</span><span style=color:#ae81ff>3</span> * call_duration <span style=color:#f92672>(</span>s<span style=color:#f92672>)</span> * rate<span style=color:#f92672>)</span>.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -log_file        : Set the name of the log actions log file.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -log_overwrite   : Overwrite the log actions log file <span style=color:#f92672>(</span>default true<span style=color:#f92672>)</span>.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -lost            : Set the number of packets to lose by default <span style=color:#f92672>(</span>scenario
+</span></span><span style=display:flex><span>                      specifications override this value<span style=color:#f92672>)</span>.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -rtcheck         : Select the retransmisison detection method: full
+</span></span><span style=display:flex><span>                      <span style=color:#f92672>(</span>default<span style=color:#f92672>)</span> or loose.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -m               : Stop the test and exit when <span style=color:#e6db74>&#39;calls&#39;</span> calls are processed
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -mi              : Set the local media IP address <span style=color:#f92672>(</span>default: local primary
+</span></span><span style=display:flex><span>                      host IP address<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -master          : 3pcc extended mode: indicates the master number
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -max_recv_loops  : Set the maximum number of messages received read per
+</span></span><span style=display:flex><span>                      cycle. Increase this value <span style=color:#66d9ef>for</span> high traffic level.  The
+</span></span><span style=display:flex><span>                      default value is 1000.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -max_sched_loops : Set the maximum number of calsl run per event loop.
+</span></span><span style=display:flex><span>                      Increase this value <span style=color:#66d9ef>for</span> high traffic level.  The default
+</span></span><span style=display:flex><span>                      value is 1000.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -max_reconnect   : Set the the maximum number of reconnection.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -max_retrans     : Maximum number of UDP retransmissions before call ends on
+</span></span><span style=display:flex><span>                      timeout.  Default is <span style=color:#ae81ff>5</span> <span style=color:#66d9ef>for</span> INVITE transactions and <span style=color:#ae81ff>7</span> <span style=color:#66d9ef>for</span>
+</span></span><span style=display:flex><span>                      others.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -max_invite_retrans: Maximum number of UDP retransmissions <span style=color:#66d9ef>for</span> invite
+</span></span><span style=display:flex><span>                      transactions before call ends on timeout.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -max_non_invite_retrans: Maximum number of UDP retransmissions <span style=color:#66d9ef>for</span> non-invite
+</span></span><span style=display:flex><span>                      transactions before call ends on timeout.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -max_log_size    : What is the limit <span style=color:#66d9ef>for</span> error and message log file sizes.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -max_socket      : Set the max number of sockets to open simultaneously.
+</span></span><span style=display:flex><span>                      This option is significant <span style=color:#66d9ef>if</span> you use one socket per
+</span></span><span style=display:flex><span>                      call. Once this limit is reached, traffic is distributed
+</span></span><span style=display:flex><span>                      over the sockets already opened. Default value is <span style=color:#ae81ff>50000</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -mb              : Set the RTP echo buffer size <span style=color:#f92672>(</span>default: 2048<span style=color:#f92672>)</span>.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -message_file    : Set the name of the message log file.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -message_overwrite: Overwrite the message log file <span style=color:#f92672>(</span>default true<span style=color:#f92672>)</span>.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -mp              : Set the local RTP echo port number. Default is 6000.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -nd              : No Default. Disable all default behavior of SIPp which
+</span></span><span style=display:flex><span>                      are the following:
+</span></span><span style=display:flex><span>                      - On UDP retransmission timeout, abort the call by
+</span></span><span style=display:flex><span>                        sending a BYE or a CANCEL
+</span></span><span style=display:flex><span>                      - On receive timeout with no ontimeout attribute, abort
+</span></span><span style=display:flex><span>                        the call by sending a BYE or a CANCEL
+</span></span><span style=display:flex><span>                      - On unexpected BYE send a <span style=color:#ae81ff>200</span> OK and close the call
+</span></span><span style=display:flex><span>                      - On unexpected CANCEL send a <span style=color:#ae81ff>200</span> OK and close the call
+</span></span><span style=display:flex><span>                      - On unexpected PING send a <span style=color:#ae81ff>200</span> OK and <span style=color:#66d9ef>continue</span> the call
+</span></span><span style=display:flex><span>                      - On any other unexpected message, abort the call by
+</span></span><span style=display:flex><span>                        sending a BYE or a CANCEL
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -nr              : Disable retransmission in UDP mode.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -nostdin         : Disable stdin.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -p               : Set the local port number.  Default is a random free port
+</span></span><span style=display:flex><span>                      chosen by the system.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -pause_msg_ign   : Ignore the messages received during a pause defined in
+</span></span><span style=display:flex><span>                      the scenario
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -periodic_rtd    : Reset response time partition counters each logging
+</span></span><span style=display:flex><span>                      interval.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -plugin          : Load a plugin.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -r               : Set the call rate <span style=color:#f92672>(</span>in calls per seconds<span style=color:#f92672>)</span>.  This value can
+</span></span><span style=display:flex><span>                      bechanged during test by pressing <span style=color:#e6db74>&#39;+&#39;</span>,<span style=color:#e6db74>&#39;_&#39;</span>,<span style=color:#e6db74>&#39;*&#39;</span> or <span style=color:#e6db74>&#39;/&#39;</span>.
+</span></span><span style=display:flex><span>                      Default is 10.
+</span></span><span style=display:flex><span>                      pressing <span style=color:#e6db74>&#39;+&#39;</span> key to increase call rate by <span style=color:#ae81ff>1</span> *
+</span></span><span style=display:flex><span>                      rate_scale,
+</span></span><span style=display:flex><span>                      pressing <span style=color:#e6db74>&#39;-&#39;</span> key to decrease call rate by <span style=color:#ae81ff>1</span> *
+</span></span><span style=display:flex><span>                      rate_scale,
+</span></span><span style=display:flex><span>                      pressing <span style=color:#e6db74>&#39;*&#39;</span> key to increase call rate by <span style=color:#ae81ff>10</span> *
+</span></span><span style=display:flex><span>                      rate_scale,
+</span></span><span style=display:flex><span>                      pressing <span style=color:#e6db74>&#39;/&#39;</span> key to decrease call rate by <span style=color:#ae81ff>10</span> *
+</span></span><span style=display:flex><span>                      rate_scale.
+</span></span><span style=display:flex><span>                      If the -rp option is used, the call rate is calculated
+</span></span><span style=display:flex><span>                      with the period in ms given by the user.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -rp              : Specify the rate period <span style=color:#66d9ef>for</span> the call rate.  Default is <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>                      second and default unit is milliseconds.  This allows
+</span></span><span style=display:flex><span>                      you to have n calls every m milliseconds <span style=color:#f92672>(</span>by using -r n
+</span></span><span style=display:flex><span>                      -rp m<span style=color:#f92672>)</span>.
+</span></span><span style=display:flex><span>                      Example: -r <span style=color:#ae81ff>7</span> -rp 2000 <span style=color:#f92672>==</span>&gt; <span style=color:#ae81ff>7</span> calls every <span style=color:#ae81ff>2</span> seconds.
+</span></span><span style=display:flex><span>                               -r <span style=color:#ae81ff>10</span> -rp 5s <span style=color:#f92672>=</span>&gt; <span style=color:#ae81ff>10</span> calls every <span style=color:#ae81ff>5</span> seconds.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -rate_scale      : Control the units <span style=color:#66d9ef>for</span> the <span style=color:#e6db74>&#39;+&#39;</span>, <span style=color:#e6db74>&#39;-&#39;</span>, <span style=color:#e6db74>&#39;*&#39;</span>, and <span style=color:#e6db74>&#39;/&#39;</span> keys.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -rate_increase   : Specify the rate increase every -fd units <span style=color:#f92672>(</span>default is
+</span></span><span style=display:flex><span>                      seconds<span style=color:#f92672>)</span>.  This allows you to increase the load <span style=color:#66d9ef>for</span> each
+</span></span><span style=display:flex><span>                      independent logging period.
+</span></span><span style=display:flex><span>                      Example: -rate_increase <span style=color:#ae81ff>10</span> -fd 10s
+</span></span><span style=display:flex><span>                        <span style=color:#f92672>==</span>&gt; increase calls by <span style=color:#ae81ff>10</span> every <span style=color:#ae81ff>10</span> seconds.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -rate_max        : If -rate_increase is set, <span style=color:#66d9ef>then</span> quit after the rate
+</span></span><span style=display:flex><span>                      reaches this value.
+</span></span><span style=display:flex><span>                      Example: -rate_increase <span style=color:#ae81ff>10</span> -rate_max 100
+</span></span><span style=display:flex><span>                        <span style=color:#f92672>==</span>&gt; increase calls by <span style=color:#ae81ff>10</span> <span style=color:#66d9ef>until</span> <span style=color:#ae81ff>100</span> cps is hit.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -no_rate_quit    : If -rate_increase is set, <span style=color:#66d9ef>do</span> not quit after the rate
+</span></span><span style=display:flex><span>                      reaches -rate_max.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -recv_timeout    : Global receive timeout. Default unit is milliseconds. If
+</span></span><span style=display:flex><span>                      the expected message is not received, the call times out
+</span></span><span style=display:flex><span>                      and is aborted.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -send_timeout    : Global send timeout. Default unit is milliseconds. If a
+</span></span><span style=display:flex><span>                      message is not sent <span style=color:#f92672>(</span>due to congestion<span style=color:#f92672>)</span>, the call times
+</span></span><span style=display:flex><span>                      out and is aborted.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -sleep           : How long to sleep <span style=color:#66d9ef>for</span> at startup. Default unit is
+</span></span><span style=display:flex><span>                      seconds.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -reconnect_close : Should calls be closed on reconnect?
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -reconnect_sleep : How long <span style=color:#f92672>(</span>in milliseconds<span style=color:#f92672>)</span> to sleep between the close and
+</span></span><span style=display:flex><span>                      reconnect?
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -ringbuffer_files: How many error/message files should be kept after
+</span></span><span style=display:flex><span>                      rotation?
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -ringbuffer_size : How large should error/message files be before they get
+</span></span><span style=display:flex><span>                      rotated?
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -rsa             : Set the remote sending address to host:port <span style=color:#66d9ef>for</span> sending
+</span></span><span style=display:flex><span>                      the messages.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -rtp_echo        : Enable RTP echo. RTP/UDP packets received on port defined
+</span></span><span style=display:flex><span>                      by -mp are echoed to their sender.
+</span></span><span style=display:flex><span>                      RTP/UDP packets coming on this port + <span style=color:#ae81ff>2</span> are also echoed
+</span></span><span style=display:flex><span>                      to their sender <span style=color:#f92672>(</span>used <span style=color:#66d9ef>for</span> sound and video echo<span style=color:#f92672>)</span>.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -rtt_freq        : freq is mandatory. Dump response times every freq calls
+</span></span><span style=display:flex><span>                      in the log file defined by -trace_rtt. Default value is
+</span></span><span style=display:flex><span>                      200.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -s               : Set the username part of the resquest URI. Default is
+</span></span><span style=display:flex><span>                      <span style=color:#e6db74>&#39;service&#39;</span>.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -sd              : Dumps a default scenario <span style=color:#f92672>(</span>embeded in the sipp executable<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -sf              : Loads an alternate xml scenario file.  To learn more
+</span></span><span style=display:flex><span>                      about XML scenario syntax, use the -sd option to dump
+</span></span><span style=display:flex><span>                      embedded scenarios. They contain all the necessary help.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -shortmessage_file: Set the name of the short message log file.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -shortmessage_overwrite: Overwrite the short message log file <span style=color:#f92672>(</span>default true<span style=color:#f92672>)</span>.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -oocsf           : Load out-of-call scenario.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -oocsn           : Load out-of-call scenario.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -skip_rlimit     : Do not perform rlimit tuning of file descriptor limits.
+</span></span><span style=display:flex><span>                      Default: false.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -slave           : 3pcc extended mode: indicates the slave number
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -slave_cfg       : 3pcc extended mode: indicates the file where the master
+</span></span><span style=display:flex><span>                      and slave addresses are stored
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -sn              : Use a default scenario <span style=color:#f92672>(</span>embedded in the sipp executable<span style=color:#f92672>)</span>.
+</span></span><span style=display:flex><span>                      If this option is omitted, the Standard SipStone UAC
+</span></span><span style=display:flex><span>                      scenario is loaded.
+</span></span><span style=display:flex><span>                      Available values in this version:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                      - <span style=color:#e6db74>&#39;uac&#39;</span>      : Standard SipStone UAC <span style=color:#f92672>(</span>default<span style=color:#f92672>)</span>.
+</span></span><span style=display:flex><span>                      - <span style=color:#e6db74>&#39;uas&#39;</span>      : Simple UAS responder.
+</span></span><span style=display:flex><span>                      - <span style=color:#e6db74>&#39;regexp&#39;</span>   : Standard SipStone UAC - with regexp and
+</span></span><span style=display:flex><span>                        variables.
+</span></span><span style=display:flex><span>                      - <span style=color:#e6db74>&#39;branchc&#39;</span>  : Branching and conditional branching in
+</span></span><span style=display:flex><span>                        scenarios - client.
+</span></span><span style=display:flex><span>                      - <span style=color:#e6db74>&#39;branchs&#39;</span>  : Branching and conditional branching in
+</span></span><span style=display:flex><span>                        scenarios - server.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                      Default 3pcc scenarios <span style=color:#f92672>(</span>see -3pcc option<span style=color:#f92672>)</span>:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                      - <span style=color:#e6db74>&#39;3pcc-C-A&#39;</span> : Controller A side <span style=color:#f92672>(</span>must be started after
+</span></span><span style=display:flex><span>                        all other 3pcc scenarios<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>                      - <span style=color:#e6db74>&#39;3pcc-C-B&#39;</span> : Controller B side.
+</span></span><span style=display:flex><span>                      - <span style=color:#e6db74>&#39;3pcc-A&#39;</span>   : A side.
+</span></span><span style=display:flex><span>                      - <span style=color:#e6db74>&#39;3pcc-B&#39;</span>   : B side.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -stat_delimiter  : Set the delimiter <span style=color:#66d9ef>for</span> the statistics file
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -stf             : Set the file name to use to dump statistics
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -t               : Set the transport mode:
+</span></span><span style=display:flex><span>                      - u1: UDP with one socket <span style=color:#f92672>(</span>default<span style=color:#f92672>)</span>,
+</span></span><span style=display:flex><span>                      - un: UDP with one socket per call,
+</span></span><span style=display:flex><span>                      - ui: UDP with one socket per IP address The IP
+</span></span><span style=display:flex><span>                        addresses must be defined in the injection file.
+</span></span><span style=display:flex><span>                      - t1: TCP with one socket,
+</span></span><span style=display:flex><span>                      - tn: TCP with one socket per call,
+</span></span><span style=display:flex><span>                      - l1: TLS with one socket,
+</span></span><span style=display:flex><span>                      - ln: TLS with one socket per call,
+</span></span><span style=display:flex><span>                      - s1: SCTP with one socket <span style=color:#f92672>(</span>default<span style=color:#f92672>)</span>,
+</span></span><span style=display:flex><span>                      - sn: SCTP with one socket per call,
+</span></span><span style=display:flex><span>                      - c1: u1 + compression <span style=color:#f92672>(</span>only <span style=color:#66d9ef>if</span> compression plugin
+</span></span><span style=display:flex><span>                        loaded<span style=color:#f92672>)</span>,
+</span></span><span style=display:flex><span>                      - cn: un + compression <span style=color:#f92672>(</span>only <span style=color:#66d9ef>if</span> compression plugin
+</span></span><span style=display:flex><span>                        loaded<span style=color:#f92672>)</span>.  This plugin is not provided with sipp.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -timeout         : Global timeout. Default unit is seconds.  If this option
+</span></span><span style=display:flex><span>                      is set, SIPp quits after nb units <span style=color:#f92672>(</span>-timeout 20s quits
+</span></span><span style=display:flex><span>                      after <span style=color:#ae81ff>20</span> seconds<span style=color:#f92672>)</span>.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -timeout_error   : SIPp fails <span style=color:#66d9ef>if</span> the global timeout is reached is set
+</span></span><span style=display:flex><span>                      <span style=color:#f92672>(</span>-timeout option required<span style=color:#f92672>)</span>.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -timer_resol     : Set the timer resolution. Default unit is milliseconds.
+</span></span><span style=display:flex><span>                      This option has an impact on timers precision.Small
+</span></span><span style=display:flex><span>                      values allow more precise scheduling but impacts CPU
+</span></span><span style=display:flex><span>                      usage.If the compression is on, the value is set to
+</span></span><span style=display:flex><span>                      50ms. The default value is 10ms.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -T2              : Global T2-timer in milli seconds
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -sendbuffer_warn : Produce warnings instead of errors on SendBuffer
+</span></span><span style=display:flex><span>                      failures.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -trace_msg       : Displays sent and received SIP messages in &lt;scenario file
+</span></span><span style=display:flex><span>                      name&gt;_&lt;pid&gt;_messages.log
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -trace_shortmsg  : Displays sent and received SIP messages as CSV in
+</span></span><span style=display:flex><span>                      &lt;scenario file name&gt;_&lt;pid&gt;_shortmessages.log
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -trace_screen    : Dump statistic screens in the
+</span></span><span style=display:flex><span>                      &lt;scenario_name&gt;_&lt;pid&gt;_screens.log file when
+</span></span><span style=display:flex><span>                      quitting SIPp. Useful to get a final status report in
+</span></span><span style=display:flex><span>                      background mode <span style=color:#f92672>(</span>-bg option<span style=color:#f92672>)</span>.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -trace_err       : Trace all unexpected messages in &lt;scenario file
+</span></span><span style=display:flex><span>                      name&gt;_&lt;pid&gt;_errors.log.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -trace_calldebug : Dumps debugging information about aborted calls to
+</span></span><span style=display:flex><span>                      &lt;scenario_name&gt;_&lt;pid&gt;_calldebug.log file.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -trace_stat      : Dumps all statistics in &lt;scenario_name&gt;_&lt;pid&gt;.csv file.
+</span></span><span style=display:flex><span>                      Use the <span style=color:#e6db74>&#39;-h stat&#39;</span> option <span style=color:#66d9ef>for</span> a detailed description of
+</span></span><span style=display:flex><span>                      the statistics file content.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -trace_counts    : Dumps individual message counts in a CSV file.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -trace_rtt       : Allow tracing of all response times in &lt;scenario file
+</span></span><span style=display:flex><span>                      name&gt;_&lt;pid&gt;_rtt.csv.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -trace_logs      : Allow tracing of &lt;log&gt; actions in &lt;scenario file
+</span></span><span style=display:flex><span>                      name&gt;_&lt;pid&gt;_logs.log.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -users           : Instead of starting calls at a fixed rate, begin <span style=color:#e6db74>&#39;users&#39;</span>
+</span></span><span style=display:flex><span>                      calls at startup, and keep the number of calls constant.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -watchdog_interval: Set gap between watchdog timer firings.  Default is 400.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -watchdog_reset  : If the watchdog timer has not fired in more than this
+</span></span><span style=display:flex><span>                      time period, <span style=color:#66d9ef>then</span> reset the max triggers counters.
+</span></span><span style=display:flex><span>                      Default is <span style=color:#ae81ff>10</span> minutes.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -watchdog_minor_threshold: If it has been longer than this period between watchdog
+</span></span><span style=display:flex><span>                      executions count a minor trip.  Default is 500.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -watchdog_major_threshold: If it has been longer than this period between watchdog
+</span></span><span style=display:flex><span>                      executions count a major trip.  Default is 3000.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -watchdog_major_maxtriggers: How many times the major watchdog timer can be tripped
+</span></span><span style=display:flex><span>                      before the test is terminated.  Default is 10.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -watchdog_minor_maxtriggers: How many times the minor watchdog timer can be tripped
+</span></span><span style=display:flex><span>                      before the test is terminated.  Default is 120.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   -tls_cert        : Set the name <span style=color:#66d9ef>for</span> TLS Certificate file. Default is
+</span></span><span style=display:flex><span>                      <span style=color:#e6db74>&#39;cacert.pem
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>   -tls_key         : Set the name for TLS Private Key file. Default is
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                      &#39;</span>cakey.pem<span style=color:#e6db74>&#39;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>   -tls_crl         : Set the name for Certificate Revocation List file. If not
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                      specified, X509 CRL is not activated.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>   -3pcc            : Launch the tool in 3pcc mode (&#34;Third Party call
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                      control&#34;). The passed ip address is depending on the
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                      3PCC role.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                      - When the first twin command is &#39;</span>sendCmd<span style=color:#e6db74>&#39; then this is
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                        the address of the remote twin socket.  SIPp will try to
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                        connect to this address:port to send the twin command
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                        (This instance must be started after all other 3PCC
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                        scenarii).
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                          Example: 3PCC-C-A scenario.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                      - When the first twin command is &#39;</span>recvCmd<span style=color:#e6db74>&#39; then this is
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                        the address of the local twin socket. SIPp will open
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                        this address:port to listen for twin command.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                          Example: 3PCC-C-B scenario.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>   -tdmmap          : Generate and handle a table of TDM circuits.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                      A circuit must be available for the call to be placed.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                      Format: -tdmmap {0-3}{99}{5-8}{1-31}
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>   -key             : keyword value
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                      Set the generic parameter named &#34;keyword&#34; to &#34;value&#34;.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>   -set             : variable value
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                      Set the global variable parameter named &#34;variable&#34; to
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                      &#34;value&#34;.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>   -multihome       : Set multihome address for SCTP
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>   -heartbeat       : Set heartbeat interval in ms for SCTP
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>   -assocmaxret     : Set association max retransmit counter for SCTP
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>   -pathmaxret      : Set path max retransmit counter for SCTP
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>   -pmtu            : Set path MTU for SCTP
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>   -gracefulclose   : If true, SCTP association will be closed with SHUTDOWN
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                      (default).
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                       If false, SCTP association will be closed by ABORT.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>   -dynamicStart    : variable value
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                      Set the start offset of dynamic_id varaiable
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>   -dynamicMax      : variable value
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                      Set the maximum of dynamic_id variable
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>   -dynamicStep     : variable value
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>                      Set the increment of dynamic_id variable
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>Signal handling:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>   SIPp can be controlled using posix signals. The following signals
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>   are handled:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>   USR1: Similar to press &#39;</span>q<span style=color:#960050;background-color:#1e0010>&#39;</span> keyboard key. It triggers a soft exit
+</span></span><span style=display:flex><span>         of SIPp. No more new calls are placed and all ongoing calls
+</span></span><span style=display:flex><span>         are finished before SIPp exits.
+</span></span><span style=display:flex><span>         Example: kill -SIGUSR1 <span style=color:#ae81ff>732</span>
+</span></span><span style=display:flex><span>   USR2: Triggers a dump of all statistics screens in
+</span></span><span style=display:flex><span>         &lt;scenario_name&gt;_&lt;pid&gt;_screens.log file. Especially useful
+</span></span><span style=display:flex><span>         in background mode to know what the current status is.
+</span></span><span style=display:flex><span>         Example: kill -SIGUSR2 <span style=color:#ae81ff>732</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Exit code:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   Upon exit <span style=color:#f92672>(</span>on fatal error or when the number of asked calls <span style=color:#f92672>(</span>-m
+</span></span><span style=display:flex><span>   option<span style=color:#f92672>)</span> is reached, sipp exits with one of the following exit
+</span></span><span style=display:flex><span>   code:
+</span></span><span style=display:flex><span>    0: All calls were successful
+</span></span><span style=display:flex><span>    1: At least one call failed
+</span></span><span style=display:flex><span>   97: exit on internal command. Calls may have been processed
+</span></span><span style=display:flex><span>   99: Normal exit without calls processed
+</span></span><span style=display:flex><span>   -1: Fatal error
+</span></span><span style=display:flex><span>   -2: Fatal error binding a socket
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Example:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   Run sipp with embedded server <span style=color:#f92672>(</span>uas<span style=color:#f92672>)</span> scenario:
+</span></span><span style=display:flex><span>     ./sipp -sn uas
+</span></span><span style=display:flex><span>   On the same host, run sipp with embedded client <span style=color:#f92672>(</span>uac<span style=color:#f92672>)</span> scenario
+</span></span><span style=display:flex><span>     ./sipp -sn uac 127.0.0.1
+</span></span></code></pre></div><h1 id=参考>参考<a hidden class=anchor aria-hidden=true href=#参考>#</a></h1><ul><li><a href=http://sipp.sourceforge.net/doc/reference.html>http://sipp.sourceforge.net/doc/reference.html</a></li><li><a href=http://sipp.sourceforge.net/doc3.3/reference.html>http://sipp.sourceforge.net/doc3.3/reference.html</a></li></ul><h1 id=实战脚本学习>实战脚本学习<a hidden class=anchor aria-hidden=true href=#实战脚本学习>#</a></h1><p>下面的两个链接里面有很多的真实场景测试的xml文件，可以用来深入学习</p><ul><li><a href=https://github.com/pbertera/SIPp-by-example>https://github.com/pbertera/SIPp-by-example</a></li><li><a href="https://tomeko.net/other/sipp/sipp_cheatsheet.php?lang=pl">https://tomeko.net/other/sipp/sipp_cheatsheet.php?lang=pl</a></li></ul><h1 id=中文教程>中文教程<a hidden class=anchor aria-hidden=true href=#中文教程>#</a></h1><ul><li><a href="https://www.yuque.com/attachments/yuque/0/2021/pdf/280451/1617863565582-87c4c364-817f-47c2-ad73-786197ab5ae6.pdf?_lake_card=%7B%22uid%22%3A%221617863557810-0%22%2C%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2021%2Fpdf%2F280451%2F1617863565582-87c4c364-817f-47c2-ad73-786197ab5ae6.pdf%22%2C%22name%22%3A%22sippZhong%20Wen%20Jiao%20Cheng%20-%20Knight.pdf%22%2C%22size%22%3A2779461%2C%22type%22%3A%22application%2Fpdf%22%2C%22ext%22%3A%22pdf%22%2C%22progress%22%3A%7B%22percent%22%3A99%7D%2C%22status%22%3A%22done%22%2C%22percent%22%3A0%2C%22id%22%3A%22zMfhf%22%2C%22card%22%3A%22file%22%7D">sippZhong Wen Jiao Cheng - Knight.pdf</a> 黄龙舟翻译</li></ul></div><footer class=post-footer></footer></article></main><footer class=footer><span>&copy; 2022 <a href=https://wdd.js.org>洞香春</a></span>
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a></span>
+<span id=busuanzi_container_site_pv>本站访问量：<span id=busuanzi_value_site_pv></span>次</span>
+&nbsp;
+<span id=busuanzi_container_site_uv>您是本站第 <span id=busuanzi_value_site_uv></span> 位访问者</span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerText="copy";function s(){t.innerText="copied!",setTimeout(()=>{t.innerText="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
