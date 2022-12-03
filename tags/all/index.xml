@@ -9,7 +9,16 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 02 Dec 2022 20:38:46 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/all/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 Dec 2022 16:02:18 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/all/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pdf学习资料</title>
+      <link>https://wdd.js.org/opensips/pdf/</link>
+      <pubDate>Sat, 03 Dec 2022 16:02:18 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/pdf/</guid>
+      <description> [TelNYX.pdf](./TelNYX.pdfj OpenSIPS 2.3 mediasoup Cutting Edge WebRTC Video COnferencing FreeSWITCH-driven routing in OpenSIPS Voicenter: Contact center on Steroids Vlad_Paiu-Distributed_OpenSIPS_Systems_Cluecon14.pdf Vlad_Paiu-OpenSIPS_Summit_Austin_2015-Async.pdf Ionut_Ionita-OpenSIPS_Summit2017-Capturing_beyond_SIP FLAVIO_GONCALVES-Fraud_in_VoIP_Today.pdf Alexandr_Dubovikov-OpenSIPS_Summit2017-RTC_Threat_Intelligence_Exchange.pdf OpenSIPS_LoadBalancing.pdf Vlad_Paiu-OpenSIPS_Summit_2104-OpenSIPS_End_User_Services.pdf Razvan_Crainea-OpenSIPS_Summit2017-From_SIPI_Trunks_to_End_Users.pdf Razvan_Crainea-OpenSIPS_Summit-Scaling_Asterisk.pdf Vlad_Paiu-OpenSIPS_Summit-Service_Enabling_for_Asterisk.pdf Jonas_Borjesson-OpenSIPS_Summit_Austin_2015.pdf Michele_Pinasi-OpenSIPS_Summit2017-How_we_did_VoIP.pdf Bogdan_Iancu-OpenSIPS_Summit_Keynotes.pdf Giovanni_Maruzselli-OpenSIPS_Summit2017-Scaling_FreeSWITCHes.pdf Maksym_Sobolyev-OpenSIPS_Summit2017-Sippy_Labs_update.pdf docker-cluster.pdf voip malware attack tool .pdf Bogdan_Iancu-OpenSIPS_Summit-OpenSIPS_2_1.pdf Pete_Kelly-OpenSIPS_Workshop_Chicago_2015-Calling_Cards_B2BUA.pdf Bogdan_Iancu-OpenSIPS_Summit-keynotes.pdf Alex_Goulis-Opensips_CNAME.pdf OpenSIPS_2.0_Framework.pdf Norman_Brandinger-OpenSIPS_Summit_2014-Advanced_SIP_Routing_with_OpenSIPS_modules.pdf </description>
+    </item>
+    
     <item>
       <title>西安之旅 不仅有羊肉泡馍 也有长恨歌</title>
       <link>https://wdd.js.org/posts/2022/xian-travel/</link>

@@ -9,7 +9,16 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 30 Oct 2022 21:11:16 +0800</lastBuildDate><atom:link href="https://wdd.js.org/opensips/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 Dec 2022 16:02:18 +0800</lastBuildDate><atom:link href="https://wdd.js.org/opensips/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pdf学习资料</title>
+      <link>https://wdd.js.org/opensips/pdf/</link>
+      <pubDate>Sat, 03 Dec 2022 16:02:18 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/pdf/</guid>
+      <description> [TelNYX.pdf](./TelNYX.pdfj OpenSIPS 2.3 mediasoup Cutting Edge WebRTC Video COnferencing FreeSWITCH-driven routing in OpenSIPS Voicenter: Contact center on Steroids Vlad_Paiu-Distributed_OpenSIPS_Systems_Cluecon14.pdf Vlad_Paiu-OpenSIPS_Summit_Austin_2015-Async.pdf Ionut_Ionita-OpenSIPS_Summit2017-Capturing_beyond_SIP FLAVIO_GONCALVES-Fraud_in_VoIP_Today.pdf Alexandr_Dubovikov-OpenSIPS_Summit2017-RTC_Threat_Intelligence_Exchange.pdf OpenSIPS_LoadBalancing.pdf Vlad_Paiu-OpenSIPS_Summit_2104-OpenSIPS_End_User_Services.pdf Razvan_Crainea-OpenSIPS_Summit2017-From_SIPI_Trunks_to_End_Users.pdf Razvan_Crainea-OpenSIPS_Summit-Scaling_Asterisk.pdf Vlad_Paiu-OpenSIPS_Summit-Service_Enabling_for_Asterisk.pdf Jonas_Borjesson-OpenSIPS_Summit_Austin_2015.pdf Michele_Pinasi-OpenSIPS_Summit2017-How_we_did_VoIP.pdf Bogdan_Iancu-OpenSIPS_Summit_Keynotes.pdf Giovanni_Maruzselli-OpenSIPS_Summit2017-Scaling_FreeSWITCHes.pdf Maksym_Sobolyev-OpenSIPS_Summit2017-Sippy_Labs_update.pdf docker-cluster.pdf voip malware attack tool .pdf Bogdan_Iancu-OpenSIPS_Summit-OpenSIPS_2_1.pdf Pete_Kelly-OpenSIPS_Workshop_Chicago_2015-Calling_Cards_B2BUA.pdf Bogdan_Iancu-OpenSIPS_Summit-keynotes.pdf Alex_Goulis-Opensips_CNAME.pdf OpenSIPS_2.0_Framework.pdf Norman_Brandinger-OpenSIPS_Summit_2014-Advanced_SIP_Routing_with_OpenSIPS_modules.pdf </description>
+    </item>
+    
     <item>
       <title>SIP相关RFC协议</title>
       <link>https://wdd.js.org/opensips/ch1/sip-rfcs/</link>
@@ -478,6 +487,16 @@ $du = &amp;#34;sip:192.468.2.40&amp;#34;; $du可以理解为外呼代理，我�
     </item>
     
     <item>
+      <title>Load Balancing in OpenSIPS</title>
+      <link>https://wdd.js.org/opensips/blog/load-balance/</link>
+      <pubDate>Tue, 09 Mar 2021 17:52:04 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/blog/load-balance/</guid>
+      <description>https://opensips.org/Documentation/Tutorials-LoadBalancing-1-9
+1. Load Balancing in OpenSIPS The &amp;ldquo;load-balancing&amp;rdquo; module comes to provide traffic routing based on load. Shortly, when OpenSIPS routes calls to a set of destinations, it is able to keep the load status (as number of ongoing calls) of each destination and to choose to route to the less loaded destination (at that moment). OpenSIPS is aware of the capacity of each destination - it is pre-configured with the maximum load accepted by the destinations.</description>
+    </item>
+    
+    <item>
       <title>ACK 无法正常送到FS</title>
       <link>https://wdd.js.org/opensips/ch7/miss-ack/</link>
       <pubDate>Tue, 09 Mar 2021 17:10:54 +0800</pubDate>
@@ -496,6 +515,59 @@ bind_server_ip external_rtp_ip external_sip_ip 解决方案：改变fs vars.xml�
     </item>
     
     <item>
+      <title>Cross-dialog data accessing</title>
+      <link>https://wdd.js.org/opensips/blog/cross-dialog-data/</link>
+      <pubDate>Thu, 11 Feb 2021 20:24:31 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/blog/cross-dialog-data/</guid>
+      <description>原文：https://blog.opensips.org/2020/05/18/cross-dialog-data-accessing/
+There are several calling scenarios – typical Class V – where multiple SIP dialogs may be involved. And to make it work, you need, from one dialog, to access the data that belongs to another dialog. By data we mean here dialog specific data, like dialog variables, profiles or flags, and, even more, accounting data (yes, the accounting engine is so powerful that it ended be used for storing a lot of information during the calls).</description>
+    </item>
+    
+    <item>
+      <title>Dialog triggers, or how to control the calls from script</title>
+      <link>https://wdd.js.org/opensips/blog/dialog-trigers/</link>
+      <pubDate>Thu, 11 Feb 2021 20:23:40 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/blog/dialog-trigers/</guid>
+      <description>原文：https://blog.opensips.org/2020/05/26/dialog-triggers-or-how-to-control-the-calls-from-script/
+The OpenSIPS script is a very powerful tool, both in terms of capabilities (statements, variables, transformations) and in terms of integration (support for DB, REST, Events and more).So why not using the OpenSIPS script (or the script routes) to interact and control your call, in order to build more complex services on top of the dialog support?For this purpose, OpenSIPS 3.1 introduces three new per-dialog triggers:
+on_answer route, triggered when the dialog is answered; on_timeout route, triggered when the dialog is about to timeout; on_hangup route, triggered after the dialog was terminated.</description>
+    </item>
+    
+    <item>
+      <title>Calls management using the new Call API tool</title>
+      <link>https://wdd.js.org/opensips/blog/calls-manager/</link>
+      <pubDate>Thu, 11 Feb 2021 20:20:29 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/blog/calls-manager/</guid>
+      <description>看来OpenSIPS的目标已经不仅仅局限于做代理了，而是想做呼叫控制。
+原文：https://blog.opensips.org/2020/06/11/calls-management-using-the-new-call-api-tool/
+The new Call API project consists of a standalone server able to serve a set of API commands that can be used to control SIP calls (such as start a new call, put a call on hold, transfer it to a different destination, etc.). In order to provide high performance throughput, the server has been developed in Go programming language, and provides a WebSocket interface that is able to handle Json-RPC 2.</description>
+    </item>
+    
+    <item>
+      <title>Improved series-based call statistics using OpenSIPS 3.2</title>
+      <link>https://wdd.js.org/opensips/blog/call-stat/</link>
+      <pubDate>Thu, 11 Feb 2021 20:11:43 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/blog/call-stat/</guid>
+      <description>早期1x和2x版本的OpenSIPS，统计模块只有两种模式，一种时计算值，另一种是从运行开始的累加值。而无法获取比如说最近一分钟，最近5分钟，这样的基于一定周期的统计值，在OpenSIPS 3.2上，提供了新的解决方案。
+原文：https://blog.opensips.org/2021/02/02/improved-series-based-call-statistics-using-opensips-3-2/
+Real-time call statistics is an excellent tool to evaluate the quality and performance of your telephony platform, that is why it is very important to expose as many statistics as possible, accumulated over different periods of time.OpenSIPS provides an easy to use interface that exposes simple primitives for creating, updating, and displaying various statistics, both well defined as well as tailored to your needs. However, the current implementation comes with a limitation: statistics are gathered starting from the beginning of the execution, up to the point they are read.</description>
+    </item>
+    
+    <item>
+      <title>Exploring SSL/TLS libraries for OpenSIPS 3.2</title>
+      <link>https://wdd.js.org/opensips/blog/opensips3-tls/</link>
+      <pubDate>Thu, 11 Feb 2021 20:04:16 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/blog/opensips3-tls/</guid>
+      <description>OpenSIPS和OpenSSL之间的集成总是存在各种个样的问题。我之前就遇到死锁的问题，opensips CPU cpu占用很高。但是不再处理SIP消息。最终排查下来，是和OpenSSL有关。 深层次的原因，是因为OpenSIPS是个多进程的程序，而OpenSSL主要是面向多线程的程序。 在OpenSIPS3.2版本上，官方团队列出了几个OpenSSL的替代品，并进行优劣对比，最终选择一个比较好的方案。 我们一起来看看吧。
+For the purpose of providing secure SIP communication over the TLS protocol, OpenSIPS uses the OpenSSL library, the most popular TLS implementation across the Internet. However, integrating OpenSSL with OpenSIPS has posed a series of challenges starting with OpenSSL version 1.1.0, and has caused quite a few bugs and crashes since then, as presented in more detail in this article.As such, for the new OpenSIPS 3.</description>
+    </item>
+    
+    <item>
       <title>SIP消息格式CRLF</title>
       <link>https://wdd.js.org/opensips/ch3/sip-crlf/</link>
       <pubDate>Fri, 25 Dec 2020 17:44:31 +0800</pubDate>
@@ -504,6 +576,15 @@ bind_server_ip external_rtp_ip external_sip_ip 解决方案：改变fs vars.xml�
       <description> generic-message = start-line *message-header CRLF [ message-body ] start-line = Request-Line / Status-Line 其中在rfc2543中规定
 CR = %d13 ; US-ASCII CR, carriage return character LF = %d10 ; US-ASCII LF, line feed character 项目 十进制 字符串表示 CR 13 \r LF 10 \n 也就是说在一个SIP消息中
 headline\r\n key:v\r\n \r\n some_body\r\n 所以CRLF就是 \r\n 参考 https://tools.ietf.org/html/rfc3261 https://tools.ietf.org/html/rfc2543 </description>
+    </item>
+    
+    <item>
+      <title>The OpenSIPS and OpenSSL journey</title>
+      <link>https://wdd.js.org/opensips/blog/openssl-opensips/</link>
+      <pubDate>Mon, 21 Dec 2020 15:44:33 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/blog/openssl-opensips/</guid>
+      <description>In order to provide secure SIP communication over TLS connections, OpenSIPS uses the OpenSSL library, probably the most widely used open-source TLS &amp;amp; SSL library across the Internet. The fact that it is so popular and largely used makes it more robust, therefore a great choice to enforce security in a system! That was the reason it was chosen to be used in OpenSIPS in the first place. However, being designed as a multi-threaded library, while OpenSIPS is a multi-process application, integrating it was not an easy task.</description>
     </item>
     
     <item>
@@ -568,6 +649,16 @@ https://github.com/nils-ohlmeier/sipsak
 如何安装M4? 大部分Linux上都已经默认安装了m4, 你可以用m4 --version检查一下m4是否已经存在。
 m4 --version Copyright © 2021 Free Software Foundation, Inc. GPLv3+ 许可证: GNU 通用公共许可证第三版或更高版本 &amp;lt;https://gnu.org/licenses/gpl.html&amp;gt;。 这是自由软件: 您可自由更改并重新分发它。 在法律所允许的范围内，不附带任何担保条款。 如果不存在的话，可以用对应常用的包管理工具来安装，例如
 apt-get install m4 能否举个m4例子？ hello-world.</description>
+    </item>
+    
+    <item>
+      <title>SIP bridging over multiple interfaces</title>
+      <link>https://wdd.js.org/opensips/blog/mutltiple-interface/</link>
+      <pubDate>Thu, 16 Jul 2020 14:20:50 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/blog/mutltiple-interface/</guid>
+      <description>There are scenarios where you need OpenSIPS to route SIP traffic across more than one IP interface. Such a typical scenario is where OpenSIPS is required to perform bridging. The bridging may be between different IP networks (like public versus private, IPv4 versus IPv6) or between different transport protocols for SIP (like UDP versus TCP versus TLS).So, how do we switch to a different outbound interface in OpenSIPS ?
+Auto detection OpenSIPS has a built in automatic way of picking up the right outbound interface, the so called “Multi homed” support or shortly “mhomed”, controlled by the mhomed core parameter.</description>
     </item>
     
     <item>
@@ -785,6 +876,20 @@ script_trace([log_level, pv_format_string[, info_string]]) This function start t
     </item>
     
     <item>
+      <title>另一个功能强大的sip server: kamailio</title>
+      <link>https://wdd.js.org/opensips/tools/kamailio/</link>
+      <pubDate>Tue, 12 May 2020 15:43:33 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/tools/kamailio/</guid>
+      <description>之前我写过OpenSIPS的文章，所以在学习Kamailio是，会尝试和OpenSIPS做对比。
+从下图可以看出，Kamailio和Opensips算是同根同源了。很多语法、伪变量、模块使用方式，两者都极为相似。
+不一样的点 然而总体来说，kamailio相比OpenSIPS，更加灵活。 如果有机会，尝试下kamailio也未尝不可。而且kamailio的git start数量比OpenSIPS多很多，而且issue也比OpenSIPS少。
+Kamailio 有wiki社区，注册之后，可以来编辑文档，相比于OpenSIPS只有官方文档，kamailio显得更容易让人亲近，提高了用户的参与度。 脚本上 kamailio支持三种不同的注释风格，opensips只支持一种 kamailio支持类似c语言的宏定义的方式写脚本，因而kamailio的脚本可以不借助外部工具的情况下，写的非常灵活。可以参考 https://www.kamailio.org/wiki/cookbooks/5.5.x/core 的define部分 代码质量上 我觉得也是kaimailio也是更胜一筹，至少kamailioo还做了c的单元测试 总体而言，如果你要是第一次来选择，我更希望你用kamailio作为sip服务器。我之所以用OpenSIPS只不过是路径依赖而已。
+但是如果你学会了OpenSIPS, 那你学习kamailio就会非常轻松。
+参考 https://weekly-geekly.github.io/articles/150280/index.html https://github.com/kamailio/kamailio https://www.kamailio.org/wiki/ </description>
+    </item>
+    
+    <item>
       <title>回音问题调研</title>
       <link>https://wdd.js.org/opensips/ch7/echo-back/</link>
       <pubDate>Wed, 22 Apr 2020 15:12:11 +0800</pubDate>
@@ -808,6 +913,17 @@ script_trace([log_level, pv_format_string[, info_string]]) This function start t
 a very small percentage of hosts in a stub domain are communicating outside of the domain at any given time
 短期的方案基于一个逻辑事实：在一个网络中，只有非常少的几个主机需要跟外部网络交流。也就是说，大部分的主机都在内部交流。那么内部交流的这些主机，实际上并不需要给设置公网 IP。（但是这个只是 1993 年的那个时期的事实）**可以类比于，班级内部之间的学生交流很多。班级与班级之间的交流，估计只有班长之间交流。
 参考 https://tools.ietf.org/html/rfc1631 https://tools.ietf.org/html/rfc1996 https://tools.ietf.org/html/rfc2663 https://tools.ietf.org/html/rfc2993 </description>
+    </item>
+    
+    <item>
+      <title>CANCEL请求和Reason头</title>
+      <link>https://wdd.js.org/opensips/blog/cancel-reason/</link>
+      <pubDate>Fri, 10 Apr 2020 10:21:36 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/blog/cancel-reason/</guid>
+      <description>原文：https://blog.opensips.org/2016/12/29/understanding-and-dimensioning-memory-in-opensips/
+Call canceling may look like a trivial mechanism, but it plays an important role in complex scenarios like simultaneous ringing (parallel forking), call pickup, call redirect and many others. So, aside proper routing of CANCEL requests, reporting the right cancelling reason is equally important.
+如何正确的处理cancel请求？ According to RFC 3261,** a CANCEL must be route to the exact same destination (IP, port, protocol) and with the same exact Request-URI as the INVITE it is canceling**.</description>
     </item>
     
     <item>
@@ -1170,6 +1286,105 @@ curl http://192.168.40.98:8888/mi/carrierroute/cr_reload_routes?arg= </descripti
       
       <guid>https://wdd.js.org/opensips/ch7/without-log/</guid>
       <description> 将opensips.cfg文件中的，log_stderror的值改为yes, 让出错直接输出到标准错误流上，然后opensips start 如果第一步还是没有日志输出，则opensips -f opensips.cfg </description>
+    </item>
+    
+    <item>
+      <title>理解并测量OpenSIPS的内存资源</title>
+      <link>https://wdd.js.org/opensips/blog/memory-usage/</link>
+      <pubDate>Wed, 31 Jul 2019 13:50:43 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/blog/memory-usage/</guid>
+      <description>原文：https://blog.opensips.org/2016/12/29/understanding-and-dimensioning-memory-in-opensips/
+Running OpenSIPS with the right memory configuration is a very important task when developing and maintaining your VoIP service, because it has a direct effect over the scale of your platform, the customers you support, as well as the services you offer. Setting the limit to a low value might make OpenSIPS run out of memory during high volume of traffic, or during complex scenarios, while setting a big value might lead to wasted resources.</description>
+    </item>
+    
+    <item>
+      <title>Troubleshooting missing ACK in SIP</title>
+      <link>https://wdd.js.org/opensips/blog/miss-ack/</link>
+      <pubDate>Wed, 31 Jul 2019 13:47:21 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/blog/miss-ack/</guid>
+      <description>We all experienced calls getting self disconnected after 5-10 seconds – usually disconnected by the callee side via a BYE request – but a BYE which was not triggered by the party behind the phone, but by the SIP stack/layer itself.This is one of the most common issues we get in SIP and one of the most annoying in the same time. But why it happens ? Getting to the missing ACK Such a decision to auto-terminate the call (beyond the end-user will and control) indicates an error in the SIP call setup.</description>
+    </item>
+    
+    <item>
+      <title>Troubleshooting OpenSIPS script</title>
+      <link>https://wdd.js.org/opensips/blog/troubleshooting-opensips-script/</link>
+      <pubDate>Wed, 31 Jul 2019 13:43:05 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/blog/troubleshooting-opensips-script/</guid>
+      <description>What makes OpenSIPS such an attractive and powerful SIP solutions is its high level of programmability, thanks to its C-like configuration script. But once you get into the “programming” area, you will automatically need tools and skills for troubleshooting.So here there are some some tips and tools you can use in OpenSIPS for “debugging” your configuration script. Controlling the script logging The easiest way to troubleshoot your script is of course by using the xlog() core function and print your own messages.</description>
+    </item>
+    
+    <item>
+      <title>Running OpenSIPS in the Cloud</title>
+      <link>https://wdd.js.org/opensips/blog/runing-opensips-in-cloud/</link>
+      <pubDate>Wed, 31 Jul 2019 13:41:55 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/blog/runing-opensips-in-cloud/</guid>
+      <description>Cloud computing is a more and more viable option for running and providing SIP services. The question is how compatible are the SIP services with the Cloud environment ? So let’s have a look at this compatibility from the most sensitive (for SIP protocol) perspective – the IP network topology.A large number of existing clouds (like EC2, Google CP, Azure) have a particularity when comes to the topology of the IP network they provide – they do not provide public routable IPs directly on the virtual servers, rather they provide private IPs for the servers and a fronting public IP doing a 1-to-1 NAT to the private one.</description>
+    </item>
+    
+    <item>
+      <title>深入OpenSIPS统计引擎</title>
+      <link>https://wdd.js.org/opensips/blog/deepin-stat-engine/</link>
+      <pubDate>Wed, 31 Jul 2019 13:40:00 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/blog/deepin-stat-engine/</guid>
+      <description>无论你是经验丰富的OpenSIPS管理员，或者你仅仅想找到为什么ACK消息在你的网络中循环发送，唯一可以确定的是：我们或早或晚会需要OpenSIPS提供数据来回答以下问题
+OpenSIPS运行了多久？ 我们是否被恶意流量攻击了？ 我们的平台处理了多少个来自运营商的无效SIP包 在流量峰值时，OpenSIPS是否拥有足够的内存来支撑运行 &amp;hellip; 幸运的是，OpenSIPS提供内置的统计支持，来方便我们快速解决以上问题。详情可以查看OpenSIPS统计接口。在本篇文章中，我们将会了解统计引擎，但是，什么是引擎？
+统计引擎 总的来说，下图就是OpenSIPS引擎的样子。
+统计引擎内置于OpenSIPS。它管理所有的统计数据，并且暴露一个标准的CRUD操作接口给所有的模块，让模块可以推送或者管理他们自己的统计数据。
+一下有三种方式来和统计引擎进行交互
+直接通过脚本访问。如通过$script(my-stat)变量 使用HTTP请求来访问 使用opensipsctl fifo命令 统计引擎是非常灵活并且可以通过不同方式与其交互，那么它怎么能让我们的使用变得方便呢？下面的一些建议，能够让你全面的发挥静态统计引擎的能力，来增强某些重要的层面。
+系统开发维护 当你处理OpenSIPS的DevOps时，你经常需要监控OpenSIPS的一些运行参数。你的关注点不同，那么你就需要监控不同的方面，例如SIP事务、对话、内存使用、系统负载等等
+下面是OpenSIPS统计分组的一个概要，以及组内的每一个统计值，详情可以参考wiki。
+统计简介 假如我们想通过sipp对我们的平台进行流量测试，我们想压测期间观测当前的事务、对话、共享内存的值变化。或者我们我们有了一个新的SIP提供商，他们每天早上9点会开始向我们平台推送数据，我们需要监控他们的推送会对我们系统产生的影响。
+你可以在OpenSIPS实例中输入以下指令：
+watch -n0.2 &amp;#39;opensipsctl fifo get_statistics inuse_transactions dialog: shmem:&amp;#39; 注意 get_statistics命令即可以接受一个统计值项，也可以接受一个统计组的项。统计组都是以冒号(:)结尾。
+与递增的统计指标进行交互 统计指标看起来相同，实际上分为两类
+累计值。累计是一般是随着时间增长，例如rcv_requests, processed_dialogs，表示从某个时间点开始累计收到或者处理了多少个任务 计算值。计算值一般和系统运行负载有关，和时间无关。例如active_dialogs, real_used_size, 这些值都是由内部函数计算出来的计算值 一般来说，脚本中定义的统计值都是递增的，OpenSIPS无法重新计算它，只能我们自己来计算或者维护它的值。
+以下方式可以快速查看计算值类的统计项
+opensipsctl fifo list_statistics 某些场景，你可能需要周期性的重置累计值类的统计项。例如你可以只需要统计当天的processed_dialogs，daily_routed_minutes，那么你只需要设置一个定时任务，每天0点，重置这些统计值。
+opensipsctl fifo reset_statistics processed_dialogs 在脚本中自定义统计项 在脚本中自定义统计项是非常简单的，只需要做两步
+加载statistics.so模块 在某些位置调用函数, update_stat(&amp;quot;daily_routed_minutes&amp;quot;, &amp;quot;+1&amp;quot;) 实战：脚本中有许多的自定义统计项 统计每天收到的SIP消息的请求方式, 以及处理的消息长度 每隔24小时，以JSON的形式，将消息写到SIP服务器 # 设置统计组 modparam(&amp;#34;statistics&amp;#34;, &amp;#34;stat_groups&amp;#34;, &amp;#34;method, packet&amp;#34;) # 请求路由 route { ... update_stat(&amp;#34;method:$rm&amp;#34;, &amp;#34;+1&amp;#34;); update_stat(&amp;#34;packet:count&amp;#34;, &amp;#34;+1&amp;#34;); update_stat(&amp;#34;packet:total_size&amp;#34;, &amp;#34;$ml&amp;#34;) # message length .</description>
+    </item>
+    
+    <item>
+      <title>Full Anycast support in OpenSIPS 2.4</title>
+      <link>https://wdd.js.org/opensips/blog/full-anycast/</link>
+      <pubDate>Wed, 31 Jul 2019 13:37:31 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/blog/full-anycast/</guid>
+      <description>he advantages of doing Load Balancing and High Availability **without **any particular requirements from the clients side are starting to make Anycast IPs more and more appealing in the VoIP world. But are you actually using the best out of it? This article describes how you can use OpenSIPS 2.4 to make the best use of an anycast environment.Anycast is a UDP-based special network setup where a single IP is assigned to multiple nodes, each of them being able to actively use it (as opposed to a VRRP setup, where only one instance can use the IP).</description>
+    </item>
+    
+    <item>
+      <title>Clustering ongoing calls with OpenSIPS 2.4</title>
+      <link>https://wdd.js.org/opensips/blog/cluster-call/</link>
+      <pubDate>Wed, 31 Jul 2019 13:36:53 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/blog/cluster-call/</guid>
+      <description>Dialog replication in OpenSIPS has been around since version 1.10, when it became clear that sharing real-time data through a database is no longer feasible in a large VoIP platform. Further steps in this direction have been made in 2.2, with the advent of the clusterer module, which manages OpenSIPS instances and their inter-communication. But have we been able to achieve the objective of a true and complete solution for clustering dialog support?</description>
+    </item>
+    
+    <item>
+      <title>Clustered SIP User Location: The Full Sharing Topology</title>
+      <link>https://wdd.js.org/opensips/blog/cluster-location/</link>
+      <pubDate>Wed, 31 Jul 2019 13:34:05 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/blog/cluster-location/</guid>
+      <description>The distributed SIP user location support is one of the major features of the latest stable OpenSIPS release, namely 2.4. The aim of this extension of the OpenSIPS usrloc module is to provide a horizontally scalable solution that is easy to set up and maintain, while remaining flexible enough to cope with varying needs of each specific deployment.Throughout this text, by “data” we refer to SIP Addresses-of-Record (subscribers) and their dynamic SIP Contact bindings (network coordinates of their SIP devices) — all of these must be replicated across cluster nodes.</description>
+    </item>
+    
+    <item>
+      <title>Introducing OpenSIPS 3.0</title>
+      <link>https://wdd.js.org/opensips/blog/opensips3x/</link>
+      <pubDate>Wed, 31 Jul 2019 13:31:30 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/blog/opensips3x/</guid>
+      <description>You already know the story – one more year, one more evolution cycle, one more OpenSIPS major release. Even more, a new OpenSIPS direction is about to start. So let me introduce you to the upcoming OpenSIPS 3.0 .For the upcoming OpenSIPS 3.0 release (and 3.x family) the main focus is on the **_devops _**concept. Shortly said, this translates into:
+making the OpenSIPS script writing/developing much easier simplifying the operational activities around OpenSIPS What features and functionalities a software is able to deliver is a very important factor.</description>
     </item>
     
     <item>

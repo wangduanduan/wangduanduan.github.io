@@ -104,5 +104,133 @@ sofia loglevel all 7 # sofia loglevel &amp;lt;all|default|tport|iptsec|nea|nta|n
 global_codec_prefs=G722,PCMU,PCMA,GSM outbound_codec_prefs=PCMU,PCMA,GSM 查看FS使用的编码 &amp;gt; sofia status profile internal CODECS IN ILBC,PCMU,PCMA,GSM CODECS OUT ILBC,PCMU,PCMA,GSM &amp;gt; sofia status profile external CODECS IN ILBC,PCMU,PCMA,GSM CODECS OUT ILBC,PCMU,PCMA,GSM 使修改后的profile生效 &amp;gt; sofia profile internal rescan &amp;gt; sofia profile external rescan 重启profile &amp;gt; sofia profile internal restart &amp;gt; sofia profile external restart </description>
     </item>
     
+    <item>
+      <title>ch0 开发课程简介</title>
+      <link>https://wdd.js.org/freeswitch/codec-negotiation/</link>
+      <pubDate>Wed, 21 Apr 2021 13:52:43 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/freeswitch/codec-negotiation/</guid>
+      <description>本章节，带领大家探索opensips模块开发。希望深入了解opensips的同学可以看看。
+内容涵盖 章节的内容将会涵盖
+opensips的启动流程 如何创建一个模块 如何给模块传递参数 模块的生命周期函数的处理 如何暴露自定义的函数 如何检查函数的传惨 如何获取$var或者$avp变量 如何获取相关的flag 如何修改SIP消息 如何编写mi接口 如何编写statistics统计数据 如何做数据库操作 OpenSIPS架构 参考 https://voipmagazine.files.wordpress.com/2014/09/opensips-arch.jpg </description>
+    </item>
+    
+    <item>
+      <title>FS intercept拦截</title>
+      <link>https://wdd.js.org/freeswitch/intercept/</link>
+      <pubDate>Mon, 15 Mar 2021 18:21:29 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/freeswitch/intercept/</guid>
+      <description>FS的 call pickup功能，就是用intercept功能。
+一个呼叫一般有两个leg, intercept一般是把自己bridge其中一个leg，另外一个leg会挂断。 intercept默认是bridge legA, 挂断legB。通过参数也可以指定来bridge legB，挂断legA。
+从一个简单的场景说起。A拨打B分机。
+从FS的角度来说，有以下两条腿。
+通过分析日志可以发现：具有replaces这种头的invite，fs没有走路由，而是直接用了intercept拦截。
+New Channel sofia/external/8003@wdd.cc [6ca5ed94-a5e5-492d-aaf7-782cecbaf7d1]2021-03-15 10:42:47.380797 [NOTICE] switch_channel.c:1118 New Channel sofia/external/8001@wdd.cc [34dc4095-3bac-4f7d-8be4-1ed5ed2f06b4]
+2021-03-15 10:42:51.520800 [NOTICE] switch_channel.c:1118 New Channel sofia/external/8004@wdd.cc [03e78837-1413-4b77-ba4c-e753fed55ebe]2021-03-15 10:42:51.520800 [DEBUG] switch_core_state_machine.c:585 (sofia/external/8004@wdd.cc) Running State Change CS_NEW (Cur 3 Tot 163)2021-03-15 10:42:51.520800 [DEBUG] sofia.c:10279 sofia/external/8004@wdd.cc receiving invite from 192.168.2.109:18627 version: 1.10.3-release 32bit2021-03-15 10:42:51.520800 [DEBUG] sofia.c:11640 call 6ca5ed94-a5e5-492d-aaf7-782cecbaf7d1 intercepted2021-03-15 10:42:51.520800 [DEBUG] sofia.c:7325 Channel sofia/external/8004@wdd.cc entering state [received][100]
+EXECUTE [depth=0] sofia/external/8004@wdd.</description>
+    </item>
+    
+    <item>
+      <title>fs_cli 例子</title>
+      <link>https://wdd.js.org/freeswitch/fs-cli-example/</link>
+      <pubDate>Tue, 07 Apr 2020 17:40:16 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/freeswitch/fs-cli-example/</guid>
+      <description>1. 设置日志级别 每个快捷键对应一个功能，具体配置位于 /conf/autoload_configs/switch.conf.xml
+F1. help F2. status F3. show channels F4. show calls F5. sofia status F6. reloadxml F7. console loglevel 0 F8. console loglevel 7 F9. sofia status profile internal F10. sofia profile intrenal siptrace on F11. sofia profile internal siptrace off F12. version 2. 发起呼叫相关 下面的命令都是同步的命令，可以在所有命令前加bgapi命令，让originate命令后台异步执行。
+2.1 回音测试 originate user/1000 &amp;amp;echo 2.2 停泊 originate user/1000 &amp;amp;park # 停泊 2.3 保持 originate user/1000 &amp;amp;hold # 保持 2.4 播放放音 originate user/1000 &amp;amp;playback(/root/welclome.</description>
+    </item>
+    
+    <item>
+      <title>通道变量列表</title>
+      <link>https://wdd.js.org/freeswitch/channel-var-list/</link>
+      <pubDate>Tue, 10 Dec 2019 11:33:24 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/freeswitch/channel-var-list/</guid>
+      <description>About Channel variables are used to manipulate dialplan execution, to control call progress, and to provide options to applications. They play a pervasive role, as FreeSWITCH™ frequently consults channel variables as a way to customize processing prior to a channel&amp;rsquo;s creation, during call progress, and after the channel hangs up.  Click here to expand Table of Contents Variable Expansion We rely on variable expansion to create flexible, reusable dialplans:</description>
+    </item>
+    
+    <item>
+      <title>mod_commands</title>
+      <link>https://wdd.js.org/freeswitch/mod-command/</link>
+      <pubDate>Tue, 10 Dec 2019 11:32:38 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/freeswitch/mod-command/</guid>
+      <description>Usage CLI See below. API/Event Interfaces mod_event_socket mod_erlang_event mod_xml_rpc Scripting Interfaces mod_perl mod_v8 mod_python mod_lua From the Dialplan An API command can be called from the dialplan. Example:Invoke API Command From DialplanOther examples:Other Dialplan API Command ExamplesAPI commands with multiple arguments usually have the arguments separated by a space:Multiple Arguments
+Dialplan UsageIf you are calling an API command from the dialplan make absolutely certain that there isn&amp;rsquo;t already a dialplan application that gives you the functionality you are looking for.</description>
+    </item>
+    
+    <item>
+      <title>XML Switch Configuration</title>
+      <link>https://wdd.js.org/freeswitch/xml-config/</link>
+      <pubDate>Tue, 10 Dec 2019 11:30:38 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/freeswitch/xml-config/</guid>
+      <description>The FreeSWITCH core configuration is contained in autoload_configs/switch.conf.xml
+Default key bindings Function keys can be mapped to API commands using the following configuration:The default keybindings are;F1 = helpF2 = statusF3 = show channelsF4 = show callsF5 = sofia statusF6 = reloadxmlF7 = console loglevel 0F8 = console loglevel 7F9 = sofia status profile internalF10 = sofia profile internal siptrace onF11 = sofia profile internal siptrace offF12 = versionBeware that the option loglevel is actually setting the minimum hard_log_Level in the application.</description>
+    </item>
+    
+    <item>
+      <title>Sofia SIP Stack</title>
+      <link>https://wdd.js.org/freeswitch/sofia-stack/</link>
+      <pubDate>Tue, 10 Dec 2019 11:27:17 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/freeswitch/sofia-stack/</guid>
+      <description>Sofia is a SIP stack used by FreeSWITCH. When you see &amp;ldquo;sofia&amp;rdquo; anywhere in your configuration, think &amp;ldquo;This is SIP stuff.&amp;rdquo; It takes a while to master it all, so please be patient with yourself. SIP is a crazy protocol and it will make you crazy too if you aren&amp;rsquo;t careful. Read on for information on setting up SIP/Sofia in your FreeSWITCH configuration.
+mod_sofia exposes the Sofia API and sets up the FreeSWITCH SIP endpoint.</description>
+    </item>
+    
+    <item>
+      <title>编译FS</title>
+      <link>https://wdd.js.org/freeswitch/compile-fs/</link>
+      <pubDate>Tue, 10 Dec 2019 11:25:04 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/freeswitch/compile-fs/</guid>
+      <description>make clean - Cleans the build environment make current - Cleans build environment, performs an git update, then does a make install make core_install (or make install_core) - Recompiles and installs just the core files. Handy if you are working on a core file and want to recompile without doing the whole shebang. make mod_XXXX-install - Recompiles and installs just a single module. Here are some examples: make mod_openzap-install make mod_sofia-install make mod_lcr-install make samples - This will not replace your configuration.</description>
+    </item>
+    
+    <item>
+      <title>fs 命令行</title>
+      <link>https://wdd.js.org/freeswitch/command-line/</link>
+      <pubDate>Tue, 10 Dec 2019 11:19:39 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/freeswitch/command-line/</guid>
+      <description>运行fs 前台运行 freeswitch 后台运行 freeswich -nc 参数列表 These are the optional arguments you can pass to freeswitch:
+FreeSWITCH startup switches
+-waste -- allow memory waste -no-auto-stack -- don&amp;#39;t adjust thread stack size -core -- dump cores -help -- print this message -version -- print the version and exit -rp -- enable high(realtime) priority settings -lp -- enable low priority settings -np -- enable normal priority settings (system default) -vg -- run under valgrind -nosql -- disable internal SQL scoreboard -heavy-timer -- Heavy Timer, possibly more accurate but at a cost -nonat -- disable auto NAT detection -nonatmap -- disable auto NAT port mapping -nocal -- disable clock calibration -nort -- disable clock clock_realtime -stop -- stop freeswitch -nc -- no console and run in background -ncwait -- no console and run in background, but wait until the system is ready before exiting (implies -nc) -c -- output to a console and stay in the foreground (default behavior) UNIX-like only -nf -- no forking -u [user] -- specify user to switch to -g [group] -- specify group to switch to -ncwait -- do not output to a console and background but wait until the system is ready before exiting (implies -nc) Windows-only -service [name] &amp;ndash; start freeswitch as a service, cannot be used if loaded as a console app-install [name] &amp;ndash; install freeswitch as a service, with optional service name-uninstall &amp;ndash; remove freeswitch as a service-monotonic-clock &amp;ndash; use monotonic clock as timer source</description>
+    </item>
+    
+    <item>
+      <title>fs reload命令</title>
+      <link>https://wdd.js.org/freeswitch/reload/</link>
+      <pubDate>Tue, 10 Dec 2019 11:17:55 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/freeswitch/reload/</guid>
+      <description>Item Reload Command Notes XML Dialplan reloadxml Run each time you edit XML dial file(s) ACLs reloadacl Edit acl.conf.xml first Voicemail reload mod_voicemail Edit voicemail.conf.xml first Conference reload mod_conference Edit conference.conf.xml first Add Sofia Gateway sofia profile rescan Less intrusive - no calls dropped Remove Sofia Gateway sofia profile killgw &amp;lt;gateway_name&amp;gt; Less intrusive - no calls dropped Restart Sofia Gateway sofia profile killgw &amp;lt;gateway_name&amp;gt;sofia profile rescan Less intrusive - no calls dropped Add/remove Sofia Gateway sofia profile restart More intrusive - all profile calls dropped Local Stream see Mod_local_stream Edit localstream.</description>
+    </item>
+    
+    <item>
+      <title>通道变量与SIP 消息头</title>
+      <link>https://wdd.js.org/freeswitch/get-sip-header/</link>
+      <pubDate>Mon, 15 Jul 2019 23:06:57 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/freeswitch/get-sip-header/</guid>
+      <description>自定义SIP消息头如何从通道变量中获取？ if you pass a header variable called type from the proxy server, it will get displayed as variable_sip_h_type in FreeSWITCH™. To access that variable, you should strip off the variable_, and just do ${sip_h_type}</description>
+    </item>
+    
+    <item>
+      <title>fs日志级别</title>
+      <link>https://wdd.js.org/freeswitch/fs-log-level/</link>
+      <pubDate>Thu, 11 Jul 2019 17:13:29 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/freeswitch/fs-log-level/</guid>
+      <description>fs日志级别
+0 &amp;#34;CONSOLE&amp;#34;, 1 &amp;#34;ALERT&amp;#34;, 2 &amp;#34;CRIT&amp;#34;, 3 &amp;#34;ERR&amp;#34;, 4 &amp;#34;WARNING&amp;#34;, 5 &amp;#34;NOTICE&amp;#34;, 6 &amp;#34;INFO&amp;#34;, 7 &amp;#34;DEBUG&amp;#34; 日志级别设置的越高，显示的日志越多
+在autoload_configs/switch.conf.xml 设置了一些快捷键，可以在fs_cli中使用
+F7将日志级别设置为0，显示的日志最少 F8将日志级别设置为7， 显示日志最多 同时也可以使用 console loglevel指令自定义设置级别
+console loglevel 1 console loglevel notice 参考 https://freeswitch.org/confluence/display/FREESWITCH/Troubleshooting+Debugging </description>
+    </item>
+    
   </channel>
 </rss>
