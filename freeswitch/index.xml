@@ -105,17 +105,6 @@ global_codec_prefs=G722,PCMU,PCMA,GSM outbound_codec_prefs=PCMU,PCMA,GSM 查看F
     </item>
     
     <item>
-      <title>ch0 开发课程简介</title>
-      <link>https://wdd.js.org/freeswitch/codec-negotiation/</link>
-      <pubDate>Wed, 21 Apr 2021 13:52:43 +0800</pubDate>
-      
-      <guid>https://wdd.js.org/freeswitch/codec-negotiation/</guid>
-      <description>本章节，带领大家探索opensips模块开发。希望深入了解opensips的同学可以看看。
-内容涵盖 章节的内容将会涵盖
-opensips的启动流程 如何创建一个模块 如何给模块传递参数 模块的生命周期函数的处理 如何暴露自定义的函数 如何检查函数的传惨 如何获取$var或者$avp变量 如何获取相关的flag 如何修改SIP消息 如何编写mi接口 如何编写statistics统计数据 如何做数据库操作 OpenSIPS架构 参考 https://voipmagazine.files.wordpress.com/2014/09/opensips-arch.jpg </description>
-    </item>
-    
-    <item>
       <title>FS intercept拦截</title>
       <link>https://wdd.js.org/freeswitch/intercept/</link>
       <pubDate>Mon, 15 Mar 2021 18:21:29 +0800</pubDate>

@@ -9,14 +9,42 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 03 Dec 2022 16:02:18 +0800</lastBuildDate><atom:link href="https://wdd.js.org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Dec 2022 21:10:38 +0800</lastBuildDate><atom:link href="https://wdd.js.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>为什么我不再使用语雀</title>
+      <link>https://wdd.js.org/posts/2022/why-i-dont-not-use-yuque-any-more/</link>
+      <pubDate>Tue, 06 Dec 2022 21:10:38 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2022/why-i-dont-not-use-yuque-any-more/</guid>
+      <description>我在2019年的六月份时候，开始使用语雀。
+一路走来，我见证了语雀的功能越来越多，但是于此同时，我也越来越讨厌语雀。
+2022年12月初，我基本上把语雀上的所有内容都迁移到我的hugo博客上。
+我的博客很乱，也很多。我写了一个脚本，一个一个知识库的搬迁，总体速度还算快，唯一不便的就是图片需要一个一个复制粘贴。
+有些图片是用语雀的绘图语言例如plantuml编写的，就只能截图保存了。
+总之，我也是蛮累的。
+简单列一下我不喜欢语雀的几个原因:
+性能差，首页渲染慢，常常要等很久，首页才能打开 产品定位混乱，随意更改用户数据 我记得有时候我把知识库升级成了空间，过了一段时间，不知道为什么空间由变成了知识库。 数字花园这个概念真的很烂。我好好的个人主页，某一天打开，大变样，换了个名字，叫做数字花园。甚至没有给用户一个选择保留老版本的个人主页的权利。太不尊重用户了！！ 就好像你下班回家，看见房门被人撬开，你打开房门，看见有人在你的客厅种满大蒜，然后还兴高采烈的告诉你，看，这是您的数字菜园！多好，以后不用买蒜了。 会员的流量计费规则， 或许现在的计费规则已经变了，我也没有再充会员，但是再以前。即使是会员，也是按流量计费的。什么叫按流量计费，假如你的一篇博客里上传了一张1mb的图片，即使你后来把这个图片删了，这1mb的流量还是会存在。而且流量是一直往上涨的，还不像运营商，每月一号给你清零一次的机会。 </description>
+    </item>
+    
+    <item>
+      <title>模块传参的重构</title>
+      <link>https://wdd.js.org/opensips/3x/module-args/</link>
+      <pubDate>Sat, 03 Dec 2022 21:01:02 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/3x/module-args/</guid>
+      <description>写过opensips脚本的同学，往往对函数的传参感到困惑。
+例如：
+ds_select_dst()可以接受整数或者值为正数的变量作为第一个参数，但是nat_uac_test()的第一个参数就只能是整数，而不能是变量 为什么rl_check()可以接受格式化的字符串，而save()只能接受字符串。 为什么ds_select_dst(&amp;quot;1&amp;quot;, &amp;quot;4&amp;quot;) 作为整数也要加上双引号？ 为什么变量要加上双引号？ ds_select_dst(&amp;quot;$var(aa)&amp;quot;, &amp;quot;4&amp;quot;) 为什么t_on_branch(&amp;quot;1&amp;quot;)路由的钩子要加上双引号？ 为什么route(go_to_something);这里又不需要加上引号？ ds_select_dst(&amp;#34;1&amp;#34;, &amp;#34;0&amp;#34;); $var(aa)=1; ds_select_dst(&amp;#34;$var(aa)&amp;#34;, &amp;#34;0&amp;#34;); rl_check(&amp;#34;gw_$ru&amp;#34;, &amp;#34;$var(limit)&amp;#34;); #格式化的gw_$ru save(&amp;#34;location&amp;#34;); #单纯的字符串作为参数 从3.0开始，传参可以更加自然。
+整数可以直接传参，不用加双引号 do_something(1, 1); 输入或者输出的$var(), 不用加双引号，加了反而会报错 do_something($var(a), $var(b)); 格式化字符串，需要加双引号 do_something(1, &amp;#34;$var(bb)_$var(b)&amp;#34;); 参考 https://blog.opensips.org/2019/11/05/the-module-function-interface-rework-in-opensips-3-0/ https://www.opensips.org/Documentation/Script-Syntax-3-0# </description>
+    </item>
+    
     <item>
       <title>Pdf学习资料</title>
       <link>https://wdd.js.org/opensips/pdf/</link>
       <pubDate>Sat, 03 Dec 2022 16:02:18 +0800</pubDate>
       
       <guid>https://wdd.js.org/opensips/pdf/</guid>
-      <description> [TelNYX.pdf](./TelNYX.pdfj OpenSIPS 2.3 mediasoup Cutting Edge WebRTC Video COnferencing FreeSWITCH-driven routing in OpenSIPS Voicenter: Contact center on Steroids Vlad_Paiu-Distributed_OpenSIPS_Systems_Cluecon14.pdf Vlad_Paiu-OpenSIPS_Summit_Austin_2015-Async.pdf Ionut_Ionita-OpenSIPS_Summit2017-Capturing_beyond_SIP FLAVIO_GONCALVES-Fraud_in_VoIP_Today.pdf Alexandr_Dubovikov-OpenSIPS_Summit2017-RTC_Threat_Intelligence_Exchange.pdf OpenSIPS_LoadBalancing.pdf Vlad_Paiu-OpenSIPS_Summit_2104-OpenSIPS_End_User_Services.pdf Razvan_Crainea-OpenSIPS_Summit2017-From_SIPI_Trunks_to_End_Users.pdf Razvan_Crainea-OpenSIPS_Summit-Scaling_Asterisk.pdf Vlad_Paiu-OpenSIPS_Summit-Service_Enabling_for_Asterisk.pdf Jonas_Borjesson-OpenSIPS_Summit_Austin_2015.pdf Michele_Pinasi-OpenSIPS_Summit2017-How_we_did_VoIP.pdf Bogdan_Iancu-OpenSIPS_Summit_Keynotes.pdf Giovanni_Maruzselli-OpenSIPS_Summit2017-Scaling_FreeSWITCHes.pdf Maksym_Sobolyev-OpenSIPS_Summit2017-Sippy_Labs_update.pdf docker-cluster.pdf voip malware attack tool .pdf Bogdan_Iancu-OpenSIPS_Summit-OpenSIPS_2_1.pdf Pete_Kelly-OpenSIPS_Workshop_Chicago_2015-Calling_Cards_B2BUA.pdf Bogdan_Iancu-OpenSIPS_Summit-keynotes.pdf Alex_Goulis-Opensips_CNAME.pdf OpenSIPS_2.0_Framework.pdf Norman_Brandinger-OpenSIPS_Summit_2014-Advanced_SIP_Routing_with_OpenSIPS_modules.pdf </description>
+      <description> TelNYX.pdf OpenSIPS 2.3 mediasoup Cutting Edge WebRTC Video COnferencing FreeSWITCH-driven routing in OpenSIPS Voicenter: Contact center on Steroids Vlad_Paiu-Distributed_OpenSIPS_Systems_Cluecon14.pdf Vlad_Paiu-OpenSIPS_Summit_Austin_2015-Async.pdf Ionut_Ionita-OpenSIPS_Summit2017-Capturing_beyond_SIP FLAVIO_GONCALVES-Fraud_in_VoIP_Today.pdf Alexandr_Dubovikov-OpenSIPS_Summit2017-RTC_Threat_Intelligence_Exchange.pdf OpenSIPS_LoadBalancing.pdf Vlad_Paiu-OpenSIPS_Summit_2104-OpenSIPS_End_User_Services.pdf Razvan_Crainea-OpenSIPS_Summit2017-From_SIPI_Trunks_to_End_Users.pdf Razvan_Crainea-OpenSIPS_Summit-Scaling_Asterisk.pdf Vlad_Paiu-OpenSIPS_Summit-Service_Enabling_for_Asterisk.pdf Jonas_Borjesson-OpenSIPS_Summit_Austin_2015.pdf Michele_Pinasi-OpenSIPS_Summit2017-How_we_did_VoIP.pdf Bogdan_Iancu-OpenSIPS_Summit_Keynotes.pdf Giovanni_Maruzselli-OpenSIPS_Summit2017-Scaling_FreeSWITCHes.pdf Maksym_Sobolyev-OpenSIPS_Summit2017-Sippy_Labs_update.pdf docker-cluster.pdf voip malware attack tool .pdf Bogdan_Iancu-OpenSIPS_Summit-OpenSIPS_2_1.pdf Pete_Kelly-OpenSIPS_Workshop_Chicago_2015-Calling_Cards_B2BUA.pdf Bogdan_Iancu-OpenSIPS_Summit-keynotes.pdf Alex_Goulis-Opensips_CNAME.pdf OpenSIPS_2.0_Framework.pdf Norman_Brandinger-OpenSIPS_Summit_2014-Advanced_SIP_Routing_with_OpenSIPS_modules.pdf </description>
     </item>
     
     <item>
@@ -904,6 +932,24 @@ prepared语句的优点有以下几个
     </item>
     
     <item>
+      <title>NAT场景下的信令处理 - 单网卡</title>
+      <link>https://wdd.js.org/opensips/ch9/nat-single-interface/</link>
+      <pubDate>Fri, 10 Jun 2022 20:27:09 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch9/nat-single-interface/</guid>
+      <description> OPS &amp;lt;&amp;lt;&amp;lt;----------------------------- ingress 内网 | 公网 ｜ | 192.168.2.11 | 1.2.3.4 INNER_IP | OUTER_IP | | ------------------------------&amp;gt;&amp;gt;&amp;gt; egress 常见共有云的提供的云服务器，一般都有一个内网地址如192.16.2.11和一个公网地址如1.2.3.4。 内网地址是配置在网卡上的；公网地址则只是一个映射，并未在网卡上配置。
+我们称从公网到内网的方向为ingress，从内网到公网的方向为egress。
+对于内网来说OpenSIPS的广播地址应该是INNER_IP, 所以对ingress方向的SIP请求，Via应该是INNER_IP。对于公网来说OpenSIPS的广播地址应该是OUT_IP, 随意对于egress方向的SIP请求，Via应该是OUTER_IP。
+我们模拟一下，假如设置了错误的Via的地址会怎样呢？
+例如从公网到内网的一个INVITE, 如果Via头加上的是OUTER_IP， 那么这个请求的响应也会被送到OPS的公网地址。但是由于网络策略和防火墙等原因，这个来自内网的响应很可能无法被送到OPS的公网地址。
+一般情况下，我们可以使用listen的as参数来设置对外的广告地址。
+listen = udp:192.168.2.11:5060 as 1.2.3.4:5060 这样的情况下，从内网发送到公网请求，携带的Via就被被设置成1.2.3.4。
+但是也不是as设置的广告地址一定正确。这时候我们就可以用OpenSIPS提供的核心函数set_advertised_address或者set_advertised_port()来在脚本里自定义对外地址。
+例如：
+if (请求来自外网) { set_advertised_address(&amp;#34;192.168.2.11&amp;#34;); } else { set_advertised_address(&amp;#34;1.2.3.4&amp;#34;); } </description>
+    </item>
+    
+    <item>
       <title>grep常用参考</title>
       <link>https://wdd.js.org/shell/grep-docs/</link>
       <pubDate>Sun, 05 Jun 2022 00:00:00 +0800</pubDate>
@@ -1160,6 +1206,21 @@ let g:netrw_banner = 0 let g:netrw_liststyle = 3 let g:netrw_winsize = 25 5. 如
       <guid>https://wdd.js.org/posts/2022/02-hugo-add-mermaid/</guid>
       <description>增加mermaid shortcodes 在themes/YourTheme/layouts/shortcodes/mermaid.html 增加如下内容
 &amp;lt;script async type=&amp;#34;application/javascript&amp;#34; src=&amp;#34;https://cdn.jsdelivr.net/npm/mermaid@9.1.1/dist/mermaid.min.js&amp;#34;&amp;gt; var config = { startOnLoad:true, theme:&amp;#39;{{ if .Get &amp;#34;theme&amp;#34; }}{{ .Get &amp;#34;theme&amp;#34; }}{{ else }}dark{{ end }}&amp;#39;, align:&amp;#39;{{ if .Get &amp;#34;align&amp;#34; }}{{ .Get &amp;#34;align&amp;#34; }}{{ else }}center{{ end }}&amp;#39; }; mermaid.initialize(config); &amp;lt;/script&amp;gt; &amp;lt;div class=&amp;#34;mermaid&amp;#34;&amp;gt; {{.Inner}} &amp;lt;/div&amp;gt; 在blog中增加如下代码 Warning 注意下面的代码，你在实际写的时候，要把 /* 和 */ 删除 {{/*&amp;lt; mermaid align=&amp;#34;left&amp;#34; theme=&amp;#34;neutral&amp;#34; */&amp;gt;}} pie title French Words I Know &amp;#34;Merde&amp;#34; : 50 &amp;#34;Oui&amp;#34; : 35 &amp;#34;Alors&amp;#34; : 10 &amp;#34;Non&amp;#34; : 5 {{/*&amp;lt; /mermaid &amp;gt;*/}} pie title French Words I Know &#34;</description>
+    </item>
+    
+    <item>
+      <title>集群共享分机注册信息</title>
+      <link>https://wdd.js.org/opensips/ch9/cluster-share-location/</link>
+      <pubDate>Fri, 20 May 2022 11:52:22 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch9/cluster-share-location/</guid>
+      <description>共享分机注册信息有两种方式
+集群使用相同的数据库，多个节点实时读取数据 优点：使用简单，即使所有节点重启，也能立即从数据库中恢复分机注册数据 缺点：对数据库过于依赖，一旦数据库出现性能瓶颈，则会立即影响所有的呼叫 是用cluster模块，不使用数据库，通过opensips自带的二进制同步方式 优点：不用数据库，消息处理速度快，减少对数据库的压力 缺点：一旦所有节点挂掉，所有的分机注册信息都会损失。但是挂掉所有节点的概率还是比较小的。 今天要讲的方式就是通过cluster的方式进行共享注册信息的方案。
+假设有三个节点：
+在其中一个节点上注册的分机信息会同步给其他的节点 假设其中节点a重启了，节点a会自动选择b或者c来拉取第一次初始化的分机信息 举例来说：
+8001分机在b上注册成功 b把8001的注册信息通过cluster模块通知给a和c 8002分机在a上注册成功 a把8002的注册信息通过cluster模块通知给b和c 此时整个集群有两个分机8001和8002 节点c突然崩溃重启 节点c重启之后，向b发出请求，获取所有注册的分机 节点b像节点c推送全量的分机注册信息 此时三个节点又恢复同步状态 cluster表设计:
+空的字段我就没写了，flags字段必须设置为seed, 这样节点重启后，才知道要像哪个节点同步全量数据 id,cluster_id,node_id,url,state,flags 1,1,1,bin:a:5000,1,seed 2,1,2,bin:b:5000,1,seed 3,1,3,bin:c:5000,1,seed 脚本修改：
+# 增加 bin的listen, 对应cluster表的url listen=bin:192.168.2.130:5000 # 加载proto_bin和clusterer模块 loadmodule &amp;#34;proto_bin.so&amp;#34; loadmodule &amp;#34;clusterer.so&amp;#34; modparam(&amp;#34;clusterer&amp;#34;, &amp;#34;db_url&amp;#34;, &amp;#34;mysql:xxxx&amp;#34;) # 设置数据库地址 modparam(&amp;#34;clusterer&amp;#34;, &amp;#34;current_id&amp;#34;, 1) # 设置当前node_id modparam(&amp;#34;usrloc&amp;#34;, &amp;#34;working_mode_preset&amp;#34;, &amp;#34;full-sharing-cluster&amp;#34;) modparam(&amp;#34;usrloc&amp;#34;, &amp;#34;location_cluster&amp;#34;, 1) # 设置当前的集群id 其他操作保持原样，opensips就会自动同步分机数据了。</description>
     </item>
     
     <item>
@@ -2202,12 +2263,34 @@ ds_select_dst()可以接受整数或者值为正数的变量作为第一个参�
     </item>
     
     <item>
+      <title>sbc 100rel</title>
+      <link>https://wdd.js.org/opensips/ch9/100-rel/</link>
+      <pubDate>Mon, 26 Apr 2021 09:56:53 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch9/100-rel/</guid>
+      <description>sbc_100rel.pdf
+在fs中配置：
+enable-100rel 设置为true ➜ fs-conf ack 100rel sip_profiles/internal.xml 112: There are known issues (asserts and segfaults) when 100rel is enabled. 113: It is not recommended to enable 100rel at this time. 115: &amp;lt;!--&amp;lt;param name=&amp;#34;enable-100rel&amp;#34; value=&amp;#34;true&amp;#34;/&amp;gt;--&amp;gt; sip_profiles/external-ipv6.xml 36: &amp;lt;!--&amp;lt;param name=&amp;#34;enable-100rel&amp;#34; value=&amp;#34;true&amp;#34;/&amp;gt;--&amp;gt; sip_profiles/internal-ipv6.xml 27: &amp;lt;!--&amp;lt;param name=&amp;#34;enable-100rel&amp;#34; value=&amp;#34;false&amp;#34;/&amp;gt;--&amp;gt; sip_profiles/external.xml 36: &amp;lt;!--&amp;lt;param name=&amp;#34;enable-100rel&amp;#34; value=&amp;#34;true&amp;#34;/&amp;gt;--&amp;gt; enable-100rel This enable support for 100rel (100% reliability - PRACK message as defined inRFC3262) This fixes a problem with SIP where provisional messages like &amp;ldquo;180 Ringing&amp;rdquo; are not ACK&amp;rsquo;d and therefore could be dropped over a poor connection without retransmission.</description>
+    </item>
+    
+    <item>
       <title>GIT上游之同步</title>
       <link>https://wdd.js.org/posts/old-blog/zx0g32/</link>
       <pubDate>Sun, 25 Apr 2021 12:15:56 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/old-blog/zx0g32/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>ch4-3 $var() 类型的传参</title>
+      <link>https://wdd.js.org/opensips/module-dev/l4-3/</link>
+      <pubDate>Sun, 25 Apr 2021 09:10:28 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/module-dev/l4-3/</guid>
+      <description>假如一个模块暴露了一个函数，叫做do_something(), 仅支持传递一个参数。这个函数在c文件中对应w_do_something()
+// 在opensips.cfg文件中 route{ do_something(&amp;#34;abc&amp;#34;) } static int w_do_something(struct sip_msg* msg, char* str1){ // 在c文件中，我们打印str1的值，这个字符串就是abc } // 在opensips.cfg文件中 route{ $var(num)=&amp;#34;abc&amp;#34;; do_something(&amp;#34;$var(num)&amp;#34;) } static int w_do_something(struct sip_msg* msg, char* str1){ // 在c文件中，我们打印str1的值，这个字符串就是$var(num) // 这时候就有问题了，其实我们想获取的是$var(num)的值abc, 而不是字符串$var(num) } 那怎么获取$var()的传参的值呢？这里就需要用到了函数的fixup_函数。
+static cmd_export_t cmds[]={ {&amp;#34;find_zone_code&amp;#34;, (cmd_function)w_do_something, 2, fixup_do_something, 0, REQUEST_ROUTE}, {0,0,0,0,0,0} }; // 调用fixup_spve， 只有在fixup函数中，对函数的参数执行了fixup, 在真正的执行函数中，才能得到真正的$var()的值 static int fixup_do_something(void** param, int param_no) { LM_INFO(&amp;#34;fixup_find_zone_code: param: %s param_no: %d\n&amp;#34;, (char *)*param, param_no); return fixup_spve(param); } static int w_do_something (struct sip_msg* msg, char* str1){ str zone; if (fixup_get_svalue(msg, (gparam_p)str1, &amp;amp;zone) !</description>
     </item>
     
     <item>
@@ -2241,6 +2324,18 @@ ds_select_dst()可以接受整数或者值为正数的变量作为第一个参�
     </item>
     
     <item>
+      <title>ch4-2 flag获取</title>
+      <link>https://wdd.js.org/opensips/module-dev/l4-2/</link>
+      <pubDate>Sat, 24 Apr 2021 11:26:21 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/module-dev/l4-2/</guid>
+      <description>flag的类型 enum flag_type { FLAG_TYPE_MSG=0, FLAG_TYPE_BRANCH, FLAG_LIST_COUNT, }; flag实际上是一种二进制的位 MAX_FLAG就是一个SIP消息最多可以有多少个flag
+#include &amp;lt;limits.h&amp;gt; typedef unsigned int flag_t; #define MAX_FLAG ((unsigned int)( sizeof(flag_t) * CHAR_BIT - 1 )) 这个值更具情况而定，我的机器上是最多32个。
+#include &amp;lt;stdio.h&amp;gt; #include &amp;lt;limits.h&amp;gt; typedef unsigned int flag_t; #define MAX_FLAG ((unsigned int)( sizeof(flag_t) * CHAR_BIT - 1 )) int main() { printf(&amp;#34;%zu\n&amp;#34;, sizeof(unsigned int)); printf(&amp;#34;%u\n&amp;#34;, CHAR_BIT); printf(&amp;#34;%u\n&amp;#34;, MAX_FLAG); return 0; } $gcc -o main *.c $main 4 8 31 由字符串获取flag opensips 1.0时，flag都是整数，2.0才引入了字符串。
+用数字容易傻傻分不清楚，字符串比较容易理解。</description>
+    </item>
+    
+    <item>
       <title>关于中科院回信文字的联想</title>
       <link>https://wdd.js.org/posts/old-blog/dttcg5/</link>
       <pubDate>Wed, 21 Apr 2021 20:38:45 +0800</pubDate>
@@ -2271,14 +2366,69 @@ cachedb_local过期 loadmodule &amp;#34;cachedb_local.so&amp;#34; modparam(&amp;
     </item>
     
     <item>
-      <title>ch0 开发课程简介</title>
-      <link>https://wdd.js.org/freeswitch/codec-negotiation/</link>
+      <title>ch4-1 USE_FUNC_PARAM参数类型</title>
+      <link>https://wdd.js.org/opensips/module-dev/l4-1/</link>
+      <pubDate>Wed, 21 Apr 2021 14:02:28 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/module-dev/l4-1/</guid>
+      <description>模块传参有两种类型
+直接赋值传参 间接函数调用传参 str local_zone_code = {&amp;#34;&amp;#34;,0}; int some_int_param = 0; static param_export_t params[]={ // 直接字符串赋值 {&amp;#34;local_zone_code&amp;#34;, STR_PARAM, &amp;amp;local_zone_code.s}, // 直接整数赋值 {&amp;#34;some_int_param&amp;#34;, INT_PARAM, &amp;amp;some_int_param}, // 函数调用 字符窜 {&amp;#34;zone_code_map&amp;#34;, STR_PARAM|USE_FUNC_PARAM, (void *)&amp;amp;set_code_zone_map}, // 函数调用 整数 {&amp;#34;zone_code_map_int&amp;#34;, INT_PARAM|USE_FUNC_PARAM, (void *)&amp;amp;set_code_zone_map_int}, {0,0,0} }; 使用函数处理参数的好处是，可以对参数做更复杂的处理。
+例如：
+某个参数可以多次传递 对参数进行校验，在启动前就可以判断传参是否有问题。 static int set_code_zone_map(unsigned int type, void *val) { LM_INFO(&amp;#34;set_zone_code_map type:%d val:%s \n&amp;#34;,type,(char *)val); return 1; } </description>
+    </item>
+    
+    <item>
+      <title>ch1 开发课程简介</title>
+      <link>https://wdd.js.org/opensips/module-dev/l1/</link>
       <pubDate>Wed, 21 Apr 2021 13:52:43 +0800</pubDate>
       
-      <guid>https://wdd.js.org/freeswitch/codec-negotiation/</guid>
+      <guid>https://wdd.js.org/opensips/module-dev/l1/</guid>
       <description>本章节，带领大家探索opensips模块开发。希望深入了解opensips的同学可以看看。
 内容涵盖 章节的内容将会涵盖
 opensips的启动流程 如何创建一个模块 如何给模块传递参数 模块的生命周期函数的处理 如何暴露自定义的函数 如何检查函数的传惨 如何获取$var或者$avp变量 如何获取相关的flag 如何修改SIP消息 如何编写mi接口 如何编写statistics统计数据 如何做数据库操作 OpenSIPS架构 参考 https://voipmagazine.files.wordpress.com/2014/09/opensips-arch.jpg </description>
+    </item>
+    
+    <item>
+      <title>ch4 配置模块的启动参数</title>
+      <link>https://wdd.js.org/opensips/module-dev/l4/</link>
+      <pubDate>Wed, 21 Apr 2021 09:03:00 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/module-dev/l4/</guid>
+      <description>开始 我们需要给home_location模块增加一个参数，配置当地的号码区号
+首先，我们删除maxfwd.c文件中开头的很多注释，我们先把注意力集中在代码上。
+删除了30多行注释，代码还剩160多行。
+首先我们一个变量，用来保存本地的区号。这个变量是个str类型。
+str local_zone_code = {&amp;#34;&amp;#34;,0}; str 关于str类型，可以参考opensips/str.h头文件。
+struct __str { char* s; /**&amp;lt; string as char array */ int len; /**&amp;lt; string length, not including null-termination */ }; typedef struct __str str; 实际上，str是个指向__str结构体，可以看出这个结构体有指向字符串的char*类型的指针，以及一个代表字符串长度的len属性。这样做的好处是可以高效的获取字符串的长度，很多有名的开源项目都有类似的结构体。
+opensips几乎所有的字符串都是用的str类型
+param_export_t param_export_t这个结构体是用来通过脚本里面的modparam向模块传递参数的。这个数组最后一向是{0,0,0} 这最后一项其实是个标志，标志着数组的结束。
+static param_export_t params[]={ {&amp;#34;max_limit&amp;#34;, INT_PARAM, &amp;amp;max_limit}, {&amp;#34;local_zone_code&amp;#34;, STR_PARAM, &amp;amp;local_zone_code.s}, {0,0,0} }; 在sr_module_deps.h和sr_module.h中有下面的代码
+typedef struct param_export_ param_export_t; param_export_t实际上是指向param_export_这个结构体。
+这个结构体有三个参数
+name 表示参数的名称 modparam_t 表示参数的类型。参数类型有以下几种 STR_PARAM 字符串类型 INT_PARAM 整数类型 USE_FUNC_PARAM 函数类型 PARAM_TYPE_MASK 这个用到的时候再说 param_pointer 是一个指针，用到的时候再具体说明 struct param_export_ { char* name; /*!</description>
+    </item>
+    
+    <item>
+      <title>ch3 复制并裁剪一个模块</title>
+      <link>https://wdd.js.org/opensips/module-dev/l3/</link>
+      <pubDate>Tue, 20 Apr 2021 13:53:41 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/module-dev/l3/</guid>
+      <description>从头写一个模块是比较麻烦的，我们可以基于一个简单的模块，然后在这个模块上进行一些修改。
+我们基于maxfwd这个模块，复制一个模块，叫做home_location。
+为什么叫做home_location呢？因为我想根据一个手机号，查出它的归属地，然后根据当地的归属地，判断号码前要不要加0
+cd modules cp -R maxfwd home_location ➜ home_location git:(home_location) ✗ ll total 300K drwxr-xr-x 2 root root 4.0K Apr 20 13:56 doc -rw-r--r-- 1 root root 217 Apr 20 14:00 Makefile -rw-r--r-- 1 root root 4.7K Apr 20 14:00 maxfwd.c -rw-r--r-- 1 root root 2.0K Apr 20 13:56 maxfwd.d -rw-r--r-- 1 root root 77K Apr 20 13:56 maxfwd.o -rwxr-xr-x 1 root root 93K Apr 20 13:56 maxfwd.so -rw-r--r-- 1 root root 4.</description>
+    </item>
+    
+    <item>
+      <title>ch2 初始化环境</title>
+      <link>https://wdd.js.org/opensips/module-dev/l2/</link>
+      <pubDate>Tue, 20 Apr 2021 13:29:47 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/module-dev/l2/</guid>
+      <description>环境说明 ubuntu 20.04 opensips 2.4 克隆仓库 由于github官方的仓库clone太慢，最好选择从国内的gitee上克隆。
+下面的gfo, gco, gl, gcb都是oh-my-zsh中git插件的快捷键。建议你要么安装oh-my-zsh, 或者也可以看看这些快捷方式对应的底层命令是什么 https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
+git clone https://gitee.com/wangduanduan/opensips.git gfo 2.4:2.4 gco 2.4 gl gcb home_location #基于2.4分支创建home_location分支 安装依赖 apt update apt install -y build-essential bison flex m4 pkg-config libncurses5-dev \ rsyslog libmysqlclient-dev \ libssl-dev mysql-client libmicrohttpd-dev libcurl4-openssl-dev uuid-dev \ libpcre3-dev libconfuse-dev libxml2-dev libhiredis-dev 编译安装 make all -j4 include_modules=&amp;#34;db_mysql&amp;#34; make install include_modules=&amp;#34;db_mysql&amp;#34; 测试 ➜ opensips git:(home_location) opensips -V version: opensips 2.4.9 (x86_64/linux) flags: STATS: On, DISABLE_NAGLE, USE_MCAST, SHM_MMAP, PKG_MALLOC, F_MALLOC, FAST_LOCK-ADAPTIVE_WAIT ADAPTIVE_WAIT_LOOPS=1024, MAX_RECV_BUFFER_SIZE 262144, MAX_LISTEN 16, MAX_URI_SIZE 1024, BUF_SIZE 65535 poll method support: poll, epoll, sigio_rt, select.</description>
     </item>
     
     <item>
@@ -2634,6 +2784,18 @@ rfcreader是一个在线的网站，可以阅读和搜索rfc文档。
 只需要把下面的两行取消注释
 set -gu prefix2 unbind C-a 复制模式支持jk上下移动 set -g mode-keys vi 在相同的目录打开新的窗口或者标签页 tmux_conf_new_window_retain_current_path=true tmux_conf_new_pane_retain_current_path=true 隐藏系统运行时间信息 状态栏的系统运行时长似乎没什么用，可以隐藏
 tmux_conf_theme_status_left=&amp;#34; ❐ #S &amp;#34; </description>
+    </item>
+    
+    <item>
+      <title>BLF功能笔记</title>
+      <link>https://wdd.js.org/opensips/ch9/blf-note/</link>
+      <pubDate>Wed, 10 Mar 2021 13:15:45 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch9/blf-note/</guid>
+      <description>BLF功能简介 BLF是busy lamp field的缩写。一句话介绍就是，一个分机可以监控另一个分机的呼叫状态，状态可以通过分机上的指示灯来表示。
+例如：分机A通过配置过后，监控了分机B。
+如果分机B没有通话，那么分机A上的指示灯显示绿色 如果分机B上有一个呼叫正在振铃，那么分机A指示灯红色灯闪烁 如果分机B正在打电话，那么分机A的指示灯显示红色 这个功能的使用场景往往时例如秘书B监控了老板A的话机，在秘书把电话转给老板之前，可以通过自己电话上的指示灯，来判断老板有没有在打电话，如果没有再打电话，才可以把电话转过去。
+信令实现逻辑 信令分析 空闲通知 NOTIFY sip:8003@192.168.2.109:5060 SIP/2.0 Via: SIP/2.0/UDP 192.168.2.109:18627;branch=z9hG4bKfef7.27d86e6.0 To: &amp;lt;sip:8003@wdd.cc&amp;gt;;tag=1 From: &amp;lt;sip:9999@wdd.cc&amp;gt;;tag=d009-12c2f272e7622c1cd9b6aa285a7b9736 CSeq: 1 NOTIFY Call-ID: 1-774753@127.0.1.1 Route: &amp;lt;sip:192.168.2.109:19666;ftag=1;lr&amp;gt; Max-Forwards: 70 Content-Length: 140 User-Agent:WMS Event: dialog Contact: &amp;lt;sip:core@192.168.2.109:18627&amp;gt; Subscription-State: active;expires=120 Content-Type: application/dialog-info+xml &amp;lt;?xml version=&amp;#34;1.0&amp;#34;?&amp;gt; &amp;lt;dialog-info xmlns=&amp;#34;urn:ietf:params:xml:ns:dialog-info&amp;#34; version=&amp;#34;0&amp;#34; state=&amp;#34;full&amp;#34; entity=&amp;#34;sip:9999@wdd.cc&amp;#34;/&amp;gt; &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34;?&amp;gt; &amp;lt;dialog-info xmlns=&amp;#34;urn:ietf:params:xml:ns:dialog-info&amp;#34; version=&amp;#34;0&amp;#34; state=&amp;#34;full&amp;#34; entity=&amp;#34;sip:9999@wdd.cc&amp;#34;&amp;gt;&amp;lt;/dialog-info&amp;gt; 通话通知 NOTIFY sip:8003@192.168.2.109:5060 SIP/2.0 Via: SIP/2.0/UDP 192.168.2.109:18627;branch=z9hG4bKcef7.91c1e716.0 To: &amp;lt;sip:8003@wdd.cc&amp;gt;;tag=1 From: &amp;lt;sip:9999@wdd.cc&amp;gt;;tag=d009-12c2f272e7622c1cd9b6aa285a7b9736 CSeq: 2 NOTIFY Call-ID: 1-774753@127.</description>
     </item>
     
     <item>
@@ -3343,6 +3505,19 @@ VIM tumx 后记 </description>
 与动辄几百集的日漫相比，美漫似乎更加偏向于短小精悍。
 近年来我也看过一些不错的美漫。例如瑞克和莫提，脆莓公园。这类漫画有个特点，就是更加现实，当然其中也不乏有温情出现。看这类漫画，让我想到李宗吾先生所说的厚黑学。感觉美国人是无师自通，深谙厚黑之哲学。
 也许动漫没有变，变的是我们自己：从梦想和激战转变到现实和厚黑。</description>
+    </item>
+    
+    <item>
+      <title>概念理解 module_exports</title>
+      <link>https://wdd.js.org/opensips/module-dev/l5/</link>
+      <pubDate>Sat, 22 Aug 2020 12:45:42 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/module-dev/l5/</guid>
+      <description>module_exports 这个结构在每个模块中都有，这个有点类似js的export或者说是node.js的module.export。
+这是一个接口的规范。
+重要讲解几个关键点：
+local_zone_code是模块名字，这个是必需的 cmds表示在opensips脚本里可以有那些暴露的函数 params规定了模块的参数 mod_init在模块初始化的时候会被调用, 只会被调用一次 关于module_exports这个结构的定义，可以查阅：sr_module.h文件
+struct module_exports exports= { &amp;#34;local_zone_code&amp;#34;, MOD_TYPE_DEFAULT,/* class of this module */ MODULE_VERSION, DEFAULT_DLFLAGS, /* dlopen flags */ 0, /* load function */ NULL, /* OpenSIPS module dependencies */ cmds, 0, params, 0, /* exported statistics */ 0, /* exported MI functions */ 0, /* exported pseudo-variables */ 0, /* exported transformations */ 0, /* extra processes */ 0, /* pre-init function */ mod_init, (response_function) 0, (destroy_function) 0, 0 /* per-child init function */ }; cmds struct cmd_export_ { char* name; /* opensips脚本里的函数名 */ cmd_function function; /* 关联的C代码里的函数 */ int param_no; /* 参数的个数 */ fixup_function fixup; /* 修正参数 */ free_fixup_function free_fixup; /* 修正参数的 */ int flags; /* 函数flag，主要是用来标记函数可以在哪些路由中使用 */ }; cmd_function</description>
     </item>
     
     <item>
@@ -6271,7 +6446,8 @@ Running OpenSIPS with the right memory configuration is a very important task wh
       <pubDate>Wed, 31 Jul 2019 13:47:21 +0800</pubDate>
       
       <guid>https://wdd.js.org/opensips/blog/miss-ack/</guid>
-      <description>We all experienced calls getting self disconnected after 5-10 seconds – usually disconnected by the callee side via a BYE request – but a BYE which was not triggered by the party behind the phone, but by the SIP stack/layer itself.This is one of the most common issues we get in SIP and one of the most annoying in the same time. But why it happens ? Getting to the missing ACK Such a decision to auto-terminate the call (beyond the end-user will and control) indicates an error in the SIP call setup.</description>
+      <description>We all experienced calls getting self disconnected after 5-10 seconds – usually disconnected by the callee side via a BYE request – but a BYE which was not triggered by the party behind the phone, but by the SIP stack/layer itself.This is one of the most common issues we get in SIP and one of the most annoying in the same time. But why it happens ?
+Getting to the missing ACK Such a decision to auto-terminate the call (beyond the end-user will and control) indicates an error in the SIP call setup.</description>
     </item>
     
     <item>
@@ -6280,7 +6456,8 @@ Running OpenSIPS with the right memory configuration is a very important task wh
       <pubDate>Wed, 31 Jul 2019 13:43:05 +0800</pubDate>
       
       <guid>https://wdd.js.org/opensips/blog/troubleshooting-opensips-script/</guid>
-      <description>What makes OpenSIPS such an attractive and powerful SIP solutions is its high level of programmability, thanks to its C-like configuration script. But once you get into the “programming” area, you will automatically need tools and skills for troubleshooting.So here there are some some tips and tools you can use in OpenSIPS for “debugging” your configuration script. Controlling the script logging The easiest way to troubleshoot your script is of course by using the xlog() core function and print your own messages.</description>
+      <description>What makes OpenSIPS such an attractive and powerful SIP solutions is its high level of programmability, thanks to its C-like configuration script. But once you get into the “programming” area, you will automatically need tools and skills for troubleshooting.So here there are some some tips and tools you can use in OpenSIPS for “debugging” your configuration script.
+Controlling the script logging The easiest way to troubleshoot your script is of course by using the xlog() core function and print your own messages.</description>
     </item>
     
     <item>
@@ -6772,6 +6949,15 @@ box 矩形 polygon ellipse circle 圆形 point egg 蛋形 triangle 三角形 p
       <guid>https://wdd.js.org/opensips/ch9/sdp/</guid>
       <description>sdp栗子 v=0 o=- 7158718066157017333 2 IN IP4 127.0.0.1 s=- t=0 0 a=group:BUNDLE 0 a=msid-semantic: WMS byn72RFJBCUzdSPhnaBU4vSz7LFwfwNaF2Sy m=audio 64030 UDP/TLS/RTP/SAVPF 111 103 104 9 0 8 106 105 13 110 112 113 126 c=IN IP4 192.168.2.180 Session描述 **
 v= (protocol version number, currently only 0) o= (originator and session identifier : username, id, version number, network address) s= (session name : mandatory with at least one UTF-8-encoded character) i=* (session title or short information) u=* (URI of description) e=* (zero or more email address with optional name of contacts) p=* (zero or more phone number with optional name of contacts) c=* (connection information—not required if included in all media) b=* (zero or more bandwidth information lines) One or more Time descriptions (&amp;#34;t=&amp;#34; and &amp;#34;r=&amp;#34; lines; see below) z=* (time zone adjustments) k=* (encryption key) a=* (zero or more session attribute lines) Zero or more Media descriptions (each one starting by an &amp;#34;m=&amp;#34; line; see below) 时间描述(必须) t= (time the session is active) r=* (zero or more repeat times) 媒体描述(可选) m= (media name and transport address) i=* (media title or information field) c=* (connection information — optional if included at session level) b=* (zero or more bandwidth information lines) k=* (encryption key) a=* (zero or more media attribute lines — overriding the Session attribute lines) </description>
+    </item>
+    
+    <item>
+      <title>参考资料与书籍</title>
+      <link>https://wdd.js.org/opensips/ch9/books/</link>
+      <pubDate>Thu, 20 Jun 2019 10:59:17 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch9/books/</guid>
+      <description> Building Telephony Systems with OpenSIPS Second Edition SIP: Session Initiation Protocol Session Initiation Protocol (SIP) Basic Call Flow Examples Re-INVITE and Target-Refresh Request Handling in the Session Initiation Protocol (SIP) SDP: Session Description Protocol freeswitch权威指南 SIP: Understanding the Session Initiation Protocol, Third Edition (Artech House Telecommunications) https://tools.ietf.org/html/rfc4028 Hacking VoIP: Protocols, Attacks, and Countermeasures </description>
     </item>
     
     <item>

@@ -9,14 +9,26 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 03 Dec 2022 16:02:18 +0800</lastBuildDate><atom:link href="https://wdd.js.org/opensips/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 Dec 2022 21:01:02 +0800</lastBuildDate><atom:link href="https://wdd.js.org/opensips/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>模块传参的重构</title>
+      <link>https://wdd.js.org/opensips/3x/module-args/</link>
+      <pubDate>Sat, 03 Dec 2022 21:01:02 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/3x/module-args/</guid>
+      <description>写过opensips脚本的同学，往往对函数的传参感到困惑。
+例如：
+ds_select_dst()可以接受整数或者值为正数的变量作为第一个参数，但是nat_uac_test()的第一个参数就只能是整数，而不能是变量 为什么rl_check()可以接受格式化的字符串，而save()只能接受字符串。 为什么ds_select_dst(&amp;quot;1&amp;quot;, &amp;quot;4&amp;quot;) 作为整数也要加上双引号？ 为什么变量要加上双引号？ ds_select_dst(&amp;quot;$var(aa)&amp;quot;, &amp;quot;4&amp;quot;) 为什么t_on_branch(&amp;quot;1&amp;quot;)路由的钩子要加上双引号？ 为什么route(go_to_something);这里又不需要加上引号？ ds_select_dst(&amp;#34;1&amp;#34;, &amp;#34;0&amp;#34;); $var(aa)=1; ds_select_dst(&amp;#34;$var(aa)&amp;#34;, &amp;#34;0&amp;#34;); rl_check(&amp;#34;gw_$ru&amp;#34;, &amp;#34;$var(limit)&amp;#34;); #格式化的gw_$ru save(&amp;#34;location&amp;#34;); #单纯的字符串作为参数 从3.0开始，传参可以更加自然。
+整数可以直接传参，不用加双引号 do_something(1, 1); 输入或者输出的$var(), 不用加双引号，加了反而会报错 do_something($var(a), $var(b)); 格式化字符串，需要加双引号 do_something(1, &amp;#34;$var(bb)_$var(b)&amp;#34;); 参考 https://blog.opensips.org/2019/11/05/the-module-function-interface-rework-in-opensips-3-0/ https://www.opensips.org/Documentation/Script-Syntax-3-0# </description>
+    </item>
+    
     <item>
       <title>Pdf学习资料</title>
       <link>https://wdd.js.org/opensips/pdf/</link>
       <pubDate>Sat, 03 Dec 2022 16:02:18 +0800</pubDate>
       
       <guid>https://wdd.js.org/opensips/pdf/</guid>
-      <description> [TelNYX.pdf](./TelNYX.pdfj OpenSIPS 2.3 mediasoup Cutting Edge WebRTC Video COnferencing FreeSWITCH-driven routing in OpenSIPS Voicenter: Contact center on Steroids Vlad_Paiu-Distributed_OpenSIPS_Systems_Cluecon14.pdf Vlad_Paiu-OpenSIPS_Summit_Austin_2015-Async.pdf Ionut_Ionita-OpenSIPS_Summit2017-Capturing_beyond_SIP FLAVIO_GONCALVES-Fraud_in_VoIP_Today.pdf Alexandr_Dubovikov-OpenSIPS_Summit2017-RTC_Threat_Intelligence_Exchange.pdf OpenSIPS_LoadBalancing.pdf Vlad_Paiu-OpenSIPS_Summit_2104-OpenSIPS_End_User_Services.pdf Razvan_Crainea-OpenSIPS_Summit2017-From_SIPI_Trunks_to_End_Users.pdf Razvan_Crainea-OpenSIPS_Summit-Scaling_Asterisk.pdf Vlad_Paiu-OpenSIPS_Summit-Service_Enabling_for_Asterisk.pdf Jonas_Borjesson-OpenSIPS_Summit_Austin_2015.pdf Michele_Pinasi-OpenSIPS_Summit2017-How_we_did_VoIP.pdf Bogdan_Iancu-OpenSIPS_Summit_Keynotes.pdf Giovanni_Maruzselli-OpenSIPS_Summit2017-Scaling_FreeSWITCHes.pdf Maksym_Sobolyev-OpenSIPS_Summit2017-Sippy_Labs_update.pdf docker-cluster.pdf voip malware attack tool .pdf Bogdan_Iancu-OpenSIPS_Summit-OpenSIPS_2_1.pdf Pete_Kelly-OpenSIPS_Workshop_Chicago_2015-Calling_Cards_B2BUA.pdf Bogdan_Iancu-OpenSIPS_Summit-keynotes.pdf Alex_Goulis-Opensips_CNAME.pdf OpenSIPS_2.0_Framework.pdf Norman_Brandinger-OpenSIPS_Summit_2014-Advanced_SIP_Routing_with_OpenSIPS_modules.pdf </description>
+      <description> TelNYX.pdf OpenSIPS 2.3 mediasoup Cutting Edge WebRTC Video COnferencing FreeSWITCH-driven routing in OpenSIPS Voicenter: Contact center on Steroids Vlad_Paiu-Distributed_OpenSIPS_Systems_Cluecon14.pdf Vlad_Paiu-OpenSIPS_Summit_Austin_2015-Async.pdf Ionut_Ionita-OpenSIPS_Summit2017-Capturing_beyond_SIP FLAVIO_GONCALVES-Fraud_in_VoIP_Today.pdf Alexandr_Dubovikov-OpenSIPS_Summit2017-RTC_Threat_Intelligence_Exchange.pdf OpenSIPS_LoadBalancing.pdf Vlad_Paiu-OpenSIPS_Summit_2104-OpenSIPS_End_User_Services.pdf Razvan_Crainea-OpenSIPS_Summit2017-From_SIPI_Trunks_to_End_Users.pdf Razvan_Crainea-OpenSIPS_Summit-Scaling_Asterisk.pdf Vlad_Paiu-OpenSIPS_Summit-Service_Enabling_for_Asterisk.pdf Jonas_Borjesson-OpenSIPS_Summit_Austin_2015.pdf Michele_Pinasi-OpenSIPS_Summit2017-How_we_did_VoIP.pdf Bogdan_Iancu-OpenSIPS_Summit_Keynotes.pdf Giovanni_Maruzselli-OpenSIPS_Summit2017-Scaling_FreeSWITCHes.pdf Maksym_Sobolyev-OpenSIPS_Summit2017-Sippy_Labs_update.pdf docker-cluster.pdf voip malware attack tool .pdf Bogdan_Iancu-OpenSIPS_Summit-OpenSIPS_2_1.pdf Pete_Kelly-OpenSIPS_Workshop_Chicago_2015-Calling_Cards_B2BUA.pdf Bogdan_Iancu-OpenSIPS_Summit-keynotes.pdf Alex_Goulis-Opensips_CNAME.pdf OpenSIPS_2.0_Framework.pdf Norman_Brandinger-OpenSIPS_Summit_2014-Advanced_SIP_Routing_with_OpenSIPS_modules.pdf </description>
     </item>
     
     <item>
@@ -187,6 +199,39 @@ invite除了re-invite的情况，其余的都属于初始化请求，需要着�
       <guid>https://wdd.js.org/opensips/ch1/study-tips/</guid>
       <description>1. 概念理解 务必要能理解SIP的重要概念，特别是事务、Dialog。参考https://www.yuque.com/wangdd/opensips/fx5pyy 概念是非常重要的东西，不理解概念，越学就会越吃力 2. 时序图 时序图是非常重要的，培训时，一般我会要求学员务必能够手工绘制时序图。因为只有能够手工绘制时序图了，在排查问题时，才能够从抓包工具给出的时序图中分析出问题所在。
 RFC3665 https://datatracker.ietf.org/doc/html/rfc3665 中提供了很多经典的时序图，建议可以去临摹。</description>
+    </item>
+    
+    <item>
+      <title>NAT场景下的信令处理 - 单网卡</title>
+      <link>https://wdd.js.org/opensips/ch9/nat-single-interface/</link>
+      <pubDate>Fri, 10 Jun 2022 20:27:09 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch9/nat-single-interface/</guid>
+      <description> OPS &amp;lt;&amp;lt;&amp;lt;----------------------------- ingress 内网 | 公网 ｜ | 192.168.2.11 | 1.2.3.4 INNER_IP | OUTER_IP | | ------------------------------&amp;gt;&amp;gt;&amp;gt; egress 常见共有云的提供的云服务器，一般都有一个内网地址如192.16.2.11和一个公网地址如1.2.3.4。 内网地址是配置在网卡上的；公网地址则只是一个映射，并未在网卡上配置。
+我们称从公网到内网的方向为ingress，从内网到公网的方向为egress。
+对于内网来说OpenSIPS的广播地址应该是INNER_IP, 所以对ingress方向的SIP请求，Via应该是INNER_IP。对于公网来说OpenSIPS的广播地址应该是OUT_IP, 随意对于egress方向的SIP请求，Via应该是OUTER_IP。
+我们模拟一下，假如设置了错误的Via的地址会怎样呢？
+例如从公网到内网的一个INVITE, 如果Via头加上的是OUTER_IP， 那么这个请求的响应也会被送到OPS的公网地址。但是由于网络策略和防火墙等原因，这个来自内网的响应很可能无法被送到OPS的公网地址。
+一般情况下，我们可以使用listen的as参数来设置对外的广告地址。
+listen = udp:192.168.2.11:5060 as 1.2.3.4:5060 这样的情况下，从内网发送到公网请求，携带的Via就被被设置成1.2.3.4。
+但是也不是as设置的广告地址一定正确。这时候我们就可以用OpenSIPS提供的核心函数set_advertised_address或者set_advertised_port()来在脚本里自定义对外地址。
+例如：
+if (请求来自外网) { set_advertised_address(&amp;#34;192.168.2.11&amp;#34;); } else { set_advertised_address(&amp;#34;1.2.3.4&amp;#34;); } </description>
+    </item>
+    
+    <item>
+      <title>集群共享分机注册信息</title>
+      <link>https://wdd.js.org/opensips/ch9/cluster-share-location/</link>
+      <pubDate>Fri, 20 May 2022 11:52:22 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch9/cluster-share-location/</guid>
+      <description>共享分机注册信息有两种方式
+集群使用相同的数据库，多个节点实时读取数据 优点：使用简单，即使所有节点重启，也能立即从数据库中恢复分机注册数据 缺点：对数据库过于依赖，一旦数据库出现性能瓶颈，则会立即影响所有的呼叫 是用cluster模块，不使用数据库，通过opensips自带的二进制同步方式 优点：不用数据库，消息处理速度快，减少对数据库的压力 缺点：一旦所有节点挂掉，所有的分机注册信息都会损失。但是挂掉所有节点的概率还是比较小的。 今天要讲的方式就是通过cluster的方式进行共享注册信息的方案。
+假设有三个节点：
+在其中一个节点上注册的分机信息会同步给其他的节点 假设其中节点a重启了，节点a会自动选择b或者c来拉取第一次初始化的分机信息 举例来说：
+8001分机在b上注册成功 b把8001的注册信息通过cluster模块通知给a和c 8002分机在a上注册成功 a把8002的注册信息通过cluster模块通知给b和c 此时整个集群有两个分机8001和8002 节点c突然崩溃重启 节点c重启之后，向b发出请求，获取所有注册的分机 节点b像节点c推送全量的分机注册信息 此时三个节点又恢复同步状态 cluster表设计:
+空的字段我就没写了，flags字段必须设置为seed, 这样节点重启后，才知道要像哪个节点同步全量数据 id,cluster_id,node_id,url,state,flags 1,1,1,bin:a:5000,1,seed 2,1,2,bin:b:5000,1,seed 3,1,3,bin:c:5000,1,seed 脚本修改：
+# 增加 bin的listen, 对应cluster表的url listen=bin:192.168.2.130:5000 # 加载proto_bin和clusterer模块 loadmodule &amp;#34;proto_bin.so&amp;#34; loadmodule &amp;#34;clusterer.so&amp;#34; modparam(&amp;#34;clusterer&amp;#34;, &amp;#34;db_url&amp;#34;, &amp;#34;mysql:xxxx&amp;#34;) # 设置数据库地址 modparam(&amp;#34;clusterer&amp;#34;, &amp;#34;current_id&amp;#34;, 1) # 设置当前node_id modparam(&amp;#34;usrloc&amp;#34;, &amp;#34;working_mode_preset&amp;#34;, &amp;#34;full-sharing-cluster&amp;#34;) modparam(&amp;#34;usrloc&amp;#34;, &amp;#34;location_cluster&amp;#34;, 1) # 设置当前的集群id 其他操作保持原样，opensips就会自动同步分机数据了。</description>
     </item>
     
     <item>
@@ -389,6 +434,17 @@ ds_select_dst()可以接受整数或者值为正数的变量作为第一个参�
     </item>
     
     <item>
+      <title>sbc 100rel</title>
+      <link>https://wdd.js.org/opensips/ch9/100-rel/</link>
+      <pubDate>Mon, 26 Apr 2021 09:56:53 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch9/100-rel/</guid>
+      <description>sbc_100rel.pdf
+在fs中配置：
+enable-100rel 设置为true ➜ fs-conf ack 100rel sip_profiles/internal.xml 112: There are known issues (asserts and segfaults) when 100rel is enabled. 113: It is not recommended to enable 100rel at this time. 115: &amp;lt;!--&amp;lt;param name=&amp;#34;enable-100rel&amp;#34; value=&amp;#34;true&amp;#34;/&amp;gt;--&amp;gt; sip_profiles/external-ipv6.xml 36: &amp;lt;!--&amp;lt;param name=&amp;#34;enable-100rel&amp;#34; value=&amp;#34;true&amp;#34;/&amp;gt;--&amp;gt; sip_profiles/internal-ipv6.xml 27: &amp;lt;!--&amp;lt;param name=&amp;#34;enable-100rel&amp;#34; value=&amp;#34;false&amp;#34;/&amp;gt;--&amp;gt; sip_profiles/external.xml 36: &amp;lt;!--&amp;lt;param name=&amp;#34;enable-100rel&amp;#34; value=&amp;#34;true&amp;#34;/&amp;gt;--&amp;gt; enable-100rel This enable support for 100rel (100% reliability - PRACK message as defined inRFC3262) This fixes a problem with SIP where provisional messages like &amp;ldquo;180 Ringing&amp;rdquo; are not ACK&amp;rsquo;d and therefore could be dropped over a poor connection without retransmission.</description>
+    </item>
+    
+    <item>
       <title>cachedb的相关问题</title>
       <link>https://wdd.js.org/opensips/ch6/cachedb/</link>
       <pubDate>Wed, 21 Apr 2021 18:08:05 +0800</pubDate>
@@ -484,6 +540,18 @@ $du = &amp;#34;sip:192.468.2.40&amp;#34;; $du可以理解为外呼代理，我�
 说起来功能码就是一种使用话机上按键的一组暗号。
 话机上一般只有0-9*#，一共12个按键。没法办用其他的编码告诉服务端自己想做什么，所以只能用功能码。
 参考 https://www.ipcomms.net/support/myoffice-pbx/feature-codes https://www.cisco.com/c/en/us/td/docs/voice_ip_comm/cucme/admin/configuration/manual/cmeadm/cmefacs.pdf https://help.yeastar.com/en/s-series/topic/feature_code.html?hl=feature%2Ccode&amp;amp;_ga=2.76562834.622619423.1615949948-1155631884.1615949948 </description>
+    </item>
+    
+    <item>
+      <title>BLF功能笔记</title>
+      <link>https://wdd.js.org/opensips/ch9/blf-note/</link>
+      <pubDate>Wed, 10 Mar 2021 13:15:45 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch9/blf-note/</guid>
+      <description>BLF功能简介 BLF是busy lamp field的缩写。一句话介绍就是，一个分机可以监控另一个分机的呼叫状态，状态可以通过分机上的指示灯来表示。
+例如：分机A通过配置过后，监控了分机B。
+如果分机B没有通话，那么分机A上的指示灯显示绿色 如果分机B上有一个呼叫正在振铃，那么分机A指示灯红色灯闪烁 如果分机B正在打电话，那么分机A的指示灯显示红色 这个功能的使用场景往往时例如秘书B监控了老板A的话机，在秘书把电话转给老板之前，可以通过自己电话上的指示灯，来判断老板有没有在打电话，如果没有再打电话，才可以把电话转过去。
+信令实现逻辑 信令分析 空闲通知 NOTIFY sip:8003@192.168.2.109:5060 SIP/2.0 Via: SIP/2.0/UDP 192.168.2.109:18627;branch=z9hG4bKfef7.27d86e6.0 To: &amp;lt;sip:8003@wdd.cc&amp;gt;;tag=1 From: &amp;lt;sip:9999@wdd.cc&amp;gt;;tag=d009-12c2f272e7622c1cd9b6aa285a7b9736 CSeq: 1 NOTIFY Call-ID: 1-774753@127.0.1.1 Route: &amp;lt;sip:192.168.2.109:19666;ftag=1;lr&amp;gt; Max-Forwards: 70 Content-Length: 140 User-Agent:WMS Event: dialog Contact: &amp;lt;sip:core@192.168.2.109:18627&amp;gt; Subscription-State: active;expires=120 Content-Type: application/dialog-info+xml &amp;lt;?xml version=&amp;#34;1.0&amp;#34;?&amp;gt; &amp;lt;dialog-info xmlns=&amp;#34;urn:ietf:params:xml:ns:dialog-info&amp;#34; version=&amp;#34;0&amp;#34; state=&amp;#34;full&amp;#34; entity=&amp;#34;sip:9999@wdd.cc&amp;#34;/&amp;gt; &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34;?&amp;gt; &amp;lt;dialog-info xmlns=&amp;#34;urn:ietf:params:xml:ns:dialog-info&amp;#34; version=&amp;#34;0&amp;#34; state=&amp;#34;full&amp;#34; entity=&amp;#34;sip:9999@wdd.cc&amp;#34;&amp;gt;&amp;lt;/dialog-info&amp;gt; 通话通知 NOTIFY sip:8003@192.168.2.109:5060 SIP/2.0 Via: SIP/2.0/UDP 192.168.2.109:18627;branch=z9hG4bKcef7.91c1e716.0 To: &amp;lt;sip:8003@wdd.cc&amp;gt;;tag=1 From: &amp;lt;sip:9999@wdd.cc&amp;gt;;tag=d009-12c2f272e7622c1cd9b6aa285a7b9736 CSeq: 2 NOTIFY Call-ID: 1-774753@127.</description>
     </item>
     
     <item>
@@ -1304,7 +1372,8 @@ Running OpenSIPS with the right memory configuration is a very important task wh
       <pubDate>Wed, 31 Jul 2019 13:47:21 +0800</pubDate>
       
       <guid>https://wdd.js.org/opensips/blog/miss-ack/</guid>
-      <description>We all experienced calls getting self disconnected after 5-10 seconds – usually disconnected by the callee side via a BYE request – but a BYE which was not triggered by the party behind the phone, but by the SIP stack/layer itself.This is one of the most common issues we get in SIP and one of the most annoying in the same time. But why it happens ? Getting to the missing ACK Such a decision to auto-terminate the call (beyond the end-user will and control) indicates an error in the SIP call setup.</description>
+      <description>We all experienced calls getting self disconnected after 5-10 seconds – usually disconnected by the callee side via a BYE request – but a BYE which was not triggered by the party behind the phone, but by the SIP stack/layer itself.This is one of the most common issues we get in SIP and one of the most annoying in the same time. But why it happens ?
+Getting to the missing ACK Such a decision to auto-terminate the call (beyond the end-user will and control) indicates an error in the SIP call setup.</description>
     </item>
     
     <item>
@@ -1313,7 +1382,8 @@ Running OpenSIPS with the right memory configuration is a very important task wh
       <pubDate>Wed, 31 Jul 2019 13:43:05 +0800</pubDate>
       
       <guid>https://wdd.js.org/opensips/blog/troubleshooting-opensips-script/</guid>
-      <description>What makes OpenSIPS such an attractive and powerful SIP solutions is its high level of programmability, thanks to its C-like configuration script. But once you get into the “programming” area, you will automatically need tools and skills for troubleshooting.So here there are some some tips and tools you can use in OpenSIPS for “debugging” your configuration script. Controlling the script logging The easiest way to troubleshoot your script is of course by using the xlog() core function and print your own messages.</description>
+      <description>What makes OpenSIPS such an attractive and powerful SIP solutions is its high level of programmability, thanks to its C-like configuration script. But once you get into the “programming” area, you will automatically need tools and skills for troubleshooting.So here there are some some tips and tools you can use in OpenSIPS for “debugging” your configuration script.
+Controlling the script logging The easiest way to troubleshoot your script is of course by using the xlog() core function and print your own messages.</description>
     </item>
     
     <item>
@@ -1517,6 +1587,15 @@ opensips 应用升级，包括源码的下载，编译等等 opensips 数据库�
       <guid>https://wdd.js.org/opensips/ch9/sdp/</guid>
       <description>sdp栗子 v=0 o=- 7158718066157017333 2 IN IP4 127.0.0.1 s=- t=0 0 a=group:BUNDLE 0 a=msid-semantic: WMS byn72RFJBCUzdSPhnaBU4vSz7LFwfwNaF2Sy m=audio 64030 UDP/TLS/RTP/SAVPF 111 103 104 9 0 8 106 105 13 110 112 113 126 c=IN IP4 192.168.2.180 Session描述 **
 v= (protocol version number, currently only 0) o= (originator and session identifier : username, id, version number, network address) s= (session name : mandatory with at least one UTF-8-encoded character) i=* (session title or short information) u=* (URI of description) e=* (zero or more email address with optional name of contacts) p=* (zero or more phone number with optional name of contacts) c=* (connection information—not required if included in all media) b=* (zero or more bandwidth information lines) One or more Time descriptions (&amp;#34;t=&amp;#34; and &amp;#34;r=&amp;#34; lines; see below) z=* (time zone adjustments) k=* (encryption key) a=* (zero or more session attribute lines) Zero or more Media descriptions (each one starting by an &amp;#34;m=&amp;#34; line; see below) 时间描述(必须) t= (time the session is active) r=* (zero or more repeat times) 媒体描述(可选) m= (media name and transport address) i=* (media title or information field) c=* (connection information — optional if included at session level) b=* (zero or more bandwidth information lines) k=* (encryption key) a=* (zero or more media attribute lines — overriding the Session attribute lines) </description>
+    </item>
+    
+    <item>
+      <title>参考资料与书籍</title>
+      <link>https://wdd.js.org/opensips/ch9/books/</link>
+      <pubDate>Thu, 20 Jun 2019 10:59:17 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/ch9/books/</guid>
+      <description> Building Telephony Systems with OpenSIPS Second Edition SIP: Session Initiation Protocol Session Initiation Protocol (SIP) Basic Call Flow Examples Re-INVITE and Target-Refresh Request Handling in the Session Initiation Protocol (SIP) SDP: Session Description Protocol freeswitch权威指南 SIP: Understanding the Session Initiation Protocol, Third Edition (Artech House Telecommunications) https://tools.ietf.org/html/rfc4028 Hacking VoIP: Protocols, Attacks, and Countermeasures </description>
     </item>
     
     <item>

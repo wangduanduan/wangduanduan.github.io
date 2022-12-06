@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>洞香春</title>
+    <link>https://wdd.js.org/opensips/module-dev/</link>
+    <description>Recent content on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 25 Apr 2021 09:10:28 +0800</lastBuildDate><atom:link href="https://wdd.js.org/opensips/module-dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ch4-3 $var() 类型的传参</title>
+      <link>https://wdd.js.org/opensips/module-dev/l4-3/</link>
+      <pubDate>Sun, 25 Apr 2021 09:10:28 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/module-dev/l4-3/</guid>
+      <description>假如一个模块暴露了一个函数，叫做do_something(), 仅支持传递一个参数。这个函数在c文件中对应w_do_something()
+// 在opensips.cfg文件中 route{ do_something(&amp;#34;abc&amp;#34;) } static int w_do_something(struct sip_msg* msg, char* str1){ // 在c文件中，我们打印str1的值，这个字符串就是abc } // 在opensips.cfg文件中 route{ $var(num)=&amp;#34;abc&amp;#34;; do_something(&amp;#34;$var(num)&amp;#34;) } static int w_do_something(struct sip_msg* msg, char* str1){ // 在c文件中，我们打印str1的值，这个字符串就是$var(num) // 这时候就有问题了，其实我们想获取的是$var(num)的值abc, 而不是字符串$var(num) } 那怎么获取$var()的传参的值呢？这里就需要用到了函数的fixup_函数。
+static cmd_export_t cmds[]={ {&amp;#34;find_zone_code&amp;#34;, (cmd_function)w_do_something, 2, fixup_do_something, 0, REQUEST_ROUTE}, {0,0,0,0,0,0} }; // 调用fixup_spve， 只有在fixup函数中，对函数的参数执行了fixup, 在真正的执行函数中，才能得到真正的$var()的值 static int fixup_do_something(void** param, int param_no) { LM_INFO(&amp;#34;fixup_find_zone_code: param: %s param_no: %d\n&amp;#34;, (char *)*param, param_no); return fixup_spve(param); } static int w_do_something (struct sip_msg* msg, char* str1){ str zone; if (fixup_get_svalue(msg, (gparam_p)str1, &amp;amp;zone) !</description>
+    </item>
+    
+    <item>
+      <title>ch4-2 flag获取</title>
+      <link>https://wdd.js.org/opensips/module-dev/l4-2/</link>
+      <pubDate>Sat, 24 Apr 2021 11:26:21 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/module-dev/l4-2/</guid>
+      <description>flag的类型 enum flag_type { FLAG_TYPE_MSG=0, FLAG_TYPE_BRANCH, FLAG_LIST_COUNT, }; flag实际上是一种二进制的位 MAX_FLAG就是一个SIP消息最多可以有多少个flag
+#include &amp;lt;limits.h&amp;gt; typedef unsigned int flag_t; #define MAX_FLAG ((unsigned int)( sizeof(flag_t) * CHAR_BIT - 1 )) 这个值更具情况而定，我的机器上是最多32个。
+#include &amp;lt;stdio.h&amp;gt; #include &amp;lt;limits.h&amp;gt; typedef unsigned int flag_t; #define MAX_FLAG ((unsigned int)( sizeof(flag_t) * CHAR_BIT - 1 )) int main() { printf(&amp;#34;%zu\n&amp;#34;, sizeof(unsigned int)); printf(&amp;#34;%u\n&amp;#34;, CHAR_BIT); printf(&amp;#34;%u\n&amp;#34;, MAX_FLAG); return 0; } $gcc -o main *.c $main 4 8 31 由字符串获取flag opensips 1.0时，flag都是整数，2.0才引入了字符串。
+用数字容易傻傻分不清楚，字符串比较容易理解。</description>
+    </item>
+    
+    <item>
+      <title>ch4-1 USE_FUNC_PARAM参数类型</title>
+      <link>https://wdd.js.org/opensips/module-dev/l4-1/</link>
+      <pubDate>Wed, 21 Apr 2021 14:02:28 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/module-dev/l4-1/</guid>
+      <description>模块传参有两种类型
+直接赋值传参 间接函数调用传参 str local_zone_code = {&amp;#34;&amp;#34;,0}; int some_int_param = 0; static param_export_t params[]={ // 直接字符串赋值 {&amp;#34;local_zone_code&amp;#34;, STR_PARAM, &amp;amp;local_zone_code.s}, // 直接整数赋值 {&amp;#34;some_int_param&amp;#34;, INT_PARAM, &amp;amp;some_int_param}, // 函数调用 字符窜 {&amp;#34;zone_code_map&amp;#34;, STR_PARAM|USE_FUNC_PARAM, (void *)&amp;amp;set_code_zone_map}, // 函数调用 整数 {&amp;#34;zone_code_map_int&amp;#34;, INT_PARAM|USE_FUNC_PARAM, (void *)&amp;amp;set_code_zone_map_int}, {0,0,0} }; 使用函数处理参数的好处是，可以对参数做更复杂的处理。
+例如：
+某个参数可以多次传递 对参数进行校验，在启动前就可以判断传参是否有问题。 static int set_code_zone_map(unsigned int type, void *val) { LM_INFO(&amp;#34;set_zone_code_map type:%d val:%s \n&amp;#34;,type,(char *)val); return 1; } </description>
+    </item>
+    
+    <item>
+      <title>ch1 开发课程简介</title>
+      <link>https://wdd.js.org/opensips/module-dev/l1/</link>
+      <pubDate>Wed, 21 Apr 2021 13:52:43 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/module-dev/l1/</guid>
+      <description>本章节，带领大家探索opensips模块开发。希望深入了解opensips的同学可以看看。
+内容涵盖 章节的内容将会涵盖
+opensips的启动流程 如何创建一个模块 如何给模块传递参数 模块的生命周期函数的处理 如何暴露自定义的函数 如何检查函数的传惨 如何获取$var或者$avp变量 如何获取相关的flag 如何修改SIP消息 如何编写mi接口 如何编写statistics统计数据 如何做数据库操作 OpenSIPS架构 参考 https://voipmagazine.files.wordpress.com/2014/09/opensips-arch.jpg </description>
+    </item>
+    
+    <item>
+      <title>ch4 配置模块的启动参数</title>
+      <link>https://wdd.js.org/opensips/module-dev/l4/</link>
+      <pubDate>Wed, 21 Apr 2021 09:03:00 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/module-dev/l4/</guid>
+      <description>开始 我们需要给home_location模块增加一个参数，配置当地的号码区号
+首先，我们删除maxfwd.c文件中开头的很多注释，我们先把注意力集中在代码上。
+删除了30多行注释，代码还剩160多行。
+首先我们一个变量，用来保存本地的区号。这个变量是个str类型。
+str local_zone_code = {&amp;#34;&amp;#34;,0}; str 关于str类型，可以参考opensips/str.h头文件。
+struct __str { char* s; /**&amp;lt; string as char array */ int len; /**&amp;lt; string length, not including null-termination */ }; typedef struct __str str; 实际上，str是个指向__str结构体，可以看出这个结构体有指向字符串的char*类型的指针，以及一个代表字符串长度的len属性。这样做的好处是可以高效的获取字符串的长度，很多有名的开源项目都有类似的结构体。
+opensips几乎所有的字符串都是用的str类型
+param_export_t param_export_t这个结构体是用来通过脚本里面的modparam向模块传递参数的。这个数组最后一向是{0,0,0} 这最后一项其实是个标志，标志着数组的结束。
+static param_export_t params[]={ {&amp;#34;max_limit&amp;#34;, INT_PARAM, &amp;amp;max_limit}, {&amp;#34;local_zone_code&amp;#34;, STR_PARAM, &amp;amp;local_zone_code.s}, {0,0,0} }; 在sr_module_deps.h和sr_module.h中有下面的代码
+typedef struct param_export_ param_export_t; param_export_t实际上是指向param_export_这个结构体。
+这个结构体有三个参数
+name 表示参数的名称 modparam_t 表示参数的类型。参数类型有以下几种 STR_PARAM 字符串类型 INT_PARAM 整数类型 USE_FUNC_PARAM 函数类型 PARAM_TYPE_MASK 这个用到的时候再说 param_pointer 是一个指针，用到的时候再具体说明 struct param_export_ { char* name; /*!</description>
+    </item>
+    
+    <item>
+      <title>ch3 复制并裁剪一个模块</title>
+      <link>https://wdd.js.org/opensips/module-dev/l3/</link>
+      <pubDate>Tue, 20 Apr 2021 13:53:41 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/module-dev/l3/</guid>
+      <description>从头写一个模块是比较麻烦的，我们可以基于一个简单的模块，然后在这个模块上进行一些修改。
+我们基于maxfwd这个模块，复制一个模块，叫做home_location。
+为什么叫做home_location呢？因为我想根据一个手机号，查出它的归属地，然后根据当地的归属地，判断号码前要不要加0
+cd modules cp -R maxfwd home_location ➜ home_location git:(home_location) ✗ ll total 300K drwxr-xr-x 2 root root 4.0K Apr 20 13:56 doc -rw-r--r-- 1 root root 217 Apr 20 14:00 Makefile -rw-r--r-- 1 root root 4.7K Apr 20 14:00 maxfwd.c -rw-r--r-- 1 root root 2.0K Apr 20 13:56 maxfwd.d -rw-r--r-- 1 root root 77K Apr 20 13:56 maxfwd.o -rwxr-xr-x 1 root root 93K Apr 20 13:56 maxfwd.so -rw-r--r-- 1 root root 4.</description>
+    </item>
+    
+    <item>
+      <title>ch2 初始化环境</title>
+      <link>https://wdd.js.org/opensips/module-dev/l2/</link>
+      <pubDate>Tue, 20 Apr 2021 13:29:47 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/module-dev/l2/</guid>
+      <description>环境说明 ubuntu 20.04 opensips 2.4 克隆仓库 由于github官方的仓库clone太慢，最好选择从国内的gitee上克隆。
+下面的gfo, gco, gl, gcb都是oh-my-zsh中git插件的快捷键。建议你要么安装oh-my-zsh, 或者也可以看看这些快捷方式对应的底层命令是什么 https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
+git clone https://gitee.com/wangduanduan/opensips.git gfo 2.4:2.4 gco 2.4 gl gcb home_location #基于2.4分支创建home_location分支 安装依赖 apt update apt install -y build-essential bison flex m4 pkg-config libncurses5-dev \ rsyslog libmysqlclient-dev \ libssl-dev mysql-client libmicrohttpd-dev libcurl4-openssl-dev uuid-dev \ libpcre3-dev libconfuse-dev libxml2-dev libhiredis-dev 编译安装 make all -j4 include_modules=&amp;#34;db_mysql&amp;#34; make install include_modules=&amp;#34;db_mysql&amp;#34; 测试 ➜ opensips git:(home_location) opensips -V version: opensips 2.4.9 (x86_64/linux) flags: STATS: On, DISABLE_NAGLE, USE_MCAST, SHM_MMAP, PKG_MALLOC, F_MALLOC, FAST_LOCK-ADAPTIVE_WAIT ADAPTIVE_WAIT_LOOPS=1024, MAX_RECV_BUFFER_SIZE 262144, MAX_LISTEN 16, MAX_URI_SIZE 1024, BUF_SIZE 65535 poll method support: poll, epoll, sigio_rt, select.</description>
+    </item>
+    
+    <item>
+      <title>概念理解 module_exports</title>
+      <link>https://wdd.js.org/opensips/module-dev/l5/</link>
+      <pubDate>Sat, 22 Aug 2020 12:45:42 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/opensips/module-dev/l5/</guid>
+      <description>module_exports 这个结构在每个模块中都有，这个有点类似js的export或者说是node.js的module.export。
+这是一个接口的规范。
+重要讲解几个关键点：
+local_zone_code是模块名字，这个是必需的 cmds表示在opensips脚本里可以有那些暴露的函数 params规定了模块的参数 mod_init在模块初始化的时候会被调用, 只会被调用一次 关于module_exports这个结构的定义，可以查阅：sr_module.h文件
+struct module_exports exports= { &amp;#34;local_zone_code&amp;#34;, MOD_TYPE_DEFAULT,/* class of this module */ MODULE_VERSION, DEFAULT_DLFLAGS, /* dlopen flags */ 0, /* load function */ NULL, /* OpenSIPS module dependencies */ cmds, 0, params, 0, /* exported statistics */ 0, /* exported MI functions */ 0, /* exported pseudo-variables */ 0, /* exported transformations */ 0, /* extra processes */ 0, /* pre-init function */ mod_init, (response_function) 0, (destroy_function) 0, 0 /* per-child init function */ }; cmds struct cmd_export_ { char* name; /* opensips脚本里的函数名 */ cmd_function function; /* 关联的C代码里的函数 */ int param_no; /* 参数的个数 */ fixup_function fixup; /* 修正参数 */ free_fixup_function free_fixup; /* 修正参数的 */ int flags; /* 函数flag，主要是用来标记函数可以在哪些路由中使用 */ }; cmd_function</description>
+    </item>
+    
+  </channel>
+</rss>
