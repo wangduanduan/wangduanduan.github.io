@@ -1,0 +1,111 @@
+.notice {
+    border-radius: .2rem;
+    position: relative;
+    margin: 2rem 0;
+    padding: 0 .75rem;
+    overflow: auto
+}
+
+.notice .notice-title {
+    position: relative;
+    font-weight: 700;
+    margin: 0 -.75rem;
+    padding: .2rem 3.5rem;
+    border-bottom: 1px solid #fafafa
+}
+
+.notice .notice-title i {
+    position: absolute;
+    top: 50%;
+    left: 1.8rem;
+    transform: translate(-50%,-50%)
+}
+
+.notice .notice-content {
+    display: block;
+    margin: 2rem
+}
+
+.notice.note {
+    background-color: #7e57c21a
+}
+
+.notice.note .notice-title {
+    background-color: #673ab71a
+}
+
+.notice.note .notice-title i {
+    color: #5e35b1
+}
+
+.notice.tip {
+    background-color: #26a69a1a
+}
+
+.notice.tip .notice-title {
+    background-color: #0096881a
+}
+
+.notice.tip .notice-title i {
+    color: #00897b
+}
+
+.notice.example {
+    background-color: #8d6e631a
+}
+
+.notice.example .notice-title {
+    background-color: #7955481a
+}
+
+.notice.example .notice-title i {
+    color: #6d4c41
+}
+
+.notice.question {
+    background-color: #9ccc651a
+}
+
+.notice.question .notice-title {
+    background-color: #8bc34a1a
+}
+
+.notice.question .notice-title i {
+    color: #7cb342
+}
+
+.notice.info {
+    background-color: #42a5f51a
+}
+
+.notice.info .notice-title {
+    background-color: #2196f31a
+}
+
+.notice.info .notice-title i {
+    color: #1e88e5
+}
+
+.notice.warning {
+    background-color: #ffca281a
+}
+
+.notice.warning .notice-title {
+    background-color: #ffc1071a
+}
+
+.notice.warning .notice-title i {
+    color: #ffb300
+}
+
+.notice.error {
+    background-color: #ef53501a
+}
+
+.notice.error .notice-title {
+    background-color: #f443361a
+}
+
+.notice.error .notice-title i {
+    color: #e53935
+}

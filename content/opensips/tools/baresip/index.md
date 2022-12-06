@@ -1,0 +1,33 @@
+---
+title: "baresip 非常好用的终端SIP UA"
+date: "2021-06-08 16:27:36"
+draft: false
+---
+
+# 安装
+安装前要先安装依赖
+
+- [https://github.com/baresip/re](https://github.com/baresip/re)
+- [https://github.com/baresip/rem](https://github.com/baresip/rem)
+- openssl
+```javascript
+git clone https://github.com/baresip/baresip
+cd baresip
+make
+sudo make install
+```
+
+
+# 指令
+/about                       About box/accept                      Accept incoming call<br />/answermode                  Set answer mode<br />/apistate                    User Agent state<br />/auloop                      Start audio-loop <srate ch><br />/auloop_stop                 Stop audio-loop<br />/auplay                      Switch audio player<br />/ausrc                       Switch audio source<br />/callstat                    Call status<br />/conf_reload                 Reload config file<br />/config                      Print configuration<br />/contact_next                Set next contact<br />/contact_prev                Set previous contact<br />/contacts                    List contacts<br />/dial ..                     Dial<br />/dialcontact                 Dial current contact<br />/hangup                      Hangup call<br />/help                        Help menu<br />/insmod                      Load module<br />/listcalls                   List active calls<br />/loglevel                    Log level toggle<br />/main                        Main loop debug<br />/memstat                     Memory status<br />/message                     Message current contact<br />/modules                     Module debug<br />/netstat                     Network debug<br />/options                     Options<br />/play                        Play audio file<br />/quit                        Quit<br />/reginfo                     Registration info<br />/rmmod                       Unload module<br />/sipstat                     SIP debug<br />/sysinfo                     System info<br />/timers                      Timer debug<br />/uadel                       Delete User-Agent<br />/uafind                      Find User-Agent <aor><br />/uanew                       Create User-Agent<br />/uanext                      Toggle UAs<br />/uastat                      UA debug<br />/uuid                        Print UUID<br />/vidloop                     Start video-loop <codec><br />/vidloop stop                Stop video-loop<br />/vidsrc                      Switch video source
+
+
+# 模块
+aac           Advanced Audio Coding (AAC) audio codecaccount       Account loader<br />alsa          ALSA audio driver<br />amr           Adaptive Multi-Rate (AMR) audio codec<br />aptx          Audio Processing Technology codec (aptX)<br />aubridge      Audio bridge module<br />audiounit     AudioUnit audio driver for MacOSX/iOS<br />aufile        Audio module for using a WAV-file as audio input<br />auloop        Audio-loop test module<br />ausine        Audio sine wave input module<br />av1           AV1 video codec<br />avcapture     Video source using iOS AVFoundation video capture<br />avcodec       Video codec using FFmpeg/libav libavcodec<br />avformat      Video source using FFmpeg/libav libavformat<br />b2bua         Back-to-Back User-Agent (B2BUA) module<br />codec2        Codec2 low bit rate speech codec<br />cons          UDP/TCP console UI driver<br />contact       Contacts module<br />coreaudio     Apple macOS Coreaudio driver<br />ctrl_tcp      TCP control interface using JSON payload<br />debug_cmd     Debug commands<br />directfb      DirectFB video display module<br />dshow         Windows DirectShow video source<br />dtls_srtp     DTLS-SRTP end-to-end encryption<br />ebuacip       EBU ACIP (Audio Contribution over IP) Profile<br />echo          Echo server module<br />evdev         Linux input driver<br />fakevideo     Fake video input/output driver<br />g711          G.711 audio codec<br />g722          G.722 audio codec<br />g7221         G.722.1 audio codec<br />g726          G.726 audio codec<br />gsm           GSM audio codec<br />gst           Gstreamer audio source<br />gst_video     Gstreamer video codec<br />gtk           GTK+ 2.0 UI<br />gzrtp         ZRTP module using GNU ZRTP C++ library<br />httpd         HTTP webserver UI-module<br />i2s           I2S (Inter-IC Sound) audio driver<br />ice           ICE protocol for NAT Traversal<br />jack          JACK Audio Connection Kit audio-driver<br />l16           L16 audio codec<br />menu          Interactive menu<br />mpa           MPA Speech and Audio Codec<br />multicast     Multicast RTP send and receive<br />mqtt          MQTT (Message Queue Telemetry Transport) module<br />mwi           Message Waiting Indication<br />natpmp        NAT Port Mapping Protocol (NAT-PMP) module<br />omx           OpenMAX IL video display module<br />opensles      OpenSLES audio driver<br />opus          OPUS Interactive audio codec<br />pcp           Port Control Protocol (PCP) module<br />plc           Packet Loss Concealment (PLC) using spandsp<br />portaudio     Portaudio driver<br />pulse         Pulseaudio driver<br />presence      Presence module<br />rtcpsummary   RTCP summary module<br />rst           Radio streamer using mpg123<br />sdl           Simple DirectMedia Layer 2.0 (SDL) video output driver<br />selfview      Video selfview module<br />snapshot      Save video-stream as PNG images<br />sndfile       Audio dumper using libsndfile<br />sndio         Audio driver for OpenBSD<br />speex_pp      Audio pre-processor using libspeexdsp<br />srtp          Secure RTP encryption (SDES) using libre SRTP-stack<br />stdio         Standard input/output UI driver<br />stun          Session Traversal Utilities for NAT (STUN) module<br />swscale       Video scaling using libswscale<br />syslog        Syslog module<br />turn          Obtaining Relay Addresses from STUN (TURN) module<br />uuid          UUID generator and loader<br />v4l2          Video4Linux2 video source<br />v4l2_codec    Video4Linux2 video codec module (H264 hardware encoding)<br />vidbridge     Video bridge module<br />vidinfo       Video info overlay module<br />vidloop       Video-loop test module<br />vp8           VP8 video codec<br />vp9           VP9 video codec<br />vumeter       Display audio levels in console<br />webrtc_aec    Acoustic Echo Cancellation (AEC) using WebRTC SDK<br />wincons       Console input driver for Windows<br />winwave       Audio driver for Windows<br />x11           X11 video output driver<br />x11grab       X11 grabber video source<br />zrtp          ZRTP media encryption module
+
+
+
+# 参考
+
+- [https://github.com/baresip/baresip](https://github.com/baresip/baresip)
+
