@@ -9,7 +9,17 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 06 Dec 2022 21:10:38 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/all/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 07 Dec 2022 09:17:59 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/all/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Edge浏览器双击标签栏 关闭标签页</title>
+      <link>https://wdd.js.org/posts/2022/double-click-close-tab/</link>
+      <pubDate>Wed, 07 Dec 2022 09:17:59 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2022/double-click-close-tab/</guid>
+      <description>在设置里搜索双击，如果有使用双击关闭浏览器选项卡， 则开启。
+对于用鼠标关闭标签页来说，的确可以提高极大的效率。</description>
+    </item>
+    
     <item>
       <title>为什么我不再使用语雀</title>
       <link>https://wdd.js.org/posts/2022/why-i-dont-not-use-yuque-any-more/</link>
