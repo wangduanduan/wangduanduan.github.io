@@ -7994,7 +7994,7 @@ window.addEventListener(&amp;#39;unload&amp;#39;, logData, false); function logD
       <pubDate>Wed, 31 Jan 2018 12:09:09 +0800</pubDate>
       
       <guid>https://wdd.js.org/about/</guid>
-      <description>个人简介 我是端端！
+      <description>个人简介 我是Eddie Wang！
 精通JavaScript/Node.js，现在的兴趣是学习go语言 精通VOIP相关技术栈：SIP/opensips/Freeswitch等等 精通VIM email: 1779706607@qq.com Github: github.com/wangduanduan 语雀: yuque.com/wangdd, 将不会更新 个人博客: wdd.js.org, 最新内容将会发布在wdd.js.org 最喜欢的美剧《黄石》 博客说明 博客取名为洞香春，灵感来自孙皓晖所著《大秦帝国》。
 洞香春大致在战国时代中期所在地：魏国安邑。
 战国时期，社会制度发生着巨大变化，工商业日益兴旺，出现了以白圭为首的一批巨贾商人，而位于魏国安邑的洞香春酒肆就是白氏家族创办的产业中最为著名的一个。
