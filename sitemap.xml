@@ -2,25 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://wdd.js.org/tags/2147746132/</loc>
+    <lastmod>2022-12-11T14:12:08+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/categories/</loc>
+    <lastmod>2022-12-11T14:12:08+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/linux/</loc>
+    <lastmod>2022-12-11T14:12:08+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/</loc>
+    <lastmod>2022-12-11T14:12:08+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/</loc>
+    <lastmod>2022-12-11T14:12:08+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/2022/wsl-error-0x80040154-after-windows-update/</loc>
+    <lastmod>2022-12-11T14:12:08+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/wsl/</loc>
+    <lastmod>2022-12-11T14:12:08+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/categories/wsl/</loc>
+    <lastmod>2022-12-11T14:12:08+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/</loc>
+    <lastmod>2022-12-11T14:12:08+08:00</lastmod>
+  </url><url>
     <loc>https://wdd.js.org/tags/all/</loc>
     <lastmod>2022-12-07T09:17:59+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/categories/all/</loc>
     <lastmod>2022-12-07T09:17:59+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/categories/</loc>
-    <lastmod>2022-12-07T09:17:59+08:00</lastmod>
-  </url><url>
     <loc>https://wdd.js.org/posts/2022/double-click-close-tab/</loc>
-    <lastmod>2022-12-07T09:17:59+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/</loc>
-    <lastmod>2022-12-07T09:17:59+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/</loc>
-    <lastmod>2022-12-07T09:17:59+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/</loc>
     <lastmod>2022-12-07T09:17:59+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2022/why-i-dont-not-use-yuque-any-more/</loc>
@@ -153,9 +168,6 @@
     <lastmod>2022-10-26T08:57:54+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/journal/</loc>
-    <lastmod>2022-10-26T08:44:12+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/linux/</loc>
     <lastmod>2022-10-26T08:44:12+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2022/linux-journal/</loc>
