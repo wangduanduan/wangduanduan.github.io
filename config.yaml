@@ -17,9 +17,9 @@ minify:
 params:
     env: production # to enable google analytics, opengraph, twitter-cards and schema.
     title: "洞香春"
-    description: "端端的个人博客"
+    description: "Eddie Wang的个人博客"
     keywords: [Blog, Portfolio, PaperMod]
-    author: 王端端
+    author: "Eddie Wang"
     images: ["<link or path of image for opengraph, twitter-cards>"]
     DateFormat: "2006-01-02 15:04:05"
     defaultTheme: dark #auto # dark, light
@@ -58,7 +58,7 @@ params:
     # profile-mode
     profileMode:
         enabled: false # needs to be explicitly set
-        title: 王端端
+        title: "Eddie Wang"
         subtitle: "前端/软交换开发"
         imageUrl: "/images/my.jpg"
         imageWidth: 120
@@ -73,7 +73,7 @@ params:
     # home-info mode
     homeInfoParams:
         enabled: false
-        Title: "王端端"
+        Title: "Eddie Wang"
         Content: "当你在穿山越岭的另一边, 我在孤独的路上没有尽头" 
 
     socialIcons:

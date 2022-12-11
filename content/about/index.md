@@ -7,7 +7,7 @@ date: 2018-01-31 12:09:09
 
 # 个人简介
 
-我是端端！
+我是Eddie Wang！
 
 - 精通JavaScript/Node.js，现在的兴趣是学习go语言
 - 精通VOIP相关技术栈：SIP/opensips/Freeswitch等等
