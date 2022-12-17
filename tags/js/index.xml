@@ -12,10 +12,10 @@
     <lastBuildDate>Wed, 07 Feb 2018 10:09:42 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/js/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>突然觉得自己好像没学过JS</title>
-      <link>https://wdd.js.org/posts/2018/i-realy-dont-know-js/</link>
+      <link>https://wdd.js.org/posts/2018/02/i-realy-dont-know-js/</link>
       <pubDate>Wed, 07 Feb 2018 10:09:42 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/i-realy-dont-know-js/</guid>
+      <guid>https://wdd.js.org/posts/2018/02/i-realy-dont-know-js/</guid>
       <description>0.1. 先看题：mean的值是什么？ var scores = [10,11,12]; var total = 0; for(var score in scores){ total += score; } var mean = total/scores.length; console.log(mean); 0.2. 是11？ 恭喜你：答错了！
 0.3. 是1？ 恭喜你：答错了！
 0.4. 正确答案： 4 解释： for in 循环循环的值永远是key, key是一个字符串。所以total的值是：&amp;lsquo;0012&amp;rsquo;。它是一个字符串，字符串&#39;0012&amp;rsquo;/3,0012会被转换成12，然后除以3，结果是4。
@@ -27,10 +27,10 @@ var scores = [10,11,12]; var total = 0; for(var i=0, n=scores.length; i &amp;lt;
     
     <item>
       <title>油猴子脚本 - 我的地盘我做主</title>
-      <link>https://wdd.js.org/posts/2018/tampermonkey/</link>
+      <link>https://wdd.js.org/posts/2018/01/tampermonkey/</link>
       <pubDate>Mon, 29 Jan 2018 13:58:37 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/tampermonkey/</guid>
+      <guid>https://wdd.js.org/posts/2018/01/tampermonkey/</guid>
       <description>当你用浏览器访问某个网页时，你可曾想过，你看到的这个网页，实际上是属于你自己的。
 打个比喻：访问某个网站就好像是网购了一筐鸡蛋，鸡蛋虽然是养鸡场生产的，但是这个蛋我怎么吃，你养鸡场管不着。
 当然了，对于很多人来说，鸡蛋没有别的吃法，鸡蛋只能煮着吃。

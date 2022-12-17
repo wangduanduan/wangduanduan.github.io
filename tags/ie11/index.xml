@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>IE11 on 洞香春</title>
+    <title>ie11 on 洞香春</title>
     <link>https://wdd.js.org/tags/ie11/</link>
-    <description>Recent content in IE11 on 洞香春</description>
+    <description>Recent content in ie11 on 洞香春</description>
     <image>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
@@ -12,10 +12,10 @@
     <lastBuildDate>Sun, 11 Feb 2018 14:12:19 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/ie11/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>IE11 0x2ee4 bug 以及类似问题解决方法</title>
-      <link>https://wdd.js.org/posts/2018/ie11-0x2ee4-bug/</link>
+      <link>https://wdd.js.org/posts/2018/02/ie11-0x2ee4-bug/</link>
       <pubDate>Sun, 11 Feb 2018 14:12:19 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/ie11-0x2ee4-bug/</guid>
+      <guid>https://wdd.js.org/posts/2018/02/ie11-0x2ee4-bug/</guid>
       <description>一千个IE浏览器访问同一个页面，可能报一千种错误。前端激进派对IE恨得牙痒痒，但是无论你爱，或者不爱，IE就在那里，不来不去。
 一些银行，以及政府部门，往往都是指定必须使用IE浏览器。所以，一些仅在IE浏览器上出现的问题。总结起来问题的原因很简单：IE的配置不正确
 下面就将一个我曾经遇到的问题: IE11 0x2ee4， 以及其他的问题的解决方案
@@ -32,10 +32,10 @@ internet选项 安全 自定义级别 启用通过跨域访问数据源 启用�
     
     <item>
       <title>win7 ie11 开发者工具打开后一片空白</title>
-      <link>https://wdd.js.org/posts/2018/ie11-without-devtool/</link>
+      <link>https://wdd.js.org/posts/2018/01/ie11-without-devtool/</link>
       <pubDate>Mon, 29 Jan 2018 21:43:12 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/ie11-without-devtool/</guid>
+      <guid>https://wdd.js.org/posts/2018/01/ie11-without-devtool/</guid>
       <description>解决方法安装Windows7补丁：KB3008923； 下载地址： http://www.microsoft.com/en-us/download/details.aspx?id=45134 （32位） http://www.microsoft.com/zh-CN/download/details.aspx?id=45154 （64位）</description>
     </item>
     

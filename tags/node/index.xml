@@ -12,10 +12,10 @@
     <lastBuildDate>Fri, 10 Aug 2018 10:18:57 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/node/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>NodeJS Events 模块笔记</title>
-      <link>https://wdd.js.org/posts/2018/deepin-nodejs-events/</link>
+      <link>https://wdd.js.org/posts/2018/08/deepin-nodejs-events/</link>
       <pubDate>Fri, 10 Aug 2018 10:18:57 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/deepin-nodejs-events/</guid>
+      <guid>https://wdd.js.org/posts/2018/08/deepin-nodejs-events/</guid>
       <description>1. 环境 node 8.11.3 2. 基本使用 // 01.js const EventEmitter = require(&amp;#39;events&amp;#39;); class MyEmitter extends EventEmitter {} const myEmitter = new MyEmitter(); myEmitter.on(&amp;#39;event&amp;#39;, () =&amp;gt; { console.log(&amp;#39;an event occurred!&amp;#39;); }); myEmitter.emit(&amp;#39;event&amp;#39;); 输出：
 an event occurred! 3. 传参与this指向 emit()方法可以传不限制数量的参数。 除了箭头函数外，在回调函数内部，this会被绑定到EventEmitter类的实例上 // 02.js const EventEmitter = require(&amp;#39;events&amp;#39;) class MyEmitter extends EventEmitter {} const myEmitter = new MyEmitter() myEmitter.on(&amp;#39;event&amp;#39;, function (a, b){ console.log(a, b, this, this === myEmitter) }) myEmitter.on(&amp;#39;event&amp;#39;, (a, b) =&amp;gt; { console.</description>
     </item>

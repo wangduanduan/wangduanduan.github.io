@@ -12,10 +12,10 @@
     <lastBuildDate>Sun, 11 Feb 2018 14:34:17 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/visibilitychange/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>不常用却很有妙用的事件及方法</title>
-      <link>https://wdd.js.org/posts/2018/useful-browser-events/</link>
+      <link>https://wdd.js.org/posts/2018/02/useful-browser-events/</link>
       <pubDate>Sun, 11 Feb 2018 14:34:17 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/useful-browser-events/</guid>
+      <guid>https://wdd.js.org/posts/2018/02/useful-browser-events/</guid>
       <description>1 visibilitychange事件 触发条件：浏览器标签页被隐藏或显示的时候会触发visibilitychange事件.
 使用场景：当标签页显示或者隐藏时，触发一些业务逻辑
 document.addEventListener(&amp;#34;visibilitychange&amp;#34;, function() { console.log( document.visibilityState ); }); 2 storage事件 触发条件：使用localStorage or sessionStorage存储或者修改某个本地存储时

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>deepin on 洞香春</title>
+    <link>https://wdd.js.org/categories/deepin/</link>
+    <description>Recent content in deepin on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 17 Dec 2022 13:28:40 +0800</lastBuildDate><atom:link href="https://wdd.js.org/categories/deepin/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>NUC11 安装 Deepin 20.2.4</title>
+      <link>https://wdd.js.org/posts/2022/12/nuc11-deepin-20-2/</link>
+      <pubDate>Sat, 17 Dec 2022 13:28:40 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2022/12/nuc11-deepin-20-2/</guid>
+      <description>硬件 内存：金士顿 16*2；869元 固态硬盘： 三星980 1TB; 799元 主机：NUC11 PAHI7; 4核心八线程；3399元 累计5000多一点, 是最新版Macbook pro M1prod的三分之一
+启动盘制作 ventoy：试了几次，无法开机，遂放弃 rufus：能够正常使用；注意分区类型要选择GPT。最新款的一些电脑都是支持uefi的，所以选择GPT分区，一定没问题。
+U盘启动 开机后按F2, 里面有一个是设置BIOS优先级，可以设置优先U盘启动
+磁盘分区 因为之前设置了默认的整个磁盘分区，根目录只有15G, 太小了，所以我选择手动分区 先设置一个efi分区，就用默认的300M就可以，默认弹窗出来，是不需要设置挂在目录的 设置根分区 /, 我分了300G 设置/home分区，剩下的磁盘都分给他 我没有设置swap分区，因为我觉得32G内存够大，不需要swap
+其他 后续的配置非常简单，基本点点按钮就能搞定
+体验 总体来说，安装软件是最舒服的一件事。不需要像安装manjaro那样，到处找安装常用应用的教程。只需要打开应用商店，点击下载就可以了。 整个安装过程，我觉得磁盘分区是最难的部分。其他都是非常方便的。 感觉深度的界面很漂亮，值得体验
+问题 NUC自带的麦克风无法外放声音，插有线耳机也不行，只有蓝牙耳机能用 </description>
+    </item>
+    
+    <item>
+      <title>Deepin安装man命令</title>
+      <link>https://wdd.js.org/posts/2022/11/deepin-install-man/</link>
+      <pubDate>Thu, 03 Nov 2022 11:55:51 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2022/11/deepin-install-man/</guid>
+      <description>想查资料，发现 deepin 居然没有 man 这个命令。
+安装 sudo apt-get install man-db 使用介绍 </description>
+    </item>
+    
+    <item>
+      <title>使用brew作为deepin的包管理工具</title>
+      <link>https://wdd.js.org/posts/2021/11/</link>
+      <pubDate>Thu, 18 Nov 2021 08:42:53 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2021/11/</guid>
+      <description>11月2号，我的主力开发工具macbook开始退役。
+我换了nuc11 i7, 安装了国产的deepin(深度)操作系统。总体体验蛮好的，只是apt-get的软件包里，太多都是很老的包。所以我想到以前用mac的包管理工具homebrew, 据说它不仅仅可以在mac上工作，主流的linux也是能够使用的。
+homebrew的介绍是：The Missing Package Manager for macOS (or Linux)。也就是说brew完全可以在linux上运行。
+安装方式也很简单：
+/bin/bash -c &amp;#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&amp;#34; 上面的shell执行之后，brew就安装成功了。
+和mac不同的是，linux homebrew的安装包的可执行命令的目录是：/home/linuxbrew/.linuxbrew/bin, 所以需要把它加入到PATH中，安装的软件才能正确执行。
+参考 https://brew.sh/ </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -12,10 +12,10 @@
     <lastBuildDate>Sat, 28 May 2022 12:35:26 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/gdb/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>C和gdb调试</title>
-      <link>https://wdd.js.org/posts/2022/c-and-gdb/</link>
+      <link>https://wdd.js.org/posts/2022/05/c-and-gdb/</link>
       <pubDate>Sat, 28 May 2022 12:35:26 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2022/c-and-gdb/</guid>
+      <guid>https://wdd.js.org/posts/2022/05/c-and-gdb/</guid>
       <description>开启coredump #如果该命令的返回值是0，则表示不开启coredump ulimit -c # 开启coredump ulimit -c unlimited 准备c文件 #include&amp;lt;stdio.h&amp;gt; void crash() { char * p = NULL; *p = 0; } int main(){ printf(&amp;#34;hello world 1&amp;#34;); int phone [4]; phone[232] = 12; crash(); return 0; } 编译执行 gcc -g hello.c -o hello ./hello 之后程序崩溃，产生core文件。
 gdb分析 gdb 启动的二进制文件 core文件
 gdb ./hello ./core 之后输入： bt full 可以查看到更详细的信息

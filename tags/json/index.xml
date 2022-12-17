@@ -12,10 +12,10 @@
     <lastBuildDate>Fri, 09 Feb 2018 13:27:15 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/json/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>你不知道的JSON.stringify()妙用</title>
-      <link>https://wdd.js.org/posts/2018/json-stringify-powerful/</link>
+      <link>https://wdd.js.org/posts/2018/02/json-stringify-powerful/</link>
       <pubDate>Fri, 09 Feb 2018 13:27:15 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/json-stringify-powerful/</guid>
+      <guid>https://wdd.js.org/posts/2018/02/json-stringify-powerful/</guid>
       <description>1. 语法 JSON.stringify(value[, replacer[, space]]) 一般用法：
 var user = {name: &amp;#39;andy&amp;#39;, isDead: false, age: 11, addr: &amp;#39;shanghai&amp;#39;}; JSON.stringify(user); &amp;#34;{&amp;#34;name&amp;#34;:&amp;#34;andy&amp;#34;,&amp;#34;isDead&amp;#34;:false,&amp;#34;age&amp;#34;:11,&amp;#34;addr&amp;#34;:&amp;#34;shanghai&amp;#34;}&amp;#34; 2. 扩展用法 2.1. replacer replacer可以是函数或者是数组。
 功能1: 改变属性值 将isDead属性的值翻译成0或1，0对应false,1对应true

@@ -9,7 +9,16 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 11 Dec 2022 14:33:04 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 17 Dec 2022 13:28:40 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>deepin</title>
+      <link>https://wdd.js.org/tags/deepin/</link>
+      <pubDate>Sat, 17 Dec 2022 13:28:40 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/tags/deepin/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>wireshark</title>
       <link>https://wdd.js.org/tags/wireshark/</link>
@@ -88,6 +97,15 @@
       <pubDate>Wed, 26 Oct 2022 08:44:12 +0800</pubDate>
       
       <guid>https://wdd.js.org/tags/journal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>manjaro</title>
+      <link>https://wdd.js.org/tags/manjaro/</link>
+      <pubDate>Wed, 15 Jun 2022 18:54:11 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/tags/manjaro/</guid>
       <description></description>
     </item>
     
@@ -245,7 +263,7 @@
     </item>
     
     <item>
-      <title>Vue</title>
+      <title>vue</title>
       <link>https://wdd.js.org/tags/vue/</link>
       <pubDate>Wed, 12 Dec 2018 20:29:16 +0800</pubDate>
       
@@ -263,7 +281,7 @@
     </item>
     
     <item>
-      <title>express</title>
+      <title>Express</title>
       <link>https://wdd.js.org/tags/express/</link>
       <pubDate>Sun, 30 Sep 2018 09:41:44 +0800</pubDate>
       
@@ -560,7 +578,7 @@
     </item>
     
     <item>
-      <title>IE11</title>
+      <title>ie11</title>
       <link>https://wdd.js.org/tags/ie11/</link>
       <pubDate>Sun, 11 Feb 2018 14:12:19 +0800</pubDate>
       

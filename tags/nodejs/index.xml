@@ -12,10 +12,10 @@
     <lastBuildDate>Wed, 07 Feb 2018 14:15:43 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>直接在Chrome DevTools调试Node.js</title>
-      <link>https://wdd.js.org/posts/2018/debug-nodejs-in-chrome-devtool/</link>
+      <link>https://wdd.js.org/posts/2018/02/debug-nodejs-in-chrome-devtool/</link>
       <pubDate>Wed, 07 Feb 2018 14:15:43 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/debug-nodejs-in-chrome-devtool/</guid>
+      <guid>https://wdd.js.org/posts/2018/02/debug-nodejs-in-chrome-devtool/</guid>
       <description>英文好的，直接看原文
 https://blog.hospodarets.com/nodejs-debugging-in-chrome-devtools
 1. 要求 Node.js 6.3+ Chrome 55+ 2. 操作步骤 1 打开连接 chrome://flags/#enable-devtools-experiments 2 开启开发者工具实验性功能 3 重启浏览器 4 打开 DevTools Setting -&amp;gt; Experiments tab 5 按6次shift后，隐藏的功能会出现，勾选&amp;quot;Node debugging&amp;quot; 3. 运行程序 必须要有 --inspect

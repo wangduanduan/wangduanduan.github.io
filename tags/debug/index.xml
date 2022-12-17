@@ -12,10 +12,10 @@
     <lastBuildDate>Thu, 08 Feb 2018 13:53:48 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/debug/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>如何浏览器里调试iframe里层的代码？</title>
-      <link>https://wdd.js.org/posts/2018/debug-code-in-iframe/</link>
+      <link>https://wdd.js.org/posts/2018/02/debug-code-in-iframe/</link>
       <pubDate>Thu, 08 Feb 2018 13:53:48 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/debug-code-in-iframe/</guid>
+      <guid>https://wdd.js.org/posts/2018/02/debug-code-in-iframe/</guid>
       <description>之前一直非常痛苦，在iframe外层根本获取不了里面的信息，后来使用了postMessage用传递消息来实现，但是用起来还是非常不方便。
 其实浏览器本身是可以选择不同的iframe的执行环境的。例如有个变量是在iframe里面定义的，你只需要切换到这个iframe的执行环境，你就可以随意操作这个环境的任何变量了。
 这个小技巧，对于调试非常有用，但是我直到今天才发现。

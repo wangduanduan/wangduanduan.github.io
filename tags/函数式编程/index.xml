@@ -12,10 +12,10 @@
     <lastBuildDate>Thu, 08 Feb 2018 14:06:22 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>关于JavaScropt函数式编程，我多么希望能早点看到这本书</title>
-      <link>https://wdd.js.org/posts/2018/js-functional-programming/</link>
+      <link>https://wdd.js.org/posts/2018/02/js-functional-programming/</link>
       <pubDate>Thu, 08 Feb 2018 14:06:22 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/js-functional-programming/</guid>
+      <guid>https://wdd.js.org/posts/2018/02/js-functional-programming/</guid>
       <description>我父亲以前跟我说过，有些事物在你得到之前是无足轻重的，得到之后就不可或缺了。微波炉是这样，智能手机是这样，互联网也是这样——老人们在没有互联网的时候过得也很充实。对我来说，函数的柯里化（curry）也是这样。
 然后我继续看了这本书的中文版。有些醍醐灌顶的感觉。 随之在github搜了一下。 我想，即使付费，我也愿意看。
 中文版地址：https://www.gitbook.com/book/llh911001/mostly-adequate-guide-chinese/details github原文地址：https://github.com/MostlyAdequate/mostly-adequate-guide

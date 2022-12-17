@@ -12,10 +12,10 @@
     <lastBuildDate>Sun, 11 Feb 2018 14:12:19 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/12004/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>IE11 0x2ee4 bug 以及类似问题解决方法</title>
-      <link>https://wdd.js.org/posts/2018/ie11-0x2ee4-bug/</link>
+      <link>https://wdd.js.org/posts/2018/02/ie11-0x2ee4-bug/</link>
       <pubDate>Sun, 11 Feb 2018 14:12:19 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/ie11-0x2ee4-bug/</guid>
+      <guid>https://wdd.js.org/posts/2018/02/ie11-0x2ee4-bug/</guid>
       <description>一千个IE浏览器访问同一个页面，可能报一千种错误。前端激进派对IE恨得牙痒痒，但是无论你爱，或者不爱，IE就在那里，不来不去。
 一些银行，以及政府部门，往往都是指定必须使用IE浏览器。所以，一些仅在IE浏览器上出现的问题。总结起来问题的原因很简单：IE的配置不正确
 下面就将一个我曾经遇到的问题: IE11 0x2ee4， 以及其他的问题的解决方案

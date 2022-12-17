@@ -12,10 +12,10 @@
     <lastBuildDate>Thu, 15 Mar 2018 14:17:59 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/ajax/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>状态码为200时 jQuery ajax报错</title>
-      <link>https://wdd.js.org/posts/2018/status-code-200-jquery-ajax-failed/</link>
+      <link>https://wdd.js.org/posts/2018/03/status-code-200-jquery-ajax-failed/</link>
       <pubDate>Thu, 15 Mar 2018 14:17:59 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/status-code-200-jquery-ajax-failed/</guid>
+      <guid>https://wdd.js.org/posts/2018/03/status-code-200-jquery-ajax-failed/</guid>
       <description>1. 问题现象 HTTP 状态码为 200 OK 时， jquery ajax报错
 2. 问题原因 jquery ajax的dataType字段包含：json, 但是服务端返回的数据不是规范的json格式，导致jquery解析json字符串报错，最终导致ajax报错。
 jQuery ajax 官方文档上说明：
@@ -24,10 +24,10 @@ jQuery ajax 官方文档上说明：
     
     <item>
       <title>IE11 0x2ee4 bug 以及类似问题解决方法</title>
-      <link>https://wdd.js.org/posts/2018/ie11-0x2ee4-bug/</link>
+      <link>https://wdd.js.org/posts/2018/02/ie11-0x2ee4-bug/</link>
       <pubDate>Sun, 11 Feb 2018 14:12:19 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/ie11-0x2ee4-bug/</guid>
+      <guid>https://wdd.js.org/posts/2018/02/ie11-0x2ee4-bug/</guid>
       <description>一千个IE浏览器访问同一个页面，可能报一千种错误。前端激进派对IE恨得牙痒痒，但是无论你爱，或者不爱，IE就在那里，不来不去。
 一些银行，以及政府部门，往往都是指定必须使用IE浏览器。所以，一些仅在IE浏览器上出现的问题。总结起来问题的原因很简单：IE的配置不正确
 下面就将一个我曾经遇到的问题: IE11 0x2ee4， 以及其他的问题的解决方案
@@ -44,10 +44,10 @@ internet选项 安全 自定义级别 启用通过跨域访问数据源 启用�
     
     <item>
       <title>发起Ajax请求当页面onunload</title>
-      <link>https://wdd.js.org/posts/2018/send-ajax-when-page-unload/</link>
+      <link>https://wdd.js.org/posts/2018/02/send-ajax-when-page-unload/</link>
       <pubDate>Wed, 07 Feb 2018 09:18:54 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/send-ajax-when-page-unload/</guid>
+      <guid>https://wdd.js.org/posts/2018/02/send-ajax-when-page-unload/</guid>
       <description>0.1. 同步Ajax 这种需求主要用于当浏览器关闭，或者刷新时，向后端发起Ajax请求。
 window.onunload = function(){ $.ajax({url:&amp;#34;http://localhost:8888/test.php?&amp;#34;, async:false}); }; 使用async：false参数使请求同步（默认是异步的）。
 同步请求锁定浏览器，直到完成。 如果请求是异步的，页面只是继续卸载。 它足够快，以至于该请求甚至没有时间触发。服务端很可能收不到请求。

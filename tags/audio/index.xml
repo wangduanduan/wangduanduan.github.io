@@ -12,10 +12,10 @@
     <lastBuildDate>Fri, 09 Feb 2018 13:44:13 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/audio/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Vue&#43;ElementUI 手把手教你做一个audio组件</title>
-      <link>https://wdd.js.org/posts/2018/vue-elementui-audio-component/</link>
+      <link>https://wdd.js.org/posts/2018/02/vue-elementui-audio-component/</link>
       <pubDate>Fri, 09 Feb 2018 13:44:13 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/vue-elementui-audio-component/</guid>
+      <guid>https://wdd.js.org/posts/2018/02/vue-elementui-audio-component/</guid>
       <description>1. 简介 1.1. 相关技术 Vue Vue-cli ElementUI yarn (之前我用npm, 并使用cnpm的源，但是用了yarn之后，我发现它比cnpm的速度还快，功能更好，我就毫不犹豫选择yarn了) Audio相关API和事件 1.2. 从本教程你会学到什么？ Vue单文件组件开发知识 Element UI基本用法 Audio原生API及Audio相关事件 音频播放器的基本原理 音频的播放暂停控制 更新音频显示时间 音频进度条控制与跳转 音频音量控制 音频播放速度控制 音频静音控制 音频下载控制 个性化配置与排他性播放 一点点ES6语法 2. 学前准备 基本上不需要什么准备，但是如果你能先看一下Aduio相关API和事件将会更好
 Audio: 如果你愿意一层一层剥开我的心 使用 HTML5 音频和视频 3. 在线demon 没有在线demo的教程都是耍流氓
 查看在线demon 项目地址 4. 开始编码 5. 项目初始化 ➜ test vue init webpack element-audio A newer version of vue-cli is available. latest: 2.9.2 installed: 2.9.1 ? Project name element-audio ? Project description A Vue.js project ?</description>
@@ -23,10 +23,10 @@ Audio: 如果你愿意一层一层剥开我的心 使用 HTML5 音频和视频 3
     
     <item>
       <title>Audio 如果你愿意一层一层剥开我的心</title>
-      <link>https://wdd.js.org/posts/2018/audio-heart-detail/</link>
+      <link>https://wdd.js.org/posts/2018/02/audio-heart-detail/</link>
       <pubDate>Thu, 08 Feb 2018 09:44:01 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/audio-heart-detail/</guid>
+      <guid>https://wdd.js.org/posts/2018/02/audio-heart-detail/</guid>
       <description>我觉得DOM就好像是元素周期表里的元素，JS就好像是实验器材，通过各种化学反应，产生各种魔术。
 1. Audio 通过打开谷歌浏览器的dev tools -&amp;gt; Settings -&amp;gt; Elements -&amp;gt; Show user agent shadow DOM, 你可以看到其实Audio标签也是由常用的 input标签和div等标签合成的。
 2. 基本用法 1 &amp;lt;audio src=&amp;#34;http://65.ierge.cn/12/186/372266.mp3&amp;#34;&amp;gt; Your browser does not support the audio element. &amp;lt;/audio&amp;gt; &amp;lt;br&amp;gt; 2 &amp;lt;audio src=&amp;#34;http://65.ierge.cn/12/186/372266.mp3&amp;#34; controls=&amp;#34;controls&amp;#34;&amp;gt; Your browser does not support the audio element. &amp;lt;/audio&amp;gt; &amp;lt;br&amp;gt; // controlsList属性目前只支持 chrome 58+ 3 &amp;lt;audio src=&amp;#34;http://65.ierge.cn/12/186/372266.mp3&amp;#34; controls=&amp;#34;controls&amp;#34; controlsList=&amp;#34;nodownload&amp;#34;&amp;gt; Your browser does not support the audio element. &amp;lt;/audio&amp;gt; &amp;lt;br&amp;gt; 4 &amp;lt;audio controls=&amp;#34;controls&amp;#34;&amp;gt; &amp;lt;source src=&amp;#34;http://65.</description>

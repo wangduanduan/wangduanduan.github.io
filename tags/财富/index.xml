@@ -12,10 +12,10 @@
     <lastBuildDate>Wed, 25 Apr 2018 13:33:52 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E8%B4%A2%E5%AF%8C/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>金钱游戏 - 银行造钱的秘密</title>
-      <link>https://wdd.js.org/posts/2018/the-secret-of-bank-create-money/</link>
+      <link>https://wdd.js.org/posts/2018/04/the-secret-of-bank-create-money/</link>
       <pubDate>Wed, 25 Apr 2018 13:33:52 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/the-secret-of-bank-create-money/</guid>
+      <guid>https://wdd.js.org/posts/2018/04/the-secret-of-bank-create-money/</guid>
       <description>1. 角色划分 名称 角色 账户 A 银行家 0 B 建筑商 100万 C 商人 0 2. 建筑商向银行存储100万 名称 角色 账户 A 银行家 100万 现金 B 建筑商 100万 支票 C 商人 0 2. 商人向银行贷款100万 此时银行的账户存款已经是0了，但是B还在银行存了100万。那银行究竟是还有100万呢, 还是一毛都没有了呢。
 此时建筑商如果要取现金，那么银行马上就要破产。
 名称 角色 账户 A 银行家 100现金 B 建筑商 100万 支票 C 商人 100万 支票 3. 商人需要建筑商来建造房子 商人需要建筑商来建筑房子，费用是100万，付给建筑商，建筑商又把100支票存到银行

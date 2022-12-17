@@ -12,10 +12,10 @@
     <lastBuildDate>Thu, 29 Mar 2018 20:35:38 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/websocket/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>WebSocket断开原因分析</title>
-      <link>https://wdd.js.org/posts/2018/websocket-close-reasons/</link>
+      <link>https://wdd.js.org/posts/2018/03/websocket-close-reasons/</link>
       <pubDate>Thu, 29 Mar 2018 20:35:38 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/websocket-close-reasons/</guid>
+      <guid>https://wdd.js.org/posts/2018/03/websocket-close-reasons/</guid>
       <description>1. 把错误打印出来 WebSocket断开的原因有很多，最好在WebSocket断开时，将错误打印出来。
 在线demo地址：https://wdd.js.org/websocket-demos/
 ws.onerror = function (e) { console.log(&amp;#39;WebSocket发生错误: &amp;#39; + e.code) console.log(e) } 如果你想自己玩玩WebSocket, 但是你又不想自己部署一个WebSocket服务器，你可以使用ws = new WebSocket(&#39;wss://echo.websocket.org/&#39;), 你向echo.websocket.org发送消息，它会回复你同样的消息。
@@ -26,10 +26,10 @@ ws.onerror = function (e) { console.log(&amp;#39;WebSocket发生错误: &amp;#39
     
     <item>
       <title>在实践中我遇到stompjs, websocket和nginx的问题与总结</title>
-      <link>https://wdd.js.org/posts/2018/stomp-over-websocket/</link>
+      <link>https://wdd.js.org/posts/2018/03/stomp-over-websocket/</link>
       <pubDate>Tue, 20 Mar 2018 22:09:34 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/stomp-over-websocket/</guid>
+      <guid>https://wdd.js.org/posts/2018/03/stomp-over-websocket/</guid>
       <description>1. AWS EC2 不支持WebSocket 直达解决方案 英文版
 简单说一下思路：WebSocket底层基于TCP协议的，如果你的服务器基于HTTP协议暴露80端口，那WebSocket肯定无法连接。你只要将HTTP协议修改成TCP协议就可以了。
 然后是安全组的配置：

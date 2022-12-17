@@ -12,10 +12,10 @@
     <lastBuildDate>Thu, 08 Feb 2018 21:58:31 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>哑代理 - TCP链接高Recv-Q，内存泄露的罪魁祸首</title>
-      <link>https://wdd.js.org/posts/2018/tcp-high-recv-q-or-send-q-reasons/</link>
+      <link>https://wdd.js.org/posts/2018/02/tcp-high-recv-q-or-send-q-reasons/</link>
       <pubDate>Thu, 08 Feb 2018 21:58:31 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/tcp-high-recv-q-or-send-q-reasons/</guid>
+      <guid>https://wdd.js.org/posts/2018/02/tcp-high-recv-q-or-send-q-reasons/</guid>
       <description>1. 问题现象 使用netstat -ntp命令时发现，Recv-Q 1692012 异常偏高（正常情况下，该值应该是0），导致应用占用过多的内存。
 tcp 1692012 0 172.17.72.4:48444 10.254.149.149:58080 ESTABLISHED 27/node 问题原因：代理的转发时，没有删除逐跳首部
 2. 什么是Hop-by-hop 逐跳首部？ http首部可以分为两种

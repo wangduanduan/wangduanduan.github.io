@@ -12,10 +12,10 @@
     <lastBuildDate>Mon, 29 Jan 2018 13:46:31 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/substr/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>追本溯源：substr与substring历史漫话</title>
-      <link>https://wdd.js.org/posts/2018/substr-and-substring-history/</link>
+      <link>https://wdd.js.org/posts/2018/01/substr-and-substring-history/</link>
       <pubDate>Mon, 29 Jan 2018 13:46:31 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/substr-and-substring-history/</guid>
+      <guid>https://wdd.js.org/posts/2018/01/substr-and-substring-history/</guid>
       <description>引子： 很多时候，当我要字符串截取时，我会想到substr和substring的方法，但是具体要怎么传参数时，我总是记不住。哪个应该传个字符串长度，哪个又应该传个开始和结尾的下标，如果我不去查查这两个函数，我始终不敢去使用它们。所以我总是觉得，这个两个方法名起的真是蹩脚。然而事实是这样的吗？
 看来是时候扒一扒这两个方法的历史了。
 1. 基因追本溯源 在编程语言的历史长河中，曾经出现过很多编程语言。然而大浪淘沙，铅华洗尽之后，很多早已折戟沉沙，有些却依旧光彩夺目。那么stubstr与substring的DNA究竟来自何处？

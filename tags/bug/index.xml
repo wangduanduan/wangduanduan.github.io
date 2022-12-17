@@ -12,10 +12,10 @@
     <lastBuildDate>Wed, 12 Dec 2018 20:29:16 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/bug/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>WTF!! Vue数组splice方法无法正常工作</title>
-      <link>https://wdd.js.org/posts/2018/vue-array-splice-not-work/</link>
+      <link>https://wdd.js.org/posts/2018/12/vue-array-splice-not-work/</link>
       <pubDate>Wed, 12 Dec 2018 20:29:16 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/vue-array-splice-not-work/</guid>
+      <guid>https://wdd.js.org/posts/2018/12/vue-array-splice-not-work/</guid>
       <description>当函数执行到this.agents.splice()时，我设置了断点。发现传参index是0，但是页面上的列表项对应的第一行数据没有被删除，
 WTF！！！ 这是什么鬼！然后我打开Vue Devtools, 然后刷新了一下，发现那个数组的第一项还是存在的。什么鬼？？
 removeOneAgentByIndex: function (index) { this.agents.splice(index, 1) } 然后我就谷歌了一下，发现这个splice not working properly my object list VueJs, 大概意思是v-for的时候最好给列表项绑定:key=。然后我是试了这个方法，发现没啥作用。

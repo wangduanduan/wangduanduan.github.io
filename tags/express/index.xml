@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>express on 洞香春</title>
+    <title>Express on 洞香春</title>
     <link>https://wdd.js.org/tags/express/</link>
-    <description>Recent content in express on 洞香春</description>
+    <description>Recent content in Express on 洞香春</description>
     <image>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
@@ -12,10 +12,10 @@
     <lastBuildDate>Sun, 30 Sep 2018 09:41:44 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/express/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Express代理中间件问题与解决方案</title>
-      <link>https://wdd.js.org/posts/2018/express-middleware-order-proxy-problem/</link>
+      <link>https://wdd.js.org/posts/2018/09/express-middleware-order-proxy-problem/</link>
       <pubDate>Sun, 30 Sep 2018 09:41:44 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/express-middleware-order-proxy-problem/</guid>
+      <guid>https://wdd.js.org/posts/2018/09/express-middleware-order-proxy-problem/</guid>
       <description>前后端分离应用的架构 在前后端分离架构中，为了避免跨域以及暴露内部服务地址。一般来说，我会在Express这层中加入一个反向代理。
 所有向后端服务访问的请求，都通过代理转发到内部的各个服务。
 这个反向代理服务器，做起来很简单。用http-proxy-middleware这个模块，几行代码就可以搞定。
@@ -31,10 +31,10 @@ Cannot proxy after parsing body #299, 实际上这个问题在node-http-proxy也
     
     <item>
       <title>Express静态文件浏览器缓存设置与缓存清除</title>
-      <link>https://wdd.js.org/posts/2018/express-static-file-cache-setting-and-cleaning/</link>
+      <link>https://wdd.js.org/posts/2018/04/express-static-file-cache-setting-and-cleaning/</link>
       <pubDate>Sun, 08 Apr 2018 09:00:48 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/express-static-file-cache-setting-and-cleaning/</guid>
+      <guid>https://wdd.js.org/posts/2018/04/express-static-file-cache-setting-and-cleaning/</guid>
       <description>1. Express设置缓存 Express设置静态文件的方法很简单，一行代码搞定。app.use(express.static(path.join(__dirname, &#39;public&#39;), {maxAge: MAX_AGE})), 注意MAX_AGE的单位是毫秒。这句代码的含义是让pulic目录下的所有文件都可以在浏览器中缓存，过期时长为MAX_AGE毫秒。
 app.use(express.static(path.join(__dirname, &amp;#39;public&amp;#39;), {maxAge: config.get(&amp;#39;maxAge&amp;#39;)})) 2. Express让浏览器清除缓存 缓存的好处是可以更快的访问服务，但是缓存也有坏处。例如设置缓存为10天，第二天的时候服务更新了。如果客户端不强制刷新页面的话，浏览器会一致使用更新前的静态文件，这样会导致一些BUG。你总当每次出问题时，客户打电话给你后，你让他强制刷新浏览器吧？
 所以，最好在服务重启后，重新让浏览器获取最新的静态文件。

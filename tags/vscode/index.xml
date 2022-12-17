@@ -12,10 +12,10 @@
     <lastBuildDate>Sun, 11 Feb 2018 14:20:01 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/vscode/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>mac vscode 更新失败 Permission denied解决办法</title>
-      <link>https://wdd.js.org/posts/2018/mac-vscode-update-permission-denied/</link>
+      <link>https://wdd.js.org/posts/2018/02/mac-vscode-update-permission-denied/</link>
       <pubDate>Sun, 11 Feb 2018 14:20:01 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/mac-vscode-update-permission-denied/</guid>
+      <guid>https://wdd.js.org/posts/2018/02/mac-vscode-update-permission-denied/</guid>
       <description>0. 现象 Could not create temporary directory: Permission denied
 1. 问题起因 在 /Users/username/Library/Caches/目录下，有以下两个文件， 可以看到，他们两个的用户是不一样的，一个是root一个username, 一般来说，我是以username来使用我的mac的。就是因为这两个文件的用户不一样，导致了更新失败。
 drwxr-xr-x 6 username staff 204B Jan 17 20:33 com.microsoft.VSCode drwxr--r-- 2 root staff 68B Dec 17 13:51 com.microsoft.VSCode.ShipIt 2. 解决方法 注意： 先把vscode 完全关闭

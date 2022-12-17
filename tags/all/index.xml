@@ -12,20 +12,20 @@
     <lastBuildDate>Wed, 07 Dec 2022 09:17:59 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/all/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Edge浏览器双击标签栏 关闭标签页</title>
-      <link>https://wdd.js.org/posts/2022/double-click-close-tab/</link>
+      <link>https://wdd.js.org/posts/2022/12/double-click-close-tab/</link>
       <pubDate>Wed, 07 Dec 2022 09:17:59 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2022/double-click-close-tab/</guid>
+      <guid>https://wdd.js.org/posts/2022/12/double-click-close-tab/</guid>
       <description>在设置里搜索双击，如果有使用双击关闭浏览器选项卡， 则开启。
 对于用鼠标关闭标签页来说，的确可以提高极大的效率。</description>
     </item>
     
     <item>
       <title>为什么我不再使用语雀</title>
-      <link>https://wdd.js.org/posts/2022/why-i-dont-not-use-yuque-any-more/</link>
+      <link>https://wdd.js.org/posts/2022/12/why-i-dont-not-use-yuque-any-more/</link>
       <pubDate>Tue, 06 Dec 2022 21:10:38 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2022/why-i-dont-not-use-yuque-any-more/</guid>
+      <guid>https://wdd.js.org/posts/2022/12/why-i-dont-not-use-yuque-any-more/</guid>
       <description>我在2019年的六月份时候，开始使用语雀。
 一路走来，我见证了语雀的功能越来越多，但是于此同时，我也越来越讨厌语雀。
 2022年12月初，我基本上把语雀上的所有内容都迁移到我的hugo博客上。
@@ -59,10 +59,10 @@ ds_select_dst()可以接受整数或者值为正数的变量作为第一个参�
     
     <item>
       <title>西安之旅 不仅有羊肉泡馍 也有长恨歌</title>
-      <link>https://wdd.js.org/posts/2022/xian-travel/</link>
+      <link>https://wdd.js.org/posts/2022/12/xian-travel/</link>
       <pubDate>Fri, 02 Dec 2022 20:38:46 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2022/xian-travel/</guid>
+      <guid>https://wdd.js.org/posts/2022/12/xian-travel/</guid>
       <description>一年过半以后，偶然打开微信公众号，看到草稿箱里的篇文章。我才回想起去年带女友去西安的那个遥远的夏天。
 如今女友已经变成老婆，这篇文章我才想起来发表。
 day 1 钟楼 鼓楼 回民街 那是六月末的时候，和女友一起坐火车去了趟西安。

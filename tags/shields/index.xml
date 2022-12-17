@@ -12,10 +12,10 @@
     <lastBuildDate>Mon, 29 Oct 2018 09:14:43 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/shields/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>shields小徽章是如何生成的？以及搭建自己的shield服务器</title>
-      <link>https://wdd.js.org/posts/2018/how-to-make-shields-badge/</link>
+      <link>https://wdd.js.org/posts/2018/10/how-to-make-shields-badge/</link>
       <pubDate>Mon, 29 Oct 2018 09:14:43 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/how-to-make-shields-badge/</guid>
+      <guid>https://wdd.js.org/posts/2018/10/how-to-make-shields-badge/</guid>
       <description>shields小徽章介绍 一般开源项目都会有一些小徽章来标识项目的状态信息，并且这些信息是会自动更新的。在shields的官网https://shields.io/#/, 上面有各种各样的小图标，并且有很多自定义的方案。
 起因：如何给私有部署的jenkins制作shields服务？ 私有部署的jenkins是用来打包docker镜像的，而我想获取最新的项目打包的jenkins镜像信息。但是私有的jenkins项目信息，公网的shields服务是无法获取其信息的。那么如果搭建一个私有的shields服务呢？
 第一步：如何根据一些信息，制作svg图标 查看shields图标的源码，可以看到这些图标都是svg格式的图标。然后的思路就是，将文字信息转成svg图标。最后我发现这个思路是个死胡同，

@@ -12,10 +12,10 @@
     <lastBuildDate>Fri, 09 Mar 2018 17:58:05 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/origin-null-is-not-allowed/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Chrome本地跨域origin-null-is-not-allowed问题分析与解决方案</title>
-      <link>https://wdd.js.org/posts/2018/origin-null-is-not-allowed/</link>
+      <link>https://wdd.js.org/posts/2018/03/origin-null-is-not-allowed/</link>
       <pubDate>Fri, 09 Mar 2018 17:58:05 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/origin-null-is-not-allowed/</guid>
+      <guid>https://wdd.js.org/posts/2018/03/origin-null-is-not-allowed/</guid>
       <description>1. 问题表现 以file:///xxx.html打开某个html文件，发送ajax请求时报错：
 Response to preflight request doesn&amp;#39;t pass access control check: The &amp;#39;Access-Control-Allow-Origin&amp;#39; header has a value &amp;#39;null&amp;#39; that is not equal to the supplied origin. Origin &amp;#39;null&amp;#39; is therefore not allowed access. 2. 问题原因 Origin null是本地文件系统，因此这表明您正在加载通过file：// URL进行加载调用的HTML页面（例如，只需在本地文件浏览器或类似文件中双击它）。不同的浏览器采用不同的方法将相同来源策略应用到本地文件。Chrome要求比较严格，不允许这种形势的跨域请求。而最好使用http:// 访问html.
 3. 解决方案 以下给出三个解决方案，第一个最快，第三个作为彻底。

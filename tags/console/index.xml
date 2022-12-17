@@ -12,10 +12,10 @@
     <lastBuildDate>Thu, 08 Feb 2018 13:56:40 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/console/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>终于找到你！如何将前端console.log的日志保存成文件?</title>
-      <link>https://wdd.js.org/posts/2018/save-console-log-as-file/</link>
+      <link>https://wdd.js.org/posts/2018/02/save-console-log-as-file/</link>
       <pubDate>Thu, 08 Feb 2018 13:56:40 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/save-console-log-as-file/</guid>
+      <guid>https://wdd.js.org/posts/2018/02/save-console-log-as-file/</guid>
       <description>本篇文章来自一个需求，前端websocket会收到各种消息，但是调试的时候，我希望把websoekt推送过来的消息都保存到一个文件里，如果出问题的时候，我可以把这些消息的日志文件提交给后端开发区分析错误。但是在浏览器里，js一般是不能写文件的。鼠标另存为的方法也是不太好，因为会保存所有的console.log的输出。于是，终于找到这个debugout.js。
 debugout.js的原理是将所有日志序列化后，保存到一个变量里。当然这个变量不会无限大，因为默认的最大日志限制是2500行，这个是可配置的。另外，debugout.js也支持在localStorage里存储日志的。
 1. debugout.js 一般来说，可以使用打开console面板，然后右键save，是可以将console.log输出的信息另存为log文件的。但是这就把所有的日志都包含进来了，如何只保存我想要的日志呢？

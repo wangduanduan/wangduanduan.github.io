@@ -12,10 +12,10 @@
     <lastBuildDate>Tue, 14 Aug 2018 18:36:40 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E6%9C%AA%E5%AE%8C%E6%88%90/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>毕业后，青春像一艘船，沉入海底</title>
-      <link>https://wdd.js.org/posts/2018/the-rest-of-your-life/</link>
+      <link>https://wdd.js.org/posts/2018/08/the-rest-of-your-life/</link>
       <pubDate>Tue, 14 Aug 2018 18:36:40 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/the-rest-of-your-life/</guid>
+      <guid>https://wdd.js.org/posts/2018/08/the-rest-of-your-life/</guid>
       <description>大三那年的暑假 大三那年暑假，很多同学都回去了，寝室大楼空空如也。
 留在上海的同学都在各自找着兼职的工作，为了不显得无聊，我也在网上随便发了一些简历，试试看运气。
 写简历最难写的部分就是写你自己的长处是什么？搜索枯肠，觉得自己似乎也没什特长。感觉大学三年学到一些东西，又感觉什么都没学到。
@@ -52,10 +52,10 @@
     
     <item>
       <title>Restful API 架构思考</title>
-      <link>https://wdd.js.org/posts/2018/think-about-restful-api/</link>
+      <link>https://wdd.js.org/posts/2018/06/think-about-restful-api/</link>
       <pubDate>Thu, 07 Jun 2018 22:35:08 +0800</pubDate>
       
-      <guid>https://wdd.js.org/posts/2018/think-about-restful-api/</guid>
+      <guid>https://wdd.js.org/posts/2018/06/think-about-restful-api/</guid>
       <description>1. 什么是REST? 2. REST API最为重要的约束 3. REST API HTTP方法 与 CURD 4. 状态码 5. RESTful架构设计 6. 文档 7. 版本 8. 深入理解状态与无状态 9. 参考 1. 什么是REST? 表现层状态转换（REST，英文：Representational State Transfer）是Roy Thomas Fielding博士于2000年在他的博士论文[1] 中提出来的一种万维网软件架构风格，目的是便于不同软件/程序在网络（例如互联网）中互相传递信息。表现层状态转换（REST，英文：Representational State Transfer）是根基于超文本传输协议(HTTP)之上而确定的一组约束和属性，是一种设计提供万维网络服务的软件构建风格。匹配或兼容于这种架构风格(简称为 REST 或 RESTful)的网络服务，允许客户端发出以统一资源标识符访问和操作网络资源的请求，而与预先定义好的无状态操作集一致化。wikipdeia
 REST API 不是一个标准或者一个是协议，仅仅是一种风格，一种style。
 RESTful API的简单定义可以轻松解释这个概念。 REST是一种架构风格，RESTful是它的解释。也就是说，如果您的后端服务器具有REST API，并且您（从网站/应用程序）向客户端请求此API，则您的客户端为RESTful。
