@@ -9,6 +9,6 @@ push:
 	git commit -am "update"
 	git push
 new:
-	hugo new posts/2022/$(name)/index.md
+	hugo new posts/2023/$(name)/index.md
 serve:
 	hugo serve
