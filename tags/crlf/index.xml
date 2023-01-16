@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>CRLF on 洞香春</title>
+    <link>https://wdd.js.org/tags/crlf/</link>
+    <description>Recent content in CRLF on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 16 Jan 2023 15:03:03 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/crlf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>行位结束符引起的问题</title>
+      <link>https://wdd.js.org/posts/2023/tips-about-cr-lf/</link>
+      <pubDate>Mon, 16 Jan 2023 15:03:03 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2023/tips-about-cr-lf/</guid>
+      <description>CRLF 二进制 十进制 十六进制 八进制 字符/缩写 解释 00001010 10 0A 012 LF/NL(Line Feed/New Line) 换行键 00001101 13 0D 085 CR (Carriage Return) 回车键 CR代表回车符，LF代表换行符。
+这两个符号本身都是不可见的。
+如果打印出来
+CR 会显示 \r LF 会显示 \n 不同系统的行结束符 Linux系统和Mac换行符是 \n Windows系统的换行符是 \r\n 如何区分文件的换行符？ 可以使用od命令
+od -bc index.md 假如文件的原始内容如下
+- 1 - 2 注意012是八进制的数，十进制对应的数字是10，也就是换行符。
+0000000 055 040 061 012 055 040 062 - 1 \n - 2 0000007 如果用vscode打开文件，也能看到对应的文件格式，如LF。
+换行符的的差异会导致哪些问题？ shell脚本问题 如果bash脚本里包含CRLF, 可能导致脚本无法解析等各种异常问题。
+例如下面的报错，docker启动shell脚本可能是在windows下编写的。所以脚本无法
+standard_init_linux.go:211: exec user process caused &amp;#34;no such file or directory&amp;#34; 如何把windows文件类型转为unix?</description>
+    </item>
+    
+  </channel>
+</rss>

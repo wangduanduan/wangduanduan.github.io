@@ -9,7 +9,16 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 17 Dec 2022 13:28:40 +0800</lastBuildDate><atom:link href="https://wdd.js.org/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 16 Jan 2023 15:03:03 +0800</lastBuildDate><atom:link href="https://wdd.js.org/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>all</title>
+      <link>https://wdd.js.org/categories/all/</link>
+      <pubDate>Mon, 16 Jan 2023 15:03:03 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/categories/all/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>deepin</title>
       <link>https://wdd.js.org/categories/deepin/</link>
@@ -34,15 +43,6 @@
       <pubDate>Sun, 11 Dec 2022 14:12:08 +0800</pubDate>
       
       <guid>https://wdd.js.org/categories/wsl/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>all</title>
-      <link>https://wdd.js.org/categories/all/</link>
-      <pubDate>Wed, 07 Dec 2022 09:17:59 +0800</pubDate>
-      
-      <guid>https://wdd.js.org/categories/all/</guid>
       <description></description>
     </item>
     

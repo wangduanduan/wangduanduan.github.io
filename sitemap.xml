@@ -2,8 +2,29 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://wdd.js.org/categories/all/</loc>
+    <lastmod>2023-01-16T15:03:03+08:00</lastmod>
+  </url><url>
     <loc>https://wdd.js.org/categories/</loc>
-    <lastmod>2022-12-17T13:28:40+08:00</lastmod>
+    <lastmod>2023-01-16T15:03:03+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/crlf/</loc>
+    <lastmod>2023-01-16T15:03:03+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/git/</loc>
+    <lastmod>2023-01-16T15:03:03+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/</loc>
+    <lastmod>2023-01-16T15:03:03+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/</loc>
+    <lastmod>2023-01-16T15:03:03+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/</loc>
+    <lastmod>2023-01-16T15:03:03+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/2023/tips-about-cr-lf/</loc>
+    <lastmod>2023-01-16T15:03:03+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/deepin/</loc>
     <lastmod>2022-12-17T13:28:40+08:00</lastmod>
@@ -12,15 +33,6 @@
     <lastmod>2022-12-17T13:28:40+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2022/12/nuc11-deepin-20-2/</loc>
-    <lastmod>2022-12-17T13:28:40+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/</loc>
-    <lastmod>2022-12-17T13:28:40+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/</loc>
-    <lastmod>2022-12-17T13:28:40+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/</loc>
     <lastmod>2022-12-17T13:28:40+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/wireshark/</loc>
@@ -48,9 +60,6 @@
     <lastmod>2022-12-11T14:12:08+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/all/</loc>
-    <lastmod>2022-12-07T09:17:59+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/categories/all/</loc>
     <lastmod>2022-12-07T09:17:59+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2022/12/double-click-close-tab/</loc>
@@ -82,9 +91,6 @@
   </url><url>
     <loc>https://wdd.js.org/tags/rfc/</loc>
     <lastmod>2022-12-01T10:08:38+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/git/</loc>
-    <lastmod>2022-12-01T09:49:29+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/categories/git/</loc>
     <lastmod>2022-12-01T09:49:29+08:00</lastmod>

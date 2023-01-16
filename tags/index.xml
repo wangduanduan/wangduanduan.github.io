@@ -9,7 +9,25 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 17 Dec 2022 13:28:40 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 16 Jan 2023 15:03:03 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CRLF</title>
+      <link>https://wdd.js.org/tags/crlf/</link>
+      <pubDate>Mon, 16 Jan 2023 15:03:03 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/tags/crlf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>git</title>
+      <link>https://wdd.js.org/tags/git/</link>
+      <pubDate>Mon, 16 Jan 2023 15:03:03 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/tags/git/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>deepin</title>
       <link>https://wdd.js.org/tags/deepin/</link>
@@ -79,15 +97,6 @@
       <pubDate>Thu, 01 Dec 2022 10:08:38 +0800</pubDate>
       
       <guid>https://wdd.js.org/tags/rfc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>git</title>
-      <link>https://wdd.js.org/tags/git/</link>
-      <pubDate>Thu, 01 Dec 2022 09:49:29 +0800</pubDate>
-      
-      <guid>https://wdd.js.org/tags/git/</guid>
       <description></description>
     </item>
     
