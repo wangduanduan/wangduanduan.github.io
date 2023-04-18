@@ -9,7 +9,22 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 11 Feb 2018 14:20:01 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/vscode/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Apr 2023 13:43:07 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/vscode/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VScode激活Tab更容器区分</title>
+      <link>https://wdd.js.org/posts/2023/vscode-highlight-tab/</link>
+      <pubDate>Tue, 18 Apr 2023 13:43:07 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2023/vscode-highlight-tab/</guid>
+      <description>默认情况下VScode的tab栏，当前的颜色会更深一点。如下图所示，第三个就是激活的。
+但是实际上并没有太高的区分度，特别是当显示屏有点反光的时候。
+我想应该不止一个人有这个问题吧
+看了github上，有个人反馈了这个问题，https://github.com/Microsoft/vscode/issues/24586
+后面有人回复了
+&amp;#34;workbench.colorCustomizations&amp;#34;: { &amp;#34;tab.activeBorder&amp;#34;: &amp;#34;#ff0000&amp;#34;, &amp;#34;tab.unfocusedActiveBorder&amp;#34;: &amp;#34;#000000&amp;#34; } 上面就是用来配置Tab边界的颜色的。
+看下效果，当前激活的Tab下有明显的红线，是不是更容易区分了呢</description>
+    </item>
+    
     <item>
       <title>mac vscode 更新失败 Permission denied解决办法</title>
       <link>https://wdd.js.org/posts/2018/02/mac-vscode-update-permission-denied/</link>

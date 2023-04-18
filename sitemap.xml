@@ -3,24 +3,30 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://wdd.js.org/categories/all/</loc>
-    <lastmod>2023-01-16T15:03:03+08:00</lastmod>
+    <lastmod>2023-04-18T13:43:07+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/categories/</loc>
-    <lastmod>2023-01-16T15:03:03+08:00</lastmod>
+    <lastmod>2023-04-18T13:43:07+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/</loc>
+    <lastmod>2023-04-18T13:43:07+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/</loc>
+    <lastmod>2023-04-18T13:43:07+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/vscode/</loc>
+    <lastmod>2023-04-18T13:43:07+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/2023/vscode-highlight-tab/</loc>
+    <lastmod>2023-04-18T13:43:07+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/</loc>
+    <lastmod>2023-04-18T13:43:07+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/crlf/</loc>
     <lastmod>2023-01-16T15:03:03+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/git/</loc>
-    <lastmod>2023-01-16T15:03:03+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/</loc>
-    <lastmod>2023-01-16T15:03:03+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/</loc>
-    <lastmod>2023-01-16T15:03:03+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/</loc>
     <lastmod>2023-01-16T15:03:03+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2023/tips-about-cr-lf/</loc>
@@ -1890,9 +1896,6 @@
     <lastmod>2018-02-11T14:20:01+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2018/02/mac-vscode-update-permission-denied/</loc>
-    <lastmod>2018-02-11T14:20:01+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/vscode/</loc>
     <lastmod>2018-02-11T14:20:01+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/12004/</loc>
