@@ -9,7 +9,20 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 18 Apr 2023 13:43:07 +0800</lastBuildDate><atom:link href="https://wdd.js.org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 08 May 2023 11:45:23 +0800</lastBuildDate><atom:link href="https://wdd.js.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Build Docker Image With Libpcap</title>
+      <link>https://wdd.js.org/golang/build-docker-image-with-libpcap/</link>
+      <pubDate>Mon, 08 May 2023 11:45:23 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/golang/build-docker-image-with-libpcap/</guid>
+      <description>常规构建 一般情况下，我们的Dockerfile可能是下面这样的
+这个Dockerfile使用了多步构建，使用golang:1.19.4作为构建容器，二进制文件构建成功后，单独把文件复制到alpine镜像。 这样做的好处是最后产出的镜像非常小，一般只有十几MB的样子，如果直接使用golang的镜像来构建，镜像体积就可能达到1G左右。 FROM golang:1.19.4 as builder ENV GO111MODULE=on GOPROXY=https://goproxy.cn,direct WORKDIR /app COPY . . RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o run . FROM alpine:3.14.2 WORKDIR /app COPY encdec run.sh /app/ COPY --from=builder /app/run . EXPOSE 3000 ENTRYPOINT [&amp;#34;/app/run&amp;#34;] 依赖libpcap的构建 如果使用了程序使用了libpcap 来抓包，那么除了我们自己代码产生的二进制文件外，可能还会依赖libpcap的文件。常规打包就会报各种错误，例如文件找不到，缺少so文件等等。
+libpcap是一个c库，并不是golang的代码，所以处理起来要不一样。
+下面直接给出Dockerfile
+# 构建的基础镜像换成了alpine镜像 FROM golang:alpine as builder # 将alpine镜像换清华源，这样后续依赖的安装会加快 RUN sed -i &amp;#39;s/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g&amp;#39; /etc/apk/repositories # 安装需要用到的C库，和构建依赖 RUN apk --update add linux-headers musl-dev gcc libpcap-dev # 使用国内的goproxy ENV GO111MODULE=on GOPROXY=https://goproxy.</description>
+    </item>
+    
     <item>
       <title>VScode激活Tab更容易区分</title>
       <link>https://wdd.js.org/posts/2023/vscode-highlight-tab/</link>
