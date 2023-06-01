@@ -45,3 +45,9 @@ bun构建指令: `bun build ./app.js --compile --outfile h2`, 构建产物为h2
 - deno构建相比于源码的倍数: 3152838
 - bun构建相比于源码的翻倍: 1804415
 - deno构建的可执行文件相比bun翻倍：1.7
+
+
+# 参考
+- https://bun.sh/docs/bundler/executables
+- https://deno.com/manual@v1.34.1/tools/compiler
+- https://nodejs.org/api/single-executable-applications.html
