@@ -9,6 +9,7 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
     <lastBuildDate>Fri, 09 Feb 2018 13:44:13 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/audio/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Vue&#43;ElementUI 手把手教你做一个audio组件</title>

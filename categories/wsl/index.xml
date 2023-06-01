@@ -9,6 +9,7 @@
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
     <lastBuildDate>Sun, 11 Dec 2022 14:12:08 +0800</lastBuildDate><atom:link href="https://wdd.js.org/categories/wsl/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Windows更新之后 Linux报错 Error 0x80040154</title>
