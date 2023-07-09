@@ -51,3 +51,5 @@ https://github.com/microsoft/WSL/issues/9064
 Windows的升级之后，可能Windows Linux子系统组建也更新了某些了内容。
 
 所以需要重装。
+
+这里不得不吐槽一下WSL, 这个工具仅仅是个玩具。随着windows更新，这个工具随时都会崩溃，最好不要太依赖它。
