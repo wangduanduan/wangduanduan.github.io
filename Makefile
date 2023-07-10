@@ -11,4 +11,4 @@ push:
 new:
 	hugo new posts/2023/$(name)/index.md
 serve:
-	hugo serve --bind 0.0.0.0
+	hugo serve
