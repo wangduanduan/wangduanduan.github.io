@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>typescript on 洞香春</title>
+    <link>https://wdd.js.org/tags/typescript/</link>
+    <description>Recent content in typescript on 洞香春</description>
+    <image>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 10 Jul 2023 09:30:46 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VIM typescript 跳转到定义</title>
+      <link>https://wdd.js.org/vim/typescript-go-to-definition/</link>
+      <pubDate>Mon, 10 Jul 2023 09:30:46 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/vim/typescript-go-to-definition/</guid>
+      <description>在VScode中，可以使用右键来跳转到typescript类型对应的定义，但是用vim的gd命令却无法正常跳转。
+因为无法正常跳转的这个问题，我差点放弃了vim。
+然而我想别人应该也遇到类似的问题。
+我的neovim本身使用的是coc插件，然后我就再次到看看官方文档，来确定最终有没有解决这个问题的方案。
+功夫不负有心人。
+我发现官方给的例子中，就包括了如何配置跳换的配置。
+首先说明一下，我本身就安装了coc-json coc-tsserver这两个插件，所以只需要将如下的配置写入init.vim
+&amp;#34; GoTo code navigation nmap &amp;lt;silent&amp;gt; gd &amp;lt;Plug&amp;gt;(coc-definition) nmap &amp;lt;silent&amp;gt; gy &amp;lt;Plug&amp;gt;(coc-type-definition) nmap &amp;lt;silent&amp;gt; gi &amp;lt;Plug&amp;gt;(coc-implementation) nmap &amp;lt;silent&amp;gt; gr &amp;lt;Plug&amp;gt;(coc-references) 这样的话，在普通模式，按gy这个快捷键，就能跳转到对应的类型定义，包括某个npm包的里面的类型定义，非常好用。
+亲测有效。</description>
+    </item>
+    
+  </channel>
+</rss>

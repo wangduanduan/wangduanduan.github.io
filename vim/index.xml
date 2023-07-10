@@ -10,7 +10,41 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 28 May 2022 12:21:47 +0800</lastBuildDate><atom:link href="https://wdd.js.org/vim/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Jul 2023 12:27:47 +0800</lastBuildDate><atom:link href="https://wdd.js.org/vim/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>困在coc错误弹窗中</title>
+      <link>https://wdd.js.org/vim/stuck-in-error-msgfloat-window/</link>
+      <pubDate>Mon, 10 Jul 2023 12:27:47 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/vim/stuck-in-error-msgfloat-window/</guid>
+      <description>请注意，VIM的光标现在位于错误弹窗上了。光标只能左右移动，无法上线移动。 我的光标被困在了错误提示框中。
+因为错误提示只有一行，所以无法上下移动。
+一直以来，我并没有把错误提示框也看成一个窗口，所以我可能多次按了ctrl + w w, 然后光标跳转到了错误提示框上。
+正常的错误提示框，当光标不在关键词上时，错误弹窗会自动关闭的。 但是由于我已经进入了错误弹窗里面。 所以除非按窗口切换的快捷键，我会始终困在这个错误窗口中。
+我觉得，VIM实在是太博大精深了。很多感念性的理解不到位，就会越到很多困难。 这些困难会给人造成极大的挫折感。
+能解决困难，则学到东西。
+否则就只能放弃VIM, 回到VScode的怀抱中。
+但是，我已经习惯了不使用鼠标的快捷编辑方式。
+我只能学会解决并适应VIM， 并且接受VIM的所有挑战。</description>
+    </item>
+    
+    <item>
+      <title>VIM typescript 跳转到定义</title>
+      <link>https://wdd.js.org/vim/typescript-go-to-definition/</link>
+      <pubDate>Mon, 10 Jul 2023 09:30:46 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/vim/typescript-go-to-definition/</guid>
+      <description>在VScode中，可以使用右键来跳转到typescript类型对应的定义，但是用vim的gd命令却无法正常跳转。
+因为无法正常跳转的这个问题，我差点放弃了vim。
+然而我想别人应该也遇到类似的问题。
+我的neovim本身使用的是coc插件，然后我就再次到看看官方文档，来确定最终有没有解决这个问题的方案。
+功夫不负有心人。
+我发现官方给的例子中，就包括了如何配置跳换的配置。
+首先说明一下，我本身就安装了coc-json coc-tsserver这两个插件，所以只需要将如下的配置写入init.vim
+&amp;#34; GoTo code navigation nmap &amp;lt;silent&amp;gt; gd &amp;lt;Plug&amp;gt;(coc-definition) nmap &amp;lt;silent&amp;gt; gy &amp;lt;Plug&amp;gt;(coc-type-definition) nmap &amp;lt;silent&amp;gt; gi &amp;lt;Plug&amp;gt;(coc-implementation) nmap &amp;lt;silent&amp;gt; gr &amp;lt;Plug&amp;gt;(coc-references) 这样的话，在普通模式，按gy这个快捷键，就能跳转到对应的类型定义，包括某个npm包的里面的类型定义，非常好用。
+亲测有效。</description>
+    </item>
+    
     <item>
       <title>Vim 常见问题以及解决方案</title>
       <link>https://wdd.js.org/vim/vim-faq/</link>

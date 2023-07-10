@@ -3,24 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://wdd.js.org/tags/all/</loc>
-    <lastmod>2023-06-01T13:48:00+08:00</lastmod>
+    <lastmod>2023-07-10T12:27:47+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/categories/all/</loc>
-    <lastmod>2023-06-01T13:48:00+08:00</lastmod>
+    <lastmod>2023-07-10T12:27:47+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/categories/</loc>
-    <lastmod>2023-06-01T13:48:00+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2023/js-runtime-build-executable/</loc>
-    <lastmod>2023-06-01T13:48:00+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/</loc>
-    <lastmod>2023-06-01T13:48:00+08:00</lastmod>
+    <lastmod>2023-07-10T12:27:47+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/</loc>
-    <lastmod>2023-06-01T13:48:00+08:00</lastmod>
+    <lastmod>2023-07-10T12:27:47+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/vim/</loc>
+    <lastmod>2023-07-10T12:27:47+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/vim/stuck-in-error-msgfloat-window/</loc>
+    <lastmod>2023-07-10T12:27:47+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/</loc>
+    <lastmod>2023-07-10T12:27:47+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/typescript/</loc>
+    <lastmod>2023-07-10T09:30:46+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/vim/typescript-go-to-definition/</loc>
+    <lastmod>2023-07-10T09:30:46+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/node/</loc>
+    <lastmod>2023-07-09T14:20:45+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/</loc>
+    <lastmod>2023-07-09T14:20:45+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/2023/n-stucked/</loc>
+    <lastmod>2023-07-09T14:20:45+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/2023/js-runtime-build-executable/</loc>
     <lastmod>2023-06-01T13:48:00+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/golang/build-docker-image-with-libpcap/</loc>
@@ -396,9 +414,6 @@
     <lastmod>2022-05-28T12:21:47+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/vim/vim-faq/</loc>
-    <lastmod>2022-05-28T12:21:47+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/vim/</loc>
     <lastmod>2022-05-28T12:21:47+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/vim/vscode-vim/</loc>
@@ -1765,9 +1780,6 @@
   </url><url>
     <loc>https://wdd.js.org/posts/2018/08/the-rest-of-your-life/</loc>
     <lastmod>2018-08-14T18:36:40+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/node/</loc>
-    <lastmod>2018-08-10T10:18:57+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2018/08/deepin-nodejs-events/</loc>
     <lastmod>2018-08-10T10:18:57+08:00</lastmod>
