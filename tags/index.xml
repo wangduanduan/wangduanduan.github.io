@@ -10,13 +10,49 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 10 Jul 2023 12:27:47 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Aug 2023 13:07:40 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>icloud</title>
+      <link>https://wdd.js.org/tags/icloud/</link>
+      <pubDate>Sun, 20 Aug 2023 13:07:40 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/tags/icloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>macos</title>
+      <link>https://wdd.js.org/tags/macos/</link>
+      <pubDate>Sun, 20 Aug 2023 13:07:40 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/tags/macos/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>all</title>
       <link>https://wdd.js.org/tags/all/</link>
-      <pubDate>Mon, 10 Jul 2023 12:27:47 +0800</pubDate>
+      <pubDate>Thu, 10 Aug 2023 11:20:47 +0800</pubDate>
       
       <guid>https://wdd.js.org/tags/all/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>make</title>
+      <link>https://wdd.js.org/tags/make/</link>
+      <pubDate>Thu, 10 Aug 2023 09:47:46 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/tags/make/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>makefile</title>
+      <link>https://wdd.js.org/tags/makefile/</link>
+      <pubDate>Thu, 10 Aug 2023 09:47:46 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/tags/makefile/</guid>
       <description></description>
     </item>
     

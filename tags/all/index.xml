@@ -10,7 +10,19 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 10 Jul 2023 12:27:47 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/all/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Aug 2023 11:20:47 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/all/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.21发布</title>
+      <link>https://wdd.js.org/golang/go1.21/</link>
+      <pubDate>Thu, 10 Aug 2023 11:20:47 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/golang/go1.21/</guid>
+      <description>golang每隔6个月发布一个新的次版本号升级。一般是是2月一个版本，8月一个版本
+语言层面 增加内置函数 min() max() 参考 https://tip.golang.org/ref/spec#Min_and_max
+The built-in functions min and max compute the smallest—or largest, respectively—value of a fixed number of arguments of ordered types. There must be at least one argument.
+The same type rules as for operators apply: for ordered arguments x and y, min(x, y) is valid if x + y is valid, and the type of min(x, y) is the type of x + y (and similarly for max).</description>
+    </item>
+    
     <item>
       <title>困在coc错误弹窗中</title>
       <link>https://wdd.js.org/vim/stuck-in-error-msgfloat-window/</link>

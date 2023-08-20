@@ -2,25 +2,61 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://wdd.js.org/tags/all/</loc>
-    <lastmod>2023-07-10T12:27:47+08:00</lastmod>
-  </url><url>
     <loc>https://wdd.js.org/categories/all/</loc>
-    <lastmod>2023-07-10T12:27:47+08:00</lastmod>
+    <lastmod>2023-08-20T13:07:40+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/categories/</loc>
-    <lastmod>2023-07-10T12:27:47+08:00</lastmod>
+    <lastmod>2023-08-20T13:07:40+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/icloud/</loc>
+    <lastmod>2023-08-20T13:07:40+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/2023/macbook-icloud-sync-stuck/</loc>
+    <lastmod>2023-08-20T13:07:40+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/macos/</loc>
+    <lastmod>2023-08-20T13:07:40+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/</loc>
+    <lastmod>2023-08-20T13:07:40+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/</loc>
-    <lastmod>2023-07-10T12:27:47+08:00</lastmod>
+    <lastmod>2023-08-20T13:07:40+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/</loc>
+    <lastmod>2023-08-20T13:07:40+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/all/</loc>
+    <lastmod>2023-08-10T11:20:47+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/golang/go1.21/</loc>
+    <lastmod>2023-08-10T11:20:47+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/categories/golang/</loc>
+    <lastmod>2023-08-10T11:20:47+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/golang/</loc>
+    <lastmod>2023-08-10T11:20:47+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/make/</loc>
+    <lastmod>2023-08-10T09:47:46+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/makefile/</loc>
+    <lastmod>2023-08-10T09:47:46+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/categories/makefile/</loc>
+    <lastmod>2023-08-10T09:47:46+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/makefile/</loc>
+    <lastmod>2023-08-10T09:47:46+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/makefile/tutorial/</loc>
+    <lastmod>2023-08-10T09:47:46+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/vim/</loc>
     <lastmod>2023-07-10T12:27:47+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/vim/stuck-in-error-msgfloat-window/</loc>
-    <lastmod>2023-07-10T12:27:47+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/</loc>
     <lastmod>2023-07-10T12:27:47+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/typescript/</loc>
@@ -32,9 +68,6 @@
     <loc>https://wdd.js.org/tags/node/</loc>
     <lastmod>2023-07-09T14:20:45+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/posts/</loc>
-    <lastmod>2023-07-09T14:20:45+08:00</lastmod>
-  </url><url>
     <loc>https://wdd.js.org/posts/2023/n-stucked/</loc>
     <lastmod>2023-07-09T14:20:45+08:00</lastmod>
   </url><url>
@@ -42,9 +75,6 @@
     <lastmod>2023-06-01T13:48:00+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/golang/build-docker-image-with-libpcap/</loc>
-    <lastmod>2023-05-08T11:45:23+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/golang/</loc>
     <lastmod>2023-05-08T11:45:23+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/libpcap/</loc>

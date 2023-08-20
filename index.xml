@@ -10,7 +10,41 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 10 Jul 2023 12:27:47 +0800</lastBuildDate><atom:link href="https://wdd.js.org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Aug 2023 13:07:40 +0800</lastBuildDate><atom:link href="https://wdd.js.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MacBook icloud 同步卡死， 请尝试重启电脑</title>
+      <link>https://wdd.js.org/posts/2023/macbook-icloud-sync-stuck/</link>
+      <pubDate>Sun, 20 Aug 2023 13:07:40 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2023/macbook-icloud-sync-stuck/</guid>
+      <description>环境说明 MacBook Pro M2 系统版本 13.4.1 网络环境为wifi 操作步骤 我往icloud的文件夹下，粘贴几个文件夹，文件的内容挺多的，然后finder上显示icloud的状态就一直是处于同步中了。
+等了好久，同步的过程似乎卡住了。
+网上看了一些解决方案，似乎都没啥作用。
+我想起来以前的同样的一次卡顿同步的解决方案：重启电脑
+于是，我重启了一次电脑，再次开机，打开finder, icloud文件状态非常快同步完了。</description>
+    </item>
+    
+    <item>
+      <title>Go1.21发布</title>
+      <link>https://wdd.js.org/golang/go1.21/</link>
+      <pubDate>Thu, 10 Aug 2023 11:20:47 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/golang/go1.21/</guid>
+      <description>golang每隔6个月发布一个新的次版本号升级。一般是是2月一个版本，8月一个版本
+语言层面 增加内置函数 min() max() 参考 https://tip.golang.org/ref/spec#Min_and_max
+The built-in functions min and max compute the smallest—or largest, respectively—value of a fixed number of arguments of ordered types. There must be at least one argument.
+The same type rules as for operators apply: for ordered arguments x and y, min(x, y) is valid if x + y is valid, and the type of min(x, y) is the type of x + y (and similarly for max).</description>
+    </item>
+    
+    <item>
+      <title>Tutorial</title>
+      <link>https://wdd.js.org/makefile/tutorial/</link>
+      <pubDate>Thu, 10 Aug 2023 09:47:46 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/makefile/tutorial/</guid>
+      <description>语法 targets: prerequisites command command command targets是文件名，可以用空格分开多个文件名，一般情况下，只有一个 command是一系列的指令，可以多行分开 prerequisites是依赖项目，可以用空格分开多个 参考 https://makefiletutorial.com/#makefile-cookbook </description>
+    </item>
+    
     <item>
       <title>困在coc错误弹窗中</title>
       <link>https://wdd.js.org/vim/stuck-in-error-msgfloat-window/</link>
@@ -7379,7 +7413,7 @@ window.addEventListener(&amp;#39;unload&amp;#39;, logData, false); function logD
       
       <guid>https://wdd.js.org/about/</guid>
       <description>个人简介 我是Eddie Wang！
-精通JavaScript/Node.js，现在的兴趣是学习go语言 精通VOIP相关技术栈：SIP/opensips/Freeswitch等等 精通VIM email: 1779706607@qq.com Github: github.com/wangduanduan 语雀: yuque.com/wangdd, 将不会更新 个人博客: wdd.js.org, 最新内容将会发布在wdd.js.org 最喜欢的美剧《黄石》 博客说明 博客取名为洞香春，灵感来自孙皓晖所著《大秦帝国》。
+精通JavaScript/Node.js，现在的兴趣是学习go语言 精通VOIP相关技术栈：SIP/opensips/Freeswitch等等 精通VIM email: eddie0501@qq.com Github: github.com/wangduanduan 语雀: yuque.com/wangdd, 将不会更新 个人博客: wdd.js.org, 最新内容将会发布在wdd.js.org 最喜欢的美剧《黄石》 博客说明 博客取名为洞香春，灵感来自孙皓晖所著《大秦帝国》。
 洞香春大致在战国时代中期所在地：魏国安邑。
 战国时期，社会制度发生着巨大变化，工商业日益兴旺，出现了以白圭为首的一批巨贾商人，而位于魏国安邑的洞香春酒肆就是白氏家族创办的产业中最为著名的一个。
 洞香春以名士荟萃、谈论国事、交流思想而著称于当时列国</description>
