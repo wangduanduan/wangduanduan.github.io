@@ -12,7 +12,7 @@ date: 2018-01-31 12:09:09
 - 精通JavaScript/Node.js，现在的兴趣是学习go语言
 - 精通VOIP相关技术栈：SIP/opensips/Freeswitch等等
 - 精通VIM
-- email: 1779706607@qq.com
+- email: eddie0501@qq.com
 - Github: [github.com/wangduanduan](https://github.com/wangduanduan)
 - 语雀: [yuque.com/wangdd](https://yuque.com/wangdd), 将不会更新
 - 个人博客: [wdd.js.org](https://wdd.js.org), 最新内容将会发布在wdd.js.org
