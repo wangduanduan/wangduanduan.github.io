@@ -11,157 +11,159 @@ timeZone: "Asia/Shanghai"
 #googleAnalytics: G-SGW660ZWKM
 
 minify:
-    disableXML: true
-    minifyOutput: true
+  disableXML: true
+  minifyOutput: true
 
 params:
-    env: production # to enable google analytics, opengraph, twitter-cards and schema.
-    title: "洞香春"
-    description: "Eddie Wang的个人博客"
-    keywords: [Blog, Portfolio, PaperMod]
-    author: "Eddie Wang"
-    images: ["<link or path of image for opengraph, twitter-cards>"]
-    DateFormat: "2006-01-02 15:04:05"
-    defaultTheme: dark #auto # dark, light
-    disableThemeToggle: false
-    ShowReadingTime: true
-    ShowShareButtons: false
-    ShowPostNavLinks: true
-    ShowBreadCrumbs: true
-    ShowAllPagesInArchive: true
-    ShowCodeCopyButtons: true
-    disableSpecial1stPost: false
-    disableScrollToTop: false
-    comments: true
-    hidemeta: false
-    hideSummary: false
-    showtoc: true
-    tocopen: true
+  env: production # to enable google analytics, opengraph, twitter-cards and schema.
+  title: "洞香春"
+  description: "Eddie Wang的个人博客"
+  keywords: [Blog, Portfolio, PaperMod]
+  author: "Eddie Wang"
+  images: ["<link or path of image for opengraph, twitter-cards>"]
+  DateFormat: "2006-01-02 15:04:05"
+  defaultTheme: dark #auto # dark, light
+  disableThemeToggle: false
+  ShowReadingTime: true
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowAllPagesInArchive: true
+  ShowCodeCopyButtons: true
+  disableSpecial1stPost: false
+  disableScrollToTop: false
+  comments: true
+  hidemeta: false
+  hideSummary: false
+  showtoc: true
+  tocopen: true
 
-    customcss:
-        - "/font-awesome/css/font-awesome.min.css"
+  customcss:
+    - "/font-awesome/css/font-awesome.min.css"
 
-    assets:
-        # disableHLJS: true # to disable highlight.js
-        # disableFingerprinting: true
-        favicon: "/cowboy.ico"
-        favicon16x16: "/cowboy.ico"
-        favicon32x32: "/cowboy.ico"
-        apple_touch_icon: "/cowboy.ico"
-        safari_pinned_tab: "/cowboy.ico"
+  assets:
+    # disableHLJS: true # to disable highlight.js
+    # disableFingerprinting: true
+    favicon: "/cowboy.ico"
+    favicon16x16: "/cowboy.ico"
+    favicon32x32: "/cowboy.ico"
+    apple_touch_icon: "/cowboy.ico"
+    safari_pinned_tab: "/cowboy.ico"
 
-    label:
-        text: "洞香春"
-        icon: "/cowboy.ico"
-        iconHeight: 35
+  label:
+    text: "洞香春"
+    icon: "/cowboy.ico"
+    iconHeight: 35
 
-    # profile-mode
-    profileMode:
-        enabled: false # needs to be explicitly set
-        title: "Eddie Wang"
-        subtitle: "前端/软交换开发"
-        imageUrl: "/images/my.jpg"
-        imageWidth: 120
-        imageHeight: 120
-        imageTitle: my image
-        buttons:
-            - name: 文章
-              url: posts
-            - name: 标签
-              url: tags
+  # profile-mode
+  profileMode:
+    enabled: false # needs to be explicitly set
+    title: "Eddie Wang"
+    subtitle: "前端/软交换开发"
+    imageUrl: "/images/my.jpg"
+    imageWidth: 120
+    imageHeight: 120
+    imageTitle: my image
+    buttons:
+      - name: 文章
+        url: posts
+      - name: 标签
+        url: tags
 
-    # home-info mode
-    homeInfoParams:
-        enabled: false
-        Title: "Eddie Wang"
-        Content: "当你在穿山越岭的另一边, 我在孤独的路上没有尽头" 
+  # home-info mode
+  homeInfoParams:
+    enabled: false
+    Title: "Eddie Wang"
+    Content: "当你在穿山越岭的另一边, 我在孤独的路上没有尽头"
 
-    socialIcons:
-        - name: github
-          url: "https://github.com/wangduanduan"
-        - name: email
-          url: "mailto://1779706607@qq.com"
-        - name: other
-          url: "https://yuque.com/wangdd"
+  socialIcons:
+    - name: github
+      url: "https://github.com/wangduanduan"
+    - name: email
+      url: "mailto://1779706607@qq.com"
+    - name: RSS
+      url: "https://wdd.js.org/index.xml"
+    - name: other
+      url: "https://yuque.com/wangdd"
 
-    analytics:
-        #google:
-            #SiteVerificationTag: "G-SGW660ZWKM"
+  analytics:
+    #google:
+    #SiteVerificationTag: "G-SGW660ZWKM"
 
-    cover:
-        hidden: true # hide everywhere but not in structured data
-        hiddenInList: false # hide on list pages and home
-        hiddenInSingle: true # hide on single page
+  cover:
+    hidden: true # hide everywhere but not in structured data
+    hiddenInList: false # hide on list pages and home
+    hiddenInSingle: true # hide on single page
 
-    editPost:
-        URL: "https://github.com/<path_to_repo>/content"
-        Text: "Suggest Changes" # edit text
-        appendFilePath: true # to append file path to Edit link
+  editPost:
+    URL: "https://github.com/<path_to_repo>/content"
+    Text: "Suggest Changes" # edit text
+    appendFilePath: true # to append file path to Edit link
 
-    # for search
-    # https://fusejs.io/api/options.html
-    fuseOpts:
-        isCaseSensitive: false
-        shouldSort: true
-        location: 0
-        distance: 1000
-        threshold: 0.4
-        minMatchCharLength: 0
-        keys: ["title", "permalink", "summary", "content"]
+  # for search
+  # https://fusejs.io/api/options.html
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
 menu:
-    main:
-        - identifier: id_fs
-          name: "FreeSWITCH"
-          url: /freeswitch/
-          weight: 10
-        - identifier: id_vim
-          name: "VIM"
-          url: /vim/
-          weight: 10
-        - identifier: id_fe
-          name: "Frontend"
-          url: /fe/
-          weight: 10
-        - identifier: id_container
-          name: "k8s/docker"
-          url: /container/
-          weight: 10
-        - identifier: id_shell
-          name: "Shell"
-          url: /shell/
-          weight: 10
-        - identifier: id_opensips
-          name: "OpenSIPS"
-          url: /opensips/
-          weight: 10
-        - identifier: id_network
-          name: "Network"
-          url: /network/
-          weight: 10
-        - identifier: id_golang
-          name: "Golang"
-          url: /golang/
-          weight: 10
-        - identifier: id_categories
-          name: "分类"
-          url: /categories/
-          weight: 10
-        - identifier: id_tags
-          name: "标签"
-          url: /tags/
-          weight: 20
-        - identifier: id_search
-          name: "搜索"
-          url: /search/
-          weight: 20
-        - identifier: id_archives
-          name: "归档"
-          url: /archives/
-          weight: 30
-        - identifier: id_about
-          name: "我"
-          url: /about/
-          weight: 31
+  main:
+    - identifier: id_fs
+      name: "FreeSWITCH"
+      url: /freeswitch/
+      weight: 10
+    - identifier: id_vim
+      name: "VIM"
+      url: /vim/
+      weight: 10
+    - identifier: id_fe
+      name: "Frontend"
+      url: /fe/
+      weight: 10
+    - identifier: id_container
+      name: "k8s/docker"
+      url: /container/
+      weight: 10
+    - identifier: id_shell
+      name: "Shell"
+      url: /shell/
+      weight: 10
+    - identifier: id_opensips
+      name: "OpenSIPS"
+      url: /opensips/
+      weight: 10
+    - identifier: id_network
+      name: "Network"
+      url: /network/
+      weight: 10
+    - identifier: id_golang
+      name: "Golang"
+      url: /golang/
+      weight: 10
+    - identifier: id_categories
+      name: "分类"
+      url: /categories/
+      weight: 10
+    - identifier: id_tags
+      name: "标签"
+      url: /tags/
+      weight: 20
+    - identifier: id_search
+      name: "搜索"
+      url: /search/
+      weight: 20
+    - identifier: id_archives
+      name: "归档"
+      url: /archives/
+      weight: 30
+    - identifier: id_about
+      name: "我"
+      url: /about/
+      weight: 31
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 # pygmentsUseClasses: true
 # markup:
@@ -172,7 +174,7 @@ menu:
 #         lineNos: true
 #         style: monokai
 outputs:
-    home:
-        - HTML
-        - RSS
-        - JSON # is necessary
+  home:
+    - HTML
+    - RSS
+    - JSON # is necessary
