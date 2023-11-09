@@ -10,7 +10,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 06 Nov 2023 09:30:34 +0800</lastBuildDate><atom:link href="https://wdd.js.org/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 Nov 2023 20:49:44 +0800</lastBuildDate><atom:link href="https://wdd.js.org/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>react</title>
+      <link>https://wdd.js.org/categories/react/</link>
+      <pubDate>Thu, 09 Nov 2023 20:49:44 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/categories/react/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>all</title>
       <link>https://wdd.js.org/categories/all/</link>
