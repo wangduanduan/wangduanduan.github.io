@@ -10,7 +10,21 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 06 Nov 2023 09:30:34 +0800</lastBuildDate><atom:link href="https://wdd.js.org/categories/all/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 16 Nov 2023 08:08:39 +0800</lastBuildDate><atom:link href="https://wdd.js.org/categories/all/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>解决 VsCode pwsh终端环境变量不生效问题</title>
+      <link>https://wdd.js.org/posts/2023/vscode-pwsh-env-not-work/</link>
+      <pubDate>Thu, 16 Nov 2023 08:08:39 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2023/vscode-pwsh-env-not-work/</guid>
+      <description>我在系统的环境变量设置里，用户和系统中，都加入了ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/这个环境变量。
+单独打开windows Terminal应用，使用 env | grep ELE 是能搜到我设置的环境变量的。但是在vscode中，这个环境变量不存在。
+我尝试了以下几个方法
+重启电脑，无效 配置&amp;quot;terminal.integrated.persistentSessionReviveProcess&amp;quot;: &amp;quot;never&amp;quot;, 然后重启电脑，无效 在终端直接执行code ., 在终端打开vscode, 依然无效 因此，我想起了之前配置的pwsh的配置文件。 可以使用code $PROFILE, 打开pwsh的配置文件。
+然后再配置文件中设置环境变量， 之后重启vscode, 环境变量就正常能读取到了。
+# 文件名 Microsoft.PowerShell_profile.ps1 $env:ELECTRON_MIRROR=&amp;#34;https://npmmirror.com/mirrors/electron/&amp;#34; 参考 https://www.zhihu.com/question/266858097 </description>
+    </item>
+    
     <item>
       <title>如何选择，汉王Clear7与文石Leaf3</title>
       <link>https://wdd.js.org/posts/2023/hanvon-clear7-vs-book-leaf3/</link>

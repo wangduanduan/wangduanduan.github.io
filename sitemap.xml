@@ -2,13 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://wdd.js.org/tags/404/</loc>
-    <lastmod>2023-11-09T20:49:44+08:00</lastmod>
+    <loc>https://wdd.js.org/tags/all/</loc>
+    <lastmod>2023-11-16T08:08:39+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/categories/all/</loc>
+    <lastmod>2023-11-16T08:08:39+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/categories/</loc>
-    <lastmod>2023-11-09T20:49:44+08:00</lastmod>
+    <lastmod>2023-11-16T08:08:39+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/</loc>
+    <lastmod>2023-11-16T08:08:39+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/</loc>
+    <lastmod>2023-11-16T08:08:39+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/</loc>
+    <lastmod>2023-11-16T08:08:39+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/2023/vscode-pwsh-env-not-work/</loc>
+    <lastmod>2023-11-16T08:08:39+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/404/</loc>
     <lastmod>2023-11-09T20:49:44+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/categories/react/</loc>
@@ -20,23 +35,11 @@
     <loc>https://wdd.js.org/tags/route/</loc>
     <lastmod>2023-11-09T20:49:44+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/tags/</loc>
-    <lastmod>2023-11-09T20:49:44+08:00</lastmod>
-  </url><url>
     <loc>https://wdd.js.org/tags/vite/</loc>
     <lastmod>2023-11-09T20:49:44+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2023/vite-react-route-url-dot-404/</loc>
     <lastmod>2023-11-09T20:49:44+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/</loc>
-    <lastmod>2023-11-09T20:49:44+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/all/</loc>
-    <lastmod>2023-11-06T09:30:34+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/categories/all/</loc>
-    <lastmod>2023-11-06T09:30:34+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2023/hanvon-clear7-vs-book-leaf3/</loc>
     <lastmod>2023-11-06T09:30:34+08:00</lastmod>

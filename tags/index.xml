@@ -10,7 +10,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 09 Nov 2023 20:49:44 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 16 Nov 2023 08:08:39 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>all</title>
+      <link>https://wdd.js.org/tags/all/</link>
+      <pubDate>Thu, 16 Nov 2023 08:08:39 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/tags/all/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>404</title>
       <link>https://wdd.js.org/tags/404/</link>
@@ -44,15 +53,6 @@
       <pubDate>Thu, 09 Nov 2023 20:49:44 +0800</pubDate>
       
       <guid>https://wdd.js.org/tags/vite/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>all</title>
-      <link>https://wdd.js.org/tags/all/</link>
-      <pubDate>Mon, 06 Nov 2023 09:30:34 +0800</pubDate>
-      
-      <guid>https://wdd.js.org/tags/all/</guid>
       <description></description>
     </item>
     
