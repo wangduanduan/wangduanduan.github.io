@@ -11,7 +11,46 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 21 Nov 2023 20:35:02 +0800</lastBuildDate><atom:link href="https://wdd.js.org/categories/all/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 28 Dec 2023 20:21:11 +0800</lastBuildDate><atom:link href="https://wdd.js.org/categories/all/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>什么时候应该使用ts范型?</title>
+      <link>https://wdd.js.org/posts/2023/when-to-use-ts-generics/</link>
+      <pubDate>Thu, 28 Dec 2023 20:21:11 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2023/when-to-use-ts-generics/</guid>
+      <description>我知道ts支持范型，但是因为几乎用不到，所以对于范型对我来说往往蒙上一层神秘色彩。
+最近我才真正的体会到范型的真正威力。
+下面就介绍我的使用场景。
+在和后端接口交互的时候， 后端接口返回的数据都是如下的类型。
+interface XData { success: boolean total: number result: any[] } 这里我把result定义为any类型，因为它的具体类型是由接口确定的。 比如查话单的接口是话单的结构类型，查订单的接口返回的是订单的类型。
+interface CDR { id: number creatAt: string } interface Order { id: number } 在不用范型的时候，我们要么定义如下两个interface
+interface XDataCDR { success: boolean total: number result: CDR[] } interface XDataOrder { success: boolean total: number result: Order[] } 在使用axios的时候，对于响应体的data, 可以使用如下的方式声明data
+function getCDR (id) { return axios.get&amp;lt;XDataCDR&amp;gt;(&amp;#39;/api/xxx&amp;#39; + id) } 但是，如果我们稍微修改一下XData的类型声明，加上范型。 就不需要用到XDataCDR和XDataOrder两个接口。
+interface XData&amp;lt;T&amp;gt; { success: boolean total: number result: T[] } function getCDR (id) { return axios.</description>
+    </item>
+    
+    <item>
+      <title>使用bun加速开发环境的ts编写</title>
+      <link>https://wdd.js.org/posts/2023/typescript-with-bun/</link>
+      <pubDate>Sat, 23 Dec 2023 15:04:44 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2023/typescript-with-bun/</guid>
+      <description>前言 最近我在开发一个demo程序，为了加速开发，我觉得直接用js要比用typescript更快，而且这只是一个demo程序，杀鸡焉用牛刀。
+而且一旦我要用typescript开发，避免不了要各种配置，例如typescript, ts-node, nodemon之类的，很是繁琐。而且ts也必须要经过编译后才能运行。
+然而，直到遇到一个bug, 我排查了半天，才发现是一个对象的属性写错了。本身这个对象是没有这个属性的，js没有任何错误提示。我只能一步一步缩小代码的范围，最终才定位到是属性拼写的错误。
+这个拼写的错误，应该是vscode的智能补全，给出的提示词，我直接回车确认了。
+这件事给我一个教训：以后所有代码都要用ts去编写。
+直接用js去编写虽然看起来写的快，但是代码调试太痛苦了。 这种拼写错误，ts的智能提示会直接告诉你错误的地方，但是如果去排查js文件，花费的时间是无法估量的。
+但是我又不太想去配置各种ts的执行环境，就想起来之前曾经用的bun这个ts执行工具。
+虽然bun这个工具才刚刚发布1.0版本，但是在开发环境使用也是足够了。
+我的设想是在开发环境用bun, 在生产环境用nodejs执行bun编译后的js代码。
+这个demo程序用bun去运行的时候，没发现任何兼容问题。 这也让我有了继续研究下去的信心。
+bun的开发环境 我之前看过deno, 但是看多deno的官方文档后，发现并不符合我的胃口。 但是bun的文档写的很好。
+任何工具的第一步都是安装，但是bun似乎在windows上执行并不太好，所以我是用windows的linux子系统，或者在mac上安装的bun。
+具体的安装步骤可以参考，https://bun.sh/docs/installation
+项目初始化 bun init bun init helps you get started with a minimal project and tries to guess sensible defaults. Press ^C anytime to quit. package name (quickstart): entry point (index.ts): Done! A package.json file was saved in the current directory. + index.ts + .gitignore + tsconfig.json (for editor auto-complete) + README.</description>
+    </item>
+    
     <item>
       <title>算法 - 入侵脑细胞</title>
       <link>https://wdd.js.org/posts/2023/the-cell/</link>
