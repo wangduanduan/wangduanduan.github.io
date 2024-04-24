@@ -13,6 +13,6 @@ push:
 new:
 	hugo new $(type)/$(name)/index.md
 post:
-	hugo new posts/2023/$(name)/index.md
+	hugo new posts/2024/$(name)/index.md
 serve:
 	hugo serve
