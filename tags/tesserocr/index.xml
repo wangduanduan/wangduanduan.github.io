@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>tesserocr on 洞香春</title>
+    <link>https://wdd.js.org/tags/tesserocr/</link>
+    <description>Recent content in tesserocr on 洞香春</description>
+    <image>
+      <title>洞香春</title>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 24 Apr 2024 08:34:07 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/tesserocr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Windows安装Tesserocr</title>
+      <link>https://wdd.js.org/posts/2024/windows-install-tesserocr/</link>
+      <pubDate>Wed, 24 Apr 2024 08:34:07 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2024/windows-install-tesserocr/</guid>
+      <description>安装tesserocr-windows_build 到tesserocr-windows_build release页面下载对应的whl文件
+如下载 tesserocr-2.6.2-cp312-cp312-win_amd64.whl， 下载之后用pip安装
+pip install tesserocr-2.6.2-cp312-cp312-win_amd64.whl 安装ocr windows exe程序 在这个页面，有对应的exe程序，https://digi.bib.uni-mannheim.de/tesseract/
+例如下载这个exe文件 https://digi.bib.uni-mannheim.de/tesseract/tesseract-ocr-w64-setup-v5.3.0.20221214.exe
+下载完成之后点击安装，一般我们不需要修改他的安装位置，默认的安装位置是C:\Program Files\Tesseract-OCR
+我们将C:\Program Files\Tesseract-OCR\tessdata下的所有文件，复制到C:\Program Files\Tesseract-OCR\目录下
+参考 https://github.com/simonflueckiger/tesserocr-windows_build/releases https://digi.bib.uni-mannheim.de/tesseract/ https://tesseract-ocr.github.io/tessdoc/Downloads.html https://blog.csdn.net/Yuyh131/article/details/103880585 </description>
+    </item>
+    
+  </channel>
+</rss>

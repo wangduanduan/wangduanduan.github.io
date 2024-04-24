@@ -3,16 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://wdd.js.org/categories/all/</loc>
-    <lastmod>2023-12-28T20:21:11+08:00</lastmod>
+    <lastmod>2024-04-24T08:34:07+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/categories/</loc>
-    <lastmod>2023-12-28T20:21:11+08:00</lastmod>
+    <lastmod>2024-04-24T08:34:07+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/</loc>
-    <lastmod>2023-12-28T20:21:11+08:00</lastmod>
+    <lastmod>2024-04-24T08:34:07+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/</loc>
-    <lastmod>2023-12-28T20:21:11+08:00</lastmod>
+    <lastmod>2024-04-24T08:34:07+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/tesserocr/</loc>
+    <lastmod>2024-04-24T08:34:07+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/2024/windows-install-tesserocr/</loc>
+    <lastmod>2024-04-24T08:34:07+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/</loc>
+    <lastmod>2024-04-24T08:34:07+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/all/</loc>
+    <lastmod>2024-04-24T08:32:57+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/2024/default/</loc>
+    <lastmod>2024-04-24T08:32:57+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/typescript/</loc>
     <lastmod>2023-12-28T20:21:11+08:00</lastmod>
@@ -20,14 +35,8 @@
     <loc>https://wdd.js.org/posts/2023/when-to-use-ts-generics/</loc>
     <lastmod>2023-12-28T20:21:11+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/</loc>
-    <lastmod>2023-12-28T20:21:11+08:00</lastmod>
-  </url><url>
     <loc>https://wdd.js.org/posts/2023/typescript-with-bun/</loc>
     <lastmod>2023-12-23T15:04:44+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/all/</loc>
-    <lastmod>2023-11-21T20:35:02+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2023/the-cell/</loc>
     <lastmod>2023-11-21T20:35:02+08:00</lastmod>

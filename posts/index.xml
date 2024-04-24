@@ -11,7 +11,31 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 28 Dec 2023 20:21:11 +0800</lastBuildDate><atom:link href="https://wdd.js.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 24 Apr 2024 08:34:07 +0800</lastBuildDate><atom:link href="https://wdd.js.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Windows安装Tesserocr</title>
+      <link>https://wdd.js.org/posts/2024/windows-install-tesserocr/</link>
+      <pubDate>Wed, 24 Apr 2024 08:34:07 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2024/windows-install-tesserocr/</guid>
+      <description>安装tesserocr-windows_build 到tesserocr-windows_build release页面下载对应的whl文件
+如下载 tesserocr-2.6.2-cp312-cp312-win_amd64.whl， 下载之后用pip安装
+pip install tesserocr-2.6.2-cp312-cp312-win_amd64.whl 安装ocr windows exe程序 在这个页面，有对应的exe程序，https://digi.bib.uni-mannheim.de/tesseract/
+例如下载这个exe文件 https://digi.bib.uni-mannheim.de/tesseract/tesseract-ocr-w64-setup-v5.3.0.20221214.exe
+下载完成之后点击安装，一般我们不需要修改他的安装位置，默认的安装位置是C:\Program Files\Tesseract-OCR
+我们将C:\Program Files\Tesseract-OCR\tessdata下的所有文件，复制到C:\Program Files\Tesseract-OCR\目录下
+参考 https://github.com/simonflueckiger/tesserocr-windows_build/releases https://digi.bib.uni-mannheim.de/tesseract/ https://tesseract-ocr.github.io/tessdoc/Downloads.html https://blog.csdn.net/Yuyh131/article/details/103880585 </description>
+    </item>
+    
+    <item>
+      <title>Default</title>
+      <link>https://wdd.js.org/posts/2024/default/</link>
+      <pubDate>Wed, 24 Apr 2024 08:32:57 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2024/default/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>什么时候应该使用ts范型?</title>
       <link>https://wdd.js.org/posts/2023/when-to-use-ts-generics/</link>
