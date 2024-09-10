@@ -11,7 +11,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 24 Apr 2024 08:34:07 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 10 Sep 2024 21:08:51 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>all</title>
+      <link>https://wdd.js.org/tags/all/</link>
+      <pubDate>Tue, 10 Sep 2024 21:08:51 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/tags/all/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>tesserocr</title>
       <link>https://wdd.js.org/tags/tesserocr/</link>
@@ -22,11 +31,11 @@
     </item>
     
     <item>
-      <title>all</title>
-      <link>https://wdd.js.org/tags/all/</link>
-      <pubDate>Wed, 24 Apr 2024 08:32:57 +0800</pubDate>
+      <title>prom</title>
+      <link>https://wdd.js.org/tags/prom/</link>
+      <pubDate>Sat, 16 Mar 2024 08:38:46 +0800</pubDate>
       
-      <guid>https://wdd.js.org/tags/all/</guid>
+      <guid>https://wdd.js.org/tags/prom/</guid>
       <description></description>
     </item>
     

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>prom on 洞香春</title>
+    <link>https://wdd.js.org/tags/prom/</link>
+    <description>Recent content in prom on 洞香春</description>
+    <image>
+      <title>洞香春</title>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 16 Mar 2024 08:38:46 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/prom/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用Excel理解prometheus的变化率相关函数</title>
+      <link>https://wdd.js.org/posts/2024/learn-prom-with-excel/</link>
+      <pubDate>Sat, 16 Mar 2024 08:38:46 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2024/learn-prom-with-excel/</guid>
+      <description>counter类型的变化率 rate, irate, increase counter类型一般是只增不减的累积值，例如系统累计的http请求数量, 累计的话单数量。
+counter类型的指标变化率一般使用三个函数来计算，rate, irate, increase
+指标每隔15s采样一次数据, A列是采集的指标值，B列是对应的采集时间。
+demo_api_request_duration_seconds_count{instance=&amp;#34;demo-service-0:10000&amp;#34;,path=&amp;#34;/api/bar&amp;#34;,status=&amp;#34;200&amp;#34;,method=&amp;#34;GET&amp;#34;}[1m] 序号 A B 1 294401976 1710549816.105 2 294402185 1710549831.105 3 294402393 1710549846.105 4 294402599 1710549861.105 rate是计算每秒的变化率,
+rate 计算方案 (A4-A1) / (B4-B1)， 这里选择了首尾两个值的差值，除以时长秒 irate 计算方案 (A4-A3) / (B4-B3) , 这里只选择里最后两个点的差值，除以时长秒 increase 计算方式 (A4-A1) / (B4-B1) * 60, 这里的60是1m, 其实increase就是rate() * windows_seconds的语法糖 guage 296164749 @1710648381.105 296165055 @1710648396.105 296165364 @1710648411.105 296165668 @1710648426.105 296165978 @1710648441.105 296166186 @1710648456.105 296166505 @1710648471.105 296166826 @1710648486.105 296167151 @1710648501.</description>
+    </item>
+    
+  </channel>
+</rss>
