@@ -3,3 +3,5 @@ tmp
 docs
 .obsidian
 .DS_Stores
+public
+.Ds_Store

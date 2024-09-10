@@ -1,6 +1,7 @@
 baseURL: "https://wdd.js.org"
 title: "洞香春"
 paginate: 10
+# theme: ananke
 theme: PaperMod
 
 enableRobotsTXT: true
@@ -22,7 +23,7 @@ params:
   author: "Eddie Wang"
   images: ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat: "2006-01-02 15:04:05"
-  defaultTheme: dark #auto # dark, light
+  defaultTheme: light #auto # dark, light
   disableThemeToggle: false
   ShowReadingTime: true
   ShowShareButtons: false
