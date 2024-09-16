@@ -29,3 +29,11 @@ regulex仅支持js的正则，
 [http://www.pyregex.com/](http://www.pyregex.com/)
 
 ![](2022-10-29-10-47-52.png)
+
+# cyrilex：正则可视化
+
+[https://extendsclass.com/regex-tester.html](https://extendsclass.com/regex-tester.html)
+
+cyrilex 支持 JS，Python，Ruby，Java，PHP 和 MySQL 的正则表达式.
+
+![](2024-09-29-21-38-52.png)
