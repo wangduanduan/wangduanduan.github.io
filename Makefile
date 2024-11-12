@@ -12,6 +12,8 @@ push:
 	git push
 new:
 	hugo new $(type)/$(name)/index.md
+add:
+	hugo new $(name)/index.md
 post:
 	hugo new posts/2024/$(name)/index.md
 serve:

@@ -1,5 +1,5 @@
 ---
-title: "000《三体全集》读后感"
+title: "#1 三体全集"
 toc: true
 type: posts
 draft: false

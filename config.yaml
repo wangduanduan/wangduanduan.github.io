@@ -118,7 +118,7 @@ menu:
       url: /freeswitch/
       weight: 10
     - identifier: id_books
-      name: "百分之一阅读"
+      name: "百分之一阅读法"
       url: /books/
       weight: 8
     - identifier: id_vim

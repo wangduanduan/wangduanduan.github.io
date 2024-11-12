@@ -1,5 +1,5 @@
 ---
-title: "百分之一阅读方法"
+title: "#0 百分之一阅读方法"
 toc: true
 type: posts
 draft: false
