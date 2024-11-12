@@ -117,6 +117,10 @@ menu:
       name: "FreeSWITCH"
       url: /freeswitch/
       weight: 10
+    - identifier: id_books
+      name: "百分之一阅读"
+      url: /books/
+      weight: 8
     - identifier: id_vim
       name: "VIM"
       url: /vim/
