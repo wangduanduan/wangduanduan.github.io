@@ -1,7 +1,11 @@
 ---
-title: "s"
+title: "Linux进程和线程"
 date: "2020-04-25 20:30:18"
 draft: false
+tag:
+- 进程
+- 线程
+- linux
 ---
 思考题：当你用ssh登录到一个linux机器，并且执行了某个hello.sh之后，有哪些进程参与了该过程?
 
