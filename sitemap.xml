@@ -2,13 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://wdd.js.org/books/</loc>
-    <lastmod>2024-11-18T18:35:02+08:00</lastmod>
+    <loc>https://wdd.js.org/categories/all/</loc>
+    <lastmod>2024-11-18T19:58:38+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/axb/</loc>
+    <lastmod>2024-11-18T19:58:38+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/opensips/ch2/axb/</loc>
+    <lastmod>2024-11-18T19:58:38+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/categories/</loc>
-    <lastmod>2024-11-18T18:35:02+08:00</lastmod>
+    <lastmod>2024-11-18T19:58:38+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/opensips/</loc>
+    <lastmod>2024-11-18T19:58:38+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/</loc>
+    <lastmod>2024-11-18T19:58:38+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/</loc>
+    <lastmod>2024-11-18T19:58:38+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/%E7%BA%BF%E8%B7%AF/</loc>
+    <lastmod>2024-11-18T19:58:38+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/%E8%BF%90%E8%90%A5%E5%95%86/</loc>
+    <lastmod>2024-11-18T19:58:38+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/books/</loc>
     <lastmod>2024-11-18T18:35:02+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/%E5%86%85%E7%A8%B3%E6%80%81/</loc>
@@ -18,9 +39,6 @@
     <lastmod>2024-11-18T18:35:02+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/books/005-%E6%88%90%E7%98%BE-%E5%9C%A8%E6%94%BE%E7%BA%B5%E4%B8%AD%E5%AF%BB%E6%89%BE%E5%B9%B3%E8%A1%A1/</loc>
-    <lastmod>2024-11-18T18:35:02+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/</loc>
     <lastmod>2024-11-18T18:35:02+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/%E7%8A%92%E8%B5%8F%E7%B3%BB%E7%BB%9F/</loc>
@@ -33,9 +51,6 @@
     <lastmod>2024-11-18T18:35:02+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/books/004-%E7%B3%96%E4%B8%AD%E6%AF%92/</loc>
-    <lastmod>2024-11-12T14:02:00+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/categories/all/</loc>
     <lastmod>2024-11-12T14:02:00+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/%E5%81%A5%E5%BA%B7/</loc>
@@ -235,9 +250,6 @@
   </url><url>
     <loc>https://wdd.js.org/posts/2022/12/why-i-dont-not-use-yuque-any-more/</loc>
     <lastmod>2022-12-06T21:10:38+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/opensips/</loc>
-    <lastmod>2022-12-03T21:01:02+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/opensips/3x/module-args/</loc>
     <lastmod>2022-12-03T21:01:02+08:00</lastmod>
