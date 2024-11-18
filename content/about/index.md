@@ -17,6 +17,11 @@ date: 2018-01-31 12:09:09
 - 语雀: [yuque.com/wangdd](https://yuque.com/wangdd), 将不会更新
 - 个人博客: [wdd.js.org](https://wdd.js.org), 最新内容将会发布在wdd.js.org
 - 最喜欢的美剧《黄石》
+- 喜欢读书、美剧、做饭
+- 微信阅读资深会员
+![](atta/2024-11-18-19-34-57.png)
+
+
 
 {{<rawhtml>}}
 
