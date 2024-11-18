@@ -43,6 +43,7 @@ QQ学习交流群：
 -  2. 常识
     -   [2.1 几种常用电话信号音的含义](/opensips/ch2/early-media-type)
     -   [2.2 回铃音](/opensips/ch2/early-media)
+    -   [2.3 AXB的玩法说明](/opensips/ch2/axb)
 
 -  3. OpenSIPS安装与管理
     - [3.1 opensips介绍](/opensips/ch3/about-opensips)
@@ -188,6 +189,7 @@ QQ学习交流群：
   - [Troubleshooting OpenSIPS script](/opensips/blog/troubleshooting-opensips-script/)
   - [Troubleshooting missing ACK in SIP](/opensips/blog/miss-ack/)
   - [理解并测量OpenSIPS的内存资源](/opensips/blog/memory-usage/)
+
 
 -   问题列表
     -   [utimer task <tm-utimer> already scheduled](/opensips/ch1/utime-task-scheduled)
