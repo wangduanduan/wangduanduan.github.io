@@ -126,17 +126,21 @@ menu:
       url: /vim/
       weight: 10
     - identifier: id_fe
-      name: "Frontend"
+      name: "前端"
       url: /fe/
       weight: 10
-    - identifier: id_container
-      name: "k8s/docker"
-      url: /container/
+    - identifier: id_kama
+      name: "Kamailio"
+      url: /kamailio/
       weight: 10
-    - identifier: id_shell
-      name: "Shell"
-      url: /shell/
-      weight: 10
+    # - identifier: id_container
+    #   name: "k8s/docker"
+    #   url: /container/
+    #   weight: 10
+    # - identifier: id_shell
+    #   name: "Shell"
+    #   url: /shell/
+    #   weight: 10
     - identifier: id_opensips
       name: "OpenSIPS"
       url: /opensips/
