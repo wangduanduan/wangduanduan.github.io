@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>ts on 洞香春</title>
+    <link>https://wdd.js.org/tags/ts/</link>
+    <description>Recent content in ts on 洞香春</description>
+    <image>
+      <title>洞香春</title>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 22 Nov 2024 13:04:35 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/ts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TypeSctipt类型实战</title>
+      <link>https://wdd.js.org/fe/ts-type-action/</link>
+      <pubDate>Fri, 22 Nov 2024 13:04:35 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/fe/ts-type-action/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

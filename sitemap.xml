@@ -23,6 +23,18 @@
     <loc>https://wdd.js.org/kamailio/docs-index/</loc>
     <lastmod>2024-12-02T22:43:24+08:00</lastmod>
   </url><url>
+    <loc>https://wdd.js.org/tags/all/</loc>
+    <lastmod>2024-11-22T13:04:35+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/ts/</loc>
+    <lastmod>2024-11-22T13:04:35+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/fe/ts-type-action/</loc>
+    <lastmod>2024-11-22T13:04:35+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/fe/</loc>
+    <lastmod>2024-11-22T13:04:35+08:00</lastmod>
+  </url><url>
     <loc>https://wdd.js.org/tags/axb/</loc>
     <lastmod>2024-11-18T19:58:38+08:00</lastmod>
   </url><url>
@@ -88,9 +100,6 @@
   </url><url>
     <loc>https://wdd.js.org/books/000-%E7%99%BE%E5%88%86%E4%B9%8B%E4%B8%80/</loc>
     <lastmod>2024-11-12T09:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/all/</loc>
-    <lastmod>2024-09-10T21:08:51+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/</loc>
     <lastmod>2024-09-10T21:08:51+08:00</lastmod>
@@ -294,9 +303,6 @@
     <lastmod>2022-12-01T09:46:13+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/fe/js-questions/</loc>
-    <lastmod>2022-11-04T08:42:15+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/fe/</loc>
     <lastmod>2022-11-04T08:42:15+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2022/11/deepin-install-man/</loc>
