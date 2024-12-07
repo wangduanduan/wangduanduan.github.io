@@ -11,7 +11,23 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 02 Dec 2024 22:43:24 +0800</lastBuildDate><atom:link href="https://wdd.js.org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 07 Dec 2024 14:17:28 +0800</lastBuildDate><atom:link href="https://wdd.js.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>你不怕暴露自己的无知吗？</title>
+      <link>https://wdd.js.org/posts/2024/121701/</link>
+      <pubDate>Sat, 07 Dec 2024 14:17:28 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2024/121701/</guid>
+      <description>我在写博客时，有时候脑海里总会蹦出一个小人，面露鄙夷的脸色对我说：你写这么多没啥技术含量的垃圾，公开在网上，难道不怕暴露自己的无知吗？
+说实话，我是有这样的担忧。
+因为我是有自知之明的，我知道自己估计也是黄老师那种&amp;quot;样样通，样样松&amp;quot;的人。 写的东西也都是一些表面的东西，甚至有错误的可能。这并不是自谦。
+我一直无法找到反击脑海里小人的理由。
+今天，我在读一本书的时候，学到了一个概念，这个概念叫做坎宁安定律。
+在互联网上获得正确答案的最好方法并不是提出问题，而是发布错误的答案
+也许我的答案是错误的，但是它并没有被隐藏我脑海的某个角落，二是被公开在了网上。
+即使我的小破站再小，必然也会有几个阅读量吧，或许能有读者对错误的答案提出自己的异议。</description>
+    </item>
+    
     <item>
       <title>第一节 如何熟悉Kamailio文档的文档结构</title>
       <link>https://wdd.js.org/kamailio/docs-index/</link>

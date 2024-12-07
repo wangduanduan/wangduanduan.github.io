@@ -11,22 +11,22 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 02 Dec 2024 22:43:24 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 07 Dec 2024 14:17:28 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>all</title>
+      <link>https://wdd.js.org/tags/all/</link>
+      <pubDate>Sat, 07 Dec 2024 14:17:28 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/tags/all/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>kamailio</title>
       <link>https://wdd.js.org/tags/kamailio/</link>
       <pubDate>Mon, 02 Dec 2024 22:43:24 +0800</pubDate>
       
       <guid>https://wdd.js.org/tags/kamailio/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>all</title>
-      <link>https://wdd.js.org/tags/all/</link>
-      <pubDate>Fri, 22 Nov 2024 13:04:35 +0800</pubDate>
-      
-      <guid>https://wdd.js.org/tags/all/</guid>
       <description></description>
     </item>
     
