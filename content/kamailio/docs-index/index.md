@@ -68,6 +68,15 @@ https://www.kamailio.org/wikidocs/tutorials/faq/main/
 
 ![](atta/2024-12-02-23-33-15.png)
 
+# 其他
+
+官方的Web版本的wiki, 对于刚入门的人来说，还是有点绕的。
+
+另外一个问题就是mkdocs的页面渲染效果的确不太行，目录滚动一点都不灵敏。
+
+如果你想看的不是某个模块的说明文档，我更建议你直接把https://github.com/kamailio/kamailio-wiki 这个git仓库下载到本地查看。
+
+
 # 总结
 
 总体来说，km的文档算是非常完整了，但是和OpenSIPS相比，还有待加强。
