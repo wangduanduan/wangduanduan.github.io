@@ -46,6 +46,9 @@ core cookbook： 主要讲解km的脚本的结构、全局参数、模块参数�
 源码安装 这部分讲解如何通过GIT进行源码安装。
 FAQ https://www.kamailio.org/wikidocs/tutorials/faq/main/
 外部资源 这里涉及了如何用km和常见的媒体服务器如何集成
+其他 官方的Web版本的wiki, 对于刚入门的人来说，还是有点绕的。
+另外一个问题就是mkdocs的页面渲染效果的确不太行，目录滚动一点都不灵敏。
+如果你想看的不是某个模块的说明文档，我更建议你直接把https://github.com/kamailio/kamailio-wiki 这个git仓库下载到本地查看。
 总结 总体来说，km的文档算是非常完整了，但是和OpenSIPS相比，还有待加强。</description>
     </item>
     
