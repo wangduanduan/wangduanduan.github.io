@@ -11,7 +11,19 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 07 Dec 2024 14:17:28 +0800</lastBuildDate><atom:link href="https://wdd.js.org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 17 Dec 2024 21:10:40 +0800</lastBuildDate><atom:link href="https://wdd.js.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DDOS学习笔记</title>
+      <link>https://wdd.js.org/posts/2024/ddos/</link>
+      <pubDate>Tue, 17 Dec 2024 21:10:40 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2024/ddos/</guid>
+      <description>攻击分类 网络层
+ICMP Flood攻击: ICMP（Internet Control Message Protocol，因特网控制报文协议）是TCP/IP协议族的一个子协议，用于在IP主机、路由器之间传递控制消息。ICMP协议本身特点决定了它非常容易被用于攻击网络上的路由器和主机。当攻击者向目标网络发送大量的ICMP数据包时，目标主机会耗费大量的CPU资源去处理和响应，直至耗尽设备资源，无法为合法用户提供正常服务。 ARP Flood攻击: ARP（Address Resolution Protocol，地址解析协议）是用来将IP地址解析为MAC地址的协议。ARP协议主要以广播的方式发送ARP请求。同网段内的主机都可以收到广播请求，这为攻击者提供了可乘之机。攻击者通过发送大量的ARP请求，使有限的网络资源被无用的广播信息所占用，造成网络拥堵。其次，因为ARP协议没有安全认证机制，所以只要主机接收到ARP应答包，都会缓存在ARP表中，这为ARP欺骗提供了可能。 IP分片攻击: IP协议在传输数据包时，会将数据报文分为若干分片进行传输，并在目标系统中进行重组。IP分片是网络环境中经常发生的事件，但是，如果数据被人为恶意分片就会产生DDoS攻击。攻击者将经过恶意分段的数据包发送至目标网络，导致目标网络耗费大量资源进行重组，直至资源枯竭。 传输层攻击
+SYN Flood攻击: SYN Flood是互联网最原始、最经典的DDoS攻击之一，主要利用了TCP协议的三次握手机制。攻击者通常利用工具或控制僵尸主机向服务器发送海量的变源IP地址或变源端口的SYN报文，服务器响应报文后产生大量的半连接，直至系统资源被耗尽，服务器无法提供正常的服务。 ACK Flood攻击: 攻击者通过僵尸网络向目标服务器发送大量的ACK报文，报文带有超大载荷，会引起链路拥塞。或向目标服务器发送极高速率的变源变端口请求，导致转发设备异常，从而引起网络瘫痪。 UDP Flood攻击: UDP Flood攻击常用于大带宽DDoS攻击。攻击者使用包含无状态UDP协议的IP数据包充塞目标主机的端口，受害主机会寻找与UDP数据包相关的应用程序。如果没有找到，就向发送者回发一条“目标不可达”消息。一旦目标主机被攻击流量淹没，系统就会失去响应，从而造成合法用户无法正常访问的现象。 应用层攻击
+DNS Flood攻击: 攻击者通过操纵大量傀儡机器，对目标网络发起海量域名查询请求，以中断该域的DNS解析。这种攻击将会破坏网站、API或Web应用程序响应合法流量的能力，让合法用户无法查找到用于调用特定资源的地址，导致业务暂时中断或停止。 HTTP Flood攻击: HTTP GET 攻击：攻击者操控多台设备向目标服务器发送对图像、文件或其他资产请求，当目标服务器被传入请求和响应所淹没时，来自正常流量源的业务请求也将被拒绝。 HTTP POST 攻击：与发送 POST 请求所需的处理能力和带宽相比，处理表单数据和运行必要数据库命令的过程相对密集。这种攻击利用相对资源消耗的差异，直接向目标服务器发送大量POST请求，直至目标服务器容量饱和并拒绝服务为止。 CC攻击: CC攻击常用于攻击提供网页访问服务的服务器。攻击者通过代理服务器向目标服务器发送大量貌似合法的请求，使CPU长时间处于高负荷运行状态，永远都有处理不完的连接。攻击会导致正常访问被中止，最终宕机崩溃。 SIP注册 Flood攻击: 攻击者发送大量的SIP注册请求到SIP服务端，SIP服务器需要查询数据库，拖慢正常的数据库查询，也回占用大量的资源来维护注册的事务。 FAQ 防火墙能否拦截DDOS攻击？ 拦截不了，防火墙就好比饭店的保安，保安再多，但是饭店门口道路交通堵塞了，饭店的营业额下降，再多的保安也无能为力 在遭受DDOS攻击后，用什么手段防御？ 购买硬件设备：除了比较贵之外，对于使用云服务器的服务也无能为力 更换公网IP：对于使用云服务器来说，更换云服务器的公网IP看起来比较简单方便。但是也有麻烦的地方，比如自己的服务可能要涉及到配置改变和服务重启，和自己相关的第三方，也可能要修改IP的访问地址 使用云服务厂商提供的DDOS服务 如何感知到自己的服务正在遭受DDOS攻击？ 异常大的流量波动 正常用户大量离线 参考 https://info.support.huawei.com/info-finder/encyclopedia/zh/DDoS%E6%94%BB%E5%87%BB.html https://www.microsoft.com/zh-cn/security/business/security-101/what-is-a-ddos-attack </description>
+    </item>
+    
     <item>
       <title>你不怕暴露自己的无知吗？</title>
       <link>https://wdd.js.org/posts/2024/121701/</link>
