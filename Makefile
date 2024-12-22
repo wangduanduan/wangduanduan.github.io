@@ -18,3 +18,5 @@ post:
 	hugo new posts/2024/$(name)/index.md
 serve:
 	hugo serve
+ka:
+	hugo new kamailio/$(id)/index.md
