@@ -11,7 +11,22 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 22 Dec 2024 16:20:42 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/all/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 22 Dec 2024 18:07:08 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/all/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DMQ模块源码学习笔记</title>
+      <link>https://wdd.js.org/kamailio/dmq-note/</link>
+      <pubDate>Sun, 22 Dec 2024 18:07:08 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/kamailio/dmq-note/</guid>
+      <description>背景 多个SIP注册服务器之间，如何同步分机的注册信息呢？
+简单的方案就是使用共享数据库的方式同步注册信息，这个方案实现起来简单，但是分机的注册信息本身就是个需要频繁增删改查的，数据库很可能在大量注册分机的压力下，成为性能的瓶颈。
+除了数据库之外，OpenSIPS和kamailio分别提供了不同的方案。
+OpenSIPS提供的方案是使用cluster模块，cluster模块在多个实例之间同步分机的注册信息，注册信息的格式是OpenSIPS自定义的格式。 Kamailio的方案是DMQ模块， DMQ听起来高大上，放佛是依赖外部的一个服务。 但它其实就是扩展SIP消息，通过SIP消息来广播分机的注册信息。
+KDMQ sip:notification_peer@192.168.40.15:5090 SIP/2.0 Via: SIP/2.0/UDP 192.168.40.15;branch=z9hG4bK55e5.423d95110000 To: &amp;lt;sip:notification_peer@192.168.40.15:5090&amp;gt; From: &amp;lt;sip:notification_peer@192.168.40.15:5060&amp;gt;;tag=2cdb7a33a7f21abb98fd3a44968e3ffd-5b01 CSeq: 10 KDMQ Call-ID: 1fe138e07b5d0a7a-50419@192.168.40.15 Content-Length: 116 User-Agent: kamailio (4.3.0 (x86_64/linneaus)) Max-Forwards: 1 Content-Type: text/plain sip:192.168.40.16:5060;status=active sip:192.168.40.15:5060;status=disabled sip:192.168.40.17:5060;status=active 源码分析 该模块一共暴露了8个参数，其中7个参数都是简单类型，INT和STR，就直接取对应变量的地址就可以了。
+其中notification_address参数是用来配置集群中其他节点的通信地址的，因为要配置多次，所以需要用一个函数来解析。
+// dmq.c static param_export_t params[] = { {&amp;#34;num_workers&amp;#34;, PARAM_INT, &amp;amp;dmq_num_workers}, {&amp;#34;ping_interval&amp;#34;, PARAM_INT, &amp;amp;dmq_ping_interval}, {&amp;#34;server_address&amp;#34;, PARAM_STR, &amp;amp;dmq_server_address}, {&amp;#34;server_socket&amp;#34;, PARAM_STR, &amp;amp;dmq_server_socket}, {&amp;#34;notification_address&amp;#34;, PARAM_STR|PARAM_USE_FUNC, dmq_add_notification_address}, {&amp;#34;notification_channel&amp;#34;, PARAM_STR, &amp;amp;dmq_notification_channel}, {&amp;#34;multi_notify&amp;#34;, PARAM_INT, &amp;amp;dmq_multi_notify}, {&amp;#34;worker_usleep&amp;#34;, PARAM_INT, &amp;amp;dmq_worker_usleep}, {0, 0, 0} }; 这些参数都没有加上static关键词，主要目的为了在dmq模块的其他c文件能使用。</description>
+    </item>
+    
     <item>
       <title>路由执行的顺序</title>
       <link>https://wdd.js.org/kamailio/msg-flow/</link>
