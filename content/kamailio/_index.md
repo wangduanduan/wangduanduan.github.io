@@ -9,4 +9,8 @@ toc: true
 
 在后文中，我们简称Kamailio为km。
 
+
 # 文章列表
+
+- 1. 文档
+    - [第一节 如何熟悉Kamailio文档的文档结构](/kamailio/docs-index)

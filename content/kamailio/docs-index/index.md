@@ -9,6 +9,8 @@ categories:
 - all
 ---
 
+> 我始终认为，快速学习一门知识，最为重要的就是熟悉它的文档结构。
+
 对于熟悉OpenSIPS的文档结构来说的人，看了Kamailio的文档，往往觉得无从下手。
 
 当我们打开Km的官网(kamailio.org)后， 会重定向到https://www.kamailio.org/w/,  在页面的右侧，
