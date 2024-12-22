@@ -2,11 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://wdd.js.org/tags/all/</loc>
+    <lastmod>2024-12-22T15:46:13+08:00</lastmod>
+  </url><url>
     <loc>https://wdd.js.org/categories/all/</loc>
-    <lastmod>2024-12-17T21:10:40+08:00</lastmod>
+    <lastmod>2024-12-22T15:46:13+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/categories/</loc>
-    <lastmod>2024-12-17T21:10:40+08:00</lastmod>
+    <lastmod>2024-12-22T15:46:13+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/kamailio/</loc>
+    <lastmod>2024-12-22T15:46:13+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/kamailio/kamailio-cli-params/</loc>
+    <lastmod>2024-12-22T15:46:13+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/</loc>
+    <lastmod>2024-12-22T15:46:13+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/</loc>
+    <lastmod>2024-12-22T15:46:13+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/ddos/</loc>
     <lastmod>2024-12-17T21:10:40+08:00</lastmod>
@@ -17,22 +32,10 @@
     <loc>https://wdd.js.org/posts/</loc>
     <lastmod>2024-12-17T21:10:40+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/tags/</loc>
-    <lastmod>2024-12-17T21:10:40+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/</loc>
-    <lastmod>2024-12-17T21:10:40+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/all/</loc>
-    <lastmod>2024-12-07T14:17:28+08:00</lastmod>
-  </url><url>
     <loc>https://wdd.js.org/posts/2024/121701/</loc>
     <lastmod>2024-12-07T14:17:28+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/kamailio/</loc>
-    <lastmod>2024-12-02T22:43:24+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/kamailio/</loc>
     <lastmod>2024-12-02T22:43:24+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/kamailio/docs-index/</loc>

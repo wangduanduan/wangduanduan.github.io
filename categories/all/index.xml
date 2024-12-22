@@ -11,7 +11,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 17 Dec 2024 21:10:40 +0800</lastBuildDate><atom:link href="https://wdd.js.org/categories/all/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 22 Dec 2024 15:46:13 +0800</lastBuildDate><atom:link href="https://wdd.js.org/categories/all/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>kamailio 启动参数控制</title>
+      <link>https://wdd.js.org/kamailio/kamailio-cli-params/</link>
+      <pubDate>Sun, 22 Dec 2024 15:46:13 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/kamailio/kamailio-cli-params/</guid>
+      <description>-a mode Auto aliases mode: enable with yes or on, disable with no or off 一般都是关闭 --alias=val Add an alias, the value has to be &amp;#39;[proto:]hostname[:port]&amp;#39; (like for &amp;#39;alias&amp;#39; global parameter) 设置对外别名, 在多个对外别名时，相比于在脚本中写死, 更好的方式 是在启动时传入, alias一般都是服务的对外域名或者IP 如果km有多个对外域名，并且不同的环境都不同，这块配置就合适在脚本里写死 --atexit=val Control atexit callbacks execution from external libraries which may access destroyed shm memory causing crash on shutdown. Can be y[es] or 1 to enable atexit callbacks, n[o] or 0 to disable, default is no.</description>
+    </item>
+    
     <item>
       <title>DDOS学习笔记</title>
       <link>https://wdd.js.org/posts/2024/ddos/</link>
