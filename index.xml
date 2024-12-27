@@ -11,7 +11,24 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 22 Dec 2024 18:07:08 +0800</lastBuildDate><atom:link href="https://wdd.js.org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 27 Dec 2024 20:45:03 +0800</lastBuildDate><atom:link href="https://wdd.js.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>源码笔记 - 自定义事件路由(上)</title>
+      <link>https://wdd.js.org/kamailio/customer-event-route/</link>
+      <pubDate>Fri, 27 Dec 2024 20:45:03 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/kamailio/customer-event-route/</guid>
+      <description>[[TOC]]
+事件路由简介 在某些模块中，我们看到有一些模块自定义的事件路由。
+例如dispatcher模块，或者rtpengine模块。
+event_route[dispatcher:dst-down] { xlog(&amp;#34;L_ERR&amp;#34;, &amp;#34;Destination down: $rm $ru ($du)\n&amp;#34;); } event_route[rtpengine:dtmf-event] { xlog(&amp;#34;L_INFO&amp;#34;, &amp;#34;callid: $avp(dtmf_event_callid)\n&amp;#34;); xlog(&amp;#34;L_INFO&amp;#34;, &amp;#34;source_tag: $avp(dtmf_event_source_tag)\n&amp;#34;); xlog(&amp;#34;L_INFO&amp;#34;, &amp;#34;timestamp: $avp(dtmf_event_timestamp)\n&amp;#34;); xlog(&amp;#34;L_INFO&amp;#34;, &amp;#34;dtmf: $avp(dtmf_event)\n&amp;#34;); } disapcher模块 在dispatch.c文件中，我们看到如下代码
+if(!ds_skip_dst(old_state) &amp;amp;&amp;amp; ds_skip_dst(idx-&amp;gt;dlist[i].flags)) { ds_run_route(msg, address, &amp;#34;dispatcher:dst-down&amp;#34;, rctx); } else { if(ds_skip_dst(old_state) &amp;amp;&amp;amp; !ds_skip_dst(idx-&amp;gt;dlist[i].flags)) ds_run_route(msg, address, &amp;#34;dispatcher:dst-up&amp;#34;, rctx); } ds_run_route还是定义在dispatch.c文件中，
+static void ds_run_route(sip_msg_t *msg, str *uri, char *route, ds_rctx_t *rctx) 接着又一个重要调用。 这里似乎在查找路由。
+route这个参数其实就是dispatcher:dst-down， 或者 dispatcher:dst-up，
+那么event_rt又是什么鬼呢？
+rt = route_lookup(&amp;amp;event_rt, route); event_rt是一个route_list的结构体</description>
+    </item>
+    
     <item>
       <title>DMQ模块源码学习笔记</title>
       <link>https://wdd.js.org/kamailio/dmq-note/</link>
