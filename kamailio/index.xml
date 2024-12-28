@@ -11,7 +11,21 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 27 Dec 2024 20:45:03 +0800</lastBuildDate><atom:link href="https://wdd.js.org/kamailio/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 28 Dec 2024 09:43:00 +0800</lastBuildDate><atom:link href="https://wdd.js.org/kamailio/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>源码笔记 - 自定义事件路由(中)</title>
+      <link>https://wdd.js.org/kamailio/route-list-action/</link>
+      <pubDate>Sat, 28 Dec 2024 09:43:00 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/kamailio/route-list-action/</guid>
+      <description>[[TOC]]
+route_list route.h定义了几个函数分别用来获取、查找、新增route
+// src/core/route.h int route_get(struct route_list *rt, char *name); int route_lookup(struct route_list *rt, char *name); void push(struct action *a, struct action **head); struct route_list { struct action **rlist; int idx;	/* first empty entry */ int entries;	/* total number of entries */ struct str_hash_table names; /* name to route index mappings */ }; rlist 我们对route_list数据模型进行简化:
+rlist是一个固定长度的一维数组，通过索引来访问对应的值。如果数组的空间不足，那么就创建一个两倍大的空数据，然后先把原始数据复制过去。这种复制方式保持的原始数据的索引位置。有点像golang的切片扩容机制。
+这里最为重要的就是保持数组元素的索引位置在扩容后不变。
+static inline int route_new_list(struct route_list *rt) { int ret; struct action **tmp; ret = -1; if(rt-&amp;gt;idx &amp;gt;= rt-&amp;gt;entries) { // 两倍扩容 tmp = pkg_realloc(rt-&amp;gt;rlist, 2 * rt-&amp;gt;entries * sizeof(struct action *)); if(tmp == 0) { LM_CRIT(&amp;#34;out of memory\n&amp;#34;); goto end; } /* init the newly allocated memory chunk */ memset(&amp;amp;tmp[rt-&amp;gt;entries], 0, rt-&amp;gt;entries * sizeof(struct action *)); rt-&amp;gt;rlist = tmp; rt-&amp;gt;entries *= 2; } if(rt-&amp;gt;idx &amp;lt; rt-&amp;gt;entries) { ret = rt-&amp;gt;idx; rt-&amp;gt;idx++; } end: return ret; } str_hash_table 我们对hash_table的数据模型进行简化，它其实就是一hash表，key是路由的名，值是一个正数，正数代表了路由执行单元的索引位置。</description>
+    </item>
+    
     <item>
       <title>源码笔记 - 自定义事件路由(上)</title>
       <link>https://wdd.js.org/kamailio/customer-event-route/</link>
