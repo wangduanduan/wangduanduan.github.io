@@ -9,58 +9,47 @@ categories:
 - hugo
 ---
 
-# 增加mermaid shortcodes
+# step1
 
-在themes/YourTheme/layouts/shortcodes/mermaid.html 增加如下内容
+在themes/YourTheme/layouts/partials/footer.html 的最后追加如下内容
 
 ```html
-
-<script async type="application/javascript" src="https://cdn.jsdelivr.net/npm/mermaid@9.1.1/dist/mermaid.min.js">
-    var config = {
-      startOnLoad:true,
-      theme:'{{ if .Get "theme" }}{{ .Get "theme" }}{{ else }}dark{{ end }}',
-      align:'{{ if .Get "align" }}{{ .Get "align" }}{{ else }}center{{ end }}'
-    };
-    mermaid.initialize(config);
+{{if .Store.Get "hasMermaid" }}
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
   </script>
-  
-  <div class="mermaid">
-    {{.Inner}}
-  </div>
+{{end }}
+```
 
+# step2:
+
+在layouts/_default/_markup/render-codeblock-mermaid.html
+
+```html
+<pre class="mermaid">
+    {{- .Inner | htmlEscape | safeHTML }}
+</pre>
+{{ .Page.Store.Set "hasMermaid" true }}
 ```
 
 # 在blog中增加如下代码
 
-{{< notice warning >}}
-注意下面的代码，你在实际写的时候，要把 /* 和 */ 删除
-{{< /notice >}}
 
-```go
-{{/*< mermaid align="left" theme="neutral" */>}}
+```mermaid
 pie
     title French Words I Know
     "Merde" : 50
     "Oui" : 35
     "Alors" : 10
     "Non" : 5
-{{/*< /mermaid >*/}}
 ```
 
-{{< mermaid align="left" theme="neutral" >}}
-pie
-    title French Words I Know
-    "Merde" : 50
-    "Oui" : 35
-    "Alors" : 10
-    "Non" : 5
-{{< /mermaid >}}
-
-{{< mermaid align="left" theme="neutral" >}}
+```mermaid
 sequenceDiagram
     title French Words I Know
     autonumber
     Alice->>Bob: hello
     Bob-->>Alice: hi
     Alice->Bob: talking
-{{< /mermaid >}}
+```
