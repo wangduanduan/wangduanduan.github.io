@@ -14,7 +14,7 @@ new:
 	hugo new $(type)/$(name)/index.md
 add:
 	hugo new $(name)/index.md
-post:
+2024:
 	hugo new posts/2024/$(name)/index.md
 serve:
 	hugo serve
