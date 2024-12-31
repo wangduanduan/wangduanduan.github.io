@@ -11,7 +11,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 18 Nov 2024 18:35:02 +0800</lastBuildDate><atom:link href="https://wdd.js.org/books/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 28 Dec 2024 19:00:00 +0800</lastBuildDate><atom:link href="https://wdd.js.org/books/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CPU眼里的C/C&#43;&#43;</title>
+      <link>https://wdd.js.org/books/006-cpu%E7%9C%BC%E9%87%8C%E7%9A%84c-c-plus/</link>
+      <pubDate>Sat, 28 Dec 2024 19:00:00 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/books/006-cpu%E7%9C%BC%E9%87%8C%E7%9A%84c-c-plus/</guid>
+      <description>内存布局 堆和栈之前有大片的空白虚拟内存空间，用多少映射多少 堆和栈是像相反的方向增长 </description>
+    </item>
+    
     <item>
       <title>成瘾：在放纵中寻找平衡</title>
       <link>https://wdd.js.org/books/005-%E6%88%90%E7%98%BE-%E5%9C%A8%E6%94%BE%E7%BA%B5%E4%B8%AD%E5%AF%BB%E6%89%BE%E5%B9%B3%E8%A1%A1/</link>

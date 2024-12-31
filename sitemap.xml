@@ -2,22 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://wdd.js.org/posts/2024/the-edn-day/</loc>
+    <lastmod>2024-12-31T21:06:09+08:00</lastmod>
+  </url><url>
     <loc>https://wdd.js.org/tags/all/</loc>
-    <lastmod>2024-12-28T09:43:00+08:00</lastmod>
+    <lastmod>2024-12-31T21:06:09+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/categories/all/</loc>
-    <lastmod>2024-12-28T09:43:00+08:00</lastmod>
+    <lastmod>2024-12-31T21:06:09+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/categories/</loc>
-    <lastmod>2024-12-28T09:43:00+08:00</lastmod>
+    <lastmod>2024-12-31T21:06:09+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/kamailio/</loc>
-    <lastmod>2024-12-28T09:43:00+08:00</lastmod>
+    <loc>https://wdd.js.org/posts/</loc>
+    <lastmod>2024-12-31T21:06:09+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/</loc>
-    <lastmod>2024-12-28T09:43:00+08:00</lastmod>
+    <lastmod>2024-12-31T21:06:09+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/</loc>
+    <lastmod>2024-12-31T21:06:09+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/books/</loc>
+    <lastmod>2024-12-28T19:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/c/</loc>
+    <lastmod>2024-12-28T19:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/c&#43;&#43;/</loc>
+    <lastmod>2024-12-28T19:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/cpu/</loc>
+    <lastmod>2024-12-28T19:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/books/006-cpu%E7%9C%BC%E9%87%8C%E7%9A%84c-c-plus/</loc>
+    <lastmod>2024-12-28T19:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/categories/cs/</loc>
+    <lastmod>2024-12-28T19:00:00+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/kamailio/</loc>
     <lastmod>2024-12-28T09:43:00+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/kamailio/route-list-action/</loc>
@@ -39,9 +63,6 @@
     <lastmod>2024-12-17T21:10:40+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2024/ddos/</loc>
-    <lastmod>2024-12-17T21:10:40+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/</loc>
     <lastmod>2024-12-17T21:10:40+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2024/121701/</loc>
@@ -76,9 +97,6 @@
   </url><url>
     <loc>https://wdd.js.org/tags/%E8%BF%90%E8%90%A5%E5%95%86/</loc>
     <lastmod>2024-11-18T19:58:38+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/books/</loc>
-    <lastmod>2024-11-18T18:35:02+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/%E5%86%85%E7%A8%B3%E6%80%81/</loc>
     <lastmod>2024-11-18T18:35:02+08:00</lastmod>
