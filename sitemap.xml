@@ -2,25 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://wdd.js.org/categories/all/</loc>
+    <lastmod>2025-01-01T20:23:41+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/categories/</loc>
+    <lastmod>2025-01-01T20:23:41+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/network/</loc>
+    <lastmod>2025-01-01T20:23:41+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/network/rfc768-udp/</loc>
+    <lastmod>2025-01-01T20:23:41+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/</loc>
+    <lastmod>2025-01-01T20:23:41+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/udp/</loc>
+    <lastmod>2025-01-01T20:23:41+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/</loc>
+    <lastmod>2025-01-01T20:23:41+08:00</lastmod>
+  </url><url>
     <loc>https://wdd.js.org/posts/2024/the-edn-day/</loc>
     <lastmod>2024-12-31T21:06:09+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/all/</loc>
     <lastmod>2024-12-31T21:06:09+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/categories/all/</loc>
-    <lastmod>2024-12-31T21:06:09+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/categories/</loc>
-    <lastmod>2024-12-31T21:06:09+08:00</lastmod>
-  </url><url>
     <loc>https://wdd.js.org/posts/</loc>
-    <lastmod>2024-12-31T21:06:09+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/</loc>
-    <lastmod>2024-12-31T21:06:09+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/</loc>
     <lastmod>2024-12-31T21:06:09+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/books/</loc>
@@ -442,9 +451,6 @@
   </url><url>
     <loc>https://wdd.js.org/opensips/ch1/utime-task-scheduled/</loc>
     <lastmod>2022-10-25T12:06:54+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/network/</loc>
-    <lastmod>2022-10-25T09:12:00+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/network/wireshark/</loc>
     <lastmod>2022-10-25T09:12:00+08:00</lastmod>
