@@ -16,6 +16,8 @@ add:
 	hugo new $(name)/index.md
 2024:
 	hugo new posts/2024/$(name)/index.md
+2025:
+	hugo new posts/2025/$(name)/index.md
 serve:
 	hugo serve
 km:
