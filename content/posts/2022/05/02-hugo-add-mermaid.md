@@ -11,7 +11,7 @@ categories:
 
 # step1
 
-在themes/YourTheme/layouts/partials/footer.html 的最后追加如下内容
+在themes/YourTheme/layouts/partials/extend_footer.html 的最后追加如下内容
 
 ```html
 {{if .Store.Get "hasMermaid" }}
