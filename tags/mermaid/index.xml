@@ -18,7 +18,7 @@
       <pubDate>Fri, 27 May 2022 11:49:44 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2022/05/02-hugo-add-mermaid/</guid>
-      <description>step1 在themes/YourTheme/layouts/partials/footer.html 的最后追加如下内容
+      <description>step1 在themes/YourTheme/layouts/partials/extend_footer.html 的最后追加如下内容
 {{if .Store.Get &amp;#34;hasMermaid&amp;#34; }} &amp;lt;script type=&amp;#34;module&amp;#34;&amp;gt; import mermaid from &amp;#39;https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs&amp;#39;; mermaid.initialize({ startOnLoad: true }); &amp;lt;/script&amp;gt; {{end }} step2: 在layouts/_default/_markup/render-codeblock-mermaid.html
 &amp;lt;pre class=&amp;#34;mermaid&amp;#34;&amp;gt; {{- .Inner | htmlEscape | safeHTML }} &amp;lt;/pre&amp;gt; {{ .Page.Store.Set &amp;#34;hasMermaid&amp;#34; true }} 在blog中增加如下代码 pie title French Words I Know &amp;#34;Merde&amp;#34; : 50 &amp;#34;Oui&amp;#34; : 35 &amp;#34;Alors&amp;#34; : 10 &amp;#34;Non&amp;#34; : 5 sequenceDiagram title French Words I Know autonumber Alice-&amp;gt;&amp;gt;Bob: hello Bob--&amp;gt;&amp;gt;Alice: hi Alice-&amp;gt;Bob: talking </description>
     </item>

@@ -11,7 +11,24 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 21 Jan 2025 21:57:06 +0800</lastBuildDate><atom:link href="https://wdd.js.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 02 Feb 2025 15:12:40 +0800</lastBuildDate><atom:link href="https://wdd.js.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HEP 协议学习笔记</title>
+      <link>https://wdd.js.org/posts/2025/hep-protocol/</link>
+      <pubDate>Sun, 02 Feb 2025 15:12:40 +0800</pubDate>
+      
+      <guid>https://wdd.js.org/posts/2025/hep-protocol/</guid>
+      <description>HEP简介 HEP协议目前叫做EEP(Extensible Encapsulation Protocol), 那之前的缩写HEP的H，我只能推测为homer。
+这个协议的主要功能是对VoIP连路上的数据包，例如SIP进行封装，方便后续分析SIP信令图。
+目前这个协议已经升级到V3版本，在这个pdfHEP3_Network_Protocol_Specification_REV_36中有详细的介绍。
+今天我们主要看这个协议的V3版本的协议是如何实现的。
+包头 packet-beta title HEP Packet 0-3: &amp;#34;版本号&amp;#34; 4-5: &amp;#34;总长度&amp;#34; 6-15: &amp;#34;数据段(变长)&amp;#34; HEPv3的包头是6个字节，主要分为三个部分
+版本号：固定4个字节长度，是HEP3 总长度：固定2个字节长度，是包的总长度，这个总长度包括了包头的六个字节。所以HEP包的大小范围一般是6-65535之间。 数据段：数据段的长度不固定 注意事项：假如从传输层读到1000个字节的数据，在解析前6个字节是，发现总长度(total length)的子段是1200，那就说明本次读到的数据还不是一个完整的
+数据段解析 数据段由固定6字节长度的头部和变长的payload部分。
+packet-beta title HEP Packet 0-1: &amp;#34;vendor ID&amp;#34; 2-3: &amp;#34;type ID&amp;#34; 4-5: &amp;#34;length&amp;#34; 6-15: &amp;#34;payload&amp;#34; vendor ID: 固定2字节长度, 其实意义不大， type ID: 固定2字节长度，这个子段很重要，决定了payload的类型。可以理解为是一个对象的key, 然后把payload理解为value length: 固定2字节长度，范围是0-65535，这个字段是也是整个数据段的长度，也就是包括了6个字节的段头 payload: 长度是length的长度-6，表示数据长度 hep协议有个type ID的映射表
+chunk type ID 类型 描述 0x0001 uint8 IP类型，0x02=IPv4, 0x0a=IPv6 0x0002 uint8 协议类型 0x06=TCP, 0x11=UDP， 可以参考IP协议号列表 其他的字段还有很多，可以参考HEP3_Network_Protocol_Specification_REV_36</description>
+    </item>
+    
     <item>
       <title>写日记的正经人 - 季羡林</title>
       <link>https://wdd.js.org/posts/2025/jixianlin-book/</link>
@@ -855,7 +872,7 @@ set -gu prefix2 unbind C-a Tmux reload config :source-file ～/.tmux.conf tmux �
       <pubDate>Fri, 27 May 2022 11:49:44 +0800</pubDate>
       
       <guid>https://wdd.js.org/posts/2022/05/02-hugo-add-mermaid/</guid>
-      <description>step1 在themes/YourTheme/layouts/partials/footer.html 的最后追加如下内容
+      <description>step1 在themes/YourTheme/layouts/partials/extend_footer.html 的最后追加如下内容
 {{if .Store.Get &amp;#34;hasMermaid&amp;#34; }} &amp;lt;script type=&amp;#34;module&amp;#34;&amp;gt; import mermaid from &amp;#39;https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs&amp;#39;; mermaid.initialize({ startOnLoad: true }); &amp;lt;/script&amp;gt; {{end }} step2: 在layouts/_default/_markup/render-codeblock-mermaid.html
 &amp;lt;pre class=&amp;#34;mermaid&amp;#34;&amp;gt; {{- .Inner | htmlEscape | safeHTML }} &amp;lt;/pre&amp;gt; {{ .Page.Store.Set &amp;#34;hasMermaid&amp;#34; true }} 在blog中增加如下代码 pie title French Words I Know &amp;#34;Merde&amp;#34; : 50 &amp;#34;Oui&amp;#34; : 35 &amp;#34;Alors&amp;#34; : 10 &amp;#34;Non&amp;#34; : 5 sequenceDiagram title French Words I Know autonumber Alice-&amp;gt;&amp;gt;Bob: hello Bob--&amp;gt;&amp;gt;Alice: hi Alice-&amp;gt;Bob: talking </description>
     </item>
