@@ -1,34 +1,100 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>csta on 洞香春</title>
+    <title>Csta on 洞香春</title>
     <link>https://wdd.js.org/tags/csta/</link>
-    <description>Recent content in csta on 洞香春</description>
+    <description>Recent content in Csta on 洞香春</description>
     <image>
       <title>洞香春</title>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 29 Jan 2018 21:35:24 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/csta/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 29 Jan 2018 21:35:24 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/csta/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CSTA 呼叫模型简介</title>
       <link>https://wdd.js.org/posts/2018/01/csta-call-model-overview/</link>
       <pubDate>Mon, 29 Jan 2018 21:35:24 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2018/01/csta-call-model-overview/</guid>
-      <description>1. 内容概要 CSTA协议与标准概述 CSTA OpenScape 语音架构概述 2. CSTA协议标准 2.1. 什么是CSTA ? CSTA：电脑支持通讯程序(Computer Supported TelecommunicationsApplications)
-基本的呼叫模型在1992建立，后来随着行业发展，呼叫模型也被加强和扩展，例如新的协议等等
-CSTA是一个应用层接口，用来监控呼叫，设备和网络
-CSTA创建了一个通讯程序的抽象层:
-CSTA并不依赖任何底层的信令协议 E.g.H.323,SIP,Analog,T1,ISDN,etc. CSTA并不要求用户必须使用某些设备 E.g.intelligentendpoints,low-function/stimulusdevices,SIPSignalingmodels-3PCC vs. Peer/Peer 适用不同的操作模式
-第三方呼叫控制 一方呼叫控制 CSTA的设计目标是为了提高各种CSTA实现之间的移植性
-规范化呼叫模型和行为 完成服务、事件定义 规范化标准 3. CSTA 标准的进化史 阶段1 (发布于 June ’92)
-40 特性, 66 页 (服务定义) 专注于呼叫控制 阶段2 (发布于 Dec. ’94)
-77 特性, 145 页 (服务定义) I/O &amp;amp; 语音单元服务, 更多呼叫控制服务 阶段3 - CSTA Phase II Features &amp;amp; versit CTI Technology
-发布于 Dec. ‘98 136 特性, 650 页 (服务定义) 作为ISO 标准发布于 July 2000 发布 CSTA XML (ECMA-323) June 2004 发布 “Using CSTA with Voice Browsers” (TR/85) Dec.</description>
+      <description>&lt;h1 id=&#34;1-内容概要&#34;&gt;1. 内容概要&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;CSTA协议与标准概述&lt;/li&gt;
+&lt;li&gt;CSTA OpenScape 语音架构概述&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;2-csta协议标准&#34;&gt;2. CSTA协议标准&lt;/h1&gt;
+&lt;h2 id=&#34;21-什么是csta-&#34;&gt;2.1. 什么是CSTA ?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;CSTA：电脑支持通讯程序(Computer Supported TelecommunicationsApplications)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;基本的呼叫模型在1992建立，后来随着行业发展，呼叫模型也被加强和扩展，例如新的协议等等&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;CSTA是一个应用层接口，用来监控呼叫，设备和网络&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;CSTA创建了一个通讯程序的抽象层:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CSTA并不依赖任何底层的信令协议
+&lt;ul&gt;
+&lt;li&gt;E.g.H.323,SIP,Analog,T1,ISDN,etc.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;CSTA并不要求用户必须使用某些设备
+&lt;ul&gt;
+&lt;li&gt;E.g.intelligentendpoints,low-function/stimulusdevices,SIPSignalingmodels-3PCC vs. Peer/Peer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;适用不同的操作模式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第三方呼叫控制&lt;/li&gt;
+&lt;li&gt;一方呼叫控制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;CSTA的设计目标是为了提高各种CSTA实现之间的移植性&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;规范化呼叫模型和行为&lt;/li&gt;
+&lt;li&gt;完成服务、事件定义&lt;/li&gt;
+&lt;li&gt;规范化标准&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;3-csta-标准的进化史&#34;&gt;3. CSTA 标准的进化史&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;阶段1 (发布于 June ’92)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;40 特性, 66 页 (服务定义)&lt;/li&gt;
+&lt;li&gt;专注于呼叫控制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;阶段2 (发布于 Dec. ’94)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;77 特性, 145 页 (服务定义)&lt;/li&gt;
+&lt;li&gt;I/O &amp;amp; 语音单元服务, 更多呼叫控制服务&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;阶段3 - CSTA Phase II Features &amp;amp; versit CTI Technology&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;发布于 Dec. ‘98&lt;/li&gt;
+&lt;li&gt;136 特性, 650 页 (服务定义)&lt;/li&gt;
+&lt;li&gt;作为ISO 标准发布于 July 2000&lt;/li&gt;
+&lt;li&gt;发布 CSTA XML (ECMA-323) June 2004&lt;/li&gt;
+&lt;li&gt;发布 “Using CSTA with Voice Browsers” (TR/85) Dec. 02&lt;/li&gt;
+&lt;li&gt;发布 CSTA WSDL (ECMA-348) June 2004&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;June 2004: 发布对象模型 TR/88&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

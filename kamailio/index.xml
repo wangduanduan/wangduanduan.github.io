@@ -9,98 +9,392 @@
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 28 Dec 2024 09:43:00 +0800</lastBuildDate><atom:link href="https://wdd.js.org/kamailio/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 28 Dec 2024 09:43:00 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/kamailio/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>源码笔记 - 自定义事件路由(中)</title>
       <link>https://wdd.js.org/kamailio/route-list-action/</link>
       <pubDate>Sat, 28 Dec 2024 09:43:00 +0800</pubDate>
-      
       <guid>https://wdd.js.org/kamailio/route-list-action/</guid>
-      <description>[[TOC]]
-route_list route.h定义了几个函数分别用来获取、查找、新增route
-// src/core/route.h int route_get(struct route_list *rt, char *name); int route_lookup(struct route_list *rt, char *name); void push(struct action *a, struct action **head); struct route_list { struct action **rlist; int idx;	/* first empty entry */ int entries;	/* total number of entries */ struct str_hash_table names; /* name to route index mappings */ }; rlist 我们对route_list数据模型进行简化:
-rlist是一个固定长度的一维数组，通过索引来访问对应的值。如果数组的空间不足，那么就创建一个两倍大的空数据，然后先把原始数据复制过去。这种复制方式保持的原始数据的索引位置。有点像golang的切片扩容机制。
-这里最为重要的就是保持数组元素的索引位置在扩容后不变。
-static inline int route_new_list(struct route_list *rt) { int ret; struct action **tmp; ret = -1; if(rt-&amp;gt;idx &amp;gt;= rt-&amp;gt;entries) { // 两倍扩容 tmp = pkg_realloc(rt-&amp;gt;rlist, 2 * rt-&amp;gt;entries * sizeof(struct action *)); if(tmp == 0) { LM_CRIT(&amp;#34;out of memory\n&amp;#34;); goto end; } /* init the newly allocated memory chunk */ memset(&amp;amp;tmp[rt-&amp;gt;entries], 0, rt-&amp;gt;entries * sizeof(struct action *)); rt-&amp;gt;rlist = tmp; rt-&amp;gt;entries *= 2; } if(rt-&amp;gt;idx &amp;lt; rt-&amp;gt;entries) { ret = rt-&amp;gt;idx; rt-&amp;gt;idx++; } end: return ret; } str_hash_table 我们对hash_table的数据模型进行简化，它其实就是一hash表，key是路由的名，值是一个正数，正数代表了路由执行单元的索引位置。</description>
+      <description>&lt;p&gt;[[&lt;em&gt;TOC&lt;/em&gt;]]&lt;/p&gt;
+&lt;h1 id=&#34;route_list&#34;&gt;route_list&lt;/h1&gt;
+&lt;p&gt;route.h定义了几个函数分别用来获取、查找、新增route&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// src/core/route.h
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;route_get&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; route_list &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;rt, &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;name);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;route_lookup&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; route_list &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;rt, &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;name);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;push&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; action &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;a, &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; action &lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;head);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; route_list
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; action &lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;rlist;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; idx;					 &lt;span style=&#34;color:#75715e&#34;&gt;/* first empty entry */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; entries;				 &lt;span style=&#34;color:#75715e&#34;&gt;/* total number of entries */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; str_hash_table names; &lt;span style=&#34;color:#75715e&#34;&gt;/* name to route index mappings */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;rlist&#34;&gt;rlist&lt;/h2&gt;
+&lt;p&gt;我们对route_list数据模型进行简化:&lt;/p&gt;
+&lt;p&gt;rlist是一个固定长度的一维数组，通过索引来访问对应的值。如果数组的空间不足，那么就创建一个两倍大的空数据，然后先把原始数据复制过去。这种复制方式保持的原始数据的索引位置。有点像golang的切片扩容机制。&lt;/p&gt;
+&lt;p&gt;这里最为重要的就是保持数组元素的索引位置在扩容后不变。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;route_new_list&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; route_list &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;rt)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; ret;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; action &lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;tmp;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	ret &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(rt&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;idx &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;=&lt;/span&gt; rt&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;entries) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// 两倍扩容
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;		tmp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;pkg_realloc&lt;/span&gt;(rt&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;rlist, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; rt&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;entries &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; action &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(tmp &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			&lt;span style=&#34;color:#a6e22e&#34;&gt;LM_CRIT&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;out of memory&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			&lt;span style=&#34;color:#66d9ef&#34;&gt;goto&lt;/span&gt; end;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#75715e&#34;&gt;/* init the newly allocated memory chunk */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;memset&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;tmp[rt&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;entries], &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, rt&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;entries &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; action &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		rt&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;rlist &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; tmp;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		rt&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;entries &lt;span style=&#34;color:#f92672&#34;&gt;*=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(rt&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;idx &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; rt&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;entries) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		ret &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; rt&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;idx;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		rt&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;idx&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;end:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; ret;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;str_hash_table&#34;&gt;str_hash_table&lt;/h2&gt;
+&lt;p&gt;我们对hash_table的数据模型进行简化，它其实就是一hash表，key是路由的名，值是一个正数，正数代表了路由执行单元的索引位置。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>源码笔记 - 自定义事件路由(上)</title>
       <link>https://wdd.js.org/kamailio/customer-event-route/</link>
       <pubDate>Fri, 27 Dec 2024 20:45:03 +0800</pubDate>
-      
       <guid>https://wdd.js.org/kamailio/customer-event-route/</guid>
-      <description>[[TOC]]
-事件路由简介 在某些模块中，我们看到有一些模块自定义的事件路由。
-例如dispatcher模块，或者rtpengine模块。
-event_route[dispatcher:dst-down] { xlog(&amp;#34;L_ERR&amp;#34;, &amp;#34;Destination down: $rm $ru ($du)\n&amp;#34;); } event_route[rtpengine:dtmf-event] { xlog(&amp;#34;L_INFO&amp;#34;, &amp;#34;callid: $avp(dtmf_event_callid)\n&amp;#34;); xlog(&amp;#34;L_INFO&amp;#34;, &amp;#34;source_tag: $avp(dtmf_event_source_tag)\n&amp;#34;); xlog(&amp;#34;L_INFO&amp;#34;, &amp;#34;timestamp: $avp(dtmf_event_timestamp)\n&amp;#34;); xlog(&amp;#34;L_INFO&amp;#34;, &amp;#34;dtmf: $avp(dtmf_event)\n&amp;#34;); } disapcher模块 在dispatch.c文件中，我们看到如下代码
-if(!ds_skip_dst(old_state) &amp;amp;&amp;amp; ds_skip_dst(idx-&amp;gt;dlist[i].flags)) { ds_run_route(msg, address, &amp;#34;dispatcher:dst-down&amp;#34;, rctx); } else { if(ds_skip_dst(old_state) &amp;amp;&amp;amp; !ds_skip_dst(idx-&amp;gt;dlist[i].flags)) ds_run_route(msg, address, &amp;#34;dispatcher:dst-up&amp;#34;, rctx); } ds_run_route还是定义在dispatch.c文件中，
-static void ds_run_route(sip_msg_t *msg, str *uri, char *route, ds_rctx_t *rctx) 接着又一个重要调用。 这里似乎在查找路由。
-route这个参数其实就是dispatcher:dst-down， 或者 dispatcher:dst-up，
-那么event_rt又是什么鬼呢？
-rt = route_lookup(&amp;amp;event_rt, route); event_rt是一个route_list的结构体</description>
+      <description>&lt;p&gt;[[&lt;em&gt;TOC&lt;/em&gt;]]&lt;/p&gt;
+&lt;h1 id=&#34;事件路由简介&#34;&gt;事件路由简介&lt;/h1&gt;
+&lt;p&gt;在某些模块中，我们看到有一些模块自定义的事件路由。&lt;/p&gt;
+&lt;p&gt;例如dispatcher模块，或者rtpengine模块。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;event_route&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;dispatcher:dst-down&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    xlog&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;L_ERR&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Destination down: &lt;/span&gt;$rm&lt;span style=&#34;color:#e6db74&#34;&gt; &lt;/span&gt;$ru&lt;span style=&#34;color:#e6db74&#34;&gt; (&lt;/span&gt;$du&lt;span style=&#34;color:#e6db74&#34;&gt;)\n&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;event_route&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;rtpengine:dtmf-event&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    xlog&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;L_INFO&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;callid: &lt;/span&gt;$avp&lt;span style=&#34;color:#e6db74&#34;&gt;(dtmf_event_callid)\n&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		xlog&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;L_INFO&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;source_tag: &lt;/span&gt;$avp&lt;span style=&#34;color:#e6db74&#34;&gt;(dtmf_event_source_tag)\n&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		xlog&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;L_INFO&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;timestamp: &lt;/span&gt;$avp&lt;span style=&#34;color:#e6db74&#34;&gt;(dtmf_event_timestamp)\n&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		xlog&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;L_INFO&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;dtmf: &lt;/span&gt;$avp&lt;span style=&#34;color:#e6db74&#34;&gt;(dtmf_event)\n&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;disapcher模块&#34;&gt;disapcher模块&lt;/h1&gt;
+&lt;p&gt;在dispatch.c文件中，我们看到如下代码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;ds_skip_dst&lt;/span&gt;(old_state) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ds_skip_dst&lt;/span&gt;(idx&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;dlist[i].flags)) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;ds_run_route&lt;/span&gt;(msg, address, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;dispatcher:dst-down&amp;#34;&lt;/span&gt;, rctx);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;} &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;ds_skip_dst&lt;/span&gt;(old_state) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;ds_skip_dst&lt;/span&gt;(idx&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;dlist[i].flags))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			&lt;span style=&#34;color:#a6e22e&#34;&gt;ds_run_route&lt;/span&gt;(msg, address, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;dispatcher:dst-up&amp;#34;&lt;/span&gt;, rctx);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;ds_run_route还是定义在dispatch.c文件中，&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ds_run_route&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;sip_msg_t&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;msg, str &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;uri, &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;route, &lt;span style=&#34;color:#66d9ef&#34;&gt;ds_rctx_t&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;rctx)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;接着又一个重要调用。 这里似乎在查找路由。&lt;/p&gt;
+&lt;p&gt;route这个参数其实就是&lt;strong&gt;dispatcher:dst-down&lt;/strong&gt;， 或者 &lt;strong&gt;dispatcher:dst-up&lt;/strong&gt;，&lt;/p&gt;
+&lt;p&gt;那么event_rt又是什么鬼呢？&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rt &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;route_lookup&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;event_rt, route);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;event_rt是一个route_list的结构体&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// route.c
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; route_list event_rt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;route_list的结构如下，重点是这个str_hash_table这个字段，它似乎是一个hash&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; route_list
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; action &lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;rlist;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; idx;					 &lt;span style=&#34;color:#75715e&#34;&gt;/* first empty entry */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; entries;				 &lt;span style=&#34;color:#75715e&#34;&gt;/* total number of entries */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; str_hash_table names; &lt;span style=&#34;color:#75715e&#34;&gt;/* name to route index mappings */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;str_hash_table的结构如下：&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>DMQ模块源码学习笔记</title>
       <link>https://wdd.js.org/kamailio/dmq-note/</link>
       <pubDate>Sun, 22 Dec 2024 18:07:08 +0800</pubDate>
-      
       <guid>https://wdd.js.org/kamailio/dmq-note/</guid>
-      <description>背景 多个SIP注册服务器之间，如何同步分机的注册信息呢？
-简单的方案就是使用共享数据库的方式同步注册信息，这个方案实现起来简单，但是分机的注册信息本身就是个需要频繁增删改查的，数据库很可能在大量注册分机的压力下，成为性能的瓶颈。
-除了数据库之外，OpenSIPS和kamailio分别提供了不同的方案。
-OpenSIPS提供的方案是使用cluster模块，cluster模块在多个实例之间同步分机的注册信息，注册信息的格式是OpenSIPS自定义的格式。 Kamailio的方案是DMQ模块， DMQ听起来高大上，放佛是依赖外部的一个服务。 但它其实就是扩展SIP消息，通过SIP消息来广播分机的注册信息。
-KDMQ sip:notification_peer@192.168.40.15:5090 SIP/2.0 Via: SIP/2.0/UDP 192.168.40.15;branch=z9hG4bK55e5.423d95110000 To: &amp;lt;sip:notification_peer@192.168.40.15:5090&amp;gt; From: &amp;lt;sip:notification_peer@192.168.40.15:5060&amp;gt;;tag=2cdb7a33a7f21abb98fd3a44968e3ffd-5b01 CSeq: 10 KDMQ Call-ID: 1fe138e07b5d0a7a-50419@192.168.40.15 Content-Length: 116 User-Agent: kamailio (4.3.0 (x86_64/linneaus)) Max-Forwards: 1 Content-Type: text/plain sip:192.168.40.16:5060;status=active sip:192.168.40.15:5060;status=disabled sip:192.168.40.17:5060;status=active 源码分析 该模块一共暴露了8个参数，其中7个参数都是简单类型，INT和STR，就直接取对应变量的地址就可以了。
-其中notification_address参数是用来配置集群中其他节点的通信地址的，因为要配置多次，所以需要用一个函数来解析。
-// dmq.c static param_export_t params[] = { {&amp;#34;num_workers&amp;#34;, PARAM_INT, &amp;amp;dmq_num_workers}, {&amp;#34;ping_interval&amp;#34;, PARAM_INT, &amp;amp;dmq_ping_interval}, {&amp;#34;server_address&amp;#34;, PARAM_STR, &amp;amp;dmq_server_address}, {&amp;#34;server_socket&amp;#34;, PARAM_STR, &amp;amp;dmq_server_socket}, {&amp;#34;notification_address&amp;#34;, PARAM_STR|PARAM_USE_FUNC, dmq_add_notification_address}, {&amp;#34;notification_channel&amp;#34;, PARAM_STR, &amp;amp;dmq_notification_channel}, {&amp;#34;multi_notify&amp;#34;, PARAM_INT, &amp;amp;dmq_multi_notify}, {&amp;#34;worker_usleep&amp;#34;, PARAM_INT, &amp;amp;dmq_worker_usleep}, {0, 0, 0} }; 这些参数都没有加上static关键词，主要目的为了在dmq模块的其他c文件能使用。</description>
+      <description>&lt;h1 id=&#34;背景&#34;&gt;背景&lt;/h1&gt;
+&lt;p&gt;多个SIP注册服务器之间，如何同步分机的注册信息呢？&lt;/p&gt;
+&lt;p&gt;简单的方案就是使用共享数据库的方式同步注册信息，这个方案实现起来简单，但是分机的注册信息本身就是个需要频繁增删改查的，数据库很可能在大量注册分机的压力下，成为性能的瓶颈。&lt;/p&gt;
+&lt;p&gt;除了数据库之外，OpenSIPS和kamailio分别提供了不同的方案。&lt;/p&gt;
+&lt;p&gt;OpenSIPS提供的方案是使用cluster模块，cluster模块在多个实例之间同步分机的注册信息，注册信息的格式是OpenSIPS自定义的格式。
+Kamailio的方案是DMQ模块， DMQ听起来高大上，放佛是依赖外部的一个服务。 但它其实就是扩展SIP消息，通过SIP消息来广播分机的注册信息。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-log&#34; data-lang=&#34;log&#34;&gt;KDMQ sip:notification_peer@192.168.40.15:5090 SIP/2.0
+Via: SIP/2.0/UDP 192.168.40.15;branch=z9hG4bK55e5.423d95110000
+To: &amp;lt;sip:notification_peer@192.168.40.15:5090&amp;gt;
+From: &amp;lt;sip:notification_peer@192.168.40.15:5060&amp;gt;;tag=2cdb7a33a7f21abb98fd3a44968e3ffd-5b01
+CSeq: 10 KDMQ
+Call-ID: 1fe138e07b5d0a7a-50419@192.168.40.15
+Content-Length: 116
+User-Agent: kamailio (4.3.0 (x86_64/linneaus))
+Max-Forwards: 1
+Content-Type: text/plain
+
+sip:192.168.40.16:5060;status=active
+sip:192.168.40.15:5060;status=disabled
+sip:192.168.40.17:5060;status=active
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;源码分析&#34;&gt;源码分析&lt;/h1&gt;
+&lt;p&gt;该模块一共暴露了8个参数，其中7个参数都是简单类型，INT和STR，就直接取对应变量的地址就可以了。&lt;/p&gt;
+&lt;p&gt;其中notification_address参数是用来配置集群中其他节点的通信地址的，因为要配置多次，所以需要用一个函数来解析。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// dmq.c
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;param_export_t&lt;/span&gt; params[] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;num_workers&amp;#34;&lt;/span&gt;, PARAM_INT, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;dmq_num_workers},
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ping_interval&amp;#34;&lt;/span&gt;, PARAM_INT, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;dmq_ping_interval},
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;server_address&amp;#34;&lt;/span&gt;, PARAM_STR, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;dmq_server_address},
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;server_socket&amp;#34;&lt;/span&gt;, PARAM_STR, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;dmq_server_socket},
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;notification_address&amp;#34;&lt;/span&gt;, PARAM_STR&lt;span style=&#34;color:#f92672&#34;&gt;|&lt;/span&gt;PARAM_USE_FUNC, dmq_add_notification_address},
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;notification_channel&amp;#34;&lt;/span&gt;, PARAM_STR, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;dmq_notification_channel},
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;multi_notify&amp;#34;&lt;/span&gt;, PARAM_INT, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;dmq_multi_notify},
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;worker_usleep&amp;#34;&lt;/span&gt;, PARAM_INT, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;dmq_worker_usleep},
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	{&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这些参数都没有加上static关键词，主要目的为了在dmq模块的其他c文件能使用。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>路由执行的顺序</title>
       <link>https://wdd.js.org/kamailio/msg-flow/</link>
       <pubDate>Sun, 22 Dec 2024 16:20:42 +0800</pubDate>
-      
       <guid>https://wdd.js.org/kamailio/msg-flow/</guid>
-      <description>1. 请求消息处理过程 请求可以
-直接丢弃，不返回任何响应。对于恶意请求，SIP Flood攻击，最好不要返回任何响应。 直接返回状态码，不做转发，例如直接返回301重定向 无状态转发 有状态转发 执行分支路由，分支路由也可以将消息丢弃 无论有无状态，请求发出去前都会执行onsend_route路由，在onsend_route内部，已经不能对SIP消息再做拦截 2. 响应消息处理过程 首先执行reply_route{}, 在这个路由里可以将消息丢弃 然后判断消息是否有状态的 有状态，这执行onreply_route[ID]路由 如果响应是失败的，还可以执行failure_route[ID], 当前前提是在请求路由里是否设置了钩子 在失败路由可以，可以再次设置新的目标地址，进行转发； 设置了新的目标地址后，还可以设置分支路由 Tip 这里要注意的是，响应路由在失败路由之前执行。 3. 重传处理 </description>
+      <description>&lt;h1 id=&#34;1-请求消息处理过程&#34;&gt;1. 请求消息处理过程&lt;/h1&gt;
+&lt;p&gt;请求可以&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;直接丢弃，不返回任何响应。对于恶意请求，SIP Flood攻击，最好不要返回任何响应。&lt;/li&gt;
+&lt;li&gt;直接返回状态码，不做转发，例如直接返回301重定向&lt;/li&gt;
+&lt;li&gt;无状态转发&lt;/li&gt;
+&lt;li&gt;有状态转发
+&lt;ul&gt;
+&lt;li&gt;执行分支路由，分支路由也可以将消息丢弃&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;无论有无状态，请求发出去前都会执行onsend_route路由，在onsend_route内部，已经不能对SIP消息再做拦截&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/msg-flow/atta/2024-12-22-17-46-29.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;2-响应消息处理过程&#34;&gt;2. 响应消息处理过程&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;首先执行reply_route{}, 在这个路由里可以将消息丢弃&lt;/li&gt;
+&lt;li&gt;然后判断消息是否有状态的
+&lt;ul&gt;
+&lt;li&gt;有状态，这执行onreply_route[ID]路由
+&lt;ul&gt;
+&lt;li&gt;如果响应是失败的，还可以执行failure_route[ID], 当前前提是在请求路由里是否设置了钩子&lt;/li&gt;
+&lt;li&gt;在失败路由可以，可以再次设置新的目标地址，进行转发； 设置了新的目标地址后，还可以设置分支路由&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;notice tip&#34;&gt;
+  &lt;div class=&#34;notice-title&#34;&gt;
+    &lt;i class=&#34;fa fa-lightbulb-o&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;Tip
+  &lt;/div&gt;
+  &lt;div class=&#34;notice-content&#34;&gt;这里要注意的是，响应路由在失败路由之前执行。&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/msg-flow/atta/2024-12-22-17-47-27.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;3-重传处理&#34;&gt;3. 重传处理&lt;/h1&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/msg-flow/atta/2024-12-22-17-49-19.png&#34;&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>kamailio 启动参数控制</title>
       <link>https://wdd.js.org/kamailio/kamailio-cli-params/</link>
       <pubDate>Sun, 22 Dec 2024 15:46:13 +0800</pubDate>
-      
       <guid>https://wdd.js.org/kamailio/kamailio-cli-params/</guid>
-      <description>-a mode Auto aliases mode: enable with yes or on, disable with no or off 一般都是关闭 --alias=val Add an alias, the value has to be &amp;#39;[proto:]hostname[:port]&amp;#39; (like for &amp;#39;alias&amp;#39; global parameter) 设置对外别名, 在多个对外别名时，相比于在脚本中写死, 更好的方式 是在启动时传入, alias一般都是服务的对外域名或者IP 如果km有多个对外域名，并且不同的环境都不同，这块配置就合适在脚本里写死 --atexit=val Control atexit callbacks execution from external libraries which may access destroyed shm memory causing crash on shutdown. Can be y[es] or 1 to enable atexit callbacks, n[o] or 0 to disable, default is no.</description>
+      <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -a mode      Auto aliases mode: enable with yes or on,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  disable with no or off
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  一般都是关闭
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --alias&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;val  Add an alias, the value has to be &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;[proto:]hostname[:port]&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;like &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;alias&amp;#39;&lt;/span&gt; global parameter&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  设置对外别名, 在多个对外别名时，相比于在脚本中写死, 更好的方式
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  是在启动时传入, alias一般都是服务的对外域名或者IP
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  如果km有多个对外域名，并且不同的环境都不同，这块配置就合适在脚本里写死
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --atexit&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;val Control atexit callbacks execution from external libraries
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  which may access destroyed shm memory causing crash on shutdown.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  Can be y&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;es&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; or &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; to enable atexit callbacks, n&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;o&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; or &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; to disable,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  default is no.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  没用过
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -A define    Add config pre-processor define &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;e.g., -A WITH_AUTH,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  -A &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;FLT_ACC=1&amp;#39;&lt;/span&gt;, -A &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;DEFVAL=&amp;#34;str-val&amp;#34;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  预处理的变量定义
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -b nr        Maximum OS UDP receive buffer size which will not be exceeded by
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  auto-probing-and-increase procedure even &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; OS allows
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -B nr        Maximum OS UDP send buffer size which will not be exceeded by
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  auto-probing-and-increase procedure even &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; OS allows
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  这和上面的有啥区别呢？
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -c           Check configuration file &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; syntax errors
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                可以检查配置文件的语法错误。如果这个选项开启，就只能做检查语法，而不能启动kama
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --cfg-print  Print configuration file evaluating includes and ifdefs
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                 在脚本里有很多预处理指令时，可以用这个参数打印出预处理之后的脚本 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -d           Debugging level control &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;multiple -d to increase the level from 0&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                调试界别
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --debug&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;val  Debugging level value
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -D           Control how daemonize is &lt;span style=&#34;color:#66d9ef&#34;&gt;done&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  -D..do not fork &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;almost&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; anyway;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  -DD..do not daemonize creator;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  -DDD..daemonize &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;default&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                控制是否开启守护进程
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -e           Log messages printed in terminal colors &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;requires -E&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -E           Log to stderr
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -f file      Configuration file &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;default: /usr/local/etc/kamailio/kamailio.cfg&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                设置配置文件的位置, 可以覆盖默认的位置
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -g gid       Change gid &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;group id&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -G file      Create a pgid file
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -h           This help message
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --help       Long option &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;-h&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -I           Print more internal compile flags and options
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -K           Turn on &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;via:&amp;#34;&lt;/span&gt; host checking when forwarding replies
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -l address   Listen on the specified address/interface &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;multiple -l
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  mean listening on more addresses&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;. The address format is
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;proto:&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;addr_lst&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;:port&lt;span style=&#34;color:#f92672&#34;&gt;][&lt;/span&gt;/advaddr&lt;span style=&#34;color:#f92672&#34;&gt;][&lt;/span&gt;/socket_name&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;, 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  where proto&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;udp|tcp|tls|sctp, 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  addr_lst&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; addr|&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;addr, addr_lst&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;, 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  addr&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;host|ip_address|interface_name, 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  advaddr&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;addr&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;:port&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;advertised address&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; and 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  socket_name&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;identifying name.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  E.g: -l localhost, -l udp:127.0.0.1:5080, -l eth0:5062,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  -l udp:127.0.0.1:5080/1.2.3.4:5060,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  -l udp:127.0.0.1:5080//local,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  -l udp:127.0.0.1:5080/1.2.3.4:5060/local,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  -l &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sctp:(eth0)&amp;#34;&lt;/span&gt;, -l &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;(eth0, eth1, 127.0.0.1):5065&amp;#34;&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  The default behaviour is to listen on all the interfaces.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                控制listen的地址
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --loadmodule&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;name load the module specified by name
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --log-engine&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;log engine name and data
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -L path      Modules search path &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;default: /usr/local/lib64/kamailio/modules&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -m nr        Size of shared memory allocated in Megabytes
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                共享内存的大小设置
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --modparam&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;modname:paramname:type:value set the module parameter
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  type has to be &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;s&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; string value and &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;i&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; int value, 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  example: --modparam&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;corex:alias_subdomains:s:kamailio.org
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  设置模块的启动参数
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  对于不方便在脚本里写死的模块参数，这个方式也挺好用
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --all-errors Print details about all config errors that can be detected
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                调试模式比较好用，打印详细的日志报错 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -M nr        Size of private memory allocated, in Megabytes
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                控制私有内存的大小
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -n processes Number of child processes to fork per interface
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;default: 8&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -N           Number of tcp child processes &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;default: equal to &lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;-n&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;    -O nr        Script optimization level (debugging option)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;    -P file      Create a pid file
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;    -Q           Number of sctp child processes (default: equal to `-n&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -r           Use dns to check &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; is necessary to add a &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;received=&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  field to a via
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -R           Same as &lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;-r&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt; but use reverse dns;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;to use both use &lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;-rR&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --server-id&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;num set the value &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; server_id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --subst&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;exp set a subst preprocessor directive
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --substdef&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;exp set a substdef preprocessor directive
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --substdefs&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;exp set a substdefs preprocessor directive
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -S           disable sctp
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -t dir       Chroot to &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;dir&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -T           Disable tcp
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -u uid       Change uid &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;user id&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -v           Version number
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --version    Long option &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;-v&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -V           Alternative &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;-v&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -x name      Specify internal manager &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; shared memory &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;shm&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  - can be: fm, qm or tlsf
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -X name      Specify internal manager &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; private memory &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;pkg&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  - &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; omitted, the one &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; shm is used
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -Y dir       Runtime dir path
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -w dir       Change the working directory to &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;dir&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;default: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -W type      poll method &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;depending on support in OS, it can be: poll,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  epoll_lt, epoll_et, sigio_rt, &lt;span style=&#34;color:#66d9ef&#34;&gt;select&lt;/span&gt;, kqueue, /dev/poll&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
-    
     <item>
       <title>第一节 如何熟悉Kamailio文档的文档结构</title>
       <link>https://wdd.js.org/kamailio/docs-index/</link>
       <pubDate>Mon, 02 Dec 2024 22:43:24 +0800</pubDate>
-      
       <guid>https://wdd.js.org/kamailio/docs-index/</guid>
-      <description>我始终认为，快速学习一门知识，最为重要的就是熟悉它的文档结构。
-对于熟悉OpenSIPS的文档结构来说的人，看了Kamailio的文档，往往觉得无从下手。
-当我们打开Km的官网(kamailio.org)后， 会重定向到https://www.kamailio.org/w/, 在页面的右侧，
-接着，我们会导航到 https://www.kamailio.org/w/documentation/
-这个页面的结构需要烂熟于心
-1. 模块文档 如果你知道km的版本号和对应的模块，可以点击这里进入对应版本，然后再选择对应模块
-2. wiki部分 2.1 必学部分 wiki部分主要是一些教程，非常值得看。
-其中有三个重点部分
-core cookbook： 主要讲解km的脚本的结构、全局参数、模块参数、路由类型、预处理、脚本操作等等，是编写km脚本的必学之处，各种参数都可以看看 Pseudo-Variables CookBook：主要讲解各种伪变量，用来读写SIP消息 Transformations CookBook： 主要讲解各种操作变换，例如把字符串型转为int型数据 全部函数索引 在km的wiki官网，即https://www.kamailio.org/wikidocs/， 其中Alphabetic Indexes就是所有的参数或者函数的索引。
-在你学些km的脚本时，有时候想知道某个函数在哪个模块中，就可以用这个全部函数索引中查找。
-源码安装 这部分讲解如何通过GIT进行源码安装。
-FAQ https://www.kamailio.org/wikidocs/tutorials/faq/main/
-外部资源 这里涉及了如何用km和常见的媒体服务器如何集成
-其他 官方的Web版本的wiki, 对于刚入门的人来说，还是有点绕的。
-另外一个问题就是mkdocs的页面渲染效果的确不太行，目录滚动一点都不灵敏。
-如果你想看的不是某个模块的说明文档，我更建议你直接把https://github.com/kamailio/kamailio-wiki 这个git仓库下载到本地查看。
-总结 总体来说，km的文档算是非常完整了，但是和OpenSIPS相比，还有待加强。</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;我始终认为，快速学习一门知识，最为重要的就是熟悉它的文档结构。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;对于熟悉OpenSIPS的文档结构来说的人，看了Kamailio的文档，往往觉得无从下手。&lt;/p&gt;
+&lt;p&gt;当我们打开Km的官网(kamailio.org)后， 会重定向到https://www.kamailio.org/w/,  在页面的右侧，&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/docs-index/atta/2024-12-02-22-57-06.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;接着，我们会导航到 &lt;a href=&#34;https://www.kamailio.org/w/documentation/&#34;&gt;https://www.kamailio.org/w/documentation/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这个页面的结构需要烂熟于心&lt;/p&gt;
+&lt;h1 id=&#34;1-模块文档&#34;&gt;1. 模块文档&lt;/h1&gt;
+&lt;p&gt;如果你知道km的版本号和对应的模块，可以点击这里进入对应版本，然后再选择对应模块&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/docs-index/atta/2024-12-02-23-03-53.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;2-wiki部分&#34;&gt;2. wiki部分&lt;/h1&gt;
+&lt;h2 id=&#34;21-必学部分&#34;&gt;2.1 必学部分&lt;/h2&gt;
+&lt;p&gt;wiki部分主要是一些教程，非常值得看。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/docs-index/atta/2024-12-02-23-05-57.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;其中有三个重点部分&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;core cookbook&lt;/strong&gt;： 主要讲解km的脚本的结构、全局参数、模块参数、路由类型、预处理、脚本操作等等，是编写km脚本的必学之处，各种参数都可以看看&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pseudo-Variables CookBook&lt;/strong&gt;：主要讲解各种伪变量，用来读写SIP消息&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Transformations CookBook&lt;/strong&gt;： 主要讲解各种操作变换，例如把字符串型转为int型数据&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/docs-index/atta/2024-12-02-23-07-06.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;全部函数索引&#34;&gt;全部函数索引&lt;/h2&gt;
+&lt;p&gt;在km的wiki官网，即https://www.kamailio.org/wikidocs/， 其中Alphabetic Indexes就是所有的参数或者函数的索引。&lt;/p&gt;
+&lt;p&gt;在你学些km的脚本时，有时候想知道某个函数在哪个模块中，就可以用这个全部函数索引中查找。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/docs-index/atta/2024-12-07-11-37-37.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;源码安装&#34;&gt;源码安装&lt;/h2&gt;
+&lt;p&gt;这部分讲解如何通过GIT进行源码安装。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/docs-index/atta/2024-12-02-23-12-53.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;faq&#34;&gt;FAQ&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.kamailio.org/wikidocs/tutorials/faq/main/&#34;&gt;https://www.kamailio.org/wikidocs/tutorials/faq/main/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;外部资源&#34;&gt;外部资源&lt;/h2&gt;
+&lt;p&gt;这里涉及了如何用km和常见的媒体服务器如何集成&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/docs-index/atta/2024-12-02-23-16-07.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/docs-index/atta/2024-12-02-23-31-00.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/docs-index/atta/2024-12-02-23-33-15.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;其他&#34;&gt;其他&lt;/h1&gt;
+&lt;p&gt;官方的Web版本的wiki, 对于刚入门的人来说，还是有点绕的。&lt;/p&gt;
+&lt;p&gt;另外一个问题就是mkdocs的页面渲染效果的确不太行，目录滚动一点都不灵敏。&lt;/p&gt;
+&lt;p&gt;如果你想看的不是某个模块的说明文档，我更建议你直接把https://github.com/kamailio/kamailio-wiki 这个git仓库下载到本地查看。&lt;/p&gt;
+&lt;h1 id=&#34;总结&#34;&gt;总结&lt;/h1&gt;
+&lt;p&gt;总体来说，km的文档算是非常完整了，但是和OpenSIPS相比，还有待加强。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

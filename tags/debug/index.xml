@@ -1,30 +1,34 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>debug on 洞香春</title>
+    <title>Debug on 洞香春</title>
     <link>https://wdd.js.org/tags/debug/</link>
-    <description>Recent content in debug on 洞香春</description>
+    <description>Recent content in Debug on 洞香春</description>
     <image>
       <title>洞香春</title>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 08 Feb 2018 13:53:48 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/debug/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 08 Feb 2018 13:53:48 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/debug/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>如何浏览器里调试iframe里层的代码？</title>
       <link>https://wdd.js.org/posts/2018/02/debug-code-in-iframe/</link>
       <pubDate>Thu, 08 Feb 2018 13:53:48 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2018/02/debug-code-in-iframe/</guid>
-      <description>之前一直非常痛苦，在iframe外层根本获取不了里面的信息，后来使用了postMessage用传递消息来实现，但是用起来还是非常不方便。
-其实浏览器本身是可以选择不同的iframe的执行环境的。例如有个变量是在iframe里面定义的，你只需要切换到这个iframe的执行环境，你就可以随意操作这个环境的任何变量了。
-这个小技巧，对于调试非常有用，但是我直到今天才发现。
-1. Chrome 这个小箭头可以让你选择不同的iframe的执行环境，可以切换到你的iframe环境里。
-2. IE 如图所示是ie11的dev tool点击下来箭头，也可以选择不同的iframe执行环境。
-3. 其他浏览器 其他浏览器可以自行摸索一下。。。（G_H）</description>
+      <description>&lt;p&gt;之前一直非常痛苦，在iframe外层根本获取不了里面的信息，后来使用了postMessage用传递消息来实现，但是用起来还是非常不方便。&lt;/p&gt;
+&lt;p&gt;其实浏览器本身是可以选择不同的iframe的执行环境的。例如有个变量是在iframe里面定义的，你只需要切换到这个iframe的执行环境，你就可以随意操作这个环境的任何变量了。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;这个小技巧，对于调试非常有用，但是我直到今天才发现。&lt;/code&gt;&lt;/p&gt;
+&lt;h1 id=&#34;1-chrome&#34;&gt;1. Chrome&lt;/h1&gt;
+&lt;p&gt;这个小箭头可以让你选择不同的iframe的执行环境，可以切换到你的iframe环境里。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180208135509_koFmKH_Screenshot.jpeg&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;2-ie&#34;&gt;2. IE&lt;/h1&gt;
+&lt;p&gt;如图所示是ie11的dev tool点击下来箭头，也可以选择不同的iframe执行环境。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180208135527_niIzO1_Screenshot.jpeg&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;3-其他浏览器&#34;&gt;3. 其他浏览器&lt;/h1&gt;
+&lt;p&gt;其他浏览器可以自行摸索一下。。。（G_H）&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

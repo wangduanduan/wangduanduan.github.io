@@ -9,118 +9,343 @@
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 10 Aug 2023 11:20:47 +0800</lastBuildDate><atom:link href="https://wdd.js.org/golang/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Aug 2023 11:20:47 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/golang/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go1.21发布</title>
       <link>https://wdd.js.org/golang/go1.21/</link>
       <pubDate>Thu, 10 Aug 2023 11:20:47 +0800</pubDate>
-      
       <guid>https://wdd.js.org/golang/go1.21/</guid>
-      <description>golang每隔6个月发布一个新的次版本号升级。一般是是2月一个版本，8月一个版本
-语言层面 增加内置函数 min() max() 参考 https://tip.golang.org/ref/spec#Min_and_max
-The built-in functions min and max compute the smallest—or largest, respectively—value of a fixed number of arguments of ordered types. There must be at least one argument.
-The same type rules as for operators apply: for ordered arguments x and y, min(x, y) is valid if x + y is valid, and the type of min(x, y) is the type of x + y (and similarly for max).</description>
+      <description>&lt;p&gt;golang每隔6个月发布一个新的次版本号升级。一般是是2月一个版本，8月一个版本&lt;/p&gt;
+&lt;h1 id=&#34;语言层面&#34;&gt;语言层面&lt;/h1&gt;
+&lt;h2 id=&#34;增加内置函数&#34;&gt;增加内置函数&lt;/h2&gt;
+&lt;h3 id=&#34;min-max&#34;&gt;min() max()&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;参考 &lt;a href=&#34;https://tip.golang.org/ref/spec#Min_and_max&#34;&gt;https://tip.golang.org/ref/spec#Min_and_max&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;The built-in functions min and max compute the smallest—or largest, respectively—value of a fixed number of arguments of ordered types. There must be at least one argument.&lt;/p&gt;
+&lt;p&gt;The same type rules as for operators apply: for ordered arguments x and y, min(x, y) is valid if x + y is valid, and the type of min(x, y) is the type of x + y (and similarly for max). If all arguments are constant, the result is constant.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Build Docker Image With Libpcap</title>
       <link>https://wdd.js.org/golang/build-docker-image-with-libpcap/</link>
       <pubDate>Mon, 08 May 2023 11:45:23 +0800</pubDate>
-      
       <guid>https://wdd.js.org/golang/build-docker-image-with-libpcap/</guid>
-      <description>常规构建 一般情况下，我们的Dockerfile可能是下面这样的
-这个Dockerfile使用了多步构建，使用golang:1.19.4作为构建容器，二进制文件构建成功后，单独把文件复制到alpine镜像。 这样做的好处是最后产出的镜像非常小，一般只有十几MB的样子，如果直接使用golang的镜像来构建，镜像体积就可能达到1G左右。 FROM golang:1.19.4 as builder ENV GO111MODULE=on GOPROXY=https://goproxy.cn,direct WORKDIR /app COPY . . RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o run . FROM alpine:3.14.2 WORKDIR /app COPY encdec run.sh /app/ COPY --from=builder /app/run . EXPOSE 3000 ENTRYPOINT [&amp;#34;/app/run&amp;#34;] 依赖libpcap的构建 如果使用了程序使用了libpcap 来抓包，那么除了我们自己代码产生的二进制文件外，可能还会依赖libpcap的文件。常规打包就会报各种错误，例如文件找不到，缺少so文件等等。
-libpcap是一个c库，并不是golang的代码，所以处理起来要不一样。
-下面直接给出Dockerfile
-# 构建的基础镜像换成了alpine镜像 FROM golang:alpine as builder # 将alpine镜像换清华源，这样后续依赖的安装会加快 RUN sed -i &amp;#39;s/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g&amp;#39; /etc/apk/repositories # 安装需要用到的C库，和构建依赖 RUN apk --update add linux-headers musl-dev gcc libpcap-dev # 使用国内的goproxy ENV GO111MODULE=on GOPROXY=https://goproxy.</description>
+      <description>&lt;h1 id=&#34;常规构建&#34;&gt;常规构建&lt;/h1&gt;
+&lt;p&gt;一般情况下，我们的Dockerfile可能是下面这样的&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;这个Dockerfile使用了多步构建，使用golang:1.19.4作为构建容器，二进制文件构建成功后，单独把文件复制到alpine镜像。&lt;/li&gt;
+&lt;li&gt;这样做的好处是最后产出的镜像非常小，一般只有十几MB的样子，如果直接使用golang的镜像来构建，镜像体积就可能达到1G左右。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-Dockerfile&#34; data-lang=&#34;Dockerfile&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; golang:1.19.4 as builder&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;ENV&lt;/span&gt; GO111MODULE&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;on GOPROXY&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;https://goproxy.cn,direct&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;WORKDIR&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; /app&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; . .&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; CGO_ENABLED&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; GOOS&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;linux GOARCH&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;amd64 go build -o run .&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; alpine:3.14.2&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;WORKDIR&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; /app&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; encdec run.sh /app/&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; --from&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;builder /app/run .&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;EXPOSE&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; 3000&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;ENTRYPOINT&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/app/run&amp;#34;&lt;/span&gt;]&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;依赖libpcap的构建&#34;&gt;依赖libpcap的构建&lt;/h1&gt;
+&lt;p&gt;如果使用了程序使用了&lt;a href=&#34;https://pkg.go.dev/github.com/google/gopacket/pcap&#34;&gt;libpcap&lt;/a&gt; 来抓包，那么除了我们自己代码产生的二进制文件外，可能还会依赖libpcap的文件。常规打包就会报各种错误，例如文件找不到，缺少so文件等等。&lt;/p&gt;
+&lt;p&gt;libpcap是一个c库，并不是golang的代码，所以处理起来要不一样。&lt;/p&gt;
+&lt;p&gt;下面直接给出Dockerfile&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-Dockerfile&#34; data-lang=&#34;Dockerfile&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 构建的基础镜像换成了alpine镜像&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; golang:alpine as builder&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 将alpine镜像换清华源，这样后续依赖的安装会加快&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; sed -i &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;s/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g&amp;#39;&lt;/span&gt; /etc/apk/repositories&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 安装需要用到的C库，和构建依赖&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; apk --update add linux-headers musl-dev gcc libpcap-dev&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 使用国内的goproxy&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;ENV&lt;/span&gt; GO111MODULE&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;on GOPROXY&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;https://goproxy.cn,direct&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 设置工作目录&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;WORKDIR&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; /app&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 拷贝go相关的依赖&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; go.mod go.sum ./&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 下载go相关的依赖&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; go mod download&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 复制go代码&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; . .&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 编译go代码&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; CGO_ENABLED&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; GOOS&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;linux GOARCH&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;amd64 go build -a --ldflags &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;-linkmode external -extldflags &amp;#34;-static -s -w&amp;#34;&amp;#39;&lt;/span&gt; -o run main.go&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 使用最小的scratch镜像&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; scratch&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 设置工作目录&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;WORKDIR&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; /app&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 拷贝二进制文件&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; --from&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;builder /app/run .&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;EXPOSE&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; 8086&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;ENTRYPOINT&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/app/run&amp;#34;&lt;/span&gt;]&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;整个Dockerfile比较好理解，重要的部分就是ldflags的参数了，下面着重讲解一下&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>在二进制文件中注入版本信息</title>
       <link>https://wdd.js.org/golang/inject-version/</link>
       <pubDate>Sat, 28 May 2022 21:47:41 +0800</pubDate>
-      
       <guid>https://wdd.js.org/golang/inject-version/</guid>
-      <description>暴露的变量必须用var定义，不能用const定义
-// main.go var VERSION = &amp;#34;unknow&amp;#34; var SHA = &amp;#34;unknow&amp;#34; var BUILD_TIME = &amp;#34;unknow&amp;#34; ... func main () { app := &amp;amp;cli.App{ Version: VERSION + &amp;#34;\r\nsha: &amp;#34; + SHA + &amp;#34;\r\nbuild time: &amp;#34; + BUILD_TIME, ... } Makefile
-tag?=v0.0.5 DATE?=$(shell date +%FT%T%z) VERSION_HASH = $(shell git rev-parse HEAD) LDFLAGS=&amp;#39;-X &amp;#34;main.VERSION=$(tag)&amp;#34; -X &amp;#34;main.SHA=$(VERSION_HASH)&amp;#34; -X &amp;#34;main.BUILD_TIME=$(DATE)&amp;#34;&amp;#39; build: CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags $(LDFLAGS) -o wellcli main.go 执行make build, 产生的二进制文件，就含有注入的信息了。
--ldflags &amp;#39;[pattern=]arg list&amp;#39; arguments to pass on each go tool link invocation.</description>
+      <description>&lt;p&gt;暴露的变量必须用var定义，不能用const定义&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-golang&#34; data-lang=&#34;golang&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// main.go&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;VERSION&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;unknow&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;SHA&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;unknow&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;BUILD_TIME&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;unknow&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt; () {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	 &lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;cli&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;App&lt;/span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;Version&lt;/span&gt;: &lt;span style=&#34;color:#a6e22e&#34;&gt;VERSION&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;\r\nsha: &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;SHA&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;\r\nbuild time: &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;BUILD_TIME&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;     &lt;span style=&#34;color:#f92672&#34;&gt;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Makefile&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;tag?=v0.0.5
+DATE?=$(shell date +%FT%T%z)
+VERSION_HASH =  $(shell git rev-parse HEAD)
+LDFLAGS=&amp;#39;-X &amp;#34;main.VERSION=$(tag)&amp;#34; -X &amp;#34;main.SHA=$(VERSION_HASH)&amp;#34; -X &amp;#34;main.BUILD_TIME=$(DATE)&amp;#34;&amp;#39;
+
+build:
+   CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags $(LDFLAGS) -o wellcli main.go
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;执行make build, 产生的二进制文件，就含有注入的信息了。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;-ldflags &amp;#39;[pattern=]arg list&amp;#39; 	arguments to pass on each go tool link invocation.
+https://golang.google.cn/cmd/go/#hdr-Build_modes
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.digitalocean.com/community/tutorials/using-ldflags-to-set-version-information-for-go-applications&#34;&gt;https://www.digitalocean.com/community/tutorials/using-ldflags-to-set-version-information-for-go-applications&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
-    
     <item>
       <title>Golang Dockerfile</title>
       <link>https://wdd.js.org/golang/scratch-dockerfile/</link>
       <pubDate>Sat, 28 May 2022 21:45:48 +0800</pubDate>
-      
       <guid>https://wdd.js.org/golang/scratch-dockerfile/</guid>
-      <description>FROM golang:1.16.2 as builder ENV GO111MODULE=on GOPROXY=https://goproxy.cn,direct WORKDIR /app COPY . . RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build . FROM scratch WORKDIR /app COPY --from=builder /app/your_app . # 配置时区 COPY --from=builder /usr/share/zoneinfo /usr/share/zoneinfo ENV TZ=Asia/Shanghai EXPOSE 8080 ENTRYPOINT [&amp;#34;./your_app&amp;#34;] </description>
+      <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;FROM golang:1.16.2 as builder
+ENV GO111MODULE=on GOPROXY=https://goproxy.cn,direct
+WORKDIR /app
+COPY . .
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build .
+
+FROM scratch
+WORKDIR /app
+COPY --from=builder /app/your_app .
+# 配置时区
+COPY --from=builder /usr/share/zoneinfo /usr/share/zoneinfo
+ENV TZ=Asia/Shanghai
+EXPOSE 8080
+ENTRYPOINT [&amp;#34;./your_app&amp;#34;]
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
-    
     <item>
       <title>我常用的第三方库</title>
       <link>https://wdd.js.org/golang/my-start-repo/</link>
       <pubDate>Fri, 08 Oct 2021 21:32:13 +0800</pubDate>
-      
       <guid>https://wdd.js.org/golang/my-start-repo/</guid>
-      <description>web框架 https://github.com/gofiber/fiber http client https://github.com/go-resty/resty mock https://github.com/jarcoal/httpmock 项目结构 https://github.com/golang-standards/project-layout 环境变量操作 https://github.com/caarlos0/env https://github.com/kelseyhightower/envconfig 测试框架 https://github.com/stretchr/testify 日志框架 https://github.com/uber-go/zap html解析 https://github.com/PuerkitoBio/goquery cli工具 https://github.com/urfave/cli 各种库大全集 https://github.com/avelino/awesome-go 终端颜色 https://github.com/fatih/color 剪贴板 https://github.com/atotto/clipboard 数据库驱动 https://github.com/go-sql-driver/mysql 热重载 https://github.com/cosmtrek/air 时间处理 https://github.com/golang-module/carbon 错误封装 https://github.com/pkg/errors 结构体转二进制 https://github.com/lunixbochs/struc VIM智能补全提示 需要安装coc-go, 还有vim-go</description>
+      <description>&lt;h1 id=&#34;web框架&#34;&gt;web框架&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/gofiber/fiber&#34;&gt;https://github.com/gofiber/fiber&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;http-client&#34;&gt;http client&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/go-resty/resty&#34;&gt;https://github.com/go-resty/resty&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;mock&#34;&gt;mock&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/jarcoal/httpmock&#34;&gt;https://github.com/jarcoal/httpmock&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;项目结构&#34;&gt;项目结构&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/golang-standards/project-layout&#34;&gt;https://github.com/golang-standards/project-layout&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;环境变量操作&#34;&gt;环境变量操作&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/caarlos0/env&#34;&gt;https://github.com/caarlos0/env&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/kelseyhightower/envconfig&#34;&gt;https://github.com/kelseyhightower/envconfig&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;测试框架&#34;&gt;测试框架&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/stretchr/testify&#34;&gt;https://github.com/stretchr/testify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;日志框架&#34;&gt;日志框架&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/uber-go/zap&#34;&gt;https://github.com/uber-go/zap&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;html解析&#34;&gt;html解析&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/PuerkitoBio/goquery&#34;&gt;https://github.com/PuerkitoBio/goquery&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;cli工具&#34;&gt;cli工具&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/urfave/cli&#34;&gt;https://github.com/urfave/cli&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;各种库大全集&#34;&gt;各种库大全集&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/avelino/awesome-go&#34;&gt;https://github.com/avelino/awesome-go&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;终端颜色&#34;&gt;终端颜色&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/fatih/color&#34;&gt;https://github.com/fatih/color&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;剪贴板&#34;&gt;剪贴板&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/atotto/clipboard&#34;&gt;https://github.com/atotto/clipboard&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;数据库驱动&#34;&gt;数据库驱动&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/go-sql-driver/mysql&#34;&gt;https://github.com/go-sql-driver/mysql&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;热重载&#34;&gt;热重载&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/cosmtrek/air&#34;&gt;https://github.com/cosmtrek/air&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;时间处理&#34;&gt;时间处理&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/golang-module/carbon&#34;&gt;https://github.com/golang-module/carbon&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;错误封装&#34;&gt;错误封装&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/pkg/errors&#34;&gt;https://github.com/pkg/errors&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;结构体转二进制&#34;&gt;结构体转二进制&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/lunixbochs/struc&#34;&gt;https://github.com/lunixbochs/struc&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;vim智能补全提示&#34;&gt;VIM智能补全提示&lt;/h1&gt;
+&lt;p&gt;需要安装coc-go, 还有vim-go&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/images/coc-go-tips.png&#34;&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>mysql placeholder的错误使用方式</title>
       <link>https://wdd.js.org/golang/mysql-placeholder/</link>
       <pubDate>Sun, 03 Oct 2021 21:52:40 +0800</pubDate>
-      
       <guid>https://wdd.js.org/golang/mysql-placeholder/</guid>
-      <description> Error EXTRA *mysql.MySQLError=Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &amp;lsquo;? ( 然而我仔细看了看sql语句，没有看出来究竟哪里有sql报错。
-然而当我把作为placeholder的问号去掉，直接用表的名字，sql是可以直接执行的。我意识到这个可能是和placeholder有关。
-搜索了一下，看到一个链接 https://github.com/go-sql-driver/mysql/issues/848
-Placeholder can&amp;rsquo;t be used for table name or column name. It&amp;rsquo;s MySQL spec. Not bug of this project.
-大意是说，placeholder是不能作为表名或者列名的。
-在mysql关于prepared文档介绍中，在允许使用prepared的语句里，没有看到create table可以用placeholder https://dev.mysql.com/doc/refman/8.0/en/sql-prepared-statements.html
-prepared语句的优点有以下几个
-优化查询速度 防止sql注入 但是也有一些限制
-不是所有语句都能用prepared语句。常见的用法应该是作为select where之后的条件，或者INSERT语句之后的值 不支持一个sql中多条查询语句的形式 </description>
+      <description>&lt;div class=&#34;notice error&#34;&gt;
+  &lt;div class=&#34;notice-title&#34;&gt;
+    &lt;i class=&#34;fa fa-times-circle&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;Error
+  &lt;/div&gt;
+  &lt;div class=&#34;notice-content&#34;&gt;EXTRA *mysql.MySQLError=Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &amp;lsquo;? (&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;然而我仔细看了看sql语句，没有看出来究竟哪里有sql报错。&lt;/p&gt;
+&lt;p&gt;然而当我把作为placeholder的问号去掉，直接用表的名字，sql是可以直接执行的。我意识到这个可能是和placeholder有关。&lt;/p&gt;
+&lt;p&gt;搜索了一下，看到一个链接 &lt;a href=&#34;https://github.com/go-sql-driver/mysql/issues/848&#34;&gt;https://github.com/go-sql-driver/mysql/issues/848&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Placeholder can&amp;rsquo;t be used for table name or column name. It&amp;rsquo;s MySQL spec. Not bug of this project.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;大意是说，placeholder是不能作为表名或者列名的。&lt;/p&gt;
+&lt;p&gt;在mysql关于prepared文档介绍中，在允许使用prepared的语句里，没有看到create table可以用placeholder
+&lt;a href=&#34;https://dev.mysql.com/doc/refman/8.0/en/sql-prepared-statements.html&#34;&gt;https://dev.mysql.com/doc/refman/8.0/en/sql-prepared-statements.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;prepared语句的优点有以下几个&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;优化查询速度&lt;/li&gt;
+&lt;li&gt;防止sql注入&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;但是也有一些限制&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不是所有语句都能用prepared语句。常见的用法应该是作为select where之后的条件，或者INSERT语句之后的值&lt;/li&gt;
+&lt;li&gt;不支持一个sql中多条查询语句的形式&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
-    
     <item>
       <title>Debug With Dlv</title>
       <link>https://wdd.js.org/golang/debug-with-dlv/</link>
       <pubDate>Sat, 07 Aug 2021 21:50:05 +0800</pubDate>
-      
       <guid>https://wdd.js.org/golang/debug-with-dlv/</guid>
-      <description>本来打算用gdb调试的，看了官方的文档https://golang.org/doc/gdb， 官方更推荐使用delve这个工具调试。
-我的电脑是linux, 所以就用如下的命令安装。
-go install github.com/go-delve/delve/cmd/dlv@latest
-我要调试的并不是一个代码而是一个测试的代码。
-当执行测试的时候报错的位置是xxx/demo/demo_test.go, 200行
-dlv test moduleName/demo &amp;gt; b demo_test.go:200 # 在文件的对应行设置端点 &amp;gt; bp # print all breakpoint &amp;gt; c # continue to exe &amp;gt; p variableName </description>
+      <description>&lt;p&gt;本来打算用gdb调试的，看了官方的文档https://golang.org/doc/gdb， 官方更推荐使用delve这个工具调试。&lt;/p&gt;
+&lt;p&gt;我的电脑是linux, 所以就用如下的命令安装。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;go install github.com/go-delve/delve/cmd/dlv@latest&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;我要调试的并不是一个代码而是一个测试的代码。&lt;/p&gt;
+&lt;p&gt;当执行测试的时候报错的位置是xxx/demo/demo_test.go, 200行&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;dlv test moduleName/demo
+&amp;gt; b demo_test.go:200 # 在文件的对应行设置端点
+&amp;gt; bp # print all breakpoint
+&amp;gt; c # continue to exe
+&amp;gt; p variableName
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
-    
     <item>
       <title>Golang学习资料</title>
       <link>https://wdd.js.org/golang/learn-material/</link>
       <pubDate>Sun, 18 Jul 2021 21:39:59 +0800</pubDate>
-      
       <guid>https://wdd.js.org/golang/learn-material/</guid>
-      <description>在线书籍 《Go语言原本》https://golang.design/under-the-hood/ 《Golang修养之路》https://www.kancloud.cn/aceld/golang 《Go语言高性能编程》https://geektutu.com/post/high-performance-go.html 《7天用Go从零实现Web框架Gee教程》https://geektutu.com/post/gee.html 博客关注 https://carlosbecker.com/ https://www.alexedwards.net/blog https://gobyexample.com/ 文章收藏 https://carlosbecker.com/posts/env-structs-golang https://www.alexedwards.net/blog/json-surprises-and-gotchas https://www.alexedwards.net/blog/how-to-manage-database-timeouts-and-cancellations-in-go https://www.alexedwards.net/blog/custom-command-line-flags https://www.alexedwards.net/blog/how-to-properly-parse-a-json-request-body https://www.alexedwards.net/blog/working-with-redis https://www.alexedwards.net/blog/organising-database-access https://www.alexedwards.net/blog/interfaces-explained </description>
+      <description>&lt;h1 id=&#34;在线书籍&#34;&gt;在线书籍&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;《Go语言原本》https://golang.design/under-the-hood/&lt;/li&gt;
+&lt;li&gt;《Golang修养之路》https://www.kancloud.cn/aceld/golang&lt;/li&gt;
+&lt;li&gt;《Go语言高性能编程》https://geektutu.com/post/high-performance-go.html&lt;/li&gt;
+&lt;li&gt;《7天用Go从零实现Web框架Gee教程》https://geektutu.com/post/gee.html&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;博客关注&#34;&gt;博客关注&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://carlosbecker.com/&#34;&gt;https://carlosbecker.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.alexedwards.net/blog&#34;&gt;https://www.alexedwards.net/blog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://gobyexample.com/&#34;&gt;https://gobyexample.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;文章收藏&#34;&gt;文章收藏&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://carlosbecker.com/posts/env-structs-golang&#34;&gt;https://carlosbecker.com/posts/env-structs-golang&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.alexedwards.net/blog/json-surprises-and-gotchas&#34;&gt;https://www.alexedwards.net/blog/json-surprises-and-gotchas&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.alexedwards.net/blog/how-to-manage-database-timeouts-and-cancellations-in-go&#34;&gt;https://www.alexedwards.net/blog/how-to-manage-database-timeouts-and-cancellations-in-go&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.alexedwards.net/blog/custom-command-line-flags&#34;&gt;https://www.alexedwards.net/blog/custom-command-line-flags&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.alexedwards.net/blog/how-to-properly-parse-a-json-request-body&#34;&gt;https://www.alexedwards.net/blog/how-to-properly-parse-a-json-request-body&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.alexedwards.net/blog/working-with-redis&#34;&gt;https://www.alexedwards.net/blog/working-with-redis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.alexedwards.net/blog/organising-database-access&#34;&gt;https://www.alexedwards.net/blog/organising-database-access&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.alexedwards.net/blog/interfaces-explained&#34;&gt;https://www.alexedwards.net/blog/interfaces-explained&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
-    
     <item>
       <title>Golang初学者的问题</title>
       <link>https://wdd.js.org/golang/golang-start-faq/</link>
       <pubDate>Fri, 18 Sep 2020 21:22:25 +0800</pubDate>
-      
       <guid>https://wdd.js.org/golang/golang-start-faq/</guid>
-      <description>1. 如何安装go 本次安装环境是win10子系统 ubuntu 20.04
-打开网站 https://golang.google.cn/dl/
-选择合适的最新版的连接
-cd mkdir download cd download wget https://golang.google.cn/dl/go1.16.3.linux-amd64.tar.gz tar -C /usr/local -xvf go1.16.3.linux-amd64.tar.gz 因为我用的是zsh 所以我在~/.zshrc中，将go的bin目录加入到PATH中 export PATH=$PATH:/usr/local/go/bin 保存.zshrc之后 source ~/.zshrc ➜ download go version go version go1.16.3 linux/amd64 2. go proxy设置 Go 1.13 及以上（推荐）
-打开你的终端并执行
-go env -w GO111MODULE=on go env -w GOPROXY=https://goproxy.cn,direct 3. go get 下载的文件在哪？ 检查 go env
-GOPATH=&amp;#34;/Users/wangdd/go” /Users/wangdd/go/pkg/mod total 0 drwxr-xr-x 4 wangdd staff 128B Sep 14 09:17 cache drwxr-xr-x 8 wangdd staff 256B Sep 14 09:17 github.</description>
+      <description>&lt;h1 id=&#34;1-如何安装go&#34;&gt;1. 如何安装go&lt;/h1&gt;
+&lt;p&gt;本次安装环境是win10子系统 ubuntu 20.04&lt;/p&gt;
+&lt;p&gt;打开网站 &lt;a href=&#34;https://golang.google.cn/dl/&#34;&gt;https://golang.google.cn/dl/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;选择合适的最新版的连接&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cd
+mkdir download
+cd download
+wget https://golang.google.cn/dl/go1.16.3.linux-amd64.tar.gz
+tar -C /usr/local -xvf go1.16.3.linux-amd64.tar.gz
+
+因为我用的是zsh
+所以我在~/.zshrc中，将go的bin目录加入到PATH中
+export PATH=$PATH:/usr/local/go/bin
+
+保存.zshrc之后
+source ~/.zshrc
+
+
+➜  download go version
+go version go1.16.3 linux/amd64
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;2-go-proxy设置&#34;&gt;2. go proxy设置&lt;/h1&gt;
+&lt;p&gt;Go 1.13 及以上（推荐）&lt;/p&gt;
+&lt;p&gt;打开你的终端并执行&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;go env -w GO111MODULE=on
+go env -w GOPROXY=https://goproxy.cn,direct
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;3-go-get-下载的文件在哪&#34;&gt;3. go get 下载的文件在哪？&lt;/h1&gt;
+&lt;p&gt;检查 go env&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;GOPATH=&amp;#34;/Users/wangdd/go”
+/Users/wangdd/go/pkg/mod
+total 0
+drwxr-xr-x  4 wangdd  staff   128B Sep 14 09:17 cache
+drwxr-xr-x  8 wangdd  staff   256B Sep 14 09:17 github.com
+drwxr-xr-x  3 wangdd  staff    96B Sep 14 09:17 golang.org
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;路径在GOPATH/pkg/mod 目录下&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -1,11 +1,271 @@
-<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>从pcap文件提取转wav语音文件 | 洞香春</title><meta name=keywords content><meta name=description content="wireshark具有这个功能，但是并不适合做批量执行。
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>从pcap文件提取转wav语音文件 | 洞香春</title>
+<meta name=keywords content><meta name=description content="wireshark具有这个功能，但是并不适合做批量执行。
 下面的方案比较适合批量执行。
-# 1. 安装依赖 yum install gcc libpcap-devel libnet-devel sox -y # 2. 克隆源码 git clone https://github.com/wangduanduan/rtpsplit.git # 3. 切换目录 cd rtpsplit # 4. 编译可执行文件 make # 5. 将可执行文件复制到/usr/local/bin目录下 cp src/rtpbreak /usr/local/bin # 6. 切换到录音文件的目录，假如当前目录只有一个文件 rtpbreak -r krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap -g -m -d ./ audio git:(edge) ✗ rtpbreak -r krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap -g -m -d ./ + rtpbreak v1.3a running here! + pid: 1885, date/time: 01/05/2020#09:49:05 + Configuration + INPUT Packet source: rxfile 'krk9hprvin1u1laqe14g-8beffe8aaeb9bf99."><meta name=author content="Eddie Wang"><link rel=canonical href=https://wdd.js.org/posts/2020/05/fosfbg/><link crossorigin=anonymous href=/assets/css/stylesheet.6d3944e058d85363bbe8a792a9b5f40002bca80be859dc19c466dd8de223973e.css integrity="sha256-bTlE4FjYU2O76KeSqbX0AAK8qAvoWdwZxGbdjeIjlz4=" rel="preload stylesheet" as=style><script defer crossorigin=anonymous src=/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG+9vmJ0cTS+ovo0FeA=" onload=hljs.initHighlightingOnLoad()></script>
-<link rel=icon href=https://wdd.js.org/cowboy.ico><link rel=icon type=image/png sizes=16x16 href=https://wdd.js.org/cowboy.ico><link rel=icon type=image/png sizes=32x32 href=https://wdd.js.org/cowboy.ico><link rel=apple-touch-icon href=https://wdd.js.org/cowboy.ico><link rel=mask-icon href=https://wdd.js.org/cowboy.ico><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><meta property="og:title" content="从pcap文件提取转wav语音文件"><meta property="og:description" content="wireshark具有这个功能，但是并不适合做批量执行。
+# 1. 安装依赖
+yum install gcc libpcap-devel libnet-devel sox -y
+
+# 2. 克隆源码
+git clone https://github.com/wangduanduan/rtpsplit.git
+
+# 3. 切换目录
+cd rtpsplit
+
+# 4. 编译可执行文件
+make
+
+# 5. 将可执行文件复制到/usr/local/bin目录下
+cp src/rtpbreak /usr/local/bin
+
+# 6. 切换到录音文件的目录，假如当前目录只有一个文件
+rtpbreak -r krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap -g -m -d ./
+    
+  audio git:(edge) ✗ rtpbreak -r krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap -g -m -d ./
+ + rtpbreak v1.3a running here!
+ + pid: 1885, date/time: 01/05/2020#09:49:05
+ + Configuration
+   + INPUT
+     Packet source: rxfile 'krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap'
+     Force datalink header length: disabled
+   + OUTPUT
+     Output directory: './'
+     RTP raw dumps: enabled
+     RTP pcap dumps: enabled
+     Fill gaps: enabled
+     Dump noise: disabled
+     Logfile: './/rtp.0.txt'
+     Logging to stdout: enabled
+     Logging to syslog: disabled
+     Be verbose: disabled
+   + SELECT
+     Sniff packets in promisc mode: enabled
+     Add pcap filter: disabled
+     Expecting even destination UDP port: disabled
+     Expecting unprivileged source/destination UDP ports: disabled
+     Expecting RTP payload type: any
+     Expecting RTP payload length: any
+     Packet timeout: 10.00 seconds
+     Pattern timeout: 0.25 seconds
+     Pattern packets: 5
+   + EXECUTION
+     Running as user/group: root/root
+     Running daemonized: disabled
+ * You can dump stats sending me a SIGUSR2 signal
+ * Reading packets...
+open di .//rtp.0.0.txt
+ ! [rtp0] detected: pt=0(g711U) 192.168.40.192:26396 => 192.168.60.229:20000
+open di .//rtp.0.1.txt
+ ! [rtp1] detected: pt=0(g711U) 10.197.169.10:49265 => 192.168.60.229:20012
+ * eof reached.
+--
+Caught SIGTERM signal (15), cleaning up...
+--
+ * [rtp1] closed: packets inbuffer=0 flushed=285 lost=0(0.00%), call_length=0m12s
+ * [rtp0] closed: packets inbuffer=0 flushed=586 lost=0(0.00%), call_length=0m12s
+ + Status
+   Alive RTP Sessions: 0
+   Closed RTP Sessions: 2
+   Detected RTP Sessions: 2
+   Flushed RTP packets: 871
+   Lost RTP packets: 0 (0.00%)
+   Noise (false positive) packets: 8
+ + No active RTP streams
+ 
+ # 7. 查看输出文件
+ -rw-r--r--. 1 root root 185K May  1 09:22 krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap
+-rw-r--r--. 1 root root 132K May  1 09:49 rtp.0.0.pcap
+-rw-r--r--. 1 root root  92K May  1 09:49 rtp.0.0.raw
+-rw-r--r--. 1 root root  412 May  1 09:49 rtp.0.0.txt
+-rw-r--r--. 1 root root  52K May  1 09:49 rtp.0.1.pcap
+-rw-r--r--. 1 root root  33K May  1 09:49 rtp.0.1.raw
+-rw-r--r--. 1 root root  435 May  1 09:49 rtp.0.1.txt
+-rw-r--r--. 1 root root 1.7K May  1 09:49 rtp.0.txt
+
+# 8. 使用sox 转码以及合成wav文件
+sox -r8000 -c1 -t ul rtp.0.0.raw -t wav 0.wav
+sox -r8000 -c1 -t ul rtp.0.1.raw -t wav 1.wav
+sox -m 0.wav 1.wav call.wav
+
+# 最终合成的 call.wav文件，就是可以放到浏览器中播放的双声道语音文件
+参考
+rtpbreak帮助文档
+Copyright (c) 2007-2008 Dallachiesa Michele <micheleDOTdallachiesaATposteDOTit>
+rtpbreak v1.3a is free software, covered by the GNU General Public License.
+
+USAGE: rtpbreak (-r|-i) <source> [options]
+
+ INPUT
+
+  -r <str>      Read packets from pcap file <str>
+  -i <str>      Read packets from network interface <str>
+  -L <int>      Force datalink header length == <int> bytes
+
+ OUTPUT
+
+  -d <str>      Set output directory to <str> (def:.)
+  -w            Disable RTP raw dumps
+  -W            Disable RTP pcap dumps
+  -g            Fill gaps in RTP raw dumps (caused by lost packets)
+  -n            Dump noise packets
+  -f            Disable stdout logging
+  -F            Enable syslog logging
+  -v            Be verbose
+
+ SELECT
+
+  -m            Sniff packets in promisc mode
+  -p <str>      Add pcap filter <str>
+  -e            Expect even destination UDP port
+  -u            Expect unprivileged source/destination UDP ports (>1024)
+  -y <int>      Expect RTP payload type == <int>
+  -l <int>      Expect RTP payload length == <int> bytes
+  -t <float>    Set packet timeout to <float> seconds (def:10.00)
+  -T <float>    Set pattern timeout to <float> seconds (def:0.25)
+  -P <int>      Set pattern packets count to <int> (def:5)
+
+ EXECUTION
+
+  -Z <str>      Run as user <str>
+  -D            Run in background (option -f implicit)
+
+ MISC
+
+  -k            List known RTP payload types
+  -h            This
+"><meta name=author content="Eddie Wang"><link rel=canonical href=https://wdd.js.org/posts/2020/05/fosfbg/><link crossorigin=anonymous href=/assets/css/stylesheet.821c51435cba3e33e49e590a06514c54c32ac7957095ffcc1e0f390c47cf3228.css integrity="sha256-ghxRQ1y6PjPknlkKBlFMVMMqx5Vwlf/MHg85DEfPMig=" rel="preload stylesheet" as=style><link rel=icon href=https://wdd.js.org/cowboy.ico><link rel=icon type=image/png sizes=16x16 href=https://wdd.js.org/cowboy.ico><link rel=icon type=image/png sizes=32x32 href=https://wdd.js.org/cowboy.ico><link rel=apple-touch-icon href=https://wdd.js.org/cowboy.ico><link rel=mask-icon href=https://wdd.js.org/cowboy.ico><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://wdd.js.org/posts/2020/05/fosfbg/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><meta property="og:url" content="https://wdd.js.org/posts/2020/05/fosfbg/"><meta property="og:site_name" content="洞香春"><meta property="og:title" content="从pcap文件提取转wav语音文件"><meta property="og:description" content="wireshark具有这个功能，但是并不适合做批量执行。
 下面的方案比较适合批量执行。
-# 1. 安装依赖 yum install gcc libpcap-devel libnet-devel sox -y # 2. 克隆源码 git clone https://github.com/wangduanduan/rtpsplit.git # 3. 切换目录 cd rtpsplit # 4. 编译可执行文件 make # 5. 将可执行文件复制到/usr/local/bin目录下 cp src/rtpbreak /usr/local/bin # 6. 切换到录音文件的目录，假如当前目录只有一个文件 rtpbreak -r krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap -g -m -d ./ audio git:(edge) ✗ rtpbreak -r krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap -g -m -d ./ + rtpbreak v1.3a running here! + pid: 1885, date/time: 01/05/2020#09:49:05 + Configuration + INPUT Packet source: rxfile 'krk9hprvin1u1laqe14g-8beffe8aaeb9bf99."><meta property="og:type" content="article"><meta property="og:url" content="https://wdd.js.org/posts/2020/05/fosfbg/"><meta property="og:image" content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta property="article:section" content="posts"><meta property="article:published_time" content="2020-05-01T09:36:26+08:00"><meta property="article:modified_time" content="2020-05-01T09:36:26+08:00"><meta property="og:site_name" content="洞香春"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="从pcap文件提取转wav语音文件"><meta name=twitter:description content="wireshark具有这个功能，但是并不适合做批量执行。
+# 1. 安装依赖 yum install gcc libpcap-devel libnet-devel sox -y # 2. 克隆源码 git clone https://github.com/wangduanduan/rtpsplit.git # 3. 切换目录 cd rtpsplit # 4. 编译可执行文件 make # 5. 将可执行文件复制到/usr/local/bin目录下 cp src/rtpbreak /usr/local/bin # 6. 切换到录音文件的目录，假如当前目录只有一个文件 rtpbreak -r krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap -g -m -d ./ audio git:(edge) ✗ rtpbreak -r krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap -g -m -d ./ + rtpbreak v1.3a running here! + pid: 1885, date/time: 01/05/2020#09:49:05 + Configuration + INPUT Packet source: rxfile 'krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap' Force datalink header length: disabled + OUTPUT Output directory: './' RTP raw dumps: enabled RTP pcap dumps: enabled Fill gaps: enabled Dump noise: disabled Logfile: './/rtp.0.txt' Logging to stdout: enabled Logging to syslog: disabled Be verbose: disabled + SELECT Sniff packets in promisc mode: enabled Add pcap filter: disabled Expecting even destination UDP port: disabled Expecting unprivileged source/destination UDP ports: disabled Expecting RTP payload type: any Expecting RTP payload length: any Packet timeout: 10.00 seconds Pattern timeout: 0.25 seconds Pattern packets: 5 + EXECUTION Running as user/group: root/root Running daemonized: disabled * You can dump stats sending me a SIGUSR2 signal * Reading packets... open di .//rtp.0.0.txt ! [rtp0] detected: pt=0(g711U) 192.168.40.192:26396 => 192.168.60.229:20000 open di .//rtp.0.1.txt ! [rtp1] detected: pt=0(g711U) 10.197.169.10:49265 => 192.168.60.229:20012 * eof reached. -- Caught SIGTERM signal (15), cleaning up... -- * [rtp1] closed: packets inbuffer=0 flushed=285 lost=0(0.00%), call_length=0m12s * [rtp0] closed: packets inbuffer=0 flushed=586 lost=0(0.00%), call_length=0m12s + Status Alive RTP Sessions: 0 Closed RTP Sessions: 2 Detected RTP Sessions: 2 Flushed RTP packets: 871 Lost RTP packets: 0 (0.00%) Noise (false positive) packets: 8 + No active RTP streams # 7. 查看输出文件 -rw-r--r--. 1 root root 185K May 1 09:22 krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap -rw-r--r--. 1 root root 132K May 1 09:49 rtp.0.0.pcap -rw-r--r--. 1 root root 92K May 1 09:49 rtp.0.0.raw -rw-r--r--. 1 root root 412 May 1 09:49 rtp.0.0.txt -rw-r--r--. 1 root root 52K May 1 09:49 rtp.0.1.pcap -rw-r--r--. 1 root root 33K May 1 09:49 rtp.0.1.raw -rw-r--r--. 1 root root 435 May 1 09:49 rtp.0.1.txt -rw-r--r--. 1 root root 1.7K May 1 09:49 rtp.0.txt # 8. 使用sox 转码以及合成wav文件 sox -r8000 -c1 -t ul rtp.0.0.raw -t wav 0.wav sox -r8000 -c1 -t ul rtp.0.1.raw -t wav 1.wav sox -m 0.wav 1.wav call.wav # 最终合成的 call.wav文件，就是可以放到浏览器中播放的双声道语音文件 参考 rtpbreak帮助文档 Copyright (c) 2007-2008 Dallachiesa Michele <micheleDOTdallachiesaATposteDOTit> rtpbreak v1.3a is free software, covered by the GNU General Public License. USAGE: rtpbreak (-r|-i) <source> [options] INPUT -r <str> Read packets from pcap file <str> -i <str> Read packets from network interface <str> -L <int> Force datalink header length == <int> bytes OUTPUT -d <str> Set output directory to <str> (def:.) -w Disable RTP raw dumps -W Disable RTP pcap dumps -g Fill gaps in RTP raw dumps (caused by lost packets) -n Dump noise packets -f Disable stdout logging -F Enable syslog logging -v Be verbose SELECT -m Sniff packets in promisc mode -p <str> Add pcap filter <str> -e Expect even destination UDP port -u Expect unprivileged source/destination UDP ports (>1024) -y <int> Expect RTP payload type == <int> -l <int> Expect RTP payload length == <int> bytes -t <float> Set packet timeout to <float> seconds (def:10.00) -T <float> Set pattern timeout to <float> seconds (def:0.25) -P <int> Set pattern packets count to <int> (def:5) EXECUTION -Z <str> Run as user <str> -D Run in background (option -f implicit) MISC -k List known RTP payload types -h This "><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2020-05-01T09:36:26+08:00"><meta property="article:modified_time" content="2020-05-01T09:36:26+08:00"><meta property="og:image" content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="从pcap文件提取转wav语音文件"><meta name=twitter:description content="wireshark具有这个功能，但是并不适合做批量执行。
 下面的方案比较适合批量执行。
-# 1. 安装依赖 yum install gcc libpcap-devel libnet-devel sox -y # 2. 克隆源码 git clone https://github.com/wangduanduan/rtpsplit.git # 3. 切换目录 cd rtpsplit # 4. 编译可执行文件 make # 5. 将可执行文件复制到/usr/local/bin目录下 cp src/rtpbreak /usr/local/bin # 6. 切换到录音文件的目录，假如当前目录只有一个文件 rtpbreak -r krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap -g -m -d ./ audio git:(edge) ✗ rtpbreak -r krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap -g -m -d ./ + rtpbreak v1.3a running here! + pid: 1885, date/time: 01/05/2020#09:49:05 + Configuration + INPUT Packet source: rxfile 'krk9hprvin1u1laqe14g-8beffe8aaeb9bf99."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"Posts","item":"https://wdd.js.org/posts/"},{"@type":"ListItem","position":3,"name":"从pcap文件提取转wav语音文件","item":"https://wdd.js.org/posts/2020/05/fosfbg/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"从pcap文件提取转wav语音文件","name":"从pcap文件提取转wav语音文件","description":"wireshark具有这个功能，但是并不适合做批量执行。\n下面的方案比较适合批量执行。\n# 1. 安装依赖 yum install gcc libpcap-devel libnet-devel sox -y # 2. 克隆源码 git clone https://github.com/wangduanduan/rtpsplit.git # 3. 切换目录 cd rtpsplit # 4. 编译可执行文件 make # 5. 将可执行文件复制到/usr/local/bin目录下 cp src/rtpbreak /usr/local/bin # 6. 切换到录音文件的目录，假如当前目录只有一个文件 rtpbreak -r krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap -g -m -d ./ audio git:(edge) ✗ rtpbreak -r krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap -g -m -d ./ + rtpbreak v1.3a running here! + pid: 1885, date/time: 01/05/2020#09:49:05 + Configuration + INPUT Packet source: rxfile \u0026#39;krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.","keywords":[],"articleBody":"wireshark具有这个功能，但是并不适合做批量执行。\n下面的方案比较适合批量执行。\n# 1. 安装依赖 yum install gcc libpcap-devel libnet-devel sox -y # 2. 克隆源码 git clone https://github.com/wangduanduan/rtpsplit.git # 3. 切换目录 cd rtpsplit # 4. 编译可执行文件 make # 5. 将可执行文件复制到/usr/local/bin目录下 cp src/rtpbreak /usr/local/bin # 6. 切换到录音文件的目录，假如当前目录只有一个文件 rtpbreak -r krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap -g -m -d ./ audio git:(edge) ✗ rtpbreak -r krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap -g -m -d ./ + rtpbreak v1.3a running here! + pid: 1885, date/time: 01/05/2020#09:49:05 + Configuration + INPUT Packet source: rxfile 'krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap' Force datalink header length: disabled + OUTPUT Output directory: './' RTP raw dumps: enabled RTP pcap dumps: enabled Fill gaps: enabled Dump noise: disabled Logfile: './/rtp.0.txt' Logging to stdout: enabled Logging to syslog: disabled Be verbose: disabled + SELECT Sniff packets in promisc mode: enabled Add pcap filter: disabled Expecting even destination UDP port: disabled Expecting unprivileged source/destination UDP ports: disabled Expecting RTP payload type: any Expecting RTP payload length: any Packet timeout: 10.00 seconds Pattern timeout: 0.25 seconds Pattern packets: 5 + EXECUTION Running as user/group: root/root Running daemonized: disabled * You can dump stats sending me a SIGUSR2 signal * Reading packets... open di .//rtp.0.0.txt ! [rtp0] detected: pt=0(g711U) 192.168.40.192:26396 =\u003e 192.168.60.229:20000 open di .//rtp.0.1.txt ! [rtp1] detected: pt=0(g711U) 10.197.169.10:49265 =\u003e 192.168.60.229:20012 * eof reached. -- Caught SIGTERM signal (15), cleaning up... -- * [rtp1] closed: packets inbuffer=0 flushed=285 lost=0(0.00%), call_length=0m12s * [rtp0] closed: packets inbuffer=0 flushed=586 lost=0(0.00%), call_length=0m12s + Status Alive RTP Sessions: 0 Closed RTP Sessions: 2 Detected RTP Sessions: 2 Flushed RTP packets: 871 Lost RTP packets: 0 (0.00%) Noise (false positive) packets: 8 + No active RTP streams # 7. 查看输出文件 -rw-r--r--. 1 root root 185K May 1 09:22 krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap -rw-r--r--. 1 root root 132K May 1 09:49 rtp.0.0.pcap -rw-r--r--. 1 root root 92K May 1 09:49 rtp.0.0.raw -rw-r--r--. 1 root root 412 May 1 09:49 rtp.0.0.txt -rw-r--r--. 1 root root 52K May 1 09:49 rtp.0.1.pcap -rw-r--r--. 1 root root 33K May 1 09:49 rtp.0.1.raw -rw-r--r--. 1 root root 435 May 1 09:49 rtp.0.1.txt -rw-r--r--. 1 root root 1.7K May 1 09:49 rtp.0.txt # 8. 使用sox 转码以及合成wav文件 sox -r8000 -c1 -t ul rtp.0.0.raw -t wav 0.wav sox -r8000 -c1 -t ul rtp.0.1.raw -t wav 1.wav sox -m 0.wav 1.wav call.wav # 最终合成的 call.wav文件，就是可以放到浏览器中播放的双声道语音文件 参考 rtpbreak帮助文档 Copyright (c) 2007-2008 Dallachiesa Michele \u003cmicheleDOTdallachiesaATposteDOTit\u003e rtpbreak v1.3a is free software, covered by the GNU General Public License. USAGE: rtpbreak (-r|-i) \u003csource\u003e [options] INPUT -r \u003cstr\u003e Read packets from pcap file \u003cstr\u003e -i \u003cstr\u003e Read packets from network interface \u003cstr\u003e -L \u003cint\u003e Force datalink header length == \u003cint\u003e bytes OUTPUT -d \u003cstr\u003e Set output directory to \u003cstr\u003e (def:.) -w Disable RTP raw dumps -W Disable RTP pcap dumps -g Fill gaps in RTP raw dumps (caused by lost packets) -n Dump noise packets -f Disable stdout logging -F Enable syslog logging -v Be verbose SELECT -m Sniff packets in promisc mode -p \u003cstr\u003e Add pcap filter \u003cstr\u003e -e Expect even destination UDP port -u Expect unprivileged source/destination UDP ports (\u003e1024) -y \u003cint\u003e Expect RTP payload type == \u003cint\u003e -l \u003cint\u003e Expect RTP payload length == \u003cint\u003e bytes -t \u003cfloat\u003e Set packet timeout to \u003cfloat\u003e seconds (def:10.00) -T \u003cfloat\u003e Set pattern timeout to \u003cfloat\u003e seconds (def:0.25) -P \u003cint\u003e Set pattern packets count to \u003cint\u003e (def:5) EXECUTION -Z \u003cstr\u003e Run as user \u003cstr\u003e -D Run in background (option -f implicit) MISC -k List known RTP payload types -h This ","wordCount":"549","inLanguage":"en","datePublished":"2020-05-01T09:36:26+08:00","dateModified":"2020-05-01T09:36:26+08:00","author":{"@type":"Person","name":"Eddie Wang"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://wdd.js.org/posts/2020/05/fosfbg/"},"publisher":{"@type":"Organization","name":"洞香春","logo":{"@type":"ImageObject","url":"https://wdd.js.org/cowboy.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://wdd.js.org accesskey=h title="洞香春 (Alt + H)"><img src=https://wdd.js.org/cowboy.ico alt aria-label=logo height=35>洞香春</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://wdd.js.org/books/ title=读书><span>读书</span></a></li><li><a href=https://wdd.js.org/freeswitch/ title=FreeSWITCH><span>FreeSWITCH</span></a></li><li><a href=https://wdd.js.org/golang/ title=Golang><span>Golang</span></a></li><li><a href=https://wdd.js.org/kamailio/ title=Kamailio><span>Kamailio</span></a></li><li><a href=https://wdd.js.org/network/ title=Network><span>Network</span></a></li><li><a href=https://wdd.js.org/opensips/ title=OpenSIPS><span>OpenSIPS</span></a></li><li><a href=https://wdd.js.org/vim/ title=VIM><span>VIM</span></a></li><li><a href=https://wdd.js.org/categories/ title=分类><span>分类</span></a></li><li><a href=https://wdd.js.org/fe/ title=前端><span>前端</span></a></li><li><a href=https://wdd.js.org/search/ title=搜索><span>搜索</span></a></li><li><a href=https://wdd.js.org/tags/ title=标签><span>标签</span></a></li><li><a href=https://wdd.js.org/archives/ title=归档><span>归档</span></a></li><li><a href=https://wdd.js.org/about/ title=我><span>我</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://wdd.js.org>Home</a>&nbsp;»&nbsp;<a href=https://wdd.js.org/posts/>Posts</a></div><h1 class=post-title>从pcap文件提取转wav语音文件</h1><div class=post-meta><span title='2020-05-01 09:36:26 +0800 CST'>2020-05-01 09:36:26</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Eddie Wang&nbsp;|&nbsp;<a href=https://github.com/%3cpath_to_repo%3e/content/posts/2020/05/fosfbg/index.md rel="noopener noreferrer" target=_blank>Suggest Changes</a></div></header><aside id=toc-container class="toc-container wide"><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#%e5%8f%82%e8%80%83 aria-label=参考>参考</a><ul><li><a href=#rtpbreak%e5%b8%ae%e5%8a%a9%e6%96%87%e6%a1%a3 aria-label=rtpbreak帮助文档>rtpbreak帮助文档</a></li></ul></li></ul></div></details></div></aside><script>let activeElement,elements;window.addEventListener("DOMContentLoaded",function(){checkTocPosition(),elements=document.querySelectorAll("h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]"),activeElement=elements[0];const t=encodeURI(activeElement.getAttribute("id")).toLowerCase();document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active")},!1),window.addEventListener("resize",function(){checkTocPosition()},!1),window.addEventListener("scroll",()=>{activeElement=Array.from(elements).find(e=>{if(getOffsetTop(e)-window.pageYOffset>0&&getOffsetTop(e)-window.pageYOffset<window.innerHeight/2)return e})||activeElement,elements.forEach(e=>{const t=encodeURI(e.getAttribute("id")).toLowerCase();e===activeElement?document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active"):document.querySelector(`.inner ul li a[href="#${t}"]`).classList.remove("active")})},!1);const main=parseInt(getComputedStyle(document.body).getPropertyValue("--article-width"),10),toc=parseInt(getComputedStyle(document.body).getPropertyValue("--toc-width"),10),gap=parseInt(getComputedStyle(document.body).getPropertyValue("--gap"),10);function checkTocPosition(){const e=document.body.scrollWidth;e-main-toc*2-gap*4>0?document.getElementById("toc-container").classList.add("wide"):document.getElementById("toc-container").classList.remove("wide")}function getOffsetTop(e){if(!e.getClientRects().length)return 0;let t=e.getBoundingClientRect(),n=e.ownerDocument.defaultView;return t.top+n.pageYOffset}</script><div class=post-content><p>wireshark具有这个功能，但是并不适合做批量执行。</p><p>下面的方案比较适合批量执行。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#75715e># 1. 安装依赖
+# 1. 安装依赖
+yum install gcc libpcap-devel libnet-devel sox -y
+
+# 2. 克隆源码
+git clone https://github.com/wangduanduan/rtpsplit.git
+
+# 3. 切换目录
+cd rtpsplit
+
+# 4. 编译可执行文件
+make
+
+# 5. 将可执行文件复制到/usr/local/bin目录下
+cp src/rtpbreak /usr/local/bin
+
+# 6. 切换到录音文件的目录，假如当前目录只有一个文件
+rtpbreak -r krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap -g -m -d ./
+    
+  audio git:(edge) ✗ rtpbreak -r krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap -g -m -d ./
+ + rtpbreak v1.3a running here!
+ + pid: 1885, date/time: 01/05/2020#09:49:05
+ + Configuration
+   + INPUT
+     Packet source: rxfile 'krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap'
+     Force datalink header length: disabled
+   + OUTPUT
+     Output directory: './'
+     RTP raw dumps: enabled
+     RTP pcap dumps: enabled
+     Fill gaps: enabled
+     Dump noise: disabled
+     Logfile: './/rtp.0.txt'
+     Logging to stdout: enabled
+     Logging to syslog: disabled
+     Be verbose: disabled
+   + SELECT
+     Sniff packets in promisc mode: enabled
+     Add pcap filter: disabled
+     Expecting even destination UDP port: disabled
+     Expecting unprivileged source/destination UDP ports: disabled
+     Expecting RTP payload type: any
+     Expecting RTP payload length: any
+     Packet timeout: 10.00 seconds
+     Pattern timeout: 0.25 seconds
+     Pattern packets: 5
+   + EXECUTION
+     Running as user/group: root/root
+     Running daemonized: disabled
+ * You can dump stats sending me a SIGUSR2 signal
+ * Reading packets...
+open di .//rtp.0.0.txt
+ ! [rtp0] detected: pt=0(g711U) 192.168.40.192:26396 => 192.168.60.229:20000
+open di .//rtp.0.1.txt
+ ! [rtp1] detected: pt=0(g711U) 10.197.169.10:49265 => 192.168.60.229:20012
+ * eof reached.
+--
+Caught SIGTERM signal (15), cleaning up...
+--
+ * [rtp1] closed: packets inbuffer=0 flushed=285 lost=0(0.00%), call_length=0m12s
+ * [rtp0] closed: packets inbuffer=0 flushed=586 lost=0(0.00%), call_length=0m12s
+ + Status
+   Alive RTP Sessions: 0
+   Closed RTP Sessions: 2
+   Detected RTP Sessions: 2
+   Flushed RTP packets: 871
+   Lost RTP packets: 0 (0.00%)
+   Noise (false positive) packets: 8
+ + No active RTP streams
+ 
+ # 7. 查看输出文件
+ -rw-r--r--. 1 root root 185K May  1 09:22 krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap
+-rw-r--r--. 1 root root 132K May  1 09:49 rtp.0.0.pcap
+-rw-r--r--. 1 root root  92K May  1 09:49 rtp.0.0.raw
+-rw-r--r--. 1 root root  412 May  1 09:49 rtp.0.0.txt
+-rw-r--r--. 1 root root  52K May  1 09:49 rtp.0.1.pcap
+-rw-r--r--. 1 root root  33K May  1 09:49 rtp.0.1.raw
+-rw-r--r--. 1 root root  435 May  1 09:49 rtp.0.1.txt
+-rw-r--r--. 1 root root 1.7K May  1 09:49 rtp.0.txt
+
+# 8. 使用sox 转码以及合成wav文件
+sox -r8000 -c1 -t ul rtp.0.0.raw -t wav 0.wav
+sox -r8000 -c1 -t ul rtp.0.1.raw -t wav 1.wav
+sox -m 0.wav 1.wav call.wav
+
+# 最终合成的 call.wav文件，就是可以放到浏览器中播放的双声道语音文件
+参考
+rtpbreak帮助文档
+Copyright (c) 2007-2008 Dallachiesa Michele <micheleDOTdallachiesaATposteDOTit>
+rtpbreak v1.3a is free software, covered by the GNU General Public License.
+
+USAGE: rtpbreak (-r|-i) <source> [options]
+
+ INPUT
+
+  -r <str>      Read packets from pcap file <str>
+  -i <str>      Read packets from network interface <str>
+  -L <int>      Force datalink header length == <int> bytes
+
+ OUTPUT
+
+  -d <str>      Set output directory to <str> (def:.)
+  -w            Disable RTP raw dumps
+  -W            Disable RTP pcap dumps
+  -g            Fill gaps in RTP raw dumps (caused by lost packets)
+  -n            Dump noise packets
+  -f            Disable stdout logging
+  -F            Enable syslog logging
+  -v            Be verbose
+
+ SELECT
+
+  -m            Sniff packets in promisc mode
+  -p <str>      Add pcap filter <str>
+  -e            Expect even destination UDP port
+  -u            Expect unprivileged source/destination UDP ports (>1024)
+  -y <int>      Expect RTP payload type == <int>
+  -l <int>      Expect RTP payload length == <int> bytes
+  -t <float>    Set packet timeout to <float> seconds (def:10.00)
+  -T <float>    Set pattern timeout to <float> seconds (def:0.25)
+  -P <int>      Set pattern packets count to <int> (def:5)
+
+ EXECUTION
+
+  -Z <str>      Run as user <str>
+  -D            Run in background (option -f implicit)
+
+ MISC
+
+  -k            List known RTP payload types
+  -h            This
+"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://wdd.js.org/posts/"},{"@type":"ListItem","position":2,"name":"从pcap文件提取转wav语音文件","item":"https://wdd.js.org/posts/2020/05/fosfbg/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"从pcap文件提取转wav语音文件","name":"从pcap文件提取转wav语音文件","description":"wireshark具有这个功能，但是并不适合做批量执行。\n下面的方案比较适合批量执行。\n# 1. 安装依赖 yum install gcc libpcap-devel libnet-devel sox -y # 2. 克隆源码 git clone https://github.com/wangduanduan/rtpsplit.git # 3. 切换目录 cd rtpsplit # 4. 编译可执行文件 make # 5. 将可执行文件复制到/usr/local/bin目录下 cp src/rtpbreak /usr/local/bin # 6. 切换到录音文件的目录，假如当前目录只有一个文件 rtpbreak -r krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap -g -m -d ./ audio git:(edge) ✗ rtpbreak -r krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap -g -m -d ./ + rtpbreak v1.3a running here! + pid: 1885, date/time: 01/05/2020#09:49:05 + Configuration + INPUT Packet source: rxfile \u0026#39;krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap\u0026#39; Force datalink header length: disabled + OUTPUT Output directory: \u0026#39;./\u0026#39; RTP raw dumps: enabled RTP pcap dumps: enabled Fill gaps: enabled Dump noise: disabled Logfile: \u0026#39;.//rtp.0.txt\u0026#39; Logging to stdout: enabled Logging to syslog: disabled Be verbose: disabled + SELECT Sniff packets in promisc mode: enabled Add pcap filter: disabled Expecting even destination UDP port: disabled Expecting unprivileged source/destination UDP ports: disabled Expecting RTP payload type: any Expecting RTP payload length: any Packet timeout: 10.00 seconds Pattern timeout: 0.25 seconds Pattern packets: 5 + EXECUTION Running as user/group: root/root Running daemonized: disabled * You can dump stats sending me a SIGUSR2 signal * Reading packets... open di .//rtp.0.0.txt ! [rtp0] detected: pt=0(g711U) 192.168.40.192:26396 =\u0026gt; 192.168.60.229:20000 open di .//rtp.0.1.txt ! [rtp1] detected: pt=0(g711U) 10.197.169.10:49265 =\u0026gt; 192.168.60.229:20012 * eof reached. -- Caught SIGTERM signal (15), cleaning up... -- * [rtp1] closed: packets inbuffer=0 flushed=285 lost=0(0.00%), call_length=0m12s * [rtp0] closed: packets inbuffer=0 flushed=586 lost=0(0.00%), call_length=0m12s + Status Alive RTP Sessions: 0 Closed RTP Sessions: 2 Detected RTP Sessions: 2 Flushed RTP packets: 871 Lost RTP packets: 0 (0.00%) Noise (false positive) packets: 8 + No active RTP streams # 7. 查看输出文件 -rw-r--r--. 1 root root 185K May 1 09:22 krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap -rw-r--r--. 1 root root 132K May 1 09:49 rtp.0.0.pcap -rw-r--r--. 1 root root 92K May 1 09:49 rtp.0.0.raw -rw-r--r--. 1 root root 412 May 1 09:49 rtp.0.0.txt -rw-r--r--. 1 root root 52K May 1 09:49 rtp.0.1.pcap -rw-r--r--. 1 root root 33K May 1 09:49 rtp.0.1.raw -rw-r--r--. 1 root root 435 May 1 09:49 rtp.0.1.txt -rw-r--r--. 1 root root 1.7K May 1 09:49 rtp.0.txt # 8. 使用sox 转码以及合成wav文件 sox -r8000 -c1 -t ul rtp.0.0.raw -t wav 0.wav sox -r8000 -c1 -t ul rtp.0.1.raw -t wav 1.wav sox -m 0.wav 1.wav call.wav # 最终合成的 call.wav文件，就是可以放到浏览器中播放的双声道语音文件 参考 rtpbreak帮助文档 Copyright (c) 2007-2008 Dallachiesa Michele \u0026lt;micheleDOTdallachiesaATposteDOTit\u0026gt; rtpbreak v1.3a is free software, covered by the GNU General Public License. USAGE: rtpbreak (-r|-i) \u0026lt;source\u0026gt; [options] INPUT -r \u0026lt;str\u0026gt; Read packets from pcap file \u0026lt;str\u0026gt; -i \u0026lt;str\u0026gt; Read packets from network interface \u0026lt;str\u0026gt; -L \u0026lt;int\u0026gt; Force datalink header length == \u0026lt;int\u0026gt; bytes OUTPUT -d \u0026lt;str\u0026gt; Set output directory to \u0026lt;str\u0026gt; (def:.) -w Disable RTP raw dumps -W Disable RTP pcap dumps -g Fill gaps in RTP raw dumps (caused by lost packets) -n Dump noise packets -f Disable stdout logging -F Enable syslog logging -v Be verbose SELECT -m Sniff packets in promisc mode -p \u0026lt;str\u0026gt; Add pcap filter \u0026lt;str\u0026gt; -e Expect even destination UDP port -u Expect unprivileged source/destination UDP ports (\u0026gt;1024) -y \u0026lt;int\u0026gt; Expect RTP payload type == \u0026lt;int\u0026gt; -l \u0026lt;int\u0026gt; Expect RTP payload length == \u0026lt;int\u0026gt; bytes -t \u0026lt;float\u0026gt; Set packet timeout to \u0026lt;float\u0026gt; seconds (def:10.00) -T \u0026lt;float\u0026gt; Set pattern timeout to \u0026lt;float\u0026gt; seconds (def:0.25) -P \u0026lt;int\u0026gt; Set pattern packets count to \u0026lt;int\u0026gt; (def:5) EXECUTION -Z \u0026lt;str\u0026gt; Run as user \u0026lt;str\u0026gt; -D Run in background (option -f implicit) MISC -k List known RTP payload types -h This ","keywords":[],"articleBody":"wireshark具有这个功能，但是并不适合做批量执行。\n下面的方案比较适合批量执行。\n# 1. 安装依赖 yum install gcc libpcap-devel libnet-devel sox -y # 2. 克隆源码 git clone https://github.com/wangduanduan/rtpsplit.git # 3. 切换目录 cd rtpsplit # 4. 编译可执行文件 make # 5. 将可执行文件复制到/usr/local/bin目录下 cp src/rtpbreak /usr/local/bin # 6. 切换到录音文件的目录，假如当前目录只有一个文件 rtpbreak -r krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap -g -m -d ./ audio git:(edge) ✗ rtpbreak -r krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap -g -m -d ./ + rtpbreak v1.3a running here! + pid: 1885, date/time: 01/05/2020#09:49:05 + Configuration + INPUT Packet source: rxfile 'krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap' Force datalink header length: disabled + OUTPUT Output directory: './' RTP raw dumps: enabled RTP pcap dumps: enabled Fill gaps: enabled Dump noise: disabled Logfile: './/rtp.0.txt' Logging to stdout: enabled Logging to syslog: disabled Be verbose: disabled + SELECT Sniff packets in promisc mode: enabled Add pcap filter: disabled Expecting even destination UDP port: disabled Expecting unprivileged source/destination UDP ports: disabled Expecting RTP payload type: any Expecting RTP payload length: any Packet timeout: 10.00 seconds Pattern timeout: 0.25 seconds Pattern packets: 5 + EXECUTION Running as user/group: root/root Running daemonized: disabled * You can dump stats sending me a SIGUSR2 signal * Reading packets... open di .//rtp.0.0.txt ! [rtp0] detected: pt=0(g711U) 192.168.40.192:26396 =\u003e 192.168.60.229:20000 open di .//rtp.0.1.txt ! [rtp1] detected: pt=0(g711U) 10.197.169.10:49265 =\u003e 192.168.60.229:20012 * eof reached. -- Caught SIGTERM signal (15), cleaning up... -- * [rtp1] closed: packets inbuffer=0 flushed=285 lost=0(0.00%), call_length=0m12s * [rtp0] closed: packets inbuffer=0 flushed=586 lost=0(0.00%), call_length=0m12s + Status Alive RTP Sessions: 0 Closed RTP Sessions: 2 Detected RTP Sessions: 2 Flushed RTP packets: 871 Lost RTP packets: 0 (0.00%) Noise (false positive) packets: 8 + No active RTP streams # 7. 查看输出文件 -rw-r--r--. 1 root root 185K May 1 09:22 krk9hprvin1u1laqe14g-8beffe8aaeb9bf99.pcap -rw-r--r--. 1 root root 132K May 1 09:49 rtp.0.0.pcap -rw-r--r--. 1 root root 92K May 1 09:49 rtp.0.0.raw -rw-r--r--. 1 root root 412 May 1 09:49 rtp.0.0.txt -rw-r--r--. 1 root root 52K May 1 09:49 rtp.0.1.pcap -rw-r--r--. 1 root root 33K May 1 09:49 rtp.0.1.raw -rw-r--r--. 1 root root 435 May 1 09:49 rtp.0.1.txt -rw-r--r--. 1 root root 1.7K May 1 09:49 rtp.0.txt # 8. 使用sox 转码以及合成wav文件 sox -r8000 -c1 -t ul rtp.0.0.raw -t wav 0.wav sox -r8000 -c1 -t ul rtp.0.1.raw -t wav 1.wav sox -m 0.wav 1.wav call.wav # 最终合成的 call.wav文件，就是可以放到浏览器中播放的双声道语音文件 参考 rtpbreak帮助文档 Copyright (c) 2007-2008 Dallachiesa Michele \u003cmicheleDOTdallachiesaATposteDOTit\u003e rtpbreak v1.3a is free software, covered by the GNU General Public License. USAGE: rtpbreak (-r|-i) \u003csource\u003e [options] INPUT -r \u003cstr\u003e Read packets from pcap file \u003cstr\u003e -i \u003cstr\u003e Read packets from network interface \u003cstr\u003e -L \u003cint\u003e Force datalink header length == \u003cint\u003e bytes OUTPUT -d \u003cstr\u003e Set output directory to \u003cstr\u003e (def:.) -w Disable RTP raw dumps -W Disable RTP pcap dumps -g Fill gaps in RTP raw dumps (caused by lost packets) -n Dump noise packets -f Disable stdout logging -F Enable syslog logging -v Be verbose SELECT -m Sniff packets in promisc mode -p \u003cstr\u003e Add pcap filter \u003cstr\u003e -e Expect even destination UDP port -u Expect unprivileged source/destination UDP ports (\u003e1024) -y \u003cint\u003e Expect RTP payload type == \u003cint\u003e -l \u003cint\u003e Expect RTP payload length == \u003cint\u003e bytes -t \u003cfloat\u003e Set packet timeout to \u003cfloat\u003e seconds (def:10.00) -T \u003cfloat\u003e Set pattern timeout to \u003cfloat\u003e seconds (def:0.25) -P \u003cint\u003e Set pattern packets count to \u003cint\u003e (def:5) EXECUTION -Z \u003cstr\u003e Run as user \u003cstr\u003e -D Run in background (option -f implicit) MISC -k List known RTP payload types -h This ","wordCount":"549","inLanguage":"en","image":"https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E","datePublished":"2020-05-01T09:36:26+08:00","dateModified":"2020-05-01T09:36:26+08:00","author":{"@type":"Person","name":"Eddie Wang"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://wdd.js.org/posts/2020/05/fosfbg/"},"publisher":{"@type":"Organization","name":"洞香春","logo":{"@type":"ImageObject","url":"https://wdd.js.org/cowboy.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://wdd.js.org/ accesskey=h title="洞香春 (Alt + H)"><img src=https://wdd.js.org/cowboy.ico alt aria-label=logo height=35>洞香春</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://wdd.js.org/books/ title=读书><span>读书</span></a></li><li><a href=https://wdd.js.org/freeswitch/ title=FreeSWITCH><span>FreeSWITCH</span></a></li><li><a href=https://wdd.js.org/golang/ title=Golang><span>Golang</span></a></li><li><a href=https://wdd.js.org/kamailio/ title=Kamailio><span>Kamailio</span></a></li><li><a href=https://wdd.js.org/network/ title=Network><span>Network</span></a></li><li><a href=https://wdd.js.org/opensips/ title=OpenSIPS><span>OpenSIPS</span></a></li><li><a href=https://wdd.js.org/vim/ title=VIM><span>VIM</span></a></li><li><a href=https://wdd.js.org/categories/ title=分类><span>分类</span></a></li><li><a href=https://wdd.js.org/fe/ title=前端><span>前端</span></a></li><li><a href=https://wdd.js.org/search/ title=搜索><span>搜索</span></a></li><li><a href=https://wdd.js.org/tags/ title=标签><span>标签</span></a></li><li><a href=https://wdd.js.org/archives/ title=归档><span>归档</span></a></li><li><a href=https://wdd.js.org/about/ title=我><span>我</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://wdd.js.org/>Home</a>&nbsp;»&nbsp;<a href=https://wdd.js.org/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">从pcap文件提取转wav语音文件</h1><div class=post-meta><span title='2020-05-01 09:36:26 +0800 CST'>2020-05-01 09:36:26</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Eddie Wang&nbsp;|&nbsp;<a href=https://github.com/%3cpath_to_repo%3e/content/posts/2020/05/fosfbg/index.md rel="noopener noreferrer" target=_blank>Suggest Changes</a></div></header><aside id=toc-container class="toc-container wide"><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#%e5%8f%82%e8%80%83 aria-label=参考>参考</a><ul><li><a href=#rtpbreak%e5%b8%ae%e5%8a%a9%e6%96%87%e6%a1%a3 aria-label=rtpbreak帮助文档>rtpbreak帮助文档</a></li></ul></li></ul></div></details></div></aside><script>let activeElement,elements;window.addEventListener("DOMContentLoaded",function(){checkTocPosition(),elements=document.querySelectorAll("h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]"),activeElement=elements[0];const t=encodeURI(activeElement.getAttribute("id")).toLowerCase();document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active")},!1),window.addEventListener("resize",function(){checkTocPosition()},!1),window.addEventListener("scroll",()=>{activeElement=Array.from(elements).find(e=>{if(getOffsetTop(e)-window.pageYOffset>0&&getOffsetTop(e)-window.pageYOffset<window.innerHeight/2)return e})||activeElement,elements.forEach(e=>{const t=encodeURI(e.getAttribute("id")).toLowerCase();e===activeElement?document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active"):document.querySelector(`.inner ul li a[href="#${t}"]`).classList.remove("active")})},!1);const main=parseInt(getComputedStyle(document.body).getPropertyValue("--article-width"),10),toc=parseInt(getComputedStyle(document.body).getPropertyValue("--toc-width"),10),gap=parseInt(getComputedStyle(document.body).getPropertyValue("--gap"),10);function checkTocPosition(){const e=document.body.scrollWidth;e-main-toc*2-gap*4>0?document.getElementById("toc-container").classList.add("wide"):document.getElementById("toc-container").classList.remove("wide")}function getOffsetTop(e){if(!e.getClientRects().length)return 0;let t=e.getBoundingClientRect(),n=e.ownerDocument.defaultView;return t.top+n.pageYOffset}</script><div class=post-content><p>wireshark具有这个功能，但是并不适合做批量执行。</p><p>下面的方案比较适合批量执行。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#75715e># 1. 安装依赖
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>yum install gcc libpcap<span style=color:#f92672>-</span>devel libnet<span style=color:#f92672>-</span>devel sox <span style=color:#f92672>-</span>y
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># 2. 克隆源码
@@ -133,8 +393,9 @@
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>  <span style=color:#f92672>-</span>k            List known RTP payload types
 </span></span><span style=display:flex><span>  <span style=color:#f92672>-</span>h            This
-</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags></ul><nav class=paginav><a class=prev href=https://wdd.js.org/posts/2020/05/db6ou6/><span class=title>« Prev</span><br><span>xmpp学习</span></a>
-<a class=next href=https://wdd.js.org/posts/2020/04/uffptn/><span class=title>Next »</span><br><span>娱乐智障</span></a></nav></footer><script src=https://giscus.app/client.js data-repo=wangduanduan/wangduanduan.github.io data-repo-id="MDEwOlJlcG9zaXRvcnkxMTkyMjMyNjA=" data-category=Announcements data-category-id=DIC_kwDOBxsz3M4CAjBq data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=bottom data-theme=preferred_color_scheme data-lang=zh-CN crossorigin=anonymous async></script></article></main><footer class=footer><span>&copy; 2025 <a href=https://wdd.js.org>洞香春</a></span>
+</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags></ul><nav class=paginav><a class=prev href=https://wdd.js.org/posts/2020/05/db6ou6/><span class=title>« Prev</span><br><span>xmpp学习</span>
+</a><a class=next href=https://wdd.js.org/posts/2020/04/uffptn/><span class=title>Next »</span><br><span>娱乐智障</span></a></nav></footer><script src=https://giscus.app/client.js data-repo=wangduanduan/wangduanduan.github.io data-repo-id="MDEwOlJlcG9zaXRvcnkxMTkyMjMyNjA=" data-category=Announcements data-category-id=DIC_kwDOBxsz3M4CAjBq data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=bottom data-theme=preferred_color_scheme data-lang=zh-CN crossorigin=anonymous async></script></article></main><footer class=footer><span>&copy; 2025 <a href=https://wdd.js.org/>洞香春</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

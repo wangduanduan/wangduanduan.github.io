@@ -1,29 +1,60 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>json on 洞香春</title>
+    <title>Json on 洞香春</title>
     <link>https://wdd.js.org/tags/json/</link>
-    <description>Recent content in json on 洞香春</description>
+    <description>Recent content in Json on 洞香春</description>
     <image>
       <title>洞香春</title>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 09 Feb 2018 13:27:15 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/json/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 09 Feb 2018 13:27:15 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/json/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>你不知道的JSON.stringify()妙用</title>
       <link>https://wdd.js.org/posts/2018/02/json-stringify-powerful/</link>
       <pubDate>Fri, 09 Feb 2018 13:27:15 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2018/02/json-stringify-powerful/</guid>
-      <description>1. 语法 JSON.stringify(value[, replacer[, space]]) 一般用法：
-var user = {name: &amp;#39;andy&amp;#39;, isDead: false, age: 11, addr: &amp;#39;shanghai&amp;#39;}; JSON.stringify(user); &amp;#34;{&amp;#34;name&amp;#34;:&amp;#34;andy&amp;#34;,&amp;#34;isDead&amp;#34;:false,&amp;#34;age&amp;#34;:11,&amp;#34;addr&amp;#34;:&amp;#34;shanghai&amp;#34;}&amp;#34; 2. 扩展用法 2.1. replacer replacer可以是函数或者是数组。
-功能1: 改变属性值 将isDead属性的值翻译成0或1，0对应false,1对应true
-var user = {name: &amp;#39;andy&amp;#39;, isDead: false, age: 11, addr: &amp;#39;shanghai&amp;#39;}; JSON.stringify(user, function(key, value){ if(key === &amp;#39;isDead&amp;#39;){ return value === true ? 1 : 0; } return value; }); &amp;#34;{&amp;#34;name&amp;#34;:&amp;#34;andy&amp;#34;,&amp;#34;isDead&amp;#34;:0,&amp;#34;age&amp;#34;:11,&amp;#34;addr&amp;#34;:&amp;#34;shanghai&amp;#34;}&amp;#34; 功能2：删除某个属性 将isDead属性删除，如果replacer的返回值是undefined,那么该属性会被删除。
-var user = {name: &amp;#39;andy&amp;#39;, isDead: false, age: 11, addr: &amp;#39;shanghai&amp;#39;}; JSON.</description>
+      <description>&lt;h1 id=&#34;1-语法&#34;&gt;1. 语法&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;JSON.stringify(value[, replacer[, space]])
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;一般用法：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var user = {name: &amp;#39;andy&amp;#39;, isDead: false, age: 11, addr: &amp;#39;shanghai&amp;#39;};
+
+JSON.stringify(user);
+
+&amp;#34;{&amp;#34;name&amp;#34;:&amp;#34;andy&amp;#34;,&amp;#34;isDead&amp;#34;:false,&amp;#34;age&amp;#34;:11,&amp;#34;addr&amp;#34;:&amp;#34;shanghai&amp;#34;}&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;2-扩展用法&#34;&gt;2. 扩展用法&lt;/h1&gt;
+&lt;h2 id=&#34;21-replacer&#34;&gt;2.1. replacer&lt;/h2&gt;
+&lt;p&gt;replacer可以是&lt;code&gt;函数&lt;/code&gt;或者是&lt;code&gt;数组&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;功能1: 改变属性值&lt;/code&gt;
+将isDead属性的值翻译成0或1，0对应false,1对应true&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var user = {name: &amp;#39;andy&amp;#39;, isDead: false, age: 11, addr: &amp;#39;shanghai&amp;#39;};
+
+JSON.stringify(user, function(key, value){
+    if(key === &amp;#39;isDead&amp;#39;){
+        return value === true ? 1 : 0;
+    }
+    return value;
+});
+
+&amp;#34;{&amp;#34;name&amp;#34;:&amp;#34;andy&amp;#34;,&amp;#34;isDead&amp;#34;:0,&amp;#34;age&amp;#34;:11,&amp;#34;addr&amp;#34;:&amp;#34;shanghai&amp;#34;}&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;功能2：删除某个属性&lt;/code&gt;
+将isDead属性删除，如果replacer的返回值是&lt;code&gt;undefined&lt;/code&gt;,那么该属性会被删除。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var user = {name: &amp;#39;andy&amp;#39;, isDead: false, age: 11, addr: &amp;#39;shanghai&amp;#39;};
+
+JSON.stringify(user, function(key, value){
+    if(key === &amp;#39;isDead&amp;#39;){
+        return undefined;
+    }
+    return value;
+});
+
+&amp;#34;{&amp;#34;name&amp;#34;:&amp;#34;andy&amp;#34;,&amp;#34;age&amp;#34;:11,&amp;#34;addr&amp;#34;:&amp;#34;shanghai&amp;#34;}&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;功能3: 通过数组过滤某些属性&lt;/code&gt;
+只需要name属性和addr属性，其他不要。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -1,45 +1,76 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>ie11 on 洞香春</title>
+    <title>IE11 on 洞香春</title>
     <link>https://wdd.js.org/tags/ie11/</link>
-    <description>Recent content in ie11 on 洞香春</description>
+    <description>Recent content in IE11 on 洞香春</description>
     <image>
       <title>洞香春</title>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 11 Feb 2018 14:12:19 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/ie11/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 Feb 2018 14:12:19 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/ie11/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>IE11 0x2ee4 bug 以及类似问题解决方法</title>
       <link>https://wdd.js.org/posts/2018/02/ie11-0x2ee4-bug/</link>
       <pubDate>Sun, 11 Feb 2018 14:12:19 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2018/02/ie11-0x2ee4-bug/</guid>
-      <description>一千个IE浏览器访问同一个页面，可能报一千种错误。前端激进派对IE恨得牙痒痒，但是无论你爱，或者不爱，IE就在那里，不来不去。
-一些银行，以及政府部门，往往都是指定必须使用IE浏览器。所以，一些仅在IE浏览器上出现的问题。总结起来问题的原因很简单：IE的配置不正确
-下面就将一个我曾经遇到的问题: IE11 0x2ee4， 以及其他的问题的解决方案
-1. IE11 SCRIPT7002: XMLHttpRequest: 网络错误 0x2ee4 背景介绍：在一个HTTPS域向另外一个HTTPS域发送跨域POTST请求时
-这个问题在浏览器的输出内容如下，怪异的是，并不是所有IE11都会报这个错误。
-SCRIPT7002: XMLHttpRequest: 网络错误 0x2ee4, 由于出现错误 00002ee4 而导致此项操作无法完成 stackoverflow上有个答案，它的思路是：在post请求发送之前，先进行一次get操作 这个方式我试过，是可行的。但是深层次的原因我不是很明白。
-然而真相总有大白的一天，其实深层次的原因是，IE11的配置。
-去掉检查证书吊销的的检查，解决0x2ee4的问题
-解决方法
-去掉check for server certificate revocation*， 也有可能你那边是中文翻译的：叫检查服务器证书是否已吊销 去掉检查发型商证书是否已吊销 点击确定 重启计算机 2 其他常规设置 2.1 去掉兼容模式， 使用Edge文档模式 下图中红色框里的按钮也要取消勾选 2.2 有些使用activeX，还是需要检查是否启用的 2.3 允许跨域 如果你的接口跨域了，还要检查浏览器是否允许跨域，否则浏览器可能默认就禁止跨域的
-设置方法
-internet选项 安全 自定义级别 启用通过跨域访问数据源 启用跨域浏览窗口和框架 确定 然后重启电脑 </description>
+      <description>&lt;p&gt;&lt;code&gt;一千个IE浏览器访问同一个页面，可能报一千种错误&lt;/code&gt;。前端激进派对IE恨得牙痒痒，但是无论你爱，或者不爱，IE就在那里，不来不去。&lt;/p&gt;
+&lt;p&gt;一些银行，以及政府部门，往往都是指定必须使用IE浏览器。所以，一些仅在IE浏览器上出现的问题。总结起来问题的原因很简单：&lt;code&gt;IE的配置不正确&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;下面就将一个我曾经遇到的问题: &lt;code&gt;IE11 0x2ee4&lt;/code&gt;， 以及其他的问题的解决方案&lt;/p&gt;
+&lt;h1 id=&#34;1-ie11-script7002-xmlhttprequest-网络错误-0x2ee4&#34;&gt;1. IE11 SCRIPT7002: XMLHttpRequest: 网络错误 0x2ee4&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;背景介绍：在一个HTTPS域向另外一个HTTPS域发送跨域POTST请求时&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;这个问题在浏览器的输出内容如下，怪异的是，并不是所有IE11都会报这个错误。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;SCRIPT7002: XMLHttpRequest: 网络错误 0x2ee4, 由于出现错误 00002ee4 而导致此项操作无法完成
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;stackoverflow上有个答案，它的思路是：&lt;code&gt;在post请求发送之前，先进行一次get操作&lt;/code&gt; 这个方式我试过，是可行的。但是深层次的原因我不是很明白。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180211141321_kcU1Mh_Screenshot.jpeg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;然而真相总有大白的一天，其实深层次的原因是，IE11的配置。&lt;/p&gt;
+&lt;p&gt;去掉检查证书吊销的的检查，解决0x2ee4的问题&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;解决方法&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;去掉check for server certificate revocation*， 也有可能你那边是中文翻译的：叫检查服务器证书是否已吊销&lt;/li&gt;
+&lt;li&gt;去掉检查发型商证书是否已吊销&lt;/li&gt;
+&lt;li&gt;点击确定&lt;/li&gt;
+&lt;li&gt;重启计算机&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180211141332_EzU6Hs_Screenshot.jpeg&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;2-其他常规设置&#34;&gt;2 其他常规设置&lt;/h1&gt;
+&lt;h2 id=&#34;21-去掉兼容模式-使用edge文档模式&#34;&gt;2.1 去掉兼容模式， 使用Edge文档模式&lt;/h2&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180211141344_ctLchE_Screenshot.jpeg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;下图中红色框里的按钮也要取消勾选
+&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180211141353_182pMj_Screenshot.jpeg&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;22-有些使用activex还是需要检查是否启用的&#34;&gt;2.2 有些使用activeX，还是需要检查是否启用的&lt;/h2&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180211141403_eM2ajd_Screenshot.jpeg&#34;&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180211141414_8gyYUu_Screenshot.jpeg&#34;&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180211141427_CeMrwH_Screenshot.jpeg&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;23-允许跨域&#34;&gt;2.3 允许跨域&lt;/h2&gt;
+&lt;p&gt;如果你的接口跨域了，还要检查浏览器是否允许跨域，否则浏览器可能默认就禁止跨域的&lt;/p&gt;
+&lt;p&gt;设置方法&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;internet选项&lt;/li&gt;
+&lt;li&gt;安全&lt;/li&gt;
+&lt;li&gt;自定义级别&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;启用通过跨域访问数据源&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;启用跨域浏览窗口和框架&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;确定&lt;/li&gt;
+&lt;li&gt;然后&lt;code&gt;重启电脑&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180211141443_fV3amH_Screenshot.jpeg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180322150920_oVhst9_Jietu20180322-150855.jpeg&#34;&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>win7 ie11 开发者工具打开后一片空白</title>
       <link>https://wdd.js.org/posts/2018/01/ie11-without-devtool/</link>
       <pubDate>Mon, 29 Jan 2018 21:43:12 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2018/01/ie11-without-devtool/</guid>
-      <description>解决方法安装Windows7补丁：KB3008923； 下载地址： http://www.microsoft.com/en-us/download/details.aspx?id=45134 （32位） http://www.microsoft.com/zh-CN/download/details.aspx?id=45154 （64位）</description>
+      <description>&lt;p&gt;解决方法安装Windows7补丁：KB3008923；
+下载地址：
+&lt;a href=&#34;http://www.microsoft.com/en-us/download/details.aspx?id=45134&#34;&gt;http://www.microsoft.com/en-us/download/details.aspx?id=45134&lt;/a&gt; （32位）
+&lt;a href=&#34;http://www.microsoft.com/zh-CN/download/details.aspx?id=45154&#34;&gt;http://www.microsoft.com/zh-CN/download/details.aspx?id=45154&lt;/a&gt; （64位）&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -1,72 +1,137 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>typescript on 洞香春</title>
+    <title>Typescript on 洞香春</title>
     <link>https://wdd.js.org/tags/typescript/</link>
-    <description>Recent content in typescript on 洞香春</description>
+    <description>Recent content in Typescript on 洞香春</description>
     <image>
       <title>洞香春</title>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 28 Dec 2023 20:21:11 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 28 Dec 2023 20:21:11 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>什么时候应该使用ts范型?</title>
       <link>https://wdd.js.org/posts/2023/when-to-use-ts-generics/</link>
       <pubDate>Thu, 28 Dec 2023 20:21:11 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2023/when-to-use-ts-generics/</guid>
-      <description>我知道ts支持范型，但是因为几乎用不到，所以对于范型对我来说往往蒙上一层神秘色彩。
-最近我才真正的体会到范型的真正威力。
-下面就介绍我的使用场景。
-在和后端接口交互的时候， 后端接口返回的数据都是如下的类型。
-interface XData { success: boolean total: number result: any[] } 这里我把result定义为any类型，因为它的具体类型是由接口确定的。 比如查话单的接口是话单的结构类型，查订单的接口返回的是订单的类型。
-interface CDR { id: number creatAt: string } interface Order { id: number } 在不用范型的时候，我们要么定义如下两个interface
-interface XDataCDR { success: boolean total: number result: CDR[] } interface XDataOrder { success: boolean total: number result: Order[] } 在使用axios的时候，对于响应体的data, 可以使用如下的方式声明data
-function getCDR (id) { return axios.get&amp;lt;XDataCDR&amp;gt;(&amp;#39;/api/xxx&amp;#39; + id) } 但是，如果我们稍微修改一下XData的类型声明，加上范型。 就不需要用到XDataCDR和XDataOrder两个接口。
-interface XData&amp;lt;T&amp;gt; { success: boolean total: number result: T[] } function getCDR (id) { return axios.</description>
+      <description>&lt;p&gt;我知道ts支持范型，但是因为几乎用不到，所以对于范型对我来说往往蒙上一层神秘色彩。&lt;/p&gt;
+&lt;p&gt;最近我才真正的体会到范型的真正威力。&lt;/p&gt;
+&lt;p&gt;下面就介绍我的使用场景。&lt;/p&gt;
+&lt;p&gt;在和后端接口交互的时候， 后端接口返回的数据都是如下的类型。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-ts&#34; data-lang=&#34;ts&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;XData&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;success&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;boolean&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;total&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;number&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;result&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;any&lt;/span&gt;[]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里我把result定义为any类型，因为它的具体类型是由接口确定的。 比如查话单的接口是话单的结构类型，查订单的接口返回的是订单的类型。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-ts&#34; data-lang=&#34;ts&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;CDR&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;number&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;creatAt&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Order&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;number&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在不用范型的时候，我们要么定义如下两个interface&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-ts&#34; data-lang=&#34;ts&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;XDataCDR&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;success&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;boolean&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;total&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;number&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;result&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;CDR&lt;/span&gt;[]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;XDataOrder&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;success&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;boolean&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;total&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;number&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;result&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;Order&lt;/span&gt;[]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在使用axios的时候，对于响应体的data, 可以使用如下的方式声明data&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-ts&#34; data-lang=&#34;ts&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;getCDR&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;axios&lt;/span&gt;.&lt;span style=&#34;color:#66d9ef&#34;&gt;get&lt;/span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;XDataCDR&lt;/span&gt;&amp;gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/api/xxx&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;但是，如果我们稍微修改一下XData的类型声明，加上范型。 就不需要用到XDataCDR和XDataOrder两个接口。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-ts&#34; data-lang=&#34;ts&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;XData&lt;/span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;T&lt;/span&gt;&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;success&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;boolean&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;total&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;number&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;result&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;T&lt;/span&gt;[]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;getCDR&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;axios&lt;/span&gt;.&lt;span style=&#34;color:#66d9ef&#34;&gt;get&lt;/span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;XData&lt;/span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;CDR&lt;/span&gt;&amp;gt;&amp;gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/api/xxx&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;只需要用到&lt;code&gt;XData&amp;lt;CDR&amp;gt;&lt;/code&gt;就可以构造出新的类型。&lt;/p&gt;
+&lt;p&gt;从上面可以看出范型实际上不是约束具体的值的，而是用来对类型进行约束。使用范型，可以减少大量重复的代码。&lt;/p&gt;
+&lt;p&gt;范型一般用于关键词之后，例如interface名之后，函数名之后。&lt;/p&gt;
+&lt;p&gt;例如：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-ts&#34; data-lang=&#34;ts&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;X&lt;/span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;T&lt;/span&gt;&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;T&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;say&lt;/span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;T&lt;/span&gt;&amp;gt;() &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;T&lt;/span&gt;[] {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;所以，有些功能，直到真正用到，才能真正理解。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>使用bun加速开发环境的ts编写</title>
       <link>https://wdd.js.org/posts/2023/typescript-with-bun/</link>
       <pubDate>Sat, 23 Dec 2023 15:04:44 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2023/typescript-with-bun/</guid>
-      <description>前言 最近我在开发一个demo程序，为了加速开发，我觉得直接用js要比用typescript更快，而且这只是一个demo程序，杀鸡焉用牛刀。
-而且一旦我要用typescript开发，避免不了要各种配置，例如typescript, ts-node, nodemon之类的，很是繁琐。而且ts也必须要经过编译后才能运行。
-然而，直到遇到一个bug, 我排查了半天，才发现是一个对象的属性写错了。本身这个对象是没有这个属性的，js没有任何错误提示。我只能一步一步缩小代码的范围，最终才定位到是属性拼写的错误。
-这个拼写的错误，应该是vscode的智能补全，给出的提示词，我直接回车确认了。
-这件事给我一个教训：以后所有代码都要用ts去编写。
-直接用js去编写虽然看起来写的快，但是代码调试太痛苦了。 这种拼写错误，ts的智能提示会直接告诉你错误的地方，但是如果去排查js文件，花费的时间是无法估量的。
-但是我又不太想去配置各种ts的执行环境，就想起来之前曾经用的bun这个ts执行工具。
-虽然bun这个工具才刚刚发布1.0版本，但是在开发环境使用也是足够了。
-我的设想是在开发环境用bun, 在生产环境用nodejs执行bun编译后的js代码。
-这个demo程序用bun去运行的时候，没发现任何兼容问题。 这也让我有了继续研究下去的信心。
-bun的开发环境 我之前看过deno, 但是看多deno的官方文档后，发现并不符合我的胃口。 但是bun的文档写的很好。
-任何工具的第一步都是安装，但是bun似乎在windows上执行并不太好，所以我是用windows的linux子系统，或者在mac上安装的bun。
-具体的安装步骤可以参考，https://bun.sh/docs/installation
-项目初始化 bun init bun init helps you get started with a minimal project and tries to guess sensible defaults. Press ^C anytime to quit. package name (quickstart): entry point (index.ts): Done! A package.json file was saved in the current directory. + index.ts + .gitignore + tsconfig.json (for editor auto-complete) + README.</description>
+      <description>&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
+&lt;p&gt;最近我在开发一个demo程序，为了加速开发，我觉得直接用js要比用typescript更快，而且这只是一个demo程序，杀鸡焉用牛刀。&lt;/p&gt;
+&lt;p&gt;而且一旦我要用typescript开发，避免不了要各种配置，例如typescript, ts-node, nodemon之类的，很是繁琐。而且ts也必须要经过编译后才能运行。&lt;/p&gt;
+&lt;p&gt;然而，直到遇到一个bug,  我排查了半天，才发现是一个对象的属性写错了。本身这个对象是没有这个属性的，js没有任何错误提示。我只能一步一步缩小代码的范围，最终才定位到是属性拼写的错误。&lt;/p&gt;
+&lt;p&gt;这个拼写的错误，应该是vscode的智能补全，给出的提示词，我直接回车确认了。&lt;/p&gt;
+&lt;p&gt;这件事给我一个教训：&lt;strong&gt;以后所有代码都要用ts去编写。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;直接用js去编写虽然看起来写的快，但是代码调试太痛苦了。 这种拼写错误，ts的智能提示会直接告诉你错误的地方，但是如果去排查js文件，花费的时间是无法估量的。&lt;/p&gt;
+&lt;p&gt;但是我又不太想去配置各种ts的执行环境，就想起来之前曾经用的&lt;a href=&#34;https://bun.sh/&#34;&gt;bun&lt;/a&gt;这个ts执行工具。&lt;/p&gt;
+&lt;p&gt;虽然bun这个工具才刚刚发布1.0版本，但是在开发环境使用也是足够了。&lt;/p&gt;
+&lt;p&gt;我的设想是在开发环境用bun, 在生产环境用nodejs执行bun编译后的js代码。&lt;/p&gt;
+&lt;p&gt;这个demo程序用bun去运行的时候，没发现任何兼容问题。 这也让我有了继续研究下去的信心。&lt;/p&gt;
+&lt;h1 id=&#34;bun的开发环境&#34;&gt;bun的开发环境&lt;/h1&gt;
+&lt;p&gt;我之前看过deno, 但是看多deno的官方文档后，发现并不符合我的胃口。 但是bun的文档写的很好。&lt;/p&gt;
+&lt;p&gt;任何工具的第一步都是安装，但是bun似乎在windows上执行并不太好，所以我是用windows的linux子系统，或者在mac上安装的bun。&lt;/p&gt;
+&lt;p&gt;具体的安装步骤可以参考，https://bun.sh/docs/installation&lt;/p&gt;
+&lt;h1 id=&#34;项目初始化&#34;&gt;项目初始化&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;bun init
+
+bun init helps you get started with a minimal project and tries to
+guess sensible defaults. Press ^C anytime to quit.
+
+package name (quickstart):
+entry point (index.ts):
+
+Done! A package.json file was saved in the current directory.
+ + index.ts
+ + .gitignore
+ + tsconfig.json (for editor auto-complete)
+ + README.md
+
+To get started, run:
+  bun run index.ts
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;使用bun运行index.ts&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VIM typescript 跳转到定义</title>
       <link>https://wdd.js.org/vim/typescript-go-to-definition/</link>
       <pubDate>Mon, 10 Jul 2023 09:30:46 +0800</pubDate>
-      
       <guid>https://wdd.js.org/vim/typescript-go-to-definition/</guid>
-      <description>在VScode中，可以使用右键来跳转到typescript类型对应的定义，但是用vim的gd命令却无法正常跳转。
-因为无法正常跳转的这个问题，我差点放弃了vim。
-然而我想别人应该也遇到类似的问题。
-我的neovim本身使用的是coc插件，然后我就再次到看看官方文档，来确定最终有没有解决这个问题的方案。
-功夫不负有心人。
-我发现官方给的例子中，就包括了如何配置跳换的配置。
-首先说明一下，我本身就安装了coc-json coc-tsserver这两个插件，所以只需要将如下的配置写入init.vim
-&amp;#34; GoTo code navigation nmap &amp;lt;silent&amp;gt; gd &amp;lt;Plug&amp;gt;(coc-definition) nmap &amp;lt;silent&amp;gt; gy &amp;lt;Plug&amp;gt;(coc-type-definition) nmap &amp;lt;silent&amp;gt; gi &amp;lt;Plug&amp;gt;(coc-implementation) nmap &amp;lt;silent&amp;gt; gr &amp;lt;Plug&amp;gt;(coc-references) 这样的话，在普通模式，按gy这个快捷键，就能跳转到对应的类型定义，包括某个npm包的里面的类型定义，非常好用。
-亲测有效。</description>
+      <description>&lt;p&gt;在VScode中，可以使用右键来跳转到typescript类型对应的定义，但是用vim的&lt;code&gt;gd&lt;/code&gt;命令却无法正常跳转。&lt;/p&gt;
+&lt;p&gt;因为无法正常跳转的这个问题，我差点放弃了vim。&lt;/p&gt;
+&lt;p&gt;然而我想别人应该也遇到类似的问题。&lt;/p&gt;
+&lt;p&gt;我的neovim本身使用的是coc插件，然后我就再次到看看官方文档，来确定最终有没有解决这个问题的方案。&lt;/p&gt;
+&lt;p&gt;功夫不负有心人。&lt;/p&gt;
+&lt;p&gt;我发现官方给的例子中，就包括了如何配置跳换的配置。&lt;/p&gt;
+&lt;p&gt;首先说明一下，我本身就安装了&lt;code&gt;coc-json coc-tsserver&lt;/code&gt;这两个插件，所以只需要将如下的配置写入init.vim&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;#34; GoTo code navigation
+nmap &amp;lt;silent&amp;gt; gd &amp;lt;Plug&amp;gt;(coc-definition)
+nmap &amp;lt;silent&amp;gt; gy &amp;lt;Plug&amp;gt;(coc-type-definition)
+nmap &amp;lt;silent&amp;gt; gi &amp;lt;Plug&amp;gt;(coc-implementation)
+nmap &amp;lt;silent&amp;gt; gr &amp;lt;Plug&amp;gt;(coc-references)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这样的话，在普通模式，按&lt;code&gt;gy&lt;/code&gt;这个快捷键，就能跳转到对应的类型定义，包括某个npm包的里面的类型定义，非常好用。&lt;/p&gt;
+&lt;p&gt;亲测有效。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

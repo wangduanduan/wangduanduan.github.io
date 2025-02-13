@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>2.4.x-docs on 洞香春</title>
+    <title>2.4.x-Docs on 洞香春</title>
     <link>https://wdd.js.org/2.4.x-docs/</link>
-    <description>Recent content in 2.4.x-docs on 洞香春</description>
+    <description>Recent content in 2.4.x-Docs on 洞香春</description>
     <image>
       <title>洞香春</title>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 31 Oct 2022 14:41:43 +0800</lastBuildDate><atom:link href="https://wdd.js.org/2.4.x-docs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 31 Oct 2022 14:41:43 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/2.4.x-docs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>核心变量</title>
       <link>https://wdd.js.org/2.4.x-docs/core-vars/</link>
       <pubDate>Mon, 31 Oct 2022 14:41:43 +0800</pubDate>
-      
       <guid>https://wdd.js.org/2.4.x-docs/core-vars/</guid>
-      <description>脚本变量 avp 变量 伪变量 SIP 头, $(hrd(name)) $(hdr(name)[N]) - represents the body of the N-th header identified by &amp;rsquo;name&amp;rsquo;. If [N] is omitted then the body of the first header is printed. The first header is got when N=0, for the second N=1, a.s.o. To print the last header of that type, use -1, no other negative values are supported now. No white spaces are allowed inside the specifier (before }, before or after {, [, ] symbols).</description>
+      <description>&lt;h1 id=&#34;脚本变量&#34;&gt;脚本变量&lt;/h1&gt;
+&lt;h1 id=&#34;avp-变量&#34;&gt;avp 变量&lt;/h1&gt;
+&lt;h1 id=&#34;伪变量&#34;&gt;伪变量&lt;/h1&gt;
+&lt;h2 id=&#34;sip-头-hrdname&#34;&gt;SIP 头, $(hrd(name))&lt;/h2&gt;
+&lt;p&gt;$(hdr(name)[N]) - represents the body of the N-th header identified by &amp;rsquo;name&amp;rsquo;. If [N] is omitted then the body of the first header is printed. The first header is got when N=0, for the second N=1, a.s.o. To print the last header of that type, use -1, no other negative values are supported now. No white spaces are allowed inside the specifier (before }, before or after {, [, ] symbols). When N=&amp;rsquo;*&amp;rsquo;, all headers of that type are printed.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -1,27 +1,112 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>echarts on 洞香春</title>
+    <title>Echarts on 洞香春</title>
     <link>https://wdd.js.org/tags/echarts/</link>
-    <description>Recent content in echarts on 洞香春</description>
+    <description>Recent content in Echarts on 洞香春</description>
     <image>
       <title>洞香春</title>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 09 Feb 2018 13:16:53 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/echarts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 09 Feb 2018 13:16:53 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/echarts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ECharts 轮流高亮中国地图各个省份</title>
       <link>https://wdd.js.org/posts/2018/02/echarts-highlight-china-map/</link>
       <pubDate>Fri, 09 Feb 2018 13:16:53 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2018/02/echarts-highlight-china-map/</guid>
-      <description>1. 小栗子 最早我是想通过dispatchAction方法去改变选中的省份，但是没有起作用，如果你知道这个方法怎么实现，麻烦你可以告诉我。 我实现的方法是另外一种。
-dispatchAction({ type: &amp;#39;geoSelect&amp;#39;, // 可选，系列 index，可以是一个数组指定多个系列 seriesIndex?: number|Array, // 可选，系列名称，可以是一个数组指定多个系列 seriesName?: string|Array, // 数据的 index，如果不指定也可以通过 name 属性根据名称指定数据 dataIndex?: number, // 可选，数据名称，在有 dataIndex 的时候忽略 name?: string }) 后来我改变了一个方法。这个方法的核心思路是定时获取图标的配置，然后更新配置，最后在设置配置。
-var myChart = echarts.init(document.getElementById(&amp;#39;china-map&amp;#39;)); var COLORS = [&amp;#34;#070093&amp;#34;, &amp;#34;#1c3fbf&amp;#34;, &amp;#34;#1482e5&amp;#34;, &amp;#34;#70b4eb&amp;#34;, &amp;#34;#b4e0f3&amp;#34;, &amp;#34;#ffffff&amp;#34;]; // 指定图表的配置项和数据 var option = { tooltip: { trigger: &amp;#39;item&amp;#39;, formatter: &amp;#39;{b}&amp;#39; }, series: [ { name: &amp;#39;中国&amp;#39;, type: &amp;#39;map&amp;#39;, mapType: &amp;#39;china&amp;#39;, selectedMode : &amp;#39;single&amp;#39;, label: { normal: { show: true }, emphasis: { show: true } }, data:[ // 默认高亮安徽省 {name:&amp;#39;安徽&amp;#39;, selected:true} ], itemStyle: { normal: { areaColor: &amp;#39;rgba(255,255,255,0.</description>
+      <description>&lt;h1 id=&#34;1-小栗子&#34;&gt;1. 小栗子&lt;/h1&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180209131759_k10o0Z_bVVWEB.jpeg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;最早我是想通过&lt;code&gt;dispatchAction&lt;/code&gt;方法去改变选中的省份，但是没有起作用，如果你知道这个方法怎么实现，麻烦你可以告诉我。
+我实现的方法是另外一种。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;dispatchAction({
+    type: &amp;#39;geoSelect&amp;#39;,
+    // 可选，系列 index，可以是一个数组指定多个系列
+    seriesIndex?: number|Array,
+    // 可选，系列名称，可以是一个数组指定多个系列
+    seriesName?: string|Array,
+    // 数据的 index，如果不指定也可以通过 name 属性根据名称指定数据
+    dataIndex?: number,
+    // 可选，数据名称，在有 dataIndex 的时候忽略
+    name?: string
+})
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;后来我改变了一个方法。这个方法的核心思路是定时获取图标的配置，然后更新配置，最后在设置配置。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var myChart = echarts.init(document.getElementById(&amp;#39;china-map&amp;#39;));
+
+var COLORS = [&amp;#34;#070093&amp;#34;, &amp;#34;#1c3fbf&amp;#34;, &amp;#34;#1482e5&amp;#34;, &amp;#34;#70b4eb&amp;#34;, &amp;#34;#b4e0f3&amp;#34;, &amp;#34;#ffffff&amp;#34;];
+
+// 指定图表的配置项和数据
+var option = {
+    tooltip: {
+        trigger: &amp;#39;item&amp;#39;,
+        formatter: &amp;#39;{b}&amp;#39;
+    },
+    series: [
+        {
+            name: &amp;#39;中国&amp;#39;,
+            type: &amp;#39;map&amp;#39;,
+            mapType: &amp;#39;china&amp;#39;,
+            selectedMode : &amp;#39;single&amp;#39;,
+            label: {
+                normal: {
+                    show: true
+                },
+                emphasis: {
+                    show: true
+                }
+            },
+            data:[
+                // 默认高亮安徽省
+                {name:&amp;#39;安徽&amp;#39;, selected:true}
+            ],
+            itemStyle: {
+                normal: {
+                    areaColor: &amp;#39;rgba(255,255,255,0.5)&amp;#39;,
+                    color: &amp;#39;#000000&amp;#39;,
+                    shadowBlur: 200,
+                    shadowColor: &amp;#39;rgba(0, 0, 0, 0.5)&amp;#39;
+                },
+                emphasis:{
+                    areaColor: &amp;#39;#3be2fb&amp;#39;,
+                    color: &amp;#39;#000000&amp;#39;,
+                    shadowBlur: 200,
+                    shadowColor: &amp;#39;rgba(0, 0, 0, 0.5)&amp;#39;
+                }
+            }
+        }
+    ]
+};
+
+// 使用刚指定的配置项和数据显示图表。
+myChart.setOption(option);
+
+myChart.on(&amp;#39;click&amp;#39;, function(params) {
+    console.log(params);
+});
+
+setInterval(function(){
+    var op = myChart.getOption();
+    var data = op.series[0].data;
+
+    var length = data.length;
+
+    data.some(function(item, index){
+        if(item.selected){
+            item.selected = false;
+            var next = (index + 1)%length;
+            data[next].selected = true;
+            return true;
+        }
+    });
+
+    myChart.setOption(op);
+
+}, 3000);
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;2-后续补充&#34;&gt;2. 后续补充&lt;/h1&gt;
+&lt;p&gt;我从这里发现：https://github.com/ecomfe/echarts/issues/3282，选中地图的写法是这样的，而试了一下果然可以。主要是type要是&lt;code&gt;mapSelect&lt;/code&gt;,而不是&lt;code&gt;geoSelect&lt;/code&gt;&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

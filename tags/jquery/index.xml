@@ -1,29 +1,121 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>jQuery on 洞香春</title>
+    <title>JQuery on 洞香春</title>
     <link>https://wdd.js.org/tags/jquery/</link>
-    <description>Recent content in jQuery on 洞香春</description>
+    <description>Recent content in JQuery on 洞香春</description>
     <image>
       <title>洞香春</title>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 29 Jan 2018 13:43:23 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/jquery/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 29 Jan 2018 13:43:23 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/jquery/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>熟练使用使用jQuery Promise (Deferred)</title>
       <link>https://wdd.js.org/posts/2018/01/jquery-deferred/</link>
       <pubDate>Mon, 29 Jan 2018 13:43:23 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2018/01/jquery-deferred/</guid>
-      <description>1. 情景再现 以前用nodejs写后端程序时，遇到Promise这个概念，这个东西好呀！不用谢一层一层回调，直接用类似于jQuery的连缀方式。后来遇到bluebird这个库，它就是Promise库中很有名的。我希望可以把Promise用在前端的ajax请求上，但是我不想又引入bluebird。后来发现，jquery本身就具有类似于Promise的东西。于是我就jquery的Promise写一些异步请求。
-2. 不堪回首 看看一看我以前写异步请求的方式
-// 函数定义 function sendRequest(req,successCallback,errorCallback){ $.ajax({ ... ... success:function(res){ successCallback(res); }, error:function(res){ errorCallback(res); } }); } // 函数调用,这个函数的匿名函数写的时候很容易出错，而且有时候难以理解 sendRequest(req,function(res){ //请求成功 ... },function(res){ //请求失败 ... }); 3. 面朝大海 下面是我希望的异步调用方式
-sendRequest(req) .done(function(res){ //请求成功 ... }) .fail(function(req){ //请求失败 ... }); 4. 废话少说，放‘码’过来 talk is cheap, show me the code
-// 最底层的发送异步请求，做成Promise的形式 App.addMethod(&amp;#39;_sendRequest&amp;#39;,function(path,method,payload){ var dfd = $.Deferred(); $.ajax({ url:path, type:method || &amp;#34;get&amp;#34;, headers:{ sessionId:session.id || &amp;#39;&amp;#39; }, data:JSON.stringify(payload), dataType:&amp;#34;json&amp;#34;, contentType : &amp;#39;application/json; charset=UTF-8&amp;#39;, success:function(data){ dfd.</description>
+      <description>&lt;h1 id=&#34;1-情景再现&#34;&gt;1. 情景再现&lt;/h1&gt;
+&lt;p&gt;以前用nodejs写后端程序时，遇到&lt;code&gt;Promise&lt;/code&gt;这个概念，这个东西好呀！不用谢一层一层回调，直接用类似于jQuery的连缀方式。后来遇到&lt;code&gt;bluebird&lt;/code&gt;这个库，它就是Promise库中很有名的。我希望可以把Promise用在前端的&lt;code&gt;ajax&lt;/code&gt;请求上，但是我不想又引入bluebird。后来发现，jquery本身就具有类似于Promise的东西。于是我就jquery的Promise写一些异步请求。&lt;/p&gt;
+&lt;h1 id=&#34;2-不堪回首&#34;&gt;2. 不堪回首&lt;/h1&gt;
+&lt;p&gt;看看一看我以前写异步请求的方式&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// 函数定义
+function sendRequest(req,successCallback,errorCallback){
+    $.ajax({
+        ...
+        ...
+        success:function(res){
+            successCallback(res);
+        },
+        error:function(res){
+            errorCallback(res);
+        }
+    });
+}
+
+// 函数调用,这个函数的匿名函数写的时候很容易出错，而且有时候难以理解
+sendRequest(req,function(res){
+    //请求成功
+    ...
+},function(res){
+    //请求失败
+    ...
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;3-面朝大海&#34;&gt;3. 面朝大海&lt;/h1&gt;
+&lt;p&gt;下面是我希望的异步调用方式&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sendRequest(req)
+.done(function(res){
+    //请求成功
+    ...
+})
+.fail(function(req){
+    //请求失败
+    ...
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;4-废话少说放码过来&#34;&gt;4. 废话少说，放‘码’过来&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;talk is cheap, show me the code&lt;/p&gt;&lt;/blockquote&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// 最底层的发送异步请求，做成Promise的形式
+
+App.addMethod(&amp;#39;_sendRequest&amp;#39;,function(path,method,payload){
+    var dfd = $.Deferred();
+    $.ajax({
+        url:path,
+        type:method || &amp;#34;get&amp;#34;,
+        headers:{
+            sessionId:session.id || &amp;#39;&amp;#39;
+        },
+        data:JSON.stringify(payload),
+        dataType:&amp;#34;json&amp;#34;,
+        contentType : &amp;#39;application/json; charset=UTF-8&amp;#39;,
+        success:function(data){
+            dfd.resolve(data);
+        },
+        error:function(data){
+            dfd.reject(data);
+        }
+    });
+    return dfd.promise();
+});
+
+//根据callId查询录音文件，不仅仅是异步请求可以做成Promise形式，任何函数都可以做成Promise形式
+App.addMethod(&amp;#39;_getRecordingsByCallId&amp;#39;,function(callId){
+    var dfd = $.Deferred(),
+        path = &amp;#39;/api/tenantcalls/&amp;#39;+callId+&amp;#39;/recordings&amp;#39;;
+
+    App._sendRequest(path)
+    .done(function(res){dfd.resolve(res);})
+    .fail(function(res){dfd.reject(res);});
+
+    return dfd.promise();
+});
+
+// 获取录音
+App.addMethod(&amp;#39;getCallDetailRecordings&amp;#39;,function(callId){
+    App._getRecordingsByCallId(callId)
+    .done(function(res){
+        // 获取结果后渲染数据
+        App.renderRecording(res);
+    })
+    .fail(function(res){
+        App.error(res);
+    });
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;5-注意事项&#34;&gt;5. 注意事项&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;jQuery的Promise主要是用了jQquery的$.Derferred()方法，一些老版本的jquery并不支持此方法。&lt;/li&gt;
+&lt;li&gt;jQuery版本必须大于等于1.5，推荐使用1.11.3&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;6-参考文献&#34;&gt;6. 参考文献&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://api.jquery.com/&#34;&gt;jquery官方api文档&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/JQuery&#34;&gt;jquery维基百科文档&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;7-最后&#34;&gt;7. 最后&lt;/h1&gt;
+&lt;p&gt;以上文章仅供参考，不包完全正确。欢迎评论，3q。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

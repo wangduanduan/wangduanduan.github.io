@@ -1,5 +1,465 @@
-<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>acc-mysql | 洞香春</title><meta name=keywords content><meta name=description content="# # Sample config for MySQL accouting with OpenSIPS # # - db_mysql module must be compiled and installed # # - new columns have to be added since by default only few are recorded # - here are full SQL statements to create acc and missed_calls tables # # CREATE TABLE `acc` ( # `id` int(10) unsigned NOT NULL auto_increment, # `method` varchar(16) NOT NULL default '', # `from_tag` varchar(64) NOT NULL default '', # `to_tag` varchar(64) NOT NULL default '', # `callid` varchar(128) NOT NULL default '', # `sip_code` char(3) NOT NULL default '', # `sip_reason` varchar(32) NOT NULL default '', # `time` datetime NOT NULL default '0000-00-00 00:00:00', # `src_ip` varchar(64) NOT NULL default '', # `dst_user` varchar(64) NOT NULL default '', # `dst_domain` varchar(128) NOT NULL default '', # `src_user` varchar(64) NOT NULL default '', # `src_domain` varchar(128) NOT NULL default '', # INDEX acc_callid (`callid`), # PRIMARY KEY (`id`) # ); # # CREATE TABLE `missed_calls` ( # `id` int(10) unsigned NOT NULL auto_increment, # `method` varchar(16) NOT NULL default '', # `from_tag` varchar(64) NOT NULL default '', # `to_tag` varchar(64) NOT NULL default '', # `callid` varchar(128) NOT NULL default '', # `sip_code` char(3) NOT NULL default '', # `sip_reason` varchar(32) NOT NULL default '', # `time` datetime NOT NULL default '0000-00-00 00:00:00', # `src_ip` varchar(64) NOT NULL default '', # `dst_user` varchar(64) NOT NULL default '', # `dst_domain` varchar(128) NOT NULL default '', # `src_user` varchar(64) NOT NULL default '', # `src_domain` varchar(128) NOT NULL default '', # INDEX acc_callid (`callid`), # PRIMARY KEY (`id`) # ); # # # ----------- global configuration parameters ------------------------ log_level=3 # debug level (cmd line: -dddddddddd) log_stderror=no # (cmd line: -E) /* Uncomment these lines to enter debugging mode */ #debug_mode=yes check_via=no	# (cmd."><meta name=author content="Eddie Wang"><link rel=canonical href=https://wdd.js.org/opensips/ch8/acc-mysql/><link crossorigin=anonymous href=/assets/css/stylesheet.6d3944e058d85363bbe8a792a9b5f40002bca80be859dc19c466dd8de223973e.css integrity="sha256-bTlE4FjYU2O76KeSqbX0AAK8qAvoWdwZxGbdjeIjlz4=" rel="preload stylesheet" as=style><script defer crossorigin=anonymous src=/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG+9vmJ0cTS+ovo0FeA=" onload=hljs.initHighlightingOnLoad()></script>
-<link rel=icon href=https://wdd.js.org/cowboy.ico><link rel=icon type=image/png sizes=16x16 href=https://wdd.js.org/cowboy.ico><link rel=icon type=image/png sizes=32x32 href=https://wdd.js.org/cowboy.ico><link rel=apple-touch-icon href=https://wdd.js.org/cowboy.ico><link rel=mask-icon href=https://wdd.js.org/cowboy.ico><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><meta property="og:title" content="acc-mysql"><meta property="og:description" content="# # Sample config for MySQL accouting with OpenSIPS # # - db_mysql module must be compiled and installed # # - new columns have to be added since by default only few are recorded # - here are full SQL statements to create acc and missed_calls tables # # CREATE TABLE `acc` ( # `id` int(10) unsigned NOT NULL auto_increment, # `method` varchar(16) NOT NULL default '', # `from_tag` varchar(64) NOT NULL default '', # `to_tag` varchar(64) NOT NULL default '', # `callid` varchar(128) NOT NULL default '', # `sip_code` char(3) NOT NULL default '', # `sip_reason` varchar(32) NOT NULL default '', # `time` datetime NOT NULL default '0000-00-00 00:00:00', # `src_ip` varchar(64) NOT NULL default '', # `dst_user` varchar(64) NOT NULL default '', # `dst_domain` varchar(128) NOT NULL default '', # `src_user` varchar(64) NOT NULL default '', # `src_domain` varchar(128) NOT NULL default '', # INDEX acc_callid (`callid`), # PRIMARY KEY (`id`) # ); # # CREATE TABLE `missed_calls` ( # `id` int(10) unsigned NOT NULL auto_increment, # `method` varchar(16) NOT NULL default '', # `from_tag` varchar(64) NOT NULL default '', # `to_tag` varchar(64) NOT NULL default '', # `callid` varchar(128) NOT NULL default '', # `sip_code` char(3) NOT NULL default '', # `sip_reason` varchar(32) NOT NULL default '', # `time` datetime NOT NULL default '0000-00-00 00:00:00', # `src_ip` varchar(64) NOT NULL default '', # `dst_user` varchar(64) NOT NULL default '', # `dst_domain` varchar(128) NOT NULL default '', # `src_user` varchar(64) NOT NULL default '', # `src_domain` varchar(128) NOT NULL default '', # INDEX acc_callid (`callid`), # PRIMARY KEY (`id`) # ); # # # ----------- global configuration parameters ------------------------ log_level=3 # debug level (cmd line: -dddddddddd) log_stderror=no # (cmd line: -E) /* Uncomment these lines to enter debugging mode */ #debug_mode=yes check_via=no	# (cmd."><meta property="og:type" content="article"><meta property="og:url" content="https://wdd.js.org/opensips/ch8/acc-mysql/"><meta property="og:image" content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta property="article:section" content="opensips"><meta property="article:published_time" content="2020-05-28T09:57:04+08:00"><meta property="article:modified_time" content="2020-05-28T09:57:04+08:00"><meta property="og:site_name" content="洞香春"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="acc-mysql"><meta name=twitter:description content="# # Sample config for MySQL accouting with OpenSIPS # # - db_mysql module must be compiled and installed # # - new columns have to be added since by default only few are recorded # - here are full SQL statements to create acc and missed_calls tables # # CREATE TABLE `acc` ( # `id` int(10) unsigned NOT NULL auto_increment, # `method` varchar(16) NOT NULL default '', # `from_tag` varchar(64) NOT NULL default '', # `to_tag` varchar(64) NOT NULL default '', # `callid` varchar(128) NOT NULL default '', # `sip_code` char(3) NOT NULL default '', # `sip_reason` varchar(32) NOT NULL default '', # `time` datetime NOT NULL default '0000-00-00 00:00:00', # `src_ip` varchar(64) NOT NULL default '', # `dst_user` varchar(64) NOT NULL default '', # `dst_domain` varchar(128) NOT NULL default '', # `src_user` varchar(64) NOT NULL default '', # `src_domain` varchar(128) NOT NULL default '', # INDEX acc_callid (`callid`), # PRIMARY KEY (`id`) # ); # # CREATE TABLE `missed_calls` ( # `id` int(10) unsigned NOT NULL auto_increment, # `method` varchar(16) NOT NULL default '', # `from_tag` varchar(64) NOT NULL default '', # `to_tag` varchar(64) NOT NULL default '', # `callid` varchar(128) NOT NULL default '', # `sip_code` char(3) NOT NULL default '', # `sip_reason` varchar(32) NOT NULL default '', # `time` datetime NOT NULL default '0000-00-00 00:00:00', # `src_ip` varchar(64) NOT NULL default '', # `dst_user` varchar(64) NOT NULL default '', # `dst_domain` varchar(128) NOT NULL default '', # `src_user` varchar(64) NOT NULL default '', # `src_domain` varchar(128) NOT NULL default '', # INDEX acc_callid (`callid`), # PRIMARY KEY (`id`) # ); # # # ----------- global configuration parameters ------------------------ log_level=3 # debug level (cmd line: -dddddddddd) log_stderror=no # (cmd line: -E) /* Uncomment these lines to enter debugging mode */ #debug_mode=yes check_via=no	# (cmd."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"OpenSIPS2.4.X 中文实战系列","item":"https://wdd.js.org/opensips/"},{"@type":"ListItem","position":3,"name":"acc-mysql","item":"https://wdd.js.org/opensips/ch8/acc-mysql/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"acc-mysql","name":"acc-mysql","description":"# # Sample config for MySQL accouting with OpenSIPS # # - db_mysql module must be compiled and installed # # - new columns have to be added since by default only few are recorded # - here are full SQL statements to create acc and missed_calls tables # # CREATE TABLE `acc` ( # `id` int(10) unsigned NOT NULL auto_increment, # `method` varchar(16) NOT NULL default \u0026#39;\u0026#39;, # `from_tag` varchar(64) NOT NULL default \u0026#39;\u0026#39;, # `to_tag` varchar(64) NOT NULL default \u0026#39;\u0026#39;, # `callid` varchar(128) NOT NULL default \u0026#39;\u0026#39;, # `sip_code` char(3) NOT NULL default \u0026#39;\u0026#39;, # `sip_reason` varchar(32) NOT NULL default \u0026#39;\u0026#39;, # `time` datetime NOT NULL default \u0026#39;0000-00-00 00:00:00\u0026#39;, # `src_ip` varchar(64) NOT NULL default \u0026#39;\u0026#39;, # `dst_user` varchar(64) NOT NULL default \u0026#39;\u0026#39;, # `dst_domain` varchar(128) NOT NULL default \u0026#39;\u0026#39;, # `src_user` varchar(64) NOT NULL default \u0026#39;\u0026#39;, # `src_domain` varchar(128) NOT NULL default \u0026#39;\u0026#39;, # INDEX acc_callid (`callid`), # PRIMARY KEY (`id`) # ); # # CREATE TABLE `missed_calls` ( # `id` int(10) unsigned NOT NULL auto_increment, # `method` varchar(16) NOT NULL default \u0026#39;\u0026#39;, # `from_tag` varchar(64) NOT NULL default \u0026#39;\u0026#39;, # `to_tag` varchar(64) NOT NULL default \u0026#39;\u0026#39;, # `callid` varchar(128) NOT NULL default \u0026#39;\u0026#39;, # `sip_code` char(3) NOT NULL default \u0026#39;\u0026#39;, # `sip_reason` varchar(32) NOT NULL default \u0026#39;\u0026#39;, # `time` datetime NOT NULL default \u0026#39;0000-00-00 00:00:00\u0026#39;, # `src_ip` varchar(64) NOT NULL default \u0026#39;\u0026#39;, # `dst_user` varchar(64) NOT NULL default \u0026#39;\u0026#39;, # `dst_domain` varchar(128) NOT NULL default \u0026#39;\u0026#39;, # `src_user` varchar(64) NOT NULL default \u0026#39;\u0026#39;, # `src_domain` varchar(128) NOT NULL default \u0026#39;\u0026#39;, # INDEX acc_callid (`callid`), # PRIMARY KEY (`id`) # ); # # # ----------- global configuration parameters ------------------------ log_level=3 # debug level (cmd line: -dddddddddd) log_stderror=no # (cmd line: -E) /* Uncomment these lines to enter debugging mode */ #debug_mode=yes check_via=no\t# (cmd.","keywords":[],"articleBody":"# # Sample config for MySQL accouting with OpenSIPS # # - db_mysql module must be compiled and installed # # - new columns have to be added since by default only few are recorded # - here are full SQL statements to create acc and missed_calls tables # # CREATE TABLE `acc` ( # `id` int(10) unsigned NOT NULL auto_increment, # `method` varchar(16) NOT NULL default '', # `from_tag` varchar(64) NOT NULL default '', # `to_tag` varchar(64) NOT NULL default '', # `callid` varchar(128) NOT NULL default '', # `sip_code` char(3) NOT NULL default '', # `sip_reason` varchar(32) NOT NULL default '', # `time` datetime NOT NULL default '0000-00-00 00:00:00', # `src_ip` varchar(64) NOT NULL default '', # `dst_user` varchar(64) NOT NULL default '', # `dst_domain` varchar(128) NOT NULL default '', # `src_user` varchar(64) NOT NULL default '', # `src_domain` varchar(128) NOT NULL default '', # INDEX acc_callid (`callid`), # PRIMARY KEY (`id`) # ); # # CREATE TABLE `missed_calls` ( # `id` int(10) unsigned NOT NULL auto_increment, # `method` varchar(16) NOT NULL default '', # `from_tag` varchar(64) NOT NULL default '', # `to_tag` varchar(64) NOT NULL default '', # `callid` varchar(128) NOT NULL default '', # `sip_code` char(3) NOT NULL default '', # `sip_reason` varchar(32) NOT NULL default '', # `time` datetime NOT NULL default '0000-00-00 00:00:00', # `src_ip` varchar(64) NOT NULL default '', # `dst_user` varchar(64) NOT NULL default '', # `dst_domain` varchar(128) NOT NULL default '', # `src_user` varchar(64) NOT NULL default '', # `src_domain` varchar(128) NOT NULL default '', # INDEX acc_callid (`callid`), # PRIMARY KEY (`id`) # ); # # # ----------- global configuration parameters ------------------------ log_level=3 # debug level (cmd line: -dddddddddd) log_stderror=no # (cmd line: -E) /* Uncomment these lines to enter debugging mode */ #debug_mode=yes check_via=no\t# (cmd. line: -v) dns=no # (cmd. line: -r) rev_dns=no # (cmd. line: -R) port=5060 children=4 # # uncomment the following lines for TLS support #disable_tls = 0 #listen = tls:your_IP:5061 #tls_verify_server = 1 #tls_verify_client = 1 #tls_require_client_certificate = 0 #tls_method = TLSv1 #tls_certificate = \"/usr/local/etc/opensips/tls/user/user-cert.pem\" #tls_private_key = \"/usr/local/etc/opensips/tls/user/user-privkey.pem\" #tls_ca_list = \"/usr/local/etc/opensips/tls/user/user-calist.pem\" # ------------------ module loading ---------------------------------- # set module path mpath=\"/usr/local/lib/opensips/modules/\" # Uncomment this if you want to use SQL database # - MySQL loaded for accounting as well loadmodule \"db_mysql.so\" loadmodule \"sl.so\" loadmodule \"tm.so\" loadmodule \"rr.so\" loadmodule \"maxfwd.so\" loadmodule \"usrloc.so\" loadmodule \"registrar.so\" loadmodule \"textops.so\" loadmodule \"acc.so\" loadmodule \"mi_fifo.so\" # Uncomment this if you want digest authentication # db_mysql.so must be loaded ! #loadmodule \"auth.so\" #loadmodule \"auth_db.so\" # ----------------- setting module-specific parameters --------------- # -- mi_fifo params -- modparam(\"mi_fifo\", \"fifo_name\", \"/tmp/opensips_fifo\") # -- usrloc params -- #modparam(\"usrloc\", \"db_mode\", 0) # Uncomment this if you want to use SQL database # for persistent storage and comment the previous line modparam(\"usrloc\", \"db_mode\", 2) # -- auth params -- # Uncomment if you are using auth module # #modparam(\"auth_db\", \"calculate_ha1\", yes) # # If you set \"calculate_ha1\" parameter to yes (which true in this config), # uncomment also the following parameter) # #modparam(\"auth_db\", \"password_column\", \"password\") # -- acc params -- modparam(\"acc\", \"db_url\", \"mysql://opensips:opensipsrw@localhost/opensips\") # flag to record to db modparam(\"acc\", \"db_flag\", 1) modparam(\"acc\", \"db_missed_flag\", 2) # flag to log to syslog modparam(\"acc\", \"log_flag\", 1) modparam(\"acc\", \"log_missed_flag\", 2) # use extra accounting to record caller and callee username/domain # - take them from From URI and R-URI modparam(\"acc\", \"log_extra\", \"src_user=$fU;src_domain=$fd;dst_user=$rU;dst_domain=$rd\") modparam(\"acc\", \"db_extra\", \"src_user=$fU;src_domain=$fd;dst_user=$rU;dst_domain=$rd\") # ------------------------- request routing logic ------------------- # main routing logic route{ # initial sanity checks -- messages with # max_forwards==0, or excessively long requests if (!mf_process_maxfwd_header(\"10\")) { sl_send_reply(\"483\",\"Too Many Hops\"); exit; }; # subsequent messages withing a dialog should take the # path determined by record-routing if (loose_route()) { # mark routing logic in request append_hf(\"P-hint: rr-enforced\\r\\n\"); if(is_method(\"BYE\")) { # account BYE for STOP record setflag(1); } route(1); }; # we record-route all messages -- to make sure that # subsequent messages will go through our proxy; that's # particularly good if upstream and downstream entities # use different transport protocol if (!is_method(\"REGISTER\")) record_route(); # account all calls if(is_method(\"INVITE\")) { # set accounting on for INVITE (success or missed call) setflag(1); setflag(2); } if (!is_myself(\"$rd\")) { # mark routing logic in request append_hf(\"P-hint: outbound\\r\\n\"); # if you have some interdomain connections via TLS #if($ru=~\"@tls_domain1.net\") { #\tt_relay(\"tls:domain1.net\"); #\texit; #} else if($ru=~\"@tls_domain2.net\") { #\tt_relay(\"tls:domain2.net\"); #\texit; #} route(1); }; # if the request is for other domain use UsrLoc # (in case, it does not work, use the following command # with proper names and addresses in it) if (is_myself(\"$rd\")) { if (is_method(\"REGISTER\")) { # Uncomment this if you want to use digest authentication #if (!www_authorize(\"opensips.org\", \"subscriber\")) { #\twww_challenge(\"opensips.org\", \"0\"); #\texit; #}; save(\"location\"); exit; }; if (!is_myself(\"$rd\")) { append_hf(\"P-hint: outbound alias\\r\\n\"); route(1); }; # native SIP destinations are handled using our USRLOC DB if (!lookup(\"location\")) { sl_send_reply(\"404\", \"Not Found\"); exit; }; append_hf(\"P-hint: usrloc applied\\r\\n\"); }; route(1); } route[1] { # send it out now; use stateful forwarding as it works reliably # even for UDP2TCP if (!t_relay()) { sl_reply_error(); }; exit; } ","wordCount":"830","inLanguage":"en","datePublished":"2020-05-28T09:57:04+08:00","dateModified":"2020-05-28T09:57:04+08:00","author":{"@type":"Person","name":"Eddie Wang"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://wdd.js.org/opensips/ch8/acc-mysql/"},"publisher":{"@type":"Organization","name":"洞香春","logo":{"@type":"ImageObject","url":"https://wdd.js.org/cowboy.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://wdd.js.org accesskey=h title="洞香春 (Alt + H)"><img src=https://wdd.js.org/cowboy.ico alt aria-label=logo height=35>洞香春</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://wdd.js.org/books/ title=读书><span>读书</span></a></li><li><a href=https://wdd.js.org/freeswitch/ title=FreeSWITCH><span>FreeSWITCH</span></a></li><li><a href=https://wdd.js.org/golang/ title=Golang><span>Golang</span></a></li><li><a href=https://wdd.js.org/kamailio/ title=Kamailio><span>Kamailio</span></a></li><li><a href=https://wdd.js.org/network/ title=Network><span>Network</span></a></li><li><a href=https://wdd.js.org/opensips/ title=OpenSIPS><span>OpenSIPS</span></a></li><li><a href=https://wdd.js.org/vim/ title=VIM><span>VIM</span></a></li><li><a href=https://wdd.js.org/categories/ title=分类><span>分类</span></a></li><li><a href=https://wdd.js.org/fe/ title=前端><span>前端</span></a></li><li><a href=https://wdd.js.org/search/ title=搜索><span>搜索</span></a></li><li><a href=https://wdd.js.org/tags/ title=标签><span>标签</span></a></li><li><a href=https://wdd.js.org/archives/ title=归档><span>归档</span></a></li><li><a href=https://wdd.js.org/about/ title=我><span>我</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://wdd.js.org>Home</a>&nbsp;»&nbsp;<a href=https://wdd.js.org/opensips/>OpenSIPS2.4.X 中文实战系列</a></div><h1 class=post-title>acc-mysql</h1><div class=post-meta><span title='2020-05-28 09:57:04 +0800 CST'>2020-05-28 09:57:04</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Eddie Wang&nbsp;|&nbsp;<a href=https://github.com/%3cpath_to_repo%3e/content/opensips/ch8/acc-mysql/index.md rel="noopener noreferrer" target=_blank>Suggest Changes</a></div></header><div class=post-content><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-makefile data-lang=makefile><span style=display:flex><span><span style=color:#75715e>#
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>acc-mysql | 洞香春</title>
+<meta name=keywords content><meta name=description content='#
+# Sample config for MySQL accouting with OpenSIPS 
+#
+# - db_mysql module must be compiled and installed
+#
+# - new columns have to be added since by default only few are recorded
+# - here are full SQL statements to create acc and missed_calls tables
+#
+# CREATE TABLE `acc` (
+#   `id` int(10) unsigned NOT NULL auto_increment,
+#   `method` varchar(16) NOT NULL default &#39;&#39;,
+#   `from_tag` varchar(64) NOT NULL default &#39;&#39;,
+#   `to_tag` varchar(64) NOT NULL default &#39;&#39;,
+#   `callid` varchar(128) NOT NULL default &#39;&#39;,
+#   `sip_code` char(3) NOT NULL default &#39;&#39;,
+#   `sip_reason` varchar(32) NOT NULL default &#39;&#39;,
+#   `time` datetime NOT NULL default &#39;0000-00-00 00:00:00&#39;,
+#   `src_ip` varchar(64) NOT NULL default &#39;&#39;,
+#   `dst_user` varchar(64) NOT NULL default &#39;&#39;,
+#   `dst_domain` varchar(128) NOT NULL default &#39;&#39;,
+#   `src_user` varchar(64) NOT NULL default &#39;&#39;,
+#   `src_domain` varchar(128) NOT NULL default &#39;&#39;,
+#   INDEX acc_callid (`callid`),
+#   PRIMARY KEY  (`id`)
+# );
+#
+# CREATE TABLE `missed_calls` (
+#   `id` int(10) unsigned NOT NULL auto_increment,
+#   `method` varchar(16) NOT NULL default &#39;&#39;,
+#   `from_tag` varchar(64) NOT NULL default &#39;&#39;,
+#   `to_tag` varchar(64) NOT NULL default &#39;&#39;,
+#   `callid` varchar(128) NOT NULL default &#39;&#39;,
+#   `sip_code` char(3) NOT NULL default &#39;&#39;,
+#   `sip_reason` varchar(32) NOT NULL default &#39;&#39;,
+#   `time` datetime NOT NULL default &#39;0000-00-00 00:00:00&#39;,
+#   `src_ip` varchar(64) NOT NULL default &#39;&#39;,
+#   `dst_user` varchar(64) NOT NULL default &#39;&#39;,
+#   `dst_domain` varchar(128) NOT NULL default &#39;&#39;,
+#   `src_user` varchar(64) NOT NULL default &#39;&#39;,
+#   `src_domain` varchar(128) NOT NULL default &#39;&#39;,
+#   INDEX acc_callid (`callid`),
+#   PRIMARY KEY  (`id`)
+# );
+#
+#
+
+# ----------- global configuration parameters ------------------------
+
+log_level=3            # debug level (cmd line: -dddddddddd)
+log_stderror=no    # (cmd line: -E)
+
+/* Uncomment these lines to enter debugging mode */
+#debug_mode=yes
+
+check_via=no	# (cmd. line: -v)
+dns=no          # (cmd. line: -r)
+rev_dns=no      # (cmd. line: -R)
+port=5060
+children=4
+
+#
+# uncomment the following lines for TLS support
+#disable_tls = 0
+#listen = tls:your_IP:5061
+#tls_verify_server = 1
+#tls_verify_client = 1
+#tls_require_client_certificate = 0
+#tls_method = TLSv1
+#tls_certificate = "/usr/local/etc/opensips/tls/user/user-cert.pem"
+#tls_private_key = "/usr/local/etc/opensips/tls/user/user-privkey.pem"
+#tls_ca_list = "/usr/local/etc/opensips/tls/user/user-calist.pem"
+
+# ------------------ module loading ----------------------------------
+
+# set module path
+mpath="/usr/local/lib/opensips/modules/"
+
+# Uncomment this if you want to use SQL database
+# - MySQL loaded for accounting as well
+loadmodule "db_mysql.so"
+
+loadmodule "sl.so"
+loadmodule "tm.so"
+loadmodule "rr.so"
+loadmodule "maxfwd.so"
+loadmodule "usrloc.so"
+loadmodule "registrar.so"
+loadmodule "textops.so"
+loadmodule "acc.so"
+loadmodule "mi_fifo.so"
+
+# Uncomment this if you want digest authentication
+# db_mysql.so must be loaded !
+#loadmodule "auth.so"
+#loadmodule "auth_db.so"
+
+# ----------------- setting module-specific parameters ---------------
+
+# -- mi_fifo params --
+
+modparam("mi_fifo", "fifo_name", "/tmp/opensips_fifo")
+
+# -- usrloc params --
+
+#modparam("usrloc", "db_mode",   0)
+
+# Uncomment this if you want to use SQL database 
+# for persistent storage and comment the previous line
+modparam("usrloc", "db_mode", 2)
+
+# -- auth params --
+# Uncomment if you are using auth module
+#
+#modparam("auth_db", "calculate_ha1", yes)
+#
+# If you set "calculate_ha1" parameter to yes (which true in this config), 
+# uncomment also the following parameter)
+#
+#modparam("auth_db", "password_column", "password")
+
+# -- acc params --
+modparam("acc", "db_url", "mysql://opensips:opensipsrw@localhost/opensips")
+# flag to record to db
+modparam("acc", "db_flag", 1)
+modparam("acc", "db_missed_flag", 2)
+# flag to log to syslog
+modparam("acc", "log_flag", 1)
+modparam("acc", "log_missed_flag", 2)
+# use extra accounting to record caller and callee username/domain
+# - take them from From URI and R-URI
+modparam("acc", "log_extra",
+	"src_user=$fU;src_domain=$fd;dst_user=$rU;dst_domain=$rd")
+modparam("acc", "db_extra",
+	"src_user=$fU;src_domain=$fd;dst_user=$rU;dst_domain=$rd")
+
+# -------------------------  request routing logic -------------------
+
+# main routing logic
+
+route{
+
+	# initial sanity checks -- messages with
+	# max_forwards==0, or excessively long requests
+	if (!mf_process_maxfwd_header("10")) {
+		sl_send_reply("483","Too Many Hops");
+		exit;
+	};
+
+	# subsequent messages withing a dialog should take the
+	# path determined by record-routing
+	if (loose_route()) {
+		# mark routing logic in request
+		append_hf("P-hint: rr-enforced\r\n");
+		if(is_method("BYE")) {
+			# account BYE for STOP record
+			setflag(1);
+		}
+		route(1);
+	};
+
+	# we record-route all messages -- to make sure that
+	# subsequent messages will go through our proxy; that&#39;s
+	# particularly good if upstream and downstream entities
+	# use different transport protocol
+	if (!is_method("REGISTER"))
+		record_route();
+
+	# account all calls
+	if(is_method("INVITE")) {
+		# set accounting on for INVITE (success or missed call)
+		setflag(1);
+		setflag(2);
+	}
+
+	if (!is_myself("$rd")) {
+		# mark routing logic in request
+		append_hf("P-hint: outbound\r\n"); 
+		# if you have some interdomain connections via TLS
+		#if($ru=~"@tls_domain1.net") {
+		#	t_relay("tls:domain1.net");
+		#	exit;
+		#} else if($ru=~"@tls_domain2.net") {
+		#	t_relay("tls:domain2.net");
+		#	exit;
+		#}
+		route(1);
+	};
+
+	# if the request is for other domain use UsrLoc
+	# (in case, it does not work, use the following command
+	# with proper names and addresses in it)
+	if (is_myself("$rd")) {
+
+		if (is_method("REGISTER")) {
+
+			# Uncomment this if you want to use digest authentication
+			#if (!www_authorize("opensips.org", "subscriber")) {
+			#	www_challenge("opensips.org", "0");
+			#	exit;
+			#};
+
+			save("location");
+			exit;
+		};
+
+		if (!is_myself("$rd")) {
+			append_hf("P-hint: outbound alias\r\n"); 
+			route(1);
+		};
+
+		# native SIP destinations are handled using our USRLOC DB
+		if (!lookup("location")) {
+			sl_send_reply("404", "Not Found");
+			exit;
+		};
+		append_hf("P-hint: usrloc applied\r\n"); 
+	};
+
+	route(1);
+}
+
+
+route[1] {
+	# send it out now; use stateful forwarding as it works reliably
+	# even for UDP2TCP
+	if (!t_relay()) {
+		sl_reply_error();
+	};
+	exit;
+}
+'><meta name=author content="Eddie Wang"><link rel=canonical href=https://wdd.js.org/opensips/ch8/acc-mysql/><link crossorigin=anonymous href=/assets/css/stylesheet.821c51435cba3e33e49e590a06514c54c32ac7957095ffcc1e0f390c47cf3228.css integrity="sha256-ghxRQ1y6PjPknlkKBlFMVMMqx5Vwlf/MHg85DEfPMig=" rel="preload stylesheet" as=style><link rel=icon href=https://wdd.js.org/cowboy.ico><link rel=icon type=image/png sizes=16x16 href=https://wdd.js.org/cowboy.ico><link rel=icon type=image/png sizes=32x32 href=https://wdd.js.org/cowboy.ico><link rel=apple-touch-icon href=https://wdd.js.org/cowboy.ico><link rel=mask-icon href=https://wdd.js.org/cowboy.ico><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://wdd.js.org/opensips/ch8/acc-mysql/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><meta property="og:url" content="https://wdd.js.org/opensips/ch8/acc-mysql/"><meta property="og:site_name" content="洞香春"><meta property="og:title" content="acc-mysql"><meta property="og:description" content='# # Sample config for MySQL accouting with OpenSIPS # # - db_mysql module must be compiled and installed # # - new columns have to be added since by default only few are recorded # - here are full SQL statements to create acc and missed_calls tables # # CREATE TABLE `acc` ( # `id` int(10) unsigned NOT NULL auto_increment, # `method` varchar(16) NOT NULL default &#39;&#39;, # `from_tag` varchar(64) NOT NULL default &#39;&#39;, # `to_tag` varchar(64) NOT NULL default &#39;&#39;, # `callid` varchar(128) NOT NULL default &#39;&#39;, # `sip_code` char(3) NOT NULL default &#39;&#39;, # `sip_reason` varchar(32) NOT NULL default &#39;&#39;, # `time` datetime NOT NULL default &#39;0000-00-00 00:00:00&#39;, # `src_ip` varchar(64) NOT NULL default &#39;&#39;, # `dst_user` varchar(64) NOT NULL default &#39;&#39;, # `dst_domain` varchar(128) NOT NULL default &#39;&#39;, # `src_user` varchar(64) NOT NULL default &#39;&#39;, # `src_domain` varchar(128) NOT NULL default &#39;&#39;, # INDEX acc_callid (`callid`), # PRIMARY KEY (`id`) # ); # # CREATE TABLE `missed_calls` ( # `id` int(10) unsigned NOT NULL auto_increment, # `method` varchar(16) NOT NULL default &#39;&#39;, # `from_tag` varchar(64) NOT NULL default &#39;&#39;, # `to_tag` varchar(64) NOT NULL default &#39;&#39;, # `callid` varchar(128) NOT NULL default &#39;&#39;, # `sip_code` char(3) NOT NULL default &#39;&#39;, # `sip_reason` varchar(32) NOT NULL default &#39;&#39;, # `time` datetime NOT NULL default &#39;0000-00-00 00:00:00&#39;, # `src_ip` varchar(64) NOT NULL default &#39;&#39;, # `dst_user` varchar(64) NOT NULL default &#39;&#39;, # `dst_domain` varchar(128) NOT NULL default &#39;&#39;, # `src_user` varchar(64) NOT NULL default &#39;&#39;, # `src_domain` varchar(128) NOT NULL default &#39;&#39;, # INDEX acc_callid (`callid`), # PRIMARY KEY (`id`) # ); # # # ----------- global configuration parameters ------------------------ log_level=3 # debug level (cmd line: -dddddddddd) log_stderror=no # (cmd line: -E) /* Uncomment these lines to enter debugging mode */ #debug_mode=yes check_via=no	# (cmd. line: -v) dns=no # (cmd. line: -r) rev_dns=no # (cmd. line: -R) port=5060 children=4 # # uncomment the following lines for TLS support #disable_tls = 0 #listen = tls:your_IP:5061 #tls_verify_server = 1 #tls_verify_client = 1 #tls_require_client_certificate = 0 #tls_method = TLSv1 #tls_certificate = "/usr/local/etc/opensips/tls/user/user-cert.pem" #tls_private_key = "/usr/local/etc/opensips/tls/user/user-privkey.pem" #tls_ca_list = "/usr/local/etc/opensips/tls/user/user-calist.pem" # ------------------ module loading ---------------------------------- # set module path mpath="/usr/local/lib/opensips/modules/" # Uncomment this if you want to use SQL database # - MySQL loaded for accounting as well loadmodule "db_mysql.so" loadmodule "sl.so" loadmodule "tm.so" loadmodule "rr.so" loadmodule "maxfwd.so" loadmodule "usrloc.so" loadmodule "registrar.so" loadmodule "textops.so" loadmodule "acc.so" loadmodule "mi_fifo.so" # Uncomment this if you want digest authentication # db_mysql.so must be loaded ! #loadmodule "auth.so" #loadmodule "auth_db.so" # ----------------- setting module-specific parameters --------------- # -- mi_fifo params -- modparam("mi_fifo", "fifo_name", "/tmp/opensips_fifo") # -- usrloc params -- #modparam("usrloc", "db_mode", 0) # Uncomment this if you want to use SQL database # for persistent storage and comment the previous line modparam("usrloc", "db_mode", 2) # -- auth params -- # Uncomment if you are using auth module # #modparam("auth_db", "calculate_ha1", yes) # # If you set "calculate_ha1" parameter to yes (which true in this config), # uncomment also the following parameter) # #modparam("auth_db", "password_column", "password") # -- acc params -- modparam("acc", "db_url", "mysql://opensips:opensipsrw@localhost/opensips") # flag to record to db modparam("acc", "db_flag", 1) modparam("acc", "db_missed_flag", 2) # flag to log to syslog modparam("acc", "log_flag", 1) modparam("acc", "log_missed_flag", 2) # use extra accounting to record caller and callee username/domain # - take them from From URI and R-URI modparam("acc", "log_extra", "src_user=$fU;src_domain=$fd;dst_user=$rU;dst_domain=$rd") modparam("acc", "db_extra", "src_user=$fU;src_domain=$fd;dst_user=$rU;dst_domain=$rd") # ------------------------- request routing logic ------------------- # main routing logic route{ # initial sanity checks -- messages with # max_forwards==0, or excessively long requests if (!mf_process_maxfwd_header("10")) { sl_send_reply("483","Too Many Hops"); exit; }; # subsequent messages withing a dialog should take the # path determined by record-routing if (loose_route()) { # mark routing logic in request append_hf("P-hint: rr-enforced\r\n"); if(is_method("BYE")) { # account BYE for STOP record setflag(1); } route(1); }; # we record-route all messages -- to make sure that # subsequent messages will go through our proxy; that&#39;s # particularly good if upstream and downstream entities # use different transport protocol if (!is_method("REGISTER")) record_route(); # account all calls if(is_method("INVITE")) { # set accounting on for INVITE (success or missed call) setflag(1); setflag(2); } if (!is_myself("$rd")) { # mark routing logic in request append_hf("P-hint: outbound\r\n"); # if you have some interdomain connections via TLS #if($ru=~"@tls_domain1.net") { #	t_relay("tls:domain1.net"); #	exit; #} else if($ru=~"@tls_domain2.net") { #	t_relay("tls:domain2.net"); #	exit; #} route(1); }; # if the request is for other domain use UsrLoc # (in case, it does not work, use the following command # with proper names and addresses in it) if (is_myself("$rd")) { if (is_method("REGISTER")) { # Uncomment this if you want to use digest authentication #if (!www_authorize("opensips.org", "subscriber")) { #	www_challenge("opensips.org", "0"); #	exit; #}; save("location"); exit; }; if (!is_myself("$rd")) { append_hf("P-hint: outbound alias\r\n"); route(1); }; # native SIP destinations are handled using our USRLOC DB if (!lookup("location")) { sl_send_reply("404", "Not Found"); exit; }; append_hf("P-hint: usrloc applied\r\n"); }; route(1); } route[1] { # send it out now; use stateful forwarding as it works reliably # even for UDP2TCP if (!t_relay()) { sl_reply_error(); }; exit; } '><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="opensips"><meta property="article:published_time" content="2020-05-28T09:57:04+08:00"><meta property="article:modified_time" content="2020-05-28T09:57:04+08:00"><meta property="og:image" content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="acc-mysql"><meta name=twitter:description content='#
+# Sample config for MySQL accouting with OpenSIPS 
+#
+# - db_mysql module must be compiled and installed
+#
+# - new columns have to be added since by default only few are recorded
+# - here are full SQL statements to create acc and missed_calls tables
+#
+# CREATE TABLE `acc` (
+#   `id` int(10) unsigned NOT NULL auto_increment,
+#   `method` varchar(16) NOT NULL default &#39;&#39;,
+#   `from_tag` varchar(64) NOT NULL default &#39;&#39;,
+#   `to_tag` varchar(64) NOT NULL default &#39;&#39;,
+#   `callid` varchar(128) NOT NULL default &#39;&#39;,
+#   `sip_code` char(3) NOT NULL default &#39;&#39;,
+#   `sip_reason` varchar(32) NOT NULL default &#39;&#39;,
+#   `time` datetime NOT NULL default &#39;0000-00-00 00:00:00&#39;,
+#   `src_ip` varchar(64) NOT NULL default &#39;&#39;,
+#   `dst_user` varchar(64) NOT NULL default &#39;&#39;,
+#   `dst_domain` varchar(128) NOT NULL default &#39;&#39;,
+#   `src_user` varchar(64) NOT NULL default &#39;&#39;,
+#   `src_domain` varchar(128) NOT NULL default &#39;&#39;,
+#   INDEX acc_callid (`callid`),
+#   PRIMARY KEY  (`id`)
+# );
+#
+# CREATE TABLE `missed_calls` (
+#   `id` int(10) unsigned NOT NULL auto_increment,
+#   `method` varchar(16) NOT NULL default &#39;&#39;,
+#   `from_tag` varchar(64) NOT NULL default &#39;&#39;,
+#   `to_tag` varchar(64) NOT NULL default &#39;&#39;,
+#   `callid` varchar(128) NOT NULL default &#39;&#39;,
+#   `sip_code` char(3) NOT NULL default &#39;&#39;,
+#   `sip_reason` varchar(32) NOT NULL default &#39;&#39;,
+#   `time` datetime NOT NULL default &#39;0000-00-00 00:00:00&#39;,
+#   `src_ip` varchar(64) NOT NULL default &#39;&#39;,
+#   `dst_user` varchar(64) NOT NULL default &#39;&#39;,
+#   `dst_domain` varchar(128) NOT NULL default &#39;&#39;,
+#   `src_user` varchar(64) NOT NULL default &#39;&#39;,
+#   `src_domain` varchar(128) NOT NULL default &#39;&#39;,
+#   INDEX acc_callid (`callid`),
+#   PRIMARY KEY  (`id`)
+# );
+#
+#
+
+# ----------- global configuration parameters ------------------------
+
+log_level=3            # debug level (cmd line: -dddddddddd)
+log_stderror=no    # (cmd line: -E)
+
+/* Uncomment these lines to enter debugging mode */
+#debug_mode=yes
+
+check_via=no	# (cmd. line: -v)
+dns=no          # (cmd. line: -r)
+rev_dns=no      # (cmd. line: -R)
+port=5060
+children=4
+
+#
+# uncomment the following lines for TLS support
+#disable_tls = 0
+#listen = tls:your_IP:5061
+#tls_verify_server = 1
+#tls_verify_client = 1
+#tls_require_client_certificate = 0
+#tls_method = TLSv1
+#tls_certificate = "/usr/local/etc/opensips/tls/user/user-cert.pem"
+#tls_private_key = "/usr/local/etc/opensips/tls/user/user-privkey.pem"
+#tls_ca_list = "/usr/local/etc/opensips/tls/user/user-calist.pem"
+
+# ------------------ module loading ----------------------------------
+
+# set module path
+mpath="/usr/local/lib/opensips/modules/"
+
+# Uncomment this if you want to use SQL database
+# - MySQL loaded for accounting as well
+loadmodule "db_mysql.so"
+
+loadmodule "sl.so"
+loadmodule "tm.so"
+loadmodule "rr.so"
+loadmodule "maxfwd.so"
+loadmodule "usrloc.so"
+loadmodule "registrar.so"
+loadmodule "textops.so"
+loadmodule "acc.so"
+loadmodule "mi_fifo.so"
+
+# Uncomment this if you want digest authentication
+# db_mysql.so must be loaded !
+#loadmodule "auth.so"
+#loadmodule "auth_db.so"
+
+# ----------------- setting module-specific parameters ---------------
+
+# -- mi_fifo params --
+
+modparam("mi_fifo", "fifo_name", "/tmp/opensips_fifo")
+
+# -- usrloc params --
+
+#modparam("usrloc", "db_mode",   0)
+
+# Uncomment this if you want to use SQL database 
+# for persistent storage and comment the previous line
+modparam("usrloc", "db_mode", 2)
+
+# -- auth params --
+# Uncomment if you are using auth module
+#
+#modparam("auth_db", "calculate_ha1", yes)
+#
+# If you set "calculate_ha1" parameter to yes (which true in this config), 
+# uncomment also the following parameter)
+#
+#modparam("auth_db", "password_column", "password")
+
+# -- acc params --
+modparam("acc", "db_url", "mysql://opensips:opensipsrw@localhost/opensips")
+# flag to record to db
+modparam("acc", "db_flag", 1)
+modparam("acc", "db_missed_flag", 2)
+# flag to log to syslog
+modparam("acc", "log_flag", 1)
+modparam("acc", "log_missed_flag", 2)
+# use extra accounting to record caller and callee username/domain
+# - take them from From URI and R-URI
+modparam("acc", "log_extra",
+	"src_user=$fU;src_domain=$fd;dst_user=$rU;dst_domain=$rd")
+modparam("acc", "db_extra",
+	"src_user=$fU;src_domain=$fd;dst_user=$rU;dst_domain=$rd")
+
+# -------------------------  request routing logic -------------------
+
+# main routing logic
+
+route{
+
+	# initial sanity checks -- messages with
+	# max_forwards==0, or excessively long requests
+	if (!mf_process_maxfwd_header("10")) {
+		sl_send_reply("483","Too Many Hops");
+		exit;
+	};
+
+	# subsequent messages withing a dialog should take the
+	# path determined by record-routing
+	if (loose_route()) {
+		# mark routing logic in request
+		append_hf("P-hint: rr-enforced\r\n");
+		if(is_method("BYE")) {
+			# account BYE for STOP record
+			setflag(1);
+		}
+		route(1);
+	};
+
+	# we record-route all messages -- to make sure that
+	# subsequent messages will go through our proxy; that&#39;s
+	# particularly good if upstream and downstream entities
+	# use different transport protocol
+	if (!is_method("REGISTER"))
+		record_route();
+
+	# account all calls
+	if(is_method("INVITE")) {
+		# set accounting on for INVITE (success or missed call)
+		setflag(1);
+		setflag(2);
+	}
+
+	if (!is_myself("$rd")) {
+		# mark routing logic in request
+		append_hf("P-hint: outbound\r\n"); 
+		# if you have some interdomain connections via TLS
+		#if($ru=~"@tls_domain1.net") {
+		#	t_relay("tls:domain1.net");
+		#	exit;
+		#} else if($ru=~"@tls_domain2.net") {
+		#	t_relay("tls:domain2.net");
+		#	exit;
+		#}
+		route(1);
+	};
+
+	# if the request is for other domain use UsrLoc
+	# (in case, it does not work, use the following command
+	# with proper names and addresses in it)
+	if (is_myself("$rd")) {
+
+		if (is_method("REGISTER")) {
+
+			# Uncomment this if you want to use digest authentication
+			#if (!www_authorize("opensips.org", "subscriber")) {
+			#	www_challenge("opensips.org", "0");
+			#	exit;
+			#};
+
+			save("location");
+			exit;
+		};
+
+		if (!is_myself("$rd")) {
+			append_hf("P-hint: outbound alias\r\n"); 
+			route(1);
+		};
+
+		# native SIP destinations are handled using our USRLOC DB
+		if (!lookup("location")) {
+			sl_send_reply("404", "Not Found");
+			exit;
+		};
+		append_hf("P-hint: usrloc applied\r\n"); 
+	};
+
+	route(1);
+}
+
+
+route[1] {
+	# send it out now; use stateful forwarding as it works reliably
+	# even for UDP2TCP
+	if (!t_relay()) {
+		sl_reply_error();
+	};
+	exit;
+}
+'><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"OpenSIPS2.4.X 中文实战系列","item":"https://wdd.js.org/opensips/"},{"@type":"ListItem","position":2,"name":"acc-mysql","item":"https://wdd.js.org/opensips/ch8/acc-mysql/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"acc-mysql","name":"acc-mysql","description":"# # Sample config for MySQL accouting with OpenSIPS # # - db_mysql module must be compiled and installed # # - new columns have to be added since by default only few are recorded # - here are full SQL statements to create acc and missed_calls tables # # CREATE TABLE `acc` ( # `id` int(10) unsigned NOT NULL auto_increment, # `method` varchar(16) NOT NULL default \u0026#39;\u0026#39;, # `from_tag` varchar(64) NOT NULL default \u0026#39;\u0026#39;, # `to_tag` varchar(64) NOT NULL default \u0026#39;\u0026#39;, # `callid` varchar(128) NOT NULL default \u0026#39;\u0026#39;, # `sip_code` char(3) NOT NULL default \u0026#39;\u0026#39;, # `sip_reason` varchar(32) NOT NULL default \u0026#39;\u0026#39;, # `time` datetime NOT NULL default \u0026#39;0000-00-00 00:00:00\u0026#39;, # `src_ip` varchar(64) NOT NULL default \u0026#39;\u0026#39;, # `dst_user` varchar(64) NOT NULL default \u0026#39;\u0026#39;, # `dst_domain` varchar(128) NOT NULL default \u0026#39;\u0026#39;, # `src_user` varchar(64) NOT NULL default \u0026#39;\u0026#39;, # `src_domain` varchar(128) NOT NULL default \u0026#39;\u0026#39;, # INDEX acc_callid (`callid`), # PRIMARY KEY (`id`) # ); # # CREATE TABLE `missed_calls` ( # `id` int(10) unsigned NOT NULL auto_increment, # `method` varchar(16) NOT NULL default \u0026#39;\u0026#39;, # `from_tag` varchar(64) NOT NULL default \u0026#39;\u0026#39;, # `to_tag` varchar(64) NOT NULL default \u0026#39;\u0026#39;, # `callid` varchar(128) NOT NULL default \u0026#39;\u0026#39;, # `sip_code` char(3) NOT NULL default \u0026#39;\u0026#39;, # `sip_reason` varchar(32) NOT NULL default \u0026#39;\u0026#39;, # `time` datetime NOT NULL default \u0026#39;0000-00-00 00:00:00\u0026#39;, # `src_ip` varchar(64) NOT NULL default \u0026#39;\u0026#39;, # `dst_user` varchar(64) NOT NULL default \u0026#39;\u0026#39;, # `dst_domain` varchar(128) NOT NULL default \u0026#39;\u0026#39;, # `src_user` varchar(64) NOT NULL default \u0026#39;\u0026#39;, # `src_domain` varchar(128) NOT NULL default \u0026#39;\u0026#39;, # INDEX acc_callid (`callid`), # PRIMARY KEY (`id`) # ); # # # ----------- global configuration parameters ------------------------ log_level=3 # debug level (cmd line: -dddddddddd) log_stderror=no # (cmd line: -E) /* Uncomment these lines to enter debugging mode */ #debug_mode=yes check_via=no\t# (cmd. line: -v) dns=no # (cmd. line: -r) rev_dns=no # (cmd. line: -R) port=5060 children=4 # # uncomment the following lines for TLS support #disable_tls = 0 #listen = tls:your_IP:5061 #tls_verify_server = 1 #tls_verify_client = 1 #tls_require_client_certificate = 0 #tls_method = TLSv1 #tls_certificate = \u0026#34;/usr/local/etc/opensips/tls/user/user-cert.pem\u0026#34; #tls_private_key = \u0026#34;/usr/local/etc/opensips/tls/user/user-privkey.pem\u0026#34; #tls_ca_list = \u0026#34;/usr/local/etc/opensips/tls/user/user-calist.pem\u0026#34; # ------------------ module loading ---------------------------------- # set module path mpath=\u0026#34;/usr/local/lib/opensips/modules/\u0026#34; # Uncomment this if you want to use SQL database # - MySQL loaded for accounting as well loadmodule \u0026#34;db_mysql.so\u0026#34; loadmodule \u0026#34;sl.so\u0026#34; loadmodule \u0026#34;tm.so\u0026#34; loadmodule \u0026#34;rr.so\u0026#34; loadmodule \u0026#34;maxfwd.so\u0026#34; loadmodule \u0026#34;usrloc.so\u0026#34; loadmodule \u0026#34;registrar.so\u0026#34; loadmodule \u0026#34;textops.so\u0026#34; loadmodule \u0026#34;acc.so\u0026#34; loadmodule \u0026#34;mi_fifo.so\u0026#34; # Uncomment this if you want digest authentication # db_mysql.so must be loaded ! #loadmodule \u0026#34;auth.so\u0026#34; #loadmodule \u0026#34;auth_db.so\u0026#34; # ----------------- setting module-specific parameters --------------- # -- mi_fifo params -- modparam(\u0026#34;mi_fifo\u0026#34;, \u0026#34;fifo_name\u0026#34;, \u0026#34;/tmp/opensips_fifo\u0026#34;) # -- usrloc params -- #modparam(\u0026#34;usrloc\u0026#34;, \u0026#34;db_mode\u0026#34;, 0) # Uncomment this if you want to use SQL database # for persistent storage and comment the previous line modparam(\u0026#34;usrloc\u0026#34;, \u0026#34;db_mode\u0026#34;, 2) # -- auth params -- # Uncomment if you are using auth module # #modparam(\u0026#34;auth_db\u0026#34;, \u0026#34;calculate_ha1\u0026#34;, yes) # # If you set \u0026#34;calculate_ha1\u0026#34; parameter to yes (which true in this config), # uncomment also the following parameter) # #modparam(\u0026#34;auth_db\u0026#34;, \u0026#34;password_column\u0026#34;, \u0026#34;password\u0026#34;) # -- acc params -- modparam(\u0026#34;acc\u0026#34;, \u0026#34;db_url\u0026#34;, \u0026#34;mysql://opensips:opensipsrw@localhost/opensips\u0026#34;) # flag to record to db modparam(\u0026#34;acc\u0026#34;, \u0026#34;db_flag\u0026#34;, 1) modparam(\u0026#34;acc\u0026#34;, \u0026#34;db_missed_flag\u0026#34;, 2) # flag to log to syslog modparam(\u0026#34;acc\u0026#34;, \u0026#34;log_flag\u0026#34;, 1) modparam(\u0026#34;acc\u0026#34;, \u0026#34;log_missed_flag\u0026#34;, 2) # use extra accounting to record caller and callee username/domain # - take them from From URI and R-URI modparam(\u0026#34;acc\u0026#34;, \u0026#34;log_extra\u0026#34;, \u0026#34;src_user=$fU;src_domain=$fd;dst_user=$rU;dst_domain=$rd\u0026#34;) modparam(\u0026#34;acc\u0026#34;, \u0026#34;db_extra\u0026#34;, \u0026#34;src_user=$fU;src_domain=$fd;dst_user=$rU;dst_domain=$rd\u0026#34;) # ------------------------- request routing logic ------------------- # main routing logic route{ # initial sanity checks -- messages with # max_forwards==0, or excessively long requests if (!mf_process_maxfwd_header(\u0026#34;10\u0026#34;)) { sl_send_reply(\u0026#34;483\u0026#34;,\u0026#34;Too Many Hops\u0026#34;); exit; }; # subsequent messages withing a dialog should take the # path determined by record-routing if (loose_route()) { # mark routing logic in request append_hf(\u0026#34;P-hint: rr-enforced\\r\\n\u0026#34;); if(is_method(\u0026#34;BYE\u0026#34;)) { # account BYE for STOP record setflag(1); } route(1); }; # we record-route all messages -- to make sure that # subsequent messages will go through our proxy; that\u0026#39;s # particularly good if upstream and downstream entities # use different transport protocol if (!is_method(\u0026#34;REGISTER\u0026#34;)) record_route(); # account all calls if(is_method(\u0026#34;INVITE\u0026#34;)) { # set accounting on for INVITE (success or missed call) setflag(1); setflag(2); } if (!is_myself(\u0026#34;$rd\u0026#34;)) { # mark routing logic in request append_hf(\u0026#34;P-hint: outbound\\r\\n\u0026#34;); # if you have some interdomain connections via TLS #if($ru=~\u0026#34;@tls_domain1.net\u0026#34;) { #\tt_relay(\u0026#34;tls:domain1.net\u0026#34;); #\texit; #} else if($ru=~\u0026#34;@tls_domain2.net\u0026#34;) { #\tt_relay(\u0026#34;tls:domain2.net\u0026#34;); #\texit; #} route(1); }; # if the request is for other domain use UsrLoc # (in case, it does not work, use the following command # with proper names and addresses in it) if (is_myself(\u0026#34;$rd\u0026#34;)) { if (is_method(\u0026#34;REGISTER\u0026#34;)) { # Uncomment this if you want to use digest authentication #if (!www_authorize(\u0026#34;opensips.org\u0026#34;, \u0026#34;subscriber\u0026#34;)) { #\twww_challenge(\u0026#34;opensips.org\u0026#34;, \u0026#34;0\u0026#34;); #\texit; #}; save(\u0026#34;location\u0026#34;); exit; }; if (!is_myself(\u0026#34;$rd\u0026#34;)) { append_hf(\u0026#34;P-hint: outbound alias\\r\\n\u0026#34;); route(1); }; # native SIP destinations are handled using our USRLOC DB if (!lookup(\u0026#34;location\u0026#34;)) { sl_send_reply(\u0026#34;404\u0026#34;, \u0026#34;Not Found\u0026#34;); exit; }; append_hf(\u0026#34;P-hint: usrloc applied\\r\\n\u0026#34;); }; route(1); } route[1] { # send it out now; use stateful forwarding as it works reliably # even for UDP2TCP if (!t_relay()) { sl_reply_error(); }; exit; } ","keywords":[],"articleBody":"# # Sample config for MySQL accouting with OpenSIPS # # - db_mysql module must be compiled and installed # # - new columns have to be added since by default only few are recorded # - here are full SQL statements to create acc and missed_calls tables # # CREATE TABLE `acc` ( # `id` int(10) unsigned NOT NULL auto_increment, # `method` varchar(16) NOT NULL default '', # `from_tag` varchar(64) NOT NULL default '', # `to_tag` varchar(64) NOT NULL default '', # `callid` varchar(128) NOT NULL default '', # `sip_code` char(3) NOT NULL default '', # `sip_reason` varchar(32) NOT NULL default '', # `time` datetime NOT NULL default '0000-00-00 00:00:00', # `src_ip` varchar(64) NOT NULL default '', # `dst_user` varchar(64) NOT NULL default '', # `dst_domain` varchar(128) NOT NULL default '', # `src_user` varchar(64) NOT NULL default '', # `src_domain` varchar(128) NOT NULL default '', # INDEX acc_callid (`callid`), # PRIMARY KEY (`id`) # ); # # CREATE TABLE `missed_calls` ( # `id` int(10) unsigned NOT NULL auto_increment, # `method` varchar(16) NOT NULL default '', # `from_tag` varchar(64) NOT NULL default '', # `to_tag` varchar(64) NOT NULL default '', # `callid` varchar(128) NOT NULL default '', # `sip_code` char(3) NOT NULL default '', # `sip_reason` varchar(32) NOT NULL default '', # `time` datetime NOT NULL default '0000-00-00 00:00:00', # `src_ip` varchar(64) NOT NULL default '', # `dst_user` varchar(64) NOT NULL default '', # `dst_domain` varchar(128) NOT NULL default '', # `src_user` varchar(64) NOT NULL default '', # `src_domain` varchar(128) NOT NULL default '', # INDEX acc_callid (`callid`), # PRIMARY KEY (`id`) # ); # # # ----------- global configuration parameters ------------------------ log_level=3 # debug level (cmd line: -dddddddddd) log_stderror=no # (cmd line: -E) /* Uncomment these lines to enter debugging mode */ #debug_mode=yes check_via=no\t# (cmd. line: -v) dns=no # (cmd. line: -r) rev_dns=no # (cmd. line: -R) port=5060 children=4 # # uncomment the following lines for TLS support #disable_tls = 0 #listen = tls:your_IP:5061 #tls_verify_server = 1 #tls_verify_client = 1 #tls_require_client_certificate = 0 #tls_method = TLSv1 #tls_certificate = \"/usr/local/etc/opensips/tls/user/user-cert.pem\" #tls_private_key = \"/usr/local/etc/opensips/tls/user/user-privkey.pem\" #tls_ca_list = \"/usr/local/etc/opensips/tls/user/user-calist.pem\" # ------------------ module loading ---------------------------------- # set module path mpath=\"/usr/local/lib/opensips/modules/\" # Uncomment this if you want to use SQL database # - MySQL loaded for accounting as well loadmodule \"db_mysql.so\" loadmodule \"sl.so\" loadmodule \"tm.so\" loadmodule \"rr.so\" loadmodule \"maxfwd.so\" loadmodule \"usrloc.so\" loadmodule \"registrar.so\" loadmodule \"textops.so\" loadmodule \"acc.so\" loadmodule \"mi_fifo.so\" # Uncomment this if you want digest authentication # db_mysql.so must be loaded ! #loadmodule \"auth.so\" #loadmodule \"auth_db.so\" # ----------------- setting module-specific parameters --------------- # -- mi_fifo params -- modparam(\"mi_fifo\", \"fifo_name\", \"/tmp/opensips_fifo\") # -- usrloc params -- #modparam(\"usrloc\", \"db_mode\", 0) # Uncomment this if you want to use SQL database # for persistent storage and comment the previous line modparam(\"usrloc\", \"db_mode\", 2) # -- auth params -- # Uncomment if you are using auth module # #modparam(\"auth_db\", \"calculate_ha1\", yes) # # If you set \"calculate_ha1\" parameter to yes (which true in this config), # uncomment also the following parameter) # #modparam(\"auth_db\", \"password_column\", \"password\") # -- acc params -- modparam(\"acc\", \"db_url\", \"mysql://opensips:opensipsrw@localhost/opensips\") # flag to record to db modparam(\"acc\", \"db_flag\", 1) modparam(\"acc\", \"db_missed_flag\", 2) # flag to log to syslog modparam(\"acc\", \"log_flag\", 1) modparam(\"acc\", \"log_missed_flag\", 2) # use extra accounting to record caller and callee username/domain # - take them from From URI and R-URI modparam(\"acc\", \"log_extra\", \"src_user=$fU;src_domain=$fd;dst_user=$rU;dst_domain=$rd\") modparam(\"acc\", \"db_extra\", \"src_user=$fU;src_domain=$fd;dst_user=$rU;dst_domain=$rd\") # ------------------------- request routing logic ------------------- # main routing logic route{ # initial sanity checks -- messages with # max_forwards==0, or excessively long requests if (!mf_process_maxfwd_header(\"10\")) { sl_send_reply(\"483\",\"Too Many Hops\"); exit; }; # subsequent messages withing a dialog should take the # path determined by record-routing if (loose_route()) { # mark routing logic in request append_hf(\"P-hint: rr-enforced\\r\\n\"); if(is_method(\"BYE\")) { # account BYE for STOP record setflag(1); } route(1); }; # we record-route all messages -- to make sure that # subsequent messages will go through our proxy; that's # particularly good if upstream and downstream entities # use different transport protocol if (!is_method(\"REGISTER\")) record_route(); # account all calls if(is_method(\"INVITE\")) { # set accounting on for INVITE (success or missed call) setflag(1); setflag(2); } if (!is_myself(\"$rd\")) { # mark routing logic in request append_hf(\"P-hint: outbound\\r\\n\"); # if you have some interdomain connections via TLS #if($ru=~\"@tls_domain1.net\") { #\tt_relay(\"tls:domain1.net\"); #\texit; #} else if($ru=~\"@tls_domain2.net\") { #\tt_relay(\"tls:domain2.net\"); #\texit; #} route(1); }; # if the request is for other domain use UsrLoc # (in case, it does not work, use the following command # with proper names and addresses in it) if (is_myself(\"$rd\")) { if (is_method(\"REGISTER\")) { # Uncomment this if you want to use digest authentication #if (!www_authorize(\"opensips.org\", \"subscriber\")) { #\twww_challenge(\"opensips.org\", \"0\"); #\texit; #}; save(\"location\"); exit; }; if (!is_myself(\"$rd\")) { append_hf(\"P-hint: outbound alias\\r\\n\"); route(1); }; # native SIP destinations are handled using our USRLOC DB if (!lookup(\"location\")) { sl_send_reply(\"404\", \"Not Found\"); exit; }; append_hf(\"P-hint: usrloc applied\\r\\n\"); }; route(1); } route[1] { # send it out now; use stateful forwarding as it works reliably # even for UDP2TCP if (!t_relay()) { sl_reply_error(); }; exit; } ","wordCount":"830","inLanguage":"en","image":"https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E","datePublished":"2020-05-28T09:57:04+08:00","dateModified":"2020-05-28T09:57:04+08:00","author":{"@type":"Person","name":"Eddie Wang"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://wdd.js.org/opensips/ch8/acc-mysql/"},"publisher":{"@type":"Organization","name":"洞香春","logo":{"@type":"ImageObject","url":"https://wdd.js.org/cowboy.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://wdd.js.org/ accesskey=h title="洞香春 (Alt + H)"><img src=https://wdd.js.org/cowboy.ico alt aria-label=logo height=35>洞香春</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://wdd.js.org/books/ title=读书><span>读书</span></a></li><li><a href=https://wdd.js.org/freeswitch/ title=FreeSWITCH><span>FreeSWITCH</span></a></li><li><a href=https://wdd.js.org/golang/ title=Golang><span>Golang</span></a></li><li><a href=https://wdd.js.org/kamailio/ title=Kamailio><span>Kamailio</span></a></li><li><a href=https://wdd.js.org/network/ title=Network><span>Network</span></a></li><li><a href=https://wdd.js.org/opensips/ title=OpenSIPS><span>OpenSIPS</span></a></li><li><a href=https://wdd.js.org/vim/ title=VIM><span>VIM</span></a></li><li><a href=https://wdd.js.org/categories/ title=分类><span>分类</span></a></li><li><a href=https://wdd.js.org/fe/ title=前端><span>前端</span></a></li><li><a href=https://wdd.js.org/search/ title=搜索><span>搜索</span></a></li><li><a href=https://wdd.js.org/tags/ title=标签><span>标签</span></a></li><li><a href=https://wdd.js.org/archives/ title=归档><span>归档</span></a></li><li><a href=https://wdd.js.org/about/ title=我><span>我</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://wdd.js.org/>Home</a>&nbsp;»&nbsp;<a href=https://wdd.js.org/opensips/>OpenSIPS2.4.X 中文实战系列</a></div><h1 class="post-title entry-hint-parent">acc-mysql</h1><div class=post-meta><span title='2020-05-28 09:57:04 +0800 CST'>2020-05-28 09:57:04</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Eddie Wang&nbsp;|&nbsp;<a href=https://github.com/%3cpath_to_repo%3e/content/opensips/ch8/acc-mysql/index.md rel="noopener noreferrer" target=_blank>Suggest Changes</a></div></header><div class=post-content><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-makefile data-lang=makefile><span style=display:flex><span><span style=color:#75715e>#
 </span></span></span><span style=display:flex><span><span style=color:#75715e># Sample config for MySQL accouting with OpenSIPS 
 </span></span></span><span style=display:flex><span><span style=color:#75715e>#
 </span></span></span><span style=display:flex><span><span style=color:#75715e># - db_mysql module must be compiled and installed
@@ -229,7 +689,8 @@
 </span></span><span style=display:flex><span>	<span style=color:#f92672>}</span>;
 </span></span><span style=display:flex><span>	exit;
 </span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>}</span>
-</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags></ul></footer><script src=https://giscus.app/client.js data-repo=wangduanduan/wangduanduan.github.io data-repo-id="MDEwOlJlcG9zaXRvcnkxMTkyMjMyNjA=" data-category=Announcements data-category-id=DIC_kwDOBxsz3M4CAjBq data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=bottom data-theme=preferred_color_scheme data-lang=zh-CN crossorigin=anonymous async></script></article></main><footer class=footer><span>&copy; 2025 <a href=https://wdd.js.org>洞香春</a></span>
+</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags></ul></footer><script src=https://giscus.app/client.js data-repo=wangduanduan/wangduanduan.github.io data-repo-id="MDEwOlJlcG9zaXRvcnkxMTkyMjMyNjA=" data-category=Announcements data-category-id=DIC_kwDOBxsz3M4CAjBq data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=bottom data-theme=preferred_color_scheme data-lang=zh-CN crossorigin=anonymous async></script></article></main><footer class=footer><span>&copy; 2025 <a href=https://wdd.js.org/>洞香春</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

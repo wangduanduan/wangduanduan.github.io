@@ -1,29 +1,51 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>nodejs on 洞香春</title>
+    <title>Nodejs on 洞香春</title>
     <link>https://wdd.js.org/tags/nodejs/</link>
-    <description>Recent content in nodejs on 洞香春</description>
+    <description>Recent content in Nodejs on 洞香春</description>
     <image>
       <title>洞香春</title>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 07 Feb 2018 14:15:43 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 07 Feb 2018 14:15:43 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>直接在Chrome DevTools调试Node.js</title>
       <link>https://wdd.js.org/posts/2018/02/debug-nodejs-in-chrome-devtool/</link>
       <pubDate>Wed, 07 Feb 2018 14:15:43 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2018/02/debug-nodejs-in-chrome-devtool/</guid>
-      <description>英文好的，直接看原文
-https://blog.hospodarets.com/nodejs-debugging-in-chrome-devtools
-1. 要求 Node.js 6.3+ Chrome 55+ 2. 操作步骤 1 打开连接 chrome://flags/#enable-devtools-experiments 2 开启开发者工具实验性功能 3 重启浏览器 4 打开 DevTools Setting -&amp;gt; Experiments tab 5 按6次shift后，隐藏的功能会出现，勾选&amp;quot;Node debugging&amp;quot; 3. 运行程序 必须要有 --inspect
-&amp;gt; node --inspect www Debugger listening on port 9229. Warning: This is an experimental feature and could change at any time. To start debugging, open the following URL in Chrome: chrome-devtools://devtools/remote/serve_file/@60cd6e859b9f557d2312f5bf532f6aec5f284980/inspector.html?experiments=true&amp;amp;v8only=true&amp;amp;ws=localhost:9229/78a884f4-8c2e-459e-93f7-e1cbe87cf5cf 将这个地址粘贴到谷歌浏览器：chrome-devtools://devtools/remote/serve_file/@60cd6e859b9f557d2312f5bf532f6aec5f284980/inspector.html?experiments=true&amp;amp;v8only=true&amp;amp;ws=localhost:9229/78a884f4-8c2e-459e-93f7-e1cbe87cf5cf
-程序后端输出的日志也回输出到谷歌浏览器的console里面，同时也可以在Sources里进行断点调试了。 </description>
+      <description>&lt;p&gt;英文好的，直接看原文&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.hospodarets.com/nodejs-debugging-in-chrome-devtools&#34;&gt;https://blog.hospodarets.com/nodejs-debugging-in-chrome-devtools&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h1 id=&#34;1-要求&#34;&gt;1. 要求&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Node.js 6.3+&lt;/li&gt;
+&lt;li&gt;Chrome 55+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;2-操作步骤&#34;&gt;2. 操作步骤&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;1 打开连接 &lt;code&gt;chrome://flags/#enable-devtools-experiments&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;2 开启&lt;code&gt;开发者工具实验性功能&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;3 重启浏览器&lt;/li&gt;
+&lt;li&gt;4 打开 DevTools Setting -&amp;gt; Experiments tab&lt;/li&gt;
+&lt;li&gt;5 按6次shift后，隐藏的功能会出现，勾选&amp;quot;Node debugging&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180207141627_9HT0nS_Screenshot.jpeg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180207141636_hIfIyG_Screenshot.jpeg&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;3-运行程序&#34;&gt;3. 运行程序&lt;/h1&gt;
+&lt;p&gt;必须要有 &lt;code&gt;--inspect&lt;/code&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;gt; node --inspect www
+Debugger listening on port 9229.
+Warning: This is an experimental feature and could change at any time.
+To start debugging, open the following URL in Chrome:
+    chrome-devtools://devtools/remote/serve_file/@60cd6e859b9f557d2312f5bf532f6aec5f284980/inspector.html?experiments=true&amp;amp;v8only=true&amp;amp;ws=localhost:9229/78a884f4-8c2e-459e-93f7-e1cbe87cf5cf
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;将这个地址粘贴到谷歌浏览器：&lt;code&gt;chrome-devtools://devtools/remote/serve_file/@60cd6e859b9f557d2312f5bf532f6aec5f284980/inspector.html?experiments=true&amp;amp;v8only=true&amp;amp;ws=localhost:9229/78a884f4-8c2e-459e-93f7-e1cbe87cf5cf&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;程序后端输出的日志也回输出到谷歌浏览器的console里面，同时也可以在Sources里进行断点调试了。
+&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180207141649_ArMyV7_Screenshot.jpeg&#34;&gt;&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -1,29 +1,217 @@
-<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>定时器学习：利用定时器分解耗时任务案例 | 洞香春</title><meta name=keywords content="setTimeout"><meta name=description content="对于执行时间过长的脚本，有的浏览器会弹出警告，说页面无响应。有的浏览器会直接终止脚本。总而言之，浏览器不希望某一个代码块长时间处于运行状态，因为js是单线程的。一个代码块长时间运行，将会导致其他任何任务都必须等待。从用户体验上来说，很有可能发生页面渲染卡顿或者点击事件无响应的状态。
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>定时器学习：利用定时器分解耗时任务案例 | 洞香春</title>
+<meta name=keywords content="setTimeout"><meta name=description content="对于执行时间过长的脚本，有的浏览器会弹出警告，说页面无响应。有的浏览器会直接终止脚本。总而言之，浏览器不希望某一个代码块长时间处于运行状态，因为js是单线程的。一个代码块长时间运行，将会导致其他任何任务都必须等待。从用户体验上来说，很有可能发生页面渲染卡顿或者点击事件无响应的状态。
+
 如果一段脚本的运行时间超过5秒，有些浏览器（比如Firefox和Opera）将弹出一个对话框警告用户该脚本“无法响应”。而其他浏览器，比如iPhone上的浏览器，将默认终止运行时间超过5秒钟的脚本。&ndash;《JavaScript忍者秘籍》
+JavaScript忍者秘籍里有个很好的比喻：页面上发生的各种事情就好像一群人在讨论事情，如果有个人一直在说个不停，其他人肯定不乐意。我们希望有个裁判，定时的切换其他人来说话。
+Js利用定时器来分解任务，关键点有两个。
+
+
+按什么维度去分解任务
+
+
+任务的现场保存与现场恢复
+
+
+1. 例子
+要求：动态创建一个表格，一共10000行，每行10个单元格
+1.1. 一次性创建
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=&#34;utf-8&#34;>
+	<title></title>
+</head>
+<body>
+
+<table>
+	<tbody></tbody>
+</table>
+
+<script type=&#34;text/javascript&#34;>
+	var tbody = document.getElementsByTagName('tbody')[0];
+
+	var allLines = 10000;
+	// 每次渲染的行数
+
+	console.time('wd');
+	for(var i=0; i<allLines; i++){
+		var tr = document.createElement('tr');
+
+		for(var j=0; j<10; j++){
+			var td = document.createElement('td');
+
+			td.appendChild(document.createTextNode(i+','+j));
+			tr.appendChild(td);
+		}
+
+		tbody.appendChild(tr);
+	}
+	console.timeEnd('wd');
+
+</script>
+</body>
+</html>
+总共耗时180ms, 浏览器已经给出警告！[Violation] 'setTimeout' handler took 53ms。
+
+1.2. 分批次动态创建
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=&#34;utf-8&#34;>
+	<title></title>
+</head>
+<body>
+
+<table>
+	<tbody></tbody>
+</table>
+
+<script type=&#34;text/javascript&#34;>
+	var tbody = document.getElementsByTagName('tbody')[0];
+
+	var allLines = 10000;
+	// 每次渲染的行数
+	var everyTimeCreateLines = 80;
+	// 当前行
+	var currentLine = 0;
+
+	setTimeout(function renderTable(){
+		console.time('wd');
+		for(var i=currentLine; i<currentLine+everyTimeCreateLines && i<allLines; i++){
+			var tr = document.createElement('tr');
+
+			for(var j=0; j<10; j++){
+				var td = document.createElement('td');
+
+				td.appendChild(document.createTextNode(i+','+j));
+				tr.appendChild(td);
+			}
+
+			tbody.appendChild(tr);
+		}
+		console.timeEnd('wd');
+
+		currentLine = i;
+
+		if(currentLine < allLines){
+			setTimeout(renderTable,0);
+		}
+	},0);
+
+</script>
+</body>
+</html>
+这次异步按批次创建，没有耗时的警告。因为控制了每次代码在50ms内运行。实际上每80行耗时约10ms左右。这就不会引起页面卡顿等问题。"><meta name=author content="Eddie Wang"><link rel=canonical href=https://wdd.js.org/posts/2018/02/settimeout-to-splice-big-work/><link crossorigin=anonymous href=/assets/css/stylesheet.821c51435cba3e33e49e590a06514c54c32ac7957095ffcc1e0f390c47cf3228.css integrity="sha256-ghxRQ1y6PjPknlkKBlFMVMMqx5Vwlf/MHg85DEfPMig=" rel="preload stylesheet" as=style><link rel=icon href=https://wdd.js.org/cowboy.ico><link rel=icon type=image/png sizes=16x16 href=https://wdd.js.org/cowboy.ico><link rel=icon type=image/png sizes=32x32 href=https://wdd.js.org/cowboy.ico><link rel=apple-touch-icon href=https://wdd.js.org/cowboy.ico><link rel=mask-icon href=https://wdd.js.org/cowboy.ico><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://wdd.js.org/posts/2018/02/settimeout-to-splice-big-work/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><meta property="og:url" content="https://wdd.js.org/posts/2018/02/settimeout-to-splice-big-work/"><meta property="og:site_name" content="洞香春"><meta property="og:title" content="定时器学习：利用定时器分解耗时任务案例"><meta property="og:description" content="对于执行时间过长的脚本，有的浏览器会弹出警告，说页面无响应。有的浏览器会直接终止脚本。总而言之，浏览器不希望某一个代码块长时间处于运行状态，因为js是单线程的。一个代码块长时间运行，将会导致其他任何任务都必须等待。从用户体验上来说，很有可能发生页面渲染卡顿或者点击事件无响应的状态。
+如果一段脚本的运行时间超过5秒，有些浏览器（比如Firefox和Opera）将弹出一个对话框警告用户该脚本“无法响应”。而其他浏览器，比如iPhone上的浏览器，将默认终止运行时间超过5秒钟的脚本。–《JavaScript忍者秘籍》
 JavaScript忍者秘籍里有个很好的比喻：页面上发生的各种事情就好像一群人在讨论事情，如果有个人一直在说个不停，其他人肯定不乐意。我们希望有个裁判，定时的切换其他人来说话。
 Js利用定时器来分解任务，关键点有两个。
 按什么维度去分解任务
 任务的现场保存与现场恢复
 1. 例子 要求：动态创建一个表格，一共10000行，每行10个单元格
 1.1. 一次性创建 <!DOCTYPE html> <html> <head> <meta charset=&#34;utf-8&#34;> <title></title> </head> <body> <table> <tbody></tbody> </table> <script type=&#34;text/javascript&#34;> var tbody = document.getElementsByTagName('tbody')[0]; var allLines = 10000; // 每次渲染的行数 console.time('wd'); for(var i=0; i<allLines; i++){ var tr = document.createElement('tr'); for(var j=0; j<10; j++){ var td = document.createElement('td'); td.appendChild(document.createTextNode(i+','+j)); tr.appendChild(td); } tbody.appendChild(tr); } console.timeEnd('wd'); </script> </body> </html> 总共耗时180ms, 浏览器已经给出警告！[Violation] 'setTimeout' handler took 53ms。
-1.2. 分批次动态创建 <!DOCTYPE html> <html> <head> <meta charset=&#34;utf-8&#34;> <title></title> </head> <body> <table> <tbody></tbody> </table> <script type=&#34;text/javascript&#34;> var tbody = document."><meta name=author content="Eddie Wang"><link rel=canonical href=https://wdd.js.org/posts/2018/02/settimeout-to-splice-big-work/><link crossorigin=anonymous href=/assets/css/stylesheet.6d3944e058d85363bbe8a792a9b5f40002bca80be859dc19c466dd8de223973e.css integrity="sha256-bTlE4FjYU2O76KeSqbX0AAK8qAvoWdwZxGbdjeIjlz4=" rel="preload stylesheet" as=style><script defer crossorigin=anonymous src=/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG+9vmJ0cTS+ovo0FeA=" onload=hljs.initHighlightingOnLoad()></script>
-<link rel=icon href=https://wdd.js.org/cowboy.ico><link rel=icon type=image/png sizes=16x16 href=https://wdd.js.org/cowboy.ico><link rel=icon type=image/png sizes=32x32 href=https://wdd.js.org/cowboy.ico><link rel=apple-touch-icon href=https://wdd.js.org/cowboy.ico><link rel=mask-icon href=https://wdd.js.org/cowboy.ico><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><meta property="og:title" content="定时器学习：利用定时器分解耗时任务案例"><meta property="og:description" content="对于执行时间过长的脚本，有的浏览器会弹出警告，说页面无响应。有的浏览器会直接终止脚本。总而言之，浏览器不希望某一个代码块长时间处于运行状态，因为js是单线程的。一个代码块长时间运行，将会导致其他任何任务都必须等待。从用户体验上来说，很有可能发生页面渲染卡顿或者点击事件无响应的状态。
+1.2. 分批次动态创建 <!DOCTYPE html> <html> <head> <meta charset=&#34;utf-8&#34;> <title></title> </head> <body> <table> <tbody></tbody> </table> <script type=&#34;text/javascript&#34;> var tbody = document.getElementsByTagName('tbody')[0]; var allLines = 10000; // 每次渲染的行数 var everyTimeCreateLines = 80; // 当前行 var currentLine = 0; setTimeout(function renderTable(){ console.time('wd'); for(var i=currentLine; i<currentLine+everyTimeCreateLines && i<allLines; i++){ var tr = document.createElement('tr'); for(var j=0; j<10; j++){ var td = document.createElement('td'); td.appendChild(document.createTextNode(i+','+j)); tr.appendChild(td); } tbody.appendChild(tr); } console.timeEnd('wd'); currentLine = i; if(currentLine < allLines){ setTimeout(renderTable,0); } },0); </script> </body> </html> 这次异步按批次创建，没有耗时的警告。因为控制了每次代码在50ms内运行。实际上每80行耗时约10ms左右。这就不会引起页面卡顿等问题。"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-02-08T14:09:54+08:00"><meta property="article:modified_time" content="2018-02-08T14:09:54+08:00"><meta property="article:tag" content="SetTimeout"><meta property="og:image" content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="定时器学习：利用定时器分解耗时任务案例"><meta name=twitter:description content="对于执行时间过长的脚本，有的浏览器会弹出警告，说页面无响应。有的浏览器会直接终止脚本。总而言之，浏览器不希望某一个代码块长时间处于运行状态，因为js是单线程的。一个代码块长时间运行，将会导致其他任何任务都必须等待。从用户体验上来说，很有可能发生页面渲染卡顿或者点击事件无响应的状态。
+
 如果一段脚本的运行时间超过5秒，有些浏览器（比如Firefox和Opera）将弹出一个对话框警告用户该脚本“无法响应”。而其他浏览器，比如iPhone上的浏览器，将默认终止运行时间超过5秒钟的脚本。&ndash;《JavaScript忍者秘籍》
 JavaScript忍者秘籍里有个很好的比喻：页面上发生的各种事情就好像一群人在讨论事情，如果有个人一直在说个不停，其他人肯定不乐意。我们希望有个裁判，定时的切换其他人来说话。
 Js利用定时器来分解任务，关键点有两个。
+
+
 按什么维度去分解任务
+
+
 任务的现场保存与现场恢复
-1. 例子 要求：动态创建一个表格，一共10000行，每行10个单元格
-1.1. 一次性创建 <!DOCTYPE html> <html> <head> <meta charset=&#34;utf-8&#34;> <title></title> </head> <body> <table> <tbody></tbody> </table> <script type=&#34;text/javascript&#34;> var tbody = document.getElementsByTagName('tbody')[0]; var allLines = 10000; // 每次渲染的行数 console.time('wd'); for(var i=0; i<allLines; i++){ var tr = document.createElement('tr'); for(var j=0; j<10; j++){ var td = document.createElement('td'); td.appendChild(document.createTextNode(i+','+j)); tr.appendChild(td); } tbody.appendChild(tr); } console.timeEnd('wd'); </script> </body> </html> 总共耗时180ms, 浏览器已经给出警告！[Violation] 'setTimeout' handler took 53ms。
-1.2. 分批次动态创建 <!DOCTYPE html> <html> <head> <meta charset=&#34;utf-8&#34;> <title></title> </head> <body> <table> <tbody></tbody> </table> <script type=&#34;text/javascript&#34;> var tbody = document."><meta property="og:type" content="article"><meta property="og:url" content="https://wdd.js.org/posts/2018/02/settimeout-to-splice-big-work/"><meta property="og:image" content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-02-08T14:09:54+08:00"><meta property="article:modified_time" content="2018-02-08T14:09:54+08:00"><meta property="og:site_name" content="洞香春"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="定时器学习：利用定时器分解耗时任务案例"><meta name=twitter:description content="对于执行时间过长的脚本，有的浏览器会弹出警告，说页面无响应。有的浏览器会直接终止脚本。总而言之，浏览器不希望某一个代码块长时间处于运行状态，因为js是单线程的。一个代码块长时间运行，将会导致其他任何任务都必须等待。从用户体验上来说，很有可能发生页面渲染卡顿或者点击事件无响应的状态。
-如果一段脚本的运行时间超过5秒，有些浏览器（比如Firefox和Opera）将弹出一个对话框警告用户该脚本“无法响应”。而其他浏览器，比如iPhone上的浏览器，将默认终止运行时间超过5秒钟的脚本。&ndash;《JavaScript忍者秘籍》
-JavaScript忍者秘籍里有个很好的比喻：页面上发生的各种事情就好像一群人在讨论事情，如果有个人一直在说个不停，其他人肯定不乐意。我们希望有个裁判，定时的切换其他人来说话。
-Js利用定时器来分解任务，关键点有两个。
-按什么维度去分解任务
-任务的现场保存与现场恢复
-1. 例子 要求：动态创建一个表格，一共10000行，每行10个单元格
-1.1. 一次性创建 <!DOCTYPE html> <html> <head> <meta charset=&#34;utf-8&#34;> <title></title> </head> <body> <table> <tbody></tbody> </table> <script type=&#34;text/javascript&#34;> var tbody = document.getElementsByTagName('tbody')[0]; var allLines = 10000; // 每次渲染的行数 console.time('wd'); for(var i=0; i<allLines; i++){ var tr = document.createElement('tr'); for(var j=0; j<10; j++){ var td = document.createElement('td'); td.appendChild(document.createTextNode(i+','+j)); tr.appendChild(td); } tbody.appendChild(tr); } console.timeEnd('wd'); </script> </body> </html> 总共耗时180ms, 浏览器已经给出警告！[Violation] 'setTimeout' handler took 53ms。
-1.2. 分批次动态创建 <!DOCTYPE html> <html> <head> <meta charset=&#34;utf-8&#34;> <title></title> </head> <body> <table> <tbody></tbody> </table> <script type=&#34;text/javascript&#34;> var tbody = document."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"Posts","item":"https://wdd.js.org/posts/"},{"@type":"ListItem","position":3,"name":"定时器学习：利用定时器分解耗时任务案例","item":"https://wdd.js.org/posts/2018/02/settimeout-to-splice-big-work/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"定时器学习：利用定时器分解耗时任务案例","name":"定时器学习：利用定时器分解耗时任务案例","description":"对于执行时间过长的脚本，有的浏览器会弹出警告，说页面无响应。有的浏览器会直接终止脚本。总而言之，浏览器不希望某一个代码块长时间处于运行状态，因为js是单线程的。一个代码块长时间运行，将会导致其他任何任务都必须等待。从用户体验上来说，很有可能发生页面渲染卡顿或者点击事件无响应的状态。\n如果一段脚本的运行时间超过5秒，有些浏览器（比如Firefox和Opera）将弹出一个对话框警告用户该脚本“无法响应”。而其他浏览器，比如iPhone上的浏览器，将默认终止运行时间超过5秒钟的脚本。\u0026ndash;《JavaScript忍者秘籍》\nJavaScript忍者秘籍里有个很好的比喻：页面上发生的各种事情就好像一群人在讨论事情，如果有个人一直在说个不停，其他人肯定不乐意。我们希望有个裁判，定时的切换其他人来说话。\nJs利用定时器来分解任务，关键点有两个。\n按什么维度去分解任务\n任务的现场保存与现场恢复\n1. 例子 要求：动态创建一个表格，一共10000行，每行10个单元格\n1.1. 一次性创建 \u0026lt;!DOCTYPE html\u0026gt; \u0026lt;html\u0026gt; \u0026lt;head\u0026gt; \u0026lt;meta charset=\u0026#34;utf-8\u0026#34;\u0026gt; \u0026lt;title\u0026gt;\u0026lt;/title\u0026gt; \u0026lt;/head\u0026gt; \u0026lt;body\u0026gt; \u0026lt;table\u0026gt; \u0026lt;tbody\u0026gt;\u0026lt;/tbody\u0026gt; \u0026lt;/table\u0026gt; \u0026lt;script type=\u0026#34;text/javascript\u0026#34;\u0026gt; var tbody = document.getElementsByTagName(\u0026#39;tbody\u0026#39;)[0]; var allLines = 10000; // 每次渲染的行数 console.time(\u0026#39;wd\u0026#39;); for(var i=0; i\u0026lt;allLines; i++){ var tr = document.createElement(\u0026#39;tr\u0026#39;); for(var j=0; j\u0026lt;10; j++){ var td = document.createElement(\u0026#39;td\u0026#39;); td.appendChild(document.createTextNode(i+\u0026#39;,\u0026#39;+j)); tr.appendChild(td); } tbody.appendChild(tr); } console.timeEnd(\u0026#39;wd\u0026#39;); \u0026lt;/script\u0026gt; \u0026lt;/body\u0026gt; \u0026lt;/html\u0026gt; 总共耗时180ms, 浏览器已经给出警告！[Violation] 'setTimeout' handler took 53ms。\n1.2. 分批次动态创建 \u0026lt;!DOCTYPE html\u0026gt; \u0026lt;html\u0026gt; \u0026lt;head\u0026gt; \u0026lt;meta charset=\u0026#34;utf-8\u0026#34;\u0026gt; \u0026lt;title\u0026gt;\u0026lt;/title\u0026gt; \u0026lt;/head\u0026gt; \u0026lt;body\u0026gt; \u0026lt;table\u0026gt; \u0026lt;tbody\u0026gt;\u0026lt;/tbody\u0026gt; \u0026lt;/table\u0026gt; \u0026lt;script type=\u0026#34;text/javascript\u0026#34;\u0026gt; var tbody = document.","keywords":["setTimeout"],"articleBody":"对于执行时间过长的脚本，有的浏览器会弹出警告，说页面无响应。有的浏览器会直接终止脚本。总而言之，浏览器不希望某一个代码块长时间处于运行状态，因为js是单线程的。一个代码块长时间运行，将会导致其他任何任务都必须等待。从用户体验上来说，很有可能发生页面渲染卡顿或者点击事件无响应的状态。\n如果一段脚本的运行时间超过5秒，有些浏览器（比如Firefox和Opera）将弹出一个对话框警告用户该脚本“无法响应”。而其他浏览器，比如iPhone上的浏览器，将默认终止运行时间超过5秒钟的脚本。–《JavaScript忍者秘籍》\nJavaScript忍者秘籍里有个很好的比喻：页面上发生的各种事情就好像一群人在讨论事情，如果有个人一直在说个不停，其他人肯定不乐意。我们希望有个裁判，定时的切换其他人来说话。\nJs利用定时器来分解任务，关键点有两个。\n按什么维度去分解任务\n任务的现场保存与现场恢复\n1. 例子 要求：动态创建一个表格，一共10000行，每行10个单元格\n1.1. 一次性创建 \u003c!DOCTYPE html\u003e 总共耗时180ms, 浏览器已经给出警告！[Violation] 'setTimeout' handler took 53ms。\n1.2. 分批次动态创建 \u003c!DOCTYPE html\u003e 这次异步按批次创建，没有耗时的警告。因为控制了每次代码在50ms内运行。实际上每80行耗时约10ms左右。这就不会引起页面卡顿等问题。\n","wordCount":"143","inLanguage":"en","datePublished":"2018-02-08T14:09:54+08:00","dateModified":"2018-02-08T14:09:54+08:00","author":{"@type":"Person","name":"Eddie Wang"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://wdd.js.org/posts/2018/02/settimeout-to-splice-big-work/"},"publisher":{"@type":"Organization","name":"洞香春","logo":{"@type":"ImageObject","url":"https://wdd.js.org/cowboy.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://wdd.js.org accesskey=h title="洞香春 (Alt + H)"><img src=https://wdd.js.org/cowboy.ico alt aria-label=logo height=35>洞香春</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://wdd.js.org/books/ title=读书><span>读书</span></a></li><li><a href=https://wdd.js.org/freeswitch/ title=FreeSWITCH><span>FreeSWITCH</span></a></li><li><a href=https://wdd.js.org/golang/ title=Golang><span>Golang</span></a></li><li><a href=https://wdd.js.org/kamailio/ title=Kamailio><span>Kamailio</span></a></li><li><a href=https://wdd.js.org/network/ title=Network><span>Network</span></a></li><li><a href=https://wdd.js.org/opensips/ title=OpenSIPS><span>OpenSIPS</span></a></li><li><a href=https://wdd.js.org/vim/ title=VIM><span>VIM</span></a></li><li><a href=https://wdd.js.org/categories/ title=分类><span>分类</span></a></li><li><a href=https://wdd.js.org/fe/ title=前端><span>前端</span></a></li><li><a href=https://wdd.js.org/search/ title=搜索><span>搜索</span></a></li><li><a href=https://wdd.js.org/tags/ title=标签><span>标签</span></a></li><li><a href=https://wdd.js.org/archives/ title=归档><span>归档</span></a></li><li><a href=https://wdd.js.org/about/ title=我><span>我</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://wdd.js.org>Home</a>&nbsp;»&nbsp;<a href=https://wdd.js.org/posts/>Posts</a></div><h1 class=post-title>定时器学习：利用定时器分解耗时任务案例</h1><div class=post-meta><span title='2018-02-08 14:09:54 +0800 CST'>2018-02-08 14:09:54</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Eddie Wang&nbsp;|&nbsp;<a href=https://github.com/%3cpath_to_repo%3e/content/posts/2018/02/settimeout-to-splice-big-work.md rel="noopener noreferrer" target=_blank>Suggest Changes</a></div></header><aside id=toc-container class="toc-container wide"><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#1-%e4%be%8b%e5%ad%90 aria-label="1. 例子">1. 例子</a><ul><li><a href=#11-%e4%b8%80%e6%ac%a1%e6%80%a7%e5%88%9b%e5%bb%ba aria-label="1.1. 一次性创建">1.1. 一次性创建</a></li><li><a href=#12-%e5%88%86%e6%89%b9%e6%ac%a1%e5%8a%a8%e6%80%81%e5%88%9b%e5%bb%ba aria-label="1.2. 分批次动态创建">1.2. 分批次动态创建</a></li></ul></li></ul></div></details></div></aside><script>let activeElement,elements;window.addEventListener("DOMContentLoaded",function(){checkTocPosition(),elements=document.querySelectorAll("h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]"),activeElement=elements[0];const t=encodeURI(activeElement.getAttribute("id")).toLowerCase();document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active")},!1),window.addEventListener("resize",function(){checkTocPosition()},!1),window.addEventListener("scroll",()=>{activeElement=Array.from(elements).find(e=>{if(getOffsetTop(e)-window.pageYOffset>0&&getOffsetTop(e)-window.pageYOffset<window.innerHeight/2)return e})||activeElement,elements.forEach(e=>{const t=encodeURI(e.getAttribute("id")).toLowerCase();e===activeElement?document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active"):document.querySelector(`.inner ul li a[href="#${t}"]`).classList.remove("active")})},!1);const main=parseInt(getComputedStyle(document.body).getPropertyValue("--article-width"),10),toc=parseInt(getComputedStyle(document.body).getPropertyValue("--toc-width"),10),gap=parseInt(getComputedStyle(document.body).getPropertyValue("--gap"),10);function checkTocPosition(){const e=document.body.scrollWidth;e-main-toc*2-gap*4>0?document.getElementById("toc-container").classList.add("wide"):document.getElementById("toc-container").classList.remove("wide")}function getOffsetTop(e){if(!e.getClientRects().length)return 0;let t=e.getBoundingClientRect(),n=e.ownerDocument.defaultView;return t.top+n.pageYOffset}</script><div class=post-content><p>对于执行时间过长的脚本，有的浏览器会弹出警告，说页面无响应。有的浏览器会直接终止脚本。总而言之，浏览器不希望某一个代码块长时间处于运行状态，因为js是单线程的。一个代码块长时间运行，将会导致其他任何任务都必须等待。从用户体验上来说，很有可能发生页面渲染卡顿或者点击事件无响应的状态。</p><blockquote><p>如果一段脚本的运行时间超过5秒，有些浏览器（比如Firefox和Opera）将弹出一个对话框警告用户该脚本“无法响应”。而其他浏览器，比如iPhone上的浏览器，将默认终止运行时间超过5秒钟的脚本。&ndash;《JavaScript忍者秘籍》</p></blockquote><p>JavaScript忍者秘籍里有个很好的比喻：页面上发生的各种事情就好像一群人在讨论事情，如果有个人一直在说个不停，其他人肯定不乐意。我们希望有个裁判，定时的切换其他人来说话。</p><p>Js利用定时器来分解任务，关键点有两个。</p><ol><li><p>按什么维度去分解任务</p></li><li><p>任务的现场保存与现场恢复</p></li></ol><h1 id=1-例子>1. 例子<a hidden class=anchor aria-hidden=true href=#1-例子>#</a></h1><p>要求：动态创建一个表格，一共10000行，每行10个单元格</p><h2 id=11-一次性创建>1.1. 一次性创建<a hidden class=anchor aria-hidden=true href=#11-一次性创建>#</a></h2><pre tabindex=0><code>&lt;!DOCTYPE html&gt;
+
+
+1. 例子
+要求：动态创建一个表格，一共10000行，每行10个单元格
+1.1. 一次性创建
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=&#34;utf-8&#34;>
+	<title></title>
+</head>
+<body>
+
+<table>
+	<tbody></tbody>
+</table>
+
+<script type=&#34;text/javascript&#34;>
+	var tbody = document.getElementsByTagName('tbody')[0];
+
+	var allLines = 10000;
+	// 每次渲染的行数
+
+	console.time('wd');
+	for(var i=0; i<allLines; i++){
+		var tr = document.createElement('tr');
+
+		for(var j=0; j<10; j++){
+			var td = document.createElement('td');
+
+			td.appendChild(document.createTextNode(i+','+j));
+			tr.appendChild(td);
+		}
+
+		tbody.appendChild(tr);
+	}
+	console.timeEnd('wd');
+
+</script>
+</body>
+</html>
+总共耗时180ms, 浏览器已经给出警告！[Violation] 'setTimeout' handler took 53ms。
+
+1.2. 分批次动态创建
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=&#34;utf-8&#34;>
+	<title></title>
+</head>
+<body>
+
+<table>
+	<tbody></tbody>
+</table>
+
+<script type=&#34;text/javascript&#34;>
+	var tbody = document.getElementsByTagName('tbody')[0];
+
+	var allLines = 10000;
+	// 每次渲染的行数
+	var everyTimeCreateLines = 80;
+	// 当前行
+	var currentLine = 0;
+
+	setTimeout(function renderTable(){
+		console.time('wd');
+		for(var i=currentLine; i<currentLine+everyTimeCreateLines && i<allLines; i++){
+			var tr = document.createElement('tr');
+
+			for(var j=0; j<10; j++){
+				var td = document.createElement('td');
+
+				td.appendChild(document.createTextNode(i+','+j));
+				tr.appendChild(td);
+			}
+
+			tbody.appendChild(tr);
+		}
+		console.timeEnd('wd');
+
+		currentLine = i;
+
+		if(currentLine < allLines){
+			setTimeout(renderTable,0);
+		}
+	},0);
+
+</script>
+</body>
+</html>
+这次异步按批次创建，没有耗时的警告。因为控制了每次代码在50ms内运行。实际上每80行耗时约10ms左右。这就不会引起页面卡顿等问题。"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://wdd.js.org/posts/"},{"@type":"ListItem","position":2,"name":"定时器学习：利用定时器分解耗时任务案例","item":"https://wdd.js.org/posts/2018/02/settimeout-to-splice-big-work/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"定时器学习：利用定时器分解耗时任务案例","name":"定时器学习：利用定时器分解耗时任务案例","description":"对于执行时间过长的脚本，有的浏览器会弹出警告，说页面无响应。有的浏览器会直接终止脚本。总而言之，浏览器不希望某一个代码块长时间处于运行状态，因为js是单线程的。一个代码块长时间运行，将会导致其他任何任务都必须等待。从用户体验上来说，很有可能发生页面渲染卡顿或者点击事件无响应的状态。\n如果一段脚本的运行时间超过5秒，有些浏览器（比如Firefox和Opera）将弹出一个对话框警告用户该脚本“无法响应”。而其他浏览器，比如iPhone上的浏览器，将默认终止运行时间超过5秒钟的脚本。\u0026ndash;《JavaScript忍者秘籍》\nJavaScript忍者秘籍里有个很好的比喻：页面上发生的各种事情就好像一群人在讨论事情，如果有个人一直在说个不停，其他人肯定不乐意。我们希望有个裁判，定时的切换其他人来说话。\nJs利用定时器来分解任务，关键点有两个。\n按什么维度去分解任务\n任务的现场保存与现场恢复\n1. 例子 要求：动态创建一个表格，一共10000行，每行10个单元格\n1.1. 一次性创建 \u0026lt;!DOCTYPE html\u0026gt; \u0026lt;html\u0026gt; \u0026lt;head\u0026gt; \u0026lt;meta charset=\u0026#34;utf-8\u0026#34;\u0026gt; \u0026lt;title\u0026gt;\u0026lt;/title\u0026gt; \u0026lt;/head\u0026gt; \u0026lt;body\u0026gt; \u0026lt;table\u0026gt; \u0026lt;tbody\u0026gt;\u0026lt;/tbody\u0026gt; \u0026lt;/table\u0026gt; \u0026lt;script type=\u0026#34;text/javascript\u0026#34;\u0026gt; var tbody = document.getElementsByTagName(\u0026#39;tbody\u0026#39;)[0]; var allLines = 10000; // 每次渲染的行数 console.time(\u0026#39;wd\u0026#39;); for(var i=0; i\u0026lt;allLines; i++){ var tr = document.createElement(\u0026#39;tr\u0026#39;); for(var j=0; j\u0026lt;10; j++){ var td = document.createElement(\u0026#39;td\u0026#39;); td.appendChild(document.createTextNode(i+\u0026#39;,\u0026#39;+j)); tr.appendChild(td); } tbody.appendChild(tr); } console.timeEnd(\u0026#39;wd\u0026#39;); \u0026lt;/script\u0026gt; \u0026lt;/body\u0026gt; \u0026lt;/html\u0026gt; 总共耗时180ms, 浏览器已经给出警告！[Violation] 'setTimeout' handler took 53ms。\n1.2. 分批次动态创建 \u0026lt;!DOCTYPE html\u0026gt; \u0026lt;html\u0026gt; \u0026lt;head\u0026gt; \u0026lt;meta charset=\u0026#34;utf-8\u0026#34;\u0026gt; \u0026lt;title\u0026gt;\u0026lt;/title\u0026gt; \u0026lt;/head\u0026gt; \u0026lt;body\u0026gt; \u0026lt;table\u0026gt; \u0026lt;tbody\u0026gt;\u0026lt;/tbody\u0026gt; \u0026lt;/table\u0026gt; \u0026lt;script type=\u0026#34;text/javascript\u0026#34;\u0026gt; var tbody = document.getElementsByTagName(\u0026#39;tbody\u0026#39;)[0]; var allLines = 10000; // 每次渲染的行数 var everyTimeCreateLines = 80; // 当前行 var currentLine = 0; setTimeout(function renderTable(){ console.time(\u0026#39;wd\u0026#39;); for(var i=currentLine; i\u0026lt;currentLine+everyTimeCreateLines \u0026amp;\u0026amp; i\u0026lt;allLines; i++){ var tr = document.createElement(\u0026#39;tr\u0026#39;); for(var j=0; j\u0026lt;10; j++){ var td = document.createElement(\u0026#39;td\u0026#39;); td.appendChild(document.createTextNode(i+\u0026#39;,\u0026#39;+j)); tr.appendChild(td); } tbody.appendChild(tr); } console.timeEnd(\u0026#39;wd\u0026#39;); currentLine = i; if(currentLine \u0026lt; allLines){ setTimeout(renderTable,0); } },0); \u0026lt;/script\u0026gt; \u0026lt;/body\u0026gt; \u0026lt;/html\u0026gt; 这次异步按批次创建，没有耗时的警告。因为控制了每次代码在50ms内运行。实际上每80行耗时约10ms左右。这就不会引起页面卡顿等问题。\n","keywords":["setTimeout"],"articleBody":"对于执行时间过长的脚本，有的浏览器会弹出警告，说页面无响应。有的浏览器会直接终止脚本。总而言之，浏览器不希望某一个代码块长时间处于运行状态，因为js是单线程的。一个代码块长时间运行，将会导致其他任何任务都必须等待。从用户体验上来说，很有可能发生页面渲染卡顿或者点击事件无响应的状态。\n如果一段脚本的运行时间超过5秒，有些浏览器（比如Firefox和Opera）将弹出一个对话框警告用户该脚本“无法响应”。而其他浏览器，比如iPhone上的浏览器，将默认终止运行时间超过5秒钟的脚本。–《JavaScript忍者秘籍》\nJavaScript忍者秘籍里有个很好的比喻：页面上发生的各种事情就好像一群人在讨论事情，如果有个人一直在说个不停，其他人肯定不乐意。我们希望有个裁判，定时的切换其他人来说话。\nJs利用定时器来分解任务，关键点有两个。\n按什么维度去分解任务\n任务的现场保存与现场恢复\n1. 例子 要求：动态创建一个表格，一共10000行，每行10个单元格\n1.1. 一次性创建 \u003c!DOCTYPE html\u003e 总共耗时180ms, 浏览器已经给出警告！[Violation] 'setTimeout' handler took 53ms。\n1.2. 分批次动态创建 \u003c!DOCTYPE html\u003e 这次异步按批次创建，没有耗时的警告。因为控制了每次代码在50ms内运行。实际上每80行耗时约10ms左右。这就不会引起页面卡顿等问题。\n","wordCount":"143","inLanguage":"en","image":"https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E","datePublished":"2018-02-08T14:09:54+08:00","dateModified":"2018-02-08T14:09:54+08:00","author":{"@type":"Person","name":"Eddie Wang"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://wdd.js.org/posts/2018/02/settimeout-to-splice-big-work/"},"publisher":{"@type":"Organization","name":"洞香春","logo":{"@type":"ImageObject","url":"https://wdd.js.org/cowboy.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://wdd.js.org/ accesskey=h title="洞香春 (Alt + H)"><img src=https://wdd.js.org/cowboy.ico alt aria-label=logo height=35>洞香春</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://wdd.js.org/books/ title=读书><span>读书</span></a></li><li><a href=https://wdd.js.org/freeswitch/ title=FreeSWITCH><span>FreeSWITCH</span></a></li><li><a href=https://wdd.js.org/golang/ title=Golang><span>Golang</span></a></li><li><a href=https://wdd.js.org/kamailio/ title=Kamailio><span>Kamailio</span></a></li><li><a href=https://wdd.js.org/network/ title=Network><span>Network</span></a></li><li><a href=https://wdd.js.org/opensips/ title=OpenSIPS><span>OpenSIPS</span></a></li><li><a href=https://wdd.js.org/vim/ title=VIM><span>VIM</span></a></li><li><a href=https://wdd.js.org/categories/ title=分类><span>分类</span></a></li><li><a href=https://wdd.js.org/fe/ title=前端><span>前端</span></a></li><li><a href=https://wdd.js.org/search/ title=搜索><span>搜索</span></a></li><li><a href=https://wdd.js.org/tags/ title=标签><span>标签</span></a></li><li><a href=https://wdd.js.org/archives/ title=归档><span>归档</span></a></li><li><a href=https://wdd.js.org/about/ title=我><span>我</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://wdd.js.org/>Home</a>&nbsp;»&nbsp;<a href=https://wdd.js.org/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">定时器学习：利用定时器分解耗时任务案例</h1><div class=post-meta><span title='2018-02-08 14:09:54 +0800 CST'>2018-02-08 14:09:54</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Eddie Wang&nbsp;|&nbsp;<a href=https://github.com/%3cpath_to_repo%3e/content/posts/2018/02/settimeout-to-splice-big-work.md rel="noopener noreferrer" target=_blank>Suggest Changes</a></div></header><aside id=toc-container class="toc-container wide"><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#1-%e4%be%8b%e5%ad%90 aria-label="1. 例子">1. 例子</a><ul><li><a href=#11-%e4%b8%80%e6%ac%a1%e6%80%a7%e5%88%9b%e5%bb%ba aria-label="1.1. 一次性创建">1.1. 一次性创建</a></li><li><a href=#12-%e5%88%86%e6%89%b9%e6%ac%a1%e5%8a%a8%e6%80%81%e5%88%9b%e5%bb%ba aria-label="1.2. 分批次动态创建">1.2. 分批次动态创建</a></li></ul></li></ul></div></details></div></aside><script>let activeElement,elements;window.addEventListener("DOMContentLoaded",function(){checkTocPosition(),elements=document.querySelectorAll("h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]"),activeElement=elements[0];const t=encodeURI(activeElement.getAttribute("id")).toLowerCase();document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active")},!1),window.addEventListener("resize",function(){checkTocPosition()},!1),window.addEventListener("scroll",()=>{activeElement=Array.from(elements).find(e=>{if(getOffsetTop(e)-window.pageYOffset>0&&getOffsetTop(e)-window.pageYOffset<window.innerHeight/2)return e})||activeElement,elements.forEach(e=>{const t=encodeURI(e.getAttribute("id")).toLowerCase();e===activeElement?document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active"):document.querySelector(`.inner ul li a[href="#${t}"]`).classList.remove("active")})},!1);const main=parseInt(getComputedStyle(document.body).getPropertyValue("--article-width"),10),toc=parseInt(getComputedStyle(document.body).getPropertyValue("--toc-width"),10),gap=parseInt(getComputedStyle(document.body).getPropertyValue("--gap"),10);function checkTocPosition(){const e=document.body.scrollWidth;e-main-toc*2-gap*4>0?document.getElementById("toc-container").classList.add("wide"):document.getElementById("toc-container").classList.remove("wide")}function getOffsetTop(e){if(!e.getClientRects().length)return 0;let t=e.getBoundingClientRect(),n=e.ownerDocument.defaultView;return t.top+n.pageYOffset}</script><div class=post-content><p>对于执行时间过长的脚本，有的浏览器会弹出警告，说页面无响应。有的浏览器会直接终止脚本。总而言之，浏览器不希望某一个代码块长时间处于运行状态，因为js是单线程的。一个代码块长时间运行，将会导致其他任何任务都必须等待。从用户体验上来说，很有可能发生页面渲染卡顿或者点击事件无响应的状态。</p><blockquote><p>如果一段脚本的运行时间超过5秒，有些浏览器（比如Firefox和Opera）将弹出一个对话框警告用户该脚本“无法响应”。而其他浏览器，比如iPhone上的浏览器，将默认终止运行时间超过5秒钟的脚本。&ndash;《JavaScript忍者秘籍》</p></blockquote><p>JavaScript忍者秘籍里有个很好的比喻：页面上发生的各种事情就好像一群人在讨论事情，如果有个人一直在说个不停，其他人肯定不乐意。我们希望有个裁判，定时的切换其他人来说话。</p><p>Js利用定时器来分解任务，关键点有两个。</p><ol><li><p>按什么维度去分解任务</p></li><li><p>任务的现场保存与现场恢复</p></li></ol><h1 id=1-例子>1. 例子<a hidden class=anchor aria-hidden=true href=#1-例子>#</a></h1><p>要求：动态创建一个表格，一共10000行，每行10个单元格</p><h2 id=11-一次性创建>1.1. 一次性创建<a hidden class=anchor aria-hidden=true href=#11-一次性创建>#</a></h2><pre tabindex=0><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
 	&lt;meta charset=&#34;utf-8&#34;&gt;
@@ -59,7 +247,7 @@ Js利用定时器来分解任务，关键点有两个。
 &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-</code></pre><p><code>总共耗时180ms, 浏览器已经给出警告！[Violation] 'setTimeout' handler took 53ms</code>。</p><p><img loading=lazy src=https://wdd.js.org/img/images/20180208141029_DSFYi3_Screenshot.jpeg alt></p><h2 id=12-分批次动态创建>1.2. 分批次动态创建<a hidden class=anchor aria-hidden=true href=#12-分批次动态创建>#</a></h2><pre tabindex=0><code>&lt;!DOCTYPE html&gt;
+</code></pre><p><code>总共耗时180ms, 浏览器已经给出警告！[Violation] 'setTimeout' handler took 53ms</code>。</p><p><img loading=lazy src=https://wdd.js.org/img/images/20180208141029_DSFYi3_Screenshot.jpeg></p><h2 id=12-分批次动态创建>1.2. 分批次动态创建<a hidden class=anchor aria-hidden=true href=#12-分批次动态创建>#</a></h2><pre tabindex=0><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
 	&lt;meta charset=&#34;utf-8&#34;&gt;
@@ -106,8 +294,9 @@ Js利用定时器来分解任务，关键点有两个。
 &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-</code></pre><p><code>这次异步按批次创建，没有耗时的警告。因为控制了每次代码在50ms内运行。实际上每80行耗时约10ms左右。这就不会引起页面卡顿等问题。</code></p><p><img loading=lazy src=https://wdd.js.org/img/images/20180208141052_DlS2x4_Screenshot.jpeg alt></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://wdd.js.org/tags/settimeout/>setTimeout</a></li></ul><nav class=paginav><a class=prev href=https://wdd.js.org/posts/2018/02/tcp-high-recv-q-or-send-q-reasons/><span class=title>« Prev</span><br><span>哑代理 - TCP链接高Recv-Q，内存泄露的罪魁祸首</span></a>
-<a class=next href=https://wdd.js.org/posts/2018/02/js-functional-programming/><span class=title>Next »</span><br><span>关于JavaScropt函数式编程，我多么希望能早点看到这本书</span></a></nav></footer><script src=https://giscus.app/client.js data-repo=wangduanduan/wangduanduan.github.io data-repo-id="MDEwOlJlcG9zaXRvcnkxMTkyMjMyNjA=" data-category=Announcements data-category-id=DIC_kwDOBxsz3M4CAjBq data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=bottom data-theme=preferred_color_scheme data-lang=zh-CN crossorigin=anonymous async></script></article></main><footer class=footer><span>&copy; 2025 <a href=https://wdd.js.org>洞香春</a></span>
+</code></pre><p><code>这次异步按批次创建，没有耗时的警告。因为控制了每次代码在50ms内运行。实际上每80行耗时约10ms左右。这就不会引起页面卡顿等问题。</code></p><p><img loading=lazy src=https://wdd.js.org/img/images/20180208141052_DlS2x4_Screenshot.jpeg></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://wdd.js.org/tags/settimeout/>SetTimeout</a></li></ul><nav class=paginav><a class=prev href=https://wdd.js.org/posts/2018/02/tcp-high-recv-q-or-send-q-reasons/><span class=title>« Prev</span><br><span>哑代理 - TCP链接高Recv-Q，内存泄露的罪魁祸首</span>
+</a><a class=next href=https://wdd.js.org/posts/2018/02/js-functional-programming/><span class=title>Next »</span><br><span>关于JavaScropt函数式编程，我多么希望能早点看到这本书</span></a></nav></footer><script src=https://giscus.app/client.js data-repo=wangduanduan/wangduanduan.github.io data-repo-id="MDEwOlJlcG9zaXRvcnkxMTkyMjMyNjA=" data-category=Announcements data-category-id=DIC_kwDOBxsz3M4CAjBq data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=bottom data-theme=preferred_color_scheme data-lang=zh-CN crossorigin=anonymous async></script></article></main><footer class=footer><span>&copy; 2025 <a href=https://wdd.js.org/>洞香春</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

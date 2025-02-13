@@ -1,48 +1,86 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>node on 洞香春</title>
+    <title>Node on 洞香春</title>
     <link>https://wdd.js.org/tags/node/</link>
-    <description>Recent content in node on 洞香春</description>
+    <description>Recent content in Node on 洞香春</description>
     <image>
       <title>洞香春</title>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 09 Jul 2023 14:20:45 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/node/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 09 Jul 2023 14:20:45 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/node/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>安装NodeJS, N命令似乎卡住了</title>
       <link>https://wdd.js.org/posts/2023/n-stucked/</link>
       <pubDate>Sun, 09 Jul 2023 14:20:45 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2023/n-stucked/</guid>
-      <description>我一般会紧跟着NodeJS官网的最新版，来更新本地的NodeJS版本。
-我的系统是ubuntu 20.4, 我用tj/n这个工具来更新Node。
-但是这一次，这个命令似乎卡住了。
-我排查后发现，是n这个命令在访问https://nodejs.org/dist/index.tab这个地址时，卡住了。
-请求超时，因为默认没有设置超时时长，所以等待了很久才显示超时的报错，表现象上看起来就是卡住了。
-首先我用dig命令查了nodejs.org的dns解析，我发现是正常解析的。
-然后我又用curl对nodejs官网做了一个测试，发现也是请求超时。
-curl -i -m 5 https://nodejs.org curl: (28) Failed to connect to nodejs.org port 443 after 3854 ms: 连接超时 这样问题就清楚了，然后我就想起来npmirrror上应该有nodejs的镜像。 在查看n这个工具的文档时，我也发现，它是支持设置mirror的。
-其中给的例子用的就是淘宝NPM
-就是设置了一个环境变量。然后执行source ~/.zshrc
-export N_NODE_MIRROR=https://npmmirror.com/mirrors/node 但是，我发现在命令行里用echo可以打印N_NODE_MIRROR这个变量的值，但是在安装脚本里，还是无法获取设置的这个mirror。
-我想或许和我在执行sudo n lts时的sudo有关，这个.zshrc在sudo这种管理员模式下是不生效的。普通用户的环境变量也不会继承到sudo执行的环境变量里
-最后，我用sudo -E n lts, 成功的从npmmirror上更新了nodejs的版本。
-关于curl超时的这个问题，我也给n仓库提出了pull request, https://github.com/tj/n/pull/771</description>
+      <description>&lt;p&gt;我一般会紧跟着NodeJS官网的最新版，来更新本地的NodeJS版本。&lt;/p&gt;
+&lt;p&gt;我的系统是ubuntu 20.4, 我用&lt;a href=&#34;https://github.com/tj/n&#34;&gt;tj/n&lt;/a&gt;这个工具来更新Node。&lt;/p&gt;
+&lt;p&gt;但是这一次，这个命令似乎卡住了。&lt;/p&gt;
+&lt;p&gt;我排查后发现，是n这个命令在访问https://nodejs.org/dist/index.tab这个地址时，卡住了。&lt;/p&gt;
+&lt;p&gt;请求超时，因为默认没有设置超时时长，所以等待了很久才显示超时的报错，表现象上看起来就是卡住了。&lt;/p&gt;
+&lt;p&gt;首先我用dig命令查了nodejs.org的dns解析，我发现是正常解析的。&lt;/p&gt;
+&lt;p&gt;然后我又用curl对nodejs官网做了一个测试，发现也是请求超时。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;curl -i -m &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt; https://nodejs.org
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;curl: &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;28&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; Failed to connect to nodejs.org port &lt;span style=&#34;color:#ae81ff&#34;&gt;443&lt;/span&gt; after &lt;span style=&#34;color:#ae81ff&#34;&gt;3854&lt;/span&gt; ms: 连接超时
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这样问题就清楚了，然后我就想起来npmirrror上应该有nodejs的镜像。 在查看n这个工具的文档时，我也发现，它是支持设置mirror的。&lt;/p&gt;
+&lt;p&gt;其中给的例子用的就是淘宝NPM&lt;/p&gt;
+&lt;p&gt;就是设置了一个环境变量。然后执行&lt;code&gt;source ~/.zshrc&lt;/code&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;export N_NODE_MIRROR=https://npmmirror.com/mirrors/node
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;但是，我发现在命令行里用echo可以打印N_NODE_MIRROR这个变量的值，但是在安装脚本里，还是无法获取设置的这个mirror。&lt;/p&gt;
+&lt;p&gt;我想或许和我在执行&lt;code&gt;sudo n lts&lt;/code&gt;时的sudo有关，这个.zshrc在sudo这种管理员模式下是不生效的。普通用户的环境变量也不会继承到sudo执行的环境变量里&lt;/p&gt;
+&lt;p&gt;最后，我用&lt;code&gt;sudo -E n lts&lt;/code&gt;, 成功的从npmmirror上更新了nodejs的版本。&lt;/p&gt;
+&lt;p&gt;关于curl超时的这个问题，我也给n仓库提出了pull request, &lt;a href=&#34;https://github.com/tj/n/pull/771&#34;&gt;https://github.com/tj/n/pull/771&lt;/a&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>NodeJS Events 模块笔记</title>
       <link>https://wdd.js.org/posts/2018/08/deepin-nodejs-events/</link>
       <pubDate>Fri, 10 Aug 2018 10:18:57 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2018/08/deepin-nodejs-events/</guid>
-      <description>1. 环境 node 8.11.3 2. 基本使用 // 01.js const EventEmitter = require(&amp;#39;events&amp;#39;); class MyEmitter extends EventEmitter {} const myEmitter = new MyEmitter(); myEmitter.on(&amp;#39;event&amp;#39;, () =&amp;gt; { console.log(&amp;#39;an event occurred!&amp;#39;); }); myEmitter.emit(&amp;#39;event&amp;#39;); 输出：
-an event occurred! 3. 传参与this指向 emit()方法可以传不限制数量的参数。 除了箭头函数外，在回调函数内部，this会被绑定到EventEmitter类的实例上 // 02.js const EventEmitter = require(&amp;#39;events&amp;#39;) class MyEmitter extends EventEmitter {} const myEmitter = new MyEmitter() myEmitter.on(&amp;#39;event&amp;#39;, function (a, b){ console.log(a, b, this, this === myEmitter) }) myEmitter.on(&amp;#39;event&amp;#39;, (a, b) =&amp;gt; { console.</description>
+      <description>&lt;h1 id=&#34;1-环境&#34;&gt;1. 环境&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;node 8.11.3&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;2-基本使用&#34;&gt;2. 基本使用&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// 01.js
+
+const EventEmitter = require(&amp;#39;events&amp;#39;);
+
+class MyEmitter extends EventEmitter {}
+
+const myEmitter = new MyEmitter();
+myEmitter.on(&amp;#39;event&amp;#39;, () =&amp;gt; {
+  console.log(&amp;#39;an event occurred!&amp;#39;);
+});
+myEmitter.emit(&amp;#39;event&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;输出：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;an event occurred!
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;3-传参与this指向&#34;&gt;3. 传参与this指向&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;emit()&lt;/code&gt;方法可以传不限制数量的参数。&lt;/li&gt;
+&lt;li&gt;除了箭头函数外，在回调函数内部，this会被绑定到EventEmitter类的实例上&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// 02.js
+const EventEmitter = require(&amp;#39;events&amp;#39;)
+
+class MyEmitter extends EventEmitter {}
+
+const myEmitter = new MyEmitter()
+
+myEmitter.on(&amp;#39;event&amp;#39;, function (a, b){
+  console.log(a, b, this, this === myEmitter)
+})
+
+myEmitter.on(&amp;#39;event&amp;#39;, (a, b) =&amp;gt; {
+  console.log(a, b, this, this === myEmitter)
+})
+
+myEmitter.emit(&amp;#39;event&amp;#39;, &amp;#39;a&amp;#39;, {name:&amp;#39;wdd&amp;#39;})
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;输出：&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

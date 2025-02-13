@@ -9,17 +9,109 @@
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 23 Feb 2018 15:18:26 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E7%AC%94%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 23 Feb 2018 15:18:26 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/%E7%AC%94%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>前端面试和笔试题目</title>
       <link>https://wdd.js.org/posts/2018/02/front-end-interview-handbook/</link>
       <pubDate>Fri, 23 Feb 2018 15:18:26 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2018/02/front-end-interview-handbook/</guid>
-      <description>1. 问答题 1.1. HTML相关 1.1.1. 的作用是什么？ 1.1.2. script, script async和script defer之间有什么区别？ 1.1.3. cookie, sessionStorage 和 localStorage之间有什么区别？ 1.1.4. 用过哪些html模板渲染工具？ 1.2. CSS相关 1.2.1. 简述CSS盒子模型 1.2.2. CSS有哪些选择器？ 1.2.3. CSS sprite是什么？ 1.2.4. 写一下你知道的前端UI框架？ 1.3. JS相关 1.3.1. js有哪些数据类型？ 1.3.2. js有哪些假值？ 1.3.3. js数字和字符串之间有什么快速转换的写法？ 1.3.4. 经常使用哪些ES6的语法？ 1.3.5. 什么是同源策略？ 1.3.6. 跨域有哪些解决方法？ 1.3.7. 网页进度条实现的原理 1.3.8. 请问console.log是同步的，还是异步的？ 1.3.9. 下面console输出的值是什么？ var scores = [10,11,12]; var total = 0; for(var score in scores){ total += score; } var average = total/scores.length; console.log(average); 1.</description>
+      <description>&lt;h1 id=&#34;1-问答题&#34;&gt;1. 问答题&lt;/h1&gt;
+&lt;h2 id=&#34;11-html相关&#34;&gt;1.1. HTML相关&lt;/h2&gt;
+&lt;h3 id=&#34;111-doctype-html的作用是什么&#34;&gt;1.1.1. &lt;!-- raw HTML omitted --&gt;的作用是什么？&lt;/h3&gt;
+&lt;h3 id=&#34;112-script-script-async和script-defer之间有什么区别&#34;&gt;1.1.2. script, script async和script defer之间有什么区别？&lt;/h3&gt;
+&lt;h3 id=&#34;113-cookie-sessionstorage-和-localstorage之间有什么区别&#34;&gt;1.1.3. cookie, sessionStorage 和 localStorage之间有什么区别？&lt;/h3&gt;
+&lt;h3 id=&#34;114-用过哪些html模板渲染工具&#34;&gt;1.1.4. 用过哪些html模板渲染工具？&lt;/h3&gt;
+&lt;h2 id=&#34;12-css相关&#34;&gt;1.2. CSS相关&lt;/h2&gt;
+&lt;h3 id=&#34;121-简述css盒子模型&#34;&gt;1.2.1. 简述CSS盒子模型&lt;/h3&gt;
+&lt;h3 id=&#34;122-css有哪些选择器&#34;&gt;1.2.2. CSS有哪些选择器？&lt;/h3&gt;
+&lt;h3 id=&#34;123-css-sprite是什么&#34;&gt;1.2.3. CSS sprite是什么？&lt;/h3&gt;
+&lt;h3 id=&#34;124-写一下你知道的前端ui框架&#34;&gt;1.2.4. 写一下你知道的前端UI框架？&lt;/h3&gt;
+&lt;h2 id=&#34;13-js相关&#34;&gt;1.3. JS相关&lt;/h2&gt;
+&lt;h3 id=&#34;131-js有哪些数据类型&#34;&gt;1.3.1. js有哪些数据类型？&lt;/h3&gt;
+&lt;h3 id=&#34;132-js有哪些假值&#34;&gt;1.3.2. js有哪些假值？&lt;/h3&gt;
+&lt;h3 id=&#34;133-js数字和字符串之间有什么快速转换的写法&#34;&gt;1.3.3. js数字和字符串之间有什么快速转换的写法？&lt;/h3&gt;
+&lt;h3 id=&#34;134-经常使用哪些es6的语法&#34;&gt;1.3.4. 经常使用哪些ES6的语法？&lt;/h3&gt;
+&lt;h3 id=&#34;135-什么是同源策略&#34;&gt;1.3.5. 什么是同源策略？&lt;/h3&gt;
+&lt;h3 id=&#34;136-跨域有哪些解决方法&#34;&gt;1.3.6. 跨域有哪些解决方法？&lt;/h3&gt;
+&lt;h3 id=&#34;137-网页进度条实现的原理&#34;&gt;1.3.7. 网页进度条实现的原理&lt;/h3&gt;
+&lt;h3 id=&#34;138-请问consolelog是同步的还是异步的&#34;&gt;1.3.8. 请问console.log是同步的，还是异步的？&lt;/h3&gt;
+&lt;h3 id=&#34;139-下面console输出的值是什么&#34;&gt;1.3.9. 下面console输出的值是什么？&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var scores = [10,11,12];
+var total = 0;
+
+for(var score in scores){
+  total += score;
+}
+
+var average = total/scores.length;
+console.log(average);
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;1310-请问下面的写法问题在哪&#34;&gt;1.3.10. 请问下面的写法问题在哪？&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;console.log(1)
+
+(function(){
+    console.log(1)
+})()
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;1311-请问slength是多少s2是多少&#34;&gt;1.3.11. 请问s.length是多少，s[2]是多少&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var s = []
+s[3] = 4
+
+s.length ?
+s[2] ?
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;1312-说说你对settimeout的深入理解&#34;&gt;1.3.12. 说说你对setTimeout的&lt;code&gt;深入&lt;/code&gt;理解？&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;setTimeout(function(){
+  console.log(&amp;#39;hi&amp;#39;)
+}, 1000)
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;1313-解释闭包概念及其作用&#34;&gt;1.3.13. 解释闭包概念及其作用&lt;/h3&gt;
+&lt;h3 id=&#34;1314-如何理解js-函数first-class的概念&#34;&gt;1.3.14. 如何理解js 函数&lt;code&gt;first class&lt;/code&gt;的概念？&lt;/h3&gt;
+&lt;h3 id=&#34;1315-函数有哪些调用方式不同this的会指向哪里&#34;&gt;1.3.15. 函数有哪些调用方式？不同this的会指向哪里？&lt;/h3&gt;
+&lt;h3 id=&#34;1316-applly和call有什么区别&#34;&gt;1.3.16. applly和call有什么区别？&lt;/h3&gt;
+&lt;h3 id=&#34;1317-函数的length属性的代表什么&#34;&gt;1.3.17. 函数的length属性的代表什么？&lt;/h3&gt;
+&lt;h3 id=&#34;1318-有用过哪些js编程风格&#34;&gt;1.3.18. 有用过哪些js编程风格&lt;/h3&gt;
+&lt;h3 id=&#34;1319-如何理解eventloop&#34;&gt;1.3.19. 如何理解EventLoop?&lt;/h3&gt;
+&lt;h3 id=&#34;1320-使用过哪些构建工具各有什么优缺点&#34;&gt;1.3.20. 使用过哪些构建工具？各有什么优缺点？&lt;/h3&gt;
+&lt;h2 id=&#34;14-其它&#34;&gt;1.4. 其它&lt;/h2&gt;
+&lt;h3 id=&#34;141-平时使用什么搜索引擎查资料&#34;&gt;1.4.1. 平时使用什么搜索引擎查资料？&lt;/h3&gt;
+&lt;h3 id=&#34;142-对翻墙有什么看法如何翻墙&#34;&gt;1.4.2. 对翻墙有什么看法？如何翻墙？&lt;/h3&gt;
+&lt;h3 id=&#34;143-个人有没有技术博客地址是什么&#34;&gt;1.4.3. 个人有没有技术博客，地址是什么？&lt;/h3&gt;
+&lt;h3 id=&#34;144-github上有没有项目&#34;&gt;1.4.4. github上有没有项目？&lt;/h3&gt;
+&lt;h2 id=&#34;15-网络相关&#34;&gt;1.5. 网络相关&lt;/h2&gt;
+&lt;h3 id=&#34;151-请求状态码-1xx2xx3xx4xx5xx分别有什么含义&#34;&gt;1.5.1. 请求状态码 1xx,2xx,3xx,4xx,5xx分别有什么含义？&lt;/h3&gt;
+&lt;h3 id=&#34;152-发送某些post请求时有时会多一些options请求请问这是为什么&#34;&gt;1.5.2. 发送某些post请求时，有时会多一些options请求，请问这是为什么？&lt;/h3&gt;
+&lt;h3 id=&#34;153-http报文有哪些组成部分&#34;&gt;1.5.3. http报文有哪些组成部分？&lt;/h3&gt;
+&lt;h3 id=&#34;154-http端到端首部和逐跳首部有什么区别&#34;&gt;1.5.4. http端到端首部和逐跳首部有什么区别？&lt;/h3&gt;
+&lt;h3 id=&#34;155-http与https在同时使用时有什么注意点&#34;&gt;1.5.5. http与https在同时使用时，有什么注意点？&lt;/h3&gt;
+&lt;h3 id=&#34;156-http-tcp-udp-websocket分别位于7层网络的那一层tcp和udp有什么不同&#34;&gt;1.5.6. http, tcp, udp, websocket，分别位于7层网络的那一层？tcp和udp有什么不同？&lt;/h3&gt;
+&lt;h1 id=&#34;2-编码题&#34;&gt;2. 编码题&lt;/h1&gt;
+&lt;h2 id=&#34;21-写一个函数返回一个数组中所有元素被第一个元素除后的结果&#34;&gt;2.1. 写一个函数，返回一个数组中所有元素被第一个元素除后的结果&lt;/h2&gt;
+&lt;h2 id=&#34;22-写一个函数来判断变量是否是数组至少使用两种写法&#34;&gt;2.2. 写一个函数，来判断变量是否是数组，至少使用两种写法&lt;/h2&gt;
+&lt;h2 id=&#34;23-写一个函数将秒转化成时分秒格式如80转化成000120&#34;&gt;2.3. 写一个函数，将秒转化成时分秒格式，如80转化成：00:01:20&lt;/h2&gt;
+&lt;h2 id=&#34;写一个函数将对象中属性值为-undefined-null的属性删除掉&#34;&gt;写一个函数，将对象中属性值为&amp;rsquo;&amp;rsquo;, undefined, null的属性删除掉&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// 处理前
+var obj = {
+  name: &amp;#39;wdd&amp;#39;,
+  address: {
+    code: &amp;#39;&amp;#39;,
+    tt: null,
+    age: 1
+  },
+  ss: [],
+  vv: undefined
+}
+
+// 处理后
+{
+  name: &amp;#39;wdd&amp;#39;,
+  address: {
+    age: 1
+  },
+  ss: []
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;3-翻译题&#34;&gt;3. 翻译题&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Aggregation operations process data records and return computed results. Aggregation operations group values from multiple documents together, and can perform a variety of operations on the grouped data to return a single result. MongoDB provides three ways to perform aggregation: the aggregation pipeline, the map-reduce function, and single purpose aggregation methods.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

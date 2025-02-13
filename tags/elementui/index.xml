@@ -9,19 +9,75 @@
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 09 Feb 2018 13:44:13 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/elementui/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 09 Feb 2018 13:44:13 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/elementui/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Vue&#43;ElementUI 手把手教你做一个audio组件</title>
       <link>https://wdd.js.org/posts/2018/02/vue-elementui-audio-component/</link>
       <pubDate>Fri, 09 Feb 2018 13:44:13 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2018/02/vue-elementui-audio-component/</guid>
-      <description>1. 简介 1.1. 相关技术 Vue Vue-cli ElementUI yarn (之前我用npm, 并使用cnpm的源，但是用了yarn之后，我发现它比cnpm的速度还快，功能更好，我就毫不犹豫选择yarn了) Audio相关API和事件 1.2. 从本教程你会学到什么？ Vue单文件组件开发知识 Element UI基本用法 Audio原生API及Audio相关事件 音频播放器的基本原理 音频的播放暂停控制 更新音频显示时间 音频进度条控制与跳转 音频音量控制 音频播放速度控制 音频静音控制 音频下载控制 个性化配置与排他性播放 一点点ES6语法 2. 学前准备 基本上不需要什么准备，但是如果你能先看一下Aduio相关API和事件将会更好
-Audio: 如果你愿意一层一层剥开我的心 使用 HTML5 音频和视频 3. 在线demon 没有在线demo的教程都是耍流氓
-查看在线demon 项目地址 4. 开始编码 5. 项目初始化 ➜ test vue init webpack element-audio A newer version of vue-cli is available. latest: 2.9.2 installed: 2.9.1 ? Project name element-audio ? Project description A Vue.js project ?</description>
+      <description>&lt;h1 id=&#34;1-简介&#34;&gt;1. 简介&lt;/h1&gt;
+&lt;h2 id=&#34;11-相关技术&#34;&gt;1.1. 相关技术&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://cn.vuejs.org/&#34;&gt;Vue&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/vuejs/vue-cli&#34;&gt;Vue-cli&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://element-cn.eleme.io/#/zh-CN&#34;&gt;ElementUI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://yarnpkg.com/lang/zh-hans/&#34;&gt;yarn&lt;/a&gt; (之前我用npm, 并使用cnpm的源，但是用了yarn之后，我发现它比cnpm的速度还快，功能更好，我就毫不犹豫选择yarn了)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000009769804&#34;&gt;Audio相关API和事件&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;12-从本教程你会学到什么&#34;&gt;1.2. 从本教程你会学到什么？&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Vue单文件组件开发知识&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Element UI基本用法&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Audio原生API及Audio相关事件&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;音频播放器的基本原理&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;音频的播放暂停控制&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;更新音频显示时间&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;音频进度条控制与跳转&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;音频音量控制&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;音频播放速度控制&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;音频静音控制&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;音频下载控制&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;个性化配置与排他性播放&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;一点点ES6语法&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;2-学前准备&#34;&gt;2. 学前准备&lt;/h1&gt;
+&lt;p&gt;基本上不需要什么准备，但是如果你能先看一下Aduio相关API和事件将会更好&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://wdd.js.org/audio-heart-detail.html&#34;&gt;Audio: 如果你愿意一层一层剥开我的心&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/Using_HTML5_audio_and_video&#34;&gt;使用 HTML5 音频和视频&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;3-在线demonhttpswangduanduangithubioelement-audio&#34;&gt;3. &lt;a href=&#34;https://wangduanduan.github.io/element-audio/&#34;&gt;在线demon&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;没有在线demo的教程都是耍流氓&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://wangduanduan.github.io/element-audio/&#34;&gt;查看在线demon&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/wangduanduan/element-audio&#34;&gt;项目地址&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180209134536_j9HvMg_Screenshot.jpeg&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;4-开始编码&#34;&gt;4. 开始编码&lt;/h1&gt;
+&lt;h1 id=&#34;5-项目初始化&#34;&gt;5. 项目初始化&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;➜  test vue init webpack element-audio
+
+  A newer version of vue-cli is available.
+
+  latest:    2.9.2
+  installed: 2.9.1
+
+? Project name element-audio
+? Project description A Vue.js project
+? Author wangdd &amp;lt;wangdd@xxxxxx.com&amp;gt;
+? Vue build standalone
+? Install vue-router? No
+? Use ESLint to lint your code? No
+? Set up unit tests No
+? Setup e2e tests with Nightwatch? No
+? Should we run `npm install` for you after the project has been created? (recommended) npm
+
+➜  test cd element-audio 
+➜  element-audio npm run dev
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;浏览器打开 &lt;code&gt;http://localhost:8080/&lt;/code&gt;, 看到如下界面，说明项目初始化成功&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

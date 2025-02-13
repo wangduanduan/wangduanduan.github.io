@@ -9,60 +9,102 @@
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 14 Aug 2018 18:36:40 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E6%9C%AA%E5%AE%8C%E6%88%90/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 14 Aug 2018 18:36:40 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/%E6%9C%AA%E5%AE%8C%E6%88%90/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>毕业后，青春像一艘船，沉入海底</title>
       <link>https://wdd.js.org/posts/2018/08/the-rest-of-your-life/</link>
       <pubDate>Tue, 14 Aug 2018 18:36:40 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2018/08/the-rest-of-your-life/</guid>
-      <description>大三那年的暑假 大三那年暑假，很多同学都回去了，寝室大楼空空如也。
-留在上海的同学都在各自找着兼职的工作，为了不显得无聊，我也在网上随便发了一些简历，试试看运气。
-写简历最难写的部分就是写你自己的长处是什么？搜索枯肠，觉得自己似乎也没什特长。感觉大学三年学到一些东西，又感觉什么都没学到。
-如果没有特长，总该也有点理想吧，比如想干点什么？ 似乎我也没什么想做的事情。
-小时候我们都有理想，慢慢长大后，理想越来越模糊，变得越来越迷茫。
-大学里，大部分的人都是在打游戏。我也曾迷恋过打游戏，但是因为自己比较菜，总是被虐，所以放弃了。
-但是我也不是那种天天对着笔记本看电视剧的人。
-回忆初三那年的暑假 记得，初三的暑假，我参加了一个学校看展的一个免费的计算机培训班。因为培训的老师说，培训结束前会有一个测试，成绩最好的会有几百块的奖励。
-为了几百块的奖励，我第一个背诵完五笔拆字法。随后老师教了我们PS, 就是photoshop。当时我的理解就是，ps可以做出很多搞笑的图片。
-为了成为一个有能力做出搞笑图片的人。我在高中和大学期间，断断续续的系统的自学了PS。
-下面给展示几张我的PS照片
-【毕业照】
-【帮别人做的艺术照】
-【刺客信条 换脸 我自己】
-【旅游照 换脸 我自己】
-【宿舍楼 上面ps了一条狼】
-古玩艺术电商中的店小二 基本上，我的PS技术还是能够找点兼职做的。没过多久，我收到了面试邀请，面试的公司位于一个古玩收藏品市场中。
-当然我面试成功了，开出的日薪也是非常诱人，每天35元。
-在上海，35元一天的工资，除去来回上下班做地铁和公交，还有中午饭的费用外，基本上不会剩下什么，有时候稍微午饭丰盛点，自己就要倒贴。但是这也是一次不错的尝试，至少有史以来，除去父母以外，我用能力问别人要钱了。
-35元的日薪持续很短一段时间，然后我就涨薪了，到达每天100元。在这个做兼职的地方，我最高拿到的日薪是200元。
-兼职期间我做了各式各样的工作：
-古玩艺术品摄影 海报制作 拍卖图册制作 linux运维 APP UI 设计 网页设计 python爬虫 兼职的日志过得很苦，单是还算充实。虽然工资不高，但是因为还没毕业，也没有奢望过高的工资。
-【上图 我在一个古玩店的拍摄玉器的时候，有个小女孩过来找我玩，我随手拍的】
-【上图 是在1号线 莲花路地铁站 因为错过了地铁拍的】
-【上图 是从1号线 莲花地铁站 转公交拍的】
-【每天早上起的很早，能够看到军训的学生在操场上奔跑】
-【在古玩店一般都要拍到很晚，因为是按张数算拍照工资，拍的越多，工资越高。还好晚上回公司 打车费用是可以报销的】
-【晚上还要回到学校，一般到学校就快晚上10点左右了】
-【毕业了，新校区依然很漂亮】
-【毕业了，老校区下了一场雨】
-【毕业了，青春像一艘船，沉入海底】
-【毕业了，我等的人，你在哪里？】</description>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180814211237_9Y8uPX_Jietu20180814-211226.jpeg&#34;&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h1 id=&#34;大三那年的暑假&#34;&gt;大三那年的暑假&lt;/h1&gt;
+&lt;p&gt;大三那年暑假，很多同学都回去了，寝室大楼空空如也。&lt;/p&gt;
+&lt;p&gt;留在上海的同学都在各自找着兼职的工作，为了不显得无聊，我也在网上随便发了一些简历，试试看运气。&lt;/p&gt;
+&lt;p&gt;写简历最难写的部分就是写你自己的长处是什么？搜索枯肠，觉得自己似乎也没什特长。感觉大学三年学到一些东西，又感觉什么都没学到。&lt;/p&gt;
+&lt;p&gt;如果没有特长，总该也有点理想吧，比如想干点什么？ 似乎我也没什么想做的事情。&lt;/p&gt;
+&lt;p&gt;小时候我们都有理想，慢慢长大后，理想越来越模糊，变得越来越迷茫。&lt;/p&gt;
+&lt;p&gt;大学里，大部分的人都是在打游戏。我也曾迷恋过打游戏，但是因为自己比较菜，总是被虐，所以放弃了。&lt;/p&gt;
+&lt;p&gt;但是我也不是那种天天对着笔记本看电视剧的人。&lt;/p&gt;
+&lt;h1 id=&#34;回忆初三那年的暑假&#34;&gt;回忆初三那年的暑假&lt;/h1&gt;
+&lt;p&gt;记得，初三的暑假，我参加了一个学校看展的一个免费的计算机培训班。因为培训的老师说，培训结束前会有一个测试，成绩最好的会有几百块的奖励。&lt;/p&gt;
+&lt;p&gt;为了几百块的奖励，我第一个背诵完五笔拆字法。随后老师教了我们PS, 就是photoshop。当时我的理解就是，ps可以做出很多搞笑的图片。&lt;/p&gt;
+&lt;p&gt;为了成为一个有能力做出搞笑图片的人。我在高中和大学期间，断断续续的系统的自学了PS。&lt;/p&gt;
+&lt;p&gt;下面给展示几张我的PS照片&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180814185855_oORpt1_Jietu20180814-185838.jpeg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;【毕业照】&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180814190245_gfE8Fb_Jietu20180814-190136.jpeg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;【帮别人做的艺术照】&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180814190255_wMF7u1_Jietu20180814-190227.jpeg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;【刺客信条 换脸 我自己】&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180814190305_8V2gKz_Jietu20180814-190236.jpeg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;【旅游照 换脸 我自己】&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180814190409_GjfFso_Jietu20180814-190359.jpeg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;【宿舍楼 上面ps了一条狼】&lt;/p&gt;
+&lt;h1 id=&#34;古玩艺术电商中的店小二&#34;&gt;古玩艺术电商中的店小二&lt;/h1&gt;
+&lt;p&gt;基本上，我的PS技术还是能够找点兼职做的。没过多久，我收到了面试邀请，面试的公司位于一个古玩收藏品市场中。&lt;/p&gt;
+&lt;p&gt;当然我面试成功了，开出的日薪也是非常诱人，&lt;code&gt;每天35元&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;在上海，35元一天的工资，除去来回上下班做地铁和公交，还有中午饭的费用外，基本上不会剩下什么，有时候稍微午饭丰盛点，自己就要倒贴。但是这也是一次不错的尝试，至少有史以来，除去父母以外，我用能力问别人要钱了。&lt;/p&gt;
+&lt;p&gt;35元的日薪持续很短一段时间，然后我就涨薪了，到达每天100元。在这个做兼职的地方，我最高拿到的日薪是200元。&lt;/p&gt;
+&lt;p&gt;兼职期间我做了各式各样的工作：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;古玩艺术品摄影&lt;/li&gt;
+&lt;li&gt;海报制作&lt;/li&gt;
+&lt;li&gt;拍卖图册制作&lt;/li&gt;
+&lt;li&gt;linux运维&lt;/li&gt;
+&lt;li&gt;APP UI 设计&lt;/li&gt;
+&lt;li&gt;网页设计&lt;/li&gt;
+&lt;li&gt;python爬虫&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;兼职的日志过得很苦，单是还算充实。虽然工资不高，但是因为还没毕业，也没有奢望过高的工资。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180814211015_JTfR37_Jietu20180814-211003.jpeg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;【上图 我在一个古玩店的拍摄玉器的时候，有个小女孩过来找我玩，我随手拍的】&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180814211237_9Y8uPX_Jietu20180814-211226.jpeg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;【上图 是在1号线 莲花路地铁站 因为错过了地铁拍的】&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180814211409_tv0CQF_Jietu20180814-211402.jpeg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;【上图 是从1号线 莲花地铁站 转公交拍的】&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180814211546_tQTFxw_Jietu20180814-211535.jpeg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;【每天早上起的很早，能够看到军训的学生在操场上奔跑】&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180814211730_1b2O72_Jietu20180814-211722.jpeg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;【在古玩店一般都要拍到很晚，因为是按张数算拍照工资，拍的越多，工资越高。还好晚上回公司 打车费用是可以报销的】&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Restful API 架构思考</title>
       <link>https://wdd.js.org/posts/2018/06/think-about-restful-api/</link>
       <pubDate>Thu, 07 Jun 2018 22:35:08 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2018/06/think-about-restful-api/</guid>
-      <description>1. 什么是REST? 2. REST API最为重要的约束 3. REST API HTTP方法 与 CURD 4. 状态码 5. RESTful架构设计 6. 文档 7. 版本 8. 深入理解状态与无状态 9. 参考 1. 什么是REST? 表现层状态转换（REST，英文：Representational State Transfer）是Roy Thomas Fielding博士于2000年在他的博士论文[1] 中提出来的一种万维网软件架构风格，目的是便于不同软件/程序在网络（例如互联网）中互相传递信息。表现层状态转换（REST，英文：Representational State Transfer）是根基于超文本传输协议(HTTP)之上而确定的一组约束和属性，是一种设计提供万维网络服务的软件构建风格。匹配或兼容于这种架构风格(简称为 REST 或 RESTful)的网络服务，允许客户端发出以统一资源标识符访问和操作网络资源的请求，而与预先定义好的无状态操作集一致化。wikipdeia
-REST API 不是一个标准或者一个是协议，仅仅是一种风格，一种style。
-RESTful API的简单定义可以轻松解释这个概念。 REST是一种架构风格，RESTful是它的解释。也就是说，如果您的后端服务器具有REST API，并且您（从网站/应用程序）向客户端请求此API，则您的客户端为RESTful。
-2. REST API最为重要的约束 Client-Server 通信只能由客户端单方面发起，表现为请求-响应的形式 Stateless 通信的会话状态（Session State）应该全部由客户端负责维护 Cache 响应内容可以在通信链的某处被缓存，以改善网络效率 Uniform Interface 通信链的组件之间通过统一的接口相互通信，以提高交互的可见性 Layered System 通过限制组件的行为（即每个组件只能“看到”与其交互的紧邻层），将架构分解为若干等级的层。 Code-On-Demand 支持通过下载并执行一些代码（例如Java Applet、Flash或JavaScript），对客户端的功能进行扩展。 3. REST API HTTP方法 与 CURD REST API 使用POST，GET, PUT, DELETE的HTTP方法来描述对资源的增、查、改、删。 这四个HTTP方法在数据层对应着SQL的插入、查询、更新、删除操作。</description>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-%E4%BB%80%E4%B9%88%E6%98%AFrest&#34;&gt;1. 什么是REST?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-rest-api%E6%9C%80%E4%B8%BA%E9%87%8D%E8%A6%81%E7%9A%84%E7%BA%A6%E6%9D%9F&#34;&gt;2. REST API最为重要的约束&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-rest-api-http%E6%96%B9%E6%B3%95-%E4%B8%8E-curd&#34;&gt;3. REST API HTTP方法 与 CURD&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-%E7%8A%B6%E6%80%81%E7%A0%81&#34;&gt;4. 状态码&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#5-restful%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1&#34;&gt;5. RESTful架构设计&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#6-%E6%96%87%E6%A1%A3&#34;&gt;6. 文档&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#7-%E7%89%88%E6%9C%AC&#34;&gt;7. 版本&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#8-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E7%8A%B6%E6%80%81%E4%B8%8E%E6%97%A0%E7%8A%B6%E6%80%81&#34;&gt;8. 深入理解状态与无状态&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#9-%E5%8F%82%E8%80%83&#34;&gt;9. 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;1-什么是rest&#34;&gt;1. 什么是REST?&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;表现层状态转换（REST，英文：Representational State Transfer）是Roy Thomas Fielding博士于2000年在他的博士论文[1] 中提出来的一种万维网软件架构风格，目的是便于不同软件/程序在网络（例如互联网）中互相传递信息。表现层状态转换（REST，英文：Representational State Transfer）是根基于超文本传输协议(HTTP)之上而确定的一组约束和属性，是一种设计提供万维网络服务的软件构建风格。匹配或兼容于这种架构风格(简称为 REST 或 RESTful)的网络服务，允许客户端发出以统一资源标识符访问和操作网络资源的请求，而与预先定义好的无状态操作集一致化。&lt;a href=&#34;https://zh.wikipedia.org/wiki/%E8%A1%A8%E7%8E%B0%E5%B1%82%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2&#34;&gt;wikipdeia&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180607224524_M1yRtD_content_api_for_restful_web_services.jpeg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;REST API 不是一个标准或者一个是协议，仅仅是一种风格，一种style。&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;RESTful API的简单定义可以轻松解释这个概念。 REST是一种架构风格，RESTful是它的解释。也就是说，如果您的后端服务器具有REST API，并且您（从网站/应用程序）向客户端请求此API，则您的客户端为RESTful。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180607225013_Kuay0l_content_rest_api_design.jpeg&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;2-rest-api最为重要的约束&#34;&gt;2. REST API最为重要的约束&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Client-Server&lt;/code&gt; 通信只能由客户端单方面发起，表现为请求-响应的形式&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Stateless&lt;/code&gt; 通信的会话状态（Session State）应该全部由客户端负责维护&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Cache&lt;/code&gt; 响应内容可以在通信链的某处被缓存，以改善网络效率&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Uniform Interface&lt;/code&gt; 通信链的组件之间通过统一的接口相互通信，以提高交互的可见性&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Layered System&lt;/code&gt; 通过限制组件的行为（即每个组件只能“看到”与其交互的紧邻层），将架构分解为若干等级的层。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Code-On-Demand&lt;/code&gt; 支持通过下载并执行一些代码（例如Java Applet、Flash或JavaScript），对客户端的功能进行扩展。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;3-rest-api-http方法-与-curd&#34;&gt;3. REST API HTTP方法 与 CURD&lt;/h1&gt;
+&lt;p&gt;REST API 使用POST，GET, PUT, DELETE的HTTP方法来描述对资源的增、查、改、删。
+这四个HTTP方法在数据层对应着SQL的插入、查询、更新、删除操作。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

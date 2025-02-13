@@ -1,30 +1,43 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>onunload on 洞香春</title>
+    <title>Onunload on 洞香春</title>
     <link>https://wdd.js.org/tags/onunload/</link>
-    <description>Recent content in onunload on 洞香春</description>
+    <description>Recent content in Onunload on 洞香春</description>
     <image>
       <title>洞香春</title>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 07 Feb 2018 09:18:54 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/onunload/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 07 Feb 2018 09:18:54 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/onunload/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>发起Ajax请求当页面onunload</title>
       <link>https://wdd.js.org/posts/2018/02/send-ajax-when-page-unload/</link>
       <pubDate>Wed, 07 Feb 2018 09:18:54 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2018/02/send-ajax-when-page-unload/</guid>
-      <description>0.1. 同步Ajax 这种需求主要用于当浏览器关闭，或者刷新时，向后端发起Ajax请求。
-window.onunload = function(){ $.ajax({url:&amp;#34;http://localhost:8888/test.php?&amp;#34;, async:false}); }; 使用async：false参数使请求同步（默认是异步的）。
-同步请求锁定浏览器，直到完成。 如果请求是异步的，页面只是继续卸载。 它足够快，以至于该请求甚至没有时间触发。服务端很可能收不到请求。
-0.2. navigator.sendBeacon 优点：简洁、异步、非阻塞 缺点：这是实验性的技术，并非所有浏览器都支持。其中IE和safari不支持该技术。
-示例：
-window.addEventListener(&amp;#39;unload&amp;#39;, logData, false); function logData() { navigator.sendBeacon(&amp;#34;/log&amp;#34;, analyticsData); } 参考：http://stackoverflow.com/questions/1821625/ajax-request-with-jquery-on-page-unload 参考：https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon</description>
+      <description>&lt;h2 id=&#34;01-同步ajax&#34;&gt;0.1. 同步Ajax&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这种需求主要用于当浏览器关闭，或者刷新时，向后端发起Ajax请求。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;window.onunload = function(){
+    $.ajax({url:&amp;#34;http://localhost:8888/test.php?&amp;#34;, async:false});
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;使用&lt;code&gt;async：false&lt;/code&gt;参数使请求同步（默认是异步的）。&lt;/p&gt;
+&lt;p&gt;同步请求锁定浏览器，直到完成。 如果请求是异步的，页面只是继续卸载。 它足够快，以至于该请求甚至没有时间触发。服务端很可能收不到请求。&lt;/p&gt;
+&lt;h2 id=&#34;02-navigatorsendbeacon&#34;&gt;0.2. navigator.sendBeacon&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;优点&lt;/code&gt;：简洁、异步、非阻塞
+&lt;code&gt;缺点&lt;/code&gt;：这是实验性的技术，并非所有浏览器都支持。其中IE和safari不支持该技术。&lt;/p&gt;
+&lt;p&gt;示例：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;window.addEventListener(&amp;#39;unload&amp;#39;, logData, false);
+
+function logData() {
+  navigator.sendBeacon(&amp;#34;/log&amp;#34;, analyticsData);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
+&lt;p&gt;参考：http://stackoverflow.com/questions/1821625/ajax-request-with-jquery-on-page-unload
+参考：https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon&lt;/p&gt;&lt;/blockquote&gt;</description>
     </item>
-    
   </channel>
 </rss>

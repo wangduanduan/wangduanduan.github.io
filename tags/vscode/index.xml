@@ -1,43 +1,60 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>vscode on 洞香春</title>
+    <title>VScode on 洞香春</title>
     <link>https://wdd.js.org/tags/vscode/</link>
-    <description>Recent content in vscode on 洞香春</description>
+    <description>Recent content in VScode on 洞香春</description>
     <image>
       <title>洞香春</title>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 18 Apr 2023 13:43:07 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/vscode/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Apr 2023 13:43:07 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/vscode/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>VScode激活Tab更容易区分</title>
       <link>https://wdd.js.org/posts/2023/vscode-highlight-tab/</link>
       <pubDate>Tue, 18 Apr 2023 13:43:07 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2023/vscode-highlight-tab/</guid>
-      <description>默认情况下VScode的tab栏，当前的颜色会更深一点。如下图所示，第三个就是激活的。
-但是实际上并没有太高的区分度，特别是当显示屏有点反光的时候。
-我想应该不止一个人有这个问题吧
-看了github上，有个人反馈了这个问题，https://github.com/Microsoft/vscode/issues/24586
-后面有人回复了
-&amp;#34;workbench.colorCustomizations&amp;#34;: { &amp;#34;tab.activeBorder&amp;#34;: &amp;#34;#ff0000&amp;#34;, &amp;#34;tab.unfocusedActiveBorder&amp;#34;: &amp;#34;#000000&amp;#34; } 上面就是用来配置Tab边界的颜色的。
-看下效果，当前激活的Tab下有明显的红线，是不是更容易区分了呢</description>
+      <description>&lt;p&gt;默认情况下VScode的tab栏，当前的颜色会更深一点。如下图所示，第三个就是激活的。&lt;/p&gt;
+&lt;p&gt;但是实际上并没有太高的区分度，特别是当显示屏有点反光的时候。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2023/vscode-highlight-tab/2023-04-18-13-45-18.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;我想应该不止一个人有这个问题吧&lt;/p&gt;
+&lt;p&gt;看了github上，有个人反馈了这个问题，https://github.com/Microsoft/vscode/issues/24586&lt;/p&gt;
+&lt;p&gt;后面有人回复了&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;workbench.colorCustomizations&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;tab.activeBorder&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#ff0000&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;tab.unfocusedActiveBorder&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#000000&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;上面就是用来配置Tab边界的颜色的。&lt;/p&gt;
+&lt;p&gt;看下效果，当前激活的Tab下有明显的红线，是不是更容易区分了呢&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2023/vscode-highlight-tab/2023-04-18-13-51-17.png&#34;&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>mac vscode 更新失败 Permission denied解决办法</title>
       <link>https://wdd.js.org/posts/2018/02/mac-vscode-update-permission-denied/</link>
       <pubDate>Sun, 11 Feb 2018 14:20:01 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2018/02/mac-vscode-update-permission-denied/</guid>
-      <description>0. 现象 Could not create temporary directory: Permission denied
-1. 问题起因 在 /Users/username/Library/Caches/目录下，有以下两个文件， 可以看到，他们两个的用户是不一样的，一个是root一个username, 一般来说，我是以username来使用我的mac的。就是因为这两个文件的用户不一样，导致了更新失败。
-drwxr-xr-x 6 username staff 204B Jan 17 20:33 com.microsoft.VSCode drwxr--r-- 2 root staff 68B Dec 17 13:51 com.microsoft.VSCode.ShipIt 2. 解决方法 注意： 先把vscode 完全关闭
-// 1. 这一步是需要输入密码的 sudo chown $USER ~/Library/Caches/com.microsoft.VSCode.ShipIt/ // 2. 这一步是不需要输入密码的, 如果不进行第一步，第二步会报错 sudo chown $USER ~/Library/Caches/com.microsoft.VSCode.ShipIt/* // 3. 更新xattr xattr -dr com.apple.quarantine /Applications/Visual\ Studio\ Code.app 3. 打开vscode Code &amp;gt; Check for Updates, 点击之后，你会发现Check for Updates已经变成灰色了，那么你需要稍等片刻，马上就可以更新，之后会跳出提示，让你重启vscode, 然后重启一下vscode, 就ok了。</description>
+      <description>&lt;h1 id=&#34;0-现象&#34;&gt;0. 现象&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;Could not create temporary directory: Permission denied&lt;/code&gt;&lt;/p&gt;
+&lt;h1 id=&#34;1-问题起因&#34;&gt;1. 问题起因&lt;/h1&gt;
+&lt;p&gt;在 &lt;code&gt;/Users/username/Library/Caches/&lt;/code&gt;目录下，有以下两个文件， 可以看到，他们两个的用户是不一样的，一个是&lt;code&gt;root&lt;/code&gt;一个&lt;code&gt;username&lt;/code&gt;, 一般来说，我是以&lt;code&gt;username&lt;/code&gt;来使用我的mac的。就是因为这两个文件的用户不一样，导致了更新失败。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;drwxr-xr-x   6 username  staff   204B Jan 17 20:33 com.microsoft.VSCode
+drwxr--r--   2 root    staff    68B Dec 17 13:51 com.microsoft.VSCode.ShipIt
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;2-解决方法&#34;&gt;2. 解决方法&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;注意&lt;/code&gt;： 先把vscode 完全关闭&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// 1. 这一步是需要输入密码的
+sudo chown $USER ~/Library/Caches/com.microsoft.VSCode.ShipIt/
+
+// 2. 这一步是不需要输入密码的, 如果不进行第一步，第二步会报错
+sudo chown $USER ~/Library/Caches/com.microsoft.VSCode.ShipIt/*
+
+// 3. 更新xattr
+xattr -dr com.apple.quarantine /Applications/Visual\ Studio\ Code.app
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;3-打开vscode&#34;&gt;3. 打开vscode&lt;/h1&gt;
+&lt;p&gt;Code &amp;gt; Check for Updates, 点击之后，你会发现&lt;code&gt;Check for Updates&lt;/code&gt;已经变成灰色了，那么你需要稍等片刻，马上就可以更新，之后会跳出提示，让你重启vscode, 然后重启一下vscode, 就ok了。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

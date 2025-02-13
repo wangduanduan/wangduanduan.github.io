@@ -1,27 +1,40 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>manjaro on 洞香春</title>
+    <title>Manjaro on 洞香春</title>
     <link>https://wdd.js.org/categories/manjaro/</link>
-    <description>Recent content in manjaro on 洞香春</description>
+    <description>Recent content in Manjaro on 洞香春</description>
     <image>
       <title>洞香春</title>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 15 Jun 2022 18:54:11 +0800</lastBuildDate><atom:link href="https://wdd.js.org/categories/manjaro/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 15 Jun 2022 18:54:11 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/categories/manjaro/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>manjaro 安装 packettracer</title>
       <link>https://wdd.js.org/posts/2022/06/manjaro-packettracer/</link>
       <pubDate>Wed, 15 Jun 2022 18:54:11 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2022/06/manjaro-packettracer/</guid>
-      <description># 将会下载packettracer到当前目录下 yay -G packettracer cd packettracer # Download PacketTracer_731_amd64.deb to this folder makepkg sudo pacman -U packettracer-7.3.1-2-x86_64.pkg.tar.xz 注意，如果下载的packetraacer包不是PacketTracer_731_amd64.deb， 则需要修改PKGBUILD文件中的, souce对应的文件名。 例如我下载的packettracer是Cisco_Packet_Tracer_811_Ubuntu_64bit_cf200f5851.deb
-source=(&amp;#39;local://Cisco_Packet_Tracer_811_Ubuntu_64bit_cf200f5851.deb&amp;#39; &amp;#39;packettracer.sh&amp;#39;) 注意：最新版的packertracer打开后，必须登陆账号才能使用，有点坑。 花费点时间注册了账号后，才能用。
-参考 https://forum.manjaro.org/t/how-to-get-cisco-packet-tracer-on-manjaro/25506/5 </description>
+      <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 将会下载packettracer到当前目录下
+yay -G packettracer
+cd packettracer
+
+# Download PacketTracer_731_amd64.deb to this folder
+makepkg
+
+sudo pacman -U packettracer-7.3.1-2-x86_64.pkg.tar.xz
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;注意，如果下载的packetraacer包不是PacketTracer_731_amd64.deb， 则需要修改PKGBUILD文件中的, souce对应的文件名。 例如我下载的packettracer是Cisco_Packet_Tracer_811_Ubuntu_64bit_cf200f5851.deb&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;source=(&amp;#39;local://Cisco_Packet_Tracer_811_Ubuntu_64bit_cf200f5851.deb&amp;#39;                                                                                                       
+    &amp;#39;packettracer.sh&amp;#39;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;注意：最新版的packertracer打开后，必须登陆账号才能使用，有点坑。 花费点时间注册了账号后，才能用。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/06/manjaro-packettracer/2022-10-29-19-34-07.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;参考&#34;&gt;参考&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://forum.manjaro.org/t/how-to-get-cisco-packet-tracer-on-manjaro/25506/5&#34;&gt;https://forum.manjaro.org/t/how-to-get-cisco-packet-tracer-on-manjaro/25506/5&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
-    
   </channel>
 </rss>

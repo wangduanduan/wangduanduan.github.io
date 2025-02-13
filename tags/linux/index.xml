@@ -1,52 +1,110 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>linux on 洞香春</title>
+    <title>Linux on 洞香春</title>
     <link>https://wdd.js.org/tags/linux/</link>
-    <description>Recent content in linux on 洞香春</description>
+    <description>Recent content in Linux on 洞香春</description>
     <image>
       <title>洞香春</title>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 11 Dec 2022 14:12:08 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 Dec 2022 14:12:08 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Windows更新之后 Linux报错 Error 0x80040154</title>
       <link>https://wdd.js.org/posts/2022/12/wsl-error-0x80040154-after-windows-update/</link>
       <pubDate>Sun, 11 Dec 2022 14:12:08 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2022/12/wsl-error-0x80040154-after-windows-update/</guid>
-      <description>最近我更新了Windows, 之后我的Windows Linux子系统Ubuntu打开就报错了
-报错截图如下：
-在网上搜了一边之后，很多教程都是说要打开Windows的子系统的功能。 但是由于我已经使用Linux子系统已经很长时间了，我觉得应该和这个设置无关。
-而且我检查了一下，我的这个设置本来就是打开的。
-然后我在Powershell里输入 wsl， 这个命令都直接报错了。
-PS C:\WINDOWS\system32&amp;gt; wsl --install 没有注册类 Error code: Wsl/0x80040154 然后我到wsl的github上搜索类似的问题，查到有很多类似的描述，都是升级之后遇到的问题，我试了好几个方式，都没用。
-但是最后这个有用了！
-https://github.com/microsoft/WSL/issues/9064
-解决的方案就是：
-卸载已经安装过的Windows SubSystem For Linux Preview 然后再Windows应用商店重新安装这个应用 Windows的升级之后，可能Windows Linux子系统组建也更新了某些了内容。
-所以需要重装。
-这里不得不吐槽一下WSL, 这个工具仅仅是个玩具。随着windows更新，这个工具随时都会崩溃，最好不要太依赖它。</description>
+      <description>&lt;p&gt;最近我更新了Windows, 之后我的Windows Linux子系统Ubuntu打开就报错了&lt;/p&gt;
+&lt;p&gt;报错截图如下：&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/wsl-error-0x80040154-after-windows-update/2022-12-11-14-15-00.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在网上搜了一边之后，很多教程都是说要打开Windows的子系统的功能。 但是由于我已经使用Linux子系统已经很长时间了，我觉得应该和这个设置无关。&lt;/p&gt;
+&lt;p&gt;而且我检查了一下，我的这个设置本来就是打开的。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/wsl-error-0x80040154-after-windows-update/2022-12-11-14-18-02.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;然后我在Powershell里输入 wsl， 这个命令都直接报错了。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;PS C:\WINDOWS\system32&amp;gt; wsl --install
+没有注册类
+Error code: Wsl/0x80040154
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后我到wsl的github上搜索类似的问题，查到有很多类似的描述，都是升级之后遇到的问题，我试了好几个方式，都没用。&lt;/p&gt;
+&lt;p&gt;但是最后这个有用了！&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/microsoft/WSL/issues/9064&#34;&gt;https://github.com/microsoft/WSL/issues/9064&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/wsl-error-0x80040154-after-windows-update/2022-12-11-14-24-09.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;解决的方案就是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;卸载已经安装过的&lt;strong&gt;Windows SubSystem For Linux Preview&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;然后再Windows应用商店重新安装这个应用&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/wsl-error-0x80040154-after-windows-update/2022-12-11-14-27-43.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Windows的升级之后，可能Windows Linux子系统组建也更新了某些了内容。&lt;/p&gt;
+&lt;p&gt;所以需要重装。&lt;/p&gt;
+&lt;p&gt;这里不得不吐槽一下WSL, 这个工具仅仅是个玩具。随着windows更新，这个工具随时都会崩溃，最好不要太依赖它。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Linux 日志系统简述</title>
       <link>https://wdd.js.org/posts/2022/10/linux-journal/</link>
       <pubDate>Wed, 26 Oct 2022 08:44:12 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2022/10/linux-journal/</guid>
-      <description>1. 序言 日志文件包含系统的运行信息，包括内核、服务、应用程序等的日志。日志在分析系统故障、排查应用问题等方面，有着至关重要的作用。
-2. 哪些进程负责管理日志？ 默认情况下，系统上有两个守护进程服务管理日志。journald和rsyslogd。
-journald是systemd的一个组件，journald的负责收集日志，日志可以来自
-Syslog日志 内核日志 初始化内存日志 启动日志 所有服务写到标准输出和标准错误的日志 journal收集并整理收到的日志，使其易于被使用。
-有以下几点需要注意
-默认情况下，journal的日志是不会持久化的。 journal的日志是二进制的格式，并不能使用文本查看工具，例如cat, 或者vim去分析。journal的日志需要用journalctl命令去读取。 journald会把日志写到一个socket中，rsyslog可以通过这个socket来获取日志，然后去写文件。
-3. 日志文件文件位置 日志文件位置 /var/log/ 目录 4. 日志配置文件位置 /etc/rsyslog.conf rsyslogd配置文件 /etc/logrotate.conf 日志回滚的相关配置 /etc/systemd/journald.conf journald的配置文件 5. rsyslog.conf 5.1. 模块加载 注意 imjournal就是用来负责访问journal中的日志 imuxsock 提供本地日志输入支持，例如使用logger命令输入日志 $ModLoad imuxsock # provides support for local system logging (e.g. via logger command) $ModLoad imjournal # provides access to the systemd journal 5.2. 过滤 5.2.1. 优先级过滤 **模式：FACILITY.**PRIORITY
-设备(FACILITY): kern (0), user (1), mail (2), daemon (3), auth (4), syslog (5), lpr (6), news (7), cron (8), authpriv (9), ftp (10), and local0 through local7 (16 - 23).</description>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/10/linux-journal/2022-10-26-08-45-41.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;1-序言&#34;&gt;1. 序言&lt;/h1&gt;
+&lt;p&gt;日志文件包含系统的运行信息，包括内核、服务、应用程序等的日志。日志在分析系统故障、排查应用问题等方面，有着至关重要的作用。&lt;/p&gt;
+&lt;h1 id=&#34;2-哪些进程负责管理日志&#34;&gt;2. 哪些进程负责管理日志？&lt;/h1&gt;
+&lt;p&gt;默认情况下，系统上有两个守护进程服务管理日志。journald和rsyslogd。&lt;/p&gt;
+&lt;p&gt;journald是systemd的一个组件，journald的负责收集日志，日志可以来自&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Syslog日志&lt;/li&gt;
+&lt;li&gt;内核日志&lt;/li&gt;
+&lt;li&gt;初始化内存日志&lt;/li&gt;
+&lt;li&gt;启动日志&lt;/li&gt;
+&lt;li&gt;所有服务写到标准输出和标准错误的日志&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;journal收集并整理收到的日志，使其易于被使用。&lt;/p&gt;
+&lt;p&gt;有以下几点需要注意&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;默认情况下，journal的日志是不会持久化的。&lt;/li&gt;
+&lt;li&gt;journal的日志是二进制的格式，并不能使用文本查看工具，例如cat, 或者vim去分析。journal的日志需要用journalctl命令去读取。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;journald会把日志写到一个socket中，rsyslog可以通过这个socket来获取日志，然后去写文件。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/10/linux-journal/2022-10-26-08-47-16.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;3-日志文件文件位置&#34;&gt;3. 日志文件文件位置&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;日志文件位置 /var/log/ 目录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;4-日志配置文件位置&#34;&gt;4. 日志配置文件位置&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;/etc/rsyslog.conf  rsyslogd配置文件&lt;/li&gt;
+&lt;li&gt;/etc/logrotate.conf  日志回滚的相关配置&lt;/li&gt;
+&lt;li&gt;/etc/systemd/journald.conf  journald的配置文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;5-rsyslogconf&#34;&gt;5. rsyslog.conf&lt;/h1&gt;
+&lt;h2 id=&#34;51-模块加载&#34;&gt;5.1. 模块加载&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;注意 imjournal就是用来负责访问journal中的日志&lt;/li&gt;
+&lt;li&gt;imuxsock 提供本地日志输入支持，例如使用logger命令输入日志&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ModLoad imuxsock &lt;span style=&#34;color:#75715e&#34;&gt;# provides support for local system logging (e.g. via logger command)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ModLoad imjournal &lt;span style=&#34;color:#75715e&#34;&gt;# provides access to the systemd journal&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;52-过滤&#34;&gt;5.2. 过滤&lt;/h2&gt;
+&lt;h3 id=&#34;521-优先级过滤&#34;&gt;5.2.1. 优先级过滤&lt;/h3&gt;
+&lt;p&gt;**模式：FACILITY.**&lt;strong&gt;PRIORITY&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;设备(FACILITY): kern (0), user (1), mail (2), daemon (3), auth (4), syslog (5), lpr (6), news (7), cron (8), authpriv (9), ftp (10), and local0 through local7 (16 - 23).&lt;/li&gt;
+&lt;li&gt;日志等级：debug (7), info (6), notice (5), warning (4), err (3), crit (2), alert (1), and emerg (0).&lt;/li&gt;
+&lt;li&gt;正则
+&lt;ul&gt;
+&lt;li&gt;= 指定某个级别&lt;/li&gt;
+&lt;li&gt;! 排除某个级别&lt;/li&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;匹配所有级别&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Example: &lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

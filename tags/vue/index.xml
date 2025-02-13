@@ -1,44 +1,105 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>vue on 洞香春</title>
+    <title>Vue on 洞香春</title>
     <link>https://wdd.js.org/tags/vue/</link>
-    <description>Recent content in vue on 洞香春</description>
+    <description>Recent content in Vue on 洞香春</description>
     <image>
       <title>洞香春</title>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 12 Dec 2018 20:29:16 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/vue/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 Dec 2018 20:29:16 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/vue/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>WTF!! Vue数组splice方法无法正常工作</title>
       <link>https://wdd.js.org/posts/2018/12/vue-array-splice-not-work/</link>
       <pubDate>Wed, 12 Dec 2018 20:29:16 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2018/12/vue-array-splice-not-work/</guid>
-      <description>当函数执行到this.agents.splice()时，我设置了断点。发现传参index是0，但是页面上的列表项对应的第一行数据没有被删除，
-WTF！！！ 这是什么鬼！然后我打开Vue Devtools, 然后刷新了一下，发现那个数组的第一项还是存在的。什么鬼？？
-removeOneAgentByIndex: function (index) { this.agents.splice(index, 1) } 然后我就谷歌了一下，发现这个splice not working properly my object list VueJs, 大概意思是v-for的时候最好给列表项绑定:key=。然后我是试了这个方法，发现没啥作用。
-最终我决定，单步调试，如果我发现该问题出在Vue自身，那我就该抛弃Vue, 学习React了
-单步调试中出现一个异常的情况，removeOneAgentByIndex是被A函数调用的，A函数由websocket事件驱动。正常情况下应该触发一次的事件，服务端却发送了两次到客户端。由于事件重复，第一次执行A删除时，实际上removeOneAgentByIndex是执行成功了，但是重复的第二个事件到来时，A函数又往agents数组中添加了一项。导致看起来，removeOneAgentByIndex函数执行起来似乎没有设么作用。而且这两个重复的事件是在几乎是在同一时间发送到客户端，所以我几乎花了将近一个小时去解决这个bug。引起这个bug的原因是事件重复，所以我在前端代码中加入事件去重功能，最终解决这个问题。
-我记得之前看过一篇文章，一个开发者调通过回调函数计费，回调函数是由事件触发，但是没想到有时候事件会重发，导致重复计费。后来这名开发者在自己的代码中加入事件去重的功能，最终解决了这个问题。
-事后总结：我觉得我不该怀疑Vue这种库出现了问题，但是我又不禁去怀疑。
-通过这个bug, 我也学到了第二方法，可以删除Vue数组中的某一项，参考下面代码。
-// Only in 2.2.0+: Also works with Array + index. removeOneAgentByIndex: function (index) { this.$delete(this.agents, index) } 另外Vue devtools有时候并不会实时的观测到组件属性的变化，即使点了Refresh按钮。如果点了Refresh按钮还不行，那建议你重新打开谷歌浏览器的devtools面板。</description>
+      <description>&lt;p&gt;当函数执行到this.agents.splice()时，我设置了断点。发现传参index是0，但是页面上的列表项对应的第一行数据没有被删除，&lt;/p&gt;
+&lt;p&gt;WTF！！！ 这是什么鬼！然后我打开Vue Devtools, 然后刷新了一下，发现那个数组的第一项还是存在的。什么鬼？？&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;removeOneAgentByIndex&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;index&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;agents&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;splice&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;index&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后我就谷歌了一下，发现这个&lt;a href=&#34;https://stackoverflow.com/questions/48484773/splice-not-working-properly-my-object-list-vuejs&#34;&gt;splice not working properly my object list VueJs&lt;/a&gt;, 大概意思是v-for的时候最好给列表项绑定&lt;code&gt;:key=&lt;/code&gt;。然后我是试了这个方法，发现没啥作用。&lt;/p&gt;
+&lt;p&gt;最终我决定，单步调试，&lt;strong&gt;如果我发现该问题出在Vue自身，那我就该抛弃Vue, 学习React了&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;单步调试中出现一个异常的情况，removeOneAgentByIndex是被A函数调用的，A函数由websocket事件驱动。正常情况下应该触发一次的事件，服务端却发送了两次到客户端。由于事件重复，第一次执行A删除时，实际上removeOneAgentByIndex是执行成功了，但是重复的第二个事件到来时，A函数又往agents数组中添加了一项。导致看起来，removeOneAgentByIndex函数执行起来似乎没有设么作用。而且这两个重复的事件是在几乎是在同一时间发送到客户端，所以我几乎花了将近一个小时去解决这个bug。&lt;code&gt;引起这个bug的原因是事件重复，所以我在前端代码中加入事件去重功能，最终解决这个问题。&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;我记得之前看过一篇文章，一个开发者调通过回调函数计费，回调函数是由事件触发，但是没想到有时候事件会重发，导致重复计费。后来这名开发者在自己的代码中加入事件去重的功能，最终解决了这个问题。&lt;/p&gt;
+&lt;p&gt;事后总结：我觉得我不该怀疑Vue这种库出现了问题，但是我又不禁去怀疑。&lt;/p&gt;
+&lt;p&gt;通过这个bug, 我也学到了第二方法，可以删除Vue数组中的某一项，参考下面代码。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// Only in 2.2.0+: Also works with Array + index.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;removeOneAgentByIndex&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;index&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;$delete&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;agents&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;index&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;另外Vue devtools有时候并不会实时的观测到组件属性的变化，即使点了Refresh按钮。如果点了Refresh按钮还不行，那建议你重新打开谷歌浏览器的devtools面板。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Vue&#43;ElementUI 手把手教你做一个audio组件</title>
       <link>https://wdd.js.org/posts/2018/02/vue-elementui-audio-component/</link>
       <pubDate>Fri, 09 Feb 2018 13:44:13 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2018/02/vue-elementui-audio-component/</guid>
-      <description>1. 简介 1.1. 相关技术 Vue Vue-cli ElementUI yarn (之前我用npm, 并使用cnpm的源，但是用了yarn之后，我发现它比cnpm的速度还快，功能更好，我就毫不犹豫选择yarn了) Audio相关API和事件 1.2. 从本教程你会学到什么？ Vue单文件组件开发知识 Element UI基本用法 Audio原生API及Audio相关事件 音频播放器的基本原理 音频的播放暂停控制 更新音频显示时间 音频进度条控制与跳转 音频音量控制 音频播放速度控制 音频静音控制 音频下载控制 个性化配置与排他性播放 一点点ES6语法 2. 学前准备 基本上不需要什么准备，但是如果你能先看一下Aduio相关API和事件将会更好
-Audio: 如果你愿意一层一层剥开我的心 使用 HTML5 音频和视频 3. 在线demon 没有在线demo的教程都是耍流氓
-查看在线demon 项目地址 4. 开始编码 5. 项目初始化 ➜ test vue init webpack element-audio A newer version of vue-cli is available. latest: 2.9.2 installed: 2.9.1 ? Project name element-audio ? Project description A Vue.js project ?</description>
+      <description>&lt;h1 id=&#34;1-简介&#34;&gt;1. 简介&lt;/h1&gt;
+&lt;h2 id=&#34;11-相关技术&#34;&gt;1.1. 相关技术&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://cn.vuejs.org/&#34;&gt;Vue&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/vuejs/vue-cli&#34;&gt;Vue-cli&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://element-cn.eleme.io/#/zh-CN&#34;&gt;ElementUI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://yarnpkg.com/lang/zh-hans/&#34;&gt;yarn&lt;/a&gt; (之前我用npm, 并使用cnpm的源，但是用了yarn之后，我发现它比cnpm的速度还快，功能更好，我就毫不犹豫选择yarn了)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000009769804&#34;&gt;Audio相关API和事件&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;12-从本教程你会学到什么&#34;&gt;1.2. 从本教程你会学到什么？&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Vue单文件组件开发知识&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Element UI基本用法&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Audio原生API及Audio相关事件&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;音频播放器的基本原理&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;音频的播放暂停控制&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;更新音频显示时间&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;音频进度条控制与跳转&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;音频音量控制&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;音频播放速度控制&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;音频静音控制&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;音频下载控制&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;个性化配置与排他性播放&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;一点点ES6语法&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;2-学前准备&#34;&gt;2. 学前准备&lt;/h1&gt;
+&lt;p&gt;基本上不需要什么准备，但是如果你能先看一下Aduio相关API和事件将会更好&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://wdd.js.org/audio-heart-detail.html&#34;&gt;Audio: 如果你愿意一层一层剥开我的心&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/Using_HTML5_audio_and_video&#34;&gt;使用 HTML5 音频和视频&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;3-在线demonhttpswangduanduangithubioelement-audio&#34;&gt;3. &lt;a href=&#34;https://wangduanduan.github.io/element-audio/&#34;&gt;在线demon&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;没有在线demo的教程都是耍流氓&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://wangduanduan.github.io/element-audio/&#34;&gt;查看在线demon&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/wangduanduan/element-audio&#34;&gt;项目地址&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180209134536_j9HvMg_Screenshot.jpeg&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;4-开始编码&#34;&gt;4. 开始编码&lt;/h1&gt;
+&lt;h1 id=&#34;5-项目初始化&#34;&gt;5. 项目初始化&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;➜  test vue init webpack element-audio
+
+  A newer version of vue-cli is available.
+
+  latest:    2.9.2
+  installed: 2.9.1
+
+? Project name element-audio
+? Project description A Vue.js project
+? Author wangdd &amp;lt;wangdd@xxxxxx.com&amp;gt;
+? Vue build standalone
+? Install vue-router? No
+? Use ESLint to lint your code? No
+? Set up unit tests No
+? Setup e2e tests with Nightwatch? No
+? Should we run `npm install` for you after the project has been created? (recommended) npm
+
+➜  test cd element-audio 
+➜  element-audio npm run dev
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;浏览器打开 &lt;code&gt;http://localhost:8080/&lt;/code&gt;, 看到如下界面，说明项目初始化成功&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -9,26 +9,93 @@
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 29 Jan 2018 22:01:55 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 29 Jan 2018 22:01:55 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>如何写好接口文档？</title>
       <link>https://wdd.js.org/posts/2018/01/how-to-write-better-api-docs/</link>
       <pubDate>Mon, 29 Jan 2018 22:01:55 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2018/01/how-to-write-better-api-docs/</guid>
-      <description>1. HTTP携带信息的方式 url headers body: 包括请求体，响应体 2. 分离通用信息 一般来说，headers里的信息都是通用的，可以提前说明，作为默认参数
-3. 路径中的参数表达式 URL中参数表达式使用{}的形式，参数包裹在大括号之中{paramName}
-例如：
-/api/user/{userId} /api/user/{userType}?age={age}&amp;amp;gender={gender} 4. 数据模型定义 数据模型定义包括：
-路径与查询字符串参数模型 请求体参数模型 响应体参数模型 数据模型的最小数据集：
-名称 是否必须 说明 “最小数据集”（MDS）是指通过收集最少的数据，较好地掌握一个研究对象所具有的特点或一件事情、一份工作所处的状态，其核心是针对被观察的对象建立起一套精简实用的数据指标。最小数据集的概念起源于美国的医疗领域。最小数据集的产生源于信息交换的需要，就好比上下级质量技术监督部门之间、企业与质量技术监督部门之间、质量技术监督部门与社会公众之间都存在着信息交换的需求。
-一些文档里可能会加入字段的类型，但是我认为这是没必要的。以为HTTP传输的数据往往都需要序列化，大部分数据类型都是字符串。一些特殊的类型，例如枚举类型的字符串，可以在说明里描述。
-另外：数据模型非常建议使用表格来表现。
-举个栗子🌰：
-名称 是否必须 说明 userType 是 用户类型。commom表示普通用户，vip表示vip用户 age 否 用户年龄 gender 否 用户性别。1表示男，0表示女 5. 请求示例 // general POST http://www.testapi.com/api/user // request payload { &amp;#34;name&amp;#34;: &amp;#34;qianxun&amp;#34;, &amp;#34;age&amp;#34;: 14, &amp;#34;like&amp;#34;: [&amp;#34;music&amp;#34;, &amp;#34;reading&amp;#34;], &amp;#34;userType&amp;#34;: &amp;#34;vip&amp;#34; } // response { &amp;#34;id&amp;#34;: &amp;#34;asdkfjalsdkf&amp;#34; } 6. 异常处理 异常处理最小数据集</description>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://p394yuy0c.bkt.clouddn.com/20180128223141_GeUnII_Jietu20180128-223059.jpeg&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;1-http携带信息的方式&#34;&gt;1. HTTP携带信息的方式&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;url&lt;/li&gt;
+&lt;li&gt;headers&lt;/li&gt;
+&lt;li&gt;body: 包括请求体，响应体&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;2-分离通用信息&#34;&gt;2. 分离通用信息&lt;/h1&gt;
+&lt;p&gt;一般来说，headers里的信息都是通用的，可以提前说明，作为默认参数&lt;/p&gt;
+&lt;h1 id=&#34;3-路径中的参数表达式&#34;&gt;3. 路径中的参数表达式&lt;/h1&gt;
+&lt;p&gt;URL中参数表达式使用&lt;code&gt;{}&lt;/code&gt;的形式，参数包裹在大括号之中&lt;code&gt;{paramName}&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;例如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;/api/user/{userId}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/api/user/{userType}?age={age}&amp;amp;gender={gender}&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;4-数据模型定义&#34;&gt;4. 数据模型定义&lt;/h1&gt;
+&lt;p&gt;数据模型定义包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;路径与查询字符串参数模型&lt;/li&gt;
+&lt;li&gt;请求体参数模型&lt;/li&gt;
+&lt;li&gt;响应体参数模型&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;数据模型的最小数据集：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;名称&lt;/li&gt;
+&lt;li&gt;是否必须&lt;/li&gt;
+&lt;li&gt;说明&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“最小数据集”（MDS）是指通过收集最少的数据，较好地掌握一个研究对象所具有的特点或一件事情、一份工作所处的状态，其核心是针对被观察的对象建立起一套精简实用的数据指标。最小数据集的概念起源于美国的医疗领域。最小数据集的产生源于信息交换的需要，就好比上下级质量技术监督部门之间、企业与质量技术监督部门之间、质量技术监督部门与社会公众之间都存在着信息交换的需求。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;一些文档里可能会加入字段的类型，但是我认为这是没必要的。以为HTTP传输的数据往往都需要序列化，大部分数据类型都是字符串。一些特殊的类型，例如枚举类型的字符串，可以在说明里描述。&lt;/p&gt;
+&lt;p&gt;另外：&lt;code&gt;数据模型非常建议使用表格来表现&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;举个栗子🌰：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;名称&lt;/th&gt;
+          &lt;th&gt;是否必须&lt;/th&gt;
+          &lt;th&gt;说明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;userType&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;用户类型。&lt;code&gt;commom&lt;/code&gt;表示普通用户，&lt;code&gt;vip&lt;/code&gt;表示vip用户&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;age&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;用户年龄&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;gender&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;用户性别。&lt;code&gt;1&lt;/code&gt;表示男，&lt;code&gt;0&lt;/code&gt;表示女&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id=&#34;5-请求示例&#34;&gt;5. 请求示例&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// general 
+POST http://www.testapi.com/api/user
+
+// request payload
+{
+	&amp;#34;name&amp;#34;: &amp;#34;qianxun&amp;#34;,
+	&amp;#34;age&amp;#34;: 14,
+	&amp;#34;like&amp;#34;: [&amp;#34;music&amp;#34;, &amp;#34;reading&amp;#34;],
+	&amp;#34;userType&amp;#34;: &amp;#34;vip&amp;#34;
+}
+
+// response
+{
+	&amp;#34;id&amp;#34;: &amp;#34;asdkfjalsdkf&amp;#34;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;6-异常处理&#34;&gt;6. 异常处理&lt;/h1&gt;
+&lt;p&gt;异常处理最小数据集&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

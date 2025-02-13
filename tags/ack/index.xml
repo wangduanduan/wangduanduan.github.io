@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>ack on 洞香春</title>
+    <title>Ack on 洞香春</title>
     <link>https://wdd.js.org/tags/ack/</link>
-    <description>Recent content in ack on 洞香春</description>
+    <description>Recent content in Ack on 洞香春</description>
     <image>
       <title>洞香春</title>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 18 Jun 2021 00:00:00 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/ack/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 18 Jun 2021 00:00:00 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/ack/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ack 在contab中无法查到关键词</title>
       <link>https://wdd.js.org/shell/contab-ack/</link>
       <pubDate>Fri, 18 Jun 2021 00:00:00 +0800</pubDate>
-      
       <guid>https://wdd.js.org/shell/contab-ack/</guid>
-      <description>手工执行，可以获得预期结果，但是在crontab中，却查不到结果。
-stage_count=$(ack -h &amp;#34;\- name:&amp;#34; -t yaml | wc -l) 最终使用--nofilter参数，解决了问题。
-stage_count=$(ack --nofilter -h &amp;#34;\- name:&amp;#34; -t yaml | wc -l) 参考
-https://stackoverflow.com/questions/55777520/ack-fails-in-cronjob-but-runs-fine-from-commandline </description>
+      <description>&lt;p&gt;手工执行，可以获得预期结果，但是在crontab中，却查不到结果。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;stage_count=$(ack -h &amp;#34;\- name:&amp;#34; -t yaml | wc -l)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;最终使用&lt;code&gt;--nofilter&lt;/code&gt;参数，解决了问题。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;stage_count=$(ack --nofilter -h &amp;#34;\- name:&amp;#34; -t yaml | wc -l)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;参考&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://stackoverflow.com/questions/55777520/ack-fails-in-cronjob-but-runs-fine-from-commandline&#34;&gt;https://stackoverflow.com/questions/55777520/ack-fails-in-cronjob-but-runs-fine-from-commandline&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
-    
   </channel>
 </rss>

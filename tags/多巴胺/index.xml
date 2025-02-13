@@ -9,27 +9,40 @@
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 18 Nov 2024 18:35:02 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E5%A4%9A%E5%B7%B4%E8%83%BA/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Nov 2024 18:35:02 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/%E5%A4%9A%E5%B7%B4%E8%83%BA/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>成瘾：在放纵中寻找平衡</title>
       <link>https://wdd.js.org/books/005-%E6%88%90%E7%98%BE-%E5%9C%A8%E6%94%BE%E7%BA%B5%E4%B8%AD%E5%AF%BB%E6%89%BE%E5%B9%B3%E8%A1%A1/</link>
       <pubDate>Mon, 18 Nov 2024 18:35:02 +0800</pubDate>
-      
       <guid>https://wdd.js.org/books/005-%E6%88%90%E7%98%BE-%E5%9C%A8%E6%94%BE%E7%BA%B5%E4%B8%AD%E5%AF%BB%E6%89%BE%E5%B9%B3%E8%A1%A1/</guid>
-      <description>快乐的位置 读完这本书，我最大的收获是这句话：
-在过去七十五年里，神经科学领域最重要的发现之一，就是大脑中处理快乐和痛苦的区域是相同的
-之前我一直有个误解，我认为人的大脑感受快乐和痛苦的区域是分开的。
-如果快乐和痛苦都是在一个位置感受，那痛苦还是快乐，由什么决定呢？
-瘾形成的机制： 内稳态的天平 每个人或多或少都有某种瘾， 就比如我， 有段时间有玩电子游戏的瘾。 玩的时候很开心， 几把游戏结束之后，有感觉非常失落。没过几小时，又想再开一局。 这种情绪形成的原因是什么，是我想要了解的。
-成瘾（英语：addiction）是指一种重复性的强迫行为，即使这些行为已知可能造成不良后果的情形下，仍然被持续重复[5]。这种行为可能因中枢神经系统功能失调造成，重复这些行为也可以反过来造成神经功能受损 &amp;ndash;维基百科
-大脑会努力维持快乐和痛苦的平衡。每当这个天平向一侧倾斜时，大脑就会在另外一侧施加压力，竭力恢复平衡，神经科学家称之为内稳态
-多巴胺被释放以后，大脑会相应地减少或“下调”被刺激的多巴胺受体的数量，从而导致快乐-痛苦的天平向痛苦端倾斜，以恢复平衡。所以，我们常常会在快乐过后产生宿醉感或失落感。倘若等待足够长的时间，这种感觉就会消失，我们会重新回归中立的状态。然而，人类天生渴望对抗这种感觉，于是我们会再次回到那个快乐源泉的怀抱——比如再玩一局游戏
-如果每天保持这种模式几个小时，几周或几个月后，大脑的快乐设定点就会发生变化。现在我们继续玩游戏，不是为了获得快乐，而是为了回到正常的感觉。一旦停下来，我们就会体验到戒断任何成瘾物质时会出现的普遍症状：焦虑、易怒、失眠、烦躁和强烈的渴求，一心想回到那个成瘾物质身边。
-有线一带的&amp;quot;皮下注射器&amp;quot; 并非人人都玩电子游戏，但几乎所有人都有一个令自己成瘾的数字化产品，其中很可能就包括智能手机——它相当于 “有线一代”(wired generation)的“皮下注射针”。众所周知，要减少手机的使用是非常困难的，一旦离开手机，大脑的快乐-痛苦天平就会向痛苦的一侧倾斜，令人感到不安和暴躁。但这么做是值得的，因为若能保持足够长的时间不去使用手机，更加健康、平衡的多巴胺水平会带来诸多益处。大脑不再被渴求占据，我们才能更加专注于当下，再次从生活中那些微小的、意想不到的奖励中获得快乐
-参考 多巴胺 </description>
+      <description>&lt;h1 id=&#34;快乐的位置&#34;&gt;快乐的位置&lt;/h1&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/books/005-%E6%88%90%E7%98%BE-%E5%9C%A8%E6%94%BE%E7%BA%B5%E4%B8%AD%E5%AF%BB%E6%89%BE%E5%B9%B3%E8%A1%A1/atta/2024-11-18-18-40-32.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;读完这本书，我最大的收获是这句话：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;在过去七十五年里，神经科学领域最重要的发现之一，就是大脑中处理快乐和痛苦的区域是相同的&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;之前我一直有个误解，我认为人的大脑感受快乐和痛苦的区域是分开的。&lt;/p&gt;
+&lt;p&gt;如果快乐和痛苦都是在一个位置感受，那痛苦还是快乐，由什么决定呢？&lt;/p&gt;
+&lt;h1 id=&#34;瘾形成的机制-内稳态的天平&#34;&gt;瘾形成的机制： 内稳态的天平&lt;/h1&gt;
+&lt;p&gt;每个人或多或少都有某种&lt;strong&gt;瘾&lt;/strong&gt;， 就比如我， 有段时间有玩电子游戏的瘾。 玩的时候很开心， 几把游戏结束之后，有感觉非常失落。没过几小时，又想再开一局。 这种情绪形成的原因是什么，是我想要了解的。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;成瘾（英语：addiction）是指一种重复性的强迫行为，即使这些行为已知可能造成不良后果的情形下，仍然被持续重复[5]。这种行为可能因中枢神经系统功能失调造成，重复这些行为也可以反过来造成神经功能受损  &amp;ndash;&lt;a href=&#34;https://zh.wikipedia.org/wiki/%E6%88%90%E7%98%BE&#34;&gt;维基百科&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;大脑会努力维持快乐和痛苦的平衡。每当这个天平向一侧倾斜时，大脑就会在另外一侧施加压力，竭力恢复平衡，神经科学家称之为&lt;strong&gt;内稳态&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/books/005-%E6%88%90%E7%98%BE-%E5%9C%A8%E6%94%BE%E7%BA%B5%E4%B8%AD%E5%AF%BB%E6%89%BE%E5%B9%B3%E8%A1%A1/atta/2024-11-18-19-27-19.png&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;多巴胺被释放以后，大脑会相应地减少或“下调”被刺激的多巴胺受体的数量，从而导致快乐-痛苦的天平向痛苦端倾斜，以恢复平衡。所以，我们常常会在快乐过后产生宿醉感或失落感。倘若等待足够长的时间，这种感觉就会消失，我们会重新回归中立的状态。然而，人类天生渴望对抗这种感觉，于是我们会再次回到那个快乐源泉的怀抱——比如再玩一局游戏&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果每天保持这种模式几个小时，几周或几个月后，大脑的快乐设定点就会发生变化。现在我们继续玩游戏，不是为了获得快乐，而是为了回到正常的感觉。一旦停下来，我们就会体验到戒断任何成瘾物质时会出现的普遍症状：焦虑、易怒、失眠、烦躁和强烈的渴求，一心想回到那个成瘾物质身边。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h1 id=&#34;有线一带的皮下注射器&#34;&gt;有线一带的&amp;quot;皮下注射器&amp;quot;&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;并非人人都玩电子游戏，但几乎所有人都有一个令自己成瘾的数字化产品，其中很可能就包括智能手机——它相当于 &lt;strong&gt;“有线一代”(wired generation)的“皮下注射针”&lt;/strong&gt;。众所周知，要减少手机的使用是非常困难的，一旦离开手机，大脑的快乐-痛苦天平就会向痛苦的一侧倾斜，令人感到不安和暴躁。但这么做是值得的，因为若能保持足够长的时间不去使用手机，更加健康、平衡的多巴胺水平会带来诸多益处。大脑不再被渴求占据，我们才能更加专注于当下，再次从生活中那些微小的、意想不到的奖励中获得快乐&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h1 id=&#34;参考&#34;&gt;参考&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://zh.wikipedia.org/zh-cn/%E5%A4%9A%E5%B7%B4%E8%83%BA&#34;&gt;多巴胺&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
-    
   </channel>
 </rss>

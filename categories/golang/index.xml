@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>golang on 洞香春</title>
+    <title>Golang on 洞香春</title>
     <link>https://wdd.js.org/categories/golang/</link>
-    <description>Recent content in golang on 洞香春</description>
+    <description>Recent content in Golang on 洞香春</description>
     <image>
       <title>洞香春</title>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 10 Aug 2023 11:20:47 +0800</lastBuildDate><atom:link href="https://wdd.js.org/categories/golang/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Aug 2023 11:20:47 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/categories/golang/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go1.21发布</title>
       <link>https://wdd.js.org/golang/go1.21/</link>
       <pubDate>Thu, 10 Aug 2023 11:20:47 +0800</pubDate>
-      
       <guid>https://wdd.js.org/golang/go1.21/</guid>
-      <description>golang每隔6个月发布一个新的次版本号升级。一般是是2月一个版本，8月一个版本
-语言层面 增加内置函数 min() max() 参考 https://tip.golang.org/ref/spec#Min_and_max
-The built-in functions min and max compute the smallest—or largest, respectively—value of a fixed number of arguments of ordered types. There must be at least one argument.
-The same type rules as for operators apply: for ordered arguments x and y, min(x, y) is valid if x + y is valid, and the type of min(x, y) is the type of x + y (and similarly for max).</description>
+      <description>&lt;p&gt;golang每隔6个月发布一个新的次版本号升级。一般是是2月一个版本，8月一个版本&lt;/p&gt;
+&lt;h1 id=&#34;语言层面&#34;&gt;语言层面&lt;/h1&gt;
+&lt;h2 id=&#34;增加内置函数&#34;&gt;增加内置函数&lt;/h2&gt;
+&lt;h3 id=&#34;min-max&#34;&gt;min() max()&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;参考 &lt;a href=&#34;https://tip.golang.org/ref/spec#Min_and_max&#34;&gt;https://tip.golang.org/ref/spec#Min_and_max&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;The built-in functions min and max compute the smallest—or largest, respectively—value of a fixed number of arguments of ordered types. There must be at least one argument.&lt;/p&gt;
+&lt;p&gt;The same type rules as for operators apply: for ordered arguments x and y, min(x, y) is valid if x + y is valid, and the type of min(x, y) is the type of x + y (and similarly for max). If all arguments are constant, the result is constant.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -9,27 +9,57 @@
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 01 Dec 2022 09:49:29 +0800</lastBuildDate><atom:link href="https://wdd.js.org/git/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 Dec 2022 09:49:29 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/git/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>清除所有GIT历史记录</title>
       <link>https://wdd.js.org/git/clean-all-history/</link>
       <pubDate>Thu, 01 Dec 2022 09:49:29 +0800</pubDate>
-      
       <guid>https://wdd.js.org/git/clean-all-history/</guid>
-      <description>有些时候，git 仓库累积了太多无用的历史更改，导致 clone 文件过大。如果确定历史更改没有意义，可以采用下述方法清空历史，
-先 clone 项目到本地目录 (以名为 mylearning 的仓库为例) git clone git@gitee.com:badboycoming/mylearning.git 进入 mylearning 仓库，拉一个分支，比如名为 latest_branch git checkout --orphan latest_branch 添加所有文件到上述分支 (Optional) git add -A 提交一次 git commit -am &amp;#34;Initial commit.&amp;#34; 删除 master 分支 git branch -D master 更改当前分支为 master 分支 git branch -m master 将本地所有更改 push 到远程仓库 git push -f origin master 关联本地 master 到远程 master git branch --set-upstream-to=origin/master </description>
+      <description>&lt;p&gt;有些时候，git 仓库累积了太多无用的历史更改，导致 clone 文件过大。如果确定历史更改没有意义，可以采用下述方法清空历史，&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;先 clone 项目到本地目录 (以名为 mylearning 的仓库为例)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git clone git@gitee.com:badboycoming/mylearning.git
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;进入 mylearning 仓库，拉一个分支，比如名为 latest_branch&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git checkout --orphan latest_branch
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;添加所有文件到上述分支 (Optional)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt; git add -A
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;提交一次&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt; git commit -am &amp;#34;Initial commit.&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;删除 master 分支&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git branch -D master
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;更改当前分支为 master 分支&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git branch -m master
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;7&#34;&gt;
+&lt;li&gt;将本地所有更改 push 到远程仓库&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git push -f origin master
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;8&#34;&gt;
+&lt;li&gt;关联本地 master 到远程 master&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git branch --set-upstream-to=origin/master
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
-    
     <item>
       <title>GIT 重新设置远程url</title>
       <link>https://wdd.js.org/git/remote-url/</link>
       <pubDate>Thu, 01 Dec 2022 09:46:13 +0800</pubDate>
-      
       <guid>https://wdd.js.org/git/remote-url/</guid>
-      <description>git remote set-url origin repo-url </description>
+      <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git remote set-url origin repo-url
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
-    
   </channel>
 </rss>

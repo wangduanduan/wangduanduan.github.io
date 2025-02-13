@@ -1,52 +1,103 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>js on 洞香春</title>
+    <title>Js on 洞香春</title>
     <link>https://wdd.js.org/tags/js/</link>
-    <description>Recent content in js on 洞香春</description>
+    <description>Recent content in Js on 洞香春</description>
     <image>
       <title>洞香春</title>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 07 Feb 2018 10:09:42 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/js/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 07 Feb 2018 10:09:42 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/js/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>突然觉得自己好像没学过JS</title>
       <link>https://wdd.js.org/posts/2018/02/i-realy-dont-know-js/</link>
       <pubDate>Wed, 07 Feb 2018 10:09:42 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2018/02/i-realy-dont-know-js/</guid>
-      <description>0.1. 先看题：mean的值是什么？ var scores = [10,11,12]; var total = 0; for(var score in scores){ total += score; } var mean = total/scores.length; console.log(mean); 0.2. 是11？ 恭喜你：答错了！
-0.3. 是1？ 恭喜你：答错了！
-0.4. 正确答案： 4 解释： for in 循环循环的值永远是key, key是一个字符串。所以total的值是：&amp;lsquo;0012&amp;rsquo;。它是一个字符串，字符串&#39;0012&amp;rsquo;/3,0012会被转换成12，然后除以3，结果是4。
-0.5. 后记 这个示例是来自《编写高质量JavaScript的68个方法》的第49条：数组迭代要优先使用for循环而不是for in循环。 既然已经发布，就可能有好事者拿出去当面试题。这个题目很有可能坑一堆人。其中包括我。
-这里涉及到许多js的基础知识.
-for in 循环是循环对象的索引属性，key是一个字符串。 数值类型和字符串相加，会自动转换为字符串 字符串除以数值类型，会先把字符串转为数值，最终结果为数值 正确方法
-var scores = [10,11,12]; var total = 0; for(var i=0, n=scores.length; i &amp;lt; n; i++){ total += scores[i]; } var mean = total/scores.</description>
+      <description>&lt;h2 id=&#34;01-先看题mean的值是什么&#34;&gt;0.1. 先看题：mean的值是什么？&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var scores = [10,11,12];
+var total = 0;
+
+for(var score in scores){
+  total += score;
+}
+
+var mean = total/scores.length;
+console.log(mean);
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;02-是11&#34;&gt;0.2. 是11？&lt;/h2&gt;
+&lt;p&gt;恭喜你：答错了！&lt;/p&gt;
+&lt;h2 id=&#34;03-是1&#34;&gt;0.3. 是1？&lt;/h2&gt;
+&lt;p&gt;恭喜你：答错了！&lt;/p&gt;
+&lt;h2 id=&#34;04-正确答案-4&#34;&gt;0.4. 正确答案： 4&lt;/h2&gt;
+&lt;p&gt;解释： &lt;code&gt;for in 循环循环的值永远是key, key是一个字符串&lt;/code&gt;。所以total的值是：&amp;lsquo;0012&amp;rsquo;。它是一个字符串，字符串&#39;0012&amp;rsquo;/3,0012会被转换成12，然后除以3，结果是4。&lt;/p&gt;
+&lt;h2 id=&#34;05-后记&#34;&gt;0.5. 后记&lt;/h2&gt;
+&lt;p&gt;这个示例是来自《编写高质量JavaScript的68个方法》的第49条：&lt;code&gt;数组迭代要优先使用for循环而不是for in循环&lt;/code&gt;。
+既然已经发布，就可能有好事者拿出去当面试题。这个题目很有可能坑一堆人。其中包括我。&lt;/p&gt;
+&lt;p&gt;这里涉及到许多js的基础知识.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;for in 循环是循环对象的索引属性，key是一个字符串。&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;数值类型和字符串相加，会自动转换为字符串&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;字符串除以数值类型，会先把字符串转为数值，最终结果为数值&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;正确方法&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var scores = [10,11,12];
+var total = 0;
+
+for(var i=0, n=scores.length; i &amp;lt; n; i++){
+  total += scores[i];
+}
+
+var mean = total/scores.length;
+console.log(mean);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这样写有几个好处。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>油猴子脚本 - 我的地盘我做主</title>
       <link>https://wdd.js.org/posts/2018/01/tampermonkey/</link>
       <pubDate>Mon, 29 Jan 2018 13:58:37 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2018/01/tampermonkey/</guid>
-      <description>当你用浏览器访问某个网页时，你可曾想过，你看到的这个网页，实际上是属于你自己的。
-打个比喻：访问某个网站就好像是网购了一筐鸡蛋，鸡蛋虽然是养鸡场生产的，但是这个蛋我怎么吃，你养鸡场管不着。
-当然了，对于很多人来说，鸡蛋没有别的吃法，鸡蛋只能煮着吃。
-你可以看如下的页面：当你在某搜索引擎上搜索前端开发时
-大多数人看到的页面是这样的, 满屏的广告，满屏的推广，满屏的排名，满屏的中间地址跳转，满屏的流量劫持, 还有莆田系
-但是有些人的页面却是这样的：清晰，自然，链接直达，清水出芙蓉，天然去雕饰 这就是油猴子脚本干的事情， 当然，它能干的事情，远不止如此。它是齐天大圣孙悟空，有七十二变。
-1. 什么是油猴子脚本？ Greasemonkey，简称GM，中文俗称为“油猴”，是Firefox的一个附加组件。它让用户安装一些脚本使大部分HTML为主的网页于用户端直接改变得更方便易用。随着Greasemonkey脚本常驻于浏览器，每次随着目的网页打开而自动做修改，使得运行脚本的用户印象深刻地享受其固定便利性。
-Greasemonkey可替网页加入些新功能（例如在亚马逊书店嵌入商品比价功能）、修正网页错误、组合来自不同网页的数据、或者数繁不及备载的其他功能。写的好的Greasemonkey脚本甚至可让其输出与被修改的页面集成得天衣无缝，像是原本网页里的一部分。 来自维基百科
-2. 如何安装油猴子插件？ 在google商店搜索Tampermonkey, 安装量最高的就是它。
-3. 如何写油猴子脚本？ 油猴子脚本有个新建脚本页面，在此页面可以创建脚本。具体教程可以参考。
-中文 GreaseMonkey 用户脚本开发手册 GreaseMonkey（油猴子）脚本开发 深入浅出 Greasemonkey Greasemonkey Hacks/Getting Started 4. 如何使用他人的脚本？ greasyfork网站提供很多脚本，它仿佛是代码界的github, 可以在该网站搜到很多有意思的脚本。
-5. 有哪些好用的脚本？ 有哪些超神的油猴脚本?
-或者你可以在greasyfork网站查看一些下载量排行</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;当你用浏览器访问某个网页时，你可曾想过，你看到的这个网页，实际上是属于你自己的。&lt;/code&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;打个比喻：&lt;code&gt;访问某个网站就好像是网购了一筐鸡蛋，鸡蛋虽然是养鸡场生产的，但是这个蛋我怎么吃，你养鸡场管不着&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;当然了，对于很多人来说，鸡蛋没有别的吃法，鸡蛋只能煮着吃。&lt;/p&gt;
+&lt;p&gt;你可以看如下的页面：当你在某搜索引擎上搜索&lt;code&gt;前端开发&lt;/code&gt;时&lt;/p&gt;
+&lt;p&gt;大多数人看到的页面是这样的, &lt;code&gt;满屏的广告，满屏的推广，满屏的排名，满屏的中间地址跳转，满屏的流量劫持, 还有莆田系&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180129135930_Btkbuq_Screenshot.jpeg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;但是有些人的页面却是这样的：&lt;code&gt;清晰，自然，链接直达，清水出芙蓉，天然去雕饰&lt;/code&gt;
+&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180129135945_rkPKMY_Screenshot.jpeg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这就是&lt;code&gt;油猴子脚本干的事情&lt;/code&gt;， 当然，它能干的事情，远不止如此。&lt;code&gt;它是齐天大圣孙悟空，有七十二变。&lt;/code&gt;&lt;/p&gt;
+&lt;h1 id=&#34;1-什么是油猴子脚本&#34;&gt;1. 什么是油猴子脚本？&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Greasemonkey，简称GM，中文俗称为“油猴”，是Firefox的一个附加组件。它让用户安装一些脚本使大部分HTML为主的网页于用户端直接改变得更方便易用。随着Greasemonkey脚本常驻于浏览器，每次随着目的网页打开而自动做修改，使得运行脚本的用户印象深刻地享受其固定便利性。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Greasemonkey可替网页加入些新功能（例如在亚马逊书店嵌入商品比价功能）、修正网页错误、组合来自不同网页的数据、或者数繁不及备载的其他功能。写的好的Greasemonkey脚本甚至可让其输出与被修改的页面集成得天衣无缝，像是原本网页里的一部分。 来自&lt;a href=&#34;https://zh.wikipedia.org/wiki/Greasemonkey&#34;&gt;维基百科&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h1 id=&#34;2-如何安装油猴子插件&#34;&gt;2. 如何安装油猴子插件？&lt;/h1&gt;
+&lt;p&gt;在google商店搜索&lt;code&gt;Tampermonkey&lt;/code&gt;, 安装量最高的就是它。&lt;/p&gt;
+&lt;h1 id=&#34;3-如何写油猴子脚本&#34;&gt;3. 如何写油猴子脚本？&lt;/h1&gt;
+&lt;p&gt;油猴子脚本有个新建脚本页面，在此页面可以创建脚本。具体教程可以参考。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://jixunmoe.github.io/gmDevBook/#/doc/intro/about&#34;&gt;中文 GreaseMonkey 用户脚本开发手册&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.leanote.com/post/mynote/%E6%B2%B9%E7%8C%B4%E5%AD%90&#34;&gt;GreaseMonkey（油猴子）脚本开发&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://e.sebug.net/paper/books/greasemonkey/&#34;&gt;深入浅出 Greasemonkey&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://commons.oreilly.com/wiki/index.php/Greasemonkey_Hacks/Getting_Started&#34;&gt;Greasemonkey Hacks/Getting Started&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180129140004_amXldp_Screenshot.jpeg&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;4-如何使用他人的脚本&#34;&gt;4. 如何使用他人的脚本？&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://greasyfork.org/zh-CN&#34;&gt;greasyfork网站&lt;/a&gt;提供很多脚本，它仿佛是代码界的github, 可以在该网站搜到很多有意思的脚本。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180129140017_AapqKj_Screenshot.jpeg&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;5-有哪些好用的脚本&#34;&gt;5. 有哪些好用的脚本？&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.zhihu.com/question/22210090&#34;&gt;有哪些超神的油猴脚本?&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;或者你可以在greasyfork网站查看一些下载量排行&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
-    
   </channel>
 </rss>

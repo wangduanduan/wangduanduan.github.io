@@ -9,58 +9,125 @@
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 01 Jun 2022 08:27:53 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/freeswitch/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Jun 2022 08:27:53 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/freeswitch/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>WebRTC 人声检测与舒适噪音</title>
       <link>https://wdd.js.org/freeswitch/webrtc-vad-cng/</link>
       <pubDate>Wed, 01 Jun 2022 08:27:53 +0800</pubDate>
-      
       <guid>https://wdd.js.org/freeswitch/webrtc-vad-cng/</guid>
-      <description>人声检测 VAD 人声检测(VAD: Voice Activity Detection)是区分语音中是人说话的声音，还是其他例如环境音的一种功能。
-除此以外，人声检测还能用于减少网络中语音包传输的数据量，从而极大的降低语音的带宽，极限情况下能降低50%的带宽。
-在一个通话中，一般都是只有一个人说话，另一人听。很少可能是两个人都说话的。
-例如A在说话的时候，B可能在等待。
-虽然B在等待过程中，B的语音流依然再按照原始速度和编码再发给A, 即使这里面是环境噪音或者是无声。
-A ----&amp;gt; B # A在说话 A &amp;lt;--- B # B在等待过程中，B的语音流依然再按照原始速度和编码再发给A 如果B具有VAD检测功能，那么B就可以在不说话的时候，发送特殊标记的语音流或者通过减少语音流发送的频率，来减少无意义语音的发送。
-从而极大的降低B-&amp;gt;A的语音流。
-下图是Wireshark抓包的两种RTP包，g711编码的占214字节，但是用舒适噪音编码的只有63字节。将近减少了4倍的带宽。
-舒适噪音生成器 CNG 舒适噪音(CN stands for Comfort Noise), 是一种模拟的背景环境音。舒适噪音生成器在接收端根据发送到给的参数，来产生类似接收端的舒适噪音, 用来模拟发送方的噪音环境。
-CN也是一种RTP包的格式，定义在RFC 3389
-舒适噪音的payload, 也被称作静音插入描述帧(SID: a Silence Insertion Descriptor frame), 包括一个字节的数据，用来描述噪音的级别。也可以包含其他的额外的数据。早期版本的舒适噪音的格式定义在RFC 1890中，这个版本的格式只包含一个字段，就是噪音级别。
-噪音级别占用一个字节，其中第一个bit必须是0， 因此噪音级别有127中可能。
-0 1 2 3 4 5 6 7 +-+-+-+-+-+-+-+-+ |0| level | +-+-+-+-+-+-+-+-+ 跟着噪音级别的后续字节都是声音的频谱信息。
-Byte 1 2 3 ... M+1 +-----+-----+-----+-----+-----+ |level| N1 | N2 | .</description>
+      <description>&lt;h1 id=&#34;人声检测-vad&#34;&gt;人声检测 VAD&lt;/h1&gt;
+&lt;p&gt;人声检测(VAD: Voice Activity Detection)是区分语音中是人说话的声音，还是其他例如环境音的一种功能。&lt;/p&gt;
+&lt;p&gt;除此以外，人声检测还能用于减少网络中语音包传输的数据量，从而极大的降低语音的带宽，极限情况下能降低50%的带宽。&lt;/p&gt;
+&lt;p&gt;在一个通话中，一般都是只有一个人说话，另一人听。很少可能是两个人都说话的。&lt;/p&gt;
+&lt;p&gt;例如A在说话的时候，B可能在等待。&lt;/p&gt;
+&lt;p&gt;虽然B在等待过程中，B的语音流依然再按照原始速度和编码再发给A, 即使这里面是环境噪音或者是无声。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-log&#34; data-lang=&#34;log&#34;&gt;A ----&amp;gt; B # A在说话
+A &amp;lt;---  B # B在等待过程中，B的语音流依然再按照原始速度和编码再发给A
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果B具有VAD检测功能，那么B就可以在不说话的时候，发送特殊标记的语音流或者通过减少语音流发送的频率，来减少无意义语音的发送。&lt;/p&gt;
+&lt;p&gt;从而极大的降低B-&amp;gt;A的语音流。&lt;/p&gt;
+&lt;p&gt;下图是Wireshark抓包的两种RTP包，g711编码的占214字节，但是用舒适噪音编码的只有63字节。将近减少了4倍的带宽。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/images/Xnip2022-06-01_14-08-05.jpg&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;舒适噪音生成器-cng&#34;&gt;舒适噪音生成器 CNG&lt;/h1&gt;
+&lt;p&gt;舒适噪音(CN stands for Comfort Noise), 是一种模拟的背景环境音。舒适噪音生成器在接收端根据发送到给的参数，来产生类似接收端的舒适噪音, 用来模拟发送方的噪音环境。&lt;/p&gt;
+&lt;p&gt;CN也是一种RTP包的格式，定义在&lt;a href=&#34;https://www.rfc-editor.org/rfc/rfc3389&#34;&gt;RFC 3389&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;舒适噪音的payload, 也被称作静音插入描述帧(SID: a Silence Insertion Descriptor frame), 包括一个字节的数据，用来描述噪音的级别。也可以包含其他的额外的数据。早期版本的舒适噪音的格式定义在RFC 1890中，这个版本的格式只包含一个字段，就是噪音级别。&lt;/p&gt;
+&lt;p&gt;噪音级别占用一个字节，其中第一个bit必须是0， 因此噪音级别有127中可能。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt; 0 1 2 3 4 5 6 7
++-+-+-+-+-+-+-+-+
+|0|   level     |
++-+-+-+-+-+-+-+-+
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;跟着噪音级别的后续字节都是声音的频谱信息。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Byte        1      2    3    ...   M+1
+       +-----+-----+-----+-----+-----+
+       |level|  N1 |  N2 | ... |  NM |
+       +-----+-----+-----+-----+-----+
+
+Figure 2: CN Payload Packing Format
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在SIP INVITE的SDP中也可以看到编码，如下面的CN&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Sofia 模块全部配置</title>
       <link>https://wdd.js.org/freeswitch/sofia-config/</link>
       <pubDate>Sat, 28 May 2022 14:57:59 +0800</pubDate>
-      
       <guid>https://wdd.js.org/freeswitch/sofia-config/</guid>
-      <description>About Sofia is a FreeSWITCH™ module (mod_sofia) that provides SIP connectivity to and from FreeSWITCH in the form of a User Agent. A &amp;ldquo;User Agent&amp;rdquo; (&amp;ldquo;UA&amp;rdquo;) is an application used for handling a certain network protocol; the network protocol in Sofia&amp;rsquo;s case is SIP. Sofia is the general name of any User Agent in FreeSWITCH using the SIP network protocol. For example, Sofia receives calls sent to FreeSWITCH from other SIP User Agents (UAs), sends calls to other UAs, acts as a client to register FreeSWITCH with other UAs, lets clients register with FreeSWITCH, and connects calls (i.</description>
+      <description>&lt;h1 id=&#34;about&#34;&gt;About&lt;/h1&gt;
+&lt;p&gt;Sofia is a  FreeSWITCH™ module (&lt;a href=&#34;https://freeswitch.org/confluence/display/FREESWITCH/mod_sofia&#34;&gt;mod_sofia&lt;/a&gt;) that provides SIP connectivity to and from FreeSWITCH in the form of a User Agent.
+A &amp;ldquo;User Agent&amp;rdquo; (&amp;ldquo;UA&amp;rdquo;) is an application used for handling a certain network protocol; the network protocol in Sofia&amp;rsquo;s case is SIP. Sofia is the general name of any User Agent in FreeSWITCH using the SIP network protocol.
+For example, Sofia receives calls sent to FreeSWITCH from other SIP User Agents (UAs), sends calls to other UAs, acts as a client to register FreeSWITCH with other UAs, lets clients register with FreeSWITCH, and connects calls (i.e., to local extensions).
+To add a SIP Provider (Sofia User Agent) to your FreeSWITCH, please see the &lt;a href=&#34;https://freeswitch.org/confluence/display/FREESWITCH/Interoperability&#34;&gt;Interoperability Examples&lt;/a&gt; and add the SIP Provider information in an .xml file stored under conf/sip_profiles/&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>FS常用运维手册</title>
       <link>https://wdd.js.org/freeswitch/tips/</link>
       <pubDate>Sat, 28 May 2022 14:54:40 +0800</pubDate>
-      
       <guid>https://wdd.js.org/freeswitch/tips/</guid>
-      <description>安装单个模块 make mod_sofia-install make mod_ilbc-install fs-cli事件订阅 /event plain ALL /event plain CHANNEL_ANSWER sofia 帮助文档 sofia help USAGE: -------------------------------------------------------------------------------- sofia global siptrace &amp;lt;on|off&amp;gt; sofia capture &amp;lt;on|off&amp;gt; watchdog &amp;lt;on|off&amp;gt; sofia profile &amp;lt;name&amp;gt; [start | stop | restart | rescan] [wait] flush_inbound_reg [&amp;lt;call_id&amp;gt; | &amp;lt;[user]@domain&amp;gt;] [reboot] check_sync [&amp;lt;call_id&amp;gt; | &amp;lt;[user]@domain&amp;gt;] [register | unregister] [&amp;lt;gateway name&amp;gt; | all] killgw &amp;lt;gateway name&amp;gt; [stun-auto-disable | stun-enabled] [true | false]] siptrace &amp;lt;on|off&amp;gt; capture &amp;lt;on|off&amp;gt; watchdog &amp;lt;on|off&amp;gt; sofia &amp;lt;status|xmlstatus&amp;gt; profile &amp;lt;name&amp;gt; [reg [&amp;lt;contact str&amp;gt;]] | [pres &amp;lt;pres str&amp;gt;] | [user &amp;lt;user@domain&amp;gt;] sofia &amp;lt;status|xmlstatus&amp;gt; gateway &amp;lt;name&amp;gt; sofia loglevel &amp;lt;all|default|tport|iptsec|nea|nta|nth_client|nth_server|nua|soa|sresolv|stun&amp;gt; [0-9] sofia tracelevel &amp;lt;console|alert|crit|err|warning|notice|info|debug&amp;gt; sofia help -------------------------------------------------------------------------------- 开启消息头压缩 &amp;lt;param name=&amp;#34;enable-compact-headers&amp;#34; value=&amp;#34;true&amp;#34;/&amp;gt; fs需要重启</description>
+      <description>&lt;h1 id=&#34;安装单个模块&#34;&gt;安装单个模块&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;make mod_sofia-install
+make mod_ilbc-install
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;fs-cli事件订阅&#34;&gt;fs-cli事件订阅&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;/event plain ALL
+/event plain CHANNEL_ANSWER
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;sofia-帮助文档&#34;&gt;sofia 帮助文档&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sofia help
+
+
+USAGE:
+--------------------------------------------------------------------------------
+sofia global siptrace &amp;lt;on|off&amp;gt;
+sofia        capture  &amp;lt;on|off&amp;gt;
+             watchdog &amp;lt;on|off&amp;gt;
+
+sofia profile &amp;lt;name&amp;gt; [start | stop | restart | rescan] [wait]
+                     flush_inbound_reg [&amp;lt;call_id&amp;gt; | &amp;lt;[user]@domain&amp;gt;] [reboot]
+                     check_sync [&amp;lt;call_id&amp;gt; | &amp;lt;[user]@domain&amp;gt;]
+                     [register | unregister] [&amp;lt;gateway name&amp;gt; | all]
+                     killgw &amp;lt;gateway name&amp;gt;
+                     [stun-auto-disable | stun-enabled] [true | false]]
+                     siptrace &amp;lt;on|off&amp;gt;
+                     capture  &amp;lt;on|off&amp;gt;
+                     watchdog &amp;lt;on|off&amp;gt;
+
+sofia &amp;lt;status|xmlstatus&amp;gt; profile &amp;lt;name&amp;gt; [reg [&amp;lt;contact str&amp;gt;]] | [pres &amp;lt;pres str&amp;gt;] | [user &amp;lt;user@domain&amp;gt;]
+sofia &amp;lt;status|xmlstatus&amp;gt; gateway &amp;lt;name&amp;gt;
+
+sofia loglevel &amp;lt;all|default|tport|iptsec|nea|nta|nth_client|nth_server|nua|soa|sresolv|stun&amp;gt; [0-9]
+sofia tracelevel &amp;lt;console|alert|crit|err|warning|notice|info|debug&amp;gt;
+
+sofia help
+--------------------------------------------------------------------------------
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;开启消息头压缩&#34;&gt;开启消息头压缩&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;param name=&amp;#34;enable-compact-headers&amp;#34; value=&amp;#34;true&amp;#34;/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;fs需要重启&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>FreeSWITCH 媒体相关操作</title>
       <link>https://wdd.js.org/freeswitch/media-settings/</link>
       <pubDate>Sat, 28 May 2022 14:50:55 +0800</pubDate>
-      
       <guid>https://wdd.js.org/freeswitch/media-settings/</guid>
-      <description>查看FS支持的编码 show codec 编码设置 vars.xml
-global_codec_prefs=G722,PCMU,PCMA,GSM outbound_codec_prefs=PCMU,PCMA,GSM 查看FS使用的编码 &amp;gt; sofia status profile internal CODECS IN ILBC,PCMU,PCMA,GSM CODECS OUT ILBC,PCMU,PCMA,GSM &amp;gt; sofia status profile external CODECS IN ILBC,PCMU,PCMA,GSM CODECS OUT ILBC,PCMU,PCMA,GSM 使修改后的profile生效 &amp;gt; sofia profile internal rescan &amp;gt; sofia profile external rescan 重启profile &amp;gt; sofia profile internal restart &amp;gt; sofia profile external restart </description>
+      <description>&lt;h1 id=&#34;查看fs支持的编码&#34;&gt;查看FS支持的编码&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;show codec
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;编码设置&#34;&gt;编码设置&lt;/h1&gt;
+&lt;p&gt;vars.xml&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;global_codec_prefs=G722,PCMU,PCMA,GSM
+outbound_codec_prefs=PCMU,PCMA,GSM
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;查看fs使用的编码&#34;&gt;查看FS使用的编码&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;gt; sofia status profile internal
+CODECS IN         ILBC,PCMU,PCMA,GSM
+CODECS OUT        ILBC,PCMU,PCMA,GSM
+
+&amp;gt; sofia status profile external
+CODECS IN         ILBC,PCMU,PCMA,GSM
+CODECS OUT        ILBC,PCMU,PCMA,GSM
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;使修改后的profile生效&#34;&gt;使修改后的profile生效&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;gt; sofia profile internal rescan
+&amp;gt; sofia profile external rescan
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;重启profile&#34;&gt;重启profile&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;gt; sofia profile internal restart
+&amp;gt; sofia profile external restart
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
-    
   </channel>
 </rss>

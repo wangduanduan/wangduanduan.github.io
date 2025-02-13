@@ -1,11 +1,302 @@
-<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>WebRTC学习资料分享 | 洞香春</title><meta name=keywords content><meta name=description content="目前在做基于WebRTC的语音和视频终端，语音和视频通话的质量都不错。感谢WebRTC，站在巨人的肩膀上，我们可以看得更远。
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>WebRTC学习资料分享 | 洞香春</title>
+<meta name=keywords content><meta name=description content="目前在做基于WebRTC的语音和视频终端，语音和视频通话的质量都不错。感谢WebRTC，站在巨人的肩膀上，我们可以看得更远。
+WebRTC浏览器兼容性
+
+github demos
+下面两个都是github项目，项目中有各种WebRTC的demo。除了demo之外，这两个项目的issuese也是非常值得看的，可以解决常见的问题
+
+https://webrtc.github.io/samples/
+https://github.com/muaz-khan/WebRTC-Experiment
+
+相关资料网站
+
+webrtc官网： https://webrtc.org/
+webrtchacks： https://webrtchacks.com/
+webrtc官网： https://webrtc.org.cn/
+webrtc安全相关： http://webrtc-security.github.io/
+webrtc谷歌开发者教程： https://codelabs.developers.google.com/codelabs/webrtc-web/
+sdp for webrtc https://tools.ietf.org/id/draft-nandakumar-rtcweb-sdp-01.html
+各种资料 https://webrtc.org/start/
+https://www.w3.org/TR/webrtc/
+
+浏览器内核
+
+webkit官网：https://webkit.org/
+
+WebRTC相关库
+
+webrtc-adapter https://github.com/webrtchacks/adapter
+
+WebRTC周边js库
+
+  
+      
+          库
+          地址
+      
+  
+  
+      
+          Addlive
+          http://www.addlive.com/platform-overview/
+      
+      
+          Apidaze
+          https://developers.apidaze.io/webrtc
+      
+      
+          Bistri
+          http://developers.bistri.com/webrtc-sdk/#js-sdk
+      
+      
+          Crocodile
+          https://www.crocodilertc.net/documentation/javascript/
+      
+      
+          EasyRTC
+          http://www.easyrtc.com/docs/
+      
+      
+          Janus
+          http://janus.conf.meetecho.com/docs/JS.html
+      
+      
+          JsSIP
+          http://jssip.net/documentation/
+      
+      
+          Openclove
+          http://developer.openclove.com/docs/read/ovxjs_api_doc
+      
+      
+          Oracle
+          http://docs.oracle.com/cd/E40972_01/doc.70/e49239/index.html
+      
+      
+          Peerjs
+          http://peerjs.com/docs/#api
+      
+      
+          Phono
+          http://phono.com/docs
+      
+      
+          Plivo
+          https://plivo.com/docs/sdk/web/
+      
+      
+          Pubnub
+          http://www.pubnub.com/docs/javascript/javascript-sdk.html
+      
+      
+          Quobis
+          https://quobis.atlassian.net/wiki/display/QoffeeSIP/API
+      
+      
+          SimpleWebRTC from &amp;Yet
+          http://simplewebrtc.com/
+      
+      
+          SIPML5
+          http://sipml5.org/docgen/symbols/SIPml.html
+      
+      
+          TenHands
+          https://www.tenhands.net/developer/docs.htm
+      
+      
+          TokBox
+          http://tokbox.com/opentok
+      
+      
+          Twilio
+          http://www.twilio.com/client/api
+      
+      
+          Voximplant
+          http://voximplant.com/docs/references/websdk/
+      
+      
+          Vline
+          https://vline.com/developer/docs/vline.js/
+      
+      
+          Weemo
+          http://docs.weemo.com/js/
+      
+      
+          Xirsys
+          http://xirsys.com/_static_content/xirsys.com/docs/
+      
+      
+          Xsockets.net
+          http://xsockets.net/docs/javascript-client-api
+      
+  
+
+VoIP/PSTN
+
+https://kamailio.org
+https://freeswitch.org/
+
+值得关注的人
+
+https://github.com/muaz-khan
+https://github.com/chadwallacehart
+https://github.com/fippo
+
+WebRTC主题
+github上webrtc主题相关的仓库，干货非常多 https://github.com/topics/webrtc"><meta name=author content="Eddie Wang"><link rel=canonical href=https://wdd.js.org/opensips/ch9/webrtc-ref/><link crossorigin=anonymous href=/assets/css/stylesheet.821c51435cba3e33e49e590a06514c54c32ac7957095ffcc1e0f390c47cf3228.css integrity="sha256-ghxRQ1y6PjPknlkKBlFMVMMqx5Vwlf/MHg85DEfPMig=" rel="preload stylesheet" as=style><link rel=icon href=https://wdd.js.org/cowboy.ico><link rel=icon type=image/png sizes=16x16 href=https://wdd.js.org/cowboy.ico><link rel=icon type=image/png sizes=32x32 href=https://wdd.js.org/cowboy.ico><link rel=apple-touch-icon href=https://wdd.js.org/cowboy.ico><link rel=mask-icon href=https://wdd.js.org/cowboy.ico><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://wdd.js.org/opensips/ch9/webrtc-ref/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><meta property="og:url" content="https://wdd.js.org/opensips/ch9/webrtc-ref/"><meta property="og:site_name" content="洞香春"><meta property="og:title" content="WebRTC学习资料分享"><meta property="og:description" content="目前在做基于WebRTC的语音和视频终端，语音和视频通话的质量都不错。感谢WebRTC，站在巨人的肩膀上，我们可以看得更远。
 WebRTC浏览器兼容性 github demos 下面两个都是github项目，项目中有各种WebRTC的demo。除了demo之外，这两个项目的issuese也是非常值得看的，可以解决常见的问题
-https://webrtc.github.io/samples/ https://github.com/muaz-khan/WebRTC-Experiment 相关资料网站 webrtc官网： https://webrtc.org/ webrtchacks： https://webrtchacks.com/ webrtc官网： https://webrtc.org.cn/ webrtc安全相关： http://webrtc-security.github.io/ webrtc谷歌开发者教程： https://codelabs.developers.google.com/codelabs/webrtc-web/ sdp for webrtc https://tools.ietf.org/id/draft-nandakumar-rtcweb-sdp-01.html 各种资料 https://webrtc.org/start/ https://www.w3.org/TR/webrtc/ 浏览器内核 webkit官网：https://webkit.org/ WebRTC相关库 webrtc-adapter https://github.com/webrtchacks/adapter WebRTC周边js库 库 地址 Addlive http://www.addlive.com/platform-overview/ Apidaze https://developers.apidaze.io/webrtc Bistri http://developers.bistri.com/webrtc-sdk/#js-sdk Crocodile https://www.crocodilertc.net/documentation/javascript/ EasyRTC http://www.easyrtc.com/docs/ Janus http://janus.conf.meetecho.com/docs/JS.html JsSIP http://jssip.net/documentation/ Openclove http://developer.openclove.com/docs/read/ovxjs_api_doc Oracle http://docs.oracle.com/cd/E40972_01/doc.70/e49239/index.html Peerjs http://peerjs.com/docs/#api Phono http://phono.com/docs Plivo https://plivo.com/docs/sdk/web/ Pubnub http://www.pubnub.com/docs/javascript/javascript-sdk.html Quobis https://quobis.atlassian.net/wiki/display/QoffeeSIP/API SimpleWebRTC from &amp;Yet http://simplewebrtc.com/ SIPML5 http://sipml5.org/docgen/symbols/SIPml.html TenHands https://www.tenhands.net/developer/docs.htm TokBox http://tokbox."><meta name=author content="Eddie Wang"><link rel=canonical href=https://wdd.js.org/opensips/ch9/webrtc-ref/><link crossorigin=anonymous href=/assets/css/stylesheet.6d3944e058d85363bbe8a792a9b5f40002bca80be859dc19c466dd8de223973e.css integrity="sha256-bTlE4FjYU2O76KeSqbX0AAK8qAvoWdwZxGbdjeIjlz4=" rel="preload stylesheet" as=style><script defer crossorigin=anonymous src=/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG+9vmJ0cTS+ovo0FeA=" onload=hljs.initHighlightingOnLoad()></script>
-<link rel=icon href=https://wdd.js.org/cowboy.ico><link rel=icon type=image/png sizes=16x16 href=https://wdd.js.org/cowboy.ico><link rel=icon type=image/png sizes=32x32 href=https://wdd.js.org/cowboy.ico><link rel=apple-touch-icon href=https://wdd.js.org/cowboy.ico><link rel=mask-icon href=https://wdd.js.org/cowboy.ico><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><meta property="og:title" content="WebRTC学习资料分享"><meta property="og:description" content="目前在做基于WebRTC的语音和视频终端，语音和视频通话的质量都不错。感谢WebRTC，站在巨人的肩膀上，我们可以看得更远。
-WebRTC浏览器兼容性 github demos 下面两个都是github项目，项目中有各种WebRTC的demo。除了demo之外，这两个项目的issuese也是非常值得看的，可以解决常见的问题
-https://webrtc.github.io/samples/ https://github.com/muaz-khan/WebRTC-Experiment 相关资料网站 webrtc官网： https://webrtc.org/ webrtchacks： https://webrtchacks.com/ webrtc官网： https://webrtc.org.cn/ webrtc安全相关： http://webrtc-security.github.io/ webrtc谷歌开发者教程： https://codelabs.developers.google.com/codelabs/webrtc-web/ sdp for webrtc https://tools.ietf.org/id/draft-nandakumar-rtcweb-sdp-01.html 各种资料 https://webrtc.org/start/ https://www.w3.org/TR/webrtc/ 浏览器内核 webkit官网：https://webkit.org/ WebRTC相关库 webrtc-adapter https://github.com/webrtchacks/adapter WebRTC周边js库 库 地址 Addlive http://www.addlive.com/platform-overview/ Apidaze https://developers.apidaze.io/webrtc Bistri http://developers.bistri.com/webrtc-sdk/#js-sdk Crocodile https://www.crocodilertc.net/documentation/javascript/ EasyRTC http://www.easyrtc.com/docs/ Janus http://janus.conf.meetecho.com/docs/JS.html JsSIP http://jssip.net/documentation/ Openclove http://developer.openclove.com/docs/read/ovxjs_api_doc Oracle http://docs.oracle.com/cd/E40972_01/doc.70/e49239/index.html Peerjs http://peerjs.com/docs/#api Phono http://phono.com/docs Plivo https://plivo.com/docs/sdk/web/ Pubnub http://www.pubnub.com/docs/javascript/javascript-sdk.html Quobis https://quobis.atlassian.net/wiki/display/QoffeeSIP/API SimpleWebRTC from &amp;Yet http://simplewebrtc.com/ SIPML5 http://sipml5.org/docgen/symbols/SIPml.html TenHands https://www.tenhands.net/developer/docs.htm TokBox http://tokbox."><meta property="og:type" content="article"><meta property="og:url" content="https://wdd.js.org/opensips/ch9/webrtc-ref/"><meta property="og:image" content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta property="article:section" content="opensips"><meta property="article:published_time" content="2019-11-23T10:49:56+08:00"><meta property="article:modified_time" content="2019-11-23T10:49:56+08:00"><meta property="og:site_name" content="洞香春"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="WebRTC学习资料分享"><meta name=twitter:description content="目前在做基于WebRTC的语音和视频终端，语音和视频通话的质量都不错。感谢WebRTC，站在巨人的肩膀上，我们可以看得更远。
-WebRTC浏览器兼容性 github demos 下面两个都是github项目，项目中有各种WebRTC的demo。除了demo之外，这两个项目的issuese也是非常值得看的，可以解决常见的问题
-https://webrtc.github.io/samples/ https://github.com/muaz-khan/WebRTC-Experiment 相关资料网站 webrtc官网： https://webrtc.org/ webrtchacks： https://webrtchacks.com/ webrtc官网： https://webrtc.org.cn/ webrtc安全相关： http://webrtc-security.github.io/ webrtc谷歌开发者教程： https://codelabs.developers.google.com/codelabs/webrtc-web/ sdp for webrtc https://tools.ietf.org/id/draft-nandakumar-rtcweb-sdp-01.html 各种资料 https://webrtc.org/start/ https://www.w3.org/TR/webrtc/ 浏览器内核 webkit官网：https://webkit.org/ WebRTC相关库 webrtc-adapter https://github.com/webrtchacks/adapter WebRTC周边js库 库 地址 Addlive http://www.addlive.com/platform-overview/ Apidaze https://developers.apidaze.io/webrtc Bistri http://developers.bistri.com/webrtc-sdk/#js-sdk Crocodile https://www.crocodilertc.net/documentation/javascript/ EasyRTC http://www.easyrtc.com/docs/ Janus http://janus.conf.meetecho.com/docs/JS.html JsSIP http://jssip.net/documentation/ Openclove http://developer.openclove.com/docs/read/ovxjs_api_doc Oracle http://docs.oracle.com/cd/E40972_01/doc.70/e49239/index.html Peerjs http://peerjs.com/docs/#api Phono http://phono.com/docs Plivo https://plivo.com/docs/sdk/web/ Pubnub http://www.pubnub.com/docs/javascript/javascript-sdk.html Quobis https://quobis.atlassian.net/wiki/display/QoffeeSIP/API SimpleWebRTC from &amp;Yet http://simplewebrtc.com/ SIPML5 http://sipml5.org/docgen/symbols/SIPml.html TenHands https://www.tenhands.net/developer/docs.htm TokBox http://tokbox."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"OpenSIPS2.4.X 中文实战系列","item":"https://wdd.js.org/opensips/"},{"@type":"ListItem","position":3,"name":"WebRTC学习资料分享","item":"https://wdd.js.org/opensips/ch9/webrtc-ref/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"WebRTC学习资料分享","name":"WebRTC学习资料分享","description":"目前在做基于WebRTC的语音和视频终端，语音和视频通话的质量都不错。感谢WebRTC，站在巨人的肩膀上，我们可以看得更远。\nWebRTC浏览器兼容性 github demos 下面两个都是github项目，项目中有各种WebRTC的demo。除了demo之外，这两个项目的issuese也是非常值得看的，可以解决常见的问题\nhttps://webrtc.github.io/samples/ https://github.com/muaz-khan/WebRTC-Experiment 相关资料网站 webrtc官网： https://webrtc.org/ webrtchacks： https://webrtchacks.com/ webrtc官网： https://webrtc.org.cn/ webrtc安全相关： http://webrtc-security.github.io/ webrtc谷歌开发者教程： https://codelabs.developers.google.com/codelabs/webrtc-web/ sdp for webrtc https://tools.ietf.org/id/draft-nandakumar-rtcweb-sdp-01.html 各种资料 https://webrtc.org/start/ https://www.w3.org/TR/webrtc/ 浏览器内核 webkit官网：https://webkit.org/ WebRTC相关库 webrtc-adapter https://github.com/webrtchacks/adapter WebRTC周边js库 库 地址 Addlive http://www.addlive.com/platform-overview/ Apidaze https://developers.apidaze.io/webrtc Bistri http://developers.bistri.com/webrtc-sdk/#js-sdk Crocodile https://www.crocodilertc.net/documentation/javascript/ EasyRTC http://www.easyrtc.com/docs/ Janus http://janus.conf.meetecho.com/docs/JS.html JsSIP http://jssip.net/documentation/ Openclove http://developer.openclove.com/docs/read/ovxjs_api_doc Oracle http://docs.oracle.com/cd/E40972_01/doc.70/e49239/index.html Peerjs http://peerjs.com/docs/#api Phono http://phono.com/docs Plivo https://plivo.com/docs/sdk/web/ Pubnub http://www.pubnub.com/docs/javascript/javascript-sdk.html Quobis https://quobis.atlassian.net/wiki/display/QoffeeSIP/API SimpleWebRTC from \u0026amp;Yet http://simplewebrtc.com/ SIPML5 http://sipml5.org/docgen/symbols/SIPml.html TenHands https://www.tenhands.net/developer/docs.htm TokBox http://tokbox.","keywords":[],"articleBody":"目前在做基于WebRTC的语音和视频终端，语音和视频通话的质量都不错。感谢WebRTC，站在巨人的肩膀上，我们可以看得更远。\nWebRTC浏览器兼容性 github demos 下面两个都是github项目，项目中有各种WebRTC的demo。除了demo之外，这两个项目的issuese也是非常值得看的，可以解决常见的问题\nhttps://webrtc.github.io/samples/ https://github.com/muaz-khan/WebRTC-Experiment 相关资料网站 webrtc官网： https://webrtc.org/ webrtchacks： https://webrtchacks.com/ webrtc官网： https://webrtc.org.cn/ webrtc安全相关： http://webrtc-security.github.io/ webrtc谷歌开发者教程： https://codelabs.developers.google.com/codelabs/webrtc-web/ sdp for webrtc https://tools.ietf.org/id/draft-nandakumar-rtcweb-sdp-01.html 各种资料 https://webrtc.org/start/ https://www.w3.org/TR/webrtc/ 浏览器内核 webkit官网：https://webkit.org/ WebRTC相关库 webrtc-adapter https://github.com/webrtchacks/adapter WebRTC周边js库 库 地址 Addlive http://www.addlive.com/platform-overview/ Apidaze https://developers.apidaze.io/webrtc Bistri http://developers.bistri.com/webrtc-sdk/#js-sdk Crocodile https://www.crocodilertc.net/documentation/javascript/ EasyRTC http://www.easyrtc.com/docs/ Janus http://janus.conf.meetecho.com/docs/JS.html JsSIP http://jssip.net/documentation/ Openclove http://developer.openclove.com/docs/read/ovxjs_api_doc Oracle http://docs.oracle.com/cd/E40972_01/doc.70/e49239/index.html Peerjs http://peerjs.com/docs/#api Phono http://phono.com/docs Plivo https://plivo.com/docs/sdk/web/ Pubnub http://www.pubnub.com/docs/javascript/javascript-sdk.html Quobis https://quobis.atlassian.net/wiki/display/QoffeeSIP/API SimpleWebRTC from \u0026Yet http://simplewebrtc.com/ SIPML5 http://sipml5.org/docgen/symbols/SIPml.html TenHands https://www.tenhands.net/developer/docs.htm TokBox http://tokbox.com/opentok Twilio http://www.twilio.com/client/api Voximplant http://voximplant.com/docs/references/websdk/ Vline https://vline.com/developer/docs/vline.js/ Weemo http://docs.weemo.com/js/ Xirsys http://xirsys.com/_static_content/xirsys.com/docs/ Xsockets.net http://xsockets.net/docs/javascript-client-api VoIP/PSTN https://kamailio.org https://freeswitch.org/ 值得关注的人 https://github.com/muaz-khan https://github.com/chadwallacehart https://github.com/fippo WebRTC主题 github上webrtc主题相关的仓库，干货非常多 https://github.com/topics/webrtc\n相关文章 guide-to-safari-webrtc WebKit: On the Road to WebRTC 1.0, Including VP8 whats-in-a-webrtc-javascript-library ","wordCount":"105","inLanguage":"en","datePublished":"2019-11-23T10:49:56+08:00","dateModified":"2019-11-23T10:49:56+08:00","author":{"@type":"Person","name":"Eddie Wang"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://wdd.js.org/opensips/ch9/webrtc-ref/"},"publisher":{"@type":"Organization","name":"洞香春","logo":{"@type":"ImageObject","url":"https://wdd.js.org/cowboy.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://wdd.js.org accesskey=h title="洞香春 (Alt + H)"><img src=https://wdd.js.org/cowboy.ico alt aria-label=logo height=35>洞香春</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://wdd.js.org/books/ title=读书><span>读书</span></a></li><li><a href=https://wdd.js.org/freeswitch/ title=FreeSWITCH><span>FreeSWITCH</span></a></li><li><a href=https://wdd.js.org/golang/ title=Golang><span>Golang</span></a></li><li><a href=https://wdd.js.org/kamailio/ title=Kamailio><span>Kamailio</span></a></li><li><a href=https://wdd.js.org/network/ title=Network><span>Network</span></a></li><li><a href=https://wdd.js.org/opensips/ title=OpenSIPS><span>OpenSIPS</span></a></li><li><a href=https://wdd.js.org/vim/ title=VIM><span>VIM</span></a></li><li><a href=https://wdd.js.org/categories/ title=分类><span>分类</span></a></li><li><a href=https://wdd.js.org/fe/ title=前端><span>前端</span></a></li><li><a href=https://wdd.js.org/search/ title=搜索><span>搜索</span></a></li><li><a href=https://wdd.js.org/tags/ title=标签><span>标签</span></a></li><li><a href=https://wdd.js.org/archives/ title=归档><span>归档</span></a></li><li><a href=https://wdd.js.org/about/ title=我><span>我</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://wdd.js.org>Home</a>&nbsp;»&nbsp;<a href=https://wdd.js.org/opensips/>OpenSIPS2.4.X 中文实战系列</a></div><h1 class=post-title>WebRTC学习资料分享</h1><div class=post-meta><span title='2019-11-23 10:49:56 +0800 CST'>2019-11-23 10:49:56</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Eddie Wang&nbsp;|&nbsp;<a href=https://github.com/%3cpath_to_repo%3e/content/opensips/ch9/webrtc-ref/index.md rel="noopener noreferrer" target=_blank>Suggest Changes</a></div></header><aside id=toc-container class="toc-container wide"><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#webrtc%e6%b5%8f%e8%a7%88%e5%99%a8%e5%85%bc%e5%ae%b9%e6%80%a7 aria-label=WebRTC浏览器兼容性>WebRTC浏览器兼容性</a></li><li><a href=#github-demos aria-label="github demos">github demos</a></li><li><a href=#%e7%9b%b8%e5%85%b3%e8%b5%84%e6%96%99%e7%bd%91%e7%ab%99 aria-label=相关资料网站>相关资料网站</a></li><li><a href=#%e6%b5%8f%e8%a7%88%e5%99%a8%e5%86%85%e6%a0%b8 aria-label=浏览器内核>浏览器内核</a></li><li><a href=#webrtc%e7%9b%b8%e5%85%b3%e5%ba%93 aria-label=WebRTC相关库>WebRTC相关库</a></li><li><a href=#webrtc%e5%91%a8%e8%be%b9js%e5%ba%93 aria-label=WebRTC周边js库>WebRTC周边js库</a></li><li><a href=#voippstn aria-label=VoIP/PSTN>VoIP/PSTN</a></li><li><a href=#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e4%ba%ba aria-label=值得关注的人>值得关注的人</a></li><li><a href=#webrtc%e4%b8%bb%e9%a2%98 aria-label=WebRTC主题>WebRTC主题</a></li><li><a href=#%e7%9b%b8%e5%85%b3%e6%96%87%e7%ab%a0 aria-label=相关文章>相关文章</a></li></ul></div></details></div></aside><script>let activeElement,elements;window.addEventListener("DOMContentLoaded",function(){checkTocPosition(),elements=document.querySelectorAll("h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]"),activeElement=elements[0];const t=encodeURI(activeElement.getAttribute("id")).toLowerCase();document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active")},!1),window.addEventListener("resize",function(){checkTocPosition()},!1),window.addEventListener("scroll",()=>{activeElement=Array.from(elements).find(e=>{if(getOffsetTop(e)-window.pageYOffset>0&&getOffsetTop(e)-window.pageYOffset<window.innerHeight/2)return e})||activeElement,elements.forEach(e=>{const t=encodeURI(e.getAttribute("id")).toLowerCase();e===activeElement?document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active"):document.querySelector(`.inner ul li a[href="#${t}"]`).classList.remove("active")})},!1);const main=parseInt(getComputedStyle(document.body).getPropertyValue("--article-width"),10),toc=parseInt(getComputedStyle(document.body).getPropertyValue("--toc-width"),10),gap=parseInt(getComputedStyle(document.body).getPropertyValue("--gap"),10);function checkTocPosition(){const e=document.body.scrollWidth;e-main-toc*2-gap*4>0?document.getElementById("toc-container").classList.add("wide"):document.getElementById("toc-container").classList.remove("wide")}function getOffsetTop(e){if(!e.getClientRects().length)return 0;let t=e.getBoundingClientRect(),n=e.ownerDocument.defaultView;return t.top+n.pageYOffset}</script><div class=post-content><p>目前在做基于WebRTC的语音和视频终端，语音和视频通话的质量都不错。感谢WebRTC，站在巨人的肩膀上，我们可以看得更远。</p><h1 id=webrtc浏览器兼容性>WebRTC浏览器兼容性<a hidden class=anchor aria-hidden=true href=#webrtc浏览器兼容性>#</a></h1><p><img loading=lazy src=2022-12-02-15-27-23.png alt></p><h1 id=github-demos>github demos<a hidden class=anchor aria-hidden=true href=#github-demos>#</a></h1><p>下面两个都是github项目，项目中有各种WebRTC的demo。除了demo之外，这两个项目的issuese也是非常值得看的，可以解决常见的问题</p><ul><li><a href=https://webrtc.github.io/samples/>https://webrtc.github.io/samples/</a></li><li><a href=https://github.com/muaz-khan/WebRTC-Experiment>https://github.com/muaz-khan/WebRTC-Experiment</a></li></ul><h1 id=相关资料网站>相关资料网站<a hidden class=anchor aria-hidden=true href=#相关资料网站>#</a></h1><ul><li>webrtc官网： <a href=https://webrtc.org/>https://webrtc.org/</a></li><li>webrtchacks： <a href=https://webrtchacks.com/>https://webrtchacks.com/</a></li><li>webrtc官网： <a href=https://webrtc.org.cn/>https://webrtc.org.cn/</a></li><li>webrtc安全相关： <a href=http://webrtc-security.github.io/>http://webrtc-security.github.io/</a></li><li>webrtc谷歌开发者教程： <a href=https://codelabs.developers.google.com/codelabs/webrtc-web/>https://codelabs.developers.google.com/codelabs/webrtc-web/</a></li><li>sdp for webrtc <a href=https://tools.ietf.org/id/draft-nandakumar-rtcweb-sdp-01.html>https://tools.ietf.org/id/draft-nandakumar-rtcweb-sdp-01.html</a></li><li>各种资料 <a href=https://webrtc.org/start/>https://webrtc.org/start/</a></li><li><a href=https://www.w3.org/TR/webrtc/>https://www.w3.org/TR/webrtc/</a></li></ul><h1 id=浏览器内核>浏览器内核<a hidden class=anchor aria-hidden=true href=#浏览器内核>#</a></h1><ul><li>webkit官网：<a href=https://webkit.org/>https://webkit.org/</a></li></ul><h1 id=webrtc相关库>WebRTC相关库<a hidden class=anchor aria-hidden=true href=#webrtc相关库>#</a></h1><ul><li>webrtc-adapter <a href=https://github.com/webrtchacks/adapter>https://github.com/webrtchacks/adapter</a></li></ul><h1 id=webrtc周边js库>WebRTC周边js库<a hidden class=anchor aria-hidden=true href=#webrtc周边js库>#</a></h1><table><thead><tr><th>库</th><th>地址</th></tr></thead><tbody><tr><td>Addlive</td><td><a href=http://www.addlive.com/platform-overview/>http://www.addlive.com/platform-overview/</a></td></tr><tr><td>Apidaze</td><td><a href=https://developers.apidaze.io/webrtc>https://developers.apidaze.io/webrtc</a></td></tr><tr><td>Bistri</td><td><a href=http://developers.bistri.com/webrtc-sdk/#js-sdk>http://developers.bistri.com/webrtc-sdk/#js-sdk</a></td></tr><tr><td>Crocodile</td><td><a href=https://www.crocodilertc.net/documentation/javascript/>https://www.crocodilertc.net/documentation/javascript/</a></td></tr><tr><td>EasyRTC</td><td><a href=http://www.easyrtc.com/docs/>http://www.easyrtc.com/docs/</a></td></tr><tr><td>Janus</td><td><a href=http://janus.conf.meetecho.com/docs/JS.html>http://janus.conf.meetecho.com/docs/JS.html</a></td></tr><tr><td>JsSIP</td><td><a href=http://jssip.net/documentation/>http://jssip.net/documentation/</a></td></tr><tr><td>Openclove</td><td><a href=http://developer.openclove.com/docs/read/ovxjs_api_doc>http://developer.openclove.com/docs/read/ovxjs_api_doc</a></td></tr><tr><td>Oracle</td><td><a href=http://docs.oracle.com/cd/E40972_01/doc.70/e49239/index.html>http://docs.oracle.com/cd/E40972_01/doc.70/e49239/index.html</a></td></tr><tr><td>Peerjs</td><td><a href=http://peerjs.com/docs/#api>http://peerjs.com/docs/#api</a></td></tr><tr><td>Phono</td><td><a href=http://phono.com/docs>http://phono.com/docs</a></td></tr><tr><td>Plivo</td><td><a href=https://plivo.com/docs/sdk/web/>https://plivo.com/docs/sdk/web/</a></td></tr><tr><td>Pubnub</td><td><a href=http://www.pubnub.com/docs/javascript/javascript-sdk.html>http://www.pubnub.com/docs/javascript/javascript-sdk.html</a></td></tr><tr><td>Quobis</td><td><a href=https://quobis.atlassian.net/wiki/display/QoffeeSIP/API>https://quobis.atlassian.net/wiki/display/QoffeeSIP/API</a></td></tr><tr><td>SimpleWebRTC from &amp;Yet</td><td><a href=http://simplewebrtc.com/>http://simplewebrtc.com/</a></td></tr><tr><td>SIPML5</td><td><a href=http://sipml5.org/docgen/symbols/SIPml.html>http://sipml5.org/docgen/symbols/SIPml.html</a></td></tr><tr><td>TenHands</td><td><a href=https://www.tenhands.net/developer/docs.htm>https://www.tenhands.net/developer/docs.htm</a></td></tr><tr><td>TokBox</td><td><a href=http://tokbox.com/opentok>http://tokbox.com/opentok</a></td></tr><tr><td>Twilio</td><td><a href=http://www.twilio.com/client/api>http://www.twilio.com/client/api</a></td></tr><tr><td>Voximplant</td><td><a href=http://voximplant.com/docs/references/websdk/>http://voximplant.com/docs/references/websdk/</a></td></tr><tr><td>Vline</td><td><a href=https://vline.com/developer/docs/vline.js/>https://vline.com/developer/docs/vline.js/</a></td></tr><tr><td>Weemo</td><td><a href=http://docs.weemo.com/js/>http://docs.weemo.com/js/</a></td></tr><tr><td>Xirsys</td><td><a href=http://xirsys.com/_static_content/xirsys.com/docs/>http://xirsys.com/_static_content/xirsys.com/docs/</a></td></tr><tr><td>Xsockets.net</td><td><a href=http://xsockets.net/docs/javascript-client-api>http://xsockets.net/docs/javascript-client-api</a></td></tr></tbody></table><h1 id=voippstn>VoIP/PSTN<a hidden class=anchor aria-hidden=true href=#voippstn>#</a></h1><ul><li><a href=https://kamailio.org/>https://kamailio.org</a></li><li><a href=https://freeswitch.org/>https://freeswitch.org/</a></li></ul><h1 id=值得关注的人>值得关注的人<a hidden class=anchor aria-hidden=true href=#值得关注的人>#</a></h1><ul><li><a href=https://github.com/muaz-khan>https://github.com/muaz-khan</a></li><li><a href=https://github.com/chadwallacehart>https://github.com/chadwallacehart</a></li><li><a href=https://github.com/fippo>https://github.com/fippo</a></li></ul><h1 id=webrtc主题>WebRTC主题<a hidden class=anchor aria-hidden=true href=#webrtc主题>#</a></h1><p>github上webrtc主题相关的仓库，干货非常多 <a href=https://github.com/topics/webrtc>https://github.com/topics/webrtc</a></p><h1 id=相关文章>相关文章<a hidden class=anchor aria-hidden=true href=#相关文章>#</a></h1><ul><li><a href=https://webrtchacks.com/guide-to-safari-webrtc/>guide-to-safari-webrtc</a></li><li><a href=https://webkit.org/blog/8672/on-the-road-to-webrtc-1-0-including-vp8/>WebKit: On the Road to WebRTC 1.0, Including VP8</a></li><li><a href=https://webrtchacks.com/whats-in-a-webrtc-javascript-library/>whats-in-a-webrtc-javascript-library</a></li></ul></div><footer class=post-footer><ul class=post-tags></ul></footer><script src=https://giscus.app/client.js data-repo=wangduanduan/wangduanduan.github.io data-repo-id="MDEwOlJlcG9zaXRvcnkxMTkyMjMyNjA=" data-category=Announcements data-category-id=DIC_kwDOBxsz3M4CAjBq data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=bottom data-theme=preferred_color_scheme data-lang=zh-CN crossorigin=anonymous async></script></article></main><footer class=footer><span>&copy; 2025 <a href=https://wdd.js.org>洞香春</a></span>
+https://webrtc.github.io/samples/ https://github.com/muaz-khan/WebRTC-Experiment 相关资料网站 webrtc官网： https://webrtc.org/ webrtchacks： https://webrtchacks.com/ webrtc官网： https://webrtc.org.cn/ webrtc安全相关： http://webrtc-security.github.io/ webrtc谷歌开发者教程： https://codelabs.developers.google.com/codelabs/webrtc-web/ sdp for webrtc https://tools.ietf.org/id/draft-nandakumar-rtcweb-sdp-01.html 各种资料 https://webrtc.org/start/ https://www.w3.org/TR/webrtc/ 浏览器内核 webkit官网：https://webkit.org/ WebRTC相关库 webrtc-adapter https://github.com/webrtchacks/adapter WebRTC周边js库 库 地址 Addlive http://www.addlive.com/platform-overview/ Apidaze https://developers.apidaze.io/webrtc Bistri http://developers.bistri.com/webrtc-sdk/#js-sdk Crocodile https://www.crocodilertc.net/documentation/javascript/ EasyRTC http://www.easyrtc.com/docs/ Janus http://janus.conf.meetecho.com/docs/JS.html JsSIP http://jssip.net/documentation/ Openclove http://developer.openclove.com/docs/read/ovxjs_api_doc Oracle http://docs.oracle.com/cd/E40972_01/doc.70/e49239/index.html Peerjs http://peerjs.com/docs/#api Phono http://phono.com/docs Plivo https://plivo.com/docs/sdk/web/ Pubnub http://www.pubnub.com/docs/javascript/javascript-sdk.html Quobis https://quobis.atlassian.net/wiki/display/QoffeeSIP/API SimpleWebRTC from &amp;Yet http://simplewebrtc.com/ SIPML5 http://sipml5.org/docgen/symbols/SIPml.html TenHands https://www.tenhands.net/developer/docs.htm TokBox http://tokbox.com/opentok Twilio http://www.twilio.com/client/api Voximplant http://voximplant.com/docs/references/websdk/ Vline https://vline.com/developer/docs/vline.js/ Weemo http://docs.weemo.com/js/ Xirsys http://xirsys.com/_static_content/xirsys.com/docs/ Xsockets.net http://xsockets.net/docs/javascript-client-api VoIP/PSTN https://kamailio.org https://freeswitch.org/ 值得关注的人 https://github.com/muaz-khan https://github.com/chadwallacehart https://github.com/fippo WebRTC主题 github上webrtc主题相关的仓库，干货非常多 https://github.com/topics/webrtc"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="opensips"><meta property="article:published_time" content="2019-11-23T10:49:56+08:00"><meta property="article:modified_time" content="2019-11-23T10:49:56+08:00"><meta property="og:image" content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="WebRTC学习资料分享"><meta name=twitter:description content="目前在做基于WebRTC的语音和视频终端，语音和视频通话的质量都不错。感谢WebRTC，站在巨人的肩膀上，我们可以看得更远。
+WebRTC浏览器兼容性
+
+github demos
+下面两个都是github项目，项目中有各种WebRTC的demo。除了demo之外，这两个项目的issuese也是非常值得看的，可以解决常见的问题
+
+https://webrtc.github.io/samples/
+https://github.com/muaz-khan/WebRTC-Experiment
+
+相关资料网站
+
+webrtc官网： https://webrtc.org/
+webrtchacks： https://webrtchacks.com/
+webrtc官网： https://webrtc.org.cn/
+webrtc安全相关： http://webrtc-security.github.io/
+webrtc谷歌开发者教程： https://codelabs.developers.google.com/codelabs/webrtc-web/
+sdp for webrtc https://tools.ietf.org/id/draft-nandakumar-rtcweb-sdp-01.html
+各种资料 https://webrtc.org/start/
+https://www.w3.org/TR/webrtc/
+
+浏览器内核
+
+webkit官网：https://webkit.org/
+
+WebRTC相关库
+
+webrtc-adapter https://github.com/webrtchacks/adapter
+
+WebRTC周边js库
+
+  
+      
+          库
+          地址
+      
+  
+  
+      
+          Addlive
+          http://www.addlive.com/platform-overview/
+      
+      
+          Apidaze
+          https://developers.apidaze.io/webrtc
+      
+      
+          Bistri
+          http://developers.bistri.com/webrtc-sdk/#js-sdk
+      
+      
+          Crocodile
+          https://www.crocodilertc.net/documentation/javascript/
+      
+      
+          EasyRTC
+          http://www.easyrtc.com/docs/
+      
+      
+          Janus
+          http://janus.conf.meetecho.com/docs/JS.html
+      
+      
+          JsSIP
+          http://jssip.net/documentation/
+      
+      
+          Openclove
+          http://developer.openclove.com/docs/read/ovxjs_api_doc
+      
+      
+          Oracle
+          http://docs.oracle.com/cd/E40972_01/doc.70/e49239/index.html
+      
+      
+          Peerjs
+          http://peerjs.com/docs/#api
+      
+      
+          Phono
+          http://phono.com/docs
+      
+      
+          Plivo
+          https://plivo.com/docs/sdk/web/
+      
+      
+          Pubnub
+          http://www.pubnub.com/docs/javascript/javascript-sdk.html
+      
+      
+          Quobis
+          https://quobis.atlassian.net/wiki/display/QoffeeSIP/API
+      
+      
+          SimpleWebRTC from &amp;Yet
+          http://simplewebrtc.com/
+      
+      
+          SIPML5
+          http://sipml5.org/docgen/symbols/SIPml.html
+      
+      
+          TenHands
+          https://www.tenhands.net/developer/docs.htm
+      
+      
+          TokBox
+          http://tokbox.com/opentok
+      
+      
+          Twilio
+          http://www.twilio.com/client/api
+      
+      
+          Voximplant
+          http://voximplant.com/docs/references/websdk/
+      
+      
+          Vline
+          https://vline.com/developer/docs/vline.js/
+      
+      
+          Weemo
+          http://docs.weemo.com/js/
+      
+      
+          Xirsys
+          http://xirsys.com/_static_content/xirsys.com/docs/
+      
+      
+          Xsockets.net
+          http://xsockets.net/docs/javascript-client-api
+      
+  
+
+VoIP/PSTN
+
+https://kamailio.org
+https://freeswitch.org/
+
+值得关注的人
+
+https://github.com/muaz-khan
+https://github.com/chadwallacehart
+https://github.com/fippo
+
+WebRTC主题
+github上webrtc主题相关的仓库，干货非常多 https://github.com/topics/webrtc"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"OpenSIPS2.4.X 中文实战系列","item":"https://wdd.js.org/opensips/"},{"@type":"ListItem","position":2,"name":"WebRTC学习资料分享","item":"https://wdd.js.org/opensips/ch9/webrtc-ref/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"WebRTC学习资料分享","name":"WebRTC学习资料分享","description":"目前在做基于WebRTC的语音和视频终端，语音和视频通话的质量都不错。感谢WebRTC，站在巨人的肩膀上，我们可以看得更远。\nWebRTC浏览器兼容性 github demos 下面两个都是github项目，项目中有各种WebRTC的demo。除了demo之外，这两个项目的issuese也是非常值得看的，可以解决常见的问题\nhttps://webrtc.github.io/samples/ https://github.com/muaz-khan/WebRTC-Experiment 相关资料网站 webrtc官网： https://webrtc.org/ webrtchacks： https://webrtchacks.com/ webrtc官网： https://webrtc.org.cn/ webrtc安全相关： http://webrtc-security.github.io/ webrtc谷歌开发者教程： https://codelabs.developers.google.com/codelabs/webrtc-web/ sdp for webrtc https://tools.ietf.org/id/draft-nandakumar-rtcweb-sdp-01.html 各种资料 https://webrtc.org/start/ https://www.w3.org/TR/webrtc/ 浏览器内核 webkit官网：https://webkit.org/ WebRTC相关库 webrtc-adapter https://github.com/webrtchacks/adapter WebRTC周边js库 库 地址 Addlive http://www.addlive.com/platform-overview/ Apidaze https://developers.apidaze.io/webrtc Bistri http://developers.bistri.com/webrtc-sdk/#js-sdk Crocodile https://www.crocodilertc.net/documentation/javascript/ EasyRTC http://www.easyrtc.com/docs/ Janus http://janus.conf.meetecho.com/docs/JS.html JsSIP http://jssip.net/documentation/ Openclove http://developer.openclove.com/docs/read/ovxjs_api_doc Oracle http://docs.oracle.com/cd/E40972_01/doc.70/e49239/index.html Peerjs http://peerjs.com/docs/#api Phono http://phono.com/docs Plivo https://plivo.com/docs/sdk/web/ Pubnub http://www.pubnub.com/docs/javascript/javascript-sdk.html Quobis https://quobis.atlassian.net/wiki/display/QoffeeSIP/API SimpleWebRTC from \u0026amp;Yet http://simplewebrtc.com/ SIPML5 http://sipml5.org/docgen/symbols/SIPml.html TenHands https://www.tenhands.net/developer/docs.htm TokBox http://tokbox.com/opentok Twilio http://www.twilio.com/client/api Voximplant http://voximplant.com/docs/references/websdk/ Vline https://vline.com/developer/docs/vline.js/ Weemo http://docs.weemo.com/js/ Xirsys http://xirsys.com/_static_content/xirsys.com/docs/ Xsockets.net http://xsockets.net/docs/javascript-client-api VoIP/PSTN https://kamailio.org https://freeswitch.org/ 值得关注的人 https://github.com/muaz-khan https://github.com/chadwallacehart https://github.com/fippo WebRTC主题 github上webrtc主题相关的仓库，干货非常多 https://github.com/topics/webrtc\n","keywords":[],"articleBody":"目前在做基于WebRTC的语音和视频终端，语音和视频通话的质量都不错。感谢WebRTC，站在巨人的肩膀上，我们可以看得更远。\nWebRTC浏览器兼容性 github demos 下面两个都是github项目，项目中有各种WebRTC的demo。除了demo之外，这两个项目的issuese也是非常值得看的，可以解决常见的问题\nhttps://webrtc.github.io/samples/ https://github.com/muaz-khan/WebRTC-Experiment 相关资料网站 webrtc官网： https://webrtc.org/ webrtchacks： https://webrtchacks.com/ webrtc官网： https://webrtc.org.cn/ webrtc安全相关： http://webrtc-security.github.io/ webrtc谷歌开发者教程： https://codelabs.developers.google.com/codelabs/webrtc-web/ sdp for webrtc https://tools.ietf.org/id/draft-nandakumar-rtcweb-sdp-01.html 各种资料 https://webrtc.org/start/ https://www.w3.org/TR/webrtc/ 浏览器内核 webkit官网：https://webkit.org/ WebRTC相关库 webrtc-adapter https://github.com/webrtchacks/adapter WebRTC周边js库 库 地址 Addlive http://www.addlive.com/platform-overview/ Apidaze https://developers.apidaze.io/webrtc Bistri http://developers.bistri.com/webrtc-sdk/#js-sdk Crocodile https://www.crocodilertc.net/documentation/javascript/ EasyRTC http://www.easyrtc.com/docs/ Janus http://janus.conf.meetecho.com/docs/JS.html JsSIP http://jssip.net/documentation/ Openclove http://developer.openclove.com/docs/read/ovxjs_api_doc Oracle http://docs.oracle.com/cd/E40972_01/doc.70/e49239/index.html Peerjs http://peerjs.com/docs/#api Phono http://phono.com/docs Plivo https://plivo.com/docs/sdk/web/ Pubnub http://www.pubnub.com/docs/javascript/javascript-sdk.html Quobis https://quobis.atlassian.net/wiki/display/QoffeeSIP/API SimpleWebRTC from \u0026Yet http://simplewebrtc.com/ SIPML5 http://sipml5.org/docgen/symbols/SIPml.html TenHands https://www.tenhands.net/developer/docs.htm TokBox http://tokbox.com/opentok Twilio http://www.twilio.com/client/api Voximplant http://voximplant.com/docs/references/websdk/ Vline https://vline.com/developer/docs/vline.js/ Weemo http://docs.weemo.com/js/ Xirsys http://xirsys.com/_static_content/xirsys.com/docs/ Xsockets.net http://xsockets.net/docs/javascript-client-api VoIP/PSTN https://kamailio.org https://freeswitch.org/ 值得关注的人 https://github.com/muaz-khan https://github.com/chadwallacehart https://github.com/fippo WebRTC主题 github上webrtc主题相关的仓库，干货非常多 https://github.com/topics/webrtc\n相关文章 guide-to-safari-webrtc WebKit: On the Road to WebRTC 1.0, Including VP8 whats-in-a-webrtc-javascript-library ","wordCount":"105","inLanguage":"en","image":"https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E","datePublished":"2019-11-23T10:49:56+08:00","dateModified":"2019-11-23T10:49:56+08:00","author":{"@type":"Person","name":"Eddie Wang"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://wdd.js.org/opensips/ch9/webrtc-ref/"},"publisher":{"@type":"Organization","name":"洞香春","logo":{"@type":"ImageObject","url":"https://wdd.js.org/cowboy.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://wdd.js.org/ accesskey=h title="洞香春 (Alt + H)"><img src=https://wdd.js.org/cowboy.ico alt aria-label=logo height=35>洞香春</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://wdd.js.org/books/ title=读书><span>读书</span></a></li><li><a href=https://wdd.js.org/freeswitch/ title=FreeSWITCH><span>FreeSWITCH</span></a></li><li><a href=https://wdd.js.org/golang/ title=Golang><span>Golang</span></a></li><li><a href=https://wdd.js.org/kamailio/ title=Kamailio><span>Kamailio</span></a></li><li><a href=https://wdd.js.org/network/ title=Network><span>Network</span></a></li><li><a href=https://wdd.js.org/opensips/ title=OpenSIPS><span>OpenSIPS</span></a></li><li><a href=https://wdd.js.org/vim/ title=VIM><span>VIM</span></a></li><li><a href=https://wdd.js.org/categories/ title=分类><span>分类</span></a></li><li><a href=https://wdd.js.org/fe/ title=前端><span>前端</span></a></li><li><a href=https://wdd.js.org/search/ title=搜索><span>搜索</span></a></li><li><a href=https://wdd.js.org/tags/ title=标签><span>标签</span></a></li><li><a href=https://wdd.js.org/archives/ title=归档><span>归档</span></a></li><li><a href=https://wdd.js.org/about/ title=我><span>我</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://wdd.js.org/>Home</a>&nbsp;»&nbsp;<a href=https://wdd.js.org/opensips/>OpenSIPS2.4.X 中文实战系列</a></div><h1 class="post-title entry-hint-parent">WebRTC学习资料分享</h1><div class=post-meta><span title='2019-11-23 10:49:56 +0800 CST'>2019-11-23 10:49:56</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Eddie Wang&nbsp;|&nbsp;<a href=https://github.com/%3cpath_to_repo%3e/content/opensips/ch9/webrtc-ref/index.md rel="noopener noreferrer" target=_blank>Suggest Changes</a></div></header><aside id=toc-container class="toc-container wide"><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#webrtc%e6%b5%8f%e8%a7%88%e5%99%a8%e5%85%bc%e5%ae%b9%e6%80%a7 aria-label=WebRTC浏览器兼容性>WebRTC浏览器兼容性</a></li><li><a href=#github-demos aria-label="github demos">github demos</a></li><li><a href=#%e7%9b%b8%e5%85%b3%e8%b5%84%e6%96%99%e7%bd%91%e7%ab%99 aria-label=相关资料网站>相关资料网站</a></li><li><a href=#%e6%b5%8f%e8%a7%88%e5%99%a8%e5%86%85%e6%a0%b8 aria-label=浏览器内核>浏览器内核</a></li><li><a href=#webrtc%e7%9b%b8%e5%85%b3%e5%ba%93 aria-label=WebRTC相关库>WebRTC相关库</a></li><li><a href=#webrtc%e5%91%a8%e8%be%b9js%e5%ba%93 aria-label=WebRTC周边js库>WebRTC周边js库</a></li><li><a href=#voippstn aria-label=VoIP/PSTN>VoIP/PSTN</a></li><li><a href=#%e5%80%bc%e5%be%97%e5%85%b3%e6%b3%a8%e7%9a%84%e4%ba%ba aria-label=值得关注的人>值得关注的人</a></li><li><a href=#webrtc%e4%b8%bb%e9%a2%98 aria-label=WebRTC主题>WebRTC主题</a></li><li><a href=#%e7%9b%b8%e5%85%b3%e6%96%87%e7%ab%a0 aria-label=相关文章>相关文章</a></li></ul></div></details></div></aside><script>let activeElement,elements;window.addEventListener("DOMContentLoaded",function(){checkTocPosition(),elements=document.querySelectorAll("h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]"),activeElement=elements[0];const t=encodeURI(activeElement.getAttribute("id")).toLowerCase();document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active")},!1),window.addEventListener("resize",function(){checkTocPosition()},!1),window.addEventListener("scroll",()=>{activeElement=Array.from(elements).find(e=>{if(getOffsetTop(e)-window.pageYOffset>0&&getOffsetTop(e)-window.pageYOffset<window.innerHeight/2)return e})||activeElement,elements.forEach(e=>{const t=encodeURI(e.getAttribute("id")).toLowerCase();e===activeElement?document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active"):document.querySelector(`.inner ul li a[href="#${t}"]`).classList.remove("active")})},!1);const main=parseInt(getComputedStyle(document.body).getPropertyValue("--article-width"),10),toc=parseInt(getComputedStyle(document.body).getPropertyValue("--toc-width"),10),gap=parseInt(getComputedStyle(document.body).getPropertyValue("--gap"),10);function checkTocPosition(){const e=document.body.scrollWidth;e-main-toc*2-gap*4>0?document.getElementById("toc-container").classList.add("wide"):document.getElementById("toc-container").classList.remove("wide")}function getOffsetTop(e){if(!e.getClientRects().length)return 0;let t=e.getBoundingClientRect(),n=e.ownerDocument.defaultView;return t.top+n.pageYOffset}</script><div class=post-content><p>目前在做基于WebRTC的语音和视频终端，语音和视频通话的质量都不错。感谢WebRTC，站在巨人的肩膀上，我们可以看得更远。</p><h1 id=webrtc浏览器兼容性>WebRTC浏览器兼容性<a hidden class=anchor aria-hidden=true href=#webrtc浏览器兼容性>#</a></h1><p><img loading=lazy src=/opensips/ch9/webrtc-ref/2022-12-02-15-27-23.png></p><h1 id=github-demos>github demos<a hidden class=anchor aria-hidden=true href=#github-demos>#</a></h1><p>下面两个都是github项目，项目中有各种WebRTC的demo。除了demo之外，这两个项目的issuese也是非常值得看的，可以解决常见的问题</p><ul><li><a href=https://webrtc.github.io/samples/>https://webrtc.github.io/samples/</a></li><li><a href=https://github.com/muaz-khan/WebRTC-Experiment>https://github.com/muaz-khan/WebRTC-Experiment</a></li></ul><h1 id=相关资料网站>相关资料网站<a hidden class=anchor aria-hidden=true href=#相关资料网站>#</a></h1><ul><li>webrtc官网： <a href=https://webrtc.org/>https://webrtc.org/</a></li><li>webrtchacks： <a href=https://webrtchacks.com/>https://webrtchacks.com/</a></li><li>webrtc官网： <a href=https://webrtc.org.cn/>https://webrtc.org.cn/</a></li><li>webrtc安全相关： <a href=http://webrtc-security.github.io/>http://webrtc-security.github.io/</a></li><li>webrtc谷歌开发者教程： <a href=https://codelabs.developers.google.com/codelabs/webrtc-web/>https://codelabs.developers.google.com/codelabs/webrtc-web/</a></li><li>sdp for webrtc <a href=https://tools.ietf.org/id/draft-nandakumar-rtcweb-sdp-01.html>https://tools.ietf.org/id/draft-nandakumar-rtcweb-sdp-01.html</a></li><li>各种资料 <a href=https://webrtc.org/start/>https://webrtc.org/start/</a></li><li><a href=https://www.w3.org/TR/webrtc/>https://www.w3.org/TR/webrtc/</a></li></ul><h1 id=浏览器内核>浏览器内核<a hidden class=anchor aria-hidden=true href=#浏览器内核>#</a></h1><ul><li>webkit官网：<a href=https://webkit.org/>https://webkit.org/</a></li></ul><h1 id=webrtc相关库>WebRTC相关库<a hidden class=anchor aria-hidden=true href=#webrtc相关库>#</a></h1><ul><li>webrtc-adapter <a href=https://github.com/webrtchacks/adapter>https://github.com/webrtchacks/adapter</a></li></ul><h1 id=webrtc周边js库>WebRTC周边js库<a hidden class=anchor aria-hidden=true href=#webrtc周边js库>#</a></h1><table><thead><tr><th>库</th><th>地址</th></tr></thead><tbody><tr><td>Addlive</td><td><a href=http://www.addlive.com/platform-overview/>http://www.addlive.com/platform-overview/</a></td></tr><tr><td>Apidaze</td><td><a href=https://developers.apidaze.io/webrtc>https://developers.apidaze.io/webrtc</a></td></tr><tr><td>Bistri</td><td><a href=http://developers.bistri.com/webrtc-sdk/#js-sdk>http://developers.bistri.com/webrtc-sdk/#js-sdk</a></td></tr><tr><td>Crocodile</td><td><a href=https://www.crocodilertc.net/documentation/javascript/>https://www.crocodilertc.net/documentation/javascript/</a></td></tr><tr><td>EasyRTC</td><td><a href=http://www.easyrtc.com/docs/>http://www.easyrtc.com/docs/</a></td></tr><tr><td>Janus</td><td><a href=http://janus.conf.meetecho.com/docs/JS.html>http://janus.conf.meetecho.com/docs/JS.html</a></td></tr><tr><td>JsSIP</td><td><a href=http://jssip.net/documentation/>http://jssip.net/documentation/</a></td></tr><tr><td>Openclove</td><td><a href=http://developer.openclove.com/docs/read/ovxjs_api_doc>http://developer.openclove.com/docs/read/ovxjs_api_doc</a></td></tr><tr><td>Oracle</td><td><a href=http://docs.oracle.com/cd/E40972_01/doc.70/e49239/index.html>http://docs.oracle.com/cd/E40972_01/doc.70/e49239/index.html</a></td></tr><tr><td>Peerjs</td><td><a href=http://peerjs.com/docs/#api>http://peerjs.com/docs/#api</a></td></tr><tr><td>Phono</td><td><a href=http://phono.com/docs>http://phono.com/docs</a></td></tr><tr><td>Plivo</td><td><a href=https://plivo.com/docs/sdk/web/>https://plivo.com/docs/sdk/web/</a></td></tr><tr><td>Pubnub</td><td><a href=http://www.pubnub.com/docs/javascript/javascript-sdk.html>http://www.pubnub.com/docs/javascript/javascript-sdk.html</a></td></tr><tr><td>Quobis</td><td><a href=https://quobis.atlassian.net/wiki/display/QoffeeSIP/API>https://quobis.atlassian.net/wiki/display/QoffeeSIP/API</a></td></tr><tr><td>SimpleWebRTC from &amp;Yet</td><td><a href=http://simplewebrtc.com/>http://simplewebrtc.com/</a></td></tr><tr><td>SIPML5</td><td><a href=http://sipml5.org/docgen/symbols/SIPml.html>http://sipml5.org/docgen/symbols/SIPml.html</a></td></tr><tr><td>TenHands</td><td><a href=https://www.tenhands.net/developer/docs.htm>https://www.tenhands.net/developer/docs.htm</a></td></tr><tr><td>TokBox</td><td><a href=http://tokbox.com/opentok>http://tokbox.com/opentok</a></td></tr><tr><td>Twilio</td><td><a href=http://www.twilio.com/client/api>http://www.twilio.com/client/api</a></td></tr><tr><td>Voximplant</td><td><a href=http://voximplant.com/docs/references/websdk/>http://voximplant.com/docs/references/websdk/</a></td></tr><tr><td>Vline</td><td><a href=https://vline.com/developer/docs/vline.js/>https://vline.com/developer/docs/vline.js/</a></td></tr><tr><td>Weemo</td><td><a href=http://docs.weemo.com/js/>http://docs.weemo.com/js/</a></td></tr><tr><td>Xirsys</td><td><a href=http://xirsys.com/_static_content/xirsys.com/docs/>http://xirsys.com/_static_content/xirsys.com/docs/</a></td></tr><tr><td>Xsockets.net</td><td><a href=http://xsockets.net/docs/javascript-client-api>http://xsockets.net/docs/javascript-client-api</a></td></tr></tbody></table><h1 id=voippstn>VoIP/PSTN<a hidden class=anchor aria-hidden=true href=#voippstn>#</a></h1><ul><li><a href=https://kamailio.org/>https://kamailio.org</a></li><li><a href=https://freeswitch.org/>https://freeswitch.org/</a></li></ul><h1 id=值得关注的人>值得关注的人<a hidden class=anchor aria-hidden=true href=#值得关注的人>#</a></h1><ul><li><a href=https://github.com/muaz-khan>https://github.com/muaz-khan</a></li><li><a href=https://github.com/chadwallacehart>https://github.com/chadwallacehart</a></li><li><a href=https://github.com/fippo>https://github.com/fippo</a></li></ul><h1 id=webrtc主题>WebRTC主题<a hidden class=anchor aria-hidden=true href=#webrtc主题>#</a></h1><p>github上webrtc主题相关的仓库，干货非常多 <a href=https://github.com/topics/webrtc>https://github.com/topics/webrtc</a></p><h1 id=相关文章>相关文章<a hidden class=anchor aria-hidden=true href=#相关文章>#</a></h1><ul><li><a href=https://webrtchacks.com/guide-to-safari-webrtc/>guide-to-safari-webrtc</a></li><li><a href=https://webkit.org/blog/8672/on-the-road-to-webrtc-1-0-including-vp8/>WebKit: On the Road to WebRTC 1.0, Including VP8</a></li><li><a href=https://webrtchacks.com/whats-in-a-webrtc-javascript-library/>whats-in-a-webrtc-javascript-library</a></li></ul></div><footer class=post-footer><ul class=post-tags></ul></footer><script src=https://giscus.app/client.js data-repo=wangduanduan/wangduanduan.github.io data-repo-id="MDEwOlJlcG9zaXRvcnkxMTkyMjMyNjA=" data-category=Announcements data-category-id=DIC_kwDOBxsz3M4CAjBq data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=bottom data-theme=preferred_color_scheme data-lang=zh-CN crossorigin=anonymous async></script></article></main><footer class=footer><span>&copy; 2025 <a href=https://wdd.js.org/>洞香春</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg></a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

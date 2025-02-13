@@ -9,22 +9,100 @@
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 14 May 2018 10:43:02 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/%E7%AB%AF%E5%88%B0%E7%AB%AF%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 14 May 2018 10:43:02 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/%E7%AB%AF%E5%88%B0%E7%AB%AF%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>端到端测试哪家强？不容错过的Cypress</title>
       <link>https://wdd.js.org/posts/2018/05/e2e-testing-hacker-news-with-cypress/</link>
       <pubDate>Mon, 14 May 2018 10:43:02 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2018/05/e2e-testing-hacker-news-with-cypress/</guid>
-      <description>1. 目前E2E测试工具有哪些？ 项目 Web Star puppeteer Chromium (~170Mb Mac, ~282Mb Linux, ~280Mb Win) 31906 nightmare Electron 15502 nightwatch WebDriver 8135 protractor selenium 7532 casperjs PhantomJS 7180 cypress Electron 5303 Zombie 不需要 4880 testcafe 不需要 4645 CodeceptJS webdriverio 1665 端到端测试一般都需要一个Web容器，来运行前端应用。例如Chromium, Electron, PhantomJS, WebDriver等等。
-从体积角度考虑，这些Web容器体积一般都很大。
-从速度的角度考虑：PhantomJS, WebDriver &amp;lt; Electon, Chromium。
-而且每个工具的侧重点也不同，建议按照需要去选择。
-2. 优秀的端到端测试工具应该有哪些特点？ 安装简易：我希望它非常容易安装，最好可以一行命令就可以安装完毕 依赖较少：我只想做个E2E测试，不想安装jdk, python之类的东西 速度很快：运行测试用例的速度要快 报错详细：详细的报错 API完备：鼠标键盘操作接口，DOM查询接口等 Debug方便：出错了可以很方便的调试，而不是去猜 3. 为什么要用Cypress？ Cypress基本上拥有了上面的特点之外，还有以下特点。
-时光穿梭 测试运行时，Cypress会自动截图，你可以轻易的查看每个时间的截图 Debug友好 不需要再去猜测为什么测试有失败了，Cypress提供Chrome DevTools, 所以Debug是非常方便的。 实时刷新 Cypress检测测试用例改变后，会自动刷新 自动等待 不需要在使用wait类似的方法等待某个DOM出现，Cypress会自动帮你做这些 Spies, stubs, and clocks Verify and control the behavior of functions, server responses, or timers.</description>
+      <description>&lt;h1 id=&#34;1-目前e2e测试工具有哪些&#34;&gt;1. 目前E2E测试工具有哪些？&lt;/h1&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;项目&lt;/th&gt;
+          &lt;th&gt;Web&lt;/th&gt;
+          &lt;th&gt;Star&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/GoogleChrome/puppeteer&#34;&gt;puppeteer&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;Chromium (~170Mb Mac, ~282Mb Linux, ~280Mb Win)&lt;/td&gt;
+          &lt;td&gt;31906&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/segmentio/nightmare&#34;&gt;nightmare&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;Electron&lt;/td&gt;
+          &lt;td&gt;15502&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/nightwatchjs/nightwatch&#34;&gt;nightwatch&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;WebDriver&lt;/td&gt;
+          &lt;td&gt;8135&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/angular/protractor&#34;&gt;protractor&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;selenium&lt;/td&gt;
+          &lt;td&gt;7532&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/casperjs/casperjs&#34;&gt;casperjs&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;PhantomJS&lt;/td&gt;
+          &lt;td&gt;7180&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/cypress-io/cypress&#34;&gt;cypress&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;Electron&lt;/td&gt;
+          &lt;td&gt;5303&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/assaf/zombie&#34;&gt;Zombie&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;不需要&lt;/td&gt;
+          &lt;td&gt;4880&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/DevExpress/testcafe&#34;&gt;testcafe&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;不需要&lt;/td&gt;
+          &lt;td&gt;4645&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;a href=&#34;https://github.com/Codeception/CodeceptJS&#34;&gt;CodeceptJS&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;webdriverio&lt;/td&gt;
+          &lt;td&gt;1665&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;端到端测试一般都需要一个Web容器，来运行前端应用。例如Chromium, Electron, PhantomJS, WebDriver等等。&lt;/p&gt;
+&lt;p&gt;从体积角度考虑，这些Web容器&lt;code&gt;体积一般都很大&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;从速度的角度考虑：&lt;code&gt;PhantomJS, WebDriver &amp;lt; Electon, Chromium&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;而且每个工具的侧重点也不同，建议按照需要去选择。&lt;/p&gt;
+&lt;h1 id=&#34;2-优秀的端到端测试工具应该有哪些特点&#34;&gt;2. 优秀的端到端测试工具应该有哪些特点？&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;安装简易：我希望它非常容易安装，最好可以一行命令就可以安装完毕&lt;/li&gt;
+&lt;li&gt;依赖较少：我只想做个E2E测试，不想安装jdk, python之类的东西&lt;/li&gt;
+&lt;li&gt;速度很快：运行测试用例的速度要快&lt;/li&gt;
+&lt;li&gt;报错详细：详细的报错&lt;/li&gt;
+&lt;li&gt;API完备：鼠标键盘操作接口，DOM查询接口等&lt;/li&gt;
+&lt;li&gt;Debug方便：出错了可以很方便的调试，而不是去猜&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;3-为什么要用cypress&#34;&gt;3. 为什么要用Cypress？&lt;/h1&gt;
+&lt;p&gt;Cypress基本上拥有了上面的特点之外，还有以下特点。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;时光穿梭&lt;/code&gt; 测试运行时，Cypress会自动截图，你可以轻易的查看每个时间的截图&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Debug友好&lt;/code&gt; 不需要再去猜测为什么测试有失败了，Cypress提供Chrome DevTools, 所以Debug是非常方便的。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;实时刷新&lt;/code&gt; Cypress检测测试用例改变后，会自动刷新&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;自动等待&lt;/code&gt; 不需要在使用wait类似的方法等待某个DOM出现，Cypress会自动帮你做这些&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Spies, stubs, and clocks&lt;/code&gt; Verify and control the behavior of functions, server responses, or timers. The same functionality you love from unit testing is right at your fingertips.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;网络流量控制&lt;/code&gt; 在不涉及服务器的情况下轻松控制，存根和测试边缘案例。无论你喜欢，你都可以存储网络流量。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;一致的结果&lt;/code&gt; 我们的架构不使用Selenium或WebDriver。向快速，一致和可靠的无剥落测试问好。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;截图和视频&lt;/code&gt; 查看失败时自动截取的截图，或无条件运行时整个测试套件的视频。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;4-安装cypress&#34;&gt;4. 安装cypress&lt;/h1&gt;
+&lt;h2 id=&#34;41-使用npm方法安装&#34;&gt;4.1. 使用npm方法安装&lt;/h2&gt;
+&lt;p&gt;注意这个方法需要下载压缩过Electron, 所以可能会花费几分钟时间，请耐心等待。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

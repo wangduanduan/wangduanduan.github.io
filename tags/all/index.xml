@@ -1,445 +1,964 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>all on 洞香春</title>
+    <title>All on 洞香春</title>
     <link>https://wdd.js.org/tags/all/</link>
-    <description>Recent content in all on 洞香春</description>
+    <description>Recent content in All on 洞香春</description>
     <image>
       <title>洞香春</title>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 02 Feb 2025 15:12:40 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/all/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 02 Feb 2025 15:12:40 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/all/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>HEP 协议学习笔记</title>
       <link>https://wdd.js.org/posts/2025/hep-protocol/</link>
       <pubDate>Sun, 02 Feb 2025 15:12:40 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2025/hep-protocol/</guid>
-      <description>HEP简介 HEP协议目前叫做EEP(Extensible Encapsulation Protocol), 那之前的缩写HEP的H，我只能推测为homer。
-这个协议的主要功能是对VoIP连路上的数据包，例如SIP进行封装，方便后续分析SIP信令图。
-目前这个协议已经升级到V3版本，在这个pdfHEP3_Network_Protocol_Specification_REV_36中有详细的介绍。
-今天我们主要看这个协议的V3版本的协议是如何实现的。
-包头 packet-beta title HEP Packet 0-3: &amp;#34;版本号&amp;#34; 4-5: &amp;#34;总长度&amp;#34; 6-15: &amp;#34;数据段(变长)&amp;#34; HEPv3的包头是6个字节，主要分为三个部分
-版本号：固定4个字节长度，是HEP3 总长度：固定2个字节长度，是包的总长度，这个总长度包括了包头的六个字节。所以HEP包的大小范围一般是6-65535之间。 数据段：数据段的长度不固定 注意事项：假如从传输层读到1000个字节的数据，在解析前6个字节是，发现总长度(total length)的子段是1200，那就说明本次读到的数据还不是一个完整的
-数据段解析 数据段由固定6字节长度的头部和变长的payload部分。
-packet-beta title HEP Packet 0-1: &amp;#34;vendor ID&amp;#34; 2-3: &amp;#34;type ID&amp;#34; 4-5: &amp;#34;length&amp;#34; 6-15: &amp;#34;payload&amp;#34; vendor ID: 固定2字节长度, 其实意义不大， type ID: 固定2字节长度，这个子段很重要，决定了payload的类型。可以理解为是一个对象的key, 然后把payload理解为value length: 固定2字节长度，范围是0-65535，这个字段是也是整个数据段的长度，也就是包括了6个字节的段头 payload: 长度是length的长度-6，表示数据长度 hep协议有个type ID的映射表
-chunk type ID 类型 描述 0x0001 uint8 IP类型，0x02=IPv4, 0x0a=IPv6 0x0002 uint8 协议类型 0x06=TCP, 0x11=UDP， 可以参考IP协议号列表 其他的字段还有很多，可以参考HEP3_Network_Protocol_Specification_REV_36</description>
+      <description>&lt;h1 id=&#34;hep简介&#34;&gt;HEP简介&lt;/h1&gt;
+&lt;p&gt;HEP协议目前叫做EEP(Extensible Encapsulation Protocol), 那之前的缩写HEP的H，我只能推测为homer。&lt;/p&gt;
+&lt;p&gt;这个协议的主要功能是对VoIP连路上的数据包，例如SIP进行封装，方便后续分析SIP信令图。&lt;/p&gt;
+&lt;p&gt;目前这个协议已经升级到V3版本，在这个pdf&lt;a href=&#34;https://github.com/sipcapture/HEP/blob/master/docs/HEP3_Network_Protocol_Specification_REV_36.pdf&#34;&gt;HEP3_Network_Protocol_Specification_REV_36&lt;/a&gt;中有详细的介绍。&lt;/p&gt;
+&lt;p&gt;今天我们主要看这个协议的V3版本的协议是如何实现的。&lt;/p&gt;
+&lt;h1 id=&#34;包头&#34;&gt;包头&lt;/h1&gt;
+&lt;pre class=&#34;mermaid&#34;&gt;packet-beta
+title HEP Packet
+0-3: &amp;#34;版本号&amp;#34;
+4-5: &amp;#34;总长度&amp;#34;
+6-15: &amp;#34;数据段(变长)&amp;#34;
+&lt;/pre&gt;
+&lt;p&gt;HEPv3的包头是6个字节，主要分为三个部分&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;版本号：固定4个字节长度，是HEP3&lt;/li&gt;
+&lt;li&gt;总长度：固定2个字节长度，是包的总长度，这个总长度包括了包头的六个字节。所以HEP包的大小范围一般是6-65535之间。&lt;/li&gt;
+&lt;li&gt;数据段：数据段的长度不固定&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意事项：假如从传输层读到1000个字节的数据，在解析前6个字节是，发现总长度(total length)的子段是1200，那就说明本次读到的数据还不是一个完整的&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h1 id=&#34;数据段解析&#34;&gt;数据段解析&lt;/h1&gt;
+&lt;p&gt;数据段由固定6字节长度的头部和变长的payload部分。&lt;/p&gt;
+&lt;pre class=&#34;mermaid&#34;&gt;packet-beta
+title HEP Packet
+0-1: &amp;#34;vendor ID&amp;#34;
+2-3: &amp;#34;type ID&amp;#34;
+4-5: &amp;#34;length&amp;#34;
+6-15: &amp;#34;payload&amp;#34;
+&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;vendor ID: 固定2字节长度, 其实意义不大，&lt;/li&gt;
+&lt;li&gt;type ID: 固定2字节长度，这个子段很重要，决定了payload的类型。可以理解为是一个对象的key, 然后把payload理解为value&lt;/li&gt;
+&lt;li&gt;length: 固定2字节长度，范围是0-65535，这个字段是也是整个数据段的长度，也就是包括了6个字节的段头&lt;/li&gt;
+&lt;li&gt;payload: 长度是length的长度-6，表示数据长度&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;hep协议有个type ID的映射表&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;chunk type ID&lt;/th&gt;
+          &lt;th&gt;类型&lt;/th&gt;
+          &lt;th&gt;描述&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;0x0001&lt;/td&gt;
+          &lt;td&gt;uint8&lt;/td&gt;
+          &lt;td&gt;IP类型，0x02=IPv4, 0x0a=IPv6&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;0x0002&lt;/td&gt;
+          &lt;td&gt;uint8&lt;/td&gt;
+          &lt;td&gt;协议类型 0x06=TCP, 0x11=UDP， 可以参考&lt;a href=&#34;https://zh.wikipedia.org/wiki/IP%E5%8D%8F%E8%AE%AE%E5%8F%B7%E5%88%97%E8%A1%A8&#34;&gt;IP协议号列表&lt;/a&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;其他的字段还有很多，可以参考&lt;a href=&#34;https://github.com/sipcapture/HEP/blob/master/docs/HEP3_Network_Protocol_Specification_REV_36.pdf&#34;&gt;HEP3_Network_Protocol_Specification_REV_36&lt;/a&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>2024年的最后三天 - 甲流来袭</title>
       <link>https://wdd.js.org/posts/2024/the-edn-day/</link>
       <pubDate>Tue, 31 Dec 2024 21:06:09 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2024/the-edn-day/</guid>
-      <description>28号 - 抗体 28号晚上，我觉得嗓子有点刺痛。因为前两周发过一次烧，我觉得这次嗓子痛应该不会是发烧的前奏了，毕竟身体是有抗体的。
-我高估了之前产生的抗体。
-29号 - 梦 从29号上午开始，身体就好像在温水煮青蛙，最高到达惊人的峰值40度。
-为了控制体温，我先洗个热水澡，吃了布洛芬，躺在床上，拿了一块冰袋，裹在卫生纸里，搁在脑门上。身体挺直，裹着两层厚被。
-长夜慢慢，睡睡醒醒。
-我梦见自己变成了一棵树，脚上好像长出了根须，缓慢的往地下生长。穿过泥土，与蚯蚓擦肩而过。穿过岩石，被石油染黑。然而到达的却是一块冰山，冰冷坚硬。
-手上长出了树干，像天空伸展，摊开自己的枝叶，还没等我享受片刻温暖，太阳仿佛飞速向我飞来，炙热的阳光让我瞬间枯黄，灰飞烟灭。
-长夜慢慢，我不敢辗转反侧。我头上还顶着一块冰。
-30号 - 发热门诊 终于熬到早上，再测试一遍体温，38度。
-算了，还是去医院吧。
-穿戴整齐，刚下楼，迎面吹来一阵冷风。我有种无法压抑的，想要咳嗽的冲动，但是我必须忍住，我知道这咳嗽必然“感天动地&amp;quot;。
-风继续吹，我忍不住咳了出来，那感觉，仿佛有人伸手把我的气管从我的嘴巴里扯了出来。
-到了医院，发热门诊是单独一层的小房子，和气派的十几层的门诊大楼相比，简直像个保安室。
-发热门诊虽小，但也五脏俱全。
-进门先做鼻拭子，量体温，挂号。 再做血液分析，然后就排队等叫号。医生看了报告，说我是甲流，开了两盒药，一盒抗病毒，一盒用来退烧。
-从医院出来，已经中午。我走进医院旁边的永X大王，准备随便吃点。
-我挑了一个座位，扫码下单，点了馄炖、蒸蛋、豆浆、银耳莲子羹。
-等餐期间， 我发现对面有个中年人大叔，穿这黑色的宽大的羽绒服，胡子拉碴、头发稀少， 他时不时的巡视着其他的人。
-没过过久，我等到自己的餐。
-馄炖上撒了淡黄的鸡蛋丝和黑色海苔碎，鸡蛋丝吃起来像绳子，海苔碎味同嚼蜡。混度汤非常浑浊，像是用了一天的澡堂池子水。馄炖我就吃了一个，就放弃了。
-蒸蛋应该是预制菜，放在黑色塑料小杯中，应该是微波炉加热的。我吃了一口，味道奇怪。
-豆浆没什么好说的，毕竟也味道也没有下降空间了。
-银耳莲子羹还不错，我都个喝完了。
-吃饱喝足，顺便我把医生给我开的药也吃了，我起身离开，刚走到餐桌不到2米， 就瞥见那个大叔匆匆走向我的餐桌。
-急诊室 我吃完饭，回到家，每隔一个小时测一次体温，体温很稳定，稳定在38度左右。
-一直到晚上，我的体温还是没怎么下降。
-老婆给我打电话，说让我赶紧去急诊，去输液，光吃药效果不好，高烧不退会要人命的。 但是我觉得没必要，因为尽然发热门诊的医生都没有让我输液，说明我不需要输液，或者说输液也没有多大作用。
-老婆说：&amp;ldquo;你想让我中年丧夫吗？&amp;rdquo;
-我无话可说，只能默默穿上衣服，带上口罩，去了早上那家医院的急诊。
-晚上9点急诊室人来人往，络绎不绝，仿佛是白天的门诊。 我挂上号，接着又等了将近1个小时，终于等到我了。
-给我看病的是位女医生。
-”医生，我在你们医院发生门诊早上就看过了，诊断是甲流，药也吃了，到现在还是38度，还是给我输液吧。“，我说
-”甲流不是一天两天能好的，至少要发热三天，而且输液效果也不大“，医生说
-“那我也烧了两天了，再烧下去人要烧没了。你给我开个输液的吧”
-“好的吧，那我就给你开一次输液，你看看效果”
-一顿拉扯，我终于能输液了。其实输的也不是什么特殊的东西，就是一带左氧和一袋维C。
-输完液，已经晚上11点50，叫了车，回到家里。感觉嘴巴好苦，还好家里有甜的冰糖心苹果。
-我啃完第一个苹果，每一口都是苦味。接着我再啃一个苹果，每一口都还是苦味。 如果不是因为发烧，我简直立即想去吃点火锅底料漱漱口。
-归梦 睡觉前，我又量了一次体温。体温恢复到37度，看起来正常正常了。
-我不知道这是吃药起的效果还是输液的效果。
-但是两盒药的价格是270，其中一盒西药50，另一盒重要220。
-输液呢，一袋左氧+维C，总共也不过才30。
-让我想起了电影《大腕》的名言
-31号 这是24年的最后一天，美丽的烟花在天空中绽放璀璨的光芒。
-有些人觉得烟花美丽，有些人只觉得吵。</description>
+      <description>&lt;h1 id=&#34;28号---抗体&#34;&gt;28号 - 抗体&lt;/h1&gt;
+&lt;p&gt;28号晚上，我觉得嗓子有点刺痛。因为前两周发过一次烧，我觉得这次嗓子痛应该不会是发烧的前奏了，毕竟身体是有抗体的。&lt;/p&gt;
+&lt;p&gt;我高估了之前产生的抗体。&lt;/p&gt;
+&lt;h1 id=&#34;29号---梦&#34;&gt;29号 - 梦&lt;/h1&gt;
+&lt;p&gt;从29号上午开始，身体就好像在温水煮青蛙，最高到达惊人的峰值40度。&lt;/p&gt;
+&lt;p&gt;为了控制体温，我先洗个热水澡，吃了布洛芬，躺在床上，拿了一块冰袋，裹在卫生纸里，搁在脑门上。身体挺直，裹着两层厚被。&lt;/p&gt;
+&lt;p&gt;长夜慢慢，睡睡醒醒。&lt;/p&gt;
+&lt;p&gt;我梦见自己变成了一棵树，脚上好像长出了根须，缓慢的往地下生长。穿过泥土，与蚯蚓擦肩而过。穿过岩石，被石油染黑。然而到达的却是一块冰山，冰冷坚硬。&lt;/p&gt;
+&lt;p&gt;手上长出了树干，像天空伸展，摊开自己的枝叶，还没等我享受片刻温暖，太阳仿佛飞速向我飞来，炙热的阳光让我瞬间枯黄，灰飞烟灭。&lt;/p&gt;
+&lt;p&gt;长夜慢慢，我不敢辗转反侧。我头上还顶着一块冰。&lt;/p&gt;
+&lt;h1 id=&#34;30号---发热门诊&#34;&gt;30号 - 发热门诊&lt;/h1&gt;
+&lt;p&gt;终于熬到早上，再测试一遍体温，38度。&lt;/p&gt;
+&lt;p&gt;算了，还是去医院吧。&lt;/p&gt;
+&lt;p&gt;穿戴整齐，刚下楼，迎面吹来一阵冷风。我有种无法压抑的，想要咳嗽的冲动，但是我必须忍住，我知道这咳嗽必然“感天动地&amp;quot;。&lt;/p&gt;
+&lt;p&gt;风继续吹，我忍不住咳了出来，那感觉，仿佛有人伸手把我的气管从我的嘴巴里扯了出来。&lt;/p&gt;
+&lt;p&gt;到了医院，发热门诊是单独一层的小房子，和气派的十几层的门诊大楼相比，简直像个保安室。&lt;/p&gt;
+&lt;p&gt;发热门诊虽小，但也五脏俱全。&lt;/p&gt;
+&lt;p&gt;进门先做鼻拭子，量体温，挂号。 再做血液分析，然后就排队等叫号。医生看了报告，说我是甲流，开了两盒药，一盒抗病毒，一盒用来退烧。&lt;/p&gt;
+&lt;p&gt;从医院出来，已经中午。我走进医院旁边的永X大王，准备随便吃点。&lt;/p&gt;
+&lt;p&gt;我挑了一个座位，扫码下单，点了馄炖、蒸蛋、豆浆、银耳莲子羹。&lt;/p&gt;
+&lt;p&gt;等餐期间， 我发现对面有个中年人大叔，穿这黑色的宽大的羽绒服，胡子拉碴、头发稀少， 他时不时的巡视着其他的人。&lt;/p&gt;
+&lt;p&gt;没过过久，我等到自己的餐。&lt;/p&gt;
+&lt;p&gt;馄炖上撒了淡黄的鸡蛋丝和黑色海苔碎，鸡蛋丝吃起来像绳子，海苔碎味同嚼蜡。混度汤非常浑浊，像是用了一天的澡堂池子水。馄炖我就吃了一个，就放弃了。&lt;/p&gt;
+&lt;p&gt;蒸蛋应该是预制菜，放在黑色塑料小杯中，应该是微波炉加热的。我吃了一口，味道奇怪。&lt;/p&gt;
+&lt;p&gt;豆浆没什么好说的，毕竟也味道也没有下降空间了。&lt;/p&gt;
+&lt;p&gt;银耳莲子羹还不错，我都个喝完了。&lt;/p&gt;
+&lt;p&gt;吃饱喝足，顺便我把医生给我开的药也吃了，我起身离开，刚走到餐桌不到2米， 就瞥见那个大叔匆匆走向我的餐桌。&lt;/p&gt;
+&lt;h1 id=&#34;急诊室&#34;&gt;急诊室&lt;/h1&gt;
+&lt;p&gt;我吃完饭，回到家，每隔一个小时测一次体温，体温很稳定，稳定在38度左右。&lt;/p&gt;
+&lt;p&gt;一直到晚上，我的体温还是没怎么下降。&lt;/p&gt;
+&lt;p&gt;老婆给我打电话，说让我赶紧去急诊，去输液，光吃药效果不好，高烧不退会要人命的。 但是我觉得没必要，因为尽然发热门诊的医生都没有让我输液，说明我不需要输液，或者说输液也没有多大作用。&lt;/p&gt;
+&lt;p&gt;老婆说：&amp;ldquo;你想让我中年丧夫吗？&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;我无话可说，只能默默穿上衣服，带上口罩，去了早上那家医院的急诊。&lt;/p&gt;
+&lt;p&gt;晚上9点急诊室人来人往，络绎不绝，仿佛是白天的门诊。 我挂上号，接着又等了将近1个小时，终于等到我了。&lt;/p&gt;
+&lt;p&gt;给我看病的是位女医生。&lt;/p&gt;
+&lt;p&gt;”医生，我在你们医院发生门诊早上就看过了，诊断是甲流，药也吃了，到现在还是38度，还是给我输液吧。“，我说&lt;/p&gt;
+&lt;p&gt;”甲流不是一天两天能好的，至少要发热三天，而且输液效果也不大“，医生说&lt;/p&gt;
+&lt;p&gt;“那我也烧了两天了，再烧下去人要烧没了。你给我开个输液的吧”&lt;/p&gt;
+&lt;p&gt;“好的吧，那我就给你开一次输液，你看看效果”&lt;/p&gt;
+&lt;p&gt;一顿拉扯，我终于能输液了。其实输的也不是什么特殊的东西，就是一带左氧和一袋维C。&lt;/p&gt;
+&lt;p&gt;输完液，已经晚上11点50，叫了车，回到家里。感觉嘴巴好苦，还好家里有甜的冰糖心苹果。&lt;/p&gt;
+&lt;p&gt;我啃完第一个苹果，每一口都是苦味。接着我再啃一个苹果，每一口都还是苦味。 如果不是因为发烧，我简直立即想去吃点火锅底料漱漱口。&lt;/p&gt;
+&lt;h1 id=&#34;归梦&#34;&gt;归梦&lt;/h1&gt;
+&lt;p&gt;睡觉前，我又量了一次体温。体温恢复到37度，看起来正常正常了。&lt;/p&gt;
+&lt;p&gt;我不知道这是吃药起的效果还是输液的效果。&lt;/p&gt;
+&lt;p&gt;但是两盒药的价格是270，其中一盒西药50，另一盒重要220。&lt;/p&gt;
+&lt;p&gt;输液呢，一袋左氧+维C，总共也不过才30。&lt;/p&gt;
+&lt;p&gt;让我想起了电影《大腕》的名言&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;image-20241231231011072&#34; loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2024/the-edn-day/atta/image-20241231231011072.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;image-20241231231118484&#34; loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2024/the-edn-day/atta/image-20241231231118484.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;31号&#34;&gt;31号&lt;/h1&gt;
+&lt;p&gt;这是24年的最后一天，美丽的烟花在天空中绽放璀璨的光芒。&lt;/p&gt;
+&lt;p&gt;有些人觉得烟花美丽，有些人只觉得吵。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>源码笔记 - 自定义事件路由(中)</title>
       <link>https://wdd.js.org/kamailio/route-list-action/</link>
       <pubDate>Sat, 28 Dec 2024 09:43:00 +0800</pubDate>
-      
       <guid>https://wdd.js.org/kamailio/route-list-action/</guid>
-      <description>[[TOC]]
-route_list route.h定义了几个函数分别用来获取、查找、新增route
-// src/core/route.h int route_get(struct route_list *rt, char *name); int route_lookup(struct route_list *rt, char *name); void push(struct action *a, struct action **head); struct route_list { struct action **rlist; int idx;	/* first empty entry */ int entries;	/* total number of entries */ struct str_hash_table names; /* name to route index mappings */ }; rlist 我们对route_list数据模型进行简化:
-rlist是一个固定长度的一维数组，通过索引来访问对应的值。如果数组的空间不足，那么就创建一个两倍大的空数据，然后先把原始数据复制过去。这种复制方式保持的原始数据的索引位置。有点像golang的切片扩容机制。
-这里最为重要的就是保持数组元素的索引位置在扩容后不变。
-static inline int route_new_list(struct route_list *rt) { int ret; struct action **tmp; ret = -1; if(rt-&amp;gt;idx &amp;gt;= rt-&amp;gt;entries) { // 两倍扩容 tmp = pkg_realloc(rt-&amp;gt;rlist, 2 * rt-&amp;gt;entries * sizeof(struct action *)); if(tmp == 0) { LM_CRIT(&amp;#34;out of memory\n&amp;#34;); goto end; } /* init the newly allocated memory chunk */ memset(&amp;amp;tmp[rt-&amp;gt;entries], 0, rt-&amp;gt;entries * sizeof(struct action *)); rt-&amp;gt;rlist = tmp; rt-&amp;gt;entries *= 2; } if(rt-&amp;gt;idx &amp;lt; rt-&amp;gt;entries) { ret = rt-&amp;gt;idx; rt-&amp;gt;idx++; } end: return ret; } str_hash_table 我们对hash_table的数据模型进行简化，它其实就是一hash表，key是路由的名，值是一个正数，正数代表了路由执行单元的索引位置。</description>
+      <description>&lt;p&gt;[[&lt;em&gt;TOC&lt;/em&gt;]]&lt;/p&gt;
+&lt;h1 id=&#34;route_list&#34;&gt;route_list&lt;/h1&gt;
+&lt;p&gt;route.h定义了几个函数分别用来获取、查找、新增route&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// src/core/route.h
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;route_get&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; route_list &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;rt, &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;name);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;route_lookup&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; route_list &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;rt, &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;name);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;push&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; action &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;a, &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; action &lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;head);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; route_list
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; action &lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;rlist;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; idx;					 &lt;span style=&#34;color:#75715e&#34;&gt;/* first empty entry */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; entries;				 &lt;span style=&#34;color:#75715e&#34;&gt;/* total number of entries */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; str_hash_table names; &lt;span style=&#34;color:#75715e&#34;&gt;/* name to route index mappings */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;rlist&#34;&gt;rlist&lt;/h2&gt;
+&lt;p&gt;我们对route_list数据模型进行简化:&lt;/p&gt;
+&lt;p&gt;rlist是一个固定长度的一维数组，通过索引来访问对应的值。如果数组的空间不足，那么就创建一个两倍大的空数据，然后先把原始数据复制过去。这种复制方式保持的原始数据的索引位置。有点像golang的切片扩容机制。&lt;/p&gt;
+&lt;p&gt;这里最为重要的就是保持数组元素的索引位置在扩容后不变。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;route_new_list&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; route_list &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;rt)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; ret;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; action &lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;tmp;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	ret &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(rt&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;idx &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;=&lt;/span&gt; rt&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;entries) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// 两倍扩容
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;		tmp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;pkg_realloc&lt;/span&gt;(rt&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;rlist, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; rt&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;entries &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; action &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(tmp &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			&lt;span style=&#34;color:#a6e22e&#34;&gt;LM_CRIT&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;out of memory&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			&lt;span style=&#34;color:#66d9ef&#34;&gt;goto&lt;/span&gt; end;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#75715e&#34;&gt;/* init the newly allocated memory chunk */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;memset&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;tmp[rt&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;entries], &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, rt&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;entries &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; action &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		rt&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;rlist &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; tmp;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		rt&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;entries &lt;span style=&#34;color:#f92672&#34;&gt;*=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(rt&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;idx &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; rt&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;entries) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		ret &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; rt&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;idx;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		rt&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;idx&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;end:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; ret;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;str_hash_table&#34;&gt;str_hash_table&lt;/h2&gt;
+&lt;p&gt;我们对hash_table的数据模型进行简化，它其实就是一hash表，key是路由的名，值是一个正数，正数代表了路由执行单元的索引位置。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>源码笔记 - 自定义事件路由(上)</title>
       <link>https://wdd.js.org/kamailio/customer-event-route/</link>
       <pubDate>Fri, 27 Dec 2024 20:45:03 +0800</pubDate>
-      
       <guid>https://wdd.js.org/kamailio/customer-event-route/</guid>
-      <description>[[TOC]]
-事件路由简介 在某些模块中，我们看到有一些模块自定义的事件路由。
-例如dispatcher模块，或者rtpengine模块。
-event_route[dispatcher:dst-down] { xlog(&amp;#34;L_ERR&amp;#34;, &amp;#34;Destination down: $rm $ru ($du)\n&amp;#34;); } event_route[rtpengine:dtmf-event] { xlog(&amp;#34;L_INFO&amp;#34;, &amp;#34;callid: $avp(dtmf_event_callid)\n&amp;#34;); xlog(&amp;#34;L_INFO&amp;#34;, &amp;#34;source_tag: $avp(dtmf_event_source_tag)\n&amp;#34;); xlog(&amp;#34;L_INFO&amp;#34;, &amp;#34;timestamp: $avp(dtmf_event_timestamp)\n&amp;#34;); xlog(&amp;#34;L_INFO&amp;#34;, &amp;#34;dtmf: $avp(dtmf_event)\n&amp;#34;); } disapcher模块 在dispatch.c文件中，我们看到如下代码
-if(!ds_skip_dst(old_state) &amp;amp;&amp;amp; ds_skip_dst(idx-&amp;gt;dlist[i].flags)) { ds_run_route(msg, address, &amp;#34;dispatcher:dst-down&amp;#34;, rctx); } else { if(ds_skip_dst(old_state) &amp;amp;&amp;amp; !ds_skip_dst(idx-&amp;gt;dlist[i].flags)) ds_run_route(msg, address, &amp;#34;dispatcher:dst-up&amp;#34;, rctx); } ds_run_route还是定义在dispatch.c文件中，
-static void ds_run_route(sip_msg_t *msg, str *uri, char *route, ds_rctx_t *rctx) 接着又一个重要调用。 这里似乎在查找路由。
-route这个参数其实就是dispatcher:dst-down， 或者 dispatcher:dst-up，
-那么event_rt又是什么鬼呢？
-rt = route_lookup(&amp;amp;event_rt, route); event_rt是一个route_list的结构体</description>
+      <description>&lt;p&gt;[[&lt;em&gt;TOC&lt;/em&gt;]]&lt;/p&gt;
+&lt;h1 id=&#34;事件路由简介&#34;&gt;事件路由简介&lt;/h1&gt;
+&lt;p&gt;在某些模块中，我们看到有一些模块自定义的事件路由。&lt;/p&gt;
+&lt;p&gt;例如dispatcher模块，或者rtpengine模块。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;event_route&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;dispatcher:dst-down&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    xlog&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;L_ERR&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Destination down: &lt;/span&gt;$rm&lt;span style=&#34;color:#e6db74&#34;&gt; &lt;/span&gt;$ru&lt;span style=&#34;color:#e6db74&#34;&gt; (&lt;/span&gt;$du&lt;span style=&#34;color:#e6db74&#34;&gt;)\n&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;event_route&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;rtpengine:dtmf-event&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    xlog&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;L_INFO&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;callid: &lt;/span&gt;$avp&lt;span style=&#34;color:#e6db74&#34;&gt;(dtmf_event_callid)\n&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		xlog&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;L_INFO&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;source_tag: &lt;/span&gt;$avp&lt;span style=&#34;color:#e6db74&#34;&gt;(dtmf_event_source_tag)\n&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		xlog&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;L_INFO&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;timestamp: &lt;/span&gt;$avp&lt;span style=&#34;color:#e6db74&#34;&gt;(dtmf_event_timestamp)\n&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		xlog&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;L_INFO&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;dtmf: &lt;/span&gt;$avp&lt;span style=&#34;color:#e6db74&#34;&gt;(dtmf_event)\n&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;disapcher模块&#34;&gt;disapcher模块&lt;/h1&gt;
+&lt;p&gt;在dispatch.c文件中，我们看到如下代码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;ds_skip_dst&lt;/span&gt;(old_state) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ds_skip_dst&lt;/span&gt;(idx&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;dlist[i].flags)) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;ds_run_route&lt;/span&gt;(msg, address, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;dispatcher:dst-down&amp;#34;&lt;/span&gt;, rctx);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;} &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;ds_skip_dst&lt;/span&gt;(old_state) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;ds_skip_dst&lt;/span&gt;(idx&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;dlist[i].flags))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			&lt;span style=&#34;color:#a6e22e&#34;&gt;ds_run_route&lt;/span&gt;(msg, address, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;dispatcher:dst-up&amp;#34;&lt;/span&gt;, rctx);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;ds_run_route还是定义在dispatch.c文件中，&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ds_run_route&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;sip_msg_t&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;msg, str &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;uri, &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;route, &lt;span style=&#34;color:#66d9ef&#34;&gt;ds_rctx_t&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;rctx)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;接着又一个重要调用。 这里似乎在查找路由。&lt;/p&gt;
+&lt;p&gt;route这个参数其实就是&lt;strong&gt;dispatcher:dst-down&lt;/strong&gt;， 或者 &lt;strong&gt;dispatcher:dst-up&lt;/strong&gt;，&lt;/p&gt;
+&lt;p&gt;那么event_rt又是什么鬼呢？&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rt &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;route_lookup&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;event_rt, route);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;event_rt是一个route_list的结构体&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// route.c
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; route_list event_rt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;route_list的结构如下，重点是这个str_hash_table这个字段，它似乎是一个hash&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; route_list
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; action &lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;rlist;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; idx;					 &lt;span style=&#34;color:#75715e&#34;&gt;/* first empty entry */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; entries;				 &lt;span style=&#34;color:#75715e&#34;&gt;/* total number of entries */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; str_hash_table names; &lt;span style=&#34;color:#75715e&#34;&gt;/* name to route index mappings */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;str_hash_table的结构如下：&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>DMQ模块源码学习笔记</title>
       <link>https://wdd.js.org/kamailio/dmq-note/</link>
       <pubDate>Sun, 22 Dec 2024 18:07:08 +0800</pubDate>
-      
       <guid>https://wdd.js.org/kamailio/dmq-note/</guid>
-      <description>背景 多个SIP注册服务器之间，如何同步分机的注册信息呢？
-简单的方案就是使用共享数据库的方式同步注册信息，这个方案实现起来简单，但是分机的注册信息本身就是个需要频繁增删改查的，数据库很可能在大量注册分机的压力下，成为性能的瓶颈。
-除了数据库之外，OpenSIPS和kamailio分别提供了不同的方案。
-OpenSIPS提供的方案是使用cluster模块，cluster模块在多个实例之间同步分机的注册信息，注册信息的格式是OpenSIPS自定义的格式。 Kamailio的方案是DMQ模块， DMQ听起来高大上，放佛是依赖外部的一个服务。 但它其实就是扩展SIP消息，通过SIP消息来广播分机的注册信息。
-KDMQ sip:notification_peer@192.168.40.15:5090 SIP/2.0 Via: SIP/2.0/UDP 192.168.40.15;branch=z9hG4bK55e5.423d95110000 To: &amp;lt;sip:notification_peer@192.168.40.15:5090&amp;gt; From: &amp;lt;sip:notification_peer@192.168.40.15:5060&amp;gt;;tag=2cdb7a33a7f21abb98fd3a44968e3ffd-5b01 CSeq: 10 KDMQ Call-ID: 1fe138e07b5d0a7a-50419@192.168.40.15 Content-Length: 116 User-Agent: kamailio (4.3.0 (x86_64/linneaus)) Max-Forwards: 1 Content-Type: text/plain sip:192.168.40.16:5060;status=active sip:192.168.40.15:5060;status=disabled sip:192.168.40.17:5060;status=active 源码分析 该模块一共暴露了8个参数，其中7个参数都是简单类型，INT和STR，就直接取对应变量的地址就可以了。
-其中notification_address参数是用来配置集群中其他节点的通信地址的，因为要配置多次，所以需要用一个函数来解析。
-// dmq.c static param_export_t params[] = { {&amp;#34;num_workers&amp;#34;, PARAM_INT, &amp;amp;dmq_num_workers}, {&amp;#34;ping_interval&amp;#34;, PARAM_INT, &amp;amp;dmq_ping_interval}, {&amp;#34;server_address&amp;#34;, PARAM_STR, &amp;amp;dmq_server_address}, {&amp;#34;server_socket&amp;#34;, PARAM_STR, &amp;amp;dmq_server_socket}, {&amp;#34;notification_address&amp;#34;, PARAM_STR|PARAM_USE_FUNC, dmq_add_notification_address}, {&amp;#34;notification_channel&amp;#34;, PARAM_STR, &amp;amp;dmq_notification_channel}, {&amp;#34;multi_notify&amp;#34;, PARAM_INT, &amp;amp;dmq_multi_notify}, {&amp;#34;worker_usleep&amp;#34;, PARAM_INT, &amp;amp;dmq_worker_usleep}, {0, 0, 0} }; 这些参数都没有加上static关键词，主要目的为了在dmq模块的其他c文件能使用。</description>
+      <description>&lt;h1 id=&#34;背景&#34;&gt;背景&lt;/h1&gt;
+&lt;p&gt;多个SIP注册服务器之间，如何同步分机的注册信息呢？&lt;/p&gt;
+&lt;p&gt;简单的方案就是使用共享数据库的方式同步注册信息，这个方案实现起来简单，但是分机的注册信息本身就是个需要频繁增删改查的，数据库很可能在大量注册分机的压力下，成为性能的瓶颈。&lt;/p&gt;
+&lt;p&gt;除了数据库之外，OpenSIPS和kamailio分别提供了不同的方案。&lt;/p&gt;
+&lt;p&gt;OpenSIPS提供的方案是使用cluster模块，cluster模块在多个实例之间同步分机的注册信息，注册信息的格式是OpenSIPS自定义的格式。
+Kamailio的方案是DMQ模块， DMQ听起来高大上，放佛是依赖外部的一个服务。 但它其实就是扩展SIP消息，通过SIP消息来广播分机的注册信息。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-log&#34; data-lang=&#34;log&#34;&gt;KDMQ sip:notification_peer@192.168.40.15:5090 SIP/2.0
+Via: SIP/2.0/UDP 192.168.40.15;branch=z9hG4bK55e5.423d95110000
+To: &amp;lt;sip:notification_peer@192.168.40.15:5090&amp;gt;
+From: &amp;lt;sip:notification_peer@192.168.40.15:5060&amp;gt;;tag=2cdb7a33a7f21abb98fd3a44968e3ffd-5b01
+CSeq: 10 KDMQ
+Call-ID: 1fe138e07b5d0a7a-50419@192.168.40.15
+Content-Length: 116
+User-Agent: kamailio (4.3.0 (x86_64/linneaus))
+Max-Forwards: 1
+Content-Type: text/plain
+
+sip:192.168.40.16:5060;status=active
+sip:192.168.40.15:5060;status=disabled
+sip:192.168.40.17:5060;status=active
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;源码分析&#34;&gt;源码分析&lt;/h1&gt;
+&lt;p&gt;该模块一共暴露了8个参数，其中7个参数都是简单类型，INT和STR，就直接取对应变量的地址就可以了。&lt;/p&gt;
+&lt;p&gt;其中notification_address参数是用来配置集群中其他节点的通信地址的，因为要配置多次，所以需要用一个函数来解析。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// dmq.c
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;param_export_t&lt;/span&gt; params[] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;num_workers&amp;#34;&lt;/span&gt;, PARAM_INT, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;dmq_num_workers},
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ping_interval&amp;#34;&lt;/span&gt;, PARAM_INT, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;dmq_ping_interval},
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;server_address&amp;#34;&lt;/span&gt;, PARAM_STR, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;dmq_server_address},
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;server_socket&amp;#34;&lt;/span&gt;, PARAM_STR, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;dmq_server_socket},
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;notification_address&amp;#34;&lt;/span&gt;, PARAM_STR&lt;span style=&#34;color:#f92672&#34;&gt;|&lt;/span&gt;PARAM_USE_FUNC, dmq_add_notification_address},
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;notification_channel&amp;#34;&lt;/span&gt;, PARAM_STR, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;dmq_notification_channel},
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;multi_notify&amp;#34;&lt;/span&gt;, PARAM_INT, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;dmq_multi_notify},
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;worker_usleep&amp;#34;&lt;/span&gt;, PARAM_INT, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;dmq_worker_usleep},
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	{&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这些参数都没有加上static关键词，主要目的为了在dmq模块的其他c文件能使用。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>路由执行的顺序</title>
       <link>https://wdd.js.org/kamailio/msg-flow/</link>
       <pubDate>Sun, 22 Dec 2024 16:20:42 +0800</pubDate>
-      
       <guid>https://wdd.js.org/kamailio/msg-flow/</guid>
-      <description>1. 请求消息处理过程 请求可以
-直接丢弃，不返回任何响应。对于恶意请求，SIP Flood攻击，最好不要返回任何响应。 直接返回状态码，不做转发，例如直接返回301重定向 无状态转发 有状态转发 执行分支路由，分支路由也可以将消息丢弃 无论有无状态，请求发出去前都会执行onsend_route路由，在onsend_route内部，已经不能对SIP消息再做拦截 2. 响应消息处理过程 首先执行reply_route{}, 在这个路由里可以将消息丢弃 然后判断消息是否有状态的 有状态，这执行onreply_route[ID]路由 如果响应是失败的，还可以执行failure_route[ID], 当前前提是在请求路由里是否设置了钩子 在失败路由可以，可以再次设置新的目标地址，进行转发； 设置了新的目标地址后，还可以设置分支路由 Tip 这里要注意的是，响应路由在失败路由之前执行。 3. 重传处理 </description>
+      <description>&lt;h1 id=&#34;1-请求消息处理过程&#34;&gt;1. 请求消息处理过程&lt;/h1&gt;
+&lt;p&gt;请求可以&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;直接丢弃，不返回任何响应。对于恶意请求，SIP Flood攻击，最好不要返回任何响应。&lt;/li&gt;
+&lt;li&gt;直接返回状态码，不做转发，例如直接返回301重定向&lt;/li&gt;
+&lt;li&gt;无状态转发&lt;/li&gt;
+&lt;li&gt;有状态转发
+&lt;ul&gt;
+&lt;li&gt;执行分支路由，分支路由也可以将消息丢弃&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;无论有无状态，请求发出去前都会执行onsend_route路由，在onsend_route内部，已经不能对SIP消息再做拦截&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/msg-flow/atta/2024-12-22-17-46-29.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;2-响应消息处理过程&#34;&gt;2. 响应消息处理过程&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;首先执行reply_route{}, 在这个路由里可以将消息丢弃&lt;/li&gt;
+&lt;li&gt;然后判断消息是否有状态的
+&lt;ul&gt;
+&lt;li&gt;有状态，这执行onreply_route[ID]路由
+&lt;ul&gt;
+&lt;li&gt;如果响应是失败的，还可以执行failure_route[ID], 当前前提是在请求路由里是否设置了钩子&lt;/li&gt;
+&lt;li&gt;在失败路由可以，可以再次设置新的目标地址，进行转发； 设置了新的目标地址后，还可以设置分支路由&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;notice tip&#34;&gt;
+  &lt;div class=&#34;notice-title&#34;&gt;
+    &lt;i class=&#34;fa fa-lightbulb-o&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;Tip
+  &lt;/div&gt;
+  &lt;div class=&#34;notice-content&#34;&gt;这里要注意的是，响应路由在失败路由之前执行。&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/msg-flow/atta/2024-12-22-17-47-27.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;3-重传处理&#34;&gt;3. 重传处理&lt;/h1&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/msg-flow/atta/2024-12-22-17-49-19.png&#34;&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>kamailio 启动参数控制</title>
       <link>https://wdd.js.org/kamailio/kamailio-cli-params/</link>
       <pubDate>Sun, 22 Dec 2024 15:46:13 +0800</pubDate>
-      
       <guid>https://wdd.js.org/kamailio/kamailio-cli-params/</guid>
-      <description>-a mode Auto aliases mode: enable with yes or on, disable with no or off 一般都是关闭 --alias=val Add an alias, the value has to be &amp;#39;[proto:]hostname[:port]&amp;#39; (like for &amp;#39;alias&amp;#39; global parameter) 设置对外别名, 在多个对外别名时，相比于在脚本中写死, 更好的方式 是在启动时传入, alias一般都是服务的对外域名或者IP 如果km有多个对外域名，并且不同的环境都不同，这块配置就合适在脚本里写死 --atexit=val Control atexit callbacks execution from external libraries which may access destroyed shm memory causing crash on shutdown. Can be y[es] or 1 to enable atexit callbacks, n[o] or 0 to disable, default is no.</description>
+      <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -a mode      Auto aliases mode: enable with yes or on,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  disable with no or off
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  一般都是关闭
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --alias&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;val  Add an alias, the value has to be &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;[proto:]hostname[:port]&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;like &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;alias&amp;#39;&lt;/span&gt; global parameter&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  设置对外别名, 在多个对外别名时，相比于在脚本中写死, 更好的方式
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  是在启动时传入, alias一般都是服务的对外域名或者IP
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  如果km有多个对外域名，并且不同的环境都不同，这块配置就合适在脚本里写死
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --atexit&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;val Control atexit callbacks execution from external libraries
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  which may access destroyed shm memory causing crash on shutdown.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  Can be y&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;es&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; or &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; to enable atexit callbacks, n&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;o&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; or &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; to disable,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  default is no.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  没用过
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -A define    Add config pre-processor define &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;e.g., -A WITH_AUTH,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  -A &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;FLT_ACC=1&amp;#39;&lt;/span&gt;, -A &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;DEFVAL=&amp;#34;str-val&amp;#34;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  预处理的变量定义
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -b nr        Maximum OS UDP receive buffer size which will not be exceeded by
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  auto-probing-and-increase procedure even &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; OS allows
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -B nr        Maximum OS UDP send buffer size which will not be exceeded by
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  auto-probing-and-increase procedure even &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; OS allows
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  这和上面的有啥区别呢？
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -c           Check configuration file &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; syntax errors
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                可以检查配置文件的语法错误。如果这个选项开启，就只能做检查语法，而不能启动kama
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --cfg-print  Print configuration file evaluating includes and ifdefs
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                 在脚本里有很多预处理指令时，可以用这个参数打印出预处理之后的脚本 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -d           Debugging level control &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;multiple -d to increase the level from 0&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                调试界别
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --debug&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;val  Debugging level value
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -D           Control how daemonize is &lt;span style=&#34;color:#66d9ef&#34;&gt;done&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  -D..do not fork &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;almost&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; anyway;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  -DD..do not daemonize creator;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  -DDD..daemonize &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;default&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                控制是否开启守护进程
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -e           Log messages printed in terminal colors &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;requires -E&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -E           Log to stderr
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -f file      Configuration file &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;default: /usr/local/etc/kamailio/kamailio.cfg&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                设置配置文件的位置, 可以覆盖默认的位置
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -g gid       Change gid &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;group id&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -G file      Create a pgid file
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -h           This help message
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --help       Long option &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;-h&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -I           Print more internal compile flags and options
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -K           Turn on &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;via:&amp;#34;&lt;/span&gt; host checking when forwarding replies
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -l address   Listen on the specified address/interface &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;multiple -l
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  mean listening on more addresses&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;. The address format is
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;proto:&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;addr_lst&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;:port&lt;span style=&#34;color:#f92672&#34;&gt;][&lt;/span&gt;/advaddr&lt;span style=&#34;color:#f92672&#34;&gt;][&lt;/span&gt;/socket_name&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;, 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  where proto&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;udp|tcp|tls|sctp, 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  addr_lst&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; addr|&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;addr, addr_lst&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;, 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  addr&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;host|ip_address|interface_name, 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  advaddr&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;addr&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;:port&lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;advertised address&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; and 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  socket_name&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;identifying name.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  E.g: -l localhost, -l udp:127.0.0.1:5080, -l eth0:5062,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  -l udp:127.0.0.1:5080/1.2.3.4:5060,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  -l udp:127.0.0.1:5080//local,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  -l udp:127.0.0.1:5080/1.2.3.4:5060/local,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  -l &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sctp:(eth0)&amp;#34;&lt;/span&gt;, -l &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;(eth0, eth1, 127.0.0.1):5065&amp;#34;&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  The default behaviour is to listen on all the interfaces.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                控制listen的地址
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --loadmodule&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;name load the module specified by name
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --log-engine&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;log engine name and data
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -L path      Modules search path &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;default: /usr/local/lib64/kamailio/modules&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -m nr        Size of shared memory allocated in Megabytes
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                共享内存的大小设置
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --modparam&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;modname:paramname:type:value set the module parameter
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  type has to be &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;s&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; string value and &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;i&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; int value, 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  example: --modparam&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;corex:alias_subdomains:s:kamailio.org
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  设置模块的启动参数
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  对于不方便在脚本里写死的模块参数，这个方式也挺好用
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --all-errors Print details about all config errors that can be detected
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                调试模式比较好用，打印详细的日志报错 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -M nr        Size of private memory allocated, in Megabytes
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                控制私有内存的大小
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -n processes Number of child processes to fork per interface
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;default: 8&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -N           Number of tcp child processes &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;default: equal to &lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;-n&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;    -O nr        Script optimization level (debugging option)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;    -P file      Create a pid file
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;    -Q           Number of sctp child processes (default: equal to `-n&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -r           Use dns to check &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; is necessary to add a &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;received=&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  field to a via
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -R           Same as &lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;-r&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt; but use reverse dns;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;to use both use &lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;-rR&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --server-id&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;num set the value &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; server_id
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --subst&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;exp set a subst preprocessor directive
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --substdef&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;exp set a substdef preprocessor directive
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --substdefs&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;exp set a substdefs preprocessor directive
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -S           disable sctp
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -t dir       Chroot to &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;dir&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -T           Disable tcp
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -u uid       Change uid &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;user id&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -v           Version number
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    --version    Long option &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;-v&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -V           Alternative &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;-v&lt;span style=&#34;color:#e6db74&#34;&gt;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -x name      Specify internal manager &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; shared memory &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;shm&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  - can be: fm, qm or tlsf
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -X name      Specify internal manager &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; private memory &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;pkg&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  - &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; omitted, the one &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; shm is used
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -Y dir       Runtime dir path
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -w dir       Change the working directory to &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;dir&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;default: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    -W type      poll method &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;depending on support in OS, it can be: poll,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  epoll_lt, epoll_et, sigio_rt, &lt;span style=&#34;color:#66d9ef&#34;&gt;select&lt;/span&gt;, kqueue, /dev/poll&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
-    
     <item>
       <title>你不怕暴露自己的无知吗？</title>
       <link>https://wdd.js.org/posts/2024/121701/</link>
       <pubDate>Sat, 07 Dec 2024 14:17:28 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2024/121701/</guid>
-      <description>公开自己的错误 我在写博客时，有时候脑海里总会蹦出一个小人，面露鄙夷的脸色对我说：你写这么多没啥技术含量的垃圾，公开在网上，难道不怕暴露自己的无知吗？
-说实话，我是有这样的担忧。
-因为我是有自知之明的，我知道自己估计也是黄老师那种&amp;quot;样样通，样样松&amp;quot;的人。 写的东西也都是一些表面的东西，甚至有错误的可能。这并不是自谦。
-我一直无法找到反击脑海里小人的理由。
-今天，我在读一本书的时候，学到了一个概念，这个概念叫做坎宁安定律。
-在互联网上获得正确答案的最好方法并不是提出问题，而是发布错误的答案
-也许我的答案是错误的，但是它并没有被隐藏我脑海的某个角落，二是被公开在了网上。
-即使我的小破站再小，必然也会有几个阅读量吧，或许能有读者对错误的答案提出自己的异议。
-学习金字塔理论 如果仅仅是通过阅读学习，学习内容的平均存留率只有5%。
-如果把学习内容公开，这其中就暗示了你可能需要把自己学到的内容教授给他人这一心理。
-那么在记录笔记的时候，就会想办法把问题讲解的让别人更清楚，从而加深了自己的学习知识吸收。
-参考 https://baike.baidu.com/item/%E5%AD%A6%E4%B9%A0%E9%87%91%E5%AD%97%E5%A1%94/9515094 </description>
+      <description>&lt;h1 id=&#34;公开自己的错误&#34;&gt;公开自己的错误&lt;/h1&gt;
+&lt;p&gt;我在写博客时，有时候脑海里总会蹦出一个小人，面露鄙夷的脸色对我说：你写这么多没啥技术含量的垃圾，公开在网上，难道不怕暴露自己的无知吗？&lt;/p&gt;
+&lt;p&gt;说实话，我是有这样的担忧。&lt;/p&gt;
+&lt;p&gt;因为我是有自知之明的，我知道自己估计也是黄老师那种&amp;quot;样样通，样样松&amp;quot;的人。 写的东西也都是一些表面的东西，甚至有错误的可能。这并不是自谦。&lt;/p&gt;
+&lt;p&gt;我一直无法找到反击脑海里小人的理由。&lt;/p&gt;
+&lt;p&gt;今天，我在读一本书的时候，学到了一个概念，这个概念叫做坎宁安定律。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在互联网上获得正确答案的最好方法并不是提出问题，而是发布错误的答案&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;也许我的答案是错误的，但是它并没有被隐藏我脑海的某个角落，二是被公开在了网上。&lt;/p&gt;
+&lt;p&gt;即使我的小破站再小，必然也会有几个阅读量吧，或许能有读者对错误的答案提出自己的异议。&lt;/p&gt;
+&lt;h1 id=&#34;学习金字塔理论&#34;&gt;学习金字塔理论&lt;/h1&gt;
+&lt;p&gt;如果仅仅是通过阅读学习，学习内容的平均存留率只有5%。&lt;/p&gt;
+&lt;p&gt;如果把学习内容公开，这其中就暗示了你可能需要把自己学到的内容教授给他人这一心理。&lt;/p&gt;
+&lt;p&gt;那么在记录笔记的时候，就会想办法把问题讲解的让别人更清楚，从而加深了自己的学习知识吸收。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2024/121701/atta/2024-12-22-13-17-38.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;参考&#34;&gt;参考&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://baike.baidu.com/item/%E5%AD%A6%E4%B9%A0%E9%87%91%E5%AD%97%E5%A1%94/9515094&#34;&gt;https://baike.baidu.com/item/%E5%AD%A6%E4%B9%A0%E9%87%91%E5%AD%97%E5%A1%94/9515094&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
-    
     <item>
       <title>TypeSctipt类型实战</title>
       <link>https://wdd.js.org/fe/ts-type-action/</link>
       <pubDate>Fri, 22 Nov 2024 13:04:35 +0800</pubDate>
-      
       <guid>https://wdd.js.org/fe/ts-type-action/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>第二份工作的辞职总结</title>
       <link>https://wdd.js.org/posts/2024/leave-the-second-job/</link>
       <pubDate>Tue, 10 Sep 2024 21:08:51 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2024/leave-the-second-job/</guid>
-      <description>总结 第二份工作快到一年了，我最近申请离职了。
-同事问我离职原因，我说被领导骂了，感觉自尊受辱，索性不干了。
-实际上被领导骂只是压死骆驼的最后一根稻草，我也不是那种会心血来潮说干就不干的。
-这份工作，我做了不到一年，大部分的时间我是做的不开心的。
-所以离职是一直在心里酝酿。
-为什么会工作不开心？
-主要原因有以下四点：
-行业前景暗淡：S公司处在行业的中游，上游受到运营商管控，下游在客户层面话语权也不大。这是一个资源限制型的行业，行业的命脉就在运营商，可能运营商有个风吹草动，整个行业就要翻江倒海。 自研能力薄弱：S公司大部分业务都是购买的第三方的软件，各种变更都受到制约，添加一个小功能都要付费升级。自研能力弱的一个原因可能就是前些年赚钱太容易了，投资研发哪有赚快钱来的舒服呢。同时也是这个原因，多个第三方软件之间也造成了数据割裂，运行维护困难。 家族企业制约：S公司大部分人员都是老板的亲朋好友，家族式企业的优点是内聚力强，但是包容性弱。之前也有一些大厂进来的员工，没多久就辞职了。 我曾经也跟老板沟通过，似乎老板也有心做些变革。但是变革哪有那么容易，要变革不早都变了，还要等到现在？ 短期主义：似乎S公司没有什么具体的愿景，唯一感觉到的愿景就是赚快钱。一旦发现投入的回报太少，就立即切换目标。 企业关怀差：说实在，我没有感觉到多少员工关怀。在S公司的工作和在地主家做短工也没啥区别，老板想什么都要管，但是即管不了那么多，又管的不好。所以给人的感觉就是东一棒槌，西一榔头，看起来很卖力，实际上并没有什么产出。几乎每个月都有人离职，对员工都吝啬，不考虑员工的自尊，员工怎么可能对公司有归属感。 工作压力大：受限于资源收紧、产品优势小，老板想提高营业额的方法是提高员工的服务水平。说实在，这真是杯水车薪。不想着从底层系统的解决问题，只想着通过给员工压力、通过加班来解决问题，只会造成工作压力大、人员流失大。 所以，我的离职，实际上也是考虑再三的一个选择。
-当然，我在S公司也不是什么收获都没有。
-收获总结 深入了解了行业的运行原理、客户、资源、政策等信息 对于数据分析方面有了较大的进步，毕竟我做了40+个数据报表来分析运行数据 深入学习了python, 主要用来做数据分析。数据分析方面的协议栈主要有pandas、duckdb、doris(MySQL)、grafana来组成 深入学习了python的GUI开发，主要用到的框架是wxPython，开发的两个工具分别给到运维人员和客服去使用，来提高运行效率 </description>
+      <description>&lt;h1 id=&#34;总结&#34;&gt;总结&lt;/h1&gt;
+&lt;p&gt;第二份工作快到一年了，我最近申请离职了。&lt;/p&gt;
+&lt;p&gt;同事问我离职原因，我说被领导骂了，感觉自尊受辱，索性不干了。&lt;/p&gt;
+&lt;p&gt;实际上被领导骂只是压死骆驼的最后一根稻草，我也不是那种会心血来潮说干就不干的。&lt;/p&gt;
+&lt;p&gt;这份工作，我做了不到一年，大部分的时间我是做的不开心的。&lt;/p&gt;
+&lt;p&gt;所以离职是一直在心里酝酿。&lt;/p&gt;
+&lt;p&gt;为什么会工作不开心？&lt;/p&gt;
+&lt;p&gt;主要原因有以下四点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;行业前景暗淡&lt;/strong&gt;：S公司处在行业的中游，上游受到运营商管控，下游在客户层面话语权也不大。这是一个资源限制型的行业，行业的命脉就在运营商，可能运营商有个风吹草动，整个行业就要翻江倒海。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;自研能力薄弱&lt;/strong&gt;：S公司大部分业务都是购买的第三方的软件，各种变更都受到制约，添加一个小功能都要付费升级。自研能力弱的一个原因可能就是前些年赚钱太容易了，投资研发哪有赚快钱来的舒服呢。同时也是这个原因，多个第三方软件之间也造成了数据割裂，运行维护困难。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;家族企业制约&lt;/strong&gt;：S公司大部分人员都是老板的亲朋好友，家族式企业的优点是内聚力强，但是包容性弱。之前也有一些大厂进来的员工，没多久就辞职了。 我曾经也跟老板沟通过，似乎老板也有心做些变革。但是变革哪有那么容易，要变革不早都变了，还要等到现在？&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;短期主义&lt;/strong&gt;：似乎S公司没有什么具体的愿景，唯一感觉到的愿景就是赚快钱。一旦发现投入的回报太少，就立即切换目标。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;企业关怀差&lt;/strong&gt;：说实在，我没有感觉到多少员工关怀。在S公司的工作和在地主家做短工也没啥区别，老板想什么都要管，但是即管不了那么多，又管的不好。所以给人的感觉就是东一棒槌，西一榔头，看起来很卖力，实际上并没有什么产出。几乎每个月都有人离职，对员工都吝啬，不考虑员工的自尊，员工怎么可能对公司有归属感。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;工作压力大&lt;/strong&gt;：受限于资源收紧、产品优势小，老板想提高营业额的方法是提高员工的服务水平。说实在，这真是杯水车薪。不想着从底层系统的解决问题，只想着通过给员工压力、通过加班来解决问题，只会造成工作压力大、人员流失大。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;所以，我的离职，实际上也是考虑再三的一个选择。&lt;/p&gt;
+&lt;p&gt;当然，我在S公司也不是什么收获都没有。&lt;/p&gt;
+&lt;h1 id=&#34;收获总结&#34;&gt;收获总结&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;深入了解了行业的运行原理、客户、资源、政策等信息&lt;/li&gt;
+&lt;li&gt;对于数据分析方面有了较大的进步，毕竟我做了40+个数据报表来分析运行数据&lt;/li&gt;
+&lt;li&gt;深入学习了python, 主要用来做数据分析。数据分析方面的协议栈主要有pandas、duckdb、doris(MySQL)、grafana来组成&lt;/li&gt;
+&lt;li&gt;深入学习了python的GUI开发，主要用到的框架是wxPython，开发的两个工具分别给到运维人员和客服去使用，来提高运行效率&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
-    
     <item>
       <title>算法 - 入侵脑细胞</title>
       <link>https://wdd.js.org/posts/2023/the-cell/</link>
       <pubDate>Tue, 21 Nov 2023 20:35:02 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2023/the-cell/</guid>
-      <description>我以前看过一部电影，叫做《入侵脑细胞》，这部电影提供一种可能性。类似的电影还有《盗梦空间》，都是将一种思想植入别人的思想中。
-这两部电影虽然提供了可能性，但是却无法提供实际可操作的方案。
-最近在阅读的一本书也于此有关，叫做《对不起，我操控了你的大脑》，是一个叫做剑桥分析、曾轰动世界的公司，利用基于大数据、算法、人工智能、心理学来做思想植入的。常见的领域如操纵大选，并且提供成功的案例。
-但是作为普通人，大规模的思想植入似乎里我们还是比较遥远。
-但是真的那么遥远吗？
-昨天我爸来看我，之前他总是抱怨手机流量不够用。我给他换了每个月180G的流量卡，才过没两三天，他说已经用了20多G了。按照这个速度，180G的流量也不够用一个月。
-我问：“你怎么会用那么多流量！，你用手机看视频的吗？”
-爸说：“我经常刷抖音，刷好久，刷的眼疼”
-我说：“你还是少刷点手机吧”，虽然这只是苍白无力的 一句关心。
-我爸生于70年代，没怎么读过书，小学文凭。现在年近五十，经常带着鸭舌帽，依然遮不住后脑勺斑白的头发。虽然他经常用手机，但是很多东西依然搞不明白，需要找身边的年轻人来帮忙设置手机。
-一个50多岁的人，人生过了大半。面对现在飞速发展的社会，很多东西都已经无法适应。对于他自己来说，也基本上无法改变自己。从第七次人口普查的数据中可以看出，在2020年60+的人口已经占比接近14亿人口的20%了，随着时间的推移，这个占比只会增大。
-对于我爸这类的人，即使刷的眼睛疼，也无法控制自己，还是一直不停的刷。
-由此可见，像这种大公司，制作的超级App有多可怕。能够一直持续的让大脑保持短期兴奋。这种超级App，背后都是心理学家、计算机学家、数据科学家等。 这些专家对待普通大众，就像哥伦布对待印第安人。
-因为我发现他们没有什么信仰，也没有任何崇拜的形象，人们又都很温和，他们无邪得不知道什么是邪恶，从不侵害别人，也不懂得偷窃，没有打斗，特别的温顺 《哥伦布日记》
-或许几十年以后，大部分人的大脑已经退化，也不需要有思考能里。只需要机械的按照刺激-&amp;gt;反应去行动。
-这种进化是一种潮流，绝大多数人都难以幸免。作为一个独立思考的人，我只能尽量避免被影响，远离社交网络。</description>
+      <description>&lt;p&gt;我以前看过一部电影，叫做&lt;a href=&#34;https://movie.douban.com/subject/1293171/&#34;&gt;《入侵脑细胞》&lt;/a&gt;，这部电影提供一种可能性。类似的电影还有《盗梦空间》，都是将一种思想植入别人的思想中。&lt;/p&gt;
+&lt;p&gt;这两部电影虽然提供了可能性，但是却无法提供实际可操作的方案。&lt;/p&gt;
+&lt;p&gt;最近在阅读的一本书也于此有关，叫做&lt;a href=&#34;https://book.douban.com/subject/35264809/&#34;&gt;《对不起，我操控了你的大脑》&lt;/a&gt;，是一个叫做剑桥分析、曾轰动世界的公司，利用基于大数据、算法、人工智能、心理学来做思想植入的。常见的领域如操纵大选，并且提供成功的案例。&lt;/p&gt;
+&lt;p&gt;但是作为普通人，大规模的思想植入似乎里我们还是比较遥远。&lt;/p&gt;
+&lt;p&gt;但是真的那么遥远吗？&lt;/p&gt;
+&lt;p&gt;昨天我爸来看我，之前他总是抱怨手机流量不够用。我给他换了每个月180G的流量卡，才过没两三天，他说已经用了20多G了。按照这个速度，180G的流量也不够用一个月。&lt;/p&gt;
+&lt;p&gt;我问：“你怎么会用那么多流量！，你用手机看视频的吗？”&lt;/p&gt;
+&lt;p&gt;爸说：“我经常刷抖音，刷好久，刷的眼疼”&lt;/p&gt;
+&lt;p&gt;我说：“你还是少刷点手机吧”，虽然这只是苍白无力的 一句关心。&lt;/p&gt;
+&lt;p&gt;我爸生于70年代，没怎么读过书，小学文凭。现在年近五十，经常带着鸭舌帽，依然遮不住后脑勺斑白的头发。虽然他经常用手机，但是很多东西依然搞不明白，需要找身边的年轻人来帮忙设置手机。&lt;/p&gt;
+&lt;p&gt;一个50多岁的人，人生过了大半。面对现在飞速发展的社会，很多东西都已经无法适应。对于他自己来说，也基本上无法改变自己。从第七次人口普查的数据中可以看出，在2020年60+的人口已经占比接近14亿人口的20%了，随着时间的推移，这个占比只会增大。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2023/the-cell/atta/2023-11-22-21-27-50.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;对于我爸这类的人，即使刷的眼睛疼，也无法控制自己，还是一直不停的刷。&lt;/p&gt;
+&lt;p&gt;由此可见，像这种大公司，制作的超级App有多可怕。能够一直持续的让大脑保持短期兴奋。这种超级App，背后都是心理学家、计算机学家、数据科学家等。 这些专家对待普通大众，就像哥伦布对待印第安人。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;因为我发现他们没有什么信仰，也没有任何崇拜的形象，人们又都很温和，他们无邪得不知道什么是邪恶，从不侵害别人，也不懂得偷窃，没有打斗，特别的温顺  《哥伦布日记》&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;或许几十年以后，大部分人的大脑已经退化，也不需要有思考能里。只需要机械的按照刺激-&amp;gt;反应去行动。&lt;/p&gt;
+&lt;p&gt;这种进化是一种潮流，绝大多数人都难以幸免。作为一个独立思考的人，我只能尽量避免被影响，远离社交网络。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>解决 VsCode pwsh终端环境变量不生效问题</title>
       <link>https://wdd.js.org/posts/2023/vscode-pwsh-env-not-work/</link>
       <pubDate>Thu, 16 Nov 2023 08:08:39 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2023/vscode-pwsh-env-not-work/</guid>
-      <description>我在系统的环境变量设置里，用户和系统中，都加入了ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/这个环境变量。
-单独打开windows Terminal应用，使用 env | grep ELE 是能搜到我设置的环境变量的。但是在vscode中，这个环境变量不存在。
-我尝试了以下几个方法
-重启电脑，无效 配置&amp;quot;terminal.integrated.persistentSessionReviveProcess&amp;quot;: &amp;quot;never&amp;quot;, 然后重启电脑，无效 在终端直接执行code ., 在终端打开vscode, 依然无效 因此，我想起了之前配置的pwsh的配置文件。 可以使用code $PROFILE, 打开pwsh的配置文件。
-然后再配置文件中设置环境变量， 之后重启vscode, 环境变量就正常能读取到了。
-# 文件名 Microsoft.PowerShell_profile.ps1 $env:ELECTRON_MIRROR=&amp;#34;https://npmmirror.com/mirrors/electron/&amp;#34; 参考 https://www.zhihu.com/question/266858097 </description>
+      <description>&lt;p&gt;我在系统的环境变量设置里，用户和系统中，都加入了&lt;code&gt;ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/&lt;/code&gt;这个环境变量。&lt;/p&gt;
+&lt;p&gt;单独打开windows Terminal应用，使用 &lt;code&gt;env | grep ELE&lt;/code&gt; 是能搜到我设置的环境变量的。但是在vscode中，这个环境变量不存在。&lt;/p&gt;
+&lt;p&gt;我尝试了以下几个方法&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;重启电脑，无效&lt;/li&gt;
+&lt;li&gt;配置&lt;code&gt;&amp;quot;terminal.integrated.persistentSessionReviveProcess&amp;quot;: &amp;quot;never&amp;quot;&lt;/code&gt;, 然后重启电脑，无效&lt;/li&gt;
+&lt;li&gt;在终端直接执行&lt;code&gt;code .&lt;/code&gt;, 在终端打开vscode, 依然无效&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;因此，我想起了之前配置的pwsh的配置文件。 可以使用&lt;code&gt;code $PROFILE&lt;/code&gt;, 打开pwsh的配置文件。&lt;/p&gt;
+&lt;p&gt;然后再配置文件中设置环境变量， 之后重启vscode, 环境变量就正常能读取到了。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 文件名 Microsoft.PowerShell_profile.ps1
+$env:ELECTRON_MIRROR=&amp;#34;https://npmmirror.com/mirrors/electron/&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;参考&#34;&gt;参考&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.zhihu.com/question/266858097&#34;&gt;https://www.zhihu.com/question/266858097&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
-    
     <item>
       <title>如何选择，汉王Clear7与文石Leaf3</title>
       <link>https://wdd.js.org/posts/2023/hanvon-clear7-vs-book-leaf3/</link>
       <pubDate>Mon, 06 Nov 2023 09:30:34 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2023/hanvon-clear7-vs-book-leaf3/</guid>
-      <description>购买选择 我的kindle pw4已经用了快三年了，机器性能有些不足，电池也有些不够用了。正逢双十一之际，我觉得可以买一个开放系统的电纸书来用用。
-买开放系统的另一个原因是自从亚马逊退出中国后，我用微信读书比较多，也买了微信读书的会员。
-开放系统基本上都是基于安卓系统定制的，可以选择的厂商比较多。
-最终筛选下来，我选择了汉王clear7和文石leaf3， 我下单了两个，觉得先体验一下，然后在退一个。
-然而用了不到两天之后，我还是决定把两个机器都给退了，继续用我的kindle pw4。
-选择因素 就我个人而言，电子书最为重要的选择因素有以下三点。
-显示效果: 说实在的，现在的电子书基本上都是carta1200、300ppi、冷暖光。基本上从显示效果上来说，各大厂家都是半斤八两。就我自己体验而言，我并没有发现汉王的显示效果和文石leaf3有何不同。 握持手感: 外观影响握持手感，外观一般分为两类，一类是就是平板设计，像kindle paperwhite系列。另一类就是书脊式设计，握持更舒适，像kindle os3, 汉王clear7之类的。 简洁系统: 电子书并不是手机，不需要太多的功能，功能太多反而成为累赘 稳定性: 点子产品难免被摔、或者淋水，对于这些意外情况，如果产品非常脆弱，那么很大可能会损失大笔的金额。 续航 文石的缺点 文石和汉王的两款产品，拿到手开机不到一小时，我就决定先退了文石。
-原因有以下几点
-显示效果文石和汉王差不多，没啥突出亮点 握持手感文石肯定比不过汉王的书脊式设计, 并且汉王更轻 文石的系统太复杂，设置太多，甚至还有个iphone类似的小白点设计，小白点点击之后展开很多图标，每个图标我都不知道做什么的 掉电速度，文石的电量肉眼可见的在不断减少 汉王的缺点 微信读书功能阉割, 这不是汉王的问题，而是微信读书自身的问题。例如书架页面，书籍只有一个排序的顺序，就是按照最近阅读的排序。而无法像ios或者安卓app一样能够按照阅读进度排序，另外也没有阅读时长分析的功能。 另外我也注意到，微信读书电纸书版，扫码登录的有效期是24小时，我不知道这是不是意味着24小时之后我又要重新扫码。
-触感光滑，汉王的背板的触感让人感觉非常光滑，感觉稍不注意就会滑下去的样子。完全没有kindle pw4那种拿在手机，就粘在手上的感觉。所以我觉得，买汉王，就必须要买一个保护套，但是官方卖的保护套也太贵了吧，居然要110多块，这点有点像割韭菜。什么保护套能卖那么贵，都快赶上十分之一的电纸书的价格了。
-词典缺陷，汉王的词典也是我要吐槽的功能之一，只能把单词的原型加入到单词本，单词来个复数或者过去分词，就不能加入单词本了。kindle的生词本，所有单词，无论什么形式都能加入单词本。
-掉电速度, 从昨晚五点多开机，到今天早上，基本上没到一天，电池已经掉电接近40%了
-自动关机, 为了省电，汉王在2小时不使用后，会自动关机。然而这个开机时间就有点久，你可设想一下，每天早上，你想看书的时候，你都要等几十秒的开机时间，那你能受得了吗？
-按钮反馈，松松垮垮, 触感没有一致性体验
-结论 目前而言，国产的电纸书系统，除了开放的系统之外，其他各个方面还是存在与kindle有较大的差距。
-当然，如果你从未使用过kindle系列的产品，国产的电纸书还是值得买的。</description>
+      <description>&lt;h1 id=&#34;购买选择&#34;&gt;购买选择&lt;/h1&gt;
+&lt;p&gt;我的kindle pw4已经用了快三年了，机器性能有些不足，电池也有些不够用了。正逢双十一之际，我觉得可以买一个开放系统的电纸书来用用。&lt;/p&gt;
+&lt;p&gt;买开放系统的另一个原因是自从亚马逊退出中国后，我用微信读书比较多，也买了微信读书的会员。&lt;/p&gt;
+&lt;p&gt;开放系统基本上都是基于安卓系统定制的，可以选择的厂商比较多。&lt;/p&gt;
+&lt;p&gt;最终筛选下来，我选择了汉王clear7和文石leaf3， 我下单了两个，觉得先体验一下，然后在退一个。&lt;/p&gt;
+&lt;p&gt;然而用了不到两天之后，我还是决定把两个机器都给退了，继续用我的kindle pw4。&lt;/p&gt;
+&lt;h1 id=&#34;选择因素&#34;&gt;选择因素&lt;/h1&gt;
+&lt;p&gt;就我个人而言，电子书最为重要的选择因素有以下三点。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;显示效果&lt;/strong&gt;: 说实在的，现在的电子书基本上都是carta1200、300ppi、冷暖光。基本上从显示效果上来说，各大厂家都是半斤八两。就我自己体验而言，我并没有发现汉王的显示效果和文石leaf3有何不同。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;握持手感&lt;/strong&gt;: 外观影响握持手感，外观一般分为两类，一类是就是平板设计，像kindle paperwhite系列。另一类就是书脊式设计，握持更舒适，像kindle os3, 汉王clear7之类的。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;简洁系统&lt;/strong&gt;: 电子书并不是手机，不需要太多的功能，功能太多反而成为累赘&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;稳定性&lt;/strong&gt;: 点子产品难免被摔、或者淋水，对于这些意外情况，如果产品非常脆弱，那么很大可能会损失大笔的金额。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;续航&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;文石的缺点&#34;&gt;文石的缺点&lt;/h1&gt;
+&lt;p&gt;文石和汉王的两款产品，拿到手开机不到一小时，我就决定先退了文石。&lt;/p&gt;
+&lt;p&gt;原因有以下几点&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;显示效果文石和汉王差不多，没啥突出亮点&lt;/li&gt;
+&lt;li&gt;握持手感文石肯定比不过汉王的书脊式设计, 并且汉王更轻&lt;/li&gt;
+&lt;li&gt;文石的系统太复杂，设置太多，甚至还有个iphone类似的小白点设计，小白点点击之后展开很多图标，每个图标我都不知道做什么的&lt;/li&gt;
+&lt;li&gt;掉电速度，文石的电量肉眼可见的在不断减少&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;汉王的缺点&#34;&gt;汉王的缺点&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;微信读书功能阉割, 这不是汉王的问题，而是微信读书自身的问题。例如书架页面，书籍只有一个排序的顺序，就是按照最近阅读的排序。而无法像ios或者安卓app一样能够按照阅读进度排序，另外也没有阅读时长分析的功能。 另外我也注意到，微信读书电纸书版，扫码登录的有效期是24小时，我不知道这是不是意味着24小时之后我又要重新扫码。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;触感光滑，汉王的背板的触感让人感觉非常光滑，感觉稍不注意就会滑下去的样子。完全没有kindle pw4那种拿在手机，就粘在手上的感觉。所以我觉得，买汉王，就必须要买一个保护套，但是官方卖的保护套也太贵了吧，居然要110多块，这点有点像割韭菜。什么保护套能卖那么贵，都快赶上十分之一的电纸书的价格了。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;词典缺陷，汉王的词典也是我要吐槽的功能之一，只能把单词的原型加入到单词本，单词来个复数或者过去分词，就不能加入单词本了。kindle的生词本，所有单词，无论什么形式都能加入单词本。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;掉电速度, 从昨晚五点多开机，到今天早上，基本上没到一天，电池已经掉电接近40%了&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;自动关机, 为了省电，汉王在2小时不使用后，会自动关机。然而这个开机时间就有点久，你可设想一下，每天早上，你想看书的时候，你都要等几十秒的开机时间，那你能受得了吗？&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;按钮反馈，松松垮垮, 触感没有一致性体验&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;结论&#34;&gt;结论&lt;/h1&gt;
+&lt;p&gt;目前而言，国产的电纸书系统，除了开放的系统之外，其他各个方面还是存在与kindle有较大的差距。&lt;/p&gt;
+&lt;p&gt;当然，如果你从未使用过kindle系列的产品，国产的电纸书还是值得买的。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>没有免费的Obsidian</title>
       <link>https://wdd.js.org/posts/2023/no-free-obsidian/</link>
       <pubDate>Wed, 25 Oct 2023 16:39:10 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2023/no-free-obsidian/</guid>
-      <description>我看过很多介绍obsidian的文章，除了外观漂亮，功能强大，最为着重前调的就是个人用户免费了。
-对于个人用户，真的免费吗？ 还是说人家并不是免费，只是我们在白嫖罢了。
-我们看看官网关于商业付费的详细解释：
-Obsidian 对于个人是免费的。但是，对于那些拥有两名及以上员工的公司或组织，以商业目的使用 Obsidian 的话，则需要购买商用许可证。所谓商业目的，指的是任何与工作相关的活动，比如记录会议内容、项目笔记，或是创建组织 Wiki 等。与这些活动相关的笔记记录、文档管理、知识管理等都可以视为以商用目的使用 Obsidian。 &amp;ndash;参考商用许可证
-所以，大部分人，包括我都是听话一半，只看前面，不看后面的但是。
-对于大部分上班族来说，如果你再用obsidian，我不太相信你从来没有在obsidian里记录一些工作内容。
-对我个人来说，虽然我的有几百条笔记和工作无关。但是也免不了有一些是和工作有关的的。比如对于某个线上问题的分析，比如记录了一些工作账号信息等等。
-在关于商业付费的例子上，官方还举出了贴心的给出了栗子。
-问题5：我使用 Obsidian 储存所有的知识，无论是个人的还是工作/专业相关的（因为太难区分），我需要购买商用许可证吗？
-回答：如果你的笔记中有内容直接与公司项目相关，并且该公司拥有两名及以上员工，那么你需要购买商用许可证。
-综上所述，即使是个人使用，免费的条件也是极为苛刻的。
-你的笔记不能包含任何商业目的的信息 你可以包含商业目的的信息，但前提是你的公司只有你一个人 假如你是个用Obisian的上班族，我觉得极大的可能你并不符合免费用户的条件。
-或者有一天，当你大学毕业了，进入工作环境，你如果还继续用之前的仓库，那你也不再符合免费用户的条件。
-所以说，不要再逢人就说Obsidian是免费的了。
-Obsidian并不免费，只是我们大部分人都在白嫖罢了。
-我也并不是不愿意花钱，如果要付钱的话，我更想买typeora。
-因为typeora是买断机制，一次性付费89元，终身包用，免费升级，最多可以再三台设备上使用
-Obsidian是订阅机制，每年商业使用要50美元，也就是将近400人民币。</description>
+      <description>&lt;p&gt;我看过很多介绍obsidian的文章，除了外观漂亮，功能强大，最为着重前调的就是个人用户免费了。&lt;/p&gt;
+&lt;p&gt;对于个人用户，真的免费吗？ 还是说人家并不是免费，只是我们在白嫖罢了。&lt;/p&gt;
+&lt;p&gt;我们看看官网关于商业付费的详细解释：&lt;/p&gt;
+&lt;p&gt;Obsidian 对于个人是免费的。但是，对于那些拥有两名及以上员工的公司或组织，以商业目的使用 Obsidian 的话，则需要购买商用许可证。所谓商业目的，指的是任何与工作相关的活动，比如记录会议内容、项目笔记，或是创建组织 Wiki 等。与这些活动相关的笔记记录、文档管理、知识管理等都可以视为以商用目的使用 Obsidian。 &amp;ndash;参考商用许可证&lt;/p&gt;
+&lt;p&gt;所以，大部分人，包括我都是听话一半，只看前面，不看后面的但是。&lt;/p&gt;
+&lt;p&gt;对于大部分上班族来说，如果你再用obsidian，我不太相信你从来没有在obsidian里记录一些工作内容。&lt;/p&gt;
+&lt;p&gt;对我个人来说，虽然我的有几百条笔记和工作无关。但是也免不了有一些是和工作有关的的。比如对于某个线上问题的分析，比如记录了一些工作账号信息等等。&lt;/p&gt;
+&lt;p&gt;在关于商业付费的例子上，官方还举出了贴心的给出了栗子。&lt;/p&gt;
+&lt;p&gt;问题5：我使用 Obsidian 储存所有的知识，无论是个人的还是工作/专业相关的（因为太难区分），我需要购买商用许可证吗？&lt;/p&gt;
+&lt;p&gt;回答：如果你的笔记中有内容直接与公司项目相关，并且该公司拥有两名及以上员工，那么你需要购买商用许可证。&lt;/p&gt;
+&lt;p&gt;综上所述，即使是个人使用，免费的条件也是极为苛刻的。&lt;/p&gt;
+&lt;p&gt;你的笔记不能包含任何商业目的的信息
+你可以包含商业目的的信息，但前提是你的公司只有你一个人
+假如你是个用Obisian的上班族，我觉得极大的可能你并不符合免费用户的条件。&lt;/p&gt;
+&lt;p&gt;或者有一天，当你大学毕业了，进入工作环境，你如果还继续用之前的仓库，那你也不再符合免费用户的条件。&lt;/p&gt;
+&lt;p&gt;所以说，不要再逢人就说Obsidian是免费的了。&lt;/p&gt;
+&lt;p&gt;Obsidian并不免费，只是我们大部分人都在白嫖罢了。&lt;/p&gt;
+&lt;p&gt;我也并不是不愿意花钱，如果要付钱的话，我更想买typeora。&lt;/p&gt;
+&lt;p&gt;因为typeora是买断机制，一次性付费89元，终身包用，免费升级，最多可以再三台设备上使用&lt;/p&gt;
+&lt;p&gt;Obsidian是订阅机制，每年商业使用要50美元，也就是将近400人民币。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Go1.21发布</title>
       <link>https://wdd.js.org/golang/go1.21/</link>
       <pubDate>Thu, 10 Aug 2023 11:20:47 +0800</pubDate>
-      
       <guid>https://wdd.js.org/golang/go1.21/</guid>
-      <description>golang每隔6个月发布一个新的次版本号升级。一般是是2月一个版本，8月一个版本
-语言层面 增加内置函数 min() max() 参考 https://tip.golang.org/ref/spec#Min_and_max
-The built-in functions min and max compute the smallest—or largest, respectively—value of a fixed number of arguments of ordered types. There must be at least one argument.
-The same type rules as for operators apply: for ordered arguments x and y, min(x, y) is valid if x + y is valid, and the type of min(x, y) is the type of x + y (and similarly for max).</description>
+      <description>&lt;p&gt;golang每隔6个月发布一个新的次版本号升级。一般是是2月一个版本，8月一个版本&lt;/p&gt;
+&lt;h1 id=&#34;语言层面&#34;&gt;语言层面&lt;/h1&gt;
+&lt;h2 id=&#34;增加内置函数&#34;&gt;增加内置函数&lt;/h2&gt;
+&lt;h3 id=&#34;min-max&#34;&gt;min() max()&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;参考 &lt;a href=&#34;https://tip.golang.org/ref/spec#Min_and_max&#34;&gt;https://tip.golang.org/ref/spec#Min_and_max&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;The built-in functions min and max compute the smallest—or largest, respectively—value of a fixed number of arguments of ordered types. There must be at least one argument.&lt;/p&gt;
+&lt;p&gt;The same type rules as for operators apply: for ordered arguments x and y, min(x, y) is valid if x + y is valid, and the type of min(x, y) is the type of x + y (and similarly for max). If all arguments are constant, the result is constant.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>困在coc错误弹窗中</title>
       <link>https://wdd.js.org/vim/stuck-in-error-msgfloat-window/</link>
       <pubDate>Mon, 10 Jul 2023 12:27:47 +0800</pubDate>
-      
       <guid>https://wdd.js.org/vim/stuck-in-error-msgfloat-window/</guid>
-      <description>请注意，VIM的光标现在位于错误弹窗上了。光标只能左右移动，无法上线移动。 我的光标被困在了错误提示框中。
-因为错误提示只有一行，所以无法上下移动。
-一直以来，我并没有把错误提示框也看成一个窗口，所以我可能多次按了ctrl + w w, 然后光标跳转到了错误提示框上。
-正常的错误提示框，当光标不在关键词上时，错误弹窗会自动关闭的。 但是由于我已经进入了错误弹窗里面。 所以除非按窗口切换的快捷键，我会始终困在这个错误窗口中。
-我觉得，VIM实在是太博大精深了。很多概念性的理解不到位，就会越到很多困难。 这些困难会给人造成极大的挫折感。
-能解决困难，则学到东西。
-否则就只能放弃VIM, 回到VScode的怀抱中。
-但是，我已经习惯了不使用鼠标的快捷编辑方式。
-我只能学会解决并适应VIM， 并且接受VIM的所有挑战。</description>
+      <description>&lt;p&gt;请注意，VIM的光标现在位于错误弹窗上了。光标只能左右移动，无法上线移动。 我的光标被困在了错误提示框中。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/vim/stuck-in-error-msgfloat-window/atta/2023-07-10-12-30-20.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;因为错误提示只有一行，所以无法上下移动。&lt;/p&gt;
+&lt;p&gt;一直以来，我并没有把错误提示框也看成一个窗口，所以我可能多次按了ctrl + w w, 然后光标跳转到了错误提示框上。&lt;/p&gt;
+&lt;p&gt;正常的错误提示框，当光标不在关键词上时，错误弹窗会自动关闭的。 但是由于我已经进入了错误弹窗里面。 所以除非按窗口切换的快捷键，我会始终困在这个错误窗口中。&lt;/p&gt;
+&lt;p&gt;我觉得，VIM实在是太博大精深了。很多概念性的理解不到位，就会越到很多困难。 这些困难会给人造成极大的挫折感。&lt;/p&gt;
+&lt;p&gt;能解决困难，则学到东西。&lt;/p&gt;
+&lt;p&gt;否则就只能放弃VIM, 回到VScode的怀抱中。&lt;/p&gt;
+&lt;p&gt;但是，我已经习惯了不使用鼠标的快捷编辑方式。&lt;/p&gt;
+&lt;p&gt;我只能学会解决并适应VIM， 并且接受VIM的所有挑战。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>JS运行时构建独立二进制程序比较</title>
       <link>https://wdd.js.org/posts/2023/js-runtime-build-executable/</link>
       <pubDate>Thu, 01 Jun 2023 13:48:00 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2023/js-runtime-build-executable/</guid>
-      <description>很早以前，要运行js，则必须安装nodejs，且没什么办法可以把js直接构建成一个可执行的文件。
-后来出现一个pkg的npm包，可以用来将js打包成可执行的文件。
-我好像用过这个包，但是似乎中间出过一些问题。
-现在是2023年，前端有了新的气象。
-除了nodejs外，还有其他的后来新秀，如deno， 还有最近表火的bun
-另外nodejs本身也开始支持打包独立二进制文件了，但是需要最新的20.x版本，而且我看了它的使用介绍文档，single-executable-applications, 看起来是有有点复杂，光一个构建就写了七八步。
-所以今天只比较一些deno和bun的构建出的文件大小。
-准备的js文件内容
-// app.js console.log(&amp;#34;hello world&amp;#34;) deno构建指令: deno compile --output h1 app.js, 构建产物为h1 bun构建指令: bun build ./app.js --compile --outfile h2, 构建产物为h2
--rw-r--r--@ 1 wangduanduan staff 26B Jun 1 13:34 app.js -rwxrwxrwx@ 1 wangduanduan staff 78M Jun 1 13:59 h1 -rwxrwxrwx@ 1 wangduanduan staff 45M Jun 1 14:01 h2 源代码为26b字节
-deno构建相比于源码的倍数: 3152838 bun构建相比于源码的翻倍: 1804415 deno构建的可执行文件相比bun翻倍：1.7 参考 https://bun.sh/docs/bundler/executables https://deno.com/manual@v1.34.1/tools/compiler https://nodejs.org/api/single-executable-applications.html </description>
+      <description>&lt;p&gt;很早以前，要运行js，则必须安装nodejs，且没什么办法可以把js直接构建成一个可执行的文件。&lt;/p&gt;
+&lt;p&gt;后来出现一个&lt;a href=&#34;https://www.npmjs.com/package/pkg&#34;&gt;pkg&lt;/a&gt;的npm包，可以用来将js打包成可执行的文件。&lt;/p&gt;
+&lt;p&gt;我好像用过这个包，但是似乎中间出过一些问题。&lt;/p&gt;
+&lt;p&gt;现在是2023年，前端有了新的气象。&lt;/p&gt;
+&lt;p&gt;除了nodejs外，还有其他的后来新秀，如&lt;a href=&#34;https://deno.com/&#34;&gt;deno&lt;/a&gt;， 还有最近表火的&lt;a href=&#34;https://bun.sh/&#34;&gt;bun&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;另外nodejs本身也开始支持打包独立二进制文件了，但是需要最新的20.x版本，而且我看了它的使用介绍文档，&lt;a href=&#34;https://nodejs.org/api/single-executable-applications.html&#34;&gt;single-executable-applications&lt;/a&gt;, 看起来是有有点复杂，光一个构建就写了七八步。&lt;/p&gt;
+&lt;p&gt;所以今天只比较一些deno和bun的构建出的文件大小。&lt;/p&gt;
+&lt;p&gt;准备的js文件内容&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// app.js
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hello world&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;deno构建指令: &lt;code&gt;deno compile --output h1 app.js&lt;/code&gt;,  构建产物为h1
+bun构建指令: &lt;code&gt;bun build ./app.js --compile --outfile h2&lt;/code&gt;, 构建产物为h2&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;-rw-r--r--@ 1 wangduanduan  staff    26B Jun  1 13:34 app.js
+-rwxrwxrwx@ 1 wangduanduan  staff    78M Jun  1 13:59 h1
+-rwxrwxrwx@ 1 wangduanduan  staff    45M Jun  1 14:01 h2
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;源代码为26b字节&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;deno构建相比于源码的倍数: 3152838&lt;/li&gt;
+&lt;li&gt;bun构建相比于源码的翻倍: 1804415&lt;/li&gt;
+&lt;li&gt;deno构建的可执行文件相比bun翻倍：1.7&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;参考&#34;&gt;参考&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://bun.sh/docs/bundler/executables&#34;&gt;https://bun.sh/docs/bundler/executables&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://deno.com/manual@v1.34.1/tools/compiler&#34;&gt;https://deno.com/manual@v1.34.1/tools/compiler&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://nodejs.org/api/single-executable-applications.html&#34;&gt;https://nodejs.org/api/single-executable-applications.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
-    
     <item>
       <title>Build Docker Image With Libpcap</title>
       <link>https://wdd.js.org/golang/build-docker-image-with-libpcap/</link>
       <pubDate>Mon, 08 May 2023 11:45:23 +0800</pubDate>
-      
       <guid>https://wdd.js.org/golang/build-docker-image-with-libpcap/</guid>
-      <description>常规构建 一般情况下，我们的Dockerfile可能是下面这样的
-这个Dockerfile使用了多步构建，使用golang:1.19.4作为构建容器，二进制文件构建成功后，单独把文件复制到alpine镜像。 这样做的好处是最后产出的镜像非常小，一般只有十几MB的样子，如果直接使用golang的镜像来构建，镜像体积就可能达到1G左右。 FROM golang:1.19.4 as builder ENV GO111MODULE=on GOPROXY=https://goproxy.cn,direct WORKDIR /app COPY . . RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o run . FROM alpine:3.14.2 WORKDIR /app COPY encdec run.sh /app/ COPY --from=builder /app/run . EXPOSE 3000 ENTRYPOINT [&amp;#34;/app/run&amp;#34;] 依赖libpcap的构建 如果使用了程序使用了libpcap 来抓包，那么除了我们自己代码产生的二进制文件外，可能还会依赖libpcap的文件。常规打包就会报各种错误，例如文件找不到，缺少so文件等等。
-libpcap是一个c库，并不是golang的代码，所以处理起来要不一样。
-下面直接给出Dockerfile
-# 构建的基础镜像换成了alpine镜像 FROM golang:alpine as builder # 将alpine镜像换清华源，这样后续依赖的安装会加快 RUN sed -i &amp;#39;s/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g&amp;#39; /etc/apk/repositories # 安装需要用到的C库，和构建依赖 RUN apk --update add linux-headers musl-dev gcc libpcap-dev # 使用国内的goproxy ENV GO111MODULE=on GOPROXY=https://goproxy.</description>
+      <description>&lt;h1 id=&#34;常规构建&#34;&gt;常规构建&lt;/h1&gt;
+&lt;p&gt;一般情况下，我们的Dockerfile可能是下面这样的&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;这个Dockerfile使用了多步构建，使用golang:1.19.4作为构建容器，二进制文件构建成功后，单独把文件复制到alpine镜像。&lt;/li&gt;
+&lt;li&gt;这样做的好处是最后产出的镜像非常小，一般只有十几MB的样子，如果直接使用golang的镜像来构建，镜像体积就可能达到1G左右。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-Dockerfile&#34; data-lang=&#34;Dockerfile&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; golang:1.19.4 as builder&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;ENV&lt;/span&gt; GO111MODULE&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;on GOPROXY&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;https://goproxy.cn,direct&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;WORKDIR&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; /app&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; . .&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; CGO_ENABLED&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; GOOS&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;linux GOARCH&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;amd64 go build -o run .&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; alpine:3.14.2&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;WORKDIR&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; /app&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; encdec run.sh /app/&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; --from&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;builder /app/run .&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;EXPOSE&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; 3000&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;ENTRYPOINT&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/app/run&amp;#34;&lt;/span&gt;]&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;依赖libpcap的构建&#34;&gt;依赖libpcap的构建&lt;/h1&gt;
+&lt;p&gt;如果使用了程序使用了&lt;a href=&#34;https://pkg.go.dev/github.com/google/gopacket/pcap&#34;&gt;libpcap&lt;/a&gt; 来抓包，那么除了我们自己代码产生的二进制文件外，可能还会依赖libpcap的文件。常规打包就会报各种错误，例如文件找不到，缺少so文件等等。&lt;/p&gt;
+&lt;p&gt;libpcap是一个c库，并不是golang的代码，所以处理起来要不一样。&lt;/p&gt;
+&lt;p&gt;下面直接给出Dockerfile&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-Dockerfile&#34; data-lang=&#34;Dockerfile&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 构建的基础镜像换成了alpine镜像&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; golang:alpine as builder&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 将alpine镜像换清华源，这样后续依赖的安装会加快&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; sed -i &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;s/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g&amp;#39;&lt;/span&gt; /etc/apk/repositories&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 安装需要用到的C库，和构建依赖&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; apk --update add linux-headers musl-dev gcc libpcap-dev&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 使用国内的goproxy&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;ENV&lt;/span&gt; GO111MODULE&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;on GOPROXY&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;https://goproxy.cn,direct&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 设置工作目录&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;WORKDIR&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; /app&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 拷贝go相关的依赖&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; go.mod go.sum ./&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 下载go相关的依赖&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; go mod download&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 复制go代码&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; . .&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 编译go代码&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; CGO_ENABLED&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; GOOS&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;linux GOARCH&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;amd64 go build -a --ldflags &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;-linkmode external -extldflags &amp;#34;-static -s -w&amp;#34;&amp;#39;&lt;/span&gt; -o run main.go&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 使用最小的scratch镜像&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; scratch&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 设置工作目录&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;WORKDIR&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; /app&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 拷贝二进制文件&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; --from&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;builder /app/run .&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;EXPOSE&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; 8086&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;ENTRYPOINT&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/app/run&amp;#34;&lt;/span&gt;]&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;整个Dockerfile比较好理解，重要的部分就是ldflags的参数了，下面着重讲解一下&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Edge浏览器双击标签栏 关闭标签页</title>
       <link>https://wdd.js.org/posts/2022/12/double-click-close-tab/</link>
       <pubDate>Wed, 07 Dec 2022 09:17:59 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2022/12/double-click-close-tab/</guid>
-      <description>在设置里搜索双击，如果有使用双击关闭浏览器选项卡， 则开启。
-对于用鼠标关闭标签页来说，的确可以提高极大的效率。</description>
+      <description>&lt;p&gt;在设置里搜索&lt;strong&gt;双击&lt;/strong&gt;，如果有使用双击关闭浏览器选项卡， 则开启。&lt;/p&gt;
+&lt;p&gt;对于用鼠标关闭标签页来说，的确可以提高极大的效率。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/double-click-close-tab/2022-12-07-09-32-38.png&#34;&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>为什么我不再使用语雀</title>
       <link>https://wdd.js.org/posts/2022/12/why-i-dont-not-use-yuque-any-more/</link>
       <pubDate>Tue, 06 Dec 2022 21:10:38 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2022/12/why-i-dont-not-use-yuque-any-more/</guid>
-      <description>我在2019年的六月份时候，开始使用语雀。
-一路走来，我见证了语雀的功能越来越多，但是于此同时，我也越来越讨厌语雀。
-2022年12月初，我基本上把语雀上的所有内容都迁移到我的hugo博客上。
-我的博客很乱，也很多。我写了一个脚本，一个一个知识库的搬迁，总体速度还算快，唯一不便的就是图片需要一个一个复制粘贴。
-有些图片是用语雀的绘图语言例如plantuml编写的，就只能截图保存了。
-总之，我也是蛮累的。
-简单列一下我不喜欢语雀的几个原因:
-性能差，首页渲染慢，常常要等很久，首页才能打开 产品定位混乱，随意更改用户数据 我记得有时候我把知识库升级成了空间，过了一段时间，不知道为什么空间由变成了知识库。 数字花园这个概念真的很烂。我好好的个人主页，某一天打开，大变样，换了个名字，叫做数字花园。甚至没有给用户一个选择保留老版本的个人主页的权利。太不尊重用户了！！ 就好像你下班回家，看见房门被人撬开，你打开房门，看见有人在你的客厅种满大蒜，然后还兴高采烈的告诉你，看，这是您的数字菜园！多好，以后不用买蒜了。 会员的流量计费规则， 或许现在的计费规则已经变了，我也没有再充会员，但是再以前。即使是会员，也是按流量计费的。什么叫按流量计费，假如你的一篇博客里上传了一张1mb的图片，即使你后来把这个图片删了，这1mb的流量还是会存在。而且流量是一直往上涨的，还不像运营商，每月一号给你清零一次的机会。 </description>
+      <description>&lt;p&gt;我在2019年的六月份时候，开始使用语雀。&lt;/p&gt;
+&lt;p&gt;一路走来，我见证了语雀的功能越来越多，但是于此同时，我也越来越讨厌语雀。&lt;/p&gt;
+&lt;p&gt;2022年12月初，我基本上把语雀上的所有内容都迁移到我的hugo博客上。&lt;/p&gt;
+&lt;p&gt;我的博客很乱，也很多。我写了一个脚本，一个一个知识库的搬迁，总体速度还算快，唯一不便的就是图片需要一个一个复制粘贴。&lt;/p&gt;
+&lt;p&gt;有些图片是用语雀的绘图语言例如plantuml编写的，就只能截图保存了。&lt;/p&gt;
+&lt;p&gt;总之，我也是蛮累的。&lt;/p&gt;
+&lt;p&gt;简单列一下我不喜欢语雀的几个原因:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;性能差，首页渲染慢&lt;/strong&gt;，常常要等很久，首页才能打开&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;产品定位混乱，随意更改用户数据&lt;/strong&gt;
+&lt;ol&gt;
+&lt;li&gt;我记得有时候我把知识库升级成了空间，过了一段时间，不知道为什么空间由变成了知识库。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;数字花园这个概念真的很烂&lt;/strong&gt;。我好好的个人主页，某一天打开，大变样，换了个名字，叫做数字花园。甚至没有给用户一个选择保留老版本的个人主页的权利。&lt;strong&gt;太不尊重用户了&lt;/strong&gt;！！ 就好像你下班回家，看见房门被人撬开，你打开房门，看见有人在你的客厅种满大蒜，然后还兴高采烈的告诉你，看，这是您的数字菜园！多好，以后不用买蒜了。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;会员的流量计费规则&lt;/strong&gt;， 或许现在的计费规则已经变了，我也没有再充会员，但是再以前。即使是会员，也是按流量计费的。什么叫按流量计费，假如你的一篇博客里上传了一张1mb的图片，即使你后来把这个图片删了，这1mb的流量还是会存在。而且流量是一直往上涨的，还不像运营商，每月一号给你清零一次的机会。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description>
     </item>
-    
     <item>
       <title>模块传参的重构</title>
       <link>https://wdd.js.org/opensips/3x/module-args/</link>
       <pubDate>Sat, 03 Dec 2022 21:01:02 +0800</pubDate>
-      
       <guid>https://wdd.js.org/opensips/3x/module-args/</guid>
-      <description>写过opensips脚本的同学，往往对函数的传参感到困惑。
-例如：
-ds_select_dst()可以接受整数或者值为正数的变量作为第一个参数，但是nat_uac_test()的第一个参数就只能是整数，而不能是变量 为什么rl_check()可以接受格式化的字符串，而save()只能接受字符串。 为什么ds_select_dst(&amp;quot;1&amp;quot;, &amp;quot;4&amp;quot;) 作为整数也要加上双引号？ 为什么变量要加上双引号？ ds_select_dst(&amp;quot;$var(aa)&amp;quot;, &amp;quot;4&amp;quot;) 为什么t_on_branch(&amp;quot;1&amp;quot;)路由的钩子要加上双引号？ 为什么route(go_to_something);这里又不需要加上引号？ ds_select_dst(&amp;#34;1&amp;#34;, &amp;#34;0&amp;#34;); $var(aa)=1; ds_select_dst(&amp;#34;$var(aa)&amp;#34;, &amp;#34;0&amp;#34;); rl_check(&amp;#34;gw_$ru&amp;#34;, &amp;#34;$var(limit)&amp;#34;); #格式化的gw_$ru save(&amp;#34;location&amp;#34;); #单纯的字符串作为参数 从3.0开始，传参可以更加自然。
-整数可以直接传参，不用加双引号 do_something(1, 1); 输入或者输出的$var(), 不用加双引号，加了反而会报错 do_something($var(a), $var(b)); 格式化字符串，需要加双引号 do_something(1, &amp;#34;$var(bb)_$var(b)&amp;#34;); 参考 https://blog.opensips.org/2019/11/05/the-module-function-interface-rework-in-opensips-3-0/ https://www.opensips.org/Documentation/Script-Syntax-3-0# </description>
+      <description>&lt;p&gt;写过opensips脚本的同学，往往对函数的传参感到困惑。&lt;/p&gt;
+&lt;p&gt;例如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ds_select_dst()可以接受整数或者值为正数的变量作为第一个参数，但是nat_uac_test()的第一个参数就只能是整数，而不能是变量&lt;/li&gt;
+&lt;li&gt;为什么rl_check()可以接受格式化的字符串，而save()只能接受字符串。&lt;/li&gt;
+&lt;li&gt;为什么&lt;code&gt;ds_select_dst(&amp;quot;1&amp;quot;, &amp;quot;4&amp;quot;)&lt;/code&gt; 作为整数也要加上双引号？&lt;/li&gt;
+&lt;li&gt;为什么变量要加上双引号？ &lt;code&gt;ds_select_dst(&amp;quot;$var(aa)&amp;quot;, &amp;quot;4&amp;quot;)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;为什么&lt;code&gt;t_on_branch(&amp;quot;1&amp;quot;)&lt;/code&gt;路由的钩子要加上双引号？&lt;/li&gt;
+&lt;li&gt;为什么&lt;code&gt;route(go_to_something);&lt;/code&gt;这里又不需要加上引号？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ds_select_dst&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;0&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$var&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;aa&lt;span style=&#34;color:#f92672&#34;&gt;)=&lt;/span&gt;1;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ds_select_dst&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$var&lt;span style=&#34;color:#e6db74&#34;&gt;(aa)&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;0&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rl_check&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;gw_&lt;/span&gt;$ru&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$var&lt;span style=&#34;color:#e6db74&#34;&gt;(limit)&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;#格式化的gw_$ru&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;save&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;location&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;#单纯的字符串作为参数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;从3.0开始，传参可以更加自然。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;整数可以直接传参，不用加双引号&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;do_something&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;1, 1&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;输入或者输出的$var(), 不用加双引号，加了反而会报错&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;do_something&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;$var&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;, $var&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;b&lt;span style=&#34;color:#f92672&#34;&gt;))&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;格式化字符串，需要加双引号&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;do_something&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;1, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;$var&lt;span style=&#34;color:#e6db74&#34;&gt;(bb)_&lt;/span&gt;$var&lt;span style=&#34;color:#e6db74&#34;&gt;(b)&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;参考&#34;&gt;参考&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.opensips.org/2019/11/05/the-module-function-interface-rework-in-opensips-3-0/&#34;&gt;https://blog.opensips.org/2019/11/05/the-module-function-interface-rework-in-opensips-3-0/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.opensips.org/Documentation/Script-Syntax-3-0#&#34;&gt;https://www.opensips.org/Documentation/Script-Syntax-3-0#&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
-    
     <item>
       <title>Pdf学习资料</title>
       <link>https://wdd.js.org/opensips/pdf/</link>
       <pubDate>Sat, 03 Dec 2022 16:02:18 +0800</pubDate>
-      
       <guid>https://wdd.js.org/opensips/pdf/</guid>
-      <description> TelNYX.pdf OpenSIPS 2.3 mediasoup Cutting Edge WebRTC Video COnferencing FreeSWITCH-driven routing in OpenSIPS Voicenter: Contact center on Steroids Vlad_Paiu-Distributed_OpenSIPS_Systems_Cluecon14.pdf Vlad_Paiu-OpenSIPS_Summit_Austin_2015-Async.pdf Ionut_Ionita-OpenSIPS_Summit2017-Capturing_beyond_SIP FLAVIO_GONCALVES-Fraud_in_VoIP_Today.pdf Alexandr_Dubovikov-OpenSIPS_Summit2017-RTC_Threat_Intelligence_Exchange.pdf OpenSIPS_LoadBalancing.pdf Vlad_Paiu-OpenSIPS_Summit_2104-OpenSIPS_End_User_Services.pdf Razvan_Crainea-OpenSIPS_Summit2017-From_SIPI_Trunks_to_End_Users.pdf Razvan_Crainea-OpenSIPS_Summit-Scaling_Asterisk.pdf Vlad_Paiu-OpenSIPS_Summit-Service_Enabling_for_Asterisk.pdf Jonas_Borjesson-OpenSIPS_Summit_Austin_2015.pdf Michele_Pinasi-OpenSIPS_Summit2017-How_we_did_VoIP.pdf Bogdan_Iancu-OpenSIPS_Summit_Keynotes.pdf Giovanni_Maruzselli-OpenSIPS_Summit2017-Scaling_FreeSWITCHes.pdf Maksym_Sobolyev-OpenSIPS_Summit2017-Sippy_Labs_update.pdf docker-cluster.pdf voip malware attack tool .pdf Bogdan_Iancu-OpenSIPS_Summit-OpenSIPS_2_1.pdf Pete_Kelly-OpenSIPS_Workshop_Chicago_2015-Calling_Cards_B2BUA.pdf Bogdan_Iancu-OpenSIPS_Summit-keynotes.pdf Alex_Goulis-Opensips_CNAME.pdf OpenSIPS_2.0_Framework.pdf Norman_Brandinger-OpenSIPS_Summit_2014-Advanced_SIP_Routing_with_OpenSIPS_modules.pdf </description>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;./TelNYX.pdf&#34;&gt;TelNYX.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./OpenSIPS%202.3.pdf&#34;&gt;OpenSIPS 2.3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./mediasoup%20Cutting%20Edge%20WebRTC%20Video%20COnferencing.pdf&#34;&gt;mediasoup Cutting Edge WebRTC Video COnferencing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./FreeSWITCH-driven%20routing%20in%20OpenSIPS.pdf&#34;&gt;FreeSWITCH-driven routing in OpenSIPS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./Contact%20center%20on%20Steroids%20Voicenter.pdf&#34;&gt;Voicenter: Contact center on Steroids&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./Vlad_Paiu-Distributed_OpenSIPS_Systems_Cluecon14.pdf&#34;&gt;Vlad_Paiu-Distributed_OpenSIPS_Systems_Cluecon14.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./Vlad_Paiu-OpenSIPS_Summit_Austin_2015-Async.pdf&#34;&gt;Vlad_Paiu-OpenSIPS_Summit_Austin_2015-Async.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;Ionut_Ionita-OpenSIPS_Summit2017-Capturing_beyond_SIP.pdf&#34;&gt;Ionut_Ionita-OpenSIPS_Summit2017-Capturing_beyond_SIP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;FLAVIO_GONCALVES-Fraud_in_VoIP_Today.pdf&#34;&gt;FLAVIO_GONCALVES-Fraud_in_VoIP_Today.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;Alexandr_Dubovikov-OpenSIPS_Summit2017-RTC_Threat_Intelligence_Exchange.pdf&#34;&gt;Alexandr_Dubovikov-OpenSIPS_Summit2017-RTC_Threat_Intelligence_Exchange.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;OpenSIPS_LoadBalancing.pdf&#34;&gt;OpenSIPS_LoadBalancing.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;Vlad_Paiu-OpenSIPS_Summit_2104-OpenSIPS_End_User_Services.pdf&#34;&gt;Vlad_Paiu-OpenSIPS_Summit_2104-OpenSIPS_End_User_Services.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;Razvan_Crainea-OpenSIPS_Summit2017-From_SIPI_Trunks_to_End_Users.pdf&#34;&gt;Razvan_Crainea-OpenSIPS_Summit2017-From_SIPI_Trunks_to_End_Users.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;Razvan_Crainea-OpenSIPS_Summit-Scaling_Asterisk.pdf&#34;&gt;Razvan_Crainea-OpenSIPS_Summit-Scaling_Asterisk.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;Vlad_Paiu-OpenSIPS_Summit-Service_Enabling_for_Asterisk.pdf&#34;&gt;Vlad_Paiu-OpenSIPS_Summit-Service_Enabling_for_Asterisk.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;Jonas_Borjesson-OpenSIPS_Summit_Austin_2015.pdf&#34;&gt;Jonas_Borjesson-OpenSIPS_Summit_Austin_2015.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;Michele_Pinasi-OpenSIPS_Summit2017-How_we_did_VoIP.pdf&#34;&gt;Michele_Pinasi-OpenSIPS_Summit2017-How_we_did_VoIP.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;Bogdan_Iancu-OpenSIPS_Summit_Keynotes.pdf&#34;&gt;Bogdan_Iancu-OpenSIPS_Summit_Keynotes.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;Giovanni_Maruzselli-OpenSIPS_Summit2017-Scaling_FreeSWITCHes.pdf&#34;&gt;Giovanni_Maruzselli-OpenSIPS_Summit2017-Scaling_FreeSWITCHes.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;Maksym_Sobolyev-OpenSIPS_Summit2017-Sippy_Labs_update.pdf&#34;&gt;Maksym_Sobolyev-OpenSIPS_Summit2017-Sippy_Labs_update.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;docker-cluster.pdf&#34;&gt;docker-cluster.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;./voip%20malware%20attack%20tool%20.pdf&#34;&gt;voip malware attack tool .pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;Bogdan_Iancu-OpenSIPS_Summit-OpenSIPS_2_1.pdf&#34;&gt;Bogdan_Iancu-OpenSIPS_Summit-OpenSIPS_2_1.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;Pete_Kelly-OpenSIPS_Workshop_Chicago_2015-Calling_Cards_B2BUA.pdf&#34;&gt;Pete_Kelly-OpenSIPS_Workshop_Chicago_2015-Calling_Cards_B2BUA.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;Bogdan_Iancu-OpenSIPS_Summit-keynotes.pdf&#34;&gt;Bogdan_Iancu-OpenSIPS_Summit-keynotes.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;Alex_Goulis-Opensips_CNAME.pdf&#34;&gt;Alex_Goulis-Opensips_CNAME.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;OpenSIPS_2.0_Framework.pdf&#34;&gt;OpenSIPS_2.0_Framework.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;Norman_Brandinger-OpenSIPS_Summit_2014-Advanced_SIP_Routing_with_OpenSIPS_modules.pdf&#34;&gt;Norman_Brandinger-OpenSIPS_Summit_2014-Advanced_SIP_Routing_with_OpenSIPS_modules.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
-    
     <item>
       <title>西安之旅 不仅有羊肉泡馍 也有长恨歌</title>
       <link>https://wdd.js.org/posts/2022/12/xian-travel/</link>
       <pubDate>Fri, 02 Dec 2022 20:38:46 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2022/12/xian-travel/</guid>
-      <description>一年过半以后，偶然打开微信公众号，看到草稿箱里的篇文章。我才回想起去年带女友去西安的那个遥远的夏天。
-如今女友已经变成老婆，这篇文章我才想起来发表。
-day 1 钟楼 鼓楼 回民街 那是六月末的时候，和女友一起坐火车去了趟西安。
-为什么要去西安呢？据吃货女友说，西安有非常多的好吃的。所以人生是必须要去一趟的。
-清晨，我们从南京南站出发坐动车，一路向西，坐了5个多小时，到达西安北站。
-路上我带了一个1500ml的水瓶，以及1500ml的酸奶。
-女友吐槽说，还好没做飞机，不然我就像宝强一样，要在机场干完一大瓶酸奶了。
-下了动车，立即前往钟楼订的宾馆，放置行李。
-西安钟楼位于西安市中心，是中国现存钟楼中形制最大、保存最完整的一座。建于明太祖洪武十七年，初建于今广济街口，与鼓楼相对，明神宗万历十年整体迁移于今址。
-沿着钟楼附近，我们逛了一圈回民街。
-回民街是西安著名的美食文化街区，是西安小吃街区。
-西安回民街作为西安风情的代表之一，是回民街区多条街道的统称，由北广济街、北院门、西羊市、大皮院、化觉巷、洒金桥等数条街道组成，在钟鼓楼后。
-钟楼
-day 2 大唐芙蓉城 大唐不夜城 大雁塔 大唐芙蓉城是一座仿唐建筑，里面有许多景点，或许我们不应该早上来，因为上午太热了。
-唯一庆幸的是，我们带了一个很大的水杯，而且芙蓉城里提供免费的开水，所以我们才没有被渴死。
-大唐芙蓉城 西游师徒四人 雕塑
-傍晚的 大唐不夜城
-夜幕降临的 大唐不夜城
-遗憾之一：大雁塔没有去看，因为当时正在维修，周围全是脚手架。 遗憾之二：没有到陕西历史博物馆看看，因为没有早点预约
-女友埋怨我说我不早点做攻略，害得这么多景点去不了。
-我说我是做了攻略的，还记在备忘录里面呢。
-女友打开我的备忘录一看，笑出眼泪说：你做的啥狗屁攻略，就这几个字！男人果然靠不住！
-我说: 这你就不懂了吧，啥都写清楚，一个一个点打卡多没意思。
-day3 华清宫 兵马俑 长恨歌 由于西安攻略做的太过肤浅，所以第二天晚上决定直接跟团。在网上买了两张华清宫兵马俑和长恨歌的一日游。
-说实在的，华清宫没啥意思，都是洗澡池子。
-蒋介石洗过澡的池子，杨贵妃的洗澡池子，唐明皇的洗澡池子，大臣们的洗澡池子。
-逛完之后，下午我们坐着旅游大巴，前往兵马俑。
-一号坑
-一号坑
-一号坑
-一号坑
-一号坑
-兵马俑有三个坑。
-一号坑最大，兵马俑也是最多的。然而当时游客比肩接踵，加上天气炎热，大家都在里面像蒸桑拿一样。
-出了一号坑，我心里想：这么大个坑，这么热为啥不装空调，难道是因为要保护文物吗？
-后来据博物馆的讲解员介绍：不装空调是因为审核手续复杂，可能要要个几十年手续才能完成。像二号坑和三号坑都已经装好空调了。
-二号坑真的是个坑，没有兵马俑，仅仅是个大坑。
-三号坑比较小，仅有几个陶俑。
-长恨歌实际上是一个大型的室外表演，由白居易的《长恨歌》演绎而来，讲述唐明皇和杨贵妃的爱恨情长。灯光绚丽，舞蹈优美，感人至深。
-关于西安美食就很多了
-毛笔酥
-六大碗
-毛笔酥 酸梅汤</description>
+      <description>&lt;p&gt;一年过半以后，偶然打开微信公众号，看到草稿箱里的篇文章。我才回想起去年带女友去西安的那个遥远的夏天。&lt;/p&gt;
+&lt;p&gt;如今女友已经变成老婆，这篇文章我才想起来发表。&lt;/p&gt;
+&lt;h1 id=&#34;day-1-钟楼-鼓楼-回民街&#34;&gt;day 1 钟楼 鼓楼 回民街&lt;/h1&gt;
+&lt;p&gt;那是六月末的时候，和女友一起坐火车去了趟西安。&lt;/p&gt;
+&lt;p&gt;为什么要去西安呢？据吃货女友说，西安有非常多的好吃的。所以人生是必须要去一趟的。&lt;/p&gt;
+&lt;p&gt;清晨，我们从南京南站出发坐动车，一路向西，坐了5个多小时，到达西安北站。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-41-29.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;路上我带了一个1500ml的水瓶，以及1500ml的酸奶。&lt;/p&gt;
+&lt;p&gt;女友吐槽说，还好没做飞机，不然我就像宝强一样，要在机场干完一大瓶酸奶了。&lt;/p&gt;
+&lt;p&gt;下了动车，立即前往钟楼订的宾馆，放置行李。&lt;/p&gt;
+&lt;p&gt;西安钟楼位于西安市中心，是中国现存钟楼中形制最大、保存最完整的一座。建于明太祖洪武十七年，初建于今广济街口，与鼓楼相对，明神宗万历十年整体迁移于今址。&lt;/p&gt;
+&lt;p&gt;沿着钟楼附近，我们逛了一圈回民街。&lt;/p&gt;
+&lt;p&gt;回民街是西安著名的美食文化街区，是西安小吃街区。&lt;/p&gt;
+&lt;p&gt;西安回民街作为西安风情的代表之一，是回民街区多条街道的统称，由北广济街、北院门、西羊市、大皮院、化觉巷、洒金桥等数条街道组成，在钟鼓楼后。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-42-22.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;钟楼&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-42-36.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-42-46.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;day-2-大唐芙蓉城-大唐不夜城-大雁塔&#34;&gt;day 2 大唐芙蓉城 大唐不夜城 大雁塔&lt;/h1&gt;
+&lt;p&gt;大唐芙蓉城是一座仿唐建筑，里面有许多景点，或许我们不应该早上来，因为上午太热了。&lt;/p&gt;
+&lt;p&gt;唯一庆幸的是，我们带了一个很大的水杯，而且芙蓉城里提供免费的开水，所以我们才没有被渴死。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-43-17.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;大唐芙蓉城 西游师徒四人 雕塑&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-44-29.png&#34;&gt;
+傍晚的 大唐不夜城&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-44-43.png&#34;&gt;
+夜幕降临的 大唐不夜城&lt;/p&gt;
+&lt;p&gt;遗憾之一：大雁塔没有去看，因为当时正在维修，周围全是脚手架。
+遗憾之二：没有到陕西历史博物馆看看，因为没有早点预约&lt;/p&gt;
+&lt;p&gt;女友埋怨我说我不早点做攻略，害得这么多景点去不了。&lt;/p&gt;
+&lt;p&gt;我说我是做了攻略的，还记在备忘录里面呢。&lt;/p&gt;
+&lt;p&gt;女友打开我的备忘录一看，笑出眼泪说：你做的啥狗屁攻略，就这几个字！男人果然靠不住！&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-45-24.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;我说: 这你就不懂了吧，啥都写清楚，一个一个点打卡多没意思。&lt;/p&gt;
+&lt;h1 id=&#34;day3-华清宫-兵马俑-长恨歌&#34;&gt;day3 华清宫 兵马俑 长恨歌&lt;/h1&gt;
+&lt;p&gt;由于西安攻略做的太过肤浅，所以第二天晚上决定直接跟团。在网上买了两张华清宫兵马俑和长恨歌的一日游。&lt;/p&gt;
+&lt;p&gt;说实在的，华清宫没啥意思，都是洗澡池子。&lt;/p&gt;
+&lt;p&gt;蒋介石洗过澡的池子，杨贵妃的洗澡池子，唐明皇的洗澡池子，大臣们的洗澡池子。&lt;/p&gt;
+&lt;p&gt;逛完之后，下午我们坐着旅游大巴，前往兵马俑。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-46-08.png&#34;&gt;
+一号坑&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-46-18.png&#34;&gt;
+一号坑&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-46-33.png&#34;&gt;
+一号坑&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-46-45.png&#34;&gt;
+一号坑&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-47-01.png&#34;&gt;
+一号坑&lt;/p&gt;
+&lt;p&gt;兵马俑有三个坑。&lt;/p&gt;
+&lt;p&gt;一号坑最大，兵马俑也是最多的。然而当时游客比肩接踵，加上天气炎热，大家都在里面像蒸桑拿一样。&lt;/p&gt;
+&lt;p&gt;出了一号坑，我心里想：这么大个坑，这么热为啥不装空调，难道是因为要保护文物吗？&lt;/p&gt;
+&lt;p&gt;后来据博物馆的讲解员介绍：不装空调是因为审核手续复杂，可能要要个几十年手续才能完成。像二号坑和三号坑都已经装好空调了。&lt;/p&gt;
+&lt;p&gt;二号坑真的是个坑，没有兵马俑，仅仅是个大坑。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

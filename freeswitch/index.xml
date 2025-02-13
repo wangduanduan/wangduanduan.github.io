@@ -9,219 +9,547 @@
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 01 Jun 2022 08:27:53 +0800</lastBuildDate><atom:link href="https://wdd.js.org/freeswitch/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Jun 2022 08:27:53 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/freeswitch/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>WebRTC 人声检测与舒适噪音</title>
       <link>https://wdd.js.org/freeswitch/webrtc-vad-cng/</link>
       <pubDate>Wed, 01 Jun 2022 08:27:53 +0800</pubDate>
-      
       <guid>https://wdd.js.org/freeswitch/webrtc-vad-cng/</guid>
-      <description>人声检测 VAD 人声检测(VAD: Voice Activity Detection)是区分语音中是人说话的声音，还是其他例如环境音的一种功能。
-除此以外，人声检测还能用于减少网络中语音包传输的数据量，从而极大的降低语音的带宽，极限情况下能降低50%的带宽。
-在一个通话中，一般都是只有一个人说话，另一人听。很少可能是两个人都说话的。
-例如A在说话的时候，B可能在等待。
-虽然B在等待过程中，B的语音流依然再按照原始速度和编码再发给A, 即使这里面是环境噪音或者是无声。
-A ----&amp;gt; B # A在说话 A &amp;lt;--- B # B在等待过程中，B的语音流依然再按照原始速度和编码再发给A 如果B具有VAD检测功能，那么B就可以在不说话的时候，发送特殊标记的语音流或者通过减少语音流发送的频率，来减少无意义语音的发送。
-从而极大的降低B-&amp;gt;A的语音流。
-下图是Wireshark抓包的两种RTP包，g711编码的占214字节，但是用舒适噪音编码的只有63字节。将近减少了4倍的带宽。
-舒适噪音生成器 CNG 舒适噪音(CN stands for Comfort Noise), 是一种模拟的背景环境音。舒适噪音生成器在接收端根据发送到给的参数，来产生类似接收端的舒适噪音, 用来模拟发送方的噪音环境。
-CN也是一种RTP包的格式，定义在RFC 3389
-舒适噪音的payload, 也被称作静音插入描述帧(SID: a Silence Insertion Descriptor frame), 包括一个字节的数据，用来描述噪音的级别。也可以包含其他的额外的数据。早期版本的舒适噪音的格式定义在RFC 1890中，这个版本的格式只包含一个字段，就是噪音级别。
-噪音级别占用一个字节，其中第一个bit必须是0， 因此噪音级别有127中可能。
-0 1 2 3 4 5 6 7 +-+-+-+-+-+-+-+-+ |0| level | +-+-+-+-+-+-+-+-+ 跟着噪音级别的后续字节都是声音的频谱信息。
-Byte 1 2 3 ... M+1 +-----+-----+-----+-----+-----+ |level| N1 | N2 | .</description>
+      <description>&lt;h1 id=&#34;人声检测-vad&#34;&gt;人声检测 VAD&lt;/h1&gt;
+&lt;p&gt;人声检测(VAD: Voice Activity Detection)是区分语音中是人说话的声音，还是其他例如环境音的一种功能。&lt;/p&gt;
+&lt;p&gt;除此以外，人声检测还能用于减少网络中语音包传输的数据量，从而极大的降低语音的带宽，极限情况下能降低50%的带宽。&lt;/p&gt;
+&lt;p&gt;在一个通话中，一般都是只有一个人说话，另一人听。很少可能是两个人都说话的。&lt;/p&gt;
+&lt;p&gt;例如A在说话的时候，B可能在等待。&lt;/p&gt;
+&lt;p&gt;虽然B在等待过程中，B的语音流依然再按照原始速度和编码再发给A, 即使这里面是环境噪音或者是无声。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-log&#34; data-lang=&#34;log&#34;&gt;A ----&amp;gt; B # A在说话
+A &amp;lt;---  B # B在等待过程中，B的语音流依然再按照原始速度和编码再发给A
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果B具有VAD检测功能，那么B就可以在不说话的时候，发送特殊标记的语音流或者通过减少语音流发送的频率，来减少无意义语音的发送。&lt;/p&gt;
+&lt;p&gt;从而极大的降低B-&amp;gt;A的语音流。&lt;/p&gt;
+&lt;p&gt;下图是Wireshark抓包的两种RTP包，g711编码的占214字节，但是用舒适噪音编码的只有63字节。将近减少了4倍的带宽。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/images/Xnip2022-06-01_14-08-05.jpg&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;舒适噪音生成器-cng&#34;&gt;舒适噪音生成器 CNG&lt;/h1&gt;
+&lt;p&gt;舒适噪音(CN stands for Comfort Noise), 是一种模拟的背景环境音。舒适噪音生成器在接收端根据发送到给的参数，来产生类似接收端的舒适噪音, 用来模拟发送方的噪音环境。&lt;/p&gt;
+&lt;p&gt;CN也是一种RTP包的格式，定义在&lt;a href=&#34;https://www.rfc-editor.org/rfc/rfc3389&#34;&gt;RFC 3389&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;舒适噪音的payload, 也被称作静音插入描述帧(SID: a Silence Insertion Descriptor frame), 包括一个字节的数据，用来描述噪音的级别。也可以包含其他的额外的数据。早期版本的舒适噪音的格式定义在RFC 1890中，这个版本的格式只包含一个字段，就是噪音级别。&lt;/p&gt;
+&lt;p&gt;噪音级别占用一个字节，其中第一个bit必须是0， 因此噪音级别有127中可能。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt; 0 1 2 3 4 5 6 7
++-+-+-+-+-+-+-+-+
+|0|   level     |
++-+-+-+-+-+-+-+-+
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;跟着噪音级别的后续字节都是声音的频谱信息。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Byte        1      2    3    ...   M+1
+       +-----+-----+-----+-----+-----+
+       |level|  N1 |  N2 | ... |  NM |
+       +-----+-----+-----+-----+-----+
+
+Figure 2: CN Payload Packing Format
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在SIP INVITE的SDP中也可以看到编码，如下面的CN&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>安装bcg729模块</title>
       <link>https://wdd.js.org/freeswitch/install-bcg729/</link>
       <pubDate>Sat, 28 May 2022 17:34:13 +0800</pubDate>
-      
       <guid>https://wdd.js.org/freeswitch/install-bcg729/</guid>
-      <description>g729编码的占用带宽是g711的1/8，使用g729编码，可以极大的降低带宽的费用。fs原生的mod_g927模块是需要按并发数收费的，但是我们可以使用开源的bcg729模块。
-这里需要准备两个仓库，为了加快clone速度，我将这两个模块导入到gitee上。
-https://gitee.com/wangduanduan/mod_bcg729 https://gitee.com/wangduanduan/bcg729 安装前提 已经安装好了freeswitch, 编译mod_bcg729模块，需要指定freeswitch头文件的位置
-step0: 切换到工作目录 cd /usr/local/src/ step1: clone mod_bcg729 git clone https://gitee.com/wangduanduan/mod_bcg729.git step2: clone bcg729 mod_bcg729模块在编辑的时候，会检查当前目录下有没有bcg729的目录。 如果没有这个目录，就会从github上clone bcg729的项目。 所以我们可以在编译之前，先把bcg729 clone到mob_bcg729目录下
-cd mod_bcg729 git clone https://gitee.com/wangduanduan/bcg729.git step3: 编辑mod_bcg729 编译mod_bcg729需要指定fs头文件switch.h的位置。 在Makefile项目里有FS_INCLUDES这个变量用来定义fs头文件的位置
-FS_INCLUDES=/usr/include/freeswitch FS_MODULES=/usr/lib/freeswitch/mod 如果你的源码头文件路径不是/usr/include/freeswitch， 则需要在执行make命令时通过参数指定， 例如下面编译的时候。
-make FS_INCLUDES=/usr/local/freeswitch/include/freeswitch Tip 如何找到头文件的目录？ 头文件一般在fs安装目录的include/freeswitch目录下 如果还是找不到，则可以使用 find /usr -name switch.h -type f 搜索对应的头文件 step4: 复制so文件 mod_bcg729编译之后，可以把生成的mod_bcg729.so拷贝到fs安装目录的mod目录下
-step5: 加载模块 命令行加载
-load mod_bcg729 配置文件加载 命令行加载重启后就失效了，可以将加载的模块写入到配置文件中。 在modules.conf.xml中加入
-&amp;lt;load module=&amp;#34;mod_bcg729&amp;#34;/&amp;gt; step5: vars.xml修改 &amp;lt;X-PRE-PROCESS cmd=&amp;#34;set&amp;#34; data=&amp;#34;global_codec_prefs=PCMU,PCMA,G729&amp;#34; /&amp;gt; &amp;lt;X-PRE-PROCESS cmd=&amp;#34;set&amp;#34; data=&amp;#34;outbound_codec_prefs=PCMU,PCMA,G729&amp;#34;/&amp;gt; &amp;lt;X-PRE-PROCESScmd=&amp;#34;set&amp;#34;data=&amp;#34;media_mix_inbound_outbound_codecs=true&amp;#34;/&amp;gt; step6: sip profile修改 开启转码</description>
+      <description>&lt;p&gt;g729编码的占用带宽是g711的1/8，使用g729编码，可以极大的降低带宽的费用。fs原生的mod_g927模块是需要按并发数收费的，但是我们可以使用开源的bcg729模块。&lt;/p&gt;
+&lt;p&gt;这里需要准备两个仓库，为了加快clone速度，我将这两个模块导入到gitee上。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://gitee.com/wangduanduan/mod_bcg729&#34;&gt;https://gitee.com/wangduanduan/mod_bcg729&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://gitee.com/wangduanduan/bcg729&#34;&gt;https://gitee.com/wangduanduan/bcg729&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;安装前提
+已经安装好了freeswitch, 编译mod_bcg729模块，需要指定freeswitch头文件的位置&lt;/p&gt;
+&lt;h1 id=&#34;step0-切换到工作目录&#34;&gt;step0: 切换到工作目录&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cd /usr/local/src/
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;step1-clone-mod_bcg729&#34;&gt;step1: clone mod_bcg729&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git clone https://gitee.com/wangduanduan/mod_bcg729.git
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;step2-clone-bcg729&#34;&gt;step2: clone bcg729&lt;/h1&gt;
+&lt;p&gt;mod_bcg729模块在编辑的时候，会检查当前目录下有没有bcg729的目录。
+如果没有这个目录，就会从github上clone bcg729的项目。
+所以我们可以在编译之前，先把bcg729 clone到mob_bcg729目录下&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cd mod_bcg729
+git clone https://gitee.com/wangduanduan/bcg729.git
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;step3-编辑mod_bcg729&#34;&gt;step3: 编辑mod_bcg729&lt;/h1&gt;
+&lt;p&gt;编译mod_bcg729需要指定fs头文件switch.h的位置。
+在Makefile项目里有FS_INCLUDES这个变量用来定义fs头文件的位置&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;FS_INCLUDES=/usr/include/freeswitch
+FS_MODULES=/usr/lib/freeswitch/mod
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果你的源码头文件路径不是/usr/include/freeswitch， 则需要在执行make命令时通过参数指定， 例如下面编译的时候。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;make FS_INCLUDES=/usr/local/freeswitch/include/freeswitch
+&lt;/code&gt;&lt;/pre&gt;&lt;div class=&#34;notice tip&#34;&gt;
+  &lt;div class=&#34;notice-title&#34;&gt;
+    &lt;i class=&#34;fa fa-lightbulb-o&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;Tip
+  &lt;/div&gt;
+  &lt;div class=&#34;notice-content&#34;&gt;如何找到头文件的目录？
+头文件一般在fs安装目录的include/freeswitch目录下
+如果还是找不到，则可以使用 find /usr -name switch.h -type f  搜索对应的头文件&lt;/div&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;step4-复制so文件&#34;&gt;step4: 复制so文件&lt;/h1&gt;
+&lt;p&gt;mod_bcg729编译之后，可以把生成的mod_bcg729.so拷贝到fs安装目录的mod目录下&lt;/p&gt;
+&lt;h1 id=&#34;step5-加载模块&#34;&gt;step5: 加载模块&lt;/h1&gt;
+&lt;p&gt;命令行加载&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;load mod_bcg729
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;配置文件加载
+命令行加载重启后就失效了，可以将加载的模块写入到配置文件中。
+在modules.conf.xml中加入&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;load module=&amp;#34;mod_bcg729&amp;#34;/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;step5-varsxml修改&#34;&gt;step5: vars.xml修改&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt; &amp;lt;X-PRE-PROCESS cmd=&amp;#34;set&amp;#34; data=&amp;#34;global_codec_prefs=PCMU,PCMA,G729&amp;#34; /&amp;gt;
+ &amp;lt;X-PRE-PROCESS cmd=&amp;#34;set&amp;#34; data=&amp;#34;outbound_codec_prefs=PCMU,PCMA,G729&amp;#34;/&amp;gt;
+ &amp;lt;X-PRE-PROCESScmd=&amp;#34;set&amp;#34;data=&amp;#34;media_mix_inbound_outbound_codecs=true&amp;#34;/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;step6-sip-profile修改&#34;&gt;step6: sip profile修改&lt;/h1&gt;
+&lt;p&gt;开启转码&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>会议提示音无法正常播放</title>
       <link>https://wdd.js.org/freeswitch/conference-announce/</link>
       <pubDate>Sat, 28 May 2022 17:17:54 +0800</pubDate>
-      
       <guid>https://wdd.js.org/freeswitch/conference-announce/</guid>
-      <description>呼入到会议，正常来说，当会议室有且只有一人时，应该会报“当前只有一人的提示音”。但是测试的时候，输入了密码，进入了会议，却没有播报正常的提示音。
-经过排查发现，dialplan中，会议室的名字中含有@符号。
-按照fs的文档，发现@后面应该是profilename, 然而fs的conference.conf.xml却没有这个profile, 进而导致语音无法播报的问题。所以只要加入这个profile, 或者直接用@default, 就可以正确的播报语音了。
-Action data Description confname profile is &amp;ldquo;default&amp;rdquo;, no flags or pin confname+1234 profile is &amp;ldquo;default&amp;rdquo;, pin is 1234 confname@profilename+1234 profile is &amp;ldquo;profilename&amp;rdquo;, pin=1234, no flags confname+1234+flags{mute} profile is &amp;ldquo;default&amp;rdquo;, pin=1234, one flag confname++flags{endconf|moderator} profile is &amp;ldquo;default&amp;rdquo;, no p.i.n., multiple flags bridge:confname:1000@${domain_name} a &amp;ldquo;bridging&amp;rdquo; conference, you must provide another endpoint, or &amp;rsquo;none&#39;. bridge:uuid:none a &amp;ldquo;bridging&amp;rdquo; conference with UUID assigned as conference name 所以，当你遇到问题的时候，应该仔细的再去阅读一下官方的接口文档。
-参考文档</description>
+      <description>&lt;p&gt;呼入到会议，正常来说，当会议室有且只有一人时，应该会报“当前只有一人的提示音”。但是测试的时候，输入了密码，进入了会议，却没有播报正常的提示音。&lt;/p&gt;
+&lt;p&gt;经过排查发现，dialplan中，会议室的名字中含有@符号。&lt;/p&gt;
+&lt;p&gt;按照fs的文档，发现@后面应该是profilename, 然而fs的conference.conf.xml却没有这个profile, 进而导致语音无法播报的问题。所以只要加入这个profile, 或者直接用@default, 就可以正确的播报语音了。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Action data&lt;/th&gt;
+          &lt;th&gt;Description&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;confname&lt;/td&gt;
+          &lt;td&gt;profile is &amp;ldquo;default&amp;rdquo;, no flags or pin&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;confname+1234&lt;/td&gt;
+          &lt;td&gt;profile is &amp;ldquo;default&amp;rdquo;, pin is 1234&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;confname@profilename+1234&lt;/td&gt;
+          &lt;td&gt;profile is &amp;ldquo;profilename&amp;rdquo;, pin=1234, no flags&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;confname+1234+flags{mute}&lt;/td&gt;
+          &lt;td&gt;profile is &amp;ldquo;default&amp;rdquo;, pin=1234, one flag&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;confname++flags{endconf|moderator}&lt;/td&gt;
+          &lt;td&gt;profile is &amp;ldquo;default&amp;rdquo;, no p.i.n., multiple flags&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;bridge:confname:1000@${domain_name}&lt;/td&gt;
+          &lt;td&gt;a &amp;ldquo;bridging&amp;rdquo; conference, you must provide another endpoint, or &amp;rsquo;none&#39;.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;bridge:&lt;em&gt;uuid&lt;/em&gt;:none&lt;/td&gt;
+          &lt;td&gt;a &amp;ldquo;bridging&amp;rdquo; conference with UUID assigned as conference name&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;所以，当你遇到问题的时候，应该仔细的再去阅读一下官方的接口文档。&lt;/p&gt;
+&lt;p&gt;参考文档&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>FS日志设置</title>
       <link>https://wdd.js.org/freeswitch/log-settings/</link>
       <pubDate>Sat, 28 May 2022 17:14:05 +0800</pubDate>
-      
       <guid>https://wdd.js.org/freeswitch/log-settings/</guid>
-      <description>开启sip信令的日志 这样会让fs把收发的sip信令打印到fs_cli里面，但不是日志文件里面
-sofia global siptrace on # sofia global siptrace off 关闭 开启sofia模块的日志 sofia 模块的日志即使开启，也是输出到fs_cli里面的，不会输出到日志文件里面
-sofia loglevel all 7 # sofia loglevel &amp;lt;all|default|tport|iptsec|nea|nta|nth_client|nth_server|nua|soa|sresolv|stun&amp;gt; [0-9] 将fs_cli的输出，写到日志文件里 sofia tracelevel 会将某些日志重定向到日志文件里 sofia tracelevel debug # sofia tracelevel &amp;lt;console|alert|crit|err|warning|notice|info|debug&amp;gt; 注意，debug级别的日志非常多，仅仅适用于debug
-大量的日志写入磁盘
-占用太多的io 磁盘空间可能很快占满 </description>
+      <description>&lt;h1 id=&#34;开启sip信令的日志&#34;&gt;开启sip信令的日志&lt;/h1&gt;
+&lt;p&gt;这样会让fs把收发的sip信令打印到fs_cli里面，但不是日志文件里面&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sofia global siptrace on
+
+# sofia global siptrace off 关闭
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;开启sofia模块的日志&#34;&gt;开启sofia模块的日志&lt;/h1&gt;
+&lt;p&gt;sofia 模块的日志即使开启，也是输出到fs_cli里面的，不会输出到日志文件里面&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sofia loglevel all 7
+# sofia loglevel &amp;lt;all|default|tport|iptsec|nea|nta|nth_client|nth_server|nua|soa|sresolv|stun&amp;gt; [0-9]
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;将fs_cli的输出写到日志文件里&#34;&gt;将fs_cli的输出，写到日志文件里&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sofia tracelevel 会将某些日志重定向到日志文件里
+
+sofia tracelevel debug
+
+# sofia tracelevel &amp;lt;console|alert|crit|err|warning|notice|info|debug&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;注意，debug级别的日志非常多，仅仅适用于debug&lt;/p&gt;
+&lt;p&gt;大量的日志写入磁盘&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;占用太多的io&lt;/li&gt;
+&lt;li&gt;磁盘空间可能很快占满&lt;/li&gt;
+&lt;/ol&gt;</description>
     </item>
-    
     <item>
       <title>Sofia 模块全部配置</title>
       <link>https://wdd.js.org/freeswitch/sofia-config/</link>
       <pubDate>Sat, 28 May 2022 14:57:59 +0800</pubDate>
-      
       <guid>https://wdd.js.org/freeswitch/sofia-config/</guid>
-      <description>About Sofia is a FreeSWITCH™ module (mod_sofia) that provides SIP connectivity to and from FreeSWITCH in the form of a User Agent. A &amp;ldquo;User Agent&amp;rdquo; (&amp;ldquo;UA&amp;rdquo;) is an application used for handling a certain network protocol; the network protocol in Sofia&amp;rsquo;s case is SIP. Sofia is the general name of any User Agent in FreeSWITCH using the SIP network protocol. For example, Sofia receives calls sent to FreeSWITCH from other SIP User Agents (UAs), sends calls to other UAs, acts as a client to register FreeSWITCH with other UAs, lets clients register with FreeSWITCH, and connects calls (i.</description>
+      <description>&lt;h1 id=&#34;about&#34;&gt;About&lt;/h1&gt;
+&lt;p&gt;Sofia is a  FreeSWITCH™ module (&lt;a href=&#34;https://freeswitch.org/confluence/display/FREESWITCH/mod_sofia&#34;&gt;mod_sofia&lt;/a&gt;) that provides SIP connectivity to and from FreeSWITCH in the form of a User Agent.
+A &amp;ldquo;User Agent&amp;rdquo; (&amp;ldquo;UA&amp;rdquo;) is an application used for handling a certain network protocol; the network protocol in Sofia&amp;rsquo;s case is SIP. Sofia is the general name of any User Agent in FreeSWITCH using the SIP network protocol.
+For example, Sofia receives calls sent to FreeSWITCH from other SIP User Agents (UAs), sends calls to other UAs, acts as a client to register FreeSWITCH with other UAs, lets clients register with FreeSWITCH, and connects calls (i.e., to local extensions).
+To add a SIP Provider (Sofia User Agent) to your FreeSWITCH, please see the &lt;a href=&#34;https://freeswitch.org/confluence/display/FREESWITCH/Interoperability&#34;&gt;Interoperability Examples&lt;/a&gt; and add the SIP Provider information in an .xml file stored under conf/sip_profiles/&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>FS常用运维手册</title>
       <link>https://wdd.js.org/freeswitch/tips/</link>
       <pubDate>Sat, 28 May 2022 14:54:40 +0800</pubDate>
-      
       <guid>https://wdd.js.org/freeswitch/tips/</guid>
-      <description>安装单个模块 make mod_sofia-install make mod_ilbc-install fs-cli事件订阅 /event plain ALL /event plain CHANNEL_ANSWER sofia 帮助文档 sofia help USAGE: -------------------------------------------------------------------------------- sofia global siptrace &amp;lt;on|off&amp;gt; sofia capture &amp;lt;on|off&amp;gt; watchdog &amp;lt;on|off&amp;gt; sofia profile &amp;lt;name&amp;gt; [start | stop | restart | rescan] [wait] flush_inbound_reg [&amp;lt;call_id&amp;gt; | &amp;lt;[user]@domain&amp;gt;] [reboot] check_sync [&amp;lt;call_id&amp;gt; | &amp;lt;[user]@domain&amp;gt;] [register | unregister] [&amp;lt;gateway name&amp;gt; | all] killgw &amp;lt;gateway name&amp;gt; [stun-auto-disable | stun-enabled] [true | false]] siptrace &amp;lt;on|off&amp;gt; capture &amp;lt;on|off&amp;gt; watchdog &amp;lt;on|off&amp;gt; sofia &amp;lt;status|xmlstatus&amp;gt; profile &amp;lt;name&amp;gt; [reg [&amp;lt;contact str&amp;gt;]] | [pres &amp;lt;pres str&amp;gt;] | [user &amp;lt;user@domain&amp;gt;] sofia &amp;lt;status|xmlstatus&amp;gt; gateway &amp;lt;name&amp;gt; sofia loglevel &amp;lt;all|default|tport|iptsec|nea|nta|nth_client|nth_server|nua|soa|sresolv|stun&amp;gt; [0-9] sofia tracelevel &amp;lt;console|alert|crit|err|warning|notice|info|debug&amp;gt; sofia help -------------------------------------------------------------------------------- 开启消息头压缩 &amp;lt;param name=&amp;#34;enable-compact-headers&amp;#34; value=&amp;#34;true&amp;#34;/&amp;gt; fs需要重启</description>
+      <description>&lt;h1 id=&#34;安装单个模块&#34;&gt;安装单个模块&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;make mod_sofia-install
+make mod_ilbc-install
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;fs-cli事件订阅&#34;&gt;fs-cli事件订阅&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;/event plain ALL
+/event plain CHANNEL_ANSWER
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;sofia-帮助文档&#34;&gt;sofia 帮助文档&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sofia help
+
+
+USAGE:
+--------------------------------------------------------------------------------
+sofia global siptrace &amp;lt;on|off&amp;gt;
+sofia        capture  &amp;lt;on|off&amp;gt;
+             watchdog &amp;lt;on|off&amp;gt;
+
+sofia profile &amp;lt;name&amp;gt; [start | stop | restart | rescan] [wait]
+                     flush_inbound_reg [&amp;lt;call_id&amp;gt; | &amp;lt;[user]@domain&amp;gt;] [reboot]
+                     check_sync [&amp;lt;call_id&amp;gt; | &amp;lt;[user]@domain&amp;gt;]
+                     [register | unregister] [&amp;lt;gateway name&amp;gt; | all]
+                     killgw &amp;lt;gateway name&amp;gt;
+                     [stun-auto-disable | stun-enabled] [true | false]]
+                     siptrace &amp;lt;on|off&amp;gt;
+                     capture  &amp;lt;on|off&amp;gt;
+                     watchdog &amp;lt;on|off&amp;gt;
+
+sofia &amp;lt;status|xmlstatus&amp;gt; profile &amp;lt;name&amp;gt; [reg [&amp;lt;contact str&amp;gt;]] | [pres &amp;lt;pres str&amp;gt;] | [user &amp;lt;user@domain&amp;gt;]
+sofia &amp;lt;status|xmlstatus&amp;gt; gateway &amp;lt;name&amp;gt;
+
+sofia loglevel &amp;lt;all|default|tport|iptsec|nea|nta|nth_client|nth_server|nua|soa|sresolv|stun&amp;gt; [0-9]
+sofia tracelevel &amp;lt;console|alert|crit|err|warning|notice|info|debug&amp;gt;
+
+sofia help
+--------------------------------------------------------------------------------
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;开启消息头压缩&#34;&gt;开启消息头压缩&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;param name=&amp;#34;enable-compact-headers&amp;#34; value=&amp;#34;true&amp;#34;/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;fs需要重启&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>FreeSWITCH 媒体相关操作</title>
       <link>https://wdd.js.org/freeswitch/media-settings/</link>
       <pubDate>Sat, 28 May 2022 14:50:55 +0800</pubDate>
-      
       <guid>https://wdd.js.org/freeswitch/media-settings/</guid>
-      <description>查看FS支持的编码 show codec 编码设置 vars.xml
-global_codec_prefs=G722,PCMU,PCMA,GSM outbound_codec_prefs=PCMU,PCMA,GSM 查看FS使用的编码 &amp;gt; sofia status profile internal CODECS IN ILBC,PCMU,PCMA,GSM CODECS OUT ILBC,PCMU,PCMA,GSM &amp;gt; sofia status profile external CODECS IN ILBC,PCMU,PCMA,GSM CODECS OUT ILBC,PCMU,PCMA,GSM 使修改后的profile生效 &amp;gt; sofia profile internal rescan &amp;gt; sofia profile external rescan 重启profile &amp;gt; sofia profile internal restart &amp;gt; sofia profile external restart </description>
+      <description>&lt;h1 id=&#34;查看fs支持的编码&#34;&gt;查看FS支持的编码&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;show codec
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;编码设置&#34;&gt;编码设置&lt;/h1&gt;
+&lt;p&gt;vars.xml&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;global_codec_prefs=G722,PCMU,PCMA,GSM
+outbound_codec_prefs=PCMU,PCMA,GSM
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;查看fs使用的编码&#34;&gt;查看FS使用的编码&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;gt; sofia status profile internal
+CODECS IN         ILBC,PCMU,PCMA,GSM
+CODECS OUT        ILBC,PCMU,PCMA,GSM
+
+&amp;gt; sofia status profile external
+CODECS IN         ILBC,PCMU,PCMA,GSM
+CODECS OUT        ILBC,PCMU,PCMA,GSM
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;使修改后的profile生效&#34;&gt;使修改后的profile生效&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;gt; sofia profile internal rescan
+&amp;gt; sofia profile external rescan
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;重启profile&#34;&gt;重启profile&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;gt; sofia profile internal restart
+&amp;gt; sofia profile external restart
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
-    
     <item>
       <title>FS intercept拦截</title>
       <link>https://wdd.js.org/freeswitch/intercept/</link>
       <pubDate>Mon, 15 Mar 2021 18:21:29 +0800</pubDate>
-      
       <guid>https://wdd.js.org/freeswitch/intercept/</guid>
-      <description>FS的 call pickup功能，就是用intercept功能。
-一个呼叫一般有两个leg, intercept一般是把自己bridge其中一个leg，另外一个leg会挂断。 intercept默认是bridge legA, 挂断legB。通过参数也可以指定来bridge legB，挂断legA。
-从一个简单的场景说起。A拨打B分机。
-从FS的角度来说，有以下两条腿。
-通过分析日志可以发现：具有replaces这种头的invite，fs没有走路由，而是直接用了intercept拦截。
-New Channel sofia/external/8003@wdd.cc [6ca5ed94-a5e5-492d-aaf7-782cecbaf7d1]2021-03-15 10:42:47.380797 [NOTICE] switch_channel.c:1118 New Channel sofia/external/8001@wdd.cc [34dc4095-3bac-4f7d-8be4-1ed5ed2f06b4]
-2021-03-15 10:42:51.520800 [NOTICE] switch_channel.c:1118 New Channel sofia/external/8004@wdd.cc [03e78837-1413-4b77-ba4c-e753fed55ebe]2021-03-15 10:42:51.520800 [DEBUG] switch_core_state_machine.c:585 (sofia/external/8004@wdd.cc) Running State Change CS_NEW (Cur 3 Tot 163)2021-03-15 10:42:51.520800 [DEBUG] sofia.c:10279 sofia/external/8004@wdd.cc receiving invite from 192.168.2.109:18627 version: 1.10.3-release 32bit2021-03-15 10:42:51.520800 [DEBUG] sofia.c:11640 call 6ca5ed94-a5e5-492d-aaf7-782cecbaf7d1 intercepted2021-03-15 10:42:51.520800 [DEBUG] sofia.c:7325 Channel sofia/external/8004@wdd.cc entering state [received][100]
-EXECUTE [depth=0] sofia/external/8004@wdd.</description>
+      <description>&lt;p&gt;FS的 call pickup功能，就是用intercept功能。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一个呼叫一般有两个leg,  intercept一般是把自己bridge其中一个leg，另外一个leg会挂断。
+intercept默认是bridge legA, 挂断legB。通过参数也可以指定来bridge legB，挂断legA。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;从一个简单的场景说起。A拨打B分机。&lt;/p&gt;
+&lt;p&gt;从FS的角度来说，有以下两条腿。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/freeswitch/intercept/2022-12-03-15-52-13.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;通过分析日志可以发现：具有replaces这种头的invite，fs没有走路由，而是直接用了intercept拦截。&lt;/p&gt;
+&lt;p&gt;New Channel &lt;a href=&#34;mailto:sofia/external/8003@wdd.cc&#34;&gt;sofia/external/8003@wdd.cc&lt;/a&gt; [6ca5ed94-a5e5-492d-aaf7-782cecbaf7d1]&lt;!-- raw HTML omitted --&gt;2021-03-15 10:42:47.380797 [NOTICE] switch_channel.c:1118 New Channel &lt;a href=&#34;mailto:sofia/external/8001@wdd.cc&#34;&gt;sofia/external/8001@wdd.cc&lt;/a&gt; [34dc4095-3bac-4f7d-8be4-1ed5ed2f06b4]&lt;/p&gt;
+&lt;p&gt;2021-03-15 10:42:51.520800 [NOTICE] switch_channel.c:1118 New Channel &lt;a href=&#34;mailto:sofia/external/8004@wdd.cc&#34;&gt;sofia/external/8004@wdd.cc&lt;/a&gt; [03e78837-1413-4b77-ba4c-e753fed55ebe]&lt;!-- raw HTML omitted --&gt;2021-03-15 10:42:51.520800 [DEBUG] switch_core_state_machine.c:585 (&lt;a href=&#34;mailto:sofia/external/8004@wdd.cc&#34;&gt;sofia/external/8004@wdd.cc&lt;/a&gt;) Running State Change CS_NEW (Cur 3 Tot 163)&lt;!-- raw HTML omitted --&gt;2021-03-15 10:42:51.520800 [DEBUG] sofia.c:10279 &lt;a href=&#34;mailto:sofia/external/8004@wdd.cc&#34;&gt;sofia/external/8004@wdd.cc&lt;/a&gt; receiving invite from 192.168.2.109:18627 version: 1.10.3-release  32bit&lt;!-- raw HTML omitted --&gt;2021-03-15 10:42:51.520800 [DEBUG] sofia.c:11640 call 6ca5ed94-a5e5-492d-aaf7-782cecbaf7d1 intercepted&lt;!-- raw HTML omitted --&gt;2021-03-15 10:42:51.520800 [DEBUG] sofia.c:7325 Channel &lt;a href=&#34;mailto:sofia/external/8004@wdd.cc&#34;&gt;sofia/external/8004@wdd.cc&lt;/a&gt; entering state [received][100]&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>fs_cli 例子</title>
       <link>https://wdd.js.org/freeswitch/fs-cli-example/</link>
       <pubDate>Tue, 07 Apr 2020 17:40:16 +0800</pubDate>
-      
       <guid>https://wdd.js.org/freeswitch/fs-cli-example/</guid>
-      <description>1. 设置日志级别 每个快捷键对应一个功能，具体配置位于 /conf/autoload_configs/switch.conf.xml
-F1. help F2. status F3. show channels F4. show calls F5. sofia status F6. reloadxml F7. console loglevel 0 F8. console loglevel 7 F9. sofia status profile internal F10. sofia profile intrenal siptrace on F11. sofia profile internal siptrace off F12. version 2. 发起呼叫相关 下面的命令都是同步的命令，可以在所有命令前加bgapi命令，让originate命令后台异步执行。
-2.1 回音测试 originate user/1000 &amp;amp;echo 2.2 停泊 originate user/1000 &amp;amp;park # 停泊 2.3 保持 originate user/1000 &amp;amp;hold # 保持 2.4 播放放音 originate user/1000 &amp;amp;playback(/root/welclome.</description>
+      <description>&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;h1 id=&#34;1-设置日志级别&#34;&gt;1. 设置日志级别&lt;/h1&gt;
+&lt;p&gt;每个快捷键对应一个功能，具体配置位于 /conf/autoload_configs/switch.conf.xml&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;F1. help
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;F2. status
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;F3. show channels
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;F4. show calls
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;F5. sofia status
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;F6. reloadxml
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;F7. console loglevel &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;F8. console loglevel &lt;span style=&#34;color:#ae81ff&#34;&gt;7&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;F9. sofia status profile internal
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;F10. sofia profile intrenal siptrace on
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;F11. sofia profile internal siptrace off
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;F12. version
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;h1 id=&#34;2-发起呼叫相关&#34;&gt;2. 发起呼叫相关&lt;/h1&gt;
+&lt;p&gt;下面的命令都是同步的命令，可以在所有命令前加bgapi命令，让originate命令后台异步执行。&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>通道变量列表</title>
       <link>https://wdd.js.org/freeswitch/channel-var-list/</link>
       <pubDate>Tue, 10 Dec 2019 11:33:24 +0800</pubDate>
-      
       <guid>https://wdd.js.org/freeswitch/channel-var-list/</guid>
-      <description>About Channel variables are used to manipulate dialplan execution, to control call progress, and to provide options to applications. They play a pervasive role, as FreeSWITCH™ frequently consults channel variables as a way to customize processing prior to a channel&amp;rsquo;s creation, during call progress, and after the channel hangs up.  Click here to expand Table of Contents Variable Expansion We rely on variable expansion to create flexible, reusable dialplans:</description>
+      <description>&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;h1 id=&#34;about&#34;&gt;About&lt;/h1&gt;
+&lt;p&gt;Channel variables are used to manipulate dialplan execution, to control call progress, and to provide options to applications. They play a pervasive role, as FreeSWITCH™ frequently consults channel variables as a way to customize processing prior to a channel&amp;rsquo;s creation, during call progress, and after the channel hangs up. &lt;!-- raw HTML omitted --&gt; Click here to expand Table of Contents
+&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>mod_commands</title>
       <link>https://wdd.js.org/freeswitch/mod-command/</link>
       <pubDate>Tue, 10 Dec 2019 11:32:38 +0800</pubDate>
-      
       <guid>https://wdd.js.org/freeswitch/mod-command/</guid>
-      <description>Usage CLI See below. API/Event Interfaces mod_event_socket mod_erlang_event mod_xml_rpc Scripting Interfaces mod_perl mod_v8 mod_python mod_lua From the Dialplan An API command can be called from the dialplan. Example:Invoke API Command From DialplanOther examples:Other Dialplan API Command ExamplesAPI commands with multiple arguments usually have the arguments separated by a space:Multiple Arguments
-Dialplan UsageIf you are calling an API command from the dialplan make absolutely certain that there isn&amp;rsquo;t already a dialplan application that gives you the functionality you are looking for.</description>
+      <description>&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;h1 id=&#34;usage&#34;&gt;&lt;strong&gt;Usage&lt;/strong&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;h2 id=&#34;clihttpsfreeswitchorgconfluencepluginsservletmobilecontentid1966741contentview1048948&#34;&gt;&lt;a href=&#34;https://freeswitch.org/confluence/plugins/servlet/mobile?contentId=1966741#content/view/1048948&#34;&gt;CLI&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;See below.
+&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;h2 id=&#34;apievent-interfaces&#34;&gt;&lt;strong&gt;API/Event Interfaces&lt;/strong&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://freeswitch.org/confluence/plugins/servlet/mobile?contentId=1966741#content/view/1048924&#34;&gt;mod_event_socket&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://freeswitch.org/confluence/plugins/servlet/mobile?contentId=1966741#content/view/1048926&#34;&gt;mod_erlang_event&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://freeswitch.org/confluence/plugins/servlet/mobile?contentId=1966741#content/view/1048928&#34;&gt;mod_xml_rpc&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;scripting-interfaces&#34;&gt;&lt;strong&gt;Scripting Interfaces&lt;/strong&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://freeswitch.org/confluence/plugins/servlet/mobile?contentId=1966741#content/view/1048930&#34;&gt;mod_perl&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://freeswitch.org/confluence/plugins/servlet/mobile?contentId=1966741#content/view/1048935&#34;&gt;mod_v8&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://freeswitch.org/confluence/plugins/servlet/mobile?contentId=1966741#content/view/1048940&#34;&gt;mod_python&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://freeswitch.org/confluence/plugins/servlet/mobile?contentId=1966741#content/view/1048944&#34;&gt;mod_lua&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;from-the-dialplanhttpsfreeswitchorgconfluencepluginsservletmobilecontentid1966741contentview1048645&#34;&gt;&lt;strong&gt;From the&lt;/strong&gt; &lt;a href=&#34;https://freeswitch.org/confluence/plugins/servlet/mobile?contentId=1966741#content/view/1048645&#34;&gt;Dialplan&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;An &lt;a href=&#34;https://freeswitch.org/confluence/plugins/servlet/mobile?contentId=1966741#content/view/30867723&#34;&gt;API command&lt;/a&gt; can be called from the dialplan. Example:&lt;!-- raw HTML omitted --&gt;&lt;strong&gt;Invoke API Command From Dialplan&lt;/strong&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;Other examples:&lt;!-- raw HTML omitted --&gt;&lt;strong&gt;Other Dialplan API Command Examples&lt;/strong&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;https://freeswitch.org/confluence/plugins/servlet/mobile?contentId=1966741#content/view/30867723&#34;&gt;API commands&lt;/a&gt; with multiple arguments usually have the arguments separated by a space:&lt;!-- raw HTML omitted --&gt;&lt;strong&gt;Multiple Arguments&lt;/strong&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>XML Switch Configuration</title>
       <link>https://wdd.js.org/freeswitch/xml-config/</link>
       <pubDate>Tue, 10 Dec 2019 11:30:38 +0800</pubDate>
-      
       <guid>https://wdd.js.org/freeswitch/xml-config/</guid>
-      <description>The FreeSWITCH core configuration is contained in autoload_configs/switch.conf.xml
-Default key bindings Function keys can be mapped to API commands using the following configuration:The default keybindings are;F1 = helpF2 = statusF3 = show channelsF4 = show callsF5 = sofia statusF6 = reloadxmlF7 = console loglevel 0F8 = console loglevel 7F9 = sofia status profile internalF10 = sofia profile internal siptrace onF11 = sofia profile internal siptrace offF12 = versionBeware that the option loglevel is actually setting the minimum hard_log_Level in the application.</description>
+      <description>&lt;p&gt;The FreeSWITCH core configuration is contained in &lt;a href=&#34;http://git.freeswitch.org/git/freeswitch/tree/conf/vanilla/autoload_configs/switch.conf.xml&#34;&gt;autoload_configs/switch.conf.xml&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;h2 id=&#34;default-key-bindings&#34;&gt;&lt;strong&gt;Default key bindings&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Function keys can be mapped to API commands using the following configuration:&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;The default keybindings are;&lt;!-- raw HTML omitted --&gt;F1 = help&lt;!-- raw HTML omitted --&gt;F2 = status&lt;!-- raw HTML omitted --&gt;F3 = show channels&lt;!-- raw HTML omitted --&gt;F4 = show calls&lt;!-- raw HTML omitted --&gt;F5 = sofia status&lt;!-- raw HTML omitted --&gt;F6 = reloadxml&lt;!-- raw HTML omitted --&gt;F7 = console loglevel 0&lt;!-- raw HTML omitted --&gt;F8 = console loglevel 7&lt;!-- raw HTML omitted --&gt;F9 = sofia status profile internal&lt;!-- raw HTML omitted --&gt;F10 = sofia profile internal siptrace on&lt;!-- raw HTML omitted --&gt;F11 = sofia profile internal siptrace off&lt;!-- raw HTML omitted --&gt;F12 = version&lt;!-- raw HTML omitted --&gt;Beware that the option loglevel is actually setting the minimum hard_log_Level in the application. What this means is if you set this to something other than DEBUG no matter what log level you set the console to one you start up you will not be able to get any log messages below the level you set. Also be careful of mis-typing a log level, if the log level is not correct it will default to a hard_log_level of 0. This means that virtually no log messages will show up anywhere.
+&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Sofia SIP Stack</title>
       <link>https://wdd.js.org/freeswitch/sofia-stack/</link>
       <pubDate>Tue, 10 Dec 2019 11:27:17 +0800</pubDate>
-      
       <guid>https://wdd.js.org/freeswitch/sofia-stack/</guid>
-      <description>Sofia is a SIP stack used by FreeSWITCH. When you see &amp;ldquo;sofia&amp;rdquo; anywhere in your configuration, think &amp;ldquo;This is SIP stuff.&amp;rdquo; It takes a while to master it all, so please be patient with yourself. SIP is a crazy protocol and it will make you crazy too if you aren&amp;rsquo;t careful. Read on for information on setting up SIP/Sofia in your FreeSWITCH configuration.
-mod_sofia exposes the Sofia API and sets up the FreeSWITCH SIP endpoint.</description>
+      <description>&lt;p&gt;Sofia is a SIP stack used by FreeSWITCH.&lt;!-- raw HTML omitted --&gt; When you see &amp;ldquo;sofia&amp;rdquo; anywhere in your configuration, think &amp;ldquo;This is SIP stuff.&amp;rdquo; It takes a while to master it all, so please be patient with yourself. SIP is a crazy protocol and it will make you crazy too if you aren&amp;rsquo;t careful. Read on for information on setting up SIP/Sofia in your FreeSWITCH configuration.&lt;/p&gt;
+&lt;p&gt;mod_sofia exposes the Sofia API and sets up the FreeSWITCH SIP endpoint.
+&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>编译FS</title>
       <link>https://wdd.js.org/freeswitch/compile-fs/</link>
       <pubDate>Tue, 10 Dec 2019 11:25:04 +0800</pubDate>
-      
       <guid>https://wdd.js.org/freeswitch/compile-fs/</guid>
-      <description>make clean - Cleans the build environment make current - Cleans build environment, performs an git update, then does a make install make core_install (or make install_core) - Recompiles and installs just the core files. Handy if you are working on a core file and want to recompile without doing the whole shebang. make mod_XXXX-install - Recompiles and installs just a single module. Here are some examples: make mod_openzap-install make mod_sofia-install make mod_lcr-install make samples - This will not replace your configuration.</description>
+      <description>&lt;ul&gt;
+&lt;li&gt;make clean - Cleans the build environment&lt;/li&gt;
+&lt;li&gt;make current - Cleans build environment, performs an git update, then does a make install&lt;/li&gt;
+&lt;li&gt;make core_install (or make install_core) - Recompiles and installs just the core files. Handy if you are working on a core file and want to recompile without doing the whole shebang.&lt;/li&gt;
+&lt;li&gt;make mod_XXXX-install - Recompiles and installs just a single module. Here are some examples:
+&lt;ul&gt;
+&lt;li&gt;make mod_openzap-install&lt;/li&gt;
+&lt;li&gt;make mod_sofia-install&lt;/li&gt;
+&lt;li&gt;make mod_lcr-install&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;make samples - This will not replace your configuration. This will instead make the default extensions and dialplan to run the basic configuration of FreeSWITCH.&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
-    
     <item>
       <title>fs 命令行</title>
       <link>https://wdd.js.org/freeswitch/command-line/</link>
       <pubDate>Tue, 10 Dec 2019 11:19:39 +0800</pubDate>
-      
       <guid>https://wdd.js.org/freeswitch/command-line/</guid>
-      <description>运行fs 前台运行 freeswitch 后台运行 freeswich -nc 参数列表 These are the optional arguments you can pass to freeswitch:
-FreeSWITCH startup switches
--waste -- allow memory waste -no-auto-stack -- don&amp;#39;t adjust thread stack size -core -- dump cores -help -- print this message -version -- print the version and exit -rp -- enable high(realtime) priority settings -lp -- enable low priority settings -np -- enable normal priority settings (system default) -vg -- run under valgrind -nosql -- disable internal SQL scoreboard -heavy-timer -- Heavy Timer, possibly more accurate but at a cost -nonat -- disable auto NAT detection -nonatmap -- disable auto NAT port mapping -nocal -- disable clock calibration -nort -- disable clock clock_realtime -stop -- stop freeswitch -nc -- no console and run in background -ncwait -- no console and run in background, but wait until the system is ready before exiting (implies -nc) -c -- output to a console and stay in the foreground (default behavior) UNIX-like only -nf -- no forking -u [user] -- specify user to switch to -g [group] -- specify group to switch to -ncwait -- do not output to a console and background but wait until the system is ready before exiting (implies -nc) Windows-only -service [name] &amp;ndash; start freeswitch as a service, cannot be used if loaded as a console app-install [name] &amp;ndash; install freeswitch as a service, with optional service name-uninstall &amp;ndash; remove freeswitch as a service-monotonic-clock &amp;ndash; use monotonic clock as timer source</description>
+      <description>&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;h1 id=&#34;运行fs&#34;&gt;运行fs&lt;/h1&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;h2 id=&#34;前台运行&#34;&gt;前台运行&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-makefile&#34; data-lang=&#34;makefile&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;freeswitch&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;h2 id=&#34;后台运行&#34;&gt;后台运行&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-makefile&#34; data-lang=&#34;makefile&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;freeswich&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;-nc&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;h2 id=&#34;参数列表&#34;&gt;参数列表&lt;/h2&gt;
+&lt;p&gt;These are the optional arguments you can pass to freeswitch:&lt;/p&gt;
+&lt;p&gt;FreeSWITCH startup switches&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-makefile&#34; data-lang=&#34;makefile&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;-waste&lt;/span&gt;                 &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;--&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;allow&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;memory&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;waste&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;-no-auto-stack&lt;/span&gt;         &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;--&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;don&amp;#39;t&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;adjust&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;thread&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;stack&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;size&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;-core&lt;/span&gt;                  &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;--&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;dump&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;cores&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;-help&lt;/span&gt;                  &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;--&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;print&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;this&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;message&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;-version&lt;/span&gt;               &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;--&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;print&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;the&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;version&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;and&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;exit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;-rp&lt;/span&gt;                    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;--&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;enable&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;high(realtime)&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;priority&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;settings&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;-lp&lt;/span&gt;                    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;--&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;enable&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;low&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;priority&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;settings&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;-np&lt;/span&gt;                    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;--&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;enable&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;normal&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;priority&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;settings&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;(system&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;default)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;-vg&lt;/span&gt;                    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;--&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;run&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;under&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;valgrind&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;-nosql&lt;/span&gt;                 &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;--&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;disable&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;internal&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;SQL&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;scoreboard&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;-heavy-timer&lt;/span&gt;           &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;--&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;Heavy&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;Timer,&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;possibly&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;more&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;accurate&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;but&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;at&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;cost&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;-nonat&lt;/span&gt;                 &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;--&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;disable&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;auto&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;NAT&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;detection&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;-nonatmap&lt;/span&gt;              &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;--&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;disable&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;auto&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;NAT&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;port&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;mapping&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;-nocal&lt;/span&gt;                 &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;--&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;disable&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;clock&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;calibration&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;-nort&lt;/span&gt;                  &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;--&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;disable&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;clock&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;clock_realtime&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;-stop&lt;/span&gt;                  &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;--&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;stop&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;freeswitch&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;-nc&lt;/span&gt;                    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;--&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;no&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;console&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;and&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;run&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;background&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;-ncwait&lt;/span&gt;                &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;--&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;no&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;console&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;and&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;run&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;background,&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;but&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;wait&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;until&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;the&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;system&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;is&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;ready&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;before&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;exiting&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;(implies&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;-nc)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;-c&lt;/span&gt;                     &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;--&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;output&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;to&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;console&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;and&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;stay&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;in&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;the&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;foreground&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;(default&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;behavior)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>fs reload命令</title>
       <link>https://wdd.js.org/freeswitch/reload/</link>
       <pubDate>Tue, 10 Dec 2019 11:17:55 +0800</pubDate>
-      
       <guid>https://wdd.js.org/freeswitch/reload/</guid>
-      <description>Item Reload Command Notes XML Dialplan reloadxml Run each time you edit XML dial file(s) ACLs reloadacl Edit acl.conf.xml first Voicemail reload mod_voicemail Edit voicemail.conf.xml first Conference reload mod_conference Edit conference.conf.xml first Add Sofia Gateway sofia profile rescan Less intrusive - no calls dropped Remove Sofia Gateway sofia profile killgw &amp;lt;gateway_name&amp;gt; Less intrusive - no calls dropped Restart Sofia Gateway sofia profile killgw &amp;lt;gateway_name&amp;gt;sofia profile rescan Less intrusive - no calls dropped Add/remove Sofia Gateway sofia profile restart More intrusive - all profile calls dropped Local Stream see Mod_local_stream Edit localstream.</description>
+      <description>&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Item&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Reload Command&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Notes&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;XML Dialplan&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;reloadxml&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Run each time you edit XML dial file(s)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;ACLs&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;reloadacl&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Edit acl.conf.xml first&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Voicemail&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;reload mod_voicemail&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Edit voicemail.conf.xml first&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Conference&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;reload mod_conference&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Edit conference.conf.xml first&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Add Sofia Gateway&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;sofia profile &lt;!-- raw HTML omitted --&gt; rescan&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Less intrusive - no calls dropped&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Remove Sofia Gateway&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;sofia profile &lt;!-- raw HTML omitted --&gt; killgw &amp;lt;gateway_name&amp;gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Less intrusive - no calls dropped&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Restart Sofia Gateway&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;sofia profile &lt;!-- raw HTML omitted --&gt; killgw &amp;lt;gateway_name&amp;gt;&lt;!-- raw HTML omitted --&gt;sofia profile &lt;!-- raw HTML omitted --&gt; rescan&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Less intrusive - no calls dropped&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Add/remove Sofia Gateway&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;sofia profile &lt;!-- raw HTML omitted --&gt; restart&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;More intrusive - all profile calls dropped&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Local Stream&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;see &lt;a href=&#34;https://freeswitch.org/confluence/display/FREESWITCH/mod_local_stream#mod_local_stream-API&#34;&gt;Mod_local_stream&lt;/a&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Edit localstream.conf.xml first&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Update a lua file&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;nothing necessary&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;file is loaded from disk each time it is run&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Update LCR SQL table&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;nothing necessary&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;SQL query is run for each new call&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Update LCR options&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;reload mod_lcr&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Edit lcr.conf.xml first&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Update CID Lookup Options&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;reload mod_cidlookup&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Edit cidlookup.conf.xml first&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Update JSON CDR Options&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;reload mod_json_cdr&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Edit json_cdr.conf.xml first&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Update XML CDR Options&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;reload mod_xml_cdr&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Edit xml_cdr.conf.xml first&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Update XML CURL Server Response&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;nothing, unless using &lt;a href=&#34;https://freeswitch.org/confluence/display/FREESWITCH/mod_xml_curl#mod_xml_curl-Caching&#34;&gt;cache&lt;/a&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt; &lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</description>
     </item>
-    
     <item>
       <title>通道变量与SIP 消息头</title>
       <link>https://wdd.js.org/freeswitch/get-sip-header/</link>
       <pubDate>Mon, 15 Jul 2019 23:06:57 +0800</pubDate>
-      
       <guid>https://wdd.js.org/freeswitch/get-sip-header/</guid>
-      <description>自定义SIP消息头如何从通道变量中获取？ if you pass a header variable called type from the proxy server, it will get displayed as variable_sip_h_type in FreeSWITCH™. To access that variable, you should strip off the variable_, and just do ${sip_h_type}</description>
+      <description>&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;h1 id=&#34;自定义sip消息头如何从通道变量中获取&#34;&gt;自定义SIP消息头如何从通道变量中获取？&lt;/h1&gt;
+&lt;p&gt; if you pass a header variable called &lt;code&gt;type&lt;/code&gt; from the proxy server, it will get displayed as &lt;code&gt;variable_sip_h_type&lt;/code&gt; in FreeSWITCH™. To access that variable, you should strip off the &lt;code&gt;variable_&lt;/code&gt;, and just do &lt;code&gt;${sip_h_type}&lt;/code&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>fs日志级别</title>
       <link>https://wdd.js.org/freeswitch/fs-log-level/</link>
       <pubDate>Thu, 11 Jul 2019 17:13:29 +0800</pubDate>
-      
       <guid>https://wdd.js.org/freeswitch/fs-log-level/</guid>
-      <description>fs日志级别
-0 &amp;#34;CONSOLE&amp;#34;, 1 &amp;#34;ALERT&amp;#34;, 2 &amp;#34;CRIT&amp;#34;, 3 &amp;#34;ERR&amp;#34;, 4 &amp;#34;WARNING&amp;#34;, 5 &amp;#34;NOTICE&amp;#34;, 6 &amp;#34;INFO&amp;#34;, 7 &amp;#34;DEBUG&amp;#34; 日志级别设置的越高，显示的日志越多
-在autoload_configs/switch.conf.xml 设置了一些快捷键，可以在fs_cli中使用
-F7将日志级别设置为0，显示的日志最少 F8将日志级别设置为7， 显示日志最多 同时也可以使用 console loglevel指令自定义设置级别
-console loglevel 1 console loglevel notice 参考 https://freeswitch.org/confluence/display/FREESWITCH/Troubleshooting+Debugging </description>
+      <description>&lt;p&gt;fs日志级别&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;CONSOLE&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ALERT&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;CRIT&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ERR&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;WARNING&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;NOTICE&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;6&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;INFO&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;7&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;DEBUG&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;日志级别设置的越高，显示的日志越多&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在autoload_configs/switch.conf.xml 设置了一些快捷键，可以在fs_cli中使用&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;F7&lt;/strong&gt;将日志级别设置为0，显示的日志最少&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;F8&lt;/strong&gt;将日志级别设置为7， 显示日志最多&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;同时也可以使用 console loglevel指令自定义设置级别&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;console loglevel &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;console loglevel notice
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;h1 id=&#34;参考&#34;&gt;参考&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://freeswitch.org/confluence/display/FREESWITCH/Troubleshooting+Debugging&#34;&gt;https://freeswitch.org/confluence/display/FREESWITCH/Troubleshooting+Debugging&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
-    
   </channel>
 </rss>

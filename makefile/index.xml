@@ -9,17 +9,29 @@
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 10 Aug 2023 09:47:46 +0800</lastBuildDate><atom:link href="https://wdd.js.org/makefile/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Aug 2023 09:47:46 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/makefile/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Tutorial</title>
       <link>https://wdd.js.org/makefile/tutorial/</link>
       <pubDate>Thu, 10 Aug 2023 09:47:46 +0800</pubDate>
-      
       <guid>https://wdd.js.org/makefile/tutorial/</guid>
-      <description>语法 targets: prerequisites command command command targets是文件名，可以用空格分开多个文件名，一般情况下，只有一个 command是一系列的指令，可以多行分开 prerequisites是依赖项目，可以用空格分开多个 参考 https://makefiletutorial.com/#makefile-cookbook </description>
+      <description>&lt;h1 id=&#34;语法&#34;&gt;语法&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-Makefile&#34; data-lang=&#34;Makefile&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;targets&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; prerequisites
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	command
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	command
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	command
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;targets是文件名，可以用空格分开多个文件名，一般情况下，只有一个&lt;/li&gt;
+&lt;li&gt;command是一系列的指令，可以多行分开&lt;/li&gt;
+&lt;li&gt;prerequisites是依赖项目，可以用空格分开多个&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;参考&#34;&gt;参考&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://makefiletutorial.com/#makefile-cookbook&#34;&gt;https://makefiletutorial.com/#makefile-cookbook&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -1,25 +1,60 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>mrcp on 洞香春</title>
+    <title>Mrcp on 洞香春</title>
     <link>https://wdd.js.org/categories/mrcp/</link>
-    <description>Recent content in mrcp on 洞香春</description>
+    <description>Recent content in Mrcp on 洞香春</description>
     <image>
       <title>洞香春</title>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 01 Dec 2022 10:08:38 +0800</lastBuildDate><atom:link href="https://wdd.js.org/categories/mrcp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 Dec 2022 10:08:38 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/categories/mrcp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>MRCPv2 协议学习</title>
       <link>https://wdd.js.org/posts/2022/12/mrcp-notes/</link>
       <pubDate>Thu, 01 Dec 2022 10:08:38 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2022/12/mrcp-notes/</guid>
-      <description>简介 MRCPv2 是Media Resource Control Protocol Version 2的缩写 MRCP 允许客户端去操作服务端的媒体资源处理 MRCP 的常见功能如下 文本转语音 语音识别 说话人识别 语音认证 等等 MRCP 并不是一个独立的协议，而是依赖于其他的协议，如 SIP/SDP MRCPv2 RFC 发表于 2012 年 MRCPv2 主要由思科,Nuance,Speechworks 开发 MRCPv2 是基于 MRCPv1 开发的 MRCPv2 不兼容 MRCPv1 MRCPv2 在传输层使用 TCP 或者 TLS 定义 媒体资源： An entity on the speech processing server that can be controlled through MRCPv2. MRCP 服务器： Aggregate of one or more &amp;ldquo;Media Resource&amp;rdquo; entities on a server, exposed through MRCPv2.</description>
+      <description>&lt;h1 id=&#34;简介&#34;&gt;简介&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;MRCPv2 是&lt;code&gt;Media Resource Control Protocol Version 2&lt;/code&gt;的缩写&lt;/li&gt;
+&lt;li&gt;MRCP 允许客户端去操作服务端的媒体资源处理&lt;/li&gt;
+&lt;li&gt;MRCP 的常见功能如下
+&lt;ul&gt;
+&lt;li&gt;文本转语音&lt;/li&gt;
+&lt;li&gt;语音识别&lt;/li&gt;
+&lt;li&gt;说话人识别&lt;/li&gt;
+&lt;li&gt;语音认证&lt;/li&gt;
+&lt;li&gt;等等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;MRCP 并不是一个独立的协议，而是依赖于其他的协议，如 SIP/SDP&lt;/li&gt;
+&lt;li&gt;MRCPv2 RFC 发表于 2012 年&lt;/li&gt;
+&lt;li&gt;MRCPv2 主要由思科,Nuance,Speechworks 开发&lt;/li&gt;
+&lt;li&gt;MRCPv2 是基于 MRCPv1 开发的&lt;/li&gt;
+&lt;li&gt;MRCPv2 不兼容 MRCPv1&lt;/li&gt;
+&lt;li&gt;MRCPv2 在传输层使用 TCP 或者 TLS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;定义&#34;&gt;定义&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;媒体资源： An entity on the speech processing server that can be controlled through MRCPv2.&lt;/li&gt;
+&lt;li&gt;MRCP 服务器： Aggregate of one or more &amp;ldquo;Media Resource&amp;rdquo; entities on a server, exposed through MRCPv2. Often, &amp;lsquo;server&amp;rsquo; in this document refers to an MRCP server.&lt;/li&gt;
+&lt;li&gt;MRCP 客户端: An entity controlling one or more Media Resources through MRCPv2 (&amp;ldquo;Client&amp;rdquo; for short).&lt;/li&gt;
+&lt;li&gt;DTMF: Dual-Tone Multi-Frequency; a method of transmitting key presses in-band, either as actual tones (Q.23 [Q.23]) or as named tone events (RFC 4733 [RFC4733]).&lt;/li&gt;
+&lt;li&gt;Endpointing: The process of automatically detecting the beginning and end of speech in an audio stream. This is critical both for speech recognition and for automated recording as one would find in voice mail systems.&lt;/li&gt;
+&lt;li&gt;Hotword Mode: A mode of speech recognition where a stream of utterances is evaluated for match against a small set of command words. This is generally employed either to trigger some action or to control the subsequent grammar to be used for further recognition.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;架构&#34;&gt;架构&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;客户端使用SIP/SDP建立MRCP控制通道&lt;/li&gt;
+&lt;li&gt;SIP使用SDP的offer/answer模型来描述MRCP通道的参数&lt;/li&gt;
+&lt;li&gt;服务端在answer SDP中提供唯一的通道ID和服务端TCP端口号&lt;/li&gt;
+&lt;li&gt;客户端可以开启一个新的TCP链接，多个MRCP通道也可以共享一个TCP链接&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/mrcp-notes/2022-12-01-11-49-00.png&#34;&gt;&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

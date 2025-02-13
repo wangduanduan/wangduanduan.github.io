@@ -1,27 +1,36 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>shell on 洞香春</title>
+    <title>Shell on 洞香春</title>
     <link>https://wdd.js.org/tags/shell/</link>
-    <description>Recent content in shell on 洞香春</description>
+    <description>Recent content in Shell on 洞香春</description>
     <image>
       <title>洞香春</title>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 28 May 2022 12:39:50 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 28 May 2022 12:39:50 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/shell/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Shell 教程技巧</title>
       <link>https://wdd.js.org/posts/2022/05/shell-101/</link>
       <pubDate>Sat, 28 May 2022 12:39:50 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2022/05/shell-101/</guid>
-      <description>复制文本到剪贴板 sudo apt install xclip vim ~/.zshrc
-alias copy=&amp;#39;xclip -selection clipboard&amp;#39; 这样我们就可以用copy命令来考本文件内容到系统剪贴板了。
-copy aaa.txt 判断工作区是否clean if [ -z &amp;#34;$(git status --porcelain)&amp;#34; ]; then # Working directory clean else # Uncommitted changes fi </description>
+      <description>&lt;h1 id=&#34;复制文本到剪贴板&#34;&gt;复制文本到剪贴板&lt;/h1&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo apt install xclip
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;vim ~/.zshrc&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;alias copy=&amp;#39;xclip -selection clipboard&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这样我们就可以用copy命令来考本文件内容到系统剪贴板了。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;copy aaa.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;判断工作区是否clean&#34;&gt;判断工作区是否clean&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; -z &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;$(&lt;/span&gt;git status --porcelain&lt;span style=&#34;color:#66d9ef&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# Working directory clean&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# Uncommitted changes&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
-    
   </channel>
 </rss>

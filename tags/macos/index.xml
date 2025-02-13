@@ -1,29 +1,35 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>macos on 洞香春</title>
+    <title>Macos on 洞香春</title>
     <link>https://wdd.js.org/tags/macos/</link>
-    <description>Recent content in macos on 洞香春</description>
+    <description>Recent content in Macos on 洞香春</description>
     <image>
       <title>洞香春</title>
       <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 20 Aug 2023 13:07:40 +0800</lastBuildDate><atom:link href="https://wdd.js.org/tags/macos/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Aug 2023 13:07:40 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/macos/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>MacBook icloud 同步卡死， 请尝试重启电脑</title>
       <link>https://wdd.js.org/posts/2023/macbook-icloud-sync-stuck/</link>
       <pubDate>Sun, 20 Aug 2023 13:07:40 +0800</pubDate>
-      
       <guid>https://wdd.js.org/posts/2023/macbook-icloud-sync-stuck/</guid>
-      <description>环境说明 MacBook Pro M2 系统版本 13.4.1 网络环境为wifi 操作步骤 我往icloud的文件夹下，粘贴几个文件夹，文件的内容挺多的，然后finder上显示icloud的状态就一直是处于同步中了。
-等了好久，同步的过程似乎卡住了。
-网上看了一些解决方案，似乎都没啥作用。
-我想起来以前的同样的一次卡顿同步的解决方案：重启电脑
-于是，我重启了一次电脑，再次开机，打开finder, icloud文件状态非常快同步完了。</description>
+      <description>&lt;h1 id=&#34;环境说明&#34;&gt;环境说明&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;MacBook Pro M2&lt;/li&gt;
+&lt;li&gt;系统版本 13.4.1&lt;/li&gt;
+&lt;li&gt;网络环境为wifi&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;操作步骤&#34;&gt;操作步骤&lt;/h1&gt;
+&lt;p&gt;我往icloud的文件夹下，粘贴几个文件夹，文件的内容挺多的，然后finder上显示icloud的状态就一直是处于同步中了。&lt;/p&gt;
+&lt;p&gt;等了好久，同步的过程似乎卡住了。&lt;/p&gt;
+&lt;p&gt;网上看了一些解决方案，似乎都没啥作用。&lt;/p&gt;
+&lt;p&gt;我想起来以前的同样的一次卡顿同步的解决方案：重启电脑&lt;/p&gt;
+&lt;p&gt;于是，我重启了一次电脑，再次开机，打开finder, icloud文件状态非常快同步完了。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>
