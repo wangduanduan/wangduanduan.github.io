@@ -3,7 +3,7 @@ title: "洞香春"
 pagination:
   pagerSize: 10
 # theme: ananke
-theme: PaperMod
+theme: PaperMod2
 ignoreLogs:
   - 'warning-goldmark-raw-html'
 enableRobotsTXT: true
