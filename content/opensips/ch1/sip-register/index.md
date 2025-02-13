@@ -4,7 +4,8 @@ date: "2019-08-19 21:30:52"
 draft: false
 ---
 
-{{< mermaid align="left" theme="neutral" >}}
+
+```mermaid
 sequenceDiagram
     autonumber
     participant a as 192.168.0.123:55647
@@ -51,8 +52,7 @@ sequenceDiagram
     b-->>a: 401 Unauthorized
     a->>b: register cseq=20, callid=3
     b-->>a: 200
-
-{{< /mermaid >}}
+```
 
 - 服务端设置的过期时间是120s
 - 客户端每隔115s注册一次, callid和之前的保持不变

@@ -1,9 +1,11 @@
 baseURL: "https://wdd.js.org"
 title: "洞香春"
-paginate: 10
+pagination:
+  pagerSize: 10
 # theme: ananke
 theme: PaperMod
-
+ignoreLogs:
+  - 'warning-goldmark-raw-html'
 enableRobotsTXT: true
 buildDrafts: true
 buildFuture: false
@@ -175,7 +177,9 @@ menu:
       weight: 31
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 # pygmentsUseClasses: true
-# markup:
+markup:
+  renderer:
+    unsafe: true
 #     highlight:
 #         # anchorLineNos: true
 #         codeFences: true

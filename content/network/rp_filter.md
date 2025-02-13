@@ -14,7 +14,8 @@ tags:
 SIP信令阶段都是正常的，但是发现，对于来自node3的RTP流， 并没有从ens192网卡转发给node1上。
 
 
-{{< mermaid align="left" theme="neutral" >}}
+
+```mermaid
 sequenceDiagram
     title network
     autonumber
@@ -27,7 +28,7 @@ sequenceDiagram
     node1-->>ens192: RTP out
     ens224-->>node3: RTP out
     node3-->>ens224: RTP in
-{{< /mermaid >}}
+```
 
 抓包程序抓到了node3发送到ens224上的包，但是排查应用服务器的日志发现，似乎应用服务器根本没有收到node3上过来的包, 所以也就无法转发。
 

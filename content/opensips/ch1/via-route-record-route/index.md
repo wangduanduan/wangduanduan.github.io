@@ -4,7 +4,8 @@ date: "2022-09-03 02:00:00"
 draft: false
 ---
 
-{{< mermaid align="left" theme="neutral" >}}
+
+```mermaid
 sequenceDiagram
     title French Words I Know
     autonumber
@@ -33,8 +34,7 @@ sequenceDiagram
     p1->>p2: ACK via: a,p1, route: p2,p3
     p2->>p3: ACK via: a,p1,p2 route: p3
     p3->>b: ACK via: a,p1,p2,p3
-
-{{< /mermaid >}}
+```
 
 rr代表record-route头。
 

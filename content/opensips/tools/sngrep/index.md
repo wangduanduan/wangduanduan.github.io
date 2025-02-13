@@ -44,19 +44,38 @@ CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fno-plt -fexceptions \
     -fstack-clash-protection -fcf-protection"
 ```
 
+## 1.4 macOS
+
+```sh
+brew install sngrep
+```
 
 # 2. 命令行参数
 
 ```
-sngrep
-	[-hVcivNqrD]
-	[-IO pcap_dump]
-  [-d dev]
-  [-l limit]
-  [-k keyfile]
-  [-LH capture_url]
-  [<match expression>]
-  [<bpf filter>]
+Usage: sngrep [-hVcivNqrD] [-IO pcap_dump] [-d dev] [-l limit] [-B buffer] [-LHE capture_url] [<match expression>] [<bpf filter>]
+
+    -h --help		 This usage
+    -V --version	 Version information
+    -d --device		 Use this capture device instead of default
+    -I --input		 Read captured data from pcap file
+    -O --output		 Write captured data to pcap file
+    -B --buffer		 Set pcap buffer size in MB (default: 2)
+    -c --calls		 Only display dialogs starting with INVITE
+    -r --rtp		 Capture RTP packets payload
+    -l --limit		 Set capture limit to N dialogs
+    -i --icase		 Make <match expression> case insensitive
+    -v --invert		 Invert <match expression>
+    -N --no-interface	 Don't display sngrep interface, just capture
+    -q --quiet		 Don't print captured dialogs in no interface mode
+    -D --dump-config	 Print active configuration settings and exit
+    -f --config		 Read configuration from file
+    -F --no-config	 Do not read configuration from default config file
+    -T --text	 Save pcap to text file
+    -R --rotate		 Rotate calls when capture limit have been reached
+    -H --eep-send	 Homer sipcapture url (udp:X.X.X.X:XXXX)
+    -L --eep-listen	 Listen for encapsulated packets (udp:X.X.X.X:XXXX)
+    -E --eep-parse	 Enable EEP parsing in captured packets
 ```
 
 - `-h --help`: 显示帮助信息
@@ -86,6 +105,21 @@ sngrep有四个页面，每个页面都有一些不同的快捷键。
 2. 呼叫流程页面
 3. 原始呼叫信息页面
 4. 信息对比页面
+
+在呼叫列表页面和呼叫流程页面都有很多指令和参数可以配置，但是没有人能记住所有的指令和快捷键。
+
+所以，与其记住一堆快捷方式和快捷键，不如记住一个。
+
+这个快捷键就是：**h**， 只要输入h，就能立即呼出帮助手册。
+
+> 这里要注意，sngrep的快捷键很多都是F1、F2之类的快捷键。很多笔记本上，类似的快捷键都是用来做特殊功能的，例如调整亮度和声音。所以要想真正的输入F1、或者F2, 要搭配Fn键一起使用。
+
+在呼叫列表页面按h号
+![](atta/2025-02-13-22-45-26.png)
+
+在呼叫流程页面按h号
+
+![](atta/2025-02-13-22-47-02.png)
 
 ## 3.1 呼叫列表页面
 
@@ -268,7 +302,7 @@ Dialog count: 17
 
 # 6 . sngrep使用注意点
 
--  不要长时间用sngrep抓包，否则sgrep会占用非常多的内存。如果必须抓一段时间的包，务必使用tcpdump。
+- 不要长时间用sngrep抓包，否则sgrep会占用非常多的内存。如果必须抓一段时间的包，务必使用tcpdump。
 - 某些情况下，sngrep会丢包
 - 某些情况下，sngrep会什么包都抓包不到，注意此时很可能要使用-d去指定抓包的网卡
 - sngrep只能捕获本机网卡的收到和发送的流量。假如ABC分别是三台独立虚拟机的SIP服务器，在B上抓包只能分析A-B, 和B-C直接的流量。
