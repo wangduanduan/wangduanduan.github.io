@@ -11,125 +11,49 @@
     </image>
     <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 29 Mar 2025 00:30:55 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 29 Mar 2025 15:49:28 +0800</lastBuildDate>
     <atom:link href="https://wdd.js.org/tags/all/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>1.6 核心参数</title>
-      <link>https://wdd.js.org/kamailio/56/core-params/</link>
-      <pubDate>Sat, 29 Mar 2025 00:30:55 +0800</pubDate>
-      <guid>https://wdd.js.org/kamailio/56/core-params/</guid>
-      <description>&lt;p&gt;kamailio和核心参数有106个，控制了kamailio的运行方式。&lt;/p&gt;
+      <title>Default</title>
+      <link>https://wdd.js.org/posts/2025/default/</link>
+      <pubDate>Sat, 29 Mar 2025 15:49:28 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2025/default/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hot Reload OpenSIPS vs Kamailio</title>
+      <link>https://wdd.js.org/posts/2025/hot-reload-opensips-vs-kamailio/</link>
+      <pubDate>Sat, 29 Mar 2025 13:49:38 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2025/hot-reload-opensips-vs-kamailio/</guid>
+      <description>&lt;p&gt;用过nginx的都知道，改了nginx的配置文件，只需要执行&lt;code&gt;nginx -s reload&lt;/code&gt;就可以让改动生效，而不用重启整个服务。&lt;/p&gt;
+&lt;p&gt;在kamailio和opensips中，也有类似的热重载功能。&lt;/p&gt;
+&lt;p&gt;在kamailio中，如果要热重载配置文件，只需要执行&lt;code&gt;kamcmd app_jsdt.reload&lt;/code&gt;即可。
+在opensips中，如果要热重载配置文件，只需要执行&lt;code&gt;opensips-cli -x mi reload_routes&lt;/code&gt;即可。&lt;/p&gt;
+&lt;p&gt;理想很丰满，现实很骨感。&lt;/p&gt;
+&lt;p&gt;如果要只是修改路由模块，两者都可以做热重载。 如果要动态的新增一些模块，那就必须要重启。&lt;/p&gt;
+&lt;h1 id=&#34;kamailio的实现方案&#34;&gt;Kamailio的实现方案&lt;/h1&gt;
+&lt;p&gt;必须要用KEMI框架： cfg + [lua|js|python|ruby]&lt;/p&gt;
+&lt;p&gt;用这个框架，你写的路由脚本将包括两个部分&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;核心模块，全局配置，模块加载，模块配置，事件路由这部分内容还是写在cfg文件中。&lt;/li&gt;
+&lt;li&gt;请求路由、响应路由、分支路由、失败路由等这部分内容可以用lua、js、 python等来写。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在热重载的时候，实际上只有外部脚本会被重新加载，而核心模块是不会被重新加载的。&lt;/p&gt;
+&lt;p&gt;因为部分路由用其他脚本编写，必然涉及到性能比较。官方给出的结论是，在同等条件下，lua的性能是最好的。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.kamailio.org/wikidocs/devel/config-engines/#interpreters-performances&#34;&gt;https://www.kamailio.org/wikidocs/devel/config-engines/#interpreters-performances&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;但是实际生产环境如何，还不好说。&lt;/p&gt;
+&lt;p&gt;另外一点，就是并不是所有模块都实现了KEMI框架的接口，可能存在风险。&lt;/p&gt;
+&lt;h1 id=&#34;opensips的实现方案&#34;&gt;OpenSIPS的实现方案&lt;/h1&gt;
+&lt;p&gt;OpenSIPS在3.0版本首次引入了热重载路由脚本的能力，脚本还是cfg，没有引入其他语言。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.opensips.org/Documentation/Interface-CoreMI-3-0#toc8&#34;&gt;https://www.opensips.org/Documentation/Interface-CoreMI-3-0#toc8&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;结论&#34;&gt;结论&lt;/h1&gt;
+&lt;p&gt;总体而言，目的是相同的，都是为了热重载路由。&lt;/p&gt;
+&lt;p&gt;kamailio的方案看似灵活，实则复杂。如果cfg本身就能做热重载，那么就没必要引入其他语言。&lt;/p&gt;
+&lt;p&gt;我更倾向使用OpenSIPS的方案&lt;/p&gt;
+&lt;h1 id=&#34;参考&#34;&gt;参考&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#1-advertised_address&#34;&gt;1. advertised_address&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#2-advertised_port&#34;&gt;2. advertised_port&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#3-alias-%EF%B8%8F&#34;&gt;3. alias ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#4-async_workers&#34;&gt;4. async_workers&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#5-async_nonblock&#34;&gt;5. async_nonblock&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#6-async_usleep&#34;&gt;6. async_usleep&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#7-async_workers_group&#34;&gt;7. async_workers_group&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#8-auto_aliases&#34;&gt;8. auto_aliases&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#9-auto_bind_ipv6&#34;&gt;9. auto_bind_ipv6&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#10-bind_ipv6_link_local&#34;&gt;10. bind_ipv6_link_local&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#11-check_via-%EF%B8%8F&#34;&gt;11. check_via ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#12-children&#34;&gt;12. children&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#13-chroot&#34;&gt;13. chroot&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#14-corelog&#34;&gt;14. corelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#15-debug-%EF%B8%8F&#34;&gt;15. debug ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#16-description&#34;&gt;16. description&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#17-disable_core_dump&#34;&gt;17. disable_core_dump&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#18-disable_tls&#34;&gt;18. disable_tls&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#19-enable_tls&#34;&gt;19. enable_tls&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#20-exit_timeout&#34;&gt;20. exit_timeout&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#21-flags&#34;&gt;21. flags&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#22-force_rport-%EF%B8%8F&#34;&gt;22. force_rport ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#23-fork&#34;&gt;23. fork&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#24-fork_delay&#34;&gt;24. fork_delay&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#25-group&#34;&gt;25. group&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#26-http_reply_parse&#34;&gt;26. http_reply_parse&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#27-ip_free_bind&#34;&gt;27. ip_free_bind&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#28-ipv6_hex_style&#34;&gt;28. ipv6_hex_style&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#29-kemionsend_route_callback&#34;&gt;29. kemi.onsend_route_callback&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#30-kemireceived_route_callback&#34;&gt;30. kemi.received_route_callback&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#31-kemireply_route_callback&#34;&gt;31. kemi.reply_route_callback&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#32-kemipre_routing_callback&#34;&gt;32. kemi.pre_routing_callback&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#33-latency_cfg_log-%EF%B8%8F&#34;&gt;33. latency_cfg_log ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#34-latency_limit_action-%EF%B8%8F&#34;&gt;34. latency_limit_action ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#35-latency_limit_db-%EF%B8%8F&#34;&gt;35. latency_limit_db ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#36-latency_log-%EF%B8%8F&#34;&gt;36. latency_log ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#37-listen-%EF%B8%8F&#34;&gt;37. listen ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#38-loadmodule&#34;&gt;38. loadmodule&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#39-loadmodulex&#34;&gt;39. loadmodulex&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#40-loadpath&#34;&gt;40. loadpath&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#41-local_rport-%EF%B8%8F&#34;&gt;41. local_rport ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#42-log_engine_data&#34;&gt;42. log_engine_data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#43-log_engine_type&#34;&gt;43. log_engine_type&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#44-log_facility-%EF%B8%8F&#34;&gt;44. log_facility ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#45-log_name-%EF%B8%8F&#34;&gt;45. log_name ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#46-log_prefix-%EF%B8%8F&#34;&gt;46. log_prefix ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#47-log_prefix_mode-%EF%B8%8F&#34;&gt;47. log_prefix_mode ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#48-log_stderror&#34;&gt;48. log_stderror&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#49-cfgengine&#34;&gt;49. cfgengine&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#50-maxbuffer-%EF%B8%8F&#34;&gt;50. maxbuffer ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#51-max_branches&#34;&gt;51. max_branches&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#52-max_recursive_level&#34;&gt;52. max_recursive_level&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#53-max_while_loops-%EF%B8%8F&#34;&gt;53. max_while_loops ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#54-mcast&#34;&gt;54. mcast&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#55-mcast_loopback&#34;&gt;55. mcast_loopback&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#56-mcast_ttl&#34;&gt;56. mcast_ttl&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#57-memdbg&#34;&gt;57. memdbg&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#58-memlog-%EF%B8%8F&#34;&gt;58. memlog ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#59-mem_join&#34;&gt;59. mem_join&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#60-mem_safety&#34;&gt;60. mem_safety&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#61-mem_status_mode&#34;&gt;61. mem_status_mode&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#62-mem_summary&#34;&gt;62. mem_summary&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#63-mhomed&#34;&gt;63. mhomed&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#64-mlock_pages&#34;&gt;64. mlock_pages&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#65-modinit_delay&#34;&gt;65. modinit_delay&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#66-modparam&#34;&gt;66. modparam&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#67-modparamx&#34;&gt;67. modparamx&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#68-onsend_route_reply&#34;&gt;68. onsend_route_reply&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#69-open_files_limit&#34;&gt;69. open_files_limit&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#70-phone2tel&#34;&gt;70. phone2tel&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#71-pmtu_discovery&#34;&gt;71. pmtu_discovery&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#72-port&#34;&gt;72. port&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#73-pv_buffer_size&#34;&gt;73. pv_buffer_size&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#74-pv_buffer_slots&#34;&gt;74. pv_buffer_slots&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#75-pv_cache_limit&#34;&gt;75. pv_cache_limit&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#76-pv_cache_action&#34;&gt;76. pv_cache_action&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#77-rundir&#34;&gt;77. rundir&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#78-received_route_mode&#34;&gt;78. received_route_mode&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#79-reply_to_via&#34;&gt;79. reply_to_via&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#80-route_locks_size&#34;&gt;80. route_locks_size&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#81-server_id&#34;&gt;81. server_id&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#82-server_header-%EF%B8%8F&#34;&gt;82. server_header ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#83-server_signature-%EF%B8%8F&#34;&gt;83. server_signature ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#84-shm_force_alloc&#34;&gt;84. shm_force_alloc&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#85-shm_mem_size&#34;&gt;85. shm_mem_size&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#86-sip_parser_log&#34;&gt;86. sip_parser_log&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#87-sip_parser_mode-%EF%B8%8F&#34;&gt;87. sip_parser_mode ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#88-sip_warning-noisy-feedback&#34;&gt;88. sip_warning (noisy feedback)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#89-socket_workers&#34;&gt;89. socket_workers&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#90-sql_buffer_size-%EF%B8%8F&#34;&gt;90. sql_buffer_size ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#91-statistics-%EF%B8%8F&#34;&gt;91. statistics ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#92-stats_name_separator&#34;&gt;92. stats_name_separator&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#93-tos&#34;&gt;93. tos&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#94-udp_mtu-%EF%B8%8F&#34;&gt;94. udp_mtu ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#95-udp_mtu_try_proto&#34;&gt;95. udp_mtu_try_proto&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#96-uri_host_extra_chars&#34;&gt;96. uri_host_extra_chars&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#97-user-%EF%B8%8F&#34;&gt;97. user ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#98-user_agent_header-%EF%B8%8F&#34;&gt;98. user_agent_header ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#99-verbose_startup-%EF%B8%8F&#34;&gt;99. verbose_startup ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#100-version_table-%EF%B8%8F&#34;&gt;100. version_table ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#101-wait_worker1_mode&#34;&gt;101. wait_worker1_mode&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#102-wait_worker1_time&#34;&gt;102. wait_worker1_time&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#103-wait_worker1_usleep&#34;&gt;103. wait_worker1_usleep&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#104-workdir-%EF%B8%8F&#34;&gt;104. workdir ⭐️&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#105-xavp_via_params&#34;&gt;105. xavp_via_params&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#106-xavp_via_fields&#34;&gt;106. xavp_via_fields&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;1-advertised_address&#34;&gt;1. advertised_address&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;用处不大，将会废弃&lt;/p&gt;</description>
+&lt;li&gt;&lt;a href=&#34;https://blog.opensips.org/2019/04/04/no-downtime-for-opensips-3-0-restarts/&#34;&gt;https://blog.opensips.org/2019/04/04/no-downtime-for-opensips-3-0-restarts/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     <item>
       <title>开发学习笔记</title>
@@ -387,6 +311,46 @@ title HEP Packet
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; str_hash_table names; &lt;span style=&#34;color:#75715e&#34;&gt;/* name to route index mappings */&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;str_hash_table的结构如下：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>对外地址和record-route的问题</title>
+      <link>https://wdd.js.org/kamailio/adv-ip-record-route/</link>
+      <pubDate>Mon, 23 Dec 2024 19:23:43 +0800</pubDate>
+      <guid>https://wdd.js.org/kamailio/adv-ip-record-route/</guid>
+      <description>&lt;p&gt;网络结构图如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;client就是客户端&lt;/li&gt;
+&lt;li&gt;PUBLIC_IP就是VPC1的公网IP&lt;/li&gt;
+&lt;li&gt;VPC1和VPC2使用内网IP交互&lt;/li&gt;
+&lt;li&gt;VPC2没有公网IP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;client &lt;span style=&#34;color:#f92672&#34;&gt;---&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1.2.3.4&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;udp &lt;span style=&#34;color:#f92672&#34;&gt;---&amp;gt;&lt;/span&gt; VPC1 &lt;span style=&#34;color:#f92672&#34;&gt;---&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;192.168.0.10&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;udp &lt;span style=&#34;color:#f92672&#34;&gt;---&amp;gt;&lt;/span&gt; VPC2
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;节点&lt;/th&gt;
+          &lt;th&gt;内网IP&lt;/th&gt;
+          &lt;th&gt;公网IP&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;VPC1&lt;/td&gt;
+          &lt;td&gt;192.168.0.10&lt;/td&gt;
+          &lt;td&gt;1.2.3.4&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;VPC2&lt;/td&gt;
+          &lt;td&gt;192.168.0.11&lt;/td&gt;
+          &lt;td&gt;无&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ol&gt;
+&lt;li&gt;client通过1.2.3.4访问VPC1&lt;/li&gt;
+&lt;li&gt;VPC1因为要在后续请求中也保持在路径中，所以要做record-route&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;</description>
     </item>
     <item>
       <title>DMQ模块源码学习笔记</title>
@@ -1115,21 +1079,6 @@ bun构建指令: &lt;code&gt;bun build ./app.js --compile --outfile h2&lt;/code&
 &lt;p&gt;二号坑真的是个坑，没有兵马俑，仅仅是个大坑。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>1. 核心概念</title>
-      <link>https://wdd.js.org/kamailio/56/core/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://wdd.js.org/kamailio/56/core/</guid>
-      <description>&lt;h2 id=&#34;116-custom-global-parameters&#34;&gt;1.16. Custom Global Parameters&lt;/h2&gt;
-&lt;p&gt;These are parameters that can be defined by the writer of kamailio.cfg
-in order to be used inside routing blocks. One of the important
-properties for custom global parameters is that their value can be
-changed at runtime via RPC commands, without restarting Kamailio.&lt;/p&gt;
-&lt;p&gt;The definition of a custom global parameter must follow the pattern:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;group.variable = value desc &amp;quot;description&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The value can be a quoted string or integer number.&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>1.1 脚本结构 - 全局参数、模块配置、路由</title>
       <link>https://wdd.js.org/kamailio/56/structure/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1257,6 +1206,198 @@ statement or exit from a &amp;lsquo;while&amp;rsquo; statement.&lt;/p&gt;
 action which is done afterwards.&lt;/p&gt;</description>
     </item>
     <item>
+      <title>1.15 自定义全局参数</title>
+      <link>https://wdd.js.org/kamailio/56/custom-params/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://wdd.js.org/kamailio/56/custom-params/</guid>
+      <description>&lt;p&gt;These are parameters that can be defined by the writer of kamailio.cfg
+in order to be used inside routing blocks. One of the important
+properties for custom global parameters is that their value can be
+changed at runtime via RPC commands, without restarting Kamailio.&lt;/p&gt;
+&lt;p&gt;The definition of a custom global parameter must follow the pattern:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;group.variable = value desc &amp;quot;description&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The value can be a quoted string or integer number.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>1.16 路由块 - 请求路由、响应路由、分支路由、失败路由等</title>
+      <link>https://wdd.js.org/kamailio/56/routing-blocks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://wdd.js.org/kamailio/56/routing-blocks/</guid>
+      <description>&lt;h1 id=&#34;1-routing-blocks&#34;&gt;1. Routing Blocks&lt;/h1&gt;
+&lt;p&gt;The routing blocks are the parts of the configuration file executed by
+kamailio at runtime. They can be seen as blocks of actions similar to
+functions (or procedures) from common programming languages.&lt;/p&gt;
+&lt;p&gt;A routing block is identified by a specific token, followed by a name in
+between square brackets and actions in between curly braces.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;route_block_id[NAME] {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  ACTIONS
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The name can be any alphanumeric string, with specific routing blocks
+enforcing a particular format.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>1.17 脚本语法 - if、else、switch、while、赋值、比较、算数等</title>
+      <link>https://wdd.js.org/kamailio/56/script-statements/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://wdd.js.org/kamailio/56/script-statements/</guid>
+      <description>&lt;h1 id=&#34;1-if&#34;&gt;1. if&lt;/h1&gt;
+&lt;p&gt;IF-ELSE statement&lt;/p&gt;
+&lt;p&gt;Prototype:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    if(expr) {
+       actions;
+    } else {
+       actions;
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;expr&lt;/code&gt; should be a valid logical expression.&lt;/p&gt;
+&lt;p&gt;The logical operators that can be used in &lt;code&gt;expr&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;==&lt;/code&gt;:      equal&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;!=&lt;/code&gt;:      not equal&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;=~&lt;/code&gt;:      case-insensitive regular expression matching: Note: Posix regular expressions will be used, e.g. use &lt;code&gt;[[:digit:]]{3}&lt;/code&gt; instead of &lt;code&gt;\d\d\d&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;!~&lt;/code&gt;:      regular expression not-matching (NOT PORTED from Kamailio 1.x, use &lt;code&gt;!(x =~ y)&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;gt;&lt;/code&gt;:       greater&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;gt;=&lt;/code&gt;:      greater or equal&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;&lt;/code&gt;:       less&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;=&lt;/code&gt;:      less or equal&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt;:      logical AND&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;||&lt;/code&gt;:      logical OR&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;!&lt;/code&gt;:       logical NOT&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Example of usage:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>1.18 命令行参数</title>
+      <link>https://wdd.js.org/kamailio/56/cli-params/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://wdd.js.org/kamailio/56/cli-params/</guid>
+      <description>&lt;h1 id=&#34;command-line-parameters&#34;&gt;Command Line Parameters&lt;/h1&gt;
+&lt;p&gt;Kamailio can be started with a set of command line parameters, providing
+more flexibility to control what is doing at runtime. Some of them can
+be quite useful when running on containerised environments.&lt;/p&gt;
+&lt;p&gt;To see the the available command line parameters, run &lt;strong&gt;kamailio -h&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# kamailio -h
+
+version: kamailio 5.4.0-dev4 (x86_64/darwin) 8c1864
+Usage: kamailio [options]
+Options:
+    -a mode      Auto aliases mode: enable with yes or on,
+                  disable with no or off
+    --alias=val  Add an alias, the value has to be &#39;[proto:]hostname[:port]&#39;
+                  (like for &#39;alias&#39; global parameter)
+    -A define    Add config pre-processor define (e.g., -A WITH_AUTH,
+                  -A &#39;FLT_ACC=1&#39;, -A &#39;DEFVAL=&amp;quot;str-val&amp;quot;&#39;)
+    -b nr        Maximum receive buffer size which will not be exceeded by
+                  auto-probing procedure even if  OS allows
+    -c           Check configuration file for syntax errors
+    -d           Debugging mode (multiple -d increase the level)
+    -D           Control how daemonize is done:
+                  -D..do not fork (almost) anyway;
+                  -DD..do not daemonize creator;
+                  -DDD..daemonize (default)
+    -e           Log messages printed in terminal colors (requires -E)
+    -E           Log to stderr
+    -f file      Configuration file (default: /usr/local/etc/kamailio/kamailio.cfg)
+    -g gid       Change gid (group id)
+    -G file      Create a pgid file
+    -h           This help message
+    --help       Long option for `-h`
+    -I           Print more internal compile flags and options
+    -K           Turn on &amp;quot;via:&amp;quot; host checking when forwarding replies
+    -l address   Listen on the specified address/interface (multiple -l
+                  mean listening on more addresses). The address format is
+                  [proto:]addr_lst[:port][/advaddr],
+                  where proto=udp|tcp|tls|sctp,
+                  addr_lst= addr|(addr, addr_lst),
+                  addr=host|ip_address|interface_name and
+                  advaddr=addr[:port] (advertised address).
+                  E.g: -l localhost, -l udp:127.0.0.1:5080, -l eth0:5062,
+                  -l udp:127.0.0.1:5080/1.2.3.4:5060,
+                  -l &amp;quot;sctp:(eth0)&amp;quot;, -l &amp;quot;(eth0, eth1, 127.0.0.1):5065&amp;quot;.
+                  The default behaviour is to listen on all the interfaces.
+    --loadmodule=name load the module specified by name
+    --log-engine=log engine name and data
+    -L path      Modules search path (default: /usr/local/lib64/kamailio/modules)
+    -m nr        Size of shared memory allocated in Megabytes
+    --modparam=modname:paramname:type:value set the module parameter
+                  type has to be &#39;s&#39; for string value and &#39;i&#39; for int value,
+                  example: --modparam=corex:alias_subdomains:s:kamailio.org
+    -M nr        Size of private memory allocated, in Megabytes
+    -n processes Number of child processes to fork per interface
+                  (default: 8)
+    -N           Number of tcp child processes (default: equal to `-n&#39;)
+    -O nr        Script optimization level (debugging option)
+    -P file      Create a pid file
+    -Q           Number of sctp child processes (default: equal to `-n&#39;)
+    -r           Use dns to check if is necessary to add a &amp;quot;received=&amp;quot;
+                  field to a via
+    -R           Same as `-r` but use reverse dns;
+                  (to use both use `-rR`)
+    --server-id=num set the value for server_id
+    --subst=exp set a subst preprocessor directive
+    --substdef=exp set a substdef preprocessor directive
+    --substdefs=exp set a substdefs preprocessor directive
+    -S           disable sctp
+    -t dir       Chroot to &amp;quot;dir&amp;quot;
+    -T           Disable tcp
+    -u uid       Change uid (user id)
+    -v           Version number
+    --version    Long option for `-v`
+    -V           Alternative for `-v`
+    -x name      Specify internal manager for shared memory (shm)
+                  - can be: fm, qm or tlsf
+    -X name      Specify internal manager for private memory (pkg)
+                  - if omitted, the one for shm is used
+    -Y dir       Runtime dir path
+    -w dir       Change the working directory to &amp;quot;dir&amp;quot; (default: &amp;quot;/&amp;quot;)
+    -W type      poll method (depending on support in OS, it can be: poll,
+                  epoll_lt, epoll_et, sigio_rt, select, kqueue, /dev/poll)
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    <item>
+      <title>1.19 日志引擎</title>
+      <link>https://wdd.js.org/kamailio/56/log-engine/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://wdd.js.org/kamailio/56/log-engine/</guid>
+      <description>&lt;h1 id=&#34;log-engine-cli-parameter&#34;&gt;Log Engine CLI Parameter&lt;/h1&gt;
+&lt;p&gt;The &lt;strong&gt;&amp;ndash;log-engine&lt;/strong&gt; parameter allows to specify what logging engine to
+be used, which is practically about the format of the log messages. If
+not set at all, then Kamailio does the classic style of line-based plain
+text log messages.&lt;/p&gt;
+&lt;p&gt;The value of this parameter can be &lt;strong&gt;&amp;ndash;log-engine=name&lt;/strong&gt; or
+&lt;strong&gt;&amp;ndash;log-engine=name:data&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The name of the log engine can be:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;json&lt;/strong&gt; - write logs in structured JSON format
+&lt;ul&gt;
+&lt;li&gt;the &lt;strong&gt;data&lt;/strong&gt; for &lt;strong&gt;json&lt;/strong&gt; log engine can be a set of character
+flags:
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;a&lt;/strong&gt; - add log prefix as a special field&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A&lt;/strong&gt; - do not add log prefix&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;c&lt;/strong&gt; - add Call-ID (when available) as a dedicated JSON
+attribute&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;j&lt;/strong&gt; - the log prefix and message fields are printed in
+JSON structure format, detecting if they are enclosed in
+between &lt;strong&gt;{ }&lt;/strong&gt; or adding them as a &lt;strong&gt;text&lt;/strong&gt; field&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;M&lt;/strong&gt; - strip EOL (&amp;rsquo;\n&amp;rsquo;) from the value of the log message
+field&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;N&lt;/strong&gt; - do not add EOL at the end of JSON document&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;p&lt;/strong&gt; - the log prefix is printed as it is in the root json
+document, it has to start with comma (&lt;strong&gt;,&lt;/strong&gt;) and be a valid
+set of json fields&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;U&lt;/strong&gt; - CEE (Common Event Expression) schema format -
+&lt;a href=&#34;https://cee.mitre.org/language/1.0-beta1/core-profile.html&#34;&gt;https://cee.mitre.org/language/1.0-beta1/core-profile.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Example of JSON logs when running Kamailio with
+&amp;ldquo;&lt;strong&gt;&amp;ndash;log-engine=json:M&lt;/strong&gt;&amp;rdquo; :&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>1.2 通用元素 - 注释、标识符、变量、值、表达式</title>
       <link>https://wdd.js.org/kamailio/56/generic-elements/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1346,6 +1487,124 @@ over an IPv4 connection.&lt;/p&gt;
 &lt;p&gt;This keyword can be used to test whether the SIP packet was received
 over an IPv6 connection.&lt;/p&gt;
 &lt;p&gt;Example of usage:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>1.6 核心参数</title>
+      <link>https://wdd.js.org/kamailio/56/core-params/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://wdd.js.org/kamailio/56/core-params/</guid>
+      <description>&lt;p&gt;kamailio和核心参数有106个，控制了kamailio的运行方式。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-advertised_address&#34;&gt;1. advertised_address&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-advertised_port&#34;&gt;2. advertised_port&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-alias-%EF%B8%8F&#34;&gt;3. alias ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-async_workers&#34;&gt;4. async_workers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#5-async_nonblock&#34;&gt;5. async_nonblock&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#6-async_usleep&#34;&gt;6. async_usleep&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#7-async_workers_group&#34;&gt;7. async_workers_group&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#8-auto_aliases&#34;&gt;8. auto_aliases&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#9-auto_bind_ipv6&#34;&gt;9. auto_bind_ipv6&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#10-bind_ipv6_link_local&#34;&gt;10. bind_ipv6_link_local&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#11-check_via-%EF%B8%8F&#34;&gt;11. check_via ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#12-children&#34;&gt;12. children&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#13-chroot&#34;&gt;13. chroot&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#14-corelog&#34;&gt;14. corelog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#15-debug-%EF%B8%8F&#34;&gt;15. debug ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#16-description&#34;&gt;16. description&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#17-disable_core_dump&#34;&gt;17. disable_core_dump&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#18-disable_tls&#34;&gt;18. disable_tls&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#19-enable_tls&#34;&gt;19. enable_tls&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#20-exit_timeout&#34;&gt;20. exit_timeout&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#21-flags&#34;&gt;21. flags&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#22-force_rport-%EF%B8%8F&#34;&gt;22. force_rport ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#23-fork&#34;&gt;23. fork&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#24-fork_delay&#34;&gt;24. fork_delay&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#25-group&#34;&gt;25. group&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#26-http_reply_parse&#34;&gt;26. http_reply_parse&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#27-ip_free_bind&#34;&gt;27. ip_free_bind&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#28-ipv6_hex_style&#34;&gt;28. ipv6_hex_style&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#29-kemionsend_route_callback&#34;&gt;29. kemi.onsend_route_callback&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#30-kemireceived_route_callback&#34;&gt;30. kemi.received_route_callback&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#31-kemireply_route_callback&#34;&gt;31. kemi.reply_route_callback&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#32-kemipre_routing_callback&#34;&gt;32. kemi.pre_routing_callback&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#33-latency_cfg_log-%EF%B8%8F&#34;&gt;33. latency_cfg_log ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#34-latency_limit_action-%EF%B8%8F&#34;&gt;34. latency_limit_action ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#35-latency_limit_db-%EF%B8%8F&#34;&gt;35. latency_limit_db ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#36-latency_log-%EF%B8%8F&#34;&gt;36. latency_log ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#37-listen-%EF%B8%8F&#34;&gt;37. listen ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#38-loadmodule&#34;&gt;38. loadmodule&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#39-loadmodulex&#34;&gt;39. loadmodulex&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#40-loadpath&#34;&gt;40. loadpath&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#41-local_rport-%EF%B8%8F&#34;&gt;41. local_rport ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#42-log_engine_data&#34;&gt;42. log_engine_data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#43-log_engine_type&#34;&gt;43. log_engine_type&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#44-log_facility-%EF%B8%8F&#34;&gt;44. log_facility ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#45-log_name-%EF%B8%8F&#34;&gt;45. log_name ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#46-log_prefix-%EF%B8%8F&#34;&gt;46. log_prefix ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#47-log_prefix_mode-%EF%B8%8F&#34;&gt;47. log_prefix_mode ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#48-log_stderror&#34;&gt;48. log_stderror&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#49-cfgengine&#34;&gt;49. cfgengine&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#50-maxbuffer-%EF%B8%8F&#34;&gt;50. maxbuffer ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#51-max_branches&#34;&gt;51. max_branches&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#52-max_recursive_level&#34;&gt;52. max_recursive_level&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#53-max_while_loops-%EF%B8%8F&#34;&gt;53. max_while_loops ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#54-mcast&#34;&gt;54. mcast&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#55-mcast_loopback&#34;&gt;55. mcast_loopback&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#56-mcast_ttl&#34;&gt;56. mcast_ttl&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#57-memdbg&#34;&gt;57. memdbg&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#58-memlog-%EF%B8%8F&#34;&gt;58. memlog ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#59-mem_join&#34;&gt;59. mem_join&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#60-mem_safety&#34;&gt;60. mem_safety&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#61-mem_status_mode&#34;&gt;61. mem_status_mode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#62-mem_summary&#34;&gt;62. mem_summary&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#63-mhomed&#34;&gt;63. mhomed&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#64-mlock_pages&#34;&gt;64. mlock_pages&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#65-modinit_delay&#34;&gt;65. modinit_delay&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#66-modparam&#34;&gt;66. modparam&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#67-modparamx&#34;&gt;67. modparamx&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#68-onsend_route_reply&#34;&gt;68. onsend_route_reply&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#69-open_files_limit&#34;&gt;69. open_files_limit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#70-phone2tel&#34;&gt;70. phone2tel&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#71-pmtu_discovery&#34;&gt;71. pmtu_discovery&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#72-port&#34;&gt;72. port&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#73-pv_buffer_size&#34;&gt;73. pv_buffer_size&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#74-pv_buffer_slots&#34;&gt;74. pv_buffer_slots&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#75-pv_cache_limit&#34;&gt;75. pv_cache_limit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#76-pv_cache_action&#34;&gt;76. pv_cache_action&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#77-rundir&#34;&gt;77. rundir&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#78-received_route_mode&#34;&gt;78. received_route_mode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#79-reply_to_via&#34;&gt;79. reply_to_via&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#80-route_locks_size&#34;&gt;80. route_locks_size&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#81-server_id&#34;&gt;81. server_id&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#82-server_header-%EF%B8%8F&#34;&gt;82. server_header ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#83-server_signature-%EF%B8%8F&#34;&gt;83. server_signature ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#84-shm_force_alloc&#34;&gt;84. shm_force_alloc&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#85-shm_mem_size&#34;&gt;85. shm_mem_size&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#86-sip_parser_log&#34;&gt;86. sip_parser_log&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#87-sip_parser_mode-%EF%B8%8F&#34;&gt;87. sip_parser_mode ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#88-sip_warning-noisy-feedback&#34;&gt;88. sip_warning (noisy feedback)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#89-socket_workers&#34;&gt;89. socket_workers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#90-sql_buffer_size-%EF%B8%8F&#34;&gt;90. sql_buffer_size ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#91-statistics-%EF%B8%8F&#34;&gt;91. statistics ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#92-stats_name_separator&#34;&gt;92. stats_name_separator&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#93-tos&#34;&gt;93. tos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#94-udp_mtu-%EF%B8%8F&#34;&gt;94. udp_mtu ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#95-udp_mtu_try_proto&#34;&gt;95. udp_mtu_try_proto&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#96-uri_host_extra_chars&#34;&gt;96. uri_host_extra_chars&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#97-user-%EF%B8%8F&#34;&gt;97. user ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#98-user_agent_header-%EF%B8%8F&#34;&gt;98. user_agent_header ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#99-verbose_startup-%EF%B8%8F&#34;&gt;99. verbose_startup ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#100-version_table-%EF%B8%8F&#34;&gt;100. version_table ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#101-wait_worker1_mode&#34;&gt;101. wait_worker1_mode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#102-wait_worker1_time&#34;&gt;102. wait_worker1_time&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#103-wait_worker1_usleep&#34;&gt;103. wait_worker1_usleep&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#104-workdir-%EF%B8%8F&#34;&gt;104. workdir ⭐️&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#105-xavp_via_params&#34;&gt;105. xavp_via_params&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#106-xavp_via_fields&#34;&gt;106. xavp_via_fields&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;1-advertised_address&#34;&gt;1. advertised_address&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;用处不大，将会废弃&lt;/p&gt;</description>
     </item>
     <item>
       <title>1.7 DNS 参数</title>

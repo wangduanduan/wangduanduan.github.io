@@ -11,8 +11,50 @@
     </image>
     <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 02 Feb 2025 15:12:40 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 29 Mar 2025 15:49:28 +0800</lastBuildDate>
     <atom:link href="https://wdd.js.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Default</title>
+      <link>https://wdd.js.org/posts/2025/default/</link>
+      <pubDate>Sat, 29 Mar 2025 15:49:28 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2025/default/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hot Reload OpenSIPS vs Kamailio</title>
+      <link>https://wdd.js.org/posts/2025/hot-reload-opensips-vs-kamailio/</link>
+      <pubDate>Sat, 29 Mar 2025 13:49:38 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2025/hot-reload-opensips-vs-kamailio/</guid>
+      <description>&lt;p&gt;用过nginx的都知道，改了nginx的配置文件，只需要执行&lt;code&gt;nginx -s reload&lt;/code&gt;就可以让改动生效，而不用重启整个服务。&lt;/p&gt;
+&lt;p&gt;在kamailio和opensips中，也有类似的热重载功能。&lt;/p&gt;
+&lt;p&gt;在kamailio中，如果要热重载配置文件，只需要执行&lt;code&gt;kamcmd app_jsdt.reload&lt;/code&gt;即可。
+在opensips中，如果要热重载配置文件，只需要执行&lt;code&gt;opensips-cli -x mi reload_routes&lt;/code&gt;即可。&lt;/p&gt;
+&lt;p&gt;理想很丰满，现实很骨感。&lt;/p&gt;
+&lt;p&gt;如果要只是修改路由模块，两者都可以做热重载。 如果要动态的新增一些模块，那就必须要重启。&lt;/p&gt;
+&lt;h1 id=&#34;kamailio的实现方案&#34;&gt;Kamailio的实现方案&lt;/h1&gt;
+&lt;p&gt;必须要用KEMI框架： cfg + [lua|js|python|ruby]&lt;/p&gt;
+&lt;p&gt;用这个框架，你写的路由脚本将包括两个部分&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;核心模块，全局配置，模块加载，模块配置，事件路由这部分内容还是写在cfg文件中。&lt;/li&gt;
+&lt;li&gt;请求路由、响应路由、分支路由、失败路由等这部分内容可以用lua、js、 python等来写。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在热重载的时候，实际上只有外部脚本会被重新加载，而核心模块是不会被重新加载的。&lt;/p&gt;
+&lt;p&gt;因为部分路由用其他脚本编写，必然涉及到性能比较。官方给出的结论是，在同等条件下，lua的性能是最好的。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.kamailio.org/wikidocs/devel/config-engines/#interpreters-performances&#34;&gt;https://www.kamailio.org/wikidocs/devel/config-engines/#interpreters-performances&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;但是实际生产环境如何，还不好说。&lt;/p&gt;
+&lt;p&gt;另外一点，就是并不是所有模块都实现了KEMI框架的接口，可能存在风险。&lt;/p&gt;
+&lt;h1 id=&#34;opensips的实现方案&#34;&gt;OpenSIPS的实现方案&lt;/h1&gt;
+&lt;p&gt;OpenSIPS在3.0版本首次引入了热重载路由脚本的能力，脚本还是cfg，没有引入其他语言。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.opensips.org/Documentation/Interface-CoreMI-3-0#toc8&#34;&gt;https://www.opensips.org/Documentation/Interface-CoreMI-3-0#toc8&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;结论&#34;&gt;结论&lt;/h1&gt;
+&lt;p&gt;总体而言，目的是相同的，都是为了热重载路由。&lt;/p&gt;
+&lt;p&gt;kamailio的方案看似灵活，实则复杂。如果cfg本身就能做热重载，那么就没必要引入其他语言。&lt;/p&gt;
+&lt;p&gt;我更倾向使用OpenSIPS的方案&lt;/p&gt;
+&lt;h1 id=&#34;参考&#34;&gt;参考&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.opensips.org/2019/04/04/no-downtime-for-opensips-3-0-restarts/&#34;&gt;https://blog.opensips.org/2019/04/04/no-downtime-for-opensips-3-0-restarts/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     <item>
       <title>HEP 协议学习笔记</title>
       <link>https://wdd.js.org/posts/2025/hep-protocol/</link>

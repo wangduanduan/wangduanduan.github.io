@@ -1,0 +1,172 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>1.17 脚本语法 - if、else、switch、while、赋值、比较、算数等 | 洞香春</title>
+<meta name=keywords content="all"><meta name=description content="1. if
+IF-ELSE statement
+Prototype:
+    if(expr) {
+       actions;
+    } else {
+       actions;
+    }
+
+The expr should be a valid logical expression.
+The logical operators that can be used in expr:
+
+==:      equal
+!=:      not equal
+=~:      case-insensitive regular expression matching: Note: Posix regular expressions will be used, e.g. use [[:digit:]]{3} instead of \d\d\d
+!~:      regular expression not-matching (NOT PORTED from Kamailio 1.x, use !(x =~ y))
+>:       greater
+>=:      greater or equal
+<:       less
+<=:      less or equal
+&&:      logical AND
+||:      logical OR
+!:       logical NOT
+
+Example of usage:"><meta name=author content="Eddie Wang"><link rel=canonical href=https://wdd.js.org/kamailio/56/script-statements/><link crossorigin=anonymous href=/assets/css/stylesheet.821c51435cba3e33e49e590a06514c54c32ac7957095ffcc1e0f390c47cf3228.css integrity="sha256-ghxRQ1y6PjPknlkKBlFMVMMqx5Vwlf/MHg85DEfPMig=" rel="preload stylesheet" as=style><link rel=icon href=https://wdd.js.org/cowboy.ico><link rel=icon type=image/png sizes=16x16 href=https://wdd.js.org/cowboy.ico><link rel=icon type=image/png sizes=32x32 href=https://wdd.js.org/cowboy.ico><link rel=apple-touch-icon href=https://wdd.js.org/cowboy.ico><link rel=mask-icon href=https://wdd.js.org/cowboy.ico><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://wdd.js.org/kamailio/56/script-statements/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><meta property="og:url" content="https://wdd.js.org/kamailio/56/script-statements/"><meta property="og:site_name" content="洞香春"><meta property="og:title" content="1.17 脚本语法 - if、else、switch、while、赋值、比较、算数等"><meta property="og:description" content="1. if IF-ELSE statement
+Prototype:
+if(expr) { actions; } else { actions; } The expr should be a valid logical expression.
+The logical operators that can be used in expr:
+==: equal !=: not equal =~: case-insensitive regular expression matching: Note: Posix regular expressions will be used, e.g. use [[:digit:]]{3} instead of \d\d\d !~: regular expression not-matching (NOT PORTED from Kamailio 1.x, use !(x =~ y)) >: greater >=: greater or equal <: less <=: less or equal &&: logical AND ||: logical OR !: logical NOT Example of usage:"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="kamailio"><meta property="article:tag" content="All"><meta property="og:image" content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="1.17 脚本语法 - if、else、switch、while、赋值、比较、算数等"><meta name=twitter:description content="1. if
+IF-ELSE statement
+Prototype:
+    if(expr) {
+       actions;
+    } else {
+       actions;
+    }
+
+The expr should be a valid logical expression.
+The logical operators that can be used in expr:
+
+==:      equal
+!=:      not equal
+=~:      case-insensitive regular expression matching: Note: Posix regular expressions will be used, e.g. use [[:digit:]]{3} instead of \d\d\d
+!~:      regular expression not-matching (NOT PORTED from Kamailio 1.x, use !(x =~ y))
+>:       greater
+>=:      greater or equal
+<:       less
+<=:      less or equal
+&&:      logical AND
+||:      logical OR
+!:       logical NOT
+
+Example of usage:"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"新朋友 - kamailio学习笔记","item":"https://wdd.js.org/kamailio/"},{"@type":"ListItem","position":2,"name":"Kamailio 5.6 Wiki","item":"https://wdd.js.org/kamailio/56/"},{"@type":"ListItem","position":3,"name":"1.17 脚本语法 - if、else、switch、while、赋值、比较、算数等","item":"https://wdd.js.org/kamailio/56/script-statements/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"1.17 脚本语法 - if、else、switch、while、赋值、比较、算数等","name":"1.17 脚本语法 - if、else、switch、while、赋值、比较、算数等","description":"1. if IF-ELSE statement\nPrototype:\nif(expr) { actions; } else { actions; } The expr should be a valid logical expression.\nThe logical operators that can be used in expr:\n==: equal !=: not equal =~: case-insensitive regular expression matching: Note: Posix regular expressions will be used, e.g. use [[:digit:]]{3} instead of \\d\\d\\d !~: regular expression not-matching (NOT PORTED from Kamailio 1.x, use !(x =~ y)) \u0026gt;: greater \u0026gt;=: greater or equal \u0026lt;: less \u0026lt;=: less or equal \u0026amp;\u0026amp;: logical AND ||: logical OR !: logical NOT Example of usage:\n","keywords":["all"],"articleBody":"1. if IF-ELSE statement\nPrototype:\nif(expr) { actions; } else { actions; } The expr should be a valid logical expression.\nThe logical operators that can be used in expr:\n==: equal !=: not equal =~: case-insensitive regular expression matching: Note: Posix regular expressions will be used, e.g. use [[:digit:]]{3} instead of \\d\\d\\d !~: regular expression not-matching (NOT PORTED from Kamailio 1.x, use !(x =~ y)) \u003e: greater \u003e=: greater or equal \u003c: less \u003c=: less or equal \u0026\u0026: logical AND ||: logical OR !: logical NOT Example of usage:\nif(is_method(\"INVITE\")) { log(\"this sip message is an invite\\n\"); } else { log(\"this sip message is not an invite\\n\"); } See also the FAQ for how the function return code is evaluated:\nHow is the function code evaluated 2. switch SWITCH statement - it can be used to test the value of a pseudo-variable.\nIMPORTANT NOTE: break can be used only to mark the end of a case branch (as it is in shell scripts). If you are trying to use break outside a case block the script will return error – you must use return there.\nExample of usage:\nroute { route(1); switch($retcode) { case -1: log(\"process INVITE requests here\\n\"); break; case 1: log(\"process REGISTER requests here\\n\"); break; case 2: case 3: log(\"process SUBSCRIBE and NOTIFY requests here\\n\"); break; default: log(\"process other requests here\\n\"); } # switch of R-URI username switch($rU) { case \"101\": log(\"destination number is 101\\n\"); break; case \"102\": log(\"destination number is 102\\n\"); break; case \"103\": case \"104\": log(\"destination number is 103 or 104\\n\"); break; default: log(\"unknown destination number\\n\"); } } route[1]{ if(is_method(\"INVITE\")) { return(-1); }; if(is_method(\"REGISTER\")) return(1); } if(is_method(\"SUBSCRIBE\")) return(2); } if(is_method(\"NOTIFY\")) return(3); } return(-2); } NOTE: take care while using return - return(0) stops the execution of the script.\n3. while while statement\nExample of usage:\n$var(i) = 0; while($var(i) \u003c 10) { xlog(\"counter: $var(i)\\n\"); $var(i) = $var(i) + 1; } 4. Script Operations Assignments together with string and arithmetic operations can be done directly in configuration file.\n4.1. Assignment Assignments can be done like in C, via = (equal). The following pseudo-variables can be used in left side of an assignment:\nUnordered List Item AVPs - to set the value of an AVP script variables ($var(...)) - to set the value of a script variable shared variables ($shv(...)) $ru - to set R-URI $rd - to set domain part of R-URI $rU - to set user part of R-URI $rp - to set the port of R-URI $du - to set dst URI $fs - to set send socket $br - to set branch $mf - to set message flags value $sf - to set script flags value $bf - to set branch flags value $var(a) = 123; For avp’s there a way to remove all values and assign a single value in one statement (in other words, delete existing AVPs with same name, add a new one with the right side value). This replaces the := assignment operator from kamailio \u003c 3.0.\n$(avp(i:3)[*]) = 123; $(avp(i:3)[*]) = $null; 4.2. String Operations For strings, + is available to concatenate.\n$var(a) = \"test\"; $var(b) = \"sip:\" + $var(a) + \"@\" + $fd; 4.3. Arithmetic Operations For numbers, one can use:\n+ : plus - : minus / : divide * : multiply % : modulo (Kamailio uses mod instead of %) | : bitwise OR \u0026 : bitwise AND ^ : bitwise XOR ~ : bitwise NOT \u003c\u003c : bitwise left shift \u003e\u003e : bitwise right shift Example:\n$var(a) = 4 + ( 7 \u0026 ( ~2 ) ); NOTE: to ensure the priority of operands in expression evaluations do use parenthesis.\nArithmetic expressions can be used in condition expressions.\nif( $var(a) \u0026 4 ) log(\"var a has third bit set\\n\"); 5. Operators type casts operators: (int), (str). string comparison: eq, ne integer comparison: ieq, ine Note: The names are not yet final (use them at your own risk). Future version might use ==/!= only for ints (ieq/ine) and eq/ne for strings (under debate). They are almost equivalent to == or !=, but they force the conversion of their operands (eq to string and ieq to int), allowing among other things better type checking on startup and more optimizations.\nNon equiv. examples:\n0 == \"\" (true) is not equivalent to 0 eq \"\" (false: it evaluates to \"0\" eq \"\").\n\"a\" ieq \"b\" (true: (int)\"a\" is 0 and (int)\"b\" is 0) is not equivalent to \"a\" == \"b\" (false).\nNote: internally == and != are converted on startup to eq/ne/ieq/ine whenever possible (both operand types can be safely determined at start time and they are the same).\nKamailio tries to guess what the user wanted when operators that support multiple types are used on different typed operands. In general convert the right operand to the type of the left operand and then perform the operation. Exception: the left operand is undef. This applies to the following operators: +, == and !=. Special case: undef as left operand: For +: undef + expr -\u003e undef is converted to string =\u003e \"\" + expr. For == and !=: undef == expr -\u003e undef is converted to type_of expr. If expr is undef, then undef == undef is true (internally is converted to string). expression evaluation changes: Kamailio will auto-convert to integer or string in function of the operators: int(undef)==0, int(\"\")==0, int(\"123\")==123, int(\"abc\")==0 str(undef)==\"\", str(123)==\"123\". script operators for dealing with empty/undefined variables defined expr - returns true if expr is defined, and false if not. Note: only a standalone avp or pvar can be undefined, everything else is defined. strlen(expr) - returns the lenght of expr evaluated as string. strempty(expr) - returns true if expr evaluates to the empty string (equivalent to expr==\"\"). Example: if (defined $v \u0026\u0026 !strempty($v)) $len=strlen($v); ","wordCount":"961","inLanguage":"en","image":"https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E","datePublished":"0001-01-01T00:00:00Z","dateModified":"0001-01-01T00:00:00Z","author":{"@type":"Person","name":"Eddie Wang"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://wdd.js.org/kamailio/56/script-statements/"},"publisher":{"@type":"Organization","name":"洞香春","logo":{"@type":"ImageObject","url":"https://wdd.js.org/cowboy.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://wdd.js.org/ accesskey=h title="洞香春 (Alt + H)"><img src=https://wdd.js.org/cowboy.ico alt aria-label=logo height=35>洞香春</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://wdd.js.org/books/ title=读书><span>读书</span></a></li><li><a href=https://wdd.js.org/freeswitch/ title=FreeSWITCH><span>FreeSWITCH</span></a></li><li><a href=https://wdd.js.org/golang/ title=Golang><span>Golang</span></a></li><li><a href=https://wdd.js.org/kamailio/ title=Kamailio><span>Kamailio</span></a></li><li><a href=https://wdd.js.org/kamailio/56/ title="Kamailio 5.6 wiki"><span>Kamailio 5.6 wiki</span></a></li><li><a href=https://wdd.js.org/network/ title=Network><span>Network</span></a></li><li><a href=https://wdd.js.org/opensips/ title=OpenSIPS><span>OpenSIPS</span></a></li><li><a href=https://wdd.js.org/vim/ title=VIM><span>VIM</span></a></li><li><a href=https://wdd.js.org/categories/ title=分类><span>分类</span></a></li><li><a href=https://wdd.js.org/fe/ title=前端><span>前端</span></a></li><li><a href=https://wdd.js.org/search/ title=搜索><span>搜索</span></a></li><li><a href=https://wdd.js.org/tags/ title=标签><span>标签</span></a></li><li><a href=https://wdd.js.org/archives/ title=归档><span>归档</span></a></li><li><a href=https://wdd.js.org/about/ title=我><span>我</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://wdd.js.org/>Home</a>&nbsp;»&nbsp;<a href=https://wdd.js.org/kamailio/>新朋友 - kamailio学习笔记</a>&nbsp;»&nbsp;<a href=https://wdd.js.org/kamailio/56/>Kamailio 5.6 Wiki</a></div><h1 class="post-title entry-hint-parent">1.17 脚本语法 - if、else、switch、while、赋值、比较、算数等</h1><div class=post-meta>5 min&nbsp;·&nbsp;Eddie Wang&nbsp;|&nbsp;<a href=https://github.com/%3cpath_to_repo%3e/content/kamailio/56/script-statements/index.md rel="noopener noreferrer" target=_blank>Suggest Changes</a></div></header><aside id=toc-container class="toc-container wide"><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#1-if aria-label="1. if">1. if</a></li><li><a href=#2-switch aria-label="2. switch">2. switch</a></li><li><a href=#3-while aria-label="3. while">3. while</a></li><li><a href=#4-script-operations aria-label="4. Script Operations">4. Script Operations</a><ul><li><a href=#41-assignment aria-label="4.1. Assignment">4.1. Assignment</a></li><li><a href=#42-string-operations aria-label="4.2. String Operations">4.2. String Operations</a></li><li><a href=#43-arithmetic-operations aria-label="4.3. Arithmetic Operations">4.3. Arithmetic Operations</a></li></ul></li><li><a href=#5-operators aria-label="5. Operators">5. Operators</a></li></ul></div></details></div></aside><script>let activeElement,elements;window.addEventListener("DOMContentLoaded",function(){checkTocPosition(),elements=document.querySelectorAll("h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]"),activeElement=elements[0];const t=encodeURI(activeElement.getAttribute("id")).toLowerCase();document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active")},!1),window.addEventListener("resize",function(){checkTocPosition()},!1),window.addEventListener("scroll",()=>{activeElement=Array.from(elements).find(e=>{if(getOffsetTop(e)-window.pageYOffset>0&&getOffsetTop(e)-window.pageYOffset<window.innerHeight/2)return e})||activeElement,elements.forEach(e=>{const t=encodeURI(e.getAttribute("id")).toLowerCase();e===activeElement?document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active"):document.querySelector(`.inner ul li a[href="#${t}"]`).classList.remove("active")})},!1);const main=parseInt(getComputedStyle(document.body).getPropertyValue("--article-width"),10),toc=parseInt(getComputedStyle(document.body).getPropertyValue("--toc-width"),10),gap=parseInt(getComputedStyle(document.body).getPropertyValue("--gap"),10);function checkTocPosition(){const e=document.body.scrollWidth;e-main-toc*2-gap*4>0?document.getElementById("toc-container").classList.add("wide"):document.getElementById("toc-container").classList.remove("wide")}function getOffsetTop(e){if(!e.getClientRects().length)return 0;let t=e.getBoundingClientRect(),n=e.ownerDocument.defaultView;return t.top+n.pageYOffset}</script><div class=post-content><h1 id=1-if>1. if<a hidden class=anchor aria-hidden=true href=#1-if>#</a></h1><p>IF-ELSE statement</p><p>Prototype:</p><pre><code>    if(expr) {
+       actions;
+    } else {
+       actions;
+    }
+</code></pre><p>The <code>expr</code> should be a valid logical expression.</p><p>The logical operators that can be used in <code>expr</code>:</p><ul><li><code>==</code>: equal</li><li><code>!=</code>: not equal</li><li><code>=~</code>: case-insensitive regular expression matching: Note: Posix regular expressions will be used, e.g. use <code>[[:digit:]]{3}</code> instead of <code>\d\d\d</code></li><li><code>!~</code>: regular expression not-matching (NOT PORTED from Kamailio 1.x, use <code>!(x =~ y)</code>)</li><li><code>></code>: greater</li><li><code>>=</code>: greater or equal</li><li><code>&lt;</code>: less</li><li><code>&lt;=</code>: less or equal</li><li><code>&&</code>: logical AND</li><li><code>||</code>: logical OR</li><li><code>!</code>: logical NOT</li></ul><p>Example of usage:</p><pre><code>  if(is_method(&quot;INVITE&quot;))
+  {
+      log(&quot;this sip message is an invite\n&quot;);
+  } else {
+      log(&quot;this sip message is not an invite\n&quot;);
+  }
+</code></pre><p>See also the FAQ for how the function return code is evaluated:</p><ul><li><a href=../../tutorials/faq/main.md#how-is-the-function-return-code-evaluated>How is the function code evaluated</a></li></ul><h1 id=2-switch>2. switch<a hidden class=anchor aria-hidden=true href=#2-switch>#</a></h1><p>SWITCH statement - it can be used to test the value of a
+pseudo-variable.</p><p>IMPORTANT NOTE: <code>break</code> can be used only to mark the end of a <code>case</code>
+branch (as it is in shell scripts). If you are trying to use <code>break</code>
+outside a <code>case</code> block the script will return error &ndash; you must use
+<code>return</code> there.</p><p>Example of usage:</p><pre><code>    route {
+        route(1);
+        switch($retcode)
+        {
+            case -1:
+                log(&quot;process INVITE requests here\n&quot;);
+            break;
+            case 1:
+                log(&quot;process REGISTER requests here\n&quot;);
+            break;
+            case 2:
+            case 3:
+                log(&quot;process SUBSCRIBE and NOTIFY requests here\n&quot;);
+            break;
+            default:
+                log(&quot;process other requests here\n&quot;);
+       }
+
+        # switch of R-URI username
+        switch($rU)
+        {
+            case &quot;101&quot;:
+                log(&quot;destination number is 101\n&quot;);
+            break;
+            case &quot;102&quot;:
+                log(&quot;destination number is 102\n&quot;);
+            break;
+            case &quot;103&quot;:
+            case &quot;104&quot;:
+                log(&quot;destination number is 103 or 104\n&quot;);
+            break;
+            default:
+                log(&quot;unknown destination number\n&quot;);
+       }
+    }
+
+    route[1]{
+        if(is_method(&quot;INVITE&quot;))
+        {
+            return(-1);
+        };
+        if(is_method(&quot;REGISTER&quot;))
+            return(1);
+        }
+        if(is_method(&quot;SUBSCRIBE&quot;))
+            return(2);
+        }
+        if(is_method(&quot;NOTIFY&quot;))
+            return(3);
+        }
+        return(-2);
+    }
+</code></pre><p>NOTE: take care while using <code>return</code> - <code>return(0)</code> stops the execution
+of the script.</p><h1 id=3-while>3. while<a hidden class=anchor aria-hidden=true href=#3-while>#</a></h1><p>while statement</p><p>Example of usage:</p><pre><code>  $var(i) = 0;
+  while($var(i) &lt; 10)
+  {
+      xlog(&quot;counter: $var(i)\n&quot;);
+      $var(i) = $var(i) + 1;
+  }
+</code></pre><h1 id=4-script-operations>4. Script Operations<a hidden class=anchor aria-hidden=true href=#4-script-operations>#</a></h1><p>Assignments together with string and arithmetic operations can be done
+directly in configuration file.</p><h2 id=41-assignment>4.1. Assignment<a hidden class=anchor aria-hidden=true href=#41-assignment>#</a></h2><p>Assignments can be done like in C, via <code>=</code> (equal). The following
+pseudo-variables can be used in left side of an assignment:</p><ul><li>Unordered List Item AVPs - to set the value of an AVP</li><li>script variables <code>($var(...))</code> - to set the value of a script variable</li><li>shared variables (<code>$shv(...)</code>)</li><li><code>$ru</code> - to set R-URI</li><li><code>$rd</code> - to set domain part of R-URI</li><li><code>$rU</code> - to set user part of R-URI</li><li><code>$rp</code> - to set the port of R-URI</li><li><code>$du</code> - to set dst URI</li><li><code>$fs</code> - to set send socket</li><li><code>$br</code> - to set branch</li><li><code>$mf</code> - to set message flags value</li><li><code>$sf</code> - to set script flags value</li><li><code>$bf</code> - to set branch flags value</li></ul><pre><code>$var(a) = 123;
+</code></pre><p>For avp&rsquo;s there a way to remove all values and assign a single value in
+one statement (in other words, delete existing AVPs with same name, add
+a new one with the right side value). This replaces the <code>:=</code> assignment
+operator from kamailio <code>&lt; 3.0</code>.</p><pre><code>$(avp(i:3)[*]) = 123;
+$(avp(i:3)[*]) = $null;
+</code></pre><h2 id=42-string-operations>4.2. String Operations<a hidden class=anchor aria-hidden=true href=#42-string-operations>#</a></h2><p>For strings, <code>+</code> is available to concatenate.</p><pre><code>$var(a) = &quot;test&quot;;
+$var(b) = &quot;sip:&quot; + $var(a) + &quot;@&quot; + $fd;
+</code></pre><h2 id=43-arithmetic-operations>4.3. Arithmetic Operations<a hidden class=anchor aria-hidden=true href=#43-arithmetic-operations>#</a></h2><p>For numbers, one can use:</p><ul><li><code>+</code> : plus</li><li><code>-</code> : minus</li><li><code>/</code> : divide</li><li><code>*</code> : multiply</li><li><code>%</code> : modulo (Kamailio uses <code>mod</code> instead of <code>%</code>)</li><li><code>|</code> : bitwise OR</li><li><code>&</code> : bitwise AND</li><li><code>^</code> : bitwise XOR</li><li><code>~</code> : bitwise NOT</li><li><code>&lt;&lt;</code> : bitwise left shift</li><li><code>>></code> : bitwise right shift</li></ul><p>Example:</p><pre><code>$var(a) = 4 + ( 7 &amp; ( ~2 ) );
+</code></pre><p>NOTE: to ensure the priority of operands in expression evaluations do
+use parenthesis.</p><p>Arithmetic expressions can be used in condition expressions.</p><pre><code>if( $var(a) &amp; 4 )
+    log(&quot;var a has third bit set\n&quot;);
+</code></pre><h1 id=5-operators>5. Operators<a hidden class=anchor aria-hidden=true href=#5-operators>#</a></h1><ol><li>type casts operators: <code>(int)</code>, <code>(str)</code>.</li><li>string comparison: <code>eq</code>, <code>ne</code></li><li>integer comparison: <code>ieq</code>, <code>ine</code></li></ol><p>Note: The names are not yet final (use them at your own risk). Future
+version might use <code>==</code>/<code>!=</code> only for ints (<code>ieq/ine</code>) and <code>eq/ne</code> for strings
+(under debate). They are almost equivalent to <code>==</code> or <code>!=</code>, but they force
+the conversion of their operands (<code>eq</code> to string and <code>ieq</code> to int), allowing
+among other things better type checking on startup and more
+optimizations.</p><p>Non equiv. examples:</p><p><code>0 == ""</code> (true) is not equivalent to <code>0 eq ""</code> (false: it evaluates to <code>"0" eq ""</code>).</p><p><code>"a" ieq "b"</code> (true: <code>(int)"a" is 0</code> and <code>(int)"b" is 0</code>) is not equivalent to <code>"a" == "b"</code> (false).</p><p>Note: internally <code>==</code> and <code>!=</code> are converted on startup to <code>eq/ne/ieq/ine</code>
+whenever possible (both operand types can be safely determined at start
+time and they are the same).</p><ol><li>Kamailio tries to guess what the user wanted when operators that
+support multiple types are used on different typed operands. In
+general convert the right operand to the type of the left operand
+and then perform the operation. Exception: the left operand is
+undef. This applies to the following operators: <code>+</code>, <code>==</code> and <code>!=</code>.</li></ol><pre><code>   Special case: undef as left operand:
+   For +: undef + expr -&gt; undef is converted to string =&gt; &quot;&quot; + expr.
+   For == and !=:   undef == expr -&gt; undef is converted to type_of expr.
+   If expr is undef, then undef == undef is true (internally is converted
+   to string).
+</code></pre><ol><li>expression evaluation changes: Kamailio will auto-convert to integer
+or string in function of the operators:</li></ol><pre><code>     int(undef)==0,  int(&quot;&quot;)==0, int(&quot;123&quot;)==123, int(&quot;abc&quot;)==0
+     str(undef)==&quot;&quot;, str(123)==&quot;123&quot;.
+</code></pre><ol><li>script operators for dealing with empty/undefined variables</li></ol><pre><code>    defined expr - returns true if expr is defined, and false if not.
+                   Note: only a standalone avp or pvar can be
+                   undefined, everything else is defined.
+    strlen(expr) - returns the lenght of expr evaluated as string.
+    strempty(expr) - returns true if expr evaluates to the empty
+                     string (equivalent to expr==&quot;&quot;).
+    Example: if (defined $v &amp;&amp; !strempty($v)) $len=strlen($v);
+</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://wdd.js.org/tags/all/>All</a></li></ul></footer><script src=https://giscus.app/client.js data-repo=wangduanduan/wangduanduan.github.io data-repo-id="MDEwOlJlcG9zaXRvcnkxMTkyMjMyNjA=" data-category=Announcements data-category-id=DIC_kwDOBxsz3M4CAjBq data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=bottom data-theme=preferred_color_scheme data-lang=zh-CN crossorigin=anonymous async></script></article></main><footer class=footer><span>&copy; 2025 <a href=https://wdd.js.org/>洞香春</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
