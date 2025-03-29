@@ -1,0 +1,310 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>开发学习笔记 | 洞香春</title>
+<meta name=keywords content="all"><meta name=description content="架构图
+kamailio 1.x版本
+
+kamailio 3.x版本。相比于1.x版本，两个核心模块移动到外部模块。
+
+核心模块
+The core includes:
+
+memory manager
+SIP message parser
+locking system
+DNS and transport layer management (UDP, TCP, TLS, SCTP)
+configuration file parser and interpreter
+stateless forwarding
+pseudo-variables and transformations engines
+RPC control interface API
+timer API
+
+The internal libraries include:
+
+some components from old Kamailio v1.5.x core
+database abstraction layers (DB API v1 and v2)
+management interface (MI) API
+statistics engine
+
+SIP消息处理
+请求处理
+
+响应处理。 这里可以看到，是先执行响应路由，再执行失败路由。
+"><meta name=author content="Eddie Wang"><link rel=canonical href=https://wdd.js.org/kamailio/devel-guide-note/><link crossorigin=anonymous href=/assets/css/stylesheet.821c51435cba3e33e49e590a06514c54c32ac7957095ffcc1e0f390c47cf3228.css integrity="sha256-ghxRQ1y6PjPknlkKBlFMVMMqx5Vwlf/MHg85DEfPMig=" rel="preload stylesheet" as=style><link rel=icon href=https://wdd.js.org/cowboy.ico><link rel=icon type=image/png sizes=16x16 href=https://wdd.js.org/cowboy.ico><link rel=icon type=image/png sizes=32x32 href=https://wdd.js.org/cowboy.ico><link rel=apple-touch-icon href=https://wdd.js.org/cowboy.ico><link rel=mask-icon href=https://wdd.js.org/cowboy.ico><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://wdd.js.org/kamailio/devel-guide-note/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><meta property="og:url" content="https://wdd.js.org/kamailio/devel-guide-note/"><meta property="og:site_name" content="洞香春"><meta property="og:title" content="开发学习笔记"><meta property="og:description" content="架构图 kamailio 1.x版本 kamailio 3.x版本。相比于1.x版本，两个核心模块移动到外部模块。 核心模块 The core includes:
+memory manager SIP message parser locking system DNS and transport layer management (UDP, TCP, TLS, SCTP) configuration file parser and interpreter stateless forwarding pseudo-variables and transformations engines RPC control interface API timer API The internal libraries include:
+some components from old Kamailio v1.5.x core database abstraction layers (DB API v1 and v2) management interface (MI) API statistics engine SIP消息处理 请求处理 响应处理。 这里可以看到，是先执行响应路由，再执行失败路由。 "><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="kamailio"><meta property="article:published_time" content="2025-02-21T22:17:35+08:00"><meta property="article:modified_time" content="2025-02-21T22:17:35+08:00"><meta property="article:tag" content="All"><meta property="og:image" content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="开发学习笔记"><meta name=twitter:description content="架构图
+kamailio 1.x版本
+
+kamailio 3.x版本。相比于1.x版本，两个核心模块移动到外部模块。
+
+核心模块
+The core includes:
+
+memory manager
+SIP message parser
+locking system
+DNS and transport layer management (UDP, TCP, TLS, SCTP)
+configuration file parser and interpreter
+stateless forwarding
+pseudo-variables and transformations engines
+RPC control interface API
+timer API
+
+The internal libraries include:
+
+some components from old Kamailio v1.5.x core
+database abstraction layers (DB API v1 and v2)
+management interface (MI) API
+statistics engine
+
+SIP消息处理
+请求处理
+
+响应处理。 这里可以看到，是先执行响应路由，再执行失败路由。
+"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"新朋友 - kamailio学习笔记","item":"https://wdd.js.org/kamailio/"},{"@type":"ListItem","position":2,"name":"开发学习笔记","item":"https://wdd.js.org/kamailio/devel-guide-note/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"开发学习笔记","name":"开发学习笔记","description":"架构图 kamailio 1.x版本 kamailio 3.x版本。相比于1.x版本，两个核心模块移动到外部模块。 核心模块 The core includes:\nmemory manager SIP message parser locking system DNS and transport layer management (UDP, TCP, TLS, SCTP) configuration file parser and interpreter stateless forwarding pseudo-variables and transformations engines RPC control interface API timer API The internal libraries include:\nsome components from old Kamailio v1.5.x core database abstraction layers (DB API v1 and v2) management interface (MI) API statistics engine SIP消息处理 请求处理 响应处理。 这里可以看到，是先执行响应路由，再执行失败路由。 ","keywords":["all"],"articleBody":"架构图 kamailio 1.x版本 kamailio 3.x版本。相比于1.x版本，两个核心模块移动到外部模块。 核心模块 The core includes:\nmemory manager SIP message parser locking system DNS and transport layer management (UDP, TCP, TLS, SCTP) configuration file parser and interpreter stateless forwarding pseudo-variables and transformations engines RPC control interface API timer API The internal libraries include:\nsome components from old Kamailio v1.5.x core database abstraction layers (DB API v1 and v2) management interface (MI) API statistics engine SIP消息处理 请求处理 响应处理。 这里可以看到，是先执行响应路由，再执行失败路由。 锁系统 略\n内存管理 略\n数据结构 str （字符串） str.h\nstruct _str{ char* s; /* pointer to the beginning of string (char array) */ int len; /* string length */ }; typedef struct _str str; 用法\n#include \"str.h\" ... str s; s.s = \"kamailio\"; s.len = strlen(s.s); LM_DBG(\"the string is [%.*s]\\n\", s.len, s.s); struct sip_uri （SIP URI） parser/msg_parser.h\n想不到一个sip url居然也有将近20个参数。\nstruct sip_uri { str user; /* Username */ str passwd; /* Password */ str host; /* Host name */ str port; /* Port number */ str params; /* URI Parameters */ str headers; /* URI Headers */ unsigned short port_no; /* Port number r*/ unsigned short proto; /* Transport protocol */ uri_type type; /* URI scheme */ /* parameters */ str transport; /* transport parameter */ str ttl; /* ttl parameter */ str user_param; /* user parameter */ str maddr; /* maddr parameter */ str method; /* method parameter */ str lr; /* lr parameter */ str r2; /* specific rr parameter */ /* values */ str transport_val; /* value of transport parameter */ str ttl_val; /* value of ttl parameter */ str user_param_val; /* value of user parameter */ str maddr_val; /* value of maddr parameter */ str method_val; /* value of method parameter */ str lr_val; /* value of lr parameter */ str r2_val; /* value of r2 parameter */ }; struct sip_msg （SIP消息） parser/msg_parser.h\nstruct sip_msg { unsigned int id; /* message id, unique/process*/ struct msg_start first_line; /* Message first line */ struct via_body* via1; /* The first via */ struct via_body* via2; /* The second via */ struct hdr_field* headers; /* All the parsed headers*/ struct hdr_field* last_header; /* Pointer to the last parsed header*/ hdr_flags_t parsed_flag; /* Already parsed header field types */ /* Via, To, CSeq, Call-Id, From, end of header*/ /* pointers to the first occurrences of these headers; * everything is also saved in 'headers' (see above) */ /* shorcuts to known headers */ struct hdr_field* h_via1; struct hdr_field* h_via2; struct hdr_field* callid; struct hdr_field* to; struct hdr_field* cseq; struct hdr_field* from; struct hdr_field* contact; struct hdr_field* maxforwards; struct hdr_field* route; struct hdr_field* record_route; struct hdr_field* path; struct hdr_field* content_type; struct hdr_field* content_length; struct hdr_field* authorization; struct hdr_field* expires; struct hdr_field* proxy_auth; struct hdr_field* supported; struct hdr_field* proxy_require; struct hdr_field* unsupported; struct hdr_field* allow; struct hdr_field* event; struct hdr_field* accept; struct hdr_field* accept_language; struct hdr_field* organization; struct hdr_field* priority; struct hdr_field* subject; struct hdr_field* user_agent; struct hdr_field* content_disposition; struct hdr_field* accept_disposition; struct hdr_field* diversion; struct hdr_field* rpid; struct hdr_field* refer_to; struct hdr_field* session_expires; struct hdr_field* min_se; struct hdr_field* ppi; struct hdr_field* pai; struct hdr_field* privacy; struct sdp_info* sdp; /* parsed SDP body */ char* eoh; /* pointer to the end of header (if found) or null */ char* unparsed; /* here we stopped parsing*/ struct receive_info rcv; /* source and dest ip, ports, proto a.s.o*/ char* buf; /* scratch pad, holds a unmodified message, * via, etc. point into it */ unsigned int len; /* message len (orig) */ /* modifications */ // 可写的伪变量 // $ru str new_uri; /* changed first line uri, when you change this * don't forget to set parsed_uri_ok to 0 */ // $du str dst_uri; /* Destination URI, must be forwarded to this URI if len!=0 */ /* current uri */ int parsed_uri_ok; /* 1 if parsed_uri is valid, 0 if not, set it to 0 if you modify the uri (e.g change new_uri)*/ struct sip_uri parsed_uri; /* speed-up \u003e keep here the parsed uri*/ /* the same for original uri */ int parsed_orig_ruri_ok; struct sip_uri parsed_orig_ruri; struct lump* add_rm; /* used for all the forwarded requests/replies */ struct lump* body_lumps; /* Lumps that update Content-Length */ struct lump_rpl *reply_lump; /* only for localy generated replies !!!*/ /* whatever whoever want to append to branch comes here */ char add_to_branch_s[MAX_BRANCH_PARAM_LEN]; int add_to_branch_len; /* index to TM hash table; stored in core to avoid * unnecessary calculations */ unsigned int hash_index; /* flags used from script */ flag_t flags; /* flags used by core - allows to set various flags on the message; may * be used for simple inter-module communication or remembering * processing state reached */ unsigned int msg_flags; // 对外宣称地址和端口，可以通过as设置，也可以通过 // set_advertised_address() set_advertised_port() // 这个地址会影响Via头和Record-Route头 str set_global_address; str set_global_port; /* force sending on this socket */ struct socket_info* force_send_socket; /* create a route HF out of this path vector */ str path_vec; }; kamailio处理SIP信令高效的原因\n懒解析，只解析需要的头 解析之后缓存起来，避免重复解析 解析后的值是一个指向原始SIP消息的指针，避免开辟内存 避免在路由过程中修改SIP消息，二是把所有的修改操作在发送消息前，一次性批量执行 REGISTER sip:sip.test.com SIP/2.0 Via: SIP/2.0/UDP 192.168.1.3:5061;branch=z9hG4bK-d663b80b Max-Forwards: 70 From: user \u003csip:u123@sip.test.com\u003e;tag=ea8cef4b108a99bco1 To: user \u003csip:u123@sip.test.com\u003e Call-ID: b96fead3-f03493d4@xyz CSeq: 3720 REGISTER Contact: user \u003csip:u123@192.168.1.3:5061\u003e;expires=3600 User-Agent: Linksys/RT31P2-2.0.10(LIc) Content-Length: 0 Allow: ACK, BYE, CANCEL, INFO, INVITE, NOTIFY, OPTIONS, REFER Supported: x-sipura struct msg_start (消息首行) 消息首行是一个包含union类型的结构，因为首行可能是SIP请求，也可能是SIP响应。\nparser/parse_fline.h. To parse a buffer containing the first line of a SIP message you have to use the function parse_fline(…).\nstruct msg_start { int type; /* Type of the Message - Request or Response (Reply) */ int len; /* length including delimiter */ union { struct { str method; /* Method string */ str uri; /* Request URI as raw string */ str version; /* SIP version */ int method_value; /* Internal integer representation of SIP method */ } request; struct { str version; /* SIP version */ str status; /* Reply status */ str reason; /* Reply reason phrase */ unsigned int statuscode; /* Integer representation of reply status */ } reply; }u; }; struct hdr_field (SIP头) parser/hf.h.\nSIP头这里主要是包含一个链表结构\nstruct hdr_field { hdr_types_t type; /* Header field type */ str name; /* Header field name */ str body; /* Header field body (may not include CRLF) */ int len; /* length from hdr start until EoHF (incl.CRLF) */ void* parsed; /* Parsed data structures */ struct hdr_field* next; /* Next header field in the list */ struct hdr_field* sibling; /* Next header of same type */ }; parsed字段指向头的body部分。\n例如解析From和To头\nparse_headers(msg, HDR_FROM_F|HDR_TO_F, 0); 为了优化解析，给每个头都设置了一个枚举值。\nenum _hdr_types_t { HDR_ERROR_T = -1 /* Error while parsing */, HDR_OTHER_T = 0 /* Some other header field */, HDR_VIA_T = 1 /* Via header field */, HDR_VIA1_T = 1 /* First Via header field */, HDR_VIA2_T = 2 /* only used as flag */, HDR_TO_T /* To header field */, HDR_FROM_T /* From header field */, HDR_CSEQ_T /* CSeq header field */, HDR_CALLID_T /* Call-Id header field */, HDR_CONTACT_T /* Contact header field */, HDR_MAXFORWARDS_T /* MaxForwards header field */, HDR_ROUTE_T /* Route header field */, HDR_RECORDROUTE_T /* Record-Route header field */, HDR_PATH_T /* Path header fiels */, HDR_CONTENTTYPE_T /* Content-Type header field */, HDR_CONTENTLENGTH_T /* Content-Length header field */, HDR_AUTHORIZATION_T /* Authorization header field */, HDR_EXPIRES_T /* Expires header field */, HDR_PROXYAUTH_T /* Proxy-Authorization hdr field */, HDR_SUPPORTED_T /* Supported header field */, HDR_PROXYREQUIRE_T /* Proxy-Require header field */, HDR_UNSUPPORTED_T /* Unsupported header field */, HDR_ALLOW_T /* Allow header field */, HDR_EVENT_T /* Event header field */, HDR_ACCEPT_T /* Accept header field */, HDR_ACCEPTLANGUAGE_T /* Accept-Language header field */, HDR_ORGANIZATION_T /* Organization header field */, HDR_PRIORITY_T /* Priority header field */, HDR_SUBJECT_T /* Subject header field */, HDR_USERAGENT_T /* User-Agent header field */, HDR_ACCEPTDISPOSITION_T /* Accept-Disposition hdr field */, HDR_CONTENTDISPOSITION_T /* Content-Disposition hdr field */, HDR_DIVERSION_T /* Diversion header field */, HDR_RPID_T /* Remote-Party-ID header field */, HDR_REFER_TO_T /* Refer-To header fiels */, HDR_SESSION_EXPIRES_T /* Session-Expires header field */, HDR_MIN_SE_T /* Min-SE header field */, HDR_PPI_T /* P-Preferred-Identity header field */, HDR_PAI_T /* P-Asserted-Identity header field */, HDR_PRIVACY_T /* Privacy header field */, HDR_RETRY_AFTER_T /* Retry-After header field */, HDR_EOH_T /* Some other header field */ }; 参考 https://www.asipto.com/pub/kamailio-devel-guide/ ","wordCount":"1309","inLanguage":"en","image":"https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E","datePublished":"2025-02-21T22:17:35+08:00","dateModified":"2025-02-21T22:17:35+08:00","author":{"@type":"Person","name":"Eddie Wang"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://wdd.js.org/kamailio/devel-guide-note/"},"publisher":{"@type":"Organization","name":"洞香春","logo":{"@type":"ImageObject","url":"https://wdd.js.org/cowboy.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://wdd.js.org/ accesskey=h title="洞香春 (Alt + H)"><img src=https://wdd.js.org/cowboy.ico alt aria-label=logo height=35>洞香春</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://wdd.js.org/books/ title=读书><span>读书</span></a></li><li><a href=https://wdd.js.org/freeswitch/ title=FreeSWITCH><span>FreeSWITCH</span></a></li><li><a href=https://wdd.js.org/golang/ title=Golang><span>Golang</span></a></li><li><a href=https://wdd.js.org/kamailio/ title=Kamailio><span>Kamailio</span></a></li><li><a href=https://wdd.js.org/kamailio/56/ title="Kamailio 5.6 wiki"><span>Kamailio 5.6 wiki</span></a></li><li><a href=https://wdd.js.org/network/ title=Network><span>Network</span></a></li><li><a href=https://wdd.js.org/opensips/ title=OpenSIPS><span>OpenSIPS</span></a></li><li><a href=https://wdd.js.org/vim/ title=VIM><span>VIM</span></a></li><li><a href=https://wdd.js.org/categories/ title=分类><span>分类</span></a></li><li><a href=https://wdd.js.org/fe/ title=前端><span>前端</span></a></li><li><a href=https://wdd.js.org/search/ title=搜索><span>搜索</span></a></li><li><a href=https://wdd.js.org/tags/ title=标签><span>标签</span></a></li><li><a href=https://wdd.js.org/archives/ title=归档><span>归档</span></a></li><li><a href=https://wdd.js.org/about/ title=我><span>我</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://wdd.js.org/>Home</a>&nbsp;»&nbsp;<a href=https://wdd.js.org/kamailio/>新朋友 - kamailio学习笔记</a></div><h1 class="post-title entry-hint-parent">开发学习笔记</h1><div class=post-meta><span title='2025-02-21 22:17:35 +0800 CST'>2025-02-21 22:17:35</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Eddie Wang&nbsp;|&nbsp;<a href=https://github.com/%3cpath_to_repo%3e/content/kamailio/devel-guide-note/index.md rel="noopener noreferrer" target=_blank>Suggest Changes</a></div></header><aside id=toc-container class="toc-container wide"><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#%e6%9e%b6%e6%9e%84%e5%9b%be aria-label=架构图>架构图</a></li><li><a href=#sip%e6%b6%88%e6%81%af%e5%a4%84%e7%90%86 aria-label=SIP消息处理>SIP消息处理</a></li><li><a href=#%e9%94%81%e7%b3%bb%e7%bb%9f aria-label=锁系统>锁系统</a></li><li><a href=#%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86 aria-label=内存管理>内存管理</a></li><li><a href=#%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84 aria-label=数据结构>数据结构</a><ul><li><a href=#str-%e5%ad%97%e7%ac%a6%e4%b8%b2 aria-label="str （字符串）">str （字符串）</a></li><li><a href=#struct-sip_uri-sip-uri aria-label="struct sip_uri （SIP URI）">struct sip_uri （SIP URI）</a></li><li><a href=#struct-sip_msg-sip%e6%b6%88%e6%81%af aria-label="struct sip_msg （SIP消息）">struct sip_msg （SIP消息）</a></li></ul></li><li><a href=#struct-msg_start-%e6%b6%88%e6%81%af%e9%a6%96%e8%a1%8c aria-label="struct msg_start (消息首行)">struct msg_start (消息首行)</a></li><li><a href=#struct-hdr_field-sip%e5%a4%b4 aria-label="struct hdr_field (SIP头)">struct hdr_field (SIP头)</a></li><li><a href=#%e5%8f%82%e8%80%83 aria-label=参考>参考</a></li></ul></div></details></div></aside><script>let activeElement,elements;window.addEventListener("DOMContentLoaded",function(){checkTocPosition(),elements=document.querySelectorAll("h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]"),activeElement=elements[0];const t=encodeURI(activeElement.getAttribute("id")).toLowerCase();document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active")},!1),window.addEventListener("resize",function(){checkTocPosition()},!1),window.addEventListener("scroll",()=>{activeElement=Array.from(elements).find(e=>{if(getOffsetTop(e)-window.pageYOffset>0&&getOffsetTop(e)-window.pageYOffset<window.innerHeight/2)return e})||activeElement,elements.forEach(e=>{const t=encodeURI(e.getAttribute("id")).toLowerCase();e===activeElement?document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active"):document.querySelector(`.inner ul li a[href="#${t}"]`).classList.remove("active")})},!1);const main=parseInt(getComputedStyle(document.body).getPropertyValue("--article-width"),10),toc=parseInt(getComputedStyle(document.body).getPropertyValue("--toc-width"),10),gap=parseInt(getComputedStyle(document.body).getPropertyValue("--gap"),10);function checkTocPosition(){const e=document.body.scrollWidth;e-main-toc*2-gap*4>0?document.getElementById("toc-container").classList.add("wide"):document.getElementById("toc-container").classList.remove("wide")}function getOffsetTop(e){if(!e.getClientRects().length)return 0;let t=e.getBoundingClientRect(),n=e.ownerDocument.defaultView;return t.top+n.pageYOffset}</script><div class=post-content><h1 id=架构图>架构图<a hidden class=anchor aria-hidden=true href=#架构图>#</a></h1><p>kamailio 1.x版本
+<img loading=lazy src=/kamailio/devel-guide-note/atta/2025-02-21-22-18-34.png></p><p>kamailio 3.x版本。相比于1.x版本，两个核心模块移动到外部模块。
+<img loading=lazy src=/kamailio/devel-guide-note/atta/2025-02-21-22-19-54.png></p><p>核心模块
+The core includes:</p><ul><li>memory manager</li><li>SIP message parser</li><li>locking system</li><li>DNS and transport layer management (UDP, TCP, TLS, SCTP)</li><li>configuration file parser and interpreter</li><li>stateless forwarding</li><li>pseudo-variables and transformations engines</li><li>RPC control interface API</li><li>timer API</li></ul><p>The internal libraries include:</p><ul><li>some components from old Kamailio v1.5.x core</li><li>database abstraction layers (DB API v1 and v2)</li><li>management interface (MI) API</li><li>statistics engine</li></ul><h1 id=sip消息处理>SIP消息处理<a hidden class=anchor aria-hidden=true href=#sip消息处理>#</a></h1><p>请求处理
+<img loading=lazy src=/kamailio/devel-guide-note/atta/2025-02-21-22-23-52.png></p><p>响应处理。 这里可以看到，是先执行响应路由，再执行失败路由。
+<img loading=lazy src=/kamailio/devel-guide-note/atta/2025-02-21-22-24-59.png></p><h1 id=锁系统>锁系统<a hidden class=anchor aria-hidden=true href=#锁系统>#</a></h1><p>略</p><h1 id=内存管理>内存管理<a hidden class=anchor aria-hidden=true href=#内存管理>#</a></h1><p>略</p><h1 id=数据结构>数据结构<a hidden class=anchor aria-hidden=true href=#数据结构>#</a></h1><h2 id=str-字符串>str （字符串）<a hidden class=anchor aria-hidden=true href=#str-字符串>#</a></h2><p>str.h</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#66d9ef>struct</span> _str{
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>char</span><span style=color:#f92672>*</span> s; <span style=color:#75715e>/* pointer to the beginning of string (char array) */</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> len; <span style=color:#75715e>/* string length */</span>
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>struct</span> _str str;
+</span></span></code></pre></div><p>用法</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&#34;str.h&#34;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>...
+</span></span><span style=display:flex><span>str s;
+</span></span><span style=display:flex><span>s.s <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;kamailio&#34;</span>;
+</span></span><span style=display:flex><span>s.len <span style=color:#f92672>=</span> <span style=color:#a6e22e>strlen</span>(s.s);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>LM_DBG</span>(<span style=color:#e6db74>&#34;the string is [%.*s]</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, s.len, s.s);
+</span></span></code></pre></div><h2 id=struct-sip_uri-sip-uri>struct sip_uri （SIP URI）<a hidden class=anchor aria-hidden=true href=#struct-sip_uri-sip-uri>#</a></h2><p>parser/msg_parser.h</p><p>想不到一个sip url居然也有将近20个参数。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#66d9ef>struct</span> sip_uri {
+</span></span><span style=display:flex><span>	str user;     <span style=color:#75715e>/* Username */</span>
+</span></span><span style=display:flex><span>	str passwd;   <span style=color:#75715e>/* Password */</span>
+</span></span><span style=display:flex><span>	str host;     <span style=color:#75715e>/* Host name */</span>
+</span></span><span style=display:flex><span>	str port;     <span style=color:#75715e>/* Port number */</span>
+</span></span><span style=display:flex><span>	str params;   <span style=color:#75715e>/* URI Parameters */</span>
+</span></span><span style=display:flex><span>	str headers;  <span style=color:#75715e>/* URI Headers */</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>unsigned</span> <span style=color:#66d9ef>short</span> port_no; <span style=color:#75715e>/* Port number r*/</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>unsigned</span> <span style=color:#66d9ef>short</span> proto; <span style=color:#75715e>/* Transport protocol */</span>
+</span></span><span style=display:flex><span>	uri_type type; <span style=color:#75715e>/* URI scheme */</span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>/* parameters */</span>
+</span></span><span style=display:flex><span>	str transport;   <span style=color:#75715e>/* transport parameter */</span>
+</span></span><span style=display:flex><span>	str ttl;         <span style=color:#75715e>/* ttl parameter */</span>
+</span></span><span style=display:flex><span>	str user_param;  <span style=color:#75715e>/* user parameter */</span>
+</span></span><span style=display:flex><span>	str maddr;       <span style=color:#75715e>/* maddr parameter */</span>
+</span></span><span style=display:flex><span>	str method;      <span style=color:#75715e>/* method parameter */</span>
+</span></span><span style=display:flex><span>	str lr;          <span style=color:#75715e>/* lr parameter */</span>
+</span></span><span style=display:flex><span>	str r2;          <span style=color:#75715e>/* specific rr parameter */</span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>/* values */</span>
+</span></span><span style=display:flex><span>	str transport_val;  <span style=color:#75715e>/* value of transport parameter */</span>
+</span></span><span style=display:flex><span>	str ttl_val;        <span style=color:#75715e>/* value of ttl parameter */</span>
+</span></span><span style=display:flex><span>	str user_param_val; <span style=color:#75715e>/* value of user parameter */</span>
+</span></span><span style=display:flex><span>	str maddr_val;      <span style=color:#75715e>/* value of maddr parameter */</span>
+</span></span><span style=display:flex><span>	str method_val;     <span style=color:#75715e>/* value of method parameter */</span>
+</span></span><span style=display:flex><span>	str lr_val;         <span style=color:#75715e>/* value of lr parameter */</span>
+</span></span><span style=display:flex><span>	str r2_val;         <span style=color:#75715e>/* value of r2 parameter */</span>
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div><h2 id=struct-sip_msg-sip消息>struct sip_msg （SIP消息）<a hidden class=anchor aria-hidden=true href=#struct-sip_msg-sip消息>#</a></h2><p>parser/msg_parser.h</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#66d9ef>struct</span> sip_msg {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>unsigned</span> <span style=color:#66d9ef>int</span> id;               <span style=color:#75715e>/* message id, unique/process*/</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> msg_start first_line;   <span style=color:#75715e>/* Message first line */</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> via_body<span style=color:#f92672>*</span> via1;         <span style=color:#75715e>/* The first via */</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> via_body<span style=color:#f92672>*</span> via2;         <span style=color:#75715e>/* The second via */</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> headers;     <span style=color:#75715e>/* All the parsed headers*/</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> last_header; <span style=color:#75715e>/* Pointer to the last parsed header*/</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>hdr_flags_t</span> parsed_flag;       <span style=color:#75715e>/* Already parsed header field types */</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>/* Via, To, CSeq, Call-Id, From, end of header*/</span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>/* pointers to the first occurrences of these headers;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>	 * everything is also saved in &#39;headers&#39; (see above)
+</span></span></span><span style=display:flex><span><span style=color:#75715e>	 */</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>/* shorcuts to known headers */</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> h_via1;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> h_via2;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> callid;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> to;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> cseq;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> from;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> contact;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> maxforwards;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> route;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> record_route;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> path;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> content_type;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> content_length;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> authorization;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> expires;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> proxy_auth;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> supported;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> proxy_require;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> unsupported;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> allow;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> event;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> accept;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> accept_language;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> organization;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> priority;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> subject;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> user_agent;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> content_disposition;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> accept_disposition;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> diversion;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> rpid;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> refer_to;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> session_expires;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> min_se;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> ppi;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> pai;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> privacy;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> sdp_info<span style=color:#f92672>*</span> sdp; <span style=color:#75715e>/* parsed SDP body */</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>char</span><span style=color:#f92672>*</span> eoh;        <span style=color:#75715e>/* pointer to the end of header (if found) or null */</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>char</span><span style=color:#f92672>*</span> unparsed;   <span style=color:#75715e>/* here we stopped parsing*/</span>
+</span></span><span style=display:flex><span>	
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> receive_info rcv; <span style=color:#75715e>/* source and dest ip, ports, proto a.s.o*/</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>char</span><span style=color:#f92672>*</span> buf;        <span style=color:#75715e>/* scratch pad, holds a unmodified message,
+</span></span></span><span style=display:flex><span><span style=color:#75715e>                           *  via, etc. point into it */</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>unsigned</span> <span style=color:#66d9ef>int</span> len; <span style=color:#75715e>/* message len (orig) */</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>/* modifications */</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 可写的伪变量
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// $ru
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	str new_uri; <span style=color:#75715e>/* changed first line uri, when you change this
+</span></span></span><span style=display:flex><span><span style=color:#75715e>                  * don&#39;t forget to set parsed_uri_ok to 0 */</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// $du
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	str dst_uri; <span style=color:#75715e>/* Destination URI, must be forwarded to this URI if len!=0 */</span>
+</span></span><span style=display:flex><span>	
+</span></span><span style=display:flex><span>	<span style=color:#75715e>/* current uri */</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> parsed_uri_ok; <span style=color:#75715e>/* 1 if parsed_uri is valid, 0 if not, set it to 0
+</span></span></span><span style=display:flex><span><span style=color:#75715e>	                      if you modify the uri (e.g change new_uri)*/</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> sip_uri parsed_uri; <span style=color:#75715e>/* speed-up &gt; keep here the parsed uri*/</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>/* the same for original uri */</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> parsed_orig_ruri_ok;
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> sip_uri parsed_orig_ruri;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> lump<span style=color:#f92672>*</span> add_rm;       <span style=color:#75715e>/* used for all the forwarded requests/replies */</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> lump<span style=color:#f92672>*</span> body_lumps;     <span style=color:#75715e>/* Lumps that update Content-Length */</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> lump_rpl <span style=color:#f92672>*</span>reply_lump; <span style=color:#75715e>/* only for localy generated replies !!!*/</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>/* whatever whoever want to append to branch comes here */</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>char</span> add_to_branch_s[MAX_BRANCH_PARAM_LEN];
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> add_to_branch_len;
+</span></span><span style=display:flex><span>	
+</span></span><span style=display:flex><span>	<span style=color:#75715e>/* index to TM hash table; stored in core to avoid 
+</span></span></span><span style=display:flex><span><span style=color:#75715e>	 * unnecessary calculations */</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>unsigned</span> <span style=color:#66d9ef>int</span>  hash_index;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>/* flags used from script */</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>flag_t</span> flags;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>/* flags used by core - allows to set various flags on the message; may 
+</span></span></span><span style=display:flex><span><span style=color:#75715e>	 * be used for simple inter-module communication or remembering 
+</span></span></span><span style=display:flex><span><span style=color:#75715e>	 * processing state reached */</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>unsigned</span> <span style=color:#66d9ef>int</span> msg_flags;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// 对外宣称地址和端口，可以通过as设置，也可以通过
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>// set_advertised_address() set_advertised_port()
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>// 这个地址会影响Via头和Record-Route头
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	str set_global_address;
+</span></span><span style=display:flex><span>	str set_global_port;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>/* force sending on this socket */</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> socket_info<span style=color:#f92672>*</span> force_send_socket;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>/* create a route HF out of this path vector */</span>
+</span></span><span style=display:flex><span>	str path_vec;
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div><p>kamailio处理SIP信令高效的原因</p><ol><li>懒解析，只解析需要的头</li><li>解析之后缓存起来，避免重复解析</li><li>解析后的值是一个指向原始SIP消息的指针，避免开辟内存</li><li>避免在路由过程中修改SIP消息，二是把所有的修改操作在发送消息前，一次性批量执行</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span>REGISTER sip:sip.test.com SIP<span style=color:#f92672>/</span><span style=color:#ae81ff>2.0</span>
+</span></span><span style=display:flex><span>Via: SIP<span style=color:#f92672>/</span><span style=color:#ae81ff>2.0</span><span style=color:#f92672>/</span>UDP <span style=color:#ae81ff>192.168.1.3</span><span style=color:#f92672>:</span><span style=color:#ae81ff>5061</span>;branch<span style=color:#f92672>=</span>z9hG4bK<span style=color:#f92672>-</span>d663b80b
+</span></span><span style=display:flex><span>Max<span style=color:#f92672>-</span>Forwards: <span style=color:#ae81ff>70</span>
+</span></span><span style=display:flex><span>From: user <span style=color:#f92672>&lt;</span>sip:u123<span style=color:#960050;background-color:#1e0010>@</span>sip.test.com<span style=color:#f92672>&gt;</span>;tag<span style=color:#f92672>=</span>ea8cef4b108a99bco1
+</span></span><span style=display:flex><span>To: user <span style=color:#f92672>&lt;</span>sip:u123<span style=color:#960050;background-color:#1e0010>@</span>sip.test.com<span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>Call<span style=color:#f92672>-</span>ID: b96fead3<span style=color:#f92672>-</span>f03493d4<span style=color:#960050;background-color:#1e0010>@</span>xyz
+</span></span><span style=display:flex><span>CSeq: <span style=color:#ae81ff>3720</span> REGISTER
+</span></span><span style=display:flex><span>Contact: user <span style=color:#f92672>&lt;</span>sip:u123<span style=color:#960050;background-color:#1e0010>@</span><span style=color:#ae81ff>192.168.1.3</span><span style=color:#f92672>:</span><span style=color:#ae81ff>5061</span><span style=color:#f92672>&gt;</span>;expires<span style=color:#f92672>=</span><span style=color:#ae81ff>3600</span>
+</span></span><span style=display:flex><span>User<span style=color:#f92672>-</span>Agent: Linksys<span style=color:#f92672>/</span>RT31P2<span style=color:#f92672>-</span><span style=color:#ae81ff>2.0.10</span>(LIc)
+</span></span><span style=display:flex><span>Content<span style=color:#f92672>-</span>Length: <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>Allow: ACK, BYE, CANCEL, INFO, INVITE, NOTIFY, OPTIONS, REFER
+</span></span><span style=display:flex><span>Supported: x<span style=color:#f92672>-</span>sipura
+</span></span></code></pre></div><h1 id=struct-msg_start-消息首行>struct msg_start (消息首行)<a hidden class=anchor aria-hidden=true href=#struct-msg_start-消息首行>#</a></h1><p>消息首行是一个包含union类型的结构，因为首行可能是SIP请求，也可能是SIP响应。</p><p>parser/parse_fline.h.
+To parse a buffer containing the first line of a SIP message you have to use the function parse_fline(&mldr;).</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#66d9ef>struct</span> msg_start {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> type;                 <span style=color:#75715e>/* Type of the Message - Request or Response (Reply) */</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> len;                  <span style=color:#75715e>/* length including delimiter */</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>union</span> {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>			str method;       <span style=color:#75715e>/* Method string */</span>
+</span></span><span style=display:flex><span>			str uri;          <span style=color:#75715e>/* Request URI as raw string */</span>
+</span></span><span style=display:flex><span>			str version;      <span style=color:#75715e>/* SIP version */</span>
+</span></span><span style=display:flex><span>			<span style=color:#66d9ef>int</span> method_value; <span style=color:#75715e>/* Internal integer representation of SIP method */</span>
+</span></span><span style=display:flex><span>		} request;
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>			str version;      <span style=color:#75715e>/* SIP version */</span>
+</span></span><span style=display:flex><span>			str status;       <span style=color:#75715e>/* Reply status */</span>
+</span></span><span style=display:flex><span>			str reason;       <span style=color:#75715e>/* Reply reason phrase */</span>
+</span></span><span style=display:flex><span>			<span style=color:#66d9ef>unsigned</span> <span style=color:#66d9ef>int</span> statuscode; <span style=color:#75715e>/* Integer representation of reply status */</span>
+</span></span><span style=display:flex><span>		} reply;
+</span></span><span style=display:flex><span>	}u;
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div><h1 id=struct-hdr_field-sip头>struct hdr_field (SIP头)<a hidden class=anchor aria-hidden=true href=#struct-hdr_field-sip头>#</a></h1><p>parser/hf.h.</p><p>SIP头这里主要是包含一个链表结构</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#66d9ef>struct</span> hdr_field {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>hdr_types_t</span> type;          <span style=color:#75715e>/* Header field type */</span>
+</span></span><span style=display:flex><span>	str name;                  <span style=color:#75715e>/* Header field name */</span>
+</span></span><span style=display:flex><span>	str body;                  <span style=color:#75715e>/* Header field body (may not include CRLF) */</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>int</span> len;                   <span style=color:#75715e>/* length from hdr start until EoHF (incl.CRLF) */</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>void</span><span style=color:#f92672>*</span> parsed;              <span style=color:#75715e>/* Parsed data structures */</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> next;    <span style=color:#75715e>/* Next header field in the list */</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>struct</span> hdr_field<span style=color:#f92672>*</span> sibling; <span style=color:#75715e>/* Next header of same type */</span>
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div><p>parsed字段指向头的body部分。</p><p>例如解析From和To头</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#a6e22e>parse_headers</span>(msg, HDR_FROM_F<span style=color:#f92672>|</span>HDR_TO_F, <span style=color:#ae81ff>0</span>);
+</span></span></code></pre></div><p>为了优化解析，给每个头都设置了一个枚举值。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#66d9ef>enum</span> _hdr_types_t {
+</span></span><span style=display:flex><span>	HDR_ERROR_T        <span style=color:#f92672>=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>   <span style=color:#75715e>/* Error while parsing */</span>,
+</span></span><span style=display:flex><span>	HDR_OTHER_T        <span style=color:#f92672>=</span>  <span style=color:#ae81ff>0</span>   <span style=color:#75715e>/* Some other header field */</span>,
+</span></span><span style=display:flex><span>	HDR_VIA_T          <span style=color:#f92672>=</span>  <span style=color:#ae81ff>1</span>   <span style=color:#75715e>/* Via header field */</span>,
+</span></span><span style=display:flex><span>	HDR_VIA1_T         <span style=color:#f92672>=</span>  <span style=color:#ae81ff>1</span>   <span style=color:#75715e>/* First Via header field */</span>,
+</span></span><span style=display:flex><span>	HDR_VIA2_T         <span style=color:#f92672>=</span>  <span style=color:#ae81ff>2</span>   <span style=color:#75715e>/* only used as flag */</span>,
+</span></span><span style=display:flex><span>	HDR_TO_T                  <span style=color:#75715e>/* To header field */</span>,
+</span></span><span style=display:flex><span>	HDR_FROM_T                <span style=color:#75715e>/* From header field */</span>,
+</span></span><span style=display:flex><span>	HDR_CSEQ_T                <span style=color:#75715e>/* CSeq header field */</span>,
+</span></span><span style=display:flex><span>	HDR_CALLID_T              <span style=color:#75715e>/* Call-Id header field */</span>,
+</span></span><span style=display:flex><span>	HDR_CONTACT_T             <span style=color:#75715e>/* Contact header field */</span>,
+</span></span><span style=display:flex><span>	HDR_MAXFORWARDS_T         <span style=color:#75715e>/* MaxForwards header field */</span>,
+</span></span><span style=display:flex><span>	HDR_ROUTE_T               <span style=color:#75715e>/* Route header field */</span>,
+</span></span><span style=display:flex><span>	HDR_RECORDROUTE_T         <span style=color:#75715e>/* Record-Route header field */</span>,
+</span></span><span style=display:flex><span>	HDR_PATH_T                <span style=color:#75715e>/* Path header fiels */</span>,
+</span></span><span style=display:flex><span>	HDR_CONTENTTYPE_T         <span style=color:#75715e>/* Content-Type header field */</span>,
+</span></span><span style=display:flex><span>	HDR_CONTENTLENGTH_T       <span style=color:#75715e>/* Content-Length header field */</span>,
+</span></span><span style=display:flex><span>	HDR_AUTHORIZATION_T       <span style=color:#75715e>/* Authorization header field */</span>,
+</span></span><span style=display:flex><span>	HDR_EXPIRES_T             <span style=color:#75715e>/* Expires header field */</span>,
+</span></span><span style=display:flex><span>	HDR_PROXYAUTH_T           <span style=color:#75715e>/* Proxy-Authorization hdr field */</span>,
+</span></span><span style=display:flex><span>	HDR_SUPPORTED_T           <span style=color:#75715e>/* Supported  header field */</span>,
+</span></span><span style=display:flex><span>	HDR_PROXYREQUIRE_T        <span style=color:#75715e>/* Proxy-Require header field */</span>,
+</span></span><span style=display:flex><span>	HDR_UNSUPPORTED_T         <span style=color:#75715e>/* Unsupported header field */</span>,
+</span></span><span style=display:flex><span>	HDR_ALLOW_T               <span style=color:#75715e>/* Allow header field */</span>,
+</span></span><span style=display:flex><span>	HDR_EVENT_T               <span style=color:#75715e>/* Event header field */</span>,
+</span></span><span style=display:flex><span>	HDR_ACCEPT_T              <span style=color:#75715e>/* Accept header field */</span>,
+</span></span><span style=display:flex><span>	HDR_ACCEPTLANGUAGE_T      <span style=color:#75715e>/* Accept-Language header field */</span>,
+</span></span><span style=display:flex><span>	HDR_ORGANIZATION_T        <span style=color:#75715e>/* Organization header field */</span>,
+</span></span><span style=display:flex><span>	HDR_PRIORITY_T            <span style=color:#75715e>/* Priority header field */</span>,
+</span></span><span style=display:flex><span>	HDR_SUBJECT_T             <span style=color:#75715e>/* Subject header field */</span>,
+</span></span><span style=display:flex><span>	HDR_USERAGENT_T           <span style=color:#75715e>/* User-Agent header field */</span>,
+</span></span><span style=display:flex><span>	HDR_ACCEPTDISPOSITION_T   <span style=color:#75715e>/* Accept-Disposition hdr field */</span>,
+</span></span><span style=display:flex><span>	HDR_CONTENTDISPOSITION_T  <span style=color:#75715e>/* Content-Disposition hdr field */</span>,
+</span></span><span style=display:flex><span>	HDR_DIVERSION_T           <span style=color:#75715e>/* Diversion header field */</span>,
+</span></span><span style=display:flex><span>	HDR_RPID_T                <span style=color:#75715e>/* Remote-Party-ID header field */</span>,
+</span></span><span style=display:flex><span>	HDR_REFER_TO_T            <span style=color:#75715e>/* Refer-To header fiels */</span>,
+</span></span><span style=display:flex><span>	HDR_SESSION_EXPIRES_T     <span style=color:#75715e>/* Session-Expires header field */</span>,
+</span></span><span style=display:flex><span>	HDR_MIN_SE_T              <span style=color:#75715e>/* Min-SE header field */</span>,
+</span></span><span style=display:flex><span>	HDR_PPI_T                 <span style=color:#75715e>/* P-Preferred-Identity header field */</span>,
+</span></span><span style=display:flex><span>	HDR_PAI_T                 <span style=color:#75715e>/* P-Asserted-Identity header field */</span>,
+</span></span><span style=display:flex><span>	HDR_PRIVACY_T             <span style=color:#75715e>/* Privacy header field */</span>,
+</span></span><span style=display:flex><span>	HDR_RETRY_AFTER_T         <span style=color:#75715e>/* Retry-After header field */</span>,
+</span></span><span style=display:flex><span>	HDR_EOH_T                 <span style=color:#75715e>/* Some other header field */</span>
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div><h1 id=参考>参考<a hidden class=anchor aria-hidden=true href=#参考>#</a></h1><ul><li><a href=https://www.asipto.com/pub/kamailio-devel-guide/>https://www.asipto.com/pub/kamailio-devel-guide/</a></li></ul></div><footer class=post-footer><ul class=post-tags><li><a href=https://wdd.js.org/tags/all/>All</a></li></ul><nav class=paginav><a class=prev href=https://wdd.js.org/kamailio/56/core-params/><span class=title>« Prev</span><br><span>1.6 核心参数</span>
+</a><a class=next href=https://wdd.js.org/kamailio/homer-hep/><span class=title>Next »</span><br><span>kamailio 继承 HEP Server</span></a></nav></footer><script src=https://giscus.app/client.js data-repo=wangduanduan/wangduanduan.github.io data-repo-id="MDEwOlJlcG9zaXRvcnkxMTkyMjMyNjA=" data-category=Announcements data-category-id=DIC_kwDOBxsz3M4CAjBq data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=bottom data-theme=preferred_color_scheme data-lang=zh-CN crossorigin=anonymous async></script></article></main><footer class=footer><span>&copy; 2025 <a href=https://wdd.js.org/>洞香春</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

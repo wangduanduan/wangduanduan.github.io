@@ -11,8 +11,67 @@
     </image>
     <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 28 Dec 2024 09:43:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 21 Feb 2025 22:17:35 +0800</lastBuildDate>
     <atom:link href="https://wdd.js.org/kamailio/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>开发学习笔记</title>
+      <link>https://wdd.js.org/kamailio/devel-guide-note/</link>
+      <pubDate>Fri, 21 Feb 2025 22:17:35 +0800</pubDate>
+      <guid>https://wdd.js.org/kamailio/devel-guide-note/</guid>
+      <description>&lt;h1 id=&#34;架构图&#34;&gt;架构图&lt;/h1&gt;
+&lt;p&gt;kamailio 1.x版本
+&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/devel-guide-note/atta/2025-02-21-22-18-34.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;kamailio 3.x版本。相比于1.x版本，两个核心模块移动到外部模块。
+&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/devel-guide-note/atta/2025-02-21-22-19-54.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;核心模块
+The core includes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;memory manager&lt;/li&gt;
+&lt;li&gt;SIP message parser&lt;/li&gt;
+&lt;li&gt;locking system&lt;/li&gt;
+&lt;li&gt;DNS and transport layer management (UDP, TCP, TLS, SCTP)&lt;/li&gt;
+&lt;li&gt;configuration file parser and interpreter&lt;/li&gt;
+&lt;li&gt;stateless forwarding&lt;/li&gt;
+&lt;li&gt;pseudo-variables and transformations engines&lt;/li&gt;
+&lt;li&gt;RPC control interface API&lt;/li&gt;
+&lt;li&gt;timer API&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The internal libraries include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;some components from old Kamailio v1.5.x core&lt;/li&gt;
+&lt;li&gt;database abstraction layers (DB API v1 and v2)&lt;/li&gt;
+&lt;li&gt;management interface (MI) API&lt;/li&gt;
+&lt;li&gt;statistics engine&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;sip消息处理&#34;&gt;SIP消息处理&lt;/h1&gt;
+&lt;p&gt;请求处理
+&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/devel-guide-note/atta/2025-02-21-22-23-52.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;响应处理。 这里可以看到，是先执行响应路由，再执行失败路由。
+&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/devel-guide-note/atta/2025-02-21-22-24-59.png&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>kamailio 继承 HEP Server</title>
+      <link>https://wdd.js.org/kamailio/homer-hep/</link>
+      <pubDate>Mon, 17 Feb 2025 22:57:11 +0800</pubDate>
+      <guid>https://wdd.js.org/kamailio/homer-hep/</guid>
+      <description>&lt;h1 id=&#34;目标&#34;&gt;目标&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;kamailio将所收到的SIP消息封装成HEP格式，然后已UDP发送给Hep Server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;环境说明&#34;&gt;环境说明&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;kamailio版本 5.6&lt;/li&gt;
+&lt;li&gt;Hep server地址 192.168.0.100&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;kamailio脚本&#34;&gt;kamailio脚本&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cfg&#34; data-lang=&#34;cfg&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;listen&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;参考文档&#34;&gt;参考文档&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.kamailio.org/docs/modules/5.6.x/modules/siptrace.html&#34;&gt;https://www.kamailio.org/docs/modules/5.6.x/modules/siptrace.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/sipcapture/homer/discussions/619&#34;&gt;https://github.com/sipcapture/homer/discussions/619&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/sipcapture/homer/wiki/Examples%3A-Kamailio&#34;&gt;https://github.com/sipcapture/homer/wiki/Examples%3A-Kamailio&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     <item>
       <title>源码笔记 - 自定义事件路由(中)</title>
       <link>https://wdd.js.org/kamailio/route-list-action/</link>

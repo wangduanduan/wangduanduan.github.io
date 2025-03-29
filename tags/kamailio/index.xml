@@ -11,8 +11,31 @@
     </image>
     <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 02 Dec 2024 22:43:24 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 17 Feb 2025 22:57:11 +0800</lastBuildDate>
     <atom:link href="https://wdd.js.org/tags/kamailio/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>kamailio 继承 HEP Server</title>
+      <link>https://wdd.js.org/kamailio/homer-hep/</link>
+      <pubDate>Mon, 17 Feb 2025 22:57:11 +0800</pubDate>
+      <guid>https://wdd.js.org/kamailio/homer-hep/</guid>
+      <description>&lt;h1 id=&#34;目标&#34;&gt;目标&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;kamailio将所收到的SIP消息封装成HEP格式，然后已UDP发送给Hep Server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;环境说明&#34;&gt;环境说明&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;kamailio版本 5.6&lt;/li&gt;
+&lt;li&gt;Hep server地址 192.168.0.100&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;kamailio脚本&#34;&gt;kamailio脚本&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cfg&#34; data-lang=&#34;cfg&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;listen&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;参考文档&#34;&gt;参考文档&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.kamailio.org/docs/modules/5.6.x/modules/siptrace.html&#34;&gt;https://www.kamailio.org/docs/modules/5.6.x/modules/siptrace.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/sipcapture/homer/discussions/619&#34;&gt;https://github.com/sipcapture/homer/discussions/619&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/sipcapture/homer/wiki/Examples%3A-Kamailio&#34;&gt;https://github.com/sipcapture/homer/wiki/Examples%3A-Kamailio&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     <item>
       <title>第一节 如何熟悉Kamailio文档的文档结构</title>
       <link>https://wdd.js.org/kamailio/docs-index/</link>
