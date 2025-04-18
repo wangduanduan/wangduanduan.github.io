@@ -1,0 +1,220 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>读到无法解析的TCP包后, kamailio如何处理？ | 洞香春</title>
+<meta name=keywords content="all"><meta name=description content=' 1int receive_msg(char *buf, unsigned int len, receive_info_t *rcv_info) {
+ 2	if(parse_msg(buf, len, msg) != 0) {
+ 3		errsipmsg = 1;
+ 4		evp.data = (void *)msg;
+ 5
+ 6        // note: 这里尝试查找并执行nosip模块的 event_route[nosip:msg]事件路由
+ 7        // 一般情况下，如果没有找到，那么ret的值是-1
+ 8        // 那么这里的if内部不会执行
+ 9		if((ret = sr_event_exec(SREV_RCV_NOSIP, &amp;evp)) < NONSIP_MSG_DROP) {
+10			LM_DBG("attempt of nonsip message processing failed\n");
+11		} else if(ret == NONSIP_MSG_DROP) {
+12            // 这里也不会执行
+13			LM_DBG("nonsip message processing completed\n");
+14			goto end;
+15		}
+16	}
+17
+18    // 由于在上面的判断里errsipmsg被设置成1，所以这里的if条件成立
+19    if(errsipmsg == 1) {
+20        // 打印报错信息，并执行核心错误处理
+21		LOG(cfg_get(core, core_cfg, sip_parser_log),
+22				"core parsing of SIP message failed (%s:%d/%d)\n",
+23				ip_addr2a(&amp;msg->rcv.src_ip), (int)msg->rcv.src_port,
+24				(int)msg->rcv.proto);
+25		sr_core_ert_run(msg, SR_CORE_ERT_RECEIVE_PARSE_ERROR);
+26
+27        // 跳转到error02标签，执行后续的清理工作
+28		goto error02;
+29	}
+30
+31// 跳转到error02标签，执行后续的清理工作
+32error02:
+33	free_sip_msg(msg);
+34	pkg_free(msg);
+35error00:
+36	ksr_msg_env_reset();
+37	/* reset log prefix */
+38	log_prefix_set(NULL);
+39
+40    // 返回-1，表示出错
+41	return -1;
+42}
+
+如果调用receive_msg返回负数，那么从调用栈向上查找receive_tcp_msg函数也会返回负数
+
+int receive_tcp_msg(char *tcpbuf, unsigned int len,struct receive_info *rcv_info, struct tcp_connection *con)
+
+
+receive_tcp_msg函数返回负数，那么向上查找，tcp_read_req也会返回负数
+
+int tcp_read_req(struct tcp_connection *con, int *bytes_read,rd_conn_flags_t *read_flags)
+
+
+tcp_read_req返回负数
+
+inline static int handle_io(struct fd_map *fm, short events, int idx)在这个函数内部
+
+
+
+		if(unlikely(bytes < 0)) {
+			LOG(cfg_get(core, core_cfg, corelog),
+					"ERROR: tcp_read_req: error reading - c: %p r: %p (%d)\n",
+					con, req, bytes);
+			resp = CONN_ERROR;
+			goto end_req;
+		}
+
+        resp = tcp_read_req(con, &amp;n, &amp;read_flags);
+			if(unlikely(resp < 0)) {
+				/* some error occurred, but on the new fd, not on the tcp
+				 * main fd, so keep the ret value */
+				if(unlikely(resp != CONN_EOF))
+					con->state = S_CONN_BAD;
+				release_tcpconn(con, resp, tcpmain_sock);
+				break;
+        }
+整个调用链条是这样的：
+handle_io -> tcp_read_req -> receive_tcp_msg -> receive_msg'><meta name=author content="Eddie Wang"><link rel=canonical href=https://wdd.js.org/kamailio/read-bad-tcp/><link crossorigin=anonymous href=/assets/css/stylesheet.821c51435cba3e33e49e590a06514c54c32ac7957095ffcc1e0f390c47cf3228.css integrity="sha256-ghxRQ1y6PjPknlkKBlFMVMMqx5Vwlf/MHg85DEfPMig=" rel="preload stylesheet" as=style><link rel=icon href=https://wdd.js.org/cowboy.ico><link rel=icon type=image/png sizes=16x16 href=https://wdd.js.org/cowboy.ico><link rel=icon type=image/png sizes=32x32 href=https://wdd.js.org/cowboy.ico><link rel=apple-touch-icon href=https://wdd.js.org/cowboy.ico><link rel=mask-icon href=https://wdd.js.org/cowboy.ico><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://wdd.js.org/kamailio/read-bad-tcp/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><meta property="og:url" content="https://wdd.js.org/kamailio/read-bad-tcp/"><meta property="og:site_name" content="洞香春"><meta property="og:title" content="读到无法解析的TCP包后, kamailio如何处理？"><meta property="og:description" content=' 1int receive_msg(char *buf, unsigned int len, receive_info_t *rcv_info) { 2	if(parse_msg(buf, len, msg) != 0) { 3	errsipmsg = 1; 4	evp.data = (void *)msg; 5 6 // note: 这里尝试查找并执行nosip模块的 event_route[nosip:msg]事件路由 7 // 一般情况下，如果没有找到，那么ret的值是-1 8 // 那么这里的if内部不会执行 9	if((ret = sr_event_exec(SREV_RCV_NOSIP, &amp;evp)) < NONSIP_MSG_DROP) { 10	LM_DBG("attempt of nonsip message processing failed\n"); 11	} else if(ret == NONSIP_MSG_DROP) { 12 // 这里也不会执行 13	LM_DBG("nonsip message processing completed\n"); 14	goto end; 15	} 16	} 17 18 // 由于在上面的判断里errsipmsg被设置成1，所以这里的if条件成立 19 if(errsipmsg == 1) { 20 // 打印报错信息，并执行核心错误处理 21	LOG(cfg_get(core, core_cfg, sip_parser_log), 22	"core parsing of SIP message failed (%s:%d/%d)\n", 23	ip_addr2a(&amp;msg->rcv.src_ip), (int)msg->rcv.src_port, 24	(int)msg->rcv.proto); 25	sr_core_ert_run(msg, SR_CORE_ERT_RECEIVE_PARSE_ERROR); 26 27 // 跳转到error02标签，执行后续的清理工作 28	goto error02; 29	} 30 31// 跳转到error02标签，执行后续的清理工作 32error02: 33	free_sip_msg(msg); 34	pkg_free(msg); 35error00: 36	ksr_msg_env_reset(); 37	/* reset log prefix */ 38	log_prefix_set(NULL); 39 40 // 返回-1，表示出错 41	return -1; 42} 如果调用receive_msg返回负数，那么从调用栈向上查找receive_tcp_msg函数也会返回负数 int receive_tcp_msg(char *tcpbuf, unsigned int len,struct receive_info *rcv_info, struct tcp_connection *con) receive_tcp_msg函数返回负数，那么向上查找，tcp_read_req也会返回负数 int tcp_read_req(struct tcp_connection *con, int *bytes_read,rd_conn_flags_t *read_flags) tcp_read_req返回负数 inline static int handle_io(struct fd_map *fm, short events, int idx)在这个函数内部 if(unlikely(bytes < 0)) { LOG(cfg_get(core, core_cfg, corelog), "ERROR: tcp_read_req: error reading - c: %p r: %p (%d)\n", con, req, bytes); resp = CONN_ERROR; goto end_req; } resp = tcp_read_req(con, &amp;n, &amp;read_flags); if(unlikely(resp < 0)) { /* some error occurred, but on the new fd, not on the tcp * main fd, so keep the ret value */ if(unlikely(resp != CONN_EOF)) con->state = S_CONN_BAD; release_tcpconn(con, resp, tcpmain_sock); break; } 整个调用链条是这样的： handle_io -> tcp_read_req -> receive_tcp_msg -> receive_msg'><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="kamailio"><meta property="article:published_time" content="2025-04-18T23:05:15+08:00"><meta property="article:modified_time" content="2025-04-18T23:05:15+08:00"><meta property="article:tag" content="All"><meta property="og:image" content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="读到无法解析的TCP包后, kamailio如何处理？"><meta name=twitter:description content=' 1int receive_msg(char *buf, unsigned int len, receive_info_t *rcv_info) {
+ 2	if(parse_msg(buf, len, msg) != 0) {
+ 3		errsipmsg = 1;
+ 4		evp.data = (void *)msg;
+ 5
+ 6        // note: 这里尝试查找并执行nosip模块的 event_route[nosip:msg]事件路由
+ 7        // 一般情况下，如果没有找到，那么ret的值是-1
+ 8        // 那么这里的if内部不会执行
+ 9		if((ret = sr_event_exec(SREV_RCV_NOSIP, &amp;evp)) < NONSIP_MSG_DROP) {
+10			LM_DBG("attempt of nonsip message processing failed\n");
+11		} else if(ret == NONSIP_MSG_DROP) {
+12            // 这里也不会执行
+13			LM_DBG("nonsip message processing completed\n");
+14			goto end;
+15		}
+16	}
+17
+18    // 由于在上面的判断里errsipmsg被设置成1，所以这里的if条件成立
+19    if(errsipmsg == 1) {
+20        // 打印报错信息，并执行核心错误处理
+21		LOG(cfg_get(core, core_cfg, sip_parser_log),
+22				"core parsing of SIP message failed (%s:%d/%d)\n",
+23				ip_addr2a(&amp;msg->rcv.src_ip), (int)msg->rcv.src_port,
+24				(int)msg->rcv.proto);
+25		sr_core_ert_run(msg, SR_CORE_ERT_RECEIVE_PARSE_ERROR);
+26
+27        // 跳转到error02标签，执行后续的清理工作
+28		goto error02;
+29	}
+30
+31// 跳转到error02标签，执行后续的清理工作
+32error02:
+33	free_sip_msg(msg);
+34	pkg_free(msg);
+35error00:
+36	ksr_msg_env_reset();
+37	/* reset log prefix */
+38	log_prefix_set(NULL);
+39
+40    // 返回-1，表示出错
+41	return -1;
+42}
+
+如果调用receive_msg返回负数，那么从调用栈向上查找receive_tcp_msg函数也会返回负数
+
+int receive_tcp_msg(char *tcpbuf, unsigned int len,struct receive_info *rcv_info, struct tcp_connection *con)
+
+
+receive_tcp_msg函数返回负数，那么向上查找，tcp_read_req也会返回负数
+
+int tcp_read_req(struct tcp_connection *con, int *bytes_read,rd_conn_flags_t *read_flags)
+
+
+tcp_read_req返回负数
+
+inline static int handle_io(struct fd_map *fm, short events, int idx)在这个函数内部
+
+
+
+		if(unlikely(bytes < 0)) {
+			LOG(cfg_get(core, core_cfg, corelog),
+					"ERROR: tcp_read_req: error reading - c: %p r: %p (%d)\n",
+					con, req, bytes);
+			resp = CONN_ERROR;
+			goto end_req;
+		}
+
+        resp = tcp_read_req(con, &amp;n, &amp;read_flags);
+			if(unlikely(resp < 0)) {
+				/* some error occurred, but on the new fd, not on the tcp
+				 * main fd, so keep the ret value */
+				if(unlikely(resp != CONN_EOF))
+					con->state = S_CONN_BAD;
+				release_tcpconn(con, resp, tcpmain_sock);
+				break;
+        }
+整个调用链条是这样的：
+handle_io -> tcp_read_req -> receive_tcp_msg -> receive_msg'><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"新朋友 - kamailio学习笔记","item":"https://wdd.js.org/kamailio/"},{"@type":"ListItem","position":2,"name":"读到无法解析的TCP包后, kamailio如何处理？","item":"https://wdd.js.org/kamailio/read-bad-tcp/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"读到无法解析的TCP包后, kamailio如何处理？","name":"读到无法解析的TCP包后, kamailio如何处理？","description":" 1int receive_msg(char *buf, unsigned int len, receive_info_t *rcv_info) { 2\tif(parse_msg(buf, len, msg) != 0) { 3\terrsipmsg = 1; 4\tevp.data = (void *)msg; 5 6 // note: 这里尝试查找并执行nosip模块的 event_route[nosip:msg]事件路由 7 // 一般情况下，如果没有找到，那么ret的值是-1 8 // 那么这里的if内部不会执行 9\tif((ret = sr_event_exec(SREV_RCV_NOSIP, \u0026amp;evp)) \u0026lt; NONSIP_MSG_DROP) { 10\tLM_DBG(\u0026#34;attempt of nonsip message processing failed\\n\u0026#34;); 11\t} else if(ret == NONSIP_MSG_DROP) { 12 // 这里也不会执行 13\tLM_DBG(\u0026#34;nonsip message processing completed\\n\u0026#34;); 14\tgoto end; 15\t} 16\t} 17 18 // 由于在上面的判断里errsipmsg被设置成1，所以这里的if条件成立 19 if(errsipmsg == 1) { 20 // 打印报错信息，并执行核心错误处理 21\tLOG(cfg_get(core, core_cfg, sip_parser_log), 22\t\u0026#34;core parsing of SIP message failed (%s:%d/%d)\\n\u0026#34;, 23\tip_addr2a(\u0026amp;msg-\u0026gt;rcv.src_ip), (int)msg-\u0026gt;rcv.src_port, 24\t(int)msg-\u0026gt;rcv.proto); 25\tsr_core_ert_run(msg, SR_CORE_ERT_RECEIVE_PARSE_ERROR); 26 27 // 跳转到error02标签，执行后续的清理工作 28\tgoto error02; 29\t} 30 31// 跳转到error02标签，执行后续的清理工作 32error02: 33\tfree_sip_msg(msg); 34\tpkg_free(msg); 35error00: 36\tksr_msg_env_reset(); 37\t/* reset log prefix */ 38\tlog_prefix_set(NULL); 39 40 // 返回-1，表示出错 41\treturn -1; 42} 如果调用receive_msg返回负数，那么从调用栈向上查找receive_tcp_msg函数也会返回负数 int receive_tcp_msg(char *tcpbuf, unsigned int len,struct receive_info *rcv_info, struct tcp_connection *con) receive_tcp_msg函数返回负数，那么向上查找，tcp_read_req也会返回负数 int tcp_read_req(struct tcp_connection *con, int *bytes_read,rd_conn_flags_t *read_flags) tcp_read_req返回负数 inline static int handle_io(struct fd_map *fm, short events, int idx)在这个函数内部 if(unlikely(bytes \u0026lt; 0)) { LOG(cfg_get(core, core_cfg, corelog), \u0026#34;ERROR: tcp_read_req: error reading - c: %p r: %p (%d)\\n\u0026#34;, con, req, bytes); resp = CONN_ERROR; goto end_req; } resp = tcp_read_req(con, \u0026amp;n, \u0026amp;read_flags); if(unlikely(resp \u0026lt; 0)) { /* some error occurred, but on the new fd, not on the tcp * main fd, so keep the ret value */ if(unlikely(resp != CONN_EOF)) con-\u0026gt;state = S_CONN_BAD; release_tcpconn(con, resp, tcpmain_sock); break; } 整个调用链条是这样的： handle_io -\u0026gt; tcp_read_req -\u0026gt; receive_tcp_msg -\u0026gt; receive_msg\n","keywords":["all"],"articleBody":" 1int receive_msg(char *buf, unsigned int len, receive_info_t *rcv_info) { 2\tif(parse_msg(buf, len, msg) != 0) { 3\terrsipmsg = 1; 4\tevp.data = (void *)msg; 5 6 // note: 这里尝试查找并执行nosip模块的 event_route[nosip:msg]事件路由 7 // 一般情况下，如果没有找到，那么ret的值是-1 8 // 那么这里的if内部不会执行 9\tif((ret = sr_event_exec(SREV_RCV_NOSIP, \u0026evp)) \u003c NONSIP_MSG_DROP) { 10\tLM_DBG(\"attempt of nonsip message processing failed\\n\"); 11\t} else if(ret == NONSIP_MSG_DROP) { 12 // 这里也不会执行 13\tLM_DBG(\"nonsip message processing completed\\n\"); 14\tgoto end; 15\t} 16\t} 17 18 // 由于在上面的判断里errsipmsg被设置成1，所以这里的if条件成立 19 if(errsipmsg == 1) { 20 // 打印报错信息，并执行核心错误处理 21\tLOG(cfg_get(core, core_cfg, sip_parser_log), 22\t\"core parsing of SIP message failed (%s:%d/%d)\\n\", 23\tip_addr2a(\u0026msg-\u003ercv.src_ip), (int)msg-\u003ercv.src_port, 24\t(int)msg-\u003ercv.proto); 25\tsr_core_ert_run(msg, SR_CORE_ERT_RECEIVE_PARSE_ERROR); 26 27 // 跳转到error02标签，执行后续的清理工作 28\tgoto error02; 29\t} 30 31// 跳转到error02标签，执行后续的清理工作 32error02: 33\tfree_sip_msg(msg); 34\tpkg_free(msg); 35error00: 36\tksr_msg_env_reset(); 37\t/* reset log prefix */ 38\tlog_prefix_set(NULL); 39 40 // 返回-1，表示出错 41\treturn -1; 42} 如果调用receive_msg返回负数，那么从调用栈向上查找receive_tcp_msg函数也会返回负数 int receive_tcp_msg(char *tcpbuf, unsigned int len,struct receive_info *rcv_info, struct tcp_connection *con) receive_tcp_msg函数返回负数，那么向上查找，tcp_read_req也会返回负数 int tcp_read_req(struct tcp_connection *con, int *bytes_read,rd_conn_flags_t *read_flags) tcp_read_req返回负数 inline static int handle_io(struct fd_map *fm, short events, int idx)在这个函数内部 if(unlikely(bytes \u003c 0)) { LOG(cfg_get(core, core_cfg, corelog), \"ERROR: tcp_read_req: error reading - c: %p r: %p (%d)\\n\", con, req, bytes); resp = CONN_ERROR; goto end_req; } resp = tcp_read_req(con, \u0026n, \u0026read_flags); if(unlikely(resp \u003c 0)) { /* some error occurred, but on the new fd, not on the tcp * main fd, so keep the ret value */ if(unlikely(resp != CONN_EOF)) con-\u003estate = S_CONN_BAD; release_tcpconn(con, resp, tcpmain_sock); break; } 整个调用链条是这样的： handle_io -\u003e tcp_read_req -\u003e receive_tcp_msg -\u003e receive_msg\n也就是说，如果没有设置事件路由event_route[nosip:msg]。很大可能基于TCP的链接会主动被kamailio关闭。这样做是安全考量，因为如果kamailio无法解析SIP包，那么它可能不是一个合法的SIP消息。这个行为可以防止恶意用户发送非SIP消息来占用服务器资源。\n","wordCount":"250","inLanguage":"en","image":"https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E","datePublished":"2025-04-18T23:05:15+08:00","dateModified":"2025-04-18T23:05:15+08:00","author":{"@type":"Person","name":"Eddie Wang"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://wdd.js.org/kamailio/read-bad-tcp/"},"publisher":{"@type":"Organization","name":"洞香春","logo":{"@type":"ImageObject","url":"https://wdd.js.org/cowboy.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://wdd.js.org/ accesskey=h title="洞香春 (Alt + H)"><img src=https://wdd.js.org/cowboy.ico alt aria-label=logo height=35>洞香春</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://wdd.js.org/books/ title=读书><span>读书</span></a></li><li><a href=https://wdd.js.org/freeswitch/ title=FreeSWITCH><span>FreeSWITCH</span></a></li><li><a href=https://wdd.js.org/golang/ title=Golang><span>Golang</span></a></li><li><a href=https://wdd.js.org/kamailio/ title=Kamailio><span>Kamailio</span></a></li><li><a href=https://wdd.js.org/kamailio/56/ title="Kamailio 5.6 wiki"><span>Kamailio 5.6 wiki</span></a></li><li><a href=https://wdd.js.org/network/ title=Network><span>Network</span></a></li><li><a href=https://wdd.js.org/opensips/ title=OpenSIPS><span>OpenSIPS</span></a></li><li><a href=https://wdd.js.org/vim/ title=VIM><span>VIM</span></a></li><li><a href=https://wdd.js.org/categories/ title=分类><span>分类</span></a></li><li><a href=https://wdd.js.org/fe/ title=前端><span>前端</span></a></li><li><a href=https://wdd.js.org/search/ title=搜索><span>搜索</span></a></li><li><a href=https://wdd.js.org/tags/ title=标签><span>标签</span></a></li><li><a href=https://wdd.js.org/archives/ title=归档><span>归档</span></a></li><li><a href=https://wdd.js.org/about/ title=我><span>我</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://wdd.js.org/>Home</a>&nbsp;»&nbsp;<a href=https://wdd.js.org/kamailio/>新朋友 - kamailio学习笔记</a></div><h1 class="post-title entry-hint-parent">读到无法解析的TCP包后, kamailio如何处理？</h1><div class=post-meta><span title='2025-04-18 23:05:15 +0800 CST'>2025-04-18 23:05:15</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Eddie Wang&nbsp;|&nbsp;<a href=https://github.com/%3cpath_to_repo%3e/content/kamailio/read-bad-tcp/index.md rel="noopener noreferrer" target=_blank>Suggest Changes</a></div></header><div class=post-content><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid><code class=language-c data-lang=c><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1</span><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>receive_msg</span>(<span style=color:#66d9ef>char</span> <span style=color:#f92672>*</span>buf, <span style=color:#66d9ef>unsigned</span> <span style=color:#66d9ef>int</span> len, <span style=color:#66d9ef>receive_info_t</span> <span style=color:#f92672>*</span>rcv_info) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2</span><span>	<span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>parse_msg</span>(buf, len, msg) <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3</span><span>		errsipmsg <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4</span><span>		evp.data <span style=color:#f92672>=</span> (<span style=color:#66d9ef>void</span> <span style=color:#f92672>*</span>)msg;
+</span></span><span style=display:flex;background-color:#3c3d38><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6</span><span>        <span style=color:#75715e>// note: 这里尝试查找并执行nosip模块的 event_route[nosip:msg]事件路由
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7</span><span><span style=color:#75715e></span>        <span style=color:#75715e>// 一般情况下，如果没有找到，那么ret的值是-1
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8</span><span><span style=color:#75715e></span>        <span style=color:#75715e>// 那么这里的if内部不会执行
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9</span><span><span style=color:#75715e></span>		<span style=color:#66d9ef>if</span>((ret <span style=color:#f92672>=</span> <span style=color:#a6e22e>sr_event_exec</span>(SREV_RCV_NOSIP, <span style=color:#f92672>&amp;</span>evp)) <span style=color:#f92672>&lt;</span> NONSIP_MSG_DROP) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10</span><span>			<span style=color:#a6e22e>LM_DBG</span>(<span style=color:#e6db74>&#34;attempt of nonsip message processing failed</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11</span><span>		} <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span>(ret <span style=color:#f92672>==</span> NONSIP_MSG_DROP) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12</span><span>            <span style=color:#75715e>// 这里也不会执行
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13</span><span><span style=color:#75715e></span>			<span style=color:#a6e22e>LM_DBG</span>(<span style=color:#e6db74>&#34;nonsip message processing completed</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14</span><span>			<span style=color:#66d9ef>goto</span> end;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15</span><span>		}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16</span><span>	}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18</span><span>    <span style=color:#75715e>// 由于在上面的判断里errsipmsg被设置成1，所以这里的if条件成立
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19</span><span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span>(errsipmsg <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>) {
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">20</span><span>        <span style=color:#75715e>// 打印报错信息，并执行核心错误处理
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">21</span><span><span style=color:#75715e></span>		<span style=color:#a6e22e>LOG</span>(<span style=color:#a6e22e>cfg_get</span>(core, core_cfg, sip_parser_log),
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">22</span><span>				<span style=color:#e6db74>&#34;core parsing of SIP message failed (%s:%d/%d)</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">23</span><span>				<span style=color:#a6e22e>ip_addr2a</span>(<span style=color:#f92672>&amp;</span>msg<span style=color:#f92672>-&gt;</span>rcv.src_ip), (<span style=color:#66d9ef>int</span>)msg<span style=color:#f92672>-&gt;</span>rcv.src_port,
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">24</span><span>				(<span style=color:#66d9ef>int</span>)msg<span style=color:#f92672>-&gt;</span>rcv.proto);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">25</span><span>		<span style=color:#a6e22e>sr_core_ert_run</span>(msg, SR_CORE_ERT_RECEIVE_PARSE_ERROR);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">26</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">27</span><span>        <span style=color:#75715e>// 跳转到error02标签，执行后续的清理工作
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">28</span><span><span style=color:#75715e></span>		<span style=color:#66d9ef>goto</span> error02;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">29</span><span>	}
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">30</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">31</span><span><span style=color:#75715e>// 跳转到error02标签，执行后续的清理工作
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">32</span><span><span style=color:#75715e></span>error02:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">33</span><span>	<span style=color:#a6e22e>free_sip_msg</span>(msg);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">34</span><span>	<span style=color:#a6e22e>pkg_free</span>(msg);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">35</span><span>error00:
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">36</span><span>	<span style=color:#a6e22e>ksr_msg_env_reset</span>();
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">37</span><span>	<span style=color:#75715e>/* reset log prefix */</span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">38</span><span>	<span style=color:#a6e22e>log_prefix_set</span>(NULL);
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">39</span><span>
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">40</span><span>    <span style=color:#75715e>// 返回-1，表示出错
+</span></span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">41</span><span><span style=color:#75715e></span>	<span style=color:#66d9ef>return</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">42</span><span>}
+</span></span></code></pre></div><ul><li>如果调用receive_msg返回负数，那么从调用栈向上查找receive_tcp_msg函数也会返回负数<ul><li>int receive_tcp_msg(char *tcpbuf, unsigned int len,struct receive_info *rcv_info, struct tcp_connection *con)</li></ul></li><li>receive_tcp_msg函数返回负数，那么向上查找，tcp_read_req也会返回负数<ul><li>int tcp_read_req(struct tcp_connection *con, int *bytes_read,rd_conn_flags_t *read_flags)</li></ul></li><li>tcp_read_req返回负数<ul><li>inline static int handle_io(struct fd_map *fm, short events, int idx)在这个函数内部</li></ul></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span>		<span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>unlikely</span>(bytes <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span>)) {
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>LOG</span>(<span style=color:#a6e22e>cfg_get</span>(core, core_cfg, corelog),
+</span></span><span style=display:flex><span>					<span style=color:#e6db74>&#34;ERROR: tcp_read_req: error reading - c: %p r: %p (%d)</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>,
+</span></span><span style=display:flex><span>					con, req, bytes);
+</span></span><span style=display:flex><span>			resp <span style=color:#f92672>=</span> CONN_ERROR;
+</span></span><span style=display:flex><span>			<span style=color:#66d9ef>goto</span> end_req;
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        resp <span style=color:#f92672>=</span> <span style=color:#a6e22e>tcp_read_req</span>(con, <span style=color:#f92672>&amp;</span>n, <span style=color:#f92672>&amp;</span>read_flags);
+</span></span><span style=display:flex><span>			<span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>unlikely</span>(resp <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span>)) {
+</span></span><span style=display:flex><span>				<span style=color:#75715e>/* some error occurred, but on the new fd, not on the tcp
+</span></span></span><span style=display:flex><span><span style=color:#75715e>				 * main fd, so keep the ret value */</span>
+</span></span><span style=display:flex><span>				<span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>unlikely</span>(resp <span style=color:#f92672>!=</span> CONN_EOF))
+</span></span><span style=display:flex><span>					con<span style=color:#f92672>-&gt;</span>state <span style=color:#f92672>=</span> S_CONN_BAD;
+</span></span><span style=display:flex><span>				<span style=color:#a6e22e>release_tcpconn</span>(con, resp, tcpmain_sock);
+</span></span><span style=display:flex><span>				<span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>        }
+</span></span></code></pre></div><p>整个调用链条是这样的：
+handle_io -> tcp_read_req -> receive_tcp_msg -> receive_msg</p><p>也就是说，如果没有设置事件路由event_route[nosip:msg]。很大可能基于TCP的链接会主动被kamailio关闭。这样做是安全考量，因为如果kamailio无法解析SIP包，那么它可能不是一个合法的SIP消息。这个行为可以防止恶意用户发送非SIP消息来占用服务器资源。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://wdd.js.org/tags/all/>All</a></li></ul><nav class=paginav><a class=next href=https://wdd.js.org/posts/2025/default/><span class=title>Next »</span><br><span>Default</span></a></nav></footer><script src=https://giscus.app/client.js data-repo=wangduanduan/wangduanduan.github.io data-repo-id="MDEwOlJlcG9zaXRvcnkxMTkyMjMyNjA=" data-category=Announcements data-category-id=DIC_kwDOBxsz3M4CAjBq data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=bottom data-theme=preferred_color_scheme data-lang=zh-CN crossorigin=anonymous async></script></article></main><footer class=footer><span>&copy; 2025 <a href=https://wdd.js.org/>洞香春</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
