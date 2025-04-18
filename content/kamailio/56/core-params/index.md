@@ -1,8 +1,6 @@
 ---
 title: "1.6 核心参数"
-date: "2025-03-29 00:30:55"
 draft: false
-type: posts
 tags:
 - all
 categories:
