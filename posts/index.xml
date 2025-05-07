@@ -11,8 +11,37 @@
     </image>
     <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 29 Mar 2025 15:49:28 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 30 Apr 2025 17:36:58 +0800</lastBuildDate>
     <atom:link href="https://wdd.js.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DNS域名解析对MicroSIP注册的影响分析</title>
+      <link>https://wdd.js.org/posts/2025/dns-and-microsip-register/</link>
+      <pubDate>Wed, 30 Apr 2025 17:36:58 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2025/dns-and-microsip-register/</guid>
+      <description>&lt;h1 id=&#34;microsip-dns域名解析影响分析&#34;&gt;microSIP DNS域名解析影响分析&lt;/h1&gt;
+&lt;p&gt;MicroSIP是一款流行的windows VoIP客户端，它允许用户通过互联网进行语音和视频通话。在使用MicroSIP时，DNS域名解析是确保正确连接到服务器的重要步骤之一。&lt;/p&gt;
+&lt;p&gt;DNS域名解析是将人类可读的域名（如www.example.com）转换为机器可读的IP地址的过程。这个过程通常由用户的网络服务提供商(ISP)或本地计算机上的DNS缓存完成。&lt;/p&gt;
+&lt;p&gt;域名解析可以将一个域名解析为多个IP地址，例如：[ip1, ip2, ip3], 但是每次解析返回的顺序往往是不确定的，这取决于DNS服务器的配置和负载均衡策略。&lt;/p&gt;
+&lt;p&gt;例如第一次解析的结果可能是[ip1, ip2, ip3]，而第二次解析的结果可能是[ip2, ip3, ip1]。&lt;/p&gt;
+&lt;p&gt;MicroSIP客户端在注册时，会尝试连接到这些IP地址中的第一个。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当分机使用TCP方式注册时，如果其第一个IP地址无法连接，它会继续尝试下一个IP地址，直到成功或所有IP地址都失败为止&lt;/li&gt;
+&lt;li&gt;如果分机使用UDP方式注册，它只会用第一个IP地址尝试注册，如果失败，还是继续尝试第一个IP。 这种行为似乎有点傻，为什么一直要尝试第一个IP地址，而不是尝试下一个呢？ MicroSIP底层用了pjsip库，而pjsip只有在用tcp/tls注册时， 才会自动尝试下一个IP。pjsip官网也给出了具体的解决方案，就是应用层主动调用 pjsua_acc_modify() 函数，手动修改账号配置，然后重新注册。 但是microSIP并没有这么做，而是直接用一个固定的IP地址去尝试注册。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Our DNS SRV failover support is only limited to TCP (or TLS) connect failure, which in this case pjsip will automatically retries the next server.
+&lt;a href=&#34;https://docs.pjsip.org/en/latest/specific-guides/sip/dns_failover.html&#34;&gt;https://docs.pjsip.org/en/latest/specific-guides/sip/dns_failover.html&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;所以，总体上说。在使用域名注册的情况下，当前的注册和上一次的注册可能发往不同的SIP服务器。&lt;/p&gt;
+&lt;p&gt;考虑如下场景：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# t1 dns解析结果 ip1, ip2, ip3
+REGISTER sip:ip1:5060 SIP/2.0
+200 Ok
+
+# t2 dns解析结果 ip3, ip1, ip2
+REGISTER sip:ip3:5060 SIP/2.0
+200 ok
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;一般分机都在内网环境，出口的公网IP是不变的，但是t1和t2的注册由于目标IP不同，所以出口的NAT映射的端口也是不同的。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Default</title>
       <link>https://wdd.js.org/posts/2025/default/</link>
