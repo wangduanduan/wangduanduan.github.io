@@ -2,25 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://wdd.js.org/categories/all/</loc>
+    <lastmod>2025-05-07T22:45:26+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/categories/</loc>
+    <lastmod>2025-05-07T22:45:26+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/</loc>
+    <lastmod>2025-05-07T22:45:26+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/</loc>
+    <lastmod>2025-05-07T22:45:26+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/</loc>
+    <lastmod>2025-05-07T22:45:26+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/</loc>
+    <lastmod>2025-05-07T22:45:26+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/2025/no-sound-during-a-call/</loc>
+    <lastmod>2025-05-07T22:45:26+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/%E9%80%9A%E8%AF%9D%E6%97%A0%E5%A3%B0/</loc>
+    <lastmod>2025-05-07T22:45:26+08:00</lastmod>
+  </url><url>
     <loc>https://wdd.js.org/tags/all/</loc>
     <lastmod>2025-04-30T17:36:58+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/categories/all/</loc>
-    <lastmod>2025-04-30T17:36:58+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/categories/</loc>
-    <lastmod>2025-04-30T17:36:58+08:00</lastmod>
-  </url><url>
     <loc>https://wdd.js.org/posts/2025/dns-and-microsip-register/</loc>
-    <lastmod>2025-04-30T17:36:58+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/</loc>
-    <lastmod>2025-04-30T17:36:58+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/</loc>
-    <lastmod>2025-04-30T17:36:58+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/</loc>
     <lastmod>2025-04-30T17:36:58+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/kamailio/</loc>

@@ -11,8 +11,63 @@
     </image>
     <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 30 Apr 2025 17:36:58 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 07 May 2025 22:45:26 +0800</lastBuildDate>
     <atom:link href="https://wdd.js.org/categories/all/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>离谱的通话无声问题排查记录</title>
+      <link>https://wdd.js.org/posts/2025/no-sound-during-a-call/</link>
+      <pubDate>Wed, 07 May 2025 22:45:26 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2025/no-sound-during-a-call/</guid>
+      <description>&lt;h1 id=&#34;简化网络模型&#34;&gt;简化网络模型&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;A 硬件话机&lt;/li&gt;
+&lt;li&gt;S SIP 服务器/媒体服务器&lt;/li&gt;
+&lt;li&gt;B 客户手机&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;A &amp;lt;-SIP/RTP&amp;gt; S &amp;lt;-SIP/RTP&amp;gt; B
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;问题说明&#34;&gt;问题说明&lt;/h1&gt;
+&lt;p&gt;通话接通后，双方听不到对方的声音。&lt;/p&gt;
+&lt;h1 id=&#34;呼叫流程&#34;&gt;呼叫流程&lt;/h1&gt;
+&lt;p&gt;S 发起呼叫，A 接听后，bridge B&lt;/p&gt;
+&lt;h1 id=&#34;排查思路&#34;&gt;排查思路&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;检查S在INVITE A时，SDP里携带的c=行，是否是S的公网IP。检查后无问题&lt;/li&gt;
+&lt;li&gt;在A上抓包，发现有 S-&amp;gt;A的RTP包，也有 A-&amp;gt;S 的 RTP 包。&lt;/li&gt;
+&lt;li&gt;将第二步的抓包文件拿到wireshark中分析。发现S-&amp;gt;A方向的包是正常的，能播放出声音；A-&amp;gt;S方向虽然有RTP包，但是看波形是一条直线，非常奇怪。&lt;/li&gt;
+&lt;li&gt;S-&amp;gt;A方向的RTP包，在wireshark中能播放出声音，理论上A应该能听到B的声音的。但是用户反馈听不到。&lt;/li&gt;
+&lt;li&gt;咨询用户，用户是如何接听电话的。用户反馈是通过话机手柄接听的电话&lt;/li&gt;
+&lt;li&gt;让后让客户使用免提的方式拨打接听电话，发现可以听到声音。&lt;/li&gt;
+&lt;li&gt;让客户拍照话机手柄插入话机的接口，发现手柄插入的接头插入了耳麦的接口。&lt;/li&gt;
+&lt;li&gt;让客户将手柄插入正确的手柄接口，问题解决。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;延伸思考&#34;&gt;延伸思考&lt;/h1&gt;
+&lt;p&gt;这次问题排查，让我想起了之前看过的思科的&lt;a href=&#34;https://www.cisco.com/c/zh_cn/support/docs/voice/voice-quality/211299-Troubleshoot-Voice-Quality-Issues.pdf&#34;&gt;排除语音质量问题&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这篇文章把语音质量问题分为三类：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;网络相关(包括网关(GW)和PSTN问题)&lt;/li&gt;
+&lt;li&gt;电话型号/固件相关&lt;/li&gt;
+&lt;li&gt;设备(例如头戴式耳机)相关&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在步骤上：&lt;/p&gt;
+&lt;p&gt;步骤1.隔离语音质量问题的第一步是找出确切的用户体验并与他们交谈（无论是面对面还是通过电话），以获得对语音质量问题的准确描述。如果有大量用户报告问题，请与他们的样本（可能是5-10个）交谈，以获得对症状的准确描述。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;但是实际情况下，我们有时候迫于形势，往往只从一两个客户那里获得只言片语的信息，然后就开始排查了。客户的只言片语如果带有误导性，那么排查的方向就错了。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;步骤2.记录物理位置(例如站点A，2楼)、用户名（用户的电话）、目录号码(DN)、电话型号（例如8865）、电话固件(例如11.5.1)和遇到语音质量问题的电话的IP地址。创建一个按物理位置排序的电子表格。在开始排除故障时创建此电子表格需要30分钟（或更短时间），可节省数小时甚至数天的故障排除时间。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;记录信息很重要，但是实际操作中，往往因为时间紧迫，而没有记录这些信息。或者这些信息记录在头脑中，但是排查到最后才发现，自己忘记了某些信息。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;步骤3.创建电子表格后，查看电话列表，了解电话有哪些共同之处，以及它们与没有语音质量问题的其他电话有何不同。之后，您可以意识到所有有问题的电话都位于同一栋大楼和同一楼层，您可以意识到有问题的电话连接到最近升级的交换机，或者您可以看到所有有问题的电话都位于特定固件上。&lt;/p&gt;
+&lt;h1 id=&#34;总结&#34;&gt;总结&lt;/h1&gt;
+&lt;p&gt;搞VoIP这么久，碰到过很多疑难杂症。排查思路往往都是从软件或者网络策略层面去排查。 很少考虑到终端的固件和硬件设备上。&lt;/p&gt;
+&lt;p&gt;但是这次排查通话无声的问题，让我印象深刻的是，排查到最后才发现是硬件问题。&lt;/p&gt;
+&lt;p&gt;从声音的输出输出上，有不同的设备，例如有线耳机、蓝牙耳机、话机手柄、免提等。&lt;/p&gt;
+&lt;p&gt;排查这类问题，需要多方面考量。需要挖掘客户的实际使用场景，才能定位到真正的问题。&lt;/p&gt;
+&lt;h1 id=&#34;反思&#34;&gt;反思&lt;/h1&gt;
+&lt;p&gt;客户的硬件话机，有两个接口。 手柄的接口和耳麦的接口是共用一套接口的。虽然接口上标注的很清楚，但是客户在接线的时候，没有注意到这点。&lt;/p&gt;
+&lt;p&gt;这要怎么避免呢？ 骂客户是傻逼吗？&lt;/p&gt;
+&lt;p&gt;是不是在设计接口的时候，就应该使用不同形状的接口。 比如手柄接口是圆形，耳麦接口是方形。 这样就能避免这种问题了。&lt;/p&gt;
+&lt;p&gt;或者说，接口是通用的。无论是手柄还是耳麦，插上都能用呢。&lt;/p&gt;
+&lt;p&gt;还有一种方案，就是只保留一个接口，手柄和耳麦共用一套接口。两者是互斥关系。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>DNS域名解析对MicroSIP注册的影响分析</title>
       <link>https://wdd.js.org/posts/2025/dns-and-microsip-register/</link>
