@@ -24,3 +24,6 @@ km:
 	hugo new kamailio/$(id)/index.md
 km56:
 	hugo new kamailio/56/$(id)/index.md
+ch=
+op:
+	hugo new opensips/$(ch)/$(id)/index.md
