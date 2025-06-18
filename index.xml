@@ -11,8 +11,93 @@
     </image>
     <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 07 May 2025 22:45:26 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 18 Jun 2025 20:04:52 +0800</lastBuildDate>
     <atom:link href="https://wdd.js.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RTPEngine mr13版本, 特殊的fmtp参数会导致某些语音编码被移除</title>
+      <link>https://wdd.js.org/posts/2025/rtpengine-fmtp-g711-remove-codec/</link>
+      <pubDate>Wed, 18 Jun 2025 20:04:52 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2025/rtpengine-fmtp-g711-remove-codec/</guid>
+      <description>&lt;h1 id=&#34;场景说明&#34;&gt;场景说明&lt;/h1&gt;
+&lt;p&gt;如下图所示&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Offer阶段，F1, F2 步骤里PCMU编码有个fmtp参数&lt;code&gt;abc=no&lt;/code&gt;, 这个参数可能只对呼叫发起方有意义，对被叫方来说，只会被忽略。&lt;/li&gt;
+&lt;li&gt;Answer阶段, 例如被叫是个FreeSWITCH, 它不认识abc=no, 就直接忽略，然后应答编码是PCMU。但是rtpengine认为不带abc=no的参数，就认为这个PCMU的编码是不可能被选中的，然后就直接删掉了PCMU编码， 只保留了一个101编码&lt;/li&gt;
+&lt;li&gt;由于主叫收到101的编码，而没有语音的编码，所以主叫收到200 Ok后立马就发送了BYE&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;// F1: send offer to rtpegnine
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;m&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;audio &lt;span style=&#34;color:#ae81ff&#34;&gt;2000&lt;/span&gt; RTP/AVP &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;8&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;101&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;rtpmap:0 PCMU/8000
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;fmtp:0 abc&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;no
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;rtpmap:8 PCMA/8000
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;fmtp:8 abc&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;no
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;rtpmap:101 telephone-event/8000
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;fmtp:101 0-15
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;// F2: receive offer from rtpengine
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;m&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;audio PORT RTP/AVP &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;8&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;101&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;c&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;IN IP4 203.0.113.1
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;rtpmap:0 PCMU/8000
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;fmtp:0 abc&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;no
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;rtpmap:8 PCMA/8000
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;fmtp:8 abc&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;no
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;rtpmap:101 telephone-event/8000
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;fmtp:101 0-15
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;// F3: send answer to rtepngine
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;m&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;audio &lt;span style=&#34;color:#ae81ff&#34;&gt;2002&lt;/span&gt; RTP/AVP &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;101&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;rtpmap:0 PCMU/8000
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;rtpmap:101 telephone-event/8000
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;fmtp:101 0-15
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;// F4: expect receive answer from rtpengine
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;m&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;audio PORT RTP/AVP &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;101&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;c&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;IN IP4 203.0.113.1
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;rtpmap:0 PCMU/8000
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;rtpmap:101 telephone-event/8000
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;fmtp:101 0-15
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;问题原因&#34;&gt;问题原因&lt;/h1&gt;
+&lt;p&gt;刚开始我以为是， &lt;a href=&#34;https://github.com/sipwise/rtpengine/commit/9c00f30&#34;&gt;https://github.com/sipwise/rtpengine/commit/9c00f30&lt;/a&gt; 这次commit引起的问题，我尝试注释代码，然后进行测试，发现可以解决问题。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>VoIP Server 高可用架构设计</title>
+      <link>https://wdd.js.org/opensips/ch1/ha/</link>
+      <pubDate>Tue, 27 May 2025 20:10:22 +0800</pubDate>
+      <guid>https://wdd.js.org/opensips/ch1/ha/</guid>
+      <description>&lt;h1 id=&#34;简介&#34;&gt;简介&lt;/h1&gt;
+&lt;p&gt;VoIP高可用包含很多方面，主要包括：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;接入层高可用：怎么保证某个接入点出现问题，不会影响到整个平台不可用？&lt;/li&gt;
+&lt;li&gt;核心层高可用：怎么保证路由选择的高可用，某个网关不可用，继续尝试其他网关？&lt;/li&gt;
+&lt;li&gt;存储层高可用：怎么保证不会丢失录音文件，怎么保证录音文件的完整性？&lt;/li&gt;
+&lt;li&gt;数据库层高可用：怎么保证注册信息能够在集群中同步？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;接入层高可用&#34;&gt;接入层高可用&lt;/h1&gt;
+&lt;p&gt;最简单的场景， 只有一个fs, 无论是ua还是gw都接入到fs1上&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ua1 ----&amp;gt; fs1
+ua2 ----&amp;gt; fs1
+gw1 ----&amp;gt; fs1
+gw2 ----&amp;gt; fs1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果要实现高可用，最简单的做法就是再加一个fs2。但是加了fs2之后，ua和gw的接入策略就需要改变了。&lt;/p&gt;
+&lt;p&gt;为了保持客户端的接入策略不变，最简单的做法加上一个负载均衡器，然后由负载均衡器来做信令转发。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ua1 ----&amp;gt; op1 ----&amp;gt; fs1
+ua2 ----&amp;gt; |   ----&amp;gt; fs2
+gw1 ----&amp;gt; |
+gw2 ----&amp;gt; |
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;op1是单节点的，也会存在单点故障问题，因此引入op2。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ua1 ----&amp;gt; op1 ----&amp;gt; fs1
+ua2 ----&amp;gt; op2 ----&amp;gt; fs2
+gw1 ----&amp;gt; |
+gw2 ----&amp;gt; |
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;引入op2之后，有两个方案来保证高可用：&lt;/p&gt;
+&lt;p&gt;方案1, 主备: op1和op2用VIP来对外提供服务，op1和op2的VIP是一样的。实际只有一个在工作，另外一个处于备份状态。 一旦op1出现问题，op2接管VIP对外提供服务。
+- 优点: 简单
+- 缺点:
+- 兼容性：不是所有云平台都支持VIP
+- 成本：需要额外的硬件成本，而且还是闲置状态
+- 负载：op1和op2都需要对外提供服务，但是实际上只有一个在工作，一个节点的处理能力有限，总会达到瓶颈&lt;/p&gt;</description>
+    </item>
     <item>
       <title>离谱的通话无声问题排查记录</title>
       <link>https://wdd.js.org/posts/2025/no-sound-during-a-call/</link>
