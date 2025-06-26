@@ -11,8 +11,45 @@
     </image>
     <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 18 Jun 2025 20:04:52 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 24 Jun 2025 21:06:11 +0800</lastBuildDate>
     <atom:link href="https://wdd.js.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DTLS协商失败导致无声问题</title>
+      <link>https://wdd.js.org/posts/2025/dtls-negotiation-failed-no-audio/</link>
+      <pubDate>Tue, 24 Jun 2025 21:06:11 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2025/dtls-negotiation-failed-no-audio/</guid>
+      <description>&lt;h1 id=&#34;1-简介&#34;&gt;1. 简介&lt;/h1&gt;
+&lt;p&gt;DTLS（Datagram Transport Layer Security，数据报传输层安全协议）是一种为基于数据报的应用（如UDP）提供安全通信的协议。它是TLS（传输层安全协议）的扩展，专门设计用于不可靠的传输协议（如UDP），以实现数据加密、身份认证和消息完整性保护。DTLS常用于VoIP、视频会议、WebRTC等实时通信场景。&lt;/p&gt;
+&lt;p&gt;DTLS在WebRTC音视频中是强制必须使用的，否则媒体协商阶段就会失败。&lt;/p&gt;
+&lt;p&gt;使用DTLS后，就算中间人从网络中抓包，抓到了RTP流，在播放RTP流时，里面也全是噪声，无法播放的。&lt;/p&gt;
+&lt;p&gt;今天要讲的是就是DTLS协商失败导致电话即使接通，也无声的问题。&lt;/p&gt;
+&lt;h1 id=&#34;2-网络结构说明&#34;&gt;2. 网络结构说明&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;UAS: sip server, OpenSIPS + RTPEngine组成&lt;/li&gt;
+&lt;li&gt;UAC: WebRTC 分机&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;F1. UAS ----&amp;gt; UAC: INVITE &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;SDP&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;F2. UAS &amp;lt;---- UAC: &lt;span style=&#34;color:#ae81ff&#34;&gt;180&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;F3. UAS &amp;lt;---- UAC: &lt;span style=&#34;color:#ae81ff&#34;&gt;200&lt;/span&gt; Ok &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;SDP&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;F4. UAS ----&amp;gt; UAC: ACK
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;从SIP信令上看，被叫应答后，UAS和UAC之间的双向媒体流应该建立起来，但是实际上却无声。&lt;/p&gt;
+&lt;h1 id=&#34;3-icestundtls&#34;&gt;3. ICE/STUN/DTLS&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ICE&lt;/strong&gt;: WebRTC中的ICE（Interactive Connectivity Establishment，交互式连接建立）是一种网络协议，用于帮助WebRTC客户端在不同网络环境下建立点对点（P2P）连接。ICE的主要作用是解决NAT穿透和防火墙问题，使两个终端能够找到最佳的通信路径。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;STUN&lt;/strong&gt;: WebRTC中的STUN（Session Traversal Utilities for NAT，NAT会话穿越实用工具）是一种网络协议，主要用于帮助客户端发现自己的公网IP地址和端口。由于很多设备处于NAT（网络地址转换）或防火墙之后，直接通信会遇到障碍，STUN可以让客户端知道外部网络如何访问自己&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在分机应答后，并在WebRTC发送本地媒体流前，还需要两个步骤协商完成UAC才会发送语音流&lt;/p&gt;
+&lt;h2 id=&#34;31-stun协商&#34;&gt;3.1 STUN协商&lt;/h2&gt;
+&lt;p&gt;UAC收到来自UAS的SDP, 里面一般有如下内容&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;m&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;audio &lt;span style=&#34;color:#ae81ff&#34;&gt;54322&lt;/span&gt; UDP/TLS/RTP/SAVPF &lt;span style=&#34;color:#ae81ff&#34;&gt;111&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;8&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;ice-ufrag:abcd
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;ice-pwd:1234567890abcdef
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;ice-options:trickle
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;fingerprint:sha-256 12:34:56:78:90:AB:CD:EF:12:34:56:78:90:AB:CD:EF:12:34:56:78:90:AB:CD:EF:12:34:56:78:90:AB:CD:EF
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;setup:actpass
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;candidate:1 &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; udp &lt;span style=&#34;color:#ae81ff&#34;&gt;2130706431&lt;/span&gt; 1.2.3.4 &lt;span style=&#34;color:#ae81ff&#34;&gt;54322&lt;/span&gt; typ host
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;STUN是一个请求响应模型的协议。UAC将会向&lt;code&gt;a=candidate&lt;/code&gt;里的1.2.3.4:54322 发送UDP消息&lt;/p&gt;</description>
+    </item>
     <item>
       <title>RTPEngine mr13版本, 特殊的fmtp参数会导致某些语音编码被移除</title>
       <link>https://wdd.js.org/posts/2025/rtpengine-fmtp-g711-remove-codec/</link>
