@@ -1,7 +1,7 @@
 ---
-title: "kamailio 继承 HEP Server"
+title: "kamailio 集成 HEP Server"
 date: "2025-02-17 22:57:11"
-draft: false
+draft: true
 type: posts
 tags:
 - kamailio
