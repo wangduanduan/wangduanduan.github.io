@@ -134,7 +134,7 @@ The core includes:&lt;/p&gt;
 &lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/devel-guide-note/atta/2025-02-21-22-24-59.png&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
-      <title>kamailio 继承 HEP Server</title>
+      <title>kamailio 集成 HEP Server</title>
       <link>https://wdd.js.org/kamailio/homer-hep/</link>
       <pubDate>Mon, 17 Feb 2025 22:57:11 +0800</pubDate>
       <guid>https://wdd.js.org/kamailio/homer-hep/</guid>

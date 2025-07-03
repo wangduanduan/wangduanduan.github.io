@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Stun on 洞香春</title>
+    <link>https://wdd.js.org/tags/stun/</link>
+    <description>Recent content in Stun on 洞香春</description>
+    <image>
+      <title>洞香春</title>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.143.1</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 03 Jul 2025 22:26:35 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/stun/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RTPEngine STUN包处理流程</title>
+      <link>https://wdd.js.org/posts/2025/rtpengine-stun-flow/</link>
+      <pubDate>Thu, 03 Jul 2025 22:26:35 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2025/rtpengine-stun-flow/</guid>
+      <description>&lt;h1 id=&#34;stun-请求处理&#34;&gt;STUN 请求处理&lt;/h1&gt;
+&lt;pre class=&#34;mermaid&#34;&gt;flowchart TD
+
+__wildcard_endpoint_map--&amp;gt;__assign_stream_fds
+monologue_offer_answer--&amp;gt;__assign_stream_fds
+monologue_publish--&amp;gt;__assign_stream_fds
+monologue_subscribe_request1--&amp;gt;__assign_stream_fds
+call_make_transform_media--&amp;gt;__assign_stream_fds
+
+__wildcard_endpoint_map --&amp;gt;__get_endpoint_map
+monologue_offer_answer --&amp;gt;__get_endpoint_map
+monologue_publish --&amp;gt;__get_endpoint_map
+monologue_subscribe_request1 --&amp;gt;__get_endpoint_map
+call_make_transform_media --&amp;gt;__get_endpoint_map
+
+__assign_stream_fds --&amp;gt; stream_fd_new
+__get_endpoint_map --&amp;gt; stream_fd_new
+
+stream_fd_new --&amp;gt; stream_fd_recv
+
+stream_fd_new--&amp;gt;stream_fd_readable
+stream_fd_readable--&amp;gt;__stream_fd_readable
+stream_fd_recv--&amp;gt;
+__stream_fd_readable--&amp;gt;
+stream_packet--&amp;gt;
+media_demux_protocols --&amp;gt; 
+stun --&amp;gt; __stun_request --&amp;gt; ice_request
+&lt;/pre&gt;
+&lt;p&gt;从SDP Offer之后，stream_fd_new 函数里做了几个事件订阅， 当对应的的媒体端口收到包之后，这个包可能是好几种协议，例如RTP, DTLS, STUN等。&lt;/p&gt;
+&lt;p&gt;在media_demux_protocols() 中决定了这个包是以上包的哪一种， 如果是STUN包，则进入stun()中处理。&lt;/p&gt;
+&lt;p&gt;STUN包也分为请求和响应，当消息是响应时，进入ice_request().&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 1&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ice_request&lt;/span&gt;(stream_fd &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;sfd, &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;endpoint_t&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;src,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 2&lt;/span&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; stun_attrs &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;attrs)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 3&lt;/span&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 4&lt;/span&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; packet_stream &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;ps &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; sfd&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;stream;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 5&lt;/span&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; call_media &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;media &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ps&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;media;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 6&lt;/span&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ice_agent &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;ag;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 7&lt;/span&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;err;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 8&lt;/span&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ice_candidate &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;cand;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 9&lt;/span&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ice_candidate_pair &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;pair;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;10&lt;/span&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; ret;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;11&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex; background-color:#3c3d38&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;12&lt;/span&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;ilogs&lt;/span&gt;(ice, LOG_DEBUG, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Received ICE/STUN request from %s on %s&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex; background-color:#3c3d38&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;13&lt;/span&gt;&lt;span&gt;			&lt;span style=&#34;color:#a6e22e&#34;&gt;endpoint_print_buf&lt;/span&gt;(src),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex; background-color:#3c3d38&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;14&lt;/span&gt;&lt;span&gt;			&lt;span style=&#34;color:#a6e22e&#34;&gt;endpoint_print_buf&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;sfd&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;socket.local));
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre class=&#34;mermaid&#34;&gt;flowchart TD
+ice_update--&amp;gt;__do_ice_checks
+ice_agents_timer_run--&amp;gt;__do_ice_checks
+
+__do_ice_checks --&amp;gt; __do_ice_check
+&lt;/pre&gt;</description>
+    </item>
+  </channel>
+</rss>
