@@ -7,5 +7,15 @@
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/wangduanduan/wangduanduan.github.io.svg)
 
 
+# Thanks 
 
-https://wdd.js.org/ 
+感谢下面读者提出的反馈，包括错别字修改，内容建议，问题交流等。
+
+每个点评都很重要，感谢🙏！
+
+- [hongxupeace](https://github.com/hongxupeace)
+- [Kitoali](https://github.com/Kitoali)
+- [suiyuemanbu](https://github.com/suiyuemanbu)
+
+
+## [wdd.js.org](https://wdd.js.org/)

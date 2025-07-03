@@ -27,7 +27,7 @@ SBC是Session Border Controller的缩写，具有一下几个功能。
 
 - 拓扑隐藏：隐藏所有内部网络的信息。
 - 媒体流管理：设置语音流编码规则，转换等
-- 增加能力：例如Refer, 3CPP
+- 增加能力：例如Refer, 3PCC
 - 维护NAT映射：
 - 访问控制
 - 媒体加密：例如外部网络用SRTP, 内部网络用RTP
