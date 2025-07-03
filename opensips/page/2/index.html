@@ -19,7 +19,7 @@ Path: &lt;sip:P1.EXAMPLEVISITED.COM;lr> 从功能上说，Path头和record-route
 ...</p></div><footer class=entry-footer><span title='2022-09-03 02:00:00 +0800 CST'>2022-09-03 02:00:00</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Eddie Wang</footer><a class=entry-link aria-label="post link to Via route Record-Route的区别" href=https://wdd.js.org/opensips/ch1/via-route-record-route/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>SIP协议简介</h2></header><div class=entry-content><p>SIP是VoIP的基石，相当于HTTP协议在Web服务器里的角色。如果你熟悉HTTP协议，那么你可以在SIP协议中找到许多和HTTP中熟悉的东西，例如请求头，请求体，响应码之类概念，这是因为SIP协议的设计，很大程度上参考了HTTP协议。
 如果想要学习VoIP，那么SIP协议是你务必掌握敲门砖。
 1. SIP组件 UAC: 例如sip终端，软电话，话机 UAS: sip服务器 UA: ua既可以当做uac也可以当做uas 代理服务器 重定向服务器 注册服务器 网关 PSTN 公共交换电话网 2. SBC 边界会话控制器 SBC是Session Border Controller的缩写，具有一下几个功能。
-拓扑隐藏：隐藏所有内部网络的信息。 媒体流管理：设置语音流编码规则，转换等 增加能力：例如Refer, 3CPP 维护NAT映射： 访问控制 媒体加密：例如外部网络用SRTP, 内部网络用RTP 3. sip注册过程 下面简化注册逻辑，省略了验证和过期等字段：
+拓扑隐藏：隐藏所有内部网络的信息。 媒体流管理：设置语音流编码规则，转换等 增加能力：例如Refer, 3PCC 维护NAT映射： 访问控制 媒体加密：例如外部网络用SRTP, 内部网络用RTP 3. sip注册过程 下面简化注册逻辑，省略了验证和过期等字段：
 对于分机来说，注册服务器的地址是需要设置的 分机向注册服务器发请求，说：你好，注册服务器，我是8005，我的地址是200.180.1.1，以后你可以用这个地址联系我。 注册服务器回复：好的，注册成功 4. sip服务器的类型 4.1. 代理服务器 4.2. 重定向服务器 4.3. 背靠背UA服务器 背靠背UA服务器有两个作用
 隐藏网络拓扑结构 有些时候，路由无法到达，只能用背靠背UA服务器 5. 常用sip请求方法 比较常用的是下面的
 常用的几个是：register, invite, ack, bye, cancel。除了cancel和ack不需要认证外，其余的请求都需要认证。 register自不必说，invite和bye是需要认证的。

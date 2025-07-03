@@ -4293,7 +4293,7 @@ a=rtpmap:0 PCMU/8000
 &lt;ul&gt;
 &lt;li&gt;拓扑隐藏：隐藏所有内部网络的信息。&lt;/li&gt;
 &lt;li&gt;媒体流管理：设置语音流编码规则，转换等&lt;/li&gt;
-&lt;li&gt;增加能力：例如Refer, 3CPP&lt;/li&gt;
+&lt;li&gt;增加能力：例如Refer, 3PCC&lt;/li&gt;
 &lt;li&gt;维护NAT映射：&lt;/li&gt;
 &lt;li&gt;访问控制&lt;/li&gt;
 &lt;li&gt;媒体加密：例如外部网络用SRTP, 内部网络用RTP&lt;/li&gt;
