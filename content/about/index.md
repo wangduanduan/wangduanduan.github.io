@@ -10,7 +10,7 @@ date: 2018-01-31 12:09:09
 我是Eddie Wang！
 
 - 精通JavaScript/Node.js，现在的兴趣是学习go语言
-- 精通VOIP相关技术栈：SIP/opensips/Freeswitch等等
+- 精通VOIP相关技术栈：SIP/opensips/kamailio/Freeswitch等等
 - 精通VIM
 - email: eddie0501@qq.com
 - Github: [github.com/wangduanduan](https://github.com/wangduanduan)
@@ -18,8 +18,22 @@ date: 2018-01-31 12:09:09
 - 个人博客: [wdd.js.org](https://wdd.js.org), 最新内容将会发布在wdd.js.org
 - 最喜欢的美剧《黄石》
 - 喜欢读书、美剧、做饭
-- 微信阅读资深会员
-![](atta/2024-11-18-19-34-57.png)
+- 微信阅读资深会员/365天阅读挑战赛
+
+![](atta/2025-07-04-05-19-13.png)
+![](atta/2025-07-04-05-21-57.png)
+
+{{<rawhtml>}}
+<span>
+  <img align="center" src="https://github-readme-stats.vercel.app/api?username=wangduanduan&count_private=true&show_icons=true&&theme=onedark" />
+</span>
+<span>
+  <img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=wangduanduan&theme=onedark&layout=compact" />
+</span>
+{{</rawhtml>}}
+
+[![trophy](https://github-profile-trophy.vercel.app/?username=wangduanduan&theme=onedark&rank=SECRET,SSS,SS,S,AAA,AA,A)](https://github.com/ryo-ma/github-profile-trophy)
+
 
 
 
