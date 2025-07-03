@@ -3,24 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://wdd.js.org/tags/all/</loc>
-    <lastmod>2025-06-24T21:06:11+08:00</lastmod>
+    <lastmod>2025-07-03T22:26:35+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/categories/all/</loc>
-    <lastmod>2025-06-24T21:06:11+08:00</lastmod>
+    <lastmod>2025-07-03T22:26:35+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/categories/</loc>
-    <lastmod>2025-06-24T21:06:11+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2025/dtls-negotiation-failed-no-audio/</loc>
-    <lastmod>2025-06-24T21:06:11+08:00</lastmod>
+    <lastmod>2025-07-03T22:26:35+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/</loc>
-    <lastmod>2025-06-24T21:06:11+08:00</lastmod>
+    <lastmod>2025-07-03T22:26:35+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/2025/rtpengine-stun-flow/</loc>
+    <lastmod>2025-07-03T22:26:35+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/</loc>
-    <lastmod>2025-06-24T21:06:11+08:00</lastmod>
+    <lastmod>2025-07-03T22:26:35+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/</loc>
+    <lastmod>2025-07-03T22:26:35+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/2025/dtls-negotiation-failed-no-audio/</loc>
     <lastmod>2025-06-24T21:06:11+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2025/rtpengine-fmtp-g711-remove-codec/</loc>
@@ -49,9 +52,6 @@
   </url><url>
     <loc>https://wdd.js.org/kamailio/read-bad-tcp/</loc>
     <lastmod>2025-04-18T23:05:15+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2025/default/</loc>
-    <lastmod>2025-03-29T15:49:28+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2025/hot-reload-opensips-vs-kamailio/</loc>
     <lastmod>2025-03-29T13:49:38+08:00</lastmod>
