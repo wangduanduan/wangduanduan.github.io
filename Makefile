@@ -16,10 +16,10 @@ add:
 	hugo new $(name)/index.md
 2024:
 	hugo new posts/2024/$(name)/index.md
-2025:
+post:
 	hugo new posts/2025/$(name)/index.md
 serve:
-	hugo serve
+	hugo serve --disableFastRender
 km:
 	hugo new kamailio/$(id)/index.md
 km56:

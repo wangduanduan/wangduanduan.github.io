@@ -11,15 +11,15 @@ categories:
 
 # step1
 
-在themes/YourTheme/layouts/partials/extend_footer.html 的最后追加如下内容
+在layouts/baseof.html 的最后追加如下内容
 
 ```html
-{{if .Store.Get "hasMermaid" }}
+{{ if .Store.Get "hasMermaid" }}
   <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
     mermaid.initialize({ startOnLoad: true });
   </script>
-{{end }}
+{{ end }}
 ```
 
 # step2:
