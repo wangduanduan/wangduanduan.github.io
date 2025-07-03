@@ -135,10 +135,10 @@ menu:
       name: "Kamailio"
       url: /kamailio/
       weight: 10
-    - identifier: id_km_wiki_56
-      name: "Kamailio 5.6 wiki"
-      url: /kamailio/56/
-      weight: 10
+    # - identifier: id_km_wiki_56
+    #   name: "Kamailio 5.6 wiki"
+    #   url: /kamailio/56/
+    #   weight: 10
     # - identifier: id_container
     #   name: "k8s/docker"
     #   url: /container/
@@ -151,14 +151,14 @@ menu:
       name: "OpenSIPS"
       url: /opensips/
       weight: 10
-    - identifier: id_network
-      name: "Network"
-      url: /network/
-      weight: 10
-    - identifier: id_golang
-      name: "Golang"
-      url: /golang/
-      weight: 10
+    # - identifier: id_network
+    #   name: "Network"
+    #   url: /network/
+    #   weight: 10
+    # - identifier: id_golang
+    #   name: "Golang"
+    #   url: /golang/
+    #   weight: 10
     - identifier: id_categories
       name: "分类"
       url: /categories/
