@@ -1,4 +1,4 @@
-# Eddie Wang 的Blog
+# Eddie(艾迪)的洞香春
 
 > 夫天地者，万物之逆旅也；光阴者，百代之过客也。而浮生若梦，为欢几何？
 
@@ -18,4 +18,4 @@
 - [suiyuemanbu](https://github.com/suiyuemanbu)
 
 
-## [wdd.js.org](https://wdd.js.org/)
+## 👉👉👉 [wdd.js.org](https://wdd.js.org/)
