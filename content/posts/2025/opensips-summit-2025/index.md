@@ -9,7 +9,7 @@ categories:
   - all
 ---
 
-2025 年 5 月 27 - 5 月 30 日, OpenSIPS Summit 2025 将在荷兰阿姆斯特丹举行。
+2025 年 5 月 27 - 5 月 30 日, OpenSIPS Summit 2025 在荷兰阿姆斯特丹举行。
 
 最近我才有时间，看完所有的会议资料，包括 PDF 和 PPT。
 
