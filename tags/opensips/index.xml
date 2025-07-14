@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Opensips on 洞香春</title>
+    <link>https://wdd.js.org/tags/opensips/</link>
+    <description>Recent content in Opensips on 洞香春</description>
+    <image>
+      <title>洞香春</title>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.143.1</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 14 Jul 2025 21:52:23 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/opensips/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OpenSIPS Summit 2025 速看</title>
+      <link>https://wdd.js.org/posts/2025/opensips-summit-2025/</link>
+      <pubDate>Mon, 14 Jul 2025 21:52:23 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2025/opensips-summit-2025/</guid>
+      <description>&lt;p&gt;2025 年 5 月 27 - 5 月 30 日, OpenSIPS Summit 2025 将在荷兰阿姆斯特丹举行。&lt;/p&gt;
+&lt;p&gt;最近我才有时间，看完所有的会议资料，包括 PDF 和 PPT。&lt;/p&gt;
+&lt;p&gt;下面是我整理的，认为比较有价值的一些内容。以飨读者。&lt;/p&gt;
+&lt;h1 id=&#34;1-加强-sdp-处理&#34;&gt;1. 加强 SDP 处理&lt;/h1&gt;
+&lt;p&gt;对 SDP 的处理，如果用 OpenSIPS 脚本来做，将会非常蹩脚。 生产环境一般都是使用 rtpengine 或者 rtpproxy 来处理。&lt;/p&gt;
+&lt;p&gt;但是，最近的 OpenSIPS 版本，已经可以支持 SDP 处理了。 可以直接在 OpenSIPS 脚本里处理 SDP。&lt;/p&gt;
+&lt;p&gt;说实话，我看了新的方案，我觉得，还不如用 rtpengine 或者 rtpproxy。&lt;/p&gt;
+&lt;p&gt;但是聊胜于无吧，感兴趣的可以看看原文。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;./OpenSIPS%20Summit%202025%20-%20Liviu%20Chircu%20-%20Enhanced%20Media%20Operations%20with%20Structured%20SDP.pdf&#34;&gt;OpenSIPS Summit 2025 - Liviu Chircu - Enhanced Media Operations with Structured SDP&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;除此以外，PDF 也提到一些有趣的事情，比如 SDP 随着时间推移，增强和很多功能，包也变得越来越大&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;时期&lt;/th&gt;
+          &lt;th&gt;内容&lt;/th&gt;
+          &lt;th&gt;包大小&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;1998&lt;/td&gt;
+          &lt;td&gt;基本媒体行&lt;/td&gt;
+          &lt;td&gt;200-400 bytes&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;2002&lt;/td&gt;
+          &lt;td&gt;编码协商，rtpmap&lt;/td&gt;
+          &lt;td&gt;500-1000 bytes&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;2010&lt;/td&gt;
+          &lt;td&gt;ICE/DTLS&lt;/td&gt;
+          &lt;td&gt;1-2 kb&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;2015&lt;/td&gt;
+          &lt;td&gt;WebRTC, Simulcast, Bound, MID&lt;/td&gt;
+          &lt;td&gt;2-3kb&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;在线会议，SFU&lt;/td&gt;
+          &lt;td&gt;3-5 kb&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;可以想象，随着媒体能力的增强，UDP包的SIP信令中的分片几乎成为必然，所以，是否可以考虑有限使用TCP/TLS来传输信令呢？&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
