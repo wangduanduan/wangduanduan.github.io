@@ -22,14 +22,16 @@
 &lt;ul&gt;
 &lt;li&gt;攻击者伪造DTLS ClientHello消息，在SIP服务器和客户端之间建立一个非预期的连接。导致正常链接被阻断。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;影响&#34;&gt;影响&lt;/h1&gt;
+&lt;h1 id=&#34;影响软件&#34;&gt;影响软件&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;FreeSWITCH&lt;/li&gt;
 &lt;li&gt;RTPengine&lt;/li&gt;
+&lt;li&gt;asterisk&lt;/li&gt;
+&lt;li&gt;FreePBX&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;漏洞白皮书&#34;&gt;漏洞白皮书&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&#34;./webrtc-hello-race-conditions-paper.pdf&#34;&gt;webrtc-hello-race-conditions-paper&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&#34;造成影响&#34;&gt;造成影响&lt;/h1&gt;
+&lt;h1 id=&#34;表现&#34;&gt;表现&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;应答后呼叫无声&lt;/li&gt;
 &lt;/ul&gt;
