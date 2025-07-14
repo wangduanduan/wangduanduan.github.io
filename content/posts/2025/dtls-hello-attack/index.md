@@ -14,15 +14,17 @@ categories:
 # TL;DR
 - 攻击者伪造DTLS ClientHello消息，在SIP服务器和客户端之间建立一个非预期的连接。导致正常链接被阻断。
 
-# 影响
+# 影响软件
 - FreeSWITCH
 - RTPengine
+- asterisk
+- FreePBX
 
 # 漏洞白皮书
 
 [webrtc-hello-race-conditions-paper](./webrtc-hello-race-conditions-paper.pdf)
 
-# 造成影响
+# 表现
 - 应答后呼叫无声
 
 # 参考

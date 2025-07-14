@@ -9,8 +9,8 @@ date: 2018-01-31 12:09:09
 
 我是Eddie Wang！
 
-- 精通JavaScript/Node.js，现在的兴趣是学习go语言
-- 精通VOIP相关技术栈：SIP/opensips/kamailio/Freeswitch等等
+- 精通JavaScript/Node.js，现在的兴趣是学习rust
+- 精通VOIP相关技术栈：SIP/opensips/kamailio等等
 - 精通VIM
 - email: eddie0501@qq.com
 - Github: [github.com/wangduanduan](https://github.com/wangduanduan)
