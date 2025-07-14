@@ -11,8 +11,35 @@
     </image>
     <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 14 Jul 2025 21:52:23 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 14 Jul 2025 23:13:23 +0800</lastBuildDate>
     <atom:link href="https://wdd.js.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SIP安全 - DTLS client Hello 攻击白皮书</title>
+      <link>https://wdd.js.org/posts/2025/dtls-hello-attack/</link>
+      <pubDate>Mon, 14 Jul 2025 23:13:23 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2025/dtls-hello-attack/</guid>
+      <description>&lt;h1 id=&#34;tldr&#34;&gt;TL;DR&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;攻击者伪造DTLS ClientHello消息，在SIP服务器和客户端之间建立一个非预期的连接。导致正常链接被阻断。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;影响&#34;&gt;影响&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;FreeSWITCH&lt;/li&gt;
+&lt;li&gt;RTPengine&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;漏洞白皮书&#34;&gt;漏洞白皮书&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;./webrtc-hello-race-conditions-paper.pdf&#34;&gt;webrtc-hello-race-conditions-paper&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;造成影响&#34;&gt;造成影响&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;应答后呼叫无声&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;参考&#34;&gt;参考&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/EnableSecurity/advisories/tree/master/ES2023-03-rtpengine-dtls-hello-race&#34;&gt;https://github.com/EnableSecurity/advisories/tree/master/ES2023-03-rtpengine-dtls-hello-race&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/EnableSecurity/advisories/tree/master/ES2023-02-freeswitch-dtls-hello-race&#34;&gt;https://github.com/EnableSecurity/advisories/tree/master/ES2023-02-freeswitch-dtls-hello-race&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/EnableSecurity/advisories/tree/master/ES2023-03-rtpengine-dtls-hello-race&#34;&gt;https://github.com/EnableSecurity/advisories/tree/master/ES2023-03-rtpengine-dtls-hello-race&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     <item>
       <title>OpenSIPS Summit 2025 速看</title>
       <link>https://wdd.js.org/posts/2025/opensips-summit-2025/</link>

@@ -3,24 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://wdd.js.org/categories/all/</loc>
-    <lastmod>2025-07-14T21:52:23+08:00</lastmod>
+    <lastmod>2025-07-14T23:13:23+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/categories/</loc>
-    <lastmod>2025-07-14T21:52:23+08:00</lastmod>
+    <lastmod>2025-07-14T23:13:23+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/</loc>
+    <lastmod>2025-07-14T23:13:23+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/sip/</loc>
+    <lastmod>2025-07-14T23:13:23+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/sip%E5%AE%89%E5%85%A8/</loc>
+    <lastmod>2025-07-14T23:13:23+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/2025/dtls-hello-attack/</loc>
+    <lastmod>2025-07-14T23:13:23+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/sip%E6%94%BB%E5%87%BB/</loc>
+    <lastmod>2025-07-14T23:13:23+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/</loc>
+    <lastmod>2025-07-14T23:13:23+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/</loc>
+    <lastmod>2025-07-14T23:13:23+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/opensips/</loc>
     <lastmod>2025-07-14T21:52:23+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2025/opensips-summit-2025/</loc>
-    <lastmod>2025-07-14T21:52:23+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/</loc>
-    <lastmod>2025-07-14T21:52:23+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/</loc>
-    <lastmod>2025-07-14T21:52:23+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/</loc>
     <lastmod>2025-07-14T21:52:23+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/rtpengine/</loc>
@@ -2170,9 +2182,6 @@
   </url><url>
     <loc>https://wdd.js.org/tags/%E8%AF%BB%E4%B9%A6/</loc>
     <lastmod>2018-02-13T14:57:23+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/sip/</loc>
-    <lastmod>2018-02-11T14:44:58+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2018/02/webrtc-web-sip-phone/</loc>
     <lastmod>2018-02-11T14:44:58+08:00</lastmod>

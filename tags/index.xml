@@ -11,8 +11,29 @@
     </image>
     <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 14 Jul 2025 21:52:23 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 14 Jul 2025 23:13:23 +0800</lastBuildDate>
     <atom:link href="https://wdd.js.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SIP</title>
+      <link>https://wdd.js.org/tags/sip/</link>
+      <pubDate>Mon, 14 Jul 2025 23:13:23 +0800</pubDate>
+      <guid>https://wdd.js.org/tags/sip/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SIP安全</title>
+      <link>https://wdd.js.org/tags/sip%E5%AE%89%E5%85%A8/</link>
+      <pubDate>Mon, 14 Jul 2025 23:13:23 +0800</pubDate>
+      <guid>https://wdd.js.org/tags/sip%E5%AE%89%E5%85%A8/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SIP攻击</title>
+      <link>https://wdd.js.org/tags/sip%E6%94%BB%E5%87%BB/</link>
+      <pubDate>Mon, 14 Jul 2025 23:13:23 +0800</pubDate>
+      <guid>https://wdd.js.org/tags/sip%E6%94%BB%E5%87%BB/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Opensips</title>
       <link>https://wdd.js.org/tags/opensips/</link>
@@ -690,13 +711,6 @@
       <link>https://wdd.js.org/tags/%E8%AF%BB%E4%B9%A6/</link>
       <pubDate>Tue, 13 Feb 2018 14:57:23 +0800</pubDate>
       <guid>https://wdd.js.org/tags/%E8%AF%BB%E4%B9%A6/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Sip</title>
-      <link>https://wdd.js.org/tags/sip/</link>
-      <pubDate>Sun, 11 Feb 2018 14:44:58 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/sip/</guid>
       <description></description>
     </item>
     <item>
