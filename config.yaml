@@ -47,15 +47,15 @@ params:
   assets:
     # disableHLJS: true # to disable highlight.js
     # disableFingerprinting: true
-    favicon: "/cowboy.ico"
-    favicon16x16: "/cowboy.ico"
-    favicon32x32: "/cowboy.ico"
-    apple_touch_icon: "/cowboy.ico"
-    safari_pinned_tab: "/cowboy.ico"
+    favicon: "/favicon.ico"
+    favicon16x16: "/favicon.ico"
+    favicon32x32: "/favicon.ico"
+    apple_touch_icon: "/favicon.ico"
+    safari_pinned_tab: "/favicon.ico"
 
   label:
     text: "洞香春"
-    icon: "/cowboy.ico"
+    icon: "/favicon.ico"
     iconHeight: 35
 
   # profile-mode
@@ -76,8 +76,8 @@ params:
   # home-info mode
   homeInfoParams:
     enabled: false
-    Title: "Eddie(艾迪)"
-    Content: "当你在穿山越岭的另一边, 我在孤独的路上没有尽头"
+    Title: "艾迪(Eddie)的博客"
+    Content: "7年VoIP工作经验，前端/软交换开发。热爱开源，热爱分享。 微信：suguswang177, 欢迎交流"
 
   socialIcons:
     - name: github
@@ -118,23 +118,23 @@ menu:
     - identifier: id_fs
       name: "FreeSWITCH"
       url: /freeswitch/
-      weight: 10
-    - identifier: id_books
-      name: "读书"
-      url: /books/
-      weight: 8
-    - identifier: id_vim
-      name: "VIM"
-      url: /vim/
-      weight: 10
-    - identifier: id_fe
-      name: "前端"
-      url: /fe/
-      weight: 10
+      weight: 3
+    # - identifier: id_books
+    #   name: "读书"
+    #   url: /books/
+    #   weight: 8
+    # - identifier: id_vim
+    #   name: "VIM"
+    #   url: /vim/
+    #   weight: 10
+    # - identifier: id_fe
+    #   name: "前端"
+    #   url: /fe/
+    #   weight: 10
     - identifier: id_kama
       name: "Kamailio"
       url: /kamailio/
-      weight: 10
+      weight: 2
     # - identifier: id_km_wiki_56
     #   name: "Kamailio 5.6 wiki"
     #   url: /kamailio/56/
@@ -150,7 +150,7 @@ menu:
     - identifier: id_opensips
       name: "OpenSIPS"
       url: /opensips/
-      weight: 10
+      weight: 1
     # - identifier: id_network
     #   name: "Network"
     #   url: /network/
@@ -159,10 +159,10 @@ menu:
     #   name: "Golang"
     #   url: /golang/
     #   weight: 10
-    - identifier: id_categories
-      name: "分类"
-      url: /categories/
-      weight: 10
+    # - identifier: id_categories
+    #   name: "分类"
+    #   url: /categories/
+    #   weight: 10
     - identifier: id_tags
       name: "标签"
       url: /tags/
