@@ -76,7 +76,7 @@ params:
   # home-info mode
   homeInfoParams:
     enabled: false
-    Title: "艾迪(Eddie)的博客"
+    Title: "Eddie(艾迪)的博客"
     Content: "7年VoIP工作经验，前端/软交换开发。热爱开源，热爱分享。 微信：suguswang177, 欢迎交流"
 
   socialIcons:
