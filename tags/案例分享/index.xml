@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>案例分享 on 洞香春</title>
+    <link>https://wdd.js.org/tags/%E6%A1%88%E4%BE%8B%E5%88%86%E4%BA%AB/</link>
+    <description>Recent content in 案例分享 on 洞香春</description>
+    <image>
+      <title>洞香春</title>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.143.1</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 15 Jul 2025 20:00:08 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/%E6%A1%88%E4%BE%8B%E5%88%86%E4%BA%AB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【案例分享】JSSIP 电话无法挂断问题</title>
+      <link>https://wdd.js.org/posts/2025/jssip-can-not-drop-call/</link>
+      <pubDate>Tue, 15 Jul 2025 20:00:08 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2025/jssip-can-not-drop-call/</guid>
+      <description>&lt;p&gt;当听到分机无法挂断电话时，通常有以下几种可能的原因：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在做Record-Route时，使用了错误的内外网IP地址。导致BYE请求按照route头发送时，无法正确找到对应的服务器。&lt;/li&gt;
+&lt;li&gt;Contact头部的URI不正确，导致BYE请求无法找到对应的服务器。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;时序图如下；&lt;/p&gt;
+&lt;pre class=&#34;mermaid&#34;&gt;sequenceDiagram
+autonumber
+participant u1 as user1
+participant o as opensips
+participant u2 as user2
+
+u1-&amp;gt;&amp;gt;o: INVITE
+o-&amp;gt;&amp;gt;u2: INVITE
+u2--&amp;gt;&amp;gt;o: 200 OK
+o--&amp;gt;&amp;gt;u1: 200 OK
+u1-&amp;gt;&amp;gt;o: ACK
+o-&amp;gt;&amp;gt;u2: ACK
+u2-&amp;gt;&amp;gt;o: BYE
+o--&amp;gt;&amp;gt;u2: 477 Send failed (477/TM)
+&lt;/pre&gt;
+&lt;p&gt;477错误一般是按照route头或者contact转发时，找不到对应的socket。 在使用tcp作为传输协议时，例如tcp/tls/wss注册的分机比较常见。&lt;/p&gt;
+&lt;p&gt;有以下可能&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;分机到opensips的tcp连接断开&lt;/li&gt;
+&lt;li&gt;contact使用错误的transport参数&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;从过观察第2个信令的Conact头，发现transport=ws, User-Agent=JSSip。 正常情况下，jssip应该使用wss作为transport。&lt;/p&gt;
+&lt;p&gt;所以解决办法是，在jssip的配置中，将transport改为wss。&lt;/p&gt;
+&lt;p&gt;还有一个解决方案， 就是让jssip通过nginx转发wss请求，让nginx转发到opensips的ws端口, 也能解决问题。&lt;/p&gt;
+&lt;pre class=&#34;mermaid&#34;&gt;sequenceDiagram
+autonumber
+
+jssip -&amp;gt;&amp;gt; nginx: wss
+nginx -&amp;gt;&amp;gt; opensips: ws
+&lt;/pre&gt;</description>
+    </item>
+    <item>
+      <title>【案例分享】外线呼入，SIP分机为何无响应？</title>
+      <link>https://wdd.js.org/posts/2025/ua-not-answer/</link>
+      <pubDate>Tue, 15 Jul 2025 19:39:57 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2025/ua-not-answer/</guid>
+      <description>&lt;h1 id=&#34;案例分享&#34;&gt;案例分享&lt;/h1&gt;
+&lt;p&gt;最近有客户反馈，自己的话机最近一两周都没有收到来电了，感觉很奇怪，他自己呼叫400号码，然后转分机，也接不通。&lt;/p&gt;
+&lt;h2 id=&#34;组网结构&#34;&gt;组网结构&lt;/h2&gt;
+&lt;pre class=&#34;mermaid&#34;&gt;flowchart LR
+ua1(分机)
+fw1(防火墙)
+uas1(SIP服务器)
+
+ua1 --&amp;gt; fw1
+fw1 --&amp;gt; uas1
+&lt;/pre&gt;
+&lt;h2 id=&#34;排查思路&#34;&gt;排查思路&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;首先排查服务端，从日志来看，分机的注册是正常的，每隔30多秒就注册一次。&lt;/li&gt;
+&lt;li&gt;然后排查呼叫信令图，发现发送给分机的INVITE， 分机那边没有任何反应&lt;/li&gt;
+&lt;li&gt;接着请求客户远程协助，在分机上抓包，发现只能抓到注册包，没有INVITE的回应。&lt;/li&gt;
+&lt;li&gt;询问客户，他们公司有没有使用防火墙，客户说有。&lt;/li&gt;
+&lt;li&gt;然后让客户检查他们防火墙的设置，关闭SIP ALG功能，但是也无效&lt;/li&gt;
+&lt;li&gt;然后让客户找网络负责人，在防火墙上抓包，发现防火墙收到了INVITE，但是没有转发给内部分机, 原因未知&lt;/li&gt;
+&lt;li&gt;最后找防火墙厂商，发现是防火墙的UDP组包没有开启，开启UDP分片重组后，呼入电话能正常进线&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
+&lt;p&gt;此刻，我回想起曾经写的 &lt;a href=&#34;https://wdd.js.org/opensips/ch7/big-udp-msg/&#34;&gt;UDP分片导致SIP消息丢失&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;没想到，在防火墙上也遇到了同样的问题。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

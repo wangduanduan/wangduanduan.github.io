@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>无法应答 on 洞香春</title>
+    <link>https://wdd.js.org/tags/%E6%97%A0%E6%B3%95%E5%BA%94%E7%AD%94/</link>
+    <description>Recent content in 无法应答 on 洞香春</description>
+    <image>
+      <title>洞香春</title>
+      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.143.1</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 15 Jul 2025 19:39:57 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/%E6%97%A0%E6%B3%95%E5%BA%94%E7%AD%94/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【案例分享】外线呼入，SIP分机为何无响应？</title>
+      <link>https://wdd.js.org/posts/2025/ua-not-answer/</link>
+      <pubDate>Tue, 15 Jul 2025 19:39:57 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2025/ua-not-answer/</guid>
+      <description>&lt;h1 id=&#34;案例分享&#34;&gt;案例分享&lt;/h1&gt;
+&lt;p&gt;最近有客户反馈，自己的话机最近一两周都没有收到来电了，感觉很奇怪，他自己呼叫400号码，然后转分机，也接不通。&lt;/p&gt;
+&lt;h2 id=&#34;组网结构&#34;&gt;组网结构&lt;/h2&gt;
+&lt;pre class=&#34;mermaid&#34;&gt;flowchart LR
+ua1(分机)
+fw1(防火墙)
+uas1(SIP服务器)
+
+ua1 --&amp;gt; fw1
+fw1 --&amp;gt; uas1
+&lt;/pre&gt;
+&lt;h2 id=&#34;排查思路&#34;&gt;排查思路&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;首先排查服务端，从日志来看，分机的注册是正常的，每隔30多秒就注册一次。&lt;/li&gt;
+&lt;li&gt;然后排查呼叫信令图，发现发送给分机的INVITE， 分机那边没有任何反应&lt;/li&gt;
+&lt;li&gt;接着请求客户远程协助，在分机上抓包，发现只能抓到注册包，没有INVITE的回应。&lt;/li&gt;
+&lt;li&gt;询问客户，他们公司有没有使用防火墙，客户说有。&lt;/li&gt;
+&lt;li&gt;然后让客户检查他们防火墙的设置，关闭SIP ALG功能，但是也无效&lt;/li&gt;
+&lt;li&gt;然后让客户找网络负责人，在防火墙上抓包，发现防火墙收到了INVITE，但是没有转发给内部分机, 原因未知&lt;/li&gt;
+&lt;li&gt;最后找防火墙厂商，发现是防火墙的UDP组包没有开启，开启UDP分片重组后，呼入电话能正常进线&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
+&lt;p&gt;此刻，我回想起曾经写的 &lt;a href=&#34;https://wdd.js.org/opensips/ch7/big-udp-msg/&#34;&gt;UDP分片导致SIP消息丢失&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;没想到，在防火墙上也遇到了同样的问题。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

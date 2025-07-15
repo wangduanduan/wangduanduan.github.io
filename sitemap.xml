@@ -2,14 +2,50 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://wdd.js.org/posts/2025/jssip-can-not-drop-call/</loc>
+    <lastmod>2025-07-15T20:00:08+08:00</lastmod>
+  </url><url>
     <loc>https://wdd.js.org/categories/all/</loc>
-    <lastmod>2025-07-14T23:13:23+08:00</lastmod>
+    <lastmod>2025-07-15T20:00:08+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/categories/</loc>
-    <lastmod>2025-07-14T23:13:23+08:00</lastmod>
+    <lastmod>2025-07-15T20:00:08+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/jssip/</loc>
+    <lastmod>2025-07-15T20:00:08+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/</loc>
-    <lastmod>2025-07-14T23:13:23+08:00</lastmod>
+    <lastmod>2025-07-15T20:00:08+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/</loc>
+    <lastmod>2025-07-15T20:00:08+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/%E6%97%A0%E6%B3%95%E6%8C%82%E6%96%AD/</loc>
+    <lastmod>2025-07-15T20:00:08+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/%E6%A1%88%E4%BE%8B%E5%88%86%E4%BA%AB/</loc>
+    <lastmod>2025-07-15T20:00:08+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/</loc>
+    <lastmod>2025-07-15T20:00:08+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/2025/ua-not-answer/</loc>
+    <lastmod>2025-07-15T19:39:57+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/%E6%97%A0%E6%B3%95%E5%BA%94%E7%AD%94/</loc>
+    <lastmod>2025-07-15T19:39:57+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/rtpengine/</loc>
+    <lastmod>2025-07-15T19:26:06+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/categories/rtpengine/</loc>
+    <lastmod>2025-07-15T19:26:06+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/2025/rtpengine-record-pcap/</loc>
+    <lastmod>2025-07-15T19:26:06+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/%E5%BD%95%E9%9F%B3/</loc>
+    <lastmod>2025-07-15T19:26:06+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/sip/</loc>
     <lastmod>2025-07-14T23:13:23+08:00</lastmod>
@@ -23,20 +59,11 @@
     <loc>https://wdd.js.org/tags/sip%E6%94%BB%E5%87%BB/</loc>
     <lastmod>2025-07-14T23:13:23+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/tags/</loc>
-    <lastmod>2025-07-14T23:13:23+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/</loc>
-    <lastmod>2025-07-14T23:13:23+08:00</lastmod>
-  </url><url>
     <loc>https://wdd.js.org/tags/opensips/</loc>
     <lastmod>2025-07-14T21:52:23+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2025/opensips-summit-2025/</loc>
     <lastmod>2025-07-14T21:52:23+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/rtpengine/</loc>
-    <lastmod>2025-07-03T22:26:35+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2025/rtpengine-stun-flow/</loc>
     <lastmod>2025-07-03T22:26:35+08:00</lastmod>

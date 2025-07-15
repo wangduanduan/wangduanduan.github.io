@@ -11,8 +11,41 @@
     </image>
     <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 03 Jul 2025 22:26:35 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 15 Jul 2025 19:26:06 +0800</lastBuildDate>
     <atom:link href="https://wdd.js.org/tags/rtpengine/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RTPEngine 录制 PCAP 文件</title>
+      <link>https://wdd.js.org/posts/2025/rtpengine-record-pcap/</link>
+      <pubDate>Tue, 15 Jul 2025 19:26:06 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2025/rtpengine-record-pcap/</guid>
+      <description>&lt;h1 id=&#34;为什要用-rtpengine-来录制-pcap-文件&#34;&gt;为什要用 RTPEngine 来录制 PCAP 文件？&lt;/h1&gt;
+&lt;p&gt;一般我们用 Freeswitch 来作为录音服务器， 但是某些场景，例如备份录音，需要在不同节点进行录音。&lt;/p&gt;
+&lt;p&gt;如果直接录制成 wav 文件，那么比较占用资源，而且备份录音用的几率也是比较小的。&lt;/p&gt;
+&lt;p&gt;因此录制成 PCAP 文件，可以节省资源，后期 pcap 转语音也能比较容易的实现。&lt;/p&gt;
+&lt;h1 id=&#34;实现步骤&#34;&gt;实现步骤&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;配置rtpengine启动参数&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;--pcaps-dir=/var/log/records --record-method=pcap --recording-format=eht
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;在opensips在做SDP Offer&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;rtpengine_offer(&amp;#34;record-call=yes&amp;#34;);
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;录音文件位置&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;录音文件在&lt;code&gt;/var/log/records&lt;/code&gt;目录下，文件名是呼叫的sip Call-ID-16hex随机数.pcap&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;call1-1234567890abcdef.pcap
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;call2-1234567890abcdef.pcap
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;录音文件内容&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;录音文件用wireshark分析，可以听到主被叫双方的声音。&lt;/p&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;其他&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;除了录音文件，一些录音的元数据，例如SDP之类的信息，会被记录到录音的目录下。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>RTPEngine STUN包处理流程</title>
       <link>https://wdd.js.org/posts/2025/rtpengine-stun-flow/</link>

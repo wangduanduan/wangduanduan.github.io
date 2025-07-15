@@ -11,8 +11,113 @@
     </image>
     <generator>Hugo -- 0.143.1</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 14 Jul 2025 23:13:23 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 15 Jul 2025 20:00:08 +0800</lastBuildDate>
     <atom:link href="https://wdd.js.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【案例分享】JSSIP 电话无法挂断问题</title>
+      <link>https://wdd.js.org/posts/2025/jssip-can-not-drop-call/</link>
+      <pubDate>Tue, 15 Jul 2025 20:00:08 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2025/jssip-can-not-drop-call/</guid>
+      <description>&lt;p&gt;当听到分机无法挂断电话时，通常有以下几种可能的原因：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在做Record-Route时，使用了错误的内外网IP地址。导致BYE请求按照route头发送时，无法正确找到对应的服务器。&lt;/li&gt;
+&lt;li&gt;Contact头部的URI不正确，导致BYE请求无法找到对应的服务器。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;时序图如下；&lt;/p&gt;
+&lt;pre class=&#34;mermaid&#34;&gt;sequenceDiagram
+autonumber
+participant u1 as user1
+participant o as opensips
+participant u2 as user2
+
+u1-&amp;gt;&amp;gt;o: INVITE
+o-&amp;gt;&amp;gt;u2: INVITE
+u2--&amp;gt;&amp;gt;o: 200 OK
+o--&amp;gt;&amp;gt;u1: 200 OK
+u1-&amp;gt;&amp;gt;o: ACK
+o-&amp;gt;&amp;gt;u2: ACK
+u2-&amp;gt;&amp;gt;o: BYE
+o--&amp;gt;&amp;gt;u2: 477 Send failed (477/TM)
+&lt;/pre&gt;
+&lt;p&gt;477错误一般是按照route头或者contact转发时，找不到对应的socket。 在使用tcp作为传输协议时，例如tcp/tls/wss注册的分机比较常见。&lt;/p&gt;
+&lt;p&gt;有以下可能&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;分机到opensips的tcp连接断开&lt;/li&gt;
+&lt;li&gt;contact使用错误的transport参数&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;从过观察第2个信令的Conact头，发现transport=ws, User-Agent=JSSip。 正常情况下，jssip应该使用wss作为transport。&lt;/p&gt;
+&lt;p&gt;所以解决办法是，在jssip的配置中，将transport改为wss。&lt;/p&gt;
+&lt;p&gt;还有一个解决方案， 就是让jssip通过nginx转发wss请求，让nginx转发到opensips的ws端口, 也能解决问题。&lt;/p&gt;
+&lt;pre class=&#34;mermaid&#34;&gt;sequenceDiagram
+autonumber
+
+jssip -&amp;gt;&amp;gt; nginx: wss
+nginx -&amp;gt;&amp;gt; opensips: ws
+&lt;/pre&gt;</description>
+    </item>
+    <item>
+      <title>【案例分享】外线呼入，SIP分机为何无响应？</title>
+      <link>https://wdd.js.org/posts/2025/ua-not-answer/</link>
+      <pubDate>Tue, 15 Jul 2025 19:39:57 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2025/ua-not-answer/</guid>
+      <description>&lt;h1 id=&#34;案例分享&#34;&gt;案例分享&lt;/h1&gt;
+&lt;p&gt;最近有客户反馈，自己的话机最近一两周都没有收到来电了，感觉很奇怪，他自己呼叫400号码，然后转分机，也接不通。&lt;/p&gt;
+&lt;h2 id=&#34;组网结构&#34;&gt;组网结构&lt;/h2&gt;
+&lt;pre class=&#34;mermaid&#34;&gt;flowchart LR
+ua1(分机)
+fw1(防火墙)
+uas1(SIP服务器)
+
+ua1 --&amp;gt; fw1
+fw1 --&amp;gt; uas1
+&lt;/pre&gt;
+&lt;h2 id=&#34;排查思路&#34;&gt;排查思路&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;首先排查服务端，从日志来看，分机的注册是正常的，每隔30多秒就注册一次。&lt;/li&gt;
+&lt;li&gt;然后排查呼叫信令图，发现发送给分机的INVITE， 分机那边没有任何反应&lt;/li&gt;
+&lt;li&gt;接着请求客户远程协助，在分机上抓包，发现只能抓到注册包，没有INVITE的回应。&lt;/li&gt;
+&lt;li&gt;询问客户，他们公司有没有使用防火墙，客户说有。&lt;/li&gt;
+&lt;li&gt;然后让客户检查他们防火墙的设置，关闭SIP ALG功能，但是也无效&lt;/li&gt;
+&lt;li&gt;然后让客户找网络负责人，在防火墙上抓包，发现防火墙收到了INVITE，但是没有转发给内部分机, 原因未知&lt;/li&gt;
+&lt;li&gt;最后找防火墙厂商，发现是防火墙的UDP组包没有开启，开启UDP分片重组后，呼入电话能正常进线&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
+&lt;p&gt;此刻，我回想起曾经写的 &lt;a href=&#34;https://wdd.js.org/opensips/ch7/big-udp-msg/&#34;&gt;UDP分片导致SIP消息丢失&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;没想到，在防火墙上也遇到了同样的问题。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>RTPEngine 录制 PCAP 文件</title>
+      <link>https://wdd.js.org/posts/2025/rtpengine-record-pcap/</link>
+      <pubDate>Tue, 15 Jul 2025 19:26:06 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2025/rtpengine-record-pcap/</guid>
+      <description>&lt;h1 id=&#34;为什要用-rtpengine-来录制-pcap-文件&#34;&gt;为什要用 RTPEngine 来录制 PCAP 文件？&lt;/h1&gt;
+&lt;p&gt;一般我们用 Freeswitch 来作为录音服务器， 但是某些场景，例如备份录音，需要在不同节点进行录音。&lt;/p&gt;
+&lt;p&gt;如果直接录制成 wav 文件，那么比较占用资源，而且备份录音用的几率也是比较小的。&lt;/p&gt;
+&lt;p&gt;因此录制成 PCAP 文件，可以节省资源，后期 pcap 转语音也能比较容易的实现。&lt;/p&gt;
+&lt;h1 id=&#34;实现步骤&#34;&gt;实现步骤&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;配置rtpengine启动参数&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;--pcaps-dir=/var/log/records --record-method=pcap --recording-format=eht
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;在opensips在做SDP Offer&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;rtpengine_offer(&amp;#34;record-call=yes&amp;#34;);
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;录音文件位置&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;录音文件在&lt;code&gt;/var/log/records&lt;/code&gt;目录下，文件名是呼叫的sip Call-ID-16hex随机数.pcap&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;call1-1234567890abcdef.pcap
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;call2-1234567890abcdef.pcap
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;录音文件内容&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;录音文件用wireshark分析，可以听到主被叫双方的声音。&lt;/p&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;其他&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;除了录音文件，一些录音的元数据，例如SDP之类的信息，会被记录到录音的目录下。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>SIP安全 - DTLS client Hello 攻击白皮书</title>
       <link>https://wdd.js.org/posts/2025/dtls-hello-attack/</link>
