@@ -1,0 +1,225 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>使用m4给opensips脚本增加预处理能力 | 洞香春</title>
+<meta name=keywords content="all"><meta name=description content="
+demo 代码仓库 ： https://cnb.cool/eddie2072/opensips-forum/-/tree/main/how-to-use-m4
+使用m4给opensips脚本增加预处理能力
+为什么要预处理？
+
+运维便利。有预处理，脚本里的IP地址，端口，密码，用户名等信息，可以由运维人员统一配置，脚本只需要引用配置文件，就可以完成脚本的运行。否则，运维人员只能手工去修改每个配置写死的地方。容易出错，且非常麻烦。
+
+所以，我们在写脚本的时候，需要从脚本中抽离配置性质的数据。例如监听的IP地址，端口，数据库的用户名和密码等信息。
+这样脚本就变层两个部份，配置文件 + 脚本本身。
+运维人员只需要修改配置文件就可以。 以本demo为例子， 运维在线上部署脚本，只需要修改env.prd.m4文件就可以。
+
+
+预处理可以增加脚本的复用性。 不同环境，往往需要的功能不同。A环境需要X功能，B环境不需要X功能，那么怎么维护呢。 不用怕，有了m4条件分支，可以根据不同不配置，渲染出不同的结果。
+
+
+m4基本在所有linux都已经安装好了，不用额外在安装依赖。 很多有经验的程序员，往往也不知道什么是m4, 其实大名顶顶的autoconf, 底层就依赖了m4。
+
+
+m4难不难学？
+m4语法简单，语法强大，但是我们能用到的，基本不超过5个语法。
+定义宏
+下面是定义宏的语法，这样写之后，所有字符串ENV_LISTEN_IP都会被替换为127.0.0.1
+define(ENV_LISTEN_IP, 127.0.0.1)
+引用其他文件
+有了引用，我们就不需要把所有功能放到一个大文件中。
+include(<<src/loadmodule.m4>>)
+include(<<src/request.m4>>)
+include(<<src/relay.m4>>)
+include(<<src/per_branch_ops.m4>>)
+include(<<src/handle_nat.m4>>)
+include(<<src/missed_call.m4>>)
+ifelse(cond1,cond2, yes, no)
+如果cond1和cond2相同，则展开第三个参数yes, 否则展开第四个参数no
+ifelse(ENV_ENABLE_NAT,yes,use nat, not use nat)
+引号
+引号，就是用来告诉m4, 引号里的内容应该看作是一个整体。
+m4默认的引号是``&rsquo;&rsquo;,  看起来很怪异，很难从视觉上做配对。 所有有强迫症，或者视觉洁癖的人，会非常讨厌m4。
+define(`ENV_LISTEN_IP', `127.0.0.1')
+但是这个引号是可以修改的，我们用changequote去修改默认的引号, 将引号改为<<>>
+changequote(<<,>>)
+define(<<ENV_LISTEN_IP>>, <<127.0.0.1>>)
+如何调试宏, 使用-dV 参数
+m4 -dV opensips.m4
+解决宏冲突问题
+如果脚本里有个变量和m4的宏名字冲突，那么往往会出现一些怪异的问题。
+m4早就想到了解决方案， 在执行m4时候，可以加上-P参数，m4所有内置的宏就会必须写成以m4_开头。 例如
+m4_define(<<ENV_LISTEN_IP>>, <<127.0.0.1>>)
+m4 -P opensips.m4
+m4的劣势
+
+m4没有类似foreach的循环，但是可以通过m4的递归实现。
+m4做简单的字符串替换，但是对于复杂字符串处理，m4的效率会比较低，而且语法比较复杂。 但是对于处理opensips的配置文件，m4则是刚刚好的完美工具。
+
+有意思的几个扩展
+检查宏是否未定义，或者是否为空字符串，空则报错退出
+m4_divert(-1)
+m4_define(<<ASSERT_NOT_EMPTY>>,<<
+    m4_ifelse($1,,<<
+        m4_errprint(<<$1 is empty >>)
+        m4_m4exit(1)
+    >>,)
+>>)
+m4_divert(0)m4_dnl
+
+ASSERT_NOT_EMPTY(this_is_empty)
+foreach 循环
+  m4_changequote(<<,>>)m4_dnl
+  m4_divert(-1)
+  m4_define(<<X_FOREACH>>, <<m4_pushdef(<<$1>>)_foreach($@)m4_popdef(<<$1>>)>>)
+  m4_define(<<_arg1>>, <<$1>>)
+  m4_define(<<_foreach>>, <<m4_ifelse(<<$2>>, <<()>>, <<>>,
+    <<m4_define(<<$1>>, _arg1$2)$3<<>>$0(<<$1>>, (m4_shift$2), <<$3>>)>>)>>)
+  m4_divert(0)m4_dnl
+
+
+  X_FOREACH(x,(a.com,b.com,c.com),
+  alias=udp:x
+  )
+上面会输出"><meta name=author content="Eddie Wang"><link rel=canonical href=https://wdd.js.org/posts/2025/m4-with-opensips/><link crossorigin=anonymous href=/assets/css/stylesheet.821c51435cba3e33e49e590a06514c54c32ac7957095ffcc1e0f390c47cf3228.css integrity="sha256-ghxRQ1y6PjPknlkKBlFMVMMqx5Vwlf/MHg85DEfPMig=" rel="preload stylesheet" as=style><link rel=icon href=https://wdd.js.org/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://wdd.js.org/favicon.ico><link rel=icon type=image/png sizes=32x32 href=https://wdd.js.org/favicon.ico><link rel=apple-touch-icon href=https://wdd.js.org/favicon.ico><link rel=mask-icon href=https://wdd.js.org/favicon.ico><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://wdd.js.org/posts/2025/m4-with-opensips/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><meta property="og:url" content="https://wdd.js.org/posts/2025/m4-with-opensips/"><meta property="og:site_name" content="洞香春"><meta property="og:title" content="使用m4给opensips脚本增加预处理能力"><meta property="og:description" content=" demo 代码仓库 ： https://cnb.cool/eddie2072/opensips-forum/-/tree/main/how-to-use-m4
+使用m4给opensips脚本增加预处理能力 为什么要预处理？ 运维便利。有预处理，脚本里的IP地址，端口，密码，用户名等信息，可以由运维人员统一配置，脚本只需要引用配置文件，就可以完成脚本的运行。否则，运维人员只能手工去修改每个配置写死的地方。容易出错，且非常麻烦。 所以，我们在写脚本的时候，需要从脚本中抽离配置性质的数据。例如监听的IP地址，端口，数据库的用户名和密码等信息。
+这样脚本就变层两个部份，配置文件 + 脚本本身。
+运维人员只需要修改配置文件就可以。 以本demo为例子， 运维在线上部署脚本，只需要修改env.prd.m4文件就可以。
+预处理可以增加脚本的复用性。 不同环境，往往需要的功能不同。A环境需要X功能，B环境不需要X功能，那么怎么维护呢。 不用怕，有了m4条件分支，可以根据不同不配置，渲染出不同的结果。
+m4基本在所有linux都已经安装好了，不用额外在安装依赖。 很多有经验的程序员，往往也不知道什么是m4, 其实大名顶顶的autoconf, 底层就依赖了m4。
+m4难不难学？ m4语法简单，语法强大，但是我们能用到的，基本不超过5个语法。
+定义宏 下面是定义宏的语法，这样写之后，所有字符串ENV_LISTEN_IP都会被替换为127.0.0.1
+define(ENV_LISTEN_IP, 127.0.0.1) 引用其他文件 有了引用，我们就不需要把所有功能放到一个大文件中。
+include(<<src/loadmodule.m4>>) include(<<src/request.m4>>) include(<<src/relay.m4>>) include(<<src/per_branch_ops.m4>>) include(<<src/handle_nat.m4>>) include(<<src/missed_call.m4>>) ifelse(cond1,cond2, yes, no) 如果cond1和cond2相同，则展开第三个参数yes, 否则展开第四个参数no
+ifelse(ENV_ENABLE_NAT,yes,use nat, not use nat) 引号 引号，就是用来告诉m4, 引号里的内容应该看作是一个整体。
+m4默认的引号是``’’, 看起来很怪异，很难从视觉上做配对。 所有有强迫症，或者视觉洁癖的人，会非常讨厌m4。
+define(`ENV_LISTEN_IP', `127.0.0.1') 但是这个引号是可以修改的，我们用changequote去修改默认的引号, 将引号改为<<>>
+changequote(<<,>>) define(<<ENV_LISTEN_IP>>, <<127.0.0.1>>) 如何调试宏, 使用-dV 参数 m4 -dV opensips.m4 解决宏冲突问题 如果脚本里有个变量和m4的宏名字冲突，那么往往会出现一些怪异的问题。
+m4早就想到了解决方案， 在执行m4时候，可以加上-P参数，m4所有内置的宏就会必须写成以m4_开头。 例如
+m4_define(<<ENV_LISTEN_IP>>, <<127.0.0.1>>) m4 -P opensips.m4 m4的劣势 m4没有类似foreach的循环，但是可以通过m4的递归实现。 m4做简单的字符串替换，但是对于复杂字符串处理，m4的效率会比较低，而且语法比较复杂。 但是对于处理opensips的配置文件，m4则是刚刚好的完美工具。 有意思的几个扩展 检查宏是否未定义，或者是否为空字符串，空则报错退出 m4_divert(-1) m4_define(<<ASSERT_NOT_EMPTY>>,<< m4_ifelse($1,,<< m4_errprint(<<$1 is empty >>) m4_m4exit(1) >>,) >>) m4_divert(0)m4_dnl ASSERT_NOT_EMPTY(this_is_empty) foreach 循环 m4_changequote(<<,>>)m4_dnl m4_divert(-1) m4_define(<<X_FOREACH>>, <<m4_pushdef(<<$1>>)_foreach($@)m4_popdef(<<$1>>)>>) m4_define(<<_arg1>>, <<$1>>) m4_define(<<_foreach>>, <<m4_ifelse(<<$2>>, <<()>>, <<>>, <<m4_define(<<$1>>, _arg1$2)$3<<>>$0(<<$1>>, (m4_shift$2), <<$3>>)>>)>>) m4_divert(0)m4_dnl X_FOREACH(x,(a.com,b.com,c.com), alias=udp:x ) 上面会输出"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-08-02T11:17:08+08:00"><meta property="article:modified_time" content="2025-08-02T11:17:08+08:00"><meta property="article:tag" content="All"><meta property="og:image" content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="使用m4给opensips脚本增加预处理能力"><meta name=twitter:description content="
+demo 代码仓库 ： https://cnb.cool/eddie2072/opensips-forum/-/tree/main/how-to-use-m4
+使用m4给opensips脚本增加预处理能力
+为什么要预处理？
+
+运维便利。有预处理，脚本里的IP地址，端口，密码，用户名等信息，可以由运维人员统一配置，脚本只需要引用配置文件，就可以完成脚本的运行。否则，运维人员只能手工去修改每个配置写死的地方。容易出错，且非常麻烦。
+
+所以，我们在写脚本的时候，需要从脚本中抽离配置性质的数据。例如监听的IP地址，端口，数据库的用户名和密码等信息。
+这样脚本就变层两个部份，配置文件 + 脚本本身。
+运维人员只需要修改配置文件就可以。 以本demo为例子， 运维在线上部署脚本，只需要修改env.prd.m4文件就可以。
+
+
+预处理可以增加脚本的复用性。 不同环境，往往需要的功能不同。A环境需要X功能，B环境不需要X功能，那么怎么维护呢。 不用怕，有了m4条件分支，可以根据不同不配置，渲染出不同的结果。
+
+
+m4基本在所有linux都已经安装好了，不用额外在安装依赖。 很多有经验的程序员，往往也不知道什么是m4, 其实大名顶顶的autoconf, 底层就依赖了m4。
+
+
+m4难不难学？
+m4语法简单，语法强大，但是我们能用到的，基本不超过5个语法。
+定义宏
+下面是定义宏的语法，这样写之后，所有字符串ENV_LISTEN_IP都会被替换为127.0.0.1
+define(ENV_LISTEN_IP, 127.0.0.1)
+引用其他文件
+有了引用，我们就不需要把所有功能放到一个大文件中。
+include(<<src/loadmodule.m4>>)
+include(<<src/request.m4>>)
+include(<<src/relay.m4>>)
+include(<<src/per_branch_ops.m4>>)
+include(<<src/handle_nat.m4>>)
+include(<<src/missed_call.m4>>)
+ifelse(cond1,cond2, yes, no)
+如果cond1和cond2相同，则展开第三个参数yes, 否则展开第四个参数no
+ifelse(ENV_ENABLE_NAT,yes,use nat, not use nat)
+引号
+引号，就是用来告诉m4, 引号里的内容应该看作是一个整体。
+m4默认的引号是``&rsquo;&rsquo;,  看起来很怪异，很难从视觉上做配对。 所有有强迫症，或者视觉洁癖的人，会非常讨厌m4。
+define(`ENV_LISTEN_IP', `127.0.0.1')
+但是这个引号是可以修改的，我们用changequote去修改默认的引号, 将引号改为<<>>
+changequote(<<,>>)
+define(<<ENV_LISTEN_IP>>, <<127.0.0.1>>)
+如何调试宏, 使用-dV 参数
+m4 -dV opensips.m4
+解决宏冲突问题
+如果脚本里有个变量和m4的宏名字冲突，那么往往会出现一些怪异的问题。
+m4早就想到了解决方案， 在执行m4时候，可以加上-P参数，m4所有内置的宏就会必须写成以m4_开头。 例如
+m4_define(<<ENV_LISTEN_IP>>, <<127.0.0.1>>)
+m4 -P opensips.m4
+m4的劣势
+
+m4没有类似foreach的循环，但是可以通过m4的递归实现。
+m4做简单的字符串替换，但是对于复杂字符串处理，m4的效率会比较低，而且语法比较复杂。 但是对于处理opensips的配置文件，m4则是刚刚好的完美工具。
+
+有意思的几个扩展
+检查宏是否未定义，或者是否为空字符串，空则报错退出
+m4_divert(-1)
+m4_define(<<ASSERT_NOT_EMPTY>>,<<
+    m4_ifelse($1,,<<
+        m4_errprint(<<$1 is empty >>)
+        m4_m4exit(1)
+    >>,)
+>>)
+m4_divert(0)m4_dnl
+
+ASSERT_NOT_EMPTY(this_is_empty)
+foreach 循环
+  m4_changequote(<<,>>)m4_dnl
+  m4_divert(-1)
+  m4_define(<<X_FOREACH>>, <<m4_pushdef(<<$1>>)_foreach($@)m4_popdef(<<$1>>)>>)
+  m4_define(<<_arg1>>, <<$1>>)
+  m4_define(<<_foreach>>, <<m4_ifelse(<<$2>>, <<()>>, <<>>,
+    <<m4_define(<<$1>>, _arg1$2)$3<<>>$0(<<$1>>, (m4_shift$2), <<$3>>)>>)>>)
+  m4_divert(0)m4_dnl
+
+
+  X_FOREACH(x,(a.com,b.com,c.com),
+  alias=udp:x
+  )
+上面会输出"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://wdd.js.org/posts/"},{"@type":"ListItem","position":2,"name":"使用m4给opensips脚本增加预处理能力","item":"https://wdd.js.org/posts/2025/m4-with-opensips/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"使用m4给opensips脚本增加预处理能力","name":"使用m4给opensips脚本增加预处理能力","description":" demo 代码仓库 ： https://cnb.cool/eddie2072/opensips-forum/-/tree/main/how-to-use-m4\n使用m4给opensips脚本增加预处理能力 为什么要预处理？ 运维便利。有预处理，脚本里的IP地址，端口，密码，用户名等信息，可以由运维人员统一配置，脚本只需要引用配置文件，就可以完成脚本的运行。否则，运维人员只能手工去修改每个配置写死的地方。容易出错，且非常麻烦。 所以，我们在写脚本的时候，需要从脚本中抽离配置性质的数据。例如监听的IP地址，端口，数据库的用户名和密码等信息。\n这样脚本就变层两个部份，配置文件 + 脚本本身。\n运维人员只需要修改配置文件就可以。 以本demo为例子， 运维在线上部署脚本，只需要修改env.prd.m4文件就可以。\n预处理可以增加脚本的复用性。 不同环境，往往需要的功能不同。A环境需要X功能，B环境不需要X功能，那么怎么维护呢。 不用怕，有了m4条件分支，可以根据不同不配置，渲染出不同的结果。\nm4基本在所有linux都已经安装好了，不用额外在安装依赖。 很多有经验的程序员，往往也不知道什么是m4, 其实大名顶顶的autoconf, 底层就依赖了m4。\nm4难不难学？ m4语法简单，语法强大，但是我们能用到的，基本不超过5个语法。\n定义宏 下面是定义宏的语法，这样写之后，所有字符串ENV_LISTEN_IP都会被替换为127.0.0.1\ndefine(ENV_LISTEN_IP, 127.0.0.1) 引用其他文件 有了引用，我们就不需要把所有功能放到一个大文件中。\ninclude(\u0026lt;\u0026lt;src/loadmodule.m4\u0026gt;\u0026gt;) include(\u0026lt;\u0026lt;src/request.m4\u0026gt;\u0026gt;) include(\u0026lt;\u0026lt;src/relay.m4\u0026gt;\u0026gt;) include(\u0026lt;\u0026lt;src/per_branch_ops.m4\u0026gt;\u0026gt;) include(\u0026lt;\u0026lt;src/handle_nat.m4\u0026gt;\u0026gt;) include(\u0026lt;\u0026lt;src/missed_call.m4\u0026gt;\u0026gt;) ifelse(cond1,cond2, yes, no) 如果cond1和cond2相同，则展开第三个参数yes, 否则展开第四个参数no\nifelse(ENV_ENABLE_NAT,yes,use nat, not use nat) 引号 引号，就是用来告诉m4, 引号里的内容应该看作是一个整体。\nm4默认的引号是``\u0026rsquo;\u0026rsquo;, 看起来很怪异，很难从视觉上做配对。 所有有强迫症，或者视觉洁癖的人，会非常讨厌m4。\ndefine(`ENV_LISTEN_IP\u0026#39;, `127.0.0.1\u0026#39;) 但是这个引号是可以修改的，我们用changequote去修改默认的引号, 将引号改为\u0026lt;\u0026lt;\u0026gt;\u0026gt;\nchangequote(\u0026lt;\u0026lt;,\u0026gt;\u0026gt;) define(\u0026lt;\u0026lt;ENV_LISTEN_IP\u0026gt;\u0026gt;, \u0026lt;\u0026lt;127.0.0.1\u0026gt;\u0026gt;) 如何调试宏, 使用-dV 参数 m4 -dV opensips.m4 解决宏冲突问题 如果脚本里有个变量和m4的宏名字冲突，那么往往会出现一些怪异的问题。\nm4早就想到了解决方案， 在执行m4时候，可以加上-P参数，m4所有内置的宏就会必须写成以m4_开头。 例如\nm4_define(\u0026lt;\u0026lt;ENV_LISTEN_IP\u0026gt;\u0026gt;, \u0026lt;\u0026lt;127.0.0.1\u0026gt;\u0026gt;) m4 -P opensips.m4 m4的劣势 m4没有类似foreach的循环，但是可以通过m4的递归实现。 m4做简单的字符串替换，但是对于复杂字符串处理，m4的效率会比较低，而且语法比较复杂。 但是对于处理opensips的配置文件，m4则是刚刚好的完美工具。 有意思的几个扩展 检查宏是否未定义，或者是否为空字符串，空则报错退出 m4_divert(-1) m4_define(\u0026lt;\u0026lt;ASSERT_NOT_EMPTY\u0026gt;\u0026gt;,\u0026lt;\u0026lt; m4_ifelse($1,,\u0026lt;\u0026lt; m4_errprint(\u0026lt;\u0026lt;$1 is empty \u0026gt;\u0026gt;) m4_m4exit(1) \u0026gt;\u0026gt;,) \u0026gt;\u0026gt;) m4_divert(0)m4_dnl ASSERT_NOT_EMPTY(this_is_empty) foreach 循环 m4_changequote(\u0026lt;\u0026lt;,\u0026gt;\u0026gt;)m4_dnl m4_divert(-1) m4_define(\u0026lt;\u0026lt;X_FOREACH\u0026gt;\u0026gt;, \u0026lt;\u0026lt;m4_pushdef(\u0026lt;\u0026lt;$1\u0026gt;\u0026gt;)_foreach($@)m4_popdef(\u0026lt;\u0026lt;$1\u0026gt;\u0026gt;)\u0026gt;\u0026gt;) m4_define(\u0026lt;\u0026lt;_arg1\u0026gt;\u0026gt;, \u0026lt;\u0026lt;$1\u0026gt;\u0026gt;) m4_define(\u0026lt;\u0026lt;_foreach\u0026gt;\u0026gt;, \u0026lt;\u0026lt;m4_ifelse(\u0026lt;\u0026lt;$2\u0026gt;\u0026gt;, \u0026lt;\u0026lt;()\u0026gt;\u0026gt;, \u0026lt;\u0026lt;\u0026gt;\u0026gt;, \u0026lt;\u0026lt;m4_define(\u0026lt;\u0026lt;$1\u0026gt;\u0026gt;, _arg1$2)$3\u0026lt;\u0026lt;\u0026gt;\u0026gt;$0(\u0026lt;\u0026lt;$1\u0026gt;\u0026gt;, (m4_shift$2), \u0026lt;\u0026lt;$3\u0026gt;\u0026gt;)\u0026gt;\u0026gt;)\u0026gt;\u0026gt;) m4_divert(0)m4_dnl X_FOREACH(x,(a.com,b.com,c.com), alias=udp:x ) 上面会输出\n","keywords":["all"],"articleBody":" demo 代码仓库 ： https://cnb.cool/eddie2072/opensips-forum/-/tree/main/how-to-use-m4\n使用m4给opensips脚本增加预处理能力 为什么要预处理？ 运维便利。有预处理，脚本里的IP地址，端口，密码，用户名等信息，可以由运维人员统一配置，脚本只需要引用配置文件，就可以完成脚本的运行。否则，运维人员只能手工去修改每个配置写死的地方。容易出错，且非常麻烦。 所以，我们在写脚本的时候，需要从脚本中抽离配置性质的数据。例如监听的IP地址，端口，数据库的用户名和密码等信息。\n这样脚本就变层两个部份，配置文件 + 脚本本身。\n运维人员只需要修改配置文件就可以。 以本demo为例子， 运维在线上部署脚本，只需要修改env.prd.m4文件就可以。\n预处理可以增加脚本的复用性。 不同环境，往往需要的功能不同。A环境需要X功能，B环境不需要X功能，那么怎么维护呢。 不用怕，有了m4条件分支，可以根据不同不配置，渲染出不同的结果。\nm4基本在所有linux都已经安装好了，不用额外在安装依赖。 很多有经验的程序员，往往也不知道什么是m4, 其实大名顶顶的autoconf, 底层就依赖了m4。\nm4难不难学？ m4语法简单，语法强大，但是我们能用到的，基本不超过5个语法。\n定义宏 下面是定义宏的语法，这样写之后，所有字符串ENV_LISTEN_IP都会被替换为127.0.0.1\ndefine(ENV_LISTEN_IP, 127.0.0.1) 引用其他文件 有了引用，我们就不需要把所有功能放到一个大文件中。\ninclude(\u003c\u003e) include(\u003c\u003e) include(\u003c\u003e) include(\u003c\u003e) include(\u003c\u003e) include(\u003c\u003e) ifelse(cond1,cond2, yes, no) 如果cond1和cond2相同，则展开第三个参数yes, 否则展开第四个参数no\nifelse(ENV_ENABLE_NAT,yes,use nat, not use nat) 引号 引号，就是用来告诉m4, 引号里的内容应该看作是一个整体。\nm4默认的引号是``’’, 看起来很怪异，很难从视觉上做配对。 所有有强迫症，或者视觉洁癖的人，会非常讨厌m4。\ndefine(`ENV_LISTEN_IP', `127.0.0.1') 但是这个引号是可以修改的，我们用changequote去修改默认的引号, 将引号改为\u003c\u003c\u003e\u003e\nchangequote(\u003c\u003c,\u003e\u003e) define(\u003c\u003cENV_LISTEN_IP\u003e\u003e, \u003c\u003c127.0.0.1\u003e\u003e) 如何调试宏, 使用-dV 参数 m4 -dV opensips.m4 解决宏冲突问题 如果脚本里有个变量和m4的宏名字冲突，那么往往会出现一些怪异的问题。\nm4早就想到了解决方案， 在执行m4时候，可以加上-P参数，m4所有内置的宏就会必须写成以m4_开头。 例如\nm4_define(\u003c\u003cENV_LISTEN_IP\u003e\u003e, \u003c\u003c127.0.0.1\u003e\u003e) m4 -P opensips.m4 m4的劣势 m4没有类似foreach的循环，但是可以通过m4的递归实现。 m4做简单的字符串替换，但是对于复杂字符串处理，m4的效率会比较低，而且语法比较复杂。 但是对于处理opensips的配置文件，m4则是刚刚好的完美工具。 有意思的几个扩展 检查宏是否未定义，或者是否为空字符串，空则报错退出 m4_divert(-1) m4_define(\u003c\u003cASSERT_NOT_EMPTY\u003e\u003e,\u003c\u003c m4_ifelse($1,,\u003c\u003c m4_errprint(\u003c\u003c$1 is empty \u003e\u003e) m4_m4exit(1) \u003e\u003e,) \u003e\u003e) m4_divert(0)m4_dnl ASSERT_NOT_EMPTY(this_is_empty) foreach 循环 m4_changequote(\u003c\u003c,\u003e\u003e)m4_dnl m4_divert(-1) m4_define(\u003c\u003cX_FOREACH\u003e\u003e, \u003c\u003cm4_pushdef(\u003c\u003c$1\u003e\u003e)_foreach($@)m4_popdef(\u003c\u003c$1\u003e\u003e)\u003e\u003e) m4_define(\u003c\u003c_arg1\u003e\u003e, \u003c\u003c$1\u003e\u003e) m4_define(\u003c\u003c_foreach\u003e\u003e, \u003c\u003cm4_ifelse(\u003c\u003c$2\u003e\u003e, \u003c\u003c()\u003e\u003e, \u003c\u003c\u003e\u003e, \u003c\u003cm4_define(\u003c\u003c$1\u003e\u003e, _arg1$2)$3\u003c\u003c\u003e\u003e$0(\u003c\u003c$1\u003e\u003e, (m4_shift$2), \u003c\u003c$3\u003e\u003e)\u003e\u003e)\u003e\u003e) m4_divert(0)m4_dnl X_FOREACH(x,(a.com,b.com,c.com), alias=udp:x ) 上面会输出\nalias=udp:a.com alias=udp:b.com alias=udp:c.com 日志前缀 m4_divert(-1) m4_define(\u003c\u003cX_LOG_PREFIX\u003e\u003e,\u003c\u003c$socket_in $ci $rm/$rs $route.name/$cfg_line $ru $fu\u003e$tu $ua :: \u003e\u003e) m4_define(\u003c\u003cX_INFO\u003e\u003e,\u003c\u003cxlog(\"L_INFO\", \"X_LOG_PREFIX $*\")\u003e\u003e) m4_define(\u003c\u003cX_ERR\u003e\u003e,\u003c\u003cxlog(\"L_ERR\", \"X_LOG_PREFIX $*\")\u003e\u003e) m4_define(\u003c\u003cX_WARN\u003e\u003e,\u003c\u003cxlog(\"L_WARN\", \"X_LOG_PREFIX $*\")\u003e\u003e) m4_define(\u003c\u003cX_NOTICE\u003e\u003e,\u003c\u003cxlog(\"L_NOTICE\", \"X_LOG_PREFIX $*\")\u003e\u003e) m4_divert(0)m4_dnl 通过上面的语法，我们只需要在脚本里写\nX_INFO(ban this ip $si); 就会被渲染为\nxlog(\"L_INFO\", \"$socket_in $ci $rm/$rs $route.name/$cfg_line $ru $fu\u003e$tu $ua :: ban this ip $si\") 参考 https://www.gnu.org/software/m4/manual/m4.html#Quoted-strings ","wordCount":"161","inLanguage":"en","image":"https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E","datePublished":"2025-08-02T11:17:08+08:00","dateModified":"2025-08-02T11:17:08+08:00","author":{"@type":"Person","name":"Eddie Wang"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://wdd.js.org/posts/2025/m4-with-opensips/"},"publisher":{"@type":"Organization","name":"洞香春","logo":{"@type":"ImageObject","url":"https://wdd.js.org/favicon.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://wdd.js.org/ accesskey=h title="洞香春 (Alt + H)"><img src=https://wdd.js.org/favicon.ico alt aria-label=logo height=35>洞香春</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://wdd.js.org/opensips/ title=OpenSIPS><span>OpenSIPS</span></a></li><li><a href=https://wdd.js.org/kamailio/ title=Kamailio><span>Kamailio</span></a></li><li><a href=https://wdd.js.org/freeswitch/ title=FreeSWITCH><span>FreeSWITCH</span></a></li><li><a href=https://wdd.js.org/search/ title=搜索><span>搜索</span></a></li><li><a href=https://wdd.js.org/tags/ title=标签><span>标签</span></a></li><li><a href=https://wdd.js.org/archives/ title=归档><span>归档</span></a></li><li><a href=https://wdd.js.org/about/ title=我><span>我</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://wdd.js.org/>Home</a>&nbsp;»&nbsp;<a href=https://wdd.js.org/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">使用m4给opensips脚本增加预处理能力</h1><div class=post-meta><span title='2025-08-02 11:17:08 +0800 CST'>2025-08-02 11:17:08</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Eddie Wang&nbsp;|&nbsp;<a href=https://github.com/%3cpath_to_repo%3e/content/posts/2025/m4-with-opensips/index.md rel="noopener noreferrer" target=_blank>Suggest Changes</a></div></header><aside id=toc-container class="toc-container wide"><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#%e4%bd%bf%e7%94%a8m4%e7%bb%99opensips%e8%84%9a%e6%9c%ac%e5%a2%9e%e5%8a%a0%e9%a2%84%e5%a4%84%e7%90%86%e8%83%bd%e5%8a%9b aria-label=使用m4给opensips脚本增加预处理能力>使用m4给opensips脚本增加预处理能力</a><ul><li><a href=#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e9%a2%84%e5%a4%84%e7%90%86 aria-label=为什么要预处理？>为什么要预处理？</a></li><li><a href=#m4%e9%9a%be%e4%b8%8d%e9%9a%be%e5%ad%a6 aria-label=m4难不难学？>m4难不难学？</a><ul><li><a href=#%e5%ae%9a%e4%b9%89%e5%ae%8f aria-label=定义宏>定义宏</a></li><li><a href=#%e5%bc%95%e7%94%a8%e5%85%b6%e4%bb%96%e6%96%87%e4%bb%b6 aria-label=引用其他文件>引用其他文件</a></li><li><a href=#ifelsecond1cond2-yes-no aria-label="ifelse(cond1,cond2, yes, no)">ifelse(cond1,cond2, yes, no)</a></li><li><a href=#%e5%bc%95%e5%8f%b7 aria-label=引号>引号</a></li><li><a href=#%e5%a6%82%e4%bd%95%e8%b0%83%e8%af%95%e5%ae%8f-%e4%bd%bf%e7%94%a8-dv-%e5%8f%82%e6%95%b0 aria-label="如何调试宏, 使用-dV 参数">如何调试宏, 使用-dV 参数</a></li><li><a href=#%e8%a7%a3%e5%86%b3%e5%ae%8f%e5%86%b2%e7%aa%81%e9%97%ae%e9%a2%98 aria-label=解决宏冲突问题>解决宏冲突问题</a></li><li><a href=#m4%e7%9a%84%e5%8a%a3%e5%8a%bf aria-label=m4的劣势>m4的劣势</a></li></ul></li><li><a href=#%e6%9c%89%e6%84%8f%e6%80%9d%e7%9a%84%e5%87%a0%e4%b8%aa%e6%89%a9%e5%b1%95 aria-label=有意思的几个扩展>有意思的几个扩展</a><ul><li><a href=#%e6%a3%80%e6%9f%a5%e5%ae%8f%e6%98%af%e5%90%a6%e6%9c%aa%e5%ae%9a%e4%b9%89%e6%88%96%e8%80%85%e6%98%af%e5%90%a6%e4%b8%ba%e7%a9%ba%e5%ad%97%e7%ac%a6%e4%b8%b2%e7%a9%ba%e5%88%99%e6%8a%a5%e9%94%99%e9%80%80%e5%87%ba aria-label=检查宏是否未定义，或者是否为空字符串，空则报错退出>检查宏是否未定义，或者是否为空字符串，空则报错退出</a></li><li><a href=#foreach-%e5%be%aa%e7%8e%af aria-label="foreach 循环">foreach 循环</a></li><li><a href=#%e6%97%a5%e5%bf%97%e5%89%8d%e7%bc%80 aria-label=日志前缀>日志前缀</a></li></ul></li></ul></li><li><a href=#%e5%8f%82%e8%80%83 aria-label=参考>参考</a></li></ul></div></details></div></aside><script>let activeElement,elements;window.addEventListener("DOMContentLoaded",function(){checkTocPosition(),elements=document.querySelectorAll("h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]"),activeElement=elements[0];const t=encodeURI(activeElement.getAttribute("id")).toLowerCase();document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active")},!1),window.addEventListener("resize",function(){checkTocPosition()},!1),window.addEventListener("scroll",()=>{activeElement=Array.from(elements).find(e=>{if(getOffsetTop(e)-window.pageYOffset>0&&getOffsetTop(e)-window.pageYOffset<window.innerHeight/2)return e})||activeElement,elements.forEach(e=>{const t=encodeURI(e.getAttribute("id")).toLowerCase();e===activeElement?document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active"):document.querySelector(`.inner ul li a[href="#${t}"]`).classList.remove("active")})},!1);const main=parseInt(getComputedStyle(document.body).getPropertyValue("--article-width"),10),toc=parseInt(getComputedStyle(document.body).getPropertyValue("--toc-width"),10),gap=parseInt(getComputedStyle(document.body).getPropertyValue("--gap"),10);function checkTocPosition(){const e=document.body.scrollWidth;e-main-toc*2-gap*4>0?document.getElementById("toc-container").classList.add("wide"):document.getElementById("toc-container").classList.remove("wide")}function getOffsetTop(e){if(!e.getClientRects().length)return 0;let t=e.getBoundingClientRect(),n=e.ownerDocument.defaultView;return t.top+n.pageYOffset}</script><div class=post-content><blockquote><p>demo 代码仓库 ： <a href=https://cnb.cool/eddie2072/opensips-forum/-/tree/main/how-to-use-m4>https://cnb.cool/eddie2072/opensips-forum/-/tree/main/how-to-use-m4</a></p></blockquote><h1 id=使用m4给opensips脚本增加预处理能力>使用m4给opensips脚本增加预处理能力<a hidden class=anchor aria-hidden=true href=#使用m4给opensips脚本增加预处理能力>#</a></h1><h2 id=为什么要预处理>为什么要预处理？<a hidden class=anchor aria-hidden=true href=#为什么要预处理>#</a></h2><ol><li><strong>运维便利</strong>。有预处理，脚本里的IP地址，端口，密码，用户名等信息，可以由运维人员统一配置，脚本只需要引用配置文件，就可以完成脚本的运行。否则，运维人员只能手工去修改每个配置写死的地方。容易出错，且非常麻烦。</li></ol><p>所以，我们在写脚本的时候，需要从脚本中抽离配置性质的数据。例如监听的IP地址，端口，数据库的用户名和密码等信息。</p><p>这样脚本就变层两个部份，配置文件 + 脚本本身。</p><p>运维人员只需要修改配置文件就可以。 以本demo为例子， 运维在线上部署脚本，只需要修改env.prd.m4文件就可以。</p><ol start=2><li><p><strong>预处理可以增加脚本的复用性</strong>。 不同环境，往往需要的功能不同。A环境需要X功能，B环境不需要X功能，那么怎么维护呢。 不用怕，有了m4条件分支，可以根据不同不配置，渲染出不同的结果。</p></li><li><p><strong>m4基本在所有linux都已经安装好了</strong>，不用额外在安装依赖。 很多有经验的程序员，往往也不知道什么是m4, 其实大名顶顶的autoconf, 底层就依赖了m4。</p></li></ol><h2 id=m4难不难学>m4难不难学？<a hidden class=anchor aria-hidden=true href=#m4难不难学>#</a></h2><p>m4语法简单，语法强大，但是我们能用到的，基本不超过5个语法。</p><h3 id=定义宏>定义宏<a hidden class=anchor aria-hidden=true href=#定义宏>#</a></h3><p>下面是定义宏的语法，这样写之后，所有字符串ENV_LISTEN_IP都会被替换为127.0.0.1</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#a6e22e>define</span>(ENV_LISTEN_IP, <span style=color:#ae81ff>127.0.0.1</span>)
+</span></span></code></pre></div><h3 id=引用其他文件>引用其他文件<a hidden class=anchor aria-hidden=true href=#引用其他文件>#</a></h3><p>有了引用，我们就不需要把所有功能放到一个大文件中。</p><pre tabindex=0><code>include(&lt;&lt;src/loadmodule.m4&gt;&gt;)
+include(&lt;&lt;src/request.m4&gt;&gt;)
+include(&lt;&lt;src/relay.m4&gt;&gt;)
+include(&lt;&lt;src/per_branch_ops.m4&gt;&gt;)
+include(&lt;&lt;src/handle_nat.m4&gt;&gt;)
+include(&lt;&lt;src/missed_call.m4&gt;&gt;)
+</code></pre><h3 id=ifelsecond1cond2-yes-no>ifelse(cond1,cond2, yes, no)<a hidden class=anchor aria-hidden=true href=#ifelsecond1cond2-yes-no>#</a></h3><p>如果cond1和cond2相同，则展开第三个参数yes, 否则展开第四个参数no</p><pre tabindex=0><code>ifelse(ENV_ENABLE_NAT,yes,use nat, not use nat)
+</code></pre><h3 id=引号>引号<a hidden class=anchor aria-hidden=true href=#引号>#</a></h3><p>引号，就是用来告诉m4, 引号里的内容应该看作是一个整体。</p><p>m4默认的引号是``&rsquo;&rsquo;, 看起来很怪异，很难从视觉上做配对。 所有有强迫症，或者视觉洁癖的人，会非常讨厌m4。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#a6e22e>define</span>(<span style=color:#960050;background-color:#1e0010>`</span>ENV_LISTEN_IP<span style=color:#960050;background-color:#1e0010>&#39;</span>, <span style=color:#960050;background-color:#1e0010>`</span><span style=color:#ae81ff>127.0.0.1</span><span style=color:#960050;background-color:#1e0010>&#39;</span>)
+</span></span></code></pre></div><p>但是这个引号是可以修改的，我们用changequote去修改默认的引号, 将引号改为<code>&lt;&lt;>></code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#a6e22e>changequote</span>(<span style=color:#f92672>&lt;&lt;</span>,<span style=color:#f92672>&gt;&gt;</span>)
+</span></span><span style=display:flex><span><span style=color:#a6e22e>define</span>(<span style=color:#f92672>&lt;&lt;</span>ENV_LISTEN_IP<span style=color:#f92672>&gt;&gt;</span>, <span style=color:#f92672>&lt;&lt;</span><span style=color:#ae81ff>127.0.0.1</span><span style=color:#f92672>&gt;&gt;</span>)
+</span></span></code></pre></div><h3 id=如何调试宏-使用-dv-参数>如何调试宏, 使用-dV 参数<a hidden class=anchor aria-hidden=true href=#如何调试宏-使用-dv-参数>#</a></h3><pre tabindex=0><code>m4 -dV opensips.m4
+</code></pre><h3 id=解决宏冲突问题>解决宏冲突问题<a hidden class=anchor aria-hidden=true href=#解决宏冲突问题>#</a></h3><p>如果脚本里有个变量和m4的宏名字冲突，那么往往会出现一些怪异的问题。</p><p>m4早就想到了解决方案， 在执行m4时候，可以加上-P参数，m4所有内置的宏就会必须写成以m4_开头。 例如</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#a6e22e>m4_define</span>(<span style=color:#f92672>&lt;&lt;</span>ENV_LISTEN_IP<span style=color:#f92672>&gt;&gt;</span>, <span style=color:#f92672>&lt;&lt;</span><span style=color:#ae81ff>127.0.0.1</span><span style=color:#f92672>&gt;&gt;</span>)
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>m4 -P opensips.m4
+</span></span></code></pre></div><h3 id=m4的劣势>m4的劣势<a hidden class=anchor aria-hidden=true href=#m4的劣势>#</a></h3><ol><li>m4没有类似foreach的循环，但是可以通过m4的递归实现。</li><li>m4做简单的字符串替换，但是对于复杂字符串处理，m4的效率会比较低，而且语法比较复杂。 但是对于处理opensips的配置文件，m4则是刚刚好的完美工具。</li></ol><h2 id=有意思的几个扩展>有意思的几个扩展<a hidden class=anchor aria-hidden=true href=#有意思的几个扩展>#</a></h2><h3 id=检查宏是否未定义或者是否为空字符串空则报错退出>检查宏是否未定义，或者是否为空字符串，空则报错退出<a hidden class=anchor aria-hidden=true href=#检查宏是否未定义或者是否为空字符串空则报错退出>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#a6e22e>m4_divert</span>(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span><span style=color:#a6e22e>m4_define</span>(<span style=color:#f92672>&lt;&lt;</span>ASSERT_NOT_EMPTY<span style=color:#f92672>&gt;&gt;</span>,<span style=color:#f92672>&lt;&lt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>m4_ifelse</span>(<span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>1</span>,,<span style=color:#f92672>&lt;&lt;</span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>m4_errprint</span>(<span style=color:#f92672>&lt;&lt;</span><span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>1</span> is empty <span style=color:#f92672>&gt;&gt;</span>)
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>m4_m4exit</span>(<span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&gt;&gt;</span>,)
+</span></span><span style=display:flex><span><span style=color:#f92672>&gt;&gt;</span>)
+</span></span><span style=display:flex><span><span style=color:#a6e22e>m4_divert</span>(<span style=color:#ae81ff>0</span>)m4_dnl
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>ASSERT_NOT_EMPTY</span>(this_is_empty)
+</span></span></code></pre></div><h3 id=foreach-循环>foreach 循环<a hidden class=anchor aria-hidden=true href=#foreach-循环>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span>  <span style=color:#a6e22e>m4_changequote</span>(<span style=color:#f92672>&lt;&lt;</span>,<span style=color:#f92672>&gt;&gt;</span>)m4_dnl
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>m4_divert</span>(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>m4_define</span>(<span style=color:#f92672>&lt;&lt;</span>X_FOREACH<span style=color:#f92672>&gt;&gt;</span>, <span style=color:#f92672>&lt;&lt;</span><span style=color:#a6e22e>m4_pushdef</span>(<span style=color:#f92672>&lt;&lt;</span><span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>1</span><span style=color:#f92672>&gt;&gt;</span>)<span style=color:#a6e22e>_foreach</span>(<span style=color:#960050;background-color:#1e0010>$@</span>)<span style=color:#a6e22e>m4_popdef</span>(<span style=color:#f92672>&lt;&lt;</span><span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>1</span><span style=color:#f92672>&gt;&gt;</span>)<span style=color:#f92672>&gt;&gt;</span>)
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>m4_define</span>(<span style=color:#f92672>&lt;&lt;</span>_arg1<span style=color:#f92672>&gt;&gt;</span>, <span style=color:#f92672>&lt;&lt;</span><span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>1</span><span style=color:#f92672>&gt;&gt;</span>)
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>m4_define</span>(<span style=color:#f92672>&lt;&lt;</span>_foreach<span style=color:#f92672>&gt;&gt;</span>, <span style=color:#f92672>&lt;&lt;</span><span style=color:#a6e22e>m4_ifelse</span>(<span style=color:#f92672>&lt;&lt;</span><span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>2</span><span style=color:#f92672>&gt;&gt;</span>, <span style=color:#f92672>&lt;&lt;</span>()<span style=color:#f92672>&gt;&gt;</span>, <span style=color:#f92672>&lt;&lt;&gt;&gt;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;&lt;</span><span style=color:#a6e22e>m4_define</span>(<span style=color:#f92672>&lt;&lt;</span><span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>1</span><span style=color:#f92672>&gt;&gt;</span>, _arg1<span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>2</span>)<span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>3</span><span style=color:#f92672>&lt;&lt;&gt;&gt;</span><span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>0</span>(<span style=color:#f92672>&lt;&lt;</span><span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>1</span><span style=color:#f92672>&gt;&gt;</span>, (m4_shift<span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>2</span>), <span style=color:#f92672>&lt;&lt;</span><span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>3</span><span style=color:#f92672>&gt;&gt;</span>)<span style=color:#f92672>&gt;&gt;</span>)<span style=color:#f92672>&gt;&gt;</span>)
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>m4_divert</span>(<span style=color:#ae81ff>0</span>)m4_dnl
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>X_FOREACH</span>(x,(a.com,b.com,c.com),
+</span></span><span style=display:flex><span>  alias<span style=color:#f92672>=</span>udp:x
+</span></span><span style=display:flex><span>  )
+</span></span></code></pre></div><p>上面会输出</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span>alias<span style=color:#f92672>=</span>udp:a.com
+</span></span><span style=display:flex><span>alias<span style=color:#f92672>=</span>udp:b.com
+</span></span><span style=display:flex><span>alias<span style=color:#f92672>=</span>udp:c.com
+</span></span></code></pre></div><h3 id=日志前缀>日志前缀<a hidden class=anchor aria-hidden=true href=#日志前缀>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#a6e22e>m4_divert</span>(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span><span style=color:#a6e22e>m4_define</span>(<span style=color:#f92672>&lt;&lt;</span>X_LOG_PREFIX<span style=color:#f92672>&gt;&gt;</span>,<span style=color:#f92672>&lt;&lt;</span><span style=color:#960050;background-color:#1e0010>$</span>socket_in <span style=color:#960050;background-color:#1e0010>$</span>ci <span style=color:#960050;background-color:#1e0010>$</span>rm<span style=color:#f92672>/</span><span style=color:#960050;background-color:#1e0010>$</span>rs <span style=color:#960050;background-color:#1e0010>$</span>route.name<span style=color:#f92672>/</span><span style=color:#960050;background-color:#1e0010>$</span>cfg_line <span style=color:#960050;background-color:#1e0010>$</span>ru <span style=color:#960050;background-color:#1e0010>$</span>fu<span style=color:#f92672>&gt;</span><span style=color:#960050;background-color:#1e0010>$</span>tu <span style=color:#960050;background-color:#1e0010>$</span>ua <span style=color:#f92672>::</span> <span style=color:#f92672>&gt;&gt;</span>)
+</span></span><span style=display:flex><span><span style=color:#a6e22e>m4_define</span>(<span style=color:#f92672>&lt;&lt;</span>X_INFO<span style=color:#f92672>&gt;&gt;</span>,<span style=color:#f92672>&lt;&lt;</span><span style=color:#a6e22e>xlog</span>(<span style=color:#e6db74>&#34;L_INFO&#34;</span>, <span style=color:#e6db74>&#34;X_LOG_PREFIX $*&#34;</span>)<span style=color:#f92672>&gt;&gt;</span>)
+</span></span><span style=display:flex><span><span style=color:#a6e22e>m4_define</span>(<span style=color:#f92672>&lt;&lt;</span>X_ERR<span style=color:#f92672>&gt;&gt;</span>,<span style=color:#f92672>&lt;&lt;</span><span style=color:#a6e22e>xlog</span>(<span style=color:#e6db74>&#34;L_ERR&#34;</span>, <span style=color:#e6db74>&#34;X_LOG_PREFIX $*&#34;</span>)<span style=color:#f92672>&gt;&gt;</span>)
+</span></span><span style=display:flex><span><span style=color:#a6e22e>m4_define</span>(<span style=color:#f92672>&lt;&lt;</span>X_WARN<span style=color:#f92672>&gt;&gt;</span>,<span style=color:#f92672>&lt;&lt;</span><span style=color:#a6e22e>xlog</span>(<span style=color:#e6db74>&#34;L_WARN&#34;</span>, <span style=color:#e6db74>&#34;X_LOG_PREFIX $*&#34;</span>)<span style=color:#f92672>&gt;&gt;</span>)
+</span></span><span style=display:flex><span><span style=color:#a6e22e>m4_define</span>(<span style=color:#f92672>&lt;&lt;</span>X_NOTICE<span style=color:#f92672>&gt;&gt;</span>,<span style=color:#f92672>&lt;&lt;</span><span style=color:#a6e22e>xlog</span>(<span style=color:#e6db74>&#34;L_NOTICE&#34;</span>, <span style=color:#e6db74>&#34;X_LOG_PREFIX $*&#34;</span>)<span style=color:#f92672>&gt;&gt;</span>)
+</span></span><span style=display:flex><span><span style=color:#a6e22e>m4_divert</span>(<span style=color:#ae81ff>0</span>)m4_dnl
+</span></span></code></pre></div><p>通过上面的语法，我们只需要在脚本里写</p><pre tabindex=0><code>X_INFO(ban this ip $si);
+</code></pre><p>就会被渲染为</p><pre tabindex=0><code>xlog(&#34;L_INFO&#34;, &#34;$socket_in $ci $rm/$rs $route.name/$cfg_line $ru $fu&gt;$tu $ua :: ban this ip $si&#34;)
+</code></pre><h1 id=参考>参考<a hidden class=anchor aria-hidden=true href=#参考>#</a></h1><ul><li><a href=https://www.gnu.org/software/m4/manual/m4.html#Quoted-strings>https://www.gnu.org/software/m4/manual/m4.html#Quoted-strings</a></li></ul></div><footer class=post-footer><ul class=post-tags><li><a href=https://wdd.js.org/tags/all/>All</a></li></ul><nav class=paginav><a class=next href=https://wdd.js.org/posts/2025/jssip-can-not-drop-call/><span class=title>Next »</span><br><span>【案例分享】JSSIP 电话无法挂断问题</span></a></nav></footer><script src=https://giscus.app/client.js data-repo=wangduanduan/wangduanduan.github.io data-repo-id="MDEwOlJlcG9zaXRvcnkxMTkyMjMyNjA=" data-category=Announcements data-category-id=DIC_kwDOBxsz3M4CAjBq data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=bottom data-theme=preferred_color_scheme data-lang=zh-CN crossorigin=anonymous async></script></article></main><footer class=footer><span>&copy; 2025 <a href=https://wdd.js.org/>洞香春</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
