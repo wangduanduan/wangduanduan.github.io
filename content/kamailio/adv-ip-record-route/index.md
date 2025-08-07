@@ -11,11 +11,6 @@ categories:
 
 网络结构图如下：
 
-- client就是客户端
-- PUBLIC_IP就是VPC1的公网IP
-- VPC1和VPC2使用内网IP交互
-- VPC2没有公网IP
-
 ```mermaid
 flowchart LR
 jssip --> opensips --> freeswich
