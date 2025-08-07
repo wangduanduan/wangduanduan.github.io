@@ -260,12 +260,6 @@ The core includes:&lt;/p&gt;
       <pubDate>Mon, 23 Dec 2024 19:23:43 +0800</pubDate>
       <guid>https://wdd.js.org/kamailio/adv-ip-record-route/</guid>
       <description>&lt;p&gt;网络结构图如下：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;client就是客户端&lt;/li&gt;
-&lt;li&gt;PUBLIC_IP就是VPC1的公网IP&lt;/li&gt;
-&lt;li&gt;VPC1和VPC2使用内网IP交互&lt;/li&gt;
-&lt;li&gt;VPC2没有公网IP&lt;/li&gt;
-&lt;/ul&gt;
 &lt;pre class=&#34;mermaid&#34;&gt;flowchart LR
 jssip --&amp;gt; opensips --&amp;gt; freeswich
 &lt;/pre&gt;
