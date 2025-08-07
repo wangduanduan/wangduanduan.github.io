@@ -266,33 +266,54 @@ The core includes:&lt;/p&gt;
 &lt;li&gt;VPC1和VPC2使用内网IP交互&lt;/li&gt;
 &lt;li&gt;VPC2没有公网IP&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;client &lt;span style=&#34;color:#f92672&#34;&gt;---&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1.2.3.4&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;udp &lt;span style=&#34;color:#f92672&#34;&gt;---&amp;gt;&lt;/span&gt; VPC1 &lt;span style=&#34;color:#f92672&#34;&gt;---&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;192.168.0.10&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;udp &lt;span style=&#34;color:#f92672&#34;&gt;---&amp;gt;&lt;/span&gt; VPC2
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;table&gt;
+&lt;pre class=&#34;mermaid&#34;&gt;flowchart LR
+jssip --&amp;gt; opensips --&amp;gt; freeswich
+&lt;/pre&gt;
+&lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
           &lt;th&gt;节点&lt;/th&gt;
           &lt;th&gt;内网IP&lt;/th&gt;
           &lt;th&gt;公网IP&lt;/th&gt;
+          &lt;th&gt;监听端口wss&lt;/th&gt;
+          &lt;th&gt;监听端口udp&lt;/th&gt;
       &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
       &lt;tr&gt;
-          &lt;td&gt;VPC1&lt;/td&gt;
+          &lt;td&gt;opensips&lt;/td&gt;
           &lt;td&gt;192.168.0.10&lt;/td&gt;
           &lt;td&gt;1.2.3.4&lt;/td&gt;
+          &lt;td&gt;4443&lt;/td&gt;
+          &lt;td&gt;5060&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td&gt;VPC2&lt;/td&gt;
+          &lt;td&gt;freeswich&lt;/td&gt;
           &lt;td&gt;192.168.0.11&lt;/td&gt;
           &lt;td&gt;无&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;5060&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;h1 id=&#34;场景1--opensips不增加record-route&#34;&gt;场景1：  OpenSIPS不增加Record-Route&lt;/h1&gt;
+&lt;pre class=&#34;mermaid&#34;&gt;sequenceDiagram
+autonumber
+client-&amp;gt;&amp;gt;opensips: INVITE/WSS
+opensips-&amp;gt;&amp;gt;freeswich: INVITE/UDP
+freeswich--&amp;gt;&amp;gt;opensips: 200 Ok/UDP
+opensips--&amp;gt;&amp;gt;client: 200 Ok/WSS
+note right of client: 无任何Record-Route头，客户端的ACK由根据200 Ok的Contact决定
+client -&amp;gt;&amp;gt; WhereToGo: ACK 
+&lt;/pre&gt;
+&lt;p&gt;client收到200OK, 由于无Record-Route头，client的ACK由根据200 Ok的Contact决定。&lt;/p&gt;
+&lt;p&gt;WhereToGo 那么有以下几种可能：&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;client通过1.2.3.4访问VPC1&lt;/li&gt;
-&lt;li&gt;VPC1因为要在后续请求中也保持在路径中，所以要做record-route&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;/ol&gt;</description>
+&lt;li&gt;200 OK Contact 是 opensips的内网地址 192.168.0.10， ACK发往192.168.0.10， 这个肯定是不通的。&lt;/li&gt;
+&lt;li&gt;200 OK Contact 是 freeswich的内网地址 192.168.0.11， ACK发往192.168.0.11， 这个也肯定不通。&lt;/li&gt;
+&lt;li&gt;200 Ok Contact 是 opensips的公网地址 1.2.3.4， ACK发往opensips的公网地址 1.2.3.4， 这个请求opensips可以收到&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;结论：如果200 Ok 没有Record-Route， 那么OpenSIPS再发出200 OK的时候，Contact必须设置成自己的OpenSIPS的公网地址。&lt;/p&gt;</description>
     </item>
     <item>
       <title>DMQ模块源码学习笔记</title>
