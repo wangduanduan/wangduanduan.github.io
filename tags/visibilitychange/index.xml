@@ -4,12 +4,7 @@
     <title>Visibilitychange on 洞香春</title>
     <link>https://wdd.js.org/tags/visibilitychange/</link>
     <description>Recent content in Visibilitychange on 洞香春</description>
-    <image>
-      <title>洞香春</title>
-      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
-    </image>
-    <generator>Hugo -- 0.143.1</generator>
+    <generator>Hugo -- 0.151.0</generator>
     <language>en</language>
     <lastBuildDate>Sun, 11 Feb 2018 14:34:17 +0800</lastBuildDate>
     <atom:link href="https://wdd.js.org/tags/visibilitychange/index.xml" rel="self" type="application/rss+xml" />
@@ -18,13 +13,13 @@
       <link>https://wdd.js.org/posts/2018/02/useful-browser-events/</link>
       <pubDate>Sun, 11 Feb 2018 14:34:17 +0800</pubDate>
       <guid>https://wdd.js.org/posts/2018/02/useful-browser-events/</guid>
-      <description>&lt;h1 id=&#34;1-visibilitychange事件httpsdevelopermozillaorgzh-cndocswebeventsvisibilitychange&#34;&gt;1 &lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/Events/visibilitychange&#34;&gt;visibilitychange事件&lt;/a&gt;&lt;/h1&gt;
+      <description>&lt;h1 id=&#34;1-visibilitychange事件&#34;&gt;1 &lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/Events/visibilitychange&#34;&gt;visibilitychange事件&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;触发条件：&lt;code&gt;浏览器标签页被隐藏或显示的时候会触发visibilitychange事件.&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;使用场景：&lt;code&gt;当标签页显示或者隐藏时，触发一些业务逻辑&lt;/code&gt;&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;document.addEventListener(&amp;#34;visibilitychange&amp;#34;, function() {
   console.log( document.visibilityState );
 });
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;2-storage事件httpsdevelopermozillaorgen-usdocswebeventsstorage&#34;&gt;2 &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/Events/storage&#34;&gt;storage事件&lt;/a&gt;&lt;/h1&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;2-storage事件&#34;&gt;2 &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/Events/storage&#34;&gt;storage事件&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;触发条件：&lt;code&gt;使用localStorage or sessionStorage存储或者修改某个本地存储时&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;使用场景：&lt;code&gt;标签页间通信&lt;/code&gt;&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// AB页面同源
@@ -36,7 +31,7 @@ localStorage.setItem(&amp;#39;makeCall&amp;#39;,&amp;#39;120&amp;#39;)
 
 // 然后可以在A页面间有输出, 可以看出A页面 收到了B页面的通知
 ...key: &amp;#34;makeCall&amp;#34;, oldValue: &amp;#34;119&amp;#34;, newValue: &amp;#34;120&amp;#34;, ...
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;3-beforeunload事件httpsdevelopermozillaorgen-usdocswebeventsbeforeunload&#34;&gt;&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/Events/beforeunload&#34;&gt;3 beforeunload事件&lt;/a&gt;&lt;/h1&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;3-beforeunload事件&#34;&gt;&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/Events/beforeunload&#34;&gt;3 beforeunload事件&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;触发条件：&lt;code&gt;当页面的资源将要卸载(及刷新或者关闭标签页前). 当页面依然可见，并且该事件可以被取消只时&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;使用场景：&lt;code&gt;关闭或者刷新页面时弹窗确认&lt;/code&gt;，&lt;code&gt;关闭页面时向后端发送报告等&lt;/code&gt;&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;window.addEventListener(&amp;#34;beforeunload&amp;#34;, function (e) {
@@ -45,7 +40,7 @@ localStorage.setItem(&amp;#39;makeCall&amp;#39;,&amp;#39;120&amp;#39;)
   e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
   return confirmationMessage;              // Gecko, WebKit, Chrome &amp;lt;34
 });
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;4-navigatorsendbeaconhttpsdevelopermozillaorgzh-cndocswebapinavigatorsendbeacon&#34;&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/API/Navigator/sendBeacon&#34;&gt;4 navigator.sendBeacon&lt;/a&gt;&lt;/h1&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;4-navigatorsendbeacon&#34;&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/API/Navigator/sendBeacon&#34;&gt;4 navigator.sendBeacon&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;这个方法主要用于满足 统计和诊断代码 的需要，这些代码通常尝试在卸载（unload）文档之前向web服务器发送数据。过早的发送数据可能导致错过收集数据的机会。然而， 对于开发者来说保证在文档卸载期间发送数据一直是一个困难。因为用户代理通常会忽略在卸载事件处理器中产生的异步 XMLHttpRequest 。&lt;/p&gt;</description>
     </item>
   </channel>

@@ -4,12 +4,7 @@
     <title>OpenSIPS2.4.X 中文实战系列 on 洞香春</title>
     <link>https://wdd.js.org/opensips/</link>
     <description>Recent content in OpenSIPS2.4.X 中文实战系列 on 洞香春</description>
-    <image>
-      <title>洞香春</title>
-      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
-    </image>
-    <generator>Hugo -- 0.143.1</generator>
+    <generator>Hugo -- 0.151.0</generator>
     <language>en</language>
     <lastBuildDate>Tue, 27 May 2025 20:10:22 +0800</lastBuildDate>
     <atom:link href="https://wdd.js.org/opensips/index.xml" rel="self" type="application/rss+xml" />
@@ -855,7 +850,7 @@ modparam(&amp;#34;usrloc&amp;#34;, &amp;#34;location_cluster&amp;#34;, 1) # 设�
 &lt;li&gt;RTP 的使用场景是传输实时数据，例如语音，视频，模拟数据等等&lt;/li&gt;
 &lt;li&gt;RTP 并不保证QoS&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;heading&#34;&gt;&lt;/h1&gt;
+&lt;h1&gt;&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Synchronization source (SSRC):&lt;/strong&gt; The source of a stream of RTP packets, identified by a 32-bit numeric SSRC identifier carried in the RTP header so as not to be dependent upon the network address. All packets from a synchronization source form part of the same timing and sequence number space, so a receiver groups packets by synchronization source for playback. Examples of synchronization sources include the sender of a stream of packets derived from a signal source such as a microphone or a camera, or an RTP mixer (see below). A synchronization source may change its data format, e.g., audio encoding, over time. The SSRC identifier is a randomly chosen value meant to be globally unique within a particular RTP session (see Section 8). A participant need not use the same SSRC identifier for all the RTP sessions in a multimedia session; the binding of the SSRC identifiers is provided through RTCP (see Section 6.5.1). If a participant generates multiple streams in one RTP session, for example from separate video cameras, each MUST be identified as a different SSRC.&lt;/p&gt;</description>
     </item>
@@ -1180,7 +1175,7 @@ route[check_out]{
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sip_profiles/external.xml
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;36:    &amp;lt;!--&amp;lt;param name&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;enable-100rel&amp;#34;&lt;/span&gt; value&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;true&amp;#34;&lt;/span&gt;/&amp;gt;--&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h5 id=&#34;heading&#34;&gt;&lt;/h5&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h5&gt;&lt;/h5&gt;
 &lt;h1 id=&#34;enable-100rel&#34;&gt;enable-100rel&lt;/h1&gt;
 &lt;p&gt;This enable support for 100rel (100% reliability - PRACK message as defined in&lt;a href=&#34;http://tools.ietf.org/html/rfc3262&#34;&gt;RFC3262&lt;/a&gt;) This fixes a problem with SIP where provisional messages like &amp;ldquo;180 Ringing&amp;rdquo; are not ACK&amp;rsquo;d and therefore could be dropped over a poor connection without retransmission. &lt;em&gt;2009-07-08:&lt;/em&gt; Enabling this may cause FreeSWITCH to crash, see&lt;a href=&#34;http://jira.freeswitch.org/browse/FSCORE-392&#34;&gt;FSCORE-392&lt;/a&gt;.&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
     </item>
@@ -4026,7 +4021,7 @@ So, aside proper routing of CANCEL requests, reporting the right cancelling reas
       <pubDate>Thu, 20 Feb 2020 22:34:47 +0800</pubDate>
       <guid>https://wdd.js.org/opensips/ch9/isup-sip-isdn/</guid>
       <description>&lt;h1 id=&#34;isup-to-sip&#34;&gt;ISUP to SIP&lt;/h1&gt;
-&lt;h1 id=&#34;br-&#34;&gt;&lt;!-- raw HTML omitted --&gt;&lt;/h1&gt;
+&lt;h1&gt;&lt;!-- raw HTML omitted --&gt;&lt;/h1&gt;
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
@@ -5136,7 +5131,7 @@ a=rtpmap:9 G722/8000
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
 &lt;p&gt;⚠️ 如果你选择用set_advertised_address和set_advertised_port来手动设置，就千万不要用as了。&lt;/p&gt;&lt;/blockquote&gt;
-&lt;h4 id=&#34;heading&#34;&gt;&lt;/h4&gt;
+&lt;h4&gt;&lt;/h4&gt;
 &lt;h1 id=&#34;几个注意点sip头&#34;&gt;几个注意点SIP头&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;record_route头&lt;/li&gt;
@@ -5585,7 +5580,7 @@ a=rtpmap:9 G722/8000
       <link>https://wdd.js.org/opensips/ch5/homer6/</link>
       <pubDate>Tue, 20 Aug 2019 11:40:31 +0800</pubDate>
       <guid>https://wdd.js.org/opensips/ch5/homer6/</guid>
-      <description>&lt;h1 id=&#34;heading&#34;&gt;&lt;/h1&gt;
+      <description>&lt;h1&gt;&lt;/h1&gt;
 &lt;h1 id=&#34;参考&#34;&gt;参考&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://blog.opensips.org/2017/03/22/capturing-beyond-sip/&#34;&gt;https://blog.opensips.org/2017/03/22/capturing-beyond-sip/&lt;/a&gt;&lt;/li&gt;

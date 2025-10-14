@@ -4,12 +4,7 @@
     <title>SIP on 洞香春</title>
     <link>https://wdd.js.org/tags/sip/</link>
     <description>Recent content in SIP on 洞香春</description>
-    <image>
-      <title>洞香春</title>
-      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
-    </image>
-    <generator>Hugo -- 0.143.1</generator>
+    <generator>Hugo -- 0.151.0</generator>
     <language>en</language>
     <lastBuildDate>Mon, 14 Jul 2025 23:13:23 +0800</lastBuildDate>
     <atom:link href="https://wdd.js.org/tags/sip/index.xml" rel="self" type="application/rss+xml" />
@@ -68,7 +63,7 @@
 &lt;p&gt;而&lt;code&gt;WebRTC&lt;/code&gt;或许是更好的解决方案，只要一个浏览器就可以实时语音视频通话，这是很不错的解决方案。WebSocket可以用来传递sip信令，而WebRTC用来实时传输语音视频流。&lt;/p&gt;
 &lt;h1 id=&#34;2-前端webrtc实现方案&#34;&gt;2. 前端WebRTC实现方案&lt;/h1&gt;
 &lt;p&gt;其实我们不需要去自己处理WebRTC的相关方法，或者去处理视频或者媒体流。市面上已经有不错的模块可供选择。&lt;/p&gt;
-&lt;h2 id=&#34;21-jssiphttpjssipnet&#34;&gt;2.1 &lt;a href=&#34;http://jssip.net/&#34;&gt;jsSIP&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;21-jssip&#34;&gt;2.1 &lt;a href=&#34;http://jssip.net/&#34;&gt;jsSIP&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;jsSIP是JavaScript SIP 库&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180211144616_7c5Pf0_Screenshot.jpeg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;功能特点如下：&lt;/p&gt;
@@ -118,7 +113,7 @@ var options = {
 };
 
 var session = ua.call(&amp;#39;sip:bob@example.com&amp;#39;, options);
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;22-sipjshttpssipjscom&#34;&gt;2.2 &lt;a href=&#34;https://sipjs.com/&#34;&gt;SIP.js&lt;/a&gt;&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;22-sipjs&#34;&gt;2.2 &lt;a href=&#34;https://sipjs.com/&#34;&gt;SIP.js&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;sip.js项目实际是fork自jsSIP的，这里主要介绍它的服务端支持情况。其他接口自己自行查阅&lt;/p&gt;</description>
     </item>
   </channel>

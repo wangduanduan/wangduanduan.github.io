@@ -4,12 +4,7 @@
     <title>Console on 洞香春</title>
     <link>https://wdd.js.org/tags/console/</link>
     <description>Recent content in Console on 洞香春</description>
-    <image>
-      <title>洞香春</title>
-      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
-    </image>
-    <generator>Hugo -- 0.143.1</generator>
+    <generator>Hugo -- 0.151.0</generator>
     <language>en</language>
     <lastBuildDate>Thu, 08 Feb 2018 13:56:40 +0800</lastBuildDate>
     <atom:link href="https://wdd.js.org/tags/console/index.xml" rel="self" type="application/rss+xml" />
@@ -22,7 +17,7 @@
 &lt;p&gt;本篇文章来自一个需求，前端websocket会收到各种消息，但是调试的时候，我希望把websoekt推送过来的消息都保存到一个文件里，如果出问题的时候，我可以把这些消息的日志文件提交给后端开发区分析错误。但是在浏览器里，js一般是不能写文件的。鼠标另存为的方法也是不太好，因为会保存所有的console.log的输出。于是，终于找到这个debugout.js。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;&lt;code&gt;debugout.js的原理是将所有日志序列化后，保存到一个变量里。当然这个变量不会无限大，因为默认的最大日志限制是2500行，这个是可配置的。另外，debugout.js也支持在localStorage里存储日志的。&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180208135709_Z3SQQV_Screenshot.jpeg&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;1-debugoutjshttpsgithubcominorganikdebugoutjs&#34;&gt;1. &lt;a href=&#34;https://github.com/inorganik/debugout.js&#34;&gt;debugout.js&lt;/a&gt;&lt;/h1&gt;
+&lt;h1 id=&#34;1-debugoutjs&#34;&gt;1. &lt;a href=&#34;https://github.com/inorganik/debugout.js&#34;&gt;debugout.js&lt;/a&gt;&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;一般来说，可以使用打开console面板，然后右键save，是可以将console.log输出的信息另存为log文件的。但是这就把所有的日志都包含进来了，如何只保存我想要的日志呢？&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;（调试输出）从您的日志中生成可以搜索，时间戳，下载等的文本文件。 参见下面的一些例子。&lt;/p&gt;

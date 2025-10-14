@@ -4,12 +4,7 @@
     <title>跨域 on 洞香春</title>
     <link>https://wdd.js.org/tags/%E8%B7%A8%E5%9F%9F/</link>
     <description>Recent content in 跨域 on 洞香春</description>
-    <image>
-      <title>洞香春</title>
-      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
-    </image>
-    <generator>Hugo -- 0.143.1</generator>
+    <generator>Hugo -- 0.151.0</generator>
     <language>en</language>
     <lastBuildDate>Fri, 09 Mar 2018 17:58:05 +0800</lastBuildDate>
     <atom:link href="https://wdd.js.org/tags/%E8%B7%A8%E5%9F%9F/index.xml" rel="self" type="application/rss+xml" />
@@ -25,7 +20,7 @@
 &lt;p&gt;Origin null是本地文件系统，因此这表明您正在加载通过file：// URL进行加载调用的HTML页面（例如，只需在本地文件浏览器或类似文件中双击它）。不同的浏览器采用不同的方法将相同来源策略应用到本地文件。&lt;code&gt;Chrome要求比较严格，不允许这种形势的跨域请求。&lt;/code&gt;而最好使用http:// 访问html.&lt;/p&gt;
 &lt;h1 id=&#34;3-解决方案&#34;&gt;3. 解决方案&lt;/h1&gt;
 &lt;p&gt;以下给出三个解决方案，第一个最快，第三个作为彻底。&lt;/p&gt;
-&lt;h2 id=&#34;31-方案1-给chrome快捷方式中增加---allow-file-access-from-files&#34;&gt;3.1. 方案1 给Chrome快捷方式中增加 &amp;ndash;allow-file-access-from-files&lt;/h2&gt;
+&lt;h2 id=&#34;31-方案1-给chrome快捷方式中增加-allow-file-access-from-files&#34;&gt;3.1. 方案1 给Chrome快捷方式中增加 &amp;ndash;allow-file-access-from-files&lt;/h2&gt;
 &lt;p&gt;打开Chrome快捷方式的属性中设置：右击Chrome浏览器快捷方式，选择“属性”，在“目标”中加&amp;quot;&amp;ndash;allow-file-access-from-files&amp;quot;，注意前面有个空格，重启Chrome浏览器便可。&lt;/p&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180309181105_SUxYRg_Screenshot.jpeg&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;32-方案2-启动一个简单的静态文件服务器-以http协议访问html&#34;&gt;3.2. 方案2 启动一个简单的静态文件服务器, 以http协议访问html&lt;/h2&gt;

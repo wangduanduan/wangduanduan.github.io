@@ -4,12 +4,7 @@
     <title>FreeSWITCH之路 on 洞香春</title>
     <link>https://wdd.js.org/freeswitch/</link>
     <description>Recent content in FreeSWITCH之路 on 洞香春</description>
-    <image>
-      <title>洞香春</title>
-      <url>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://wdd.js.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
-    </image>
-    <generator>Hugo -- 0.143.1</generator>
+    <generator>Hugo -- 0.151.0</generator>
     <language>en</language>
     <lastBuildDate>Wed, 01 Jun 2022 08:27:53 +0800</lastBuildDate>
     <atom:link href="https://wdd.js.org/freeswitch/index.xml" rel="self" type="application/rss+xml" />
@@ -318,7 +313,7 @@ intercept默认是bridge legA, 挂断legB。通过参数也可以指定来bridge
       <description>&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;h1 id=&#34;usage&#34;&gt;&lt;strong&gt;Usage&lt;/strong&gt;&lt;/h1&gt;
 &lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;h2 id=&#34;clihttpsfreeswitchorgconfluencepluginsservletmobilecontentid1966741contentview1048948&#34;&gt;&lt;a href=&#34;https://freeswitch.org/confluence/plugins/servlet/mobile?contentId=1966741#content/view/1048948&#34;&gt;CLI&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;cli&#34;&gt;&lt;a href=&#34;https://freeswitch.org/confluence/plugins/servlet/mobile?contentId=1966741#content/view/1048948&#34;&gt;CLI&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;See below.
 &lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;h2 id=&#34;apievent-interfaces&#34;&gt;&lt;strong&gt;API/Event Interfaces&lt;/strong&gt;&lt;/h2&gt;
@@ -336,7 +331,7 @@ intercept默认是bridge legA, 挂断legB。通过参数也可以指定来bridge
 &lt;li&gt;&lt;a href=&#34;https://freeswitch.org/confluence/plugins/servlet/mobile?contentId=1966741#content/view/1048944&#34;&gt;mod_lua&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;from-the-dialplanhttpsfreeswitchorgconfluencepluginsservletmobilecontentid1966741contentview1048645&#34;&gt;&lt;strong&gt;From the&lt;/strong&gt; &lt;a href=&#34;https://freeswitch.org/confluence/plugins/servlet/mobile?contentId=1966741#content/view/1048645&#34;&gt;Dialplan&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;from-the-dialplan&#34;&gt;&lt;strong&gt;From the&lt;/strong&gt; &lt;a href=&#34;https://freeswitch.org/confluence/plugins/servlet/mobile?contentId=1966741#content/view/1048645&#34;&gt;Dialplan&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;An &lt;a href=&#34;https://freeswitch.org/confluence/plugins/servlet/mobile?contentId=1966741#content/view/30867723&#34;&gt;API command&lt;/a&gt; can be called from the dialplan. Example:&lt;!-- raw HTML omitted --&gt;&lt;strong&gt;Invoke API Command From Dialplan&lt;/strong&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;Other examples:&lt;!-- raw HTML omitted --&gt;&lt;strong&gt;Other Dialplan API Command Examples&lt;/strong&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;https://freeswitch.org/confluence/plugins/servlet/mobile?contentId=1966741#content/view/30867723&#34;&gt;API commands&lt;/a&gt; with multiple arguments usually have the arguments separated by a space:&lt;!-- raw HTML omitted --&gt;&lt;strong&gt;Multiple Arguments&lt;/strong&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
     </item>
     <item>

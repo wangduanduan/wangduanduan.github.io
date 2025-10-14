@@ -2,10 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://wdd.js.org/tags/all/</loc>
+    <loc>https://wdd.js.org/categories/all/</loc>
     <lastmod>2025-08-02T11:17:08+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/categories/all/</loc>
+    <loc>https://wdd.js.org/tags/all/</loc>
     <lastmod>2025-08-02T11:17:08+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/categories/</loc>
@@ -41,10 +41,10 @@
     <loc>https://wdd.js.org/tags/%E6%97%A0%E6%B3%95%E5%BA%94%E7%AD%94/</loc>
     <lastmod>2025-07-15T19:39:57+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/tags/rtpengine/</loc>
+    <loc>https://wdd.js.org/categories/rtpengine/</loc>
     <lastmod>2025-07-15T19:26:06+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/categories/rtpengine/</loc>
+    <loc>https://wdd.js.org/tags/rtpengine/</loc>
     <lastmod>2025-07-15T19:26:06+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2025/rtpengine-record-pcap/</loc>
@@ -338,10 +338,10 @@
     <loc>https://wdd.js.org/tags/make/</loc>
     <lastmod>2023-08-10T09:47:46+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/tags/makefile/</loc>
+    <loc>https://wdd.js.org/categories/makefile/</loc>
     <lastmod>2023-08-10T09:47:46+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/categories/makefile/</loc>
+    <loc>https://wdd.js.org/tags/makefile/</loc>
     <lastmod>2023-08-10T09:47:46+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/makefile/</loc>
@@ -389,19 +389,19 @@
     <loc>https://wdd.js.org/posts/2023/tips-about-cr-lf/</loc>
     <lastmod>2023-01-16T15:03:03+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/tags/deepin/</loc>
+    <loc>https://wdd.js.org/categories/deepin/</loc>
     <lastmod>2022-12-17T13:28:40+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/categories/deepin/</loc>
+    <loc>https://wdd.js.org/tags/deepin/</loc>
     <lastmod>2022-12-17T13:28:40+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2022/12/nuc11-deepin-20-2/</loc>
     <lastmod>2022-12-17T13:28:40+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/tags/wireshark/</loc>
+    <loc>https://wdd.js.org/categories/wireshark/</loc>
     <lastmod>2022-12-11T14:33:04+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/categories/wireshark/</loc>
+    <loc>https://wdd.js.org/tags/wireshark/</loc>
     <lastmod>2022-12-11T14:33:04+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2022/12/wireshark-101/</loc>
@@ -416,10 +416,10 @@
     <loc>https://wdd.js.org/posts/2022/12/wsl-error-0x80040154-after-windows-update/</loc>
     <lastmod>2022-12-11T14:12:08+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/tags/wsl/</loc>
+    <loc>https://wdd.js.org/categories/wsl/</loc>
     <lastmod>2022-12-11T14:12:08+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/categories/wsl/</loc>
+    <loc>https://wdd.js.org/tags/wsl/</loc>
     <lastmod>2022-12-11T14:12:08+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2022/12/double-click-close-tab/</loc>
@@ -437,10 +437,10 @@
     <loc>https://wdd.js.org/posts/2022/12/xian-travel/</loc>
     <lastmod>2022-12-02T20:38:46+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/tags/mrcp/</loc>
+    <loc>https://wdd.js.org/categories/mrcp/</loc>
     <lastmod>2022-12-01T10:08:38+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/categories/mrcp/</loc>
+    <loc>https://wdd.js.org/tags/mrcp/</loc>
     <lastmod>2022-12-01T10:08:38+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2022/12/mrcp-notes/</loc>
@@ -632,10 +632,10 @@
     <loc>https://wdd.js.org/posts/2022/06/eafeid/</loc>
     <lastmod>2022-06-29T06:57:56+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/tags/manjaro/</loc>
+    <loc>https://wdd.js.org/categories/manjaro/</loc>
     <lastmod>2022-06-15T18:54:11+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/categories/manjaro/</loc>
+    <loc>https://wdd.js.org/tags/manjaro/</loc>
     <lastmod>2022-06-15T18:54:11+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2022/06/manjaro-packettracer/</loc>
