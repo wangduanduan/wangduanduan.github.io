@@ -23,7 +23,7 @@ params:
   description: "Eddie Wang的个人博客"
   keywords: [Blog, Portfolio, PaperMod]
   author: "Eddie Wang"
-  images: ["<link or path of image for opengraph, twitter-cards>"]
+  # images: ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat: "2006-01-02 15:04:05"
   defaultTheme: light #auto # dark, light
   disableThemeToggle: false

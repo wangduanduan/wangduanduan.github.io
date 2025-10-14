@@ -97,12 +97,10 @@
 
 .entry-cover img {
     border-radius: var(--radius);
-    pointer-events: none;
     width: 100%;
     height: auto;
 }
 
 .entry-cover a {
-    color: var(--secondary);
     box-shadow: 0 1px 0 var(--primary);
 }
