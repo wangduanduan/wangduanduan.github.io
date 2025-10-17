@@ -6,8 +6,44 @@
     <description>Recent content in Posts on 洞香春</description>
     <generator>Hugo -- 0.151.0</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 02 Aug 2025 11:17:08 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 16 Oct 2025 17:39:50 +0800</lastBuildDate>
     <atom:link href="https://wdd.js.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SipWise C5 架构分析 WIP</title>
+      <link>https://wdd.js.org/posts/2025/sipwise-c5-arch/</link>
+      <pubDate>Thu, 16 Oct 2025 17:39:50 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2025/sipwise-c5-arch/</guid>
+      <description>&lt;h1 id=&#34;sipwise-c5-架构分析&#34;&gt;SIPWISE C5 架构分析&lt;/h1&gt;
+&lt;p&gt;Sipwise C5（又称NGCP——下一代通信平台）是一款基于SIP的开源Class 5 VoIP软交换平台&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2025/sipwise-c5-arch/arch.drawio.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;整体架构上，sipwise C5 是一个三明治架构， 除了sipwise, 我也看到过类似的VoIP架构， 可见英雄所见略同。&lt;/p&gt;
+&lt;h2 id=&#34;接入层&#34;&gt;接入层&lt;/h2&gt;
+&lt;p&gt;接入层是整个平台的信令出入口，主要的职责是安全检测和负载均衡。 并不具有业务上的功能，另外也不会使用数据库。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;职责&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;外部SIP信令的入口和内部信令的出口&lt;/li&gt;
+&lt;li&gt;SIP信令完整性检查&lt;/li&gt;
+&lt;li&gt;拒绝环回SIP信令&lt;/li&gt;
+&lt;li&gt;DOS攻击检测&lt;/li&gt;
+&lt;li&gt;暴力攻击检测&lt;/li&gt;
+&lt;li&gt;TLS转UDP转换&lt;/li&gt;
+&lt;li&gt;NAT穿透映射&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;端口&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;5060, SIP/TCP+UDP, 对外接收SIP消息&lt;/li&gt;
+&lt;li&gt;5061, SIP/TLS， 对外接收TLS消息&lt;/li&gt;
+&lt;li&gt;5060, XMLRPC/TCP, 对内处理RPC调用，来控制kamailio&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这里有个风险，5060/TCP端口同时用来对外处理SIP消息和对接处理RPC调用，难道&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;实现&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&#34;参考&#34;&gt;参考&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.sipwise.com/doc/mr6.5.8/sppro/ar01s02.html&#34;&gt;https://www.sipwise.com/doc/mr6.5.8/sppro/ar01s02.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.sipwise.com/doc/mr10.3.1/spce/ce/mr10.3.1/architecture/architecture.html&#34;&gt;https://www.sipwise.com/doc/mr10.3.1/spce/ce/mr10.3.1/architecture/architecture.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     <item>
       <title>使用m4给opensips脚本增加预处理能力</title>
       <link>https://wdd.js.org/posts/2025/m4-with-opensips/</link>
