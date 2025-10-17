@@ -52,6 +52,9 @@ params:
     favicon32x32: "/favicon.ico"
     apple_touch_icon: "/favicon.ico"
     safari_pinned_tab: "/favicon.ico"
+    
+    css:
+      - "https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css"
 
   label:
     text: "洞香春"
