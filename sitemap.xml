@@ -3,13 +3,25 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://wdd.js.org/categories/all/</loc>
-    <lastmod>2025-10-16T17:39:50+08:00</lastmod>
+    <lastmod>2025-10-20T22:37:17+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/all/</loc>
-    <lastmod>2025-10-16T17:39:50+08:00</lastmod>
+    <lastmod>2025-10-20T22:37:17+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/categories/</loc>
-    <lastmod>2025-10-16T17:39:50+08:00</lastmod>
+    <lastmod>2025-10-20T22:37:17+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/nom/ch1/</loc>
+    <lastmod>2025-10-20T22:37:17+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/nom/</loc>
+    <lastmod>2025-10-20T22:37:17+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/</loc>
+    <lastmod>2025-10-20T22:37:17+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/</loc>
+    <lastmod>2025-10-20T22:37:17+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/</loc>
     <lastmod>2025-10-16T17:39:50+08:00</lastmod>
@@ -17,13 +29,7 @@
     <loc>https://wdd.js.org/posts/2025/sipwise-c5-arch/</loc>
     <lastmod>2025-10-16T17:39:50+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/tags/</loc>
-    <lastmod>2025-10-16T17:39:50+08:00</lastmod>
-  </url><url>
     <loc>https://wdd.js.org/tags/wip/</loc>
-    <lastmod>2025-10-16T17:39:50+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/</loc>
     <lastmod>2025-10-16T17:39:50+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2025/m4-with-opensips/</loc>

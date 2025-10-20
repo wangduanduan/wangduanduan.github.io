@@ -1,0 +1,263 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>nom 学习笔记 Ch1 | 洞香春</title><meta name=keywords content="all"><meta name=description content='环境说明
+
+rust版本 1.87.0
+cargo版本 1.87.0
+nom版本 8.0.0
+
+解析逻辑
+
+输入一个字符串
+创建一个解析器
+解析器调用parse方法
+如果解析成功，返回结果，结果包含两部分内容，前者是没有匹配的内容，后者是匹配到的内容
+
+
+举例
+例1 空解析
+这个例子描述了如何使用nom解析一个字符串。
+输入是候输入字符串为my_input，匹配到的内容是空字符串，没有匹配到的是my_input。
+use nom::IResult;
+use std::error::Error;
+
+pub fn do_nothing_parser(input: &amp;str) -> IResult<&amp;str, &amp;str> {
+    Ok((input, ""))
+}
+
+fn main() -> Result<(), Box<dyn Error>> {
+    let (remaining_input, output) = do_nothing_parser("my_input")?;
+    assert_eq!(remaining_input, "my_input");
+    assert_eq!(output, "");
+    Ok(())
+}
+例2 字符串匹配
+
+pub use nom::bytes::complete::tag;
+pub use nom::IResult;
+use std::error::Error;
+
+fn parse_input(input: &amp;str) -> IResult<&amp;str, &amp;str> {
+    // tag 函数的返回结果也是一个函数
+    tag("Call-ID:")(input)
+}
+
+fn main() -> Result<(), Box<dyn Error>> {
+    let (leftover_input, output) = parse_input("Call-ID: helloWorld")?;
+    assert_eq!(leftover_input, " helloWorld"); // tag 函数匹配成功后返回剩余的输入
+    assert_eq!(output, "Call-ID:"); // tag 函数匹配成功返回匹配的内容
+
+    assert!(parse_input("defWorld").is_err());
+  Ok(())
+}
+例3 预定义匹配类型
+
+alpha0: 识别0个或者多个大小写字符: /[a-zA-Z]/.
+
+alpha1: 和前者相同，并且至少返回一个字符
+
+
+alphanumeric0: 识别0个或者多个大小写字符和数字: /[0-9a-zA-Z]/.
+
+alphanumeric1 和前者相同，并且至少返回一个字符
+
+
+digit0:识别0个或者多个数字: /[0-9]/.
+
+digit1 和前者相同，并且至少返回一数字
+
+
+multispace0: 识别0个或者多个空格, 制表, 会车和换行符
+
+multispace1 和前者相同，并且至少返回一数字
+
+
+space0: 识别0个或者多个空格和制表符.
+
+space1 和前者相同，并且至少返回一数字
+
+
+line_ending: 识别行尾 (\n and \r\n)
+newline: 匹配换行符 \n
+tab: 匹配制表符 \t
+
+
+use nom::character::complete::alpha0;
+pub use nom::IResult;
+use std::error::Error;
+
+fn parse_input(input: &amp;str) -> IResult<&amp;str, &amp;str> {
+    // tag 函数的返回结果也是一个函数
+    alpha0(input)
+}
+
+fn main() -> Result<(), Box<dyn Error>> {
+    let (leftover_input, output) = parse_input("Call-ID: helloWorld")?;
+    assert_eq!(leftover_input, "-ID: helloWorld"); // tag 函数匹配成功后返回剩余的输入
+    assert_eq!(output, "Call"); // tag 函数匹配成功返回匹配的内容
+
+    assert!(parse_input("defWorld").is_ok());
+  Ok(())
+}
+参考
+
+https://tfpk.github.io/nominomicon/chapter_2.html
+'><meta name=author content="Eddie Wang"><link rel=canonical href=https://wdd.js.org/nom/ch1/><link crossorigin=anonymous href=/assets/css/stylesheet.a2acda249b8eac62938bb2d2f1c562c5f74d5728640d2a1a7d6aeaec5c50ef24.css integrity="sha256-oqzaJJuOrGKTi7LS8cVixfdNVyhkDSoafWrq7FxQ7yQ=" rel="preload stylesheet" as=style><link rel=icon href=https://wdd.js.org/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://wdd.js.org/favicon.ico><link rel=icon type=image/png sizes=32x32 href=https://wdd.js.org/favicon.ico><link rel=apple-touch-icon href=https://wdd.js.org/favicon.ico><link rel=mask-icon href=https://wdd.js.org/favicon.ico><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://wdd.js.org/nom/ch1/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css><style>body{font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,noto sans,sans-serif,apple color emoji,segoe ui emoji;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}h1,h2,h3,h4,h5,h6{font-weight:600;letter-spacing:-.02em}code,pre{font-family:fira code,jetbrains mono,Consolas,monospace;font-variant-ligatures:normal;font-size:.95em}</style><meta property="og:url" content="https://wdd.js.org/nom/ch1/"><meta property="og:site_name" content="洞香春"><meta property="og:title" content="nom 学习笔记 Ch1"><meta property="og:description" content='环境说明 rust版本 1.87.0 cargo版本 1.87.0 nom版本 8.0.0 解析逻辑 输入一个字符串 创建一个解析器 解析器调用parse方法 如果解析成功，返回结果，结果包含两部分内容，前者是没有匹配的内容，后者是匹配到的内容 举例 例1 空解析 这个例子描述了如何使用nom解析一个字符串。 输入是候输入字符串为my_input，匹配到的内容是空字符串，没有匹配到的是my_input。
+use nom::IResult; use std::error::Error; pub fn do_nothing_parser(input: &amp;str) -> IResult<&amp;str, &amp;str> { Ok((input, "")) } fn main() -> Result<(), Box<dyn Error>> { let (remaining_input, output) = do_nothing_parser("my_input")?; assert_eq!(remaining_input, "my_input"); assert_eq!(output, ""); Ok(()) } 例2 字符串匹配 pub use nom::bytes::complete::tag; pub use nom::IResult; use std::error::Error; fn parse_input(input: &amp;str) -> IResult<&amp;str, &amp;str> { // tag 函数的返回结果也是一个函数 tag("Call-ID:")(input) } fn main() -> Result<(), Box<dyn Error>> { let (leftover_input, output) = parse_input("Call-ID: helloWorld")?; assert_eq!(leftover_input, " helloWorld"); // tag 函数匹配成功后返回剩余的输入 assert_eq!(output, "Call-ID:"); // tag 函数匹配成功返回匹配的内容 assert!(parse_input("defWorld").is_err()); Ok(()) } 例3 预定义匹配类型 alpha0: 识别0个或者多个大小写字符: /[a-zA-Z]/. alpha1: 和前者相同，并且至少返回一个字符 alphanumeric0: 识别0个或者多个大小写字符和数字: /[0-9a-zA-Z]/. alphanumeric1 和前者相同，并且至少返回一个字符 digit0:识别0个或者多个数字: /[0-9]/. digit1 和前者相同，并且至少返回一数字 multispace0: 识别0个或者多个空格, 制表, 会车和换行符 multispace1 和前者相同，并且至少返回一数字 space0: 识别0个或者多个空格和制表符. space1 和前者相同，并且至少返回一数字 line_ending: 识别行尾 (\n and \r\n) newline: 匹配换行符 \n tab: 匹配制表符 \t use nom::character::complete::alpha0; pub use nom::IResult; use std::error::Error; fn parse_input(input: &amp;str) -> IResult<&amp;str, &amp;str> { // tag 函数的返回结果也是一个函数 alpha0(input) } fn main() -> Result<(), Box<dyn Error>> { let (leftover_input, output) = parse_input("Call-ID: helloWorld")?; assert_eq!(leftover_input, "-ID: helloWorld"); // tag 函数匹配成功后返回剩余的输入 assert_eq!(output, "Call"); // tag 函数匹配成功返回匹配的内容 assert!(parse_input("defWorld").is_ok()); Ok(()) } 参考 https://tfpk.github.io/nominomicon/chapter_2.html '><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="nom"><meta property="article:published_time" content="2025-10-20T22:37:17+08:00"><meta property="article:modified_time" content="2025-10-20T22:37:17+08:00"><meta property="article:tag" content="All"><meta name=twitter:card content="summary"><meta name=twitter:title content="nom 学习笔记 Ch1"><meta name=twitter:description content='环境说明
+
+rust版本 1.87.0
+cargo版本 1.87.0
+nom版本 8.0.0
+
+解析逻辑
+
+输入一个字符串
+创建一个解析器
+解析器调用parse方法
+如果解析成功，返回结果，结果包含两部分内容，前者是没有匹配的内容，后者是匹配到的内容
+
+
+举例
+例1 空解析
+这个例子描述了如何使用nom解析一个字符串。
+输入是候输入字符串为my_input，匹配到的内容是空字符串，没有匹配到的是my_input。
+use nom::IResult;
+use std::error::Error;
+
+pub fn do_nothing_parser(input: &amp;str) -> IResult<&amp;str, &amp;str> {
+    Ok((input, ""))
+}
+
+fn main() -> Result<(), Box<dyn Error>> {
+    let (remaining_input, output) = do_nothing_parser("my_input")?;
+    assert_eq!(remaining_input, "my_input");
+    assert_eq!(output, "");
+    Ok(())
+}
+例2 字符串匹配
+
+pub use nom::bytes::complete::tag;
+pub use nom::IResult;
+use std::error::Error;
+
+fn parse_input(input: &amp;str) -> IResult<&amp;str, &amp;str> {
+    // tag 函数的返回结果也是一个函数
+    tag("Call-ID:")(input)
+}
+
+fn main() -> Result<(), Box<dyn Error>> {
+    let (leftover_input, output) = parse_input("Call-ID: helloWorld")?;
+    assert_eq!(leftover_input, " helloWorld"); // tag 函数匹配成功后返回剩余的输入
+    assert_eq!(output, "Call-ID:"); // tag 函数匹配成功返回匹配的内容
+
+    assert!(parse_input("defWorld").is_err());
+  Ok(())
+}
+例3 预定义匹配类型
+
+alpha0: 识别0个或者多个大小写字符: /[a-zA-Z]/.
+
+alpha1: 和前者相同，并且至少返回一个字符
+
+
+alphanumeric0: 识别0个或者多个大小写字符和数字: /[0-9a-zA-Z]/.
+
+alphanumeric1 和前者相同，并且至少返回一个字符
+
+
+digit0:识别0个或者多个数字: /[0-9]/.
+
+digit1 和前者相同，并且至少返回一数字
+
+
+multispace0: 识别0个或者多个空格, 制表, 会车和换行符
+
+multispace1 和前者相同，并且至少返回一数字
+
+
+space0: 识别0个或者多个空格和制表符.
+
+space1 和前者相同，并且至少返回一数字
+
+
+line_ending: 识别行尾 (\n and \r\n)
+newline: 匹配换行符 \n
+tab: 匹配制表符 \t
+
+
+use nom::character::complete::alpha0;
+pub use nom::IResult;
+use std::error::Error;
+
+fn parse_input(input: &amp;str) -> IResult<&amp;str, &amp;str> {
+    // tag 函数的返回结果也是一个函数
+    alpha0(input)
+}
+
+fn main() -> Result<(), Box<dyn Error>> {
+    let (leftover_input, output) = parse_input("Call-ID: helloWorld")?;
+    assert_eq!(leftover_input, "-ID: helloWorld"); // tag 函数匹配成功后返回剩余的输入
+    assert_eq!(output, "Call"); // tag 函数匹配成功返回匹配的内容
+
+    assert!(parse_input("defWorld").is_ok());
+  Ok(())
+}
+参考
+
+https://tfpk.github.io/nominomicon/chapter_2.html
+'><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Noms","item":"https://wdd.js.org/nom/"},{"@type":"ListItem","position":2,"name":"nom 学习笔记 Ch1","item":"https://wdd.js.org/nom/ch1/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"nom 学习笔记 Ch1","name":"nom 学习笔记 Ch1","description":"环境说明 rust版本 1.87.0 cargo版本 1.87.0 nom版本 8.0.0 解析逻辑 输入一个字符串 创建一个解析器 解析器调用parse方法 如果解析成功，返回结果，结果包含两部分内容，前者是没有匹配的内容，后者是匹配到的内容 举例 例1 空解析 这个例子描述了如何使用nom解析一个字符串。 输入是候输入字符串为my_input，匹配到的内容是空字符串，没有匹配到的是my_input。\nuse nom::IResult; use std::error::Error; pub fn do_nothing_parser(input: \u0026amp;str) -\u0026gt; IResult\u0026lt;\u0026amp;str, \u0026amp;str\u0026gt; { Ok((input, \u0026#34;\u0026#34;)) } fn main() -\u0026gt; Result\u0026lt;(), Box\u0026lt;dyn Error\u0026gt;\u0026gt; { let (remaining_input, output) = do_nothing_parser(\u0026#34;my_input\u0026#34;)?; assert_eq!(remaining_input, \u0026#34;my_input\u0026#34;); assert_eq!(output, \u0026#34;\u0026#34;); Ok(()) } 例2 字符串匹配 pub use nom::bytes::complete::tag; pub use nom::IResult; use std::error::Error; fn parse_input(input: \u0026amp;str) -\u0026gt; IResult\u0026lt;\u0026amp;str, \u0026amp;str\u0026gt; { // tag 函数的返回结果也是一个函数 tag(\u0026#34;Call-ID:\u0026#34;)(input) } fn main() -\u0026gt; Result\u0026lt;(), Box\u0026lt;dyn Error\u0026gt;\u0026gt; { let (leftover_input, output) = parse_input(\u0026#34;Call-ID: helloWorld\u0026#34;)?; assert_eq!(leftover_input, \u0026#34; helloWorld\u0026#34;); // tag 函数匹配成功后返回剩余的输入 assert_eq!(output, \u0026#34;Call-ID:\u0026#34;); // tag 函数匹配成功返回匹配的内容 assert!(parse_input(\u0026#34;defWorld\u0026#34;).is_err()); Ok(()) } 例3 预定义匹配类型 alpha0: 识别0个或者多个大小写字符: /[a-zA-Z]/. alpha1: 和前者相同，并且至少返回一个字符 alphanumeric0: 识别0个或者多个大小写字符和数字: /[0-9a-zA-Z]/. alphanumeric1 和前者相同，并且至少返回一个字符 digit0:识别0个或者多个数字: /[0-9]/. digit1 和前者相同，并且至少返回一数字 multispace0: 识别0个或者多个空格, 制表, 会车和换行符 multispace1 和前者相同，并且至少返回一数字 space0: 识别0个或者多个空格和制表符. space1 和前者相同，并且至少返回一数字 line_ending: 识别行尾 (\\n and \\r\\n) newline: 匹配换行符 \\n tab: 匹配制表符 \\t use nom::character::complete::alpha0; pub use nom::IResult; use std::error::Error; fn parse_input(input: \u0026amp;str) -\u0026gt; IResult\u0026lt;\u0026amp;str, \u0026amp;str\u0026gt; { // tag 函数的返回结果也是一个函数 alpha0(input) } fn main() -\u0026gt; Result\u0026lt;(), Box\u0026lt;dyn Error\u0026gt;\u0026gt; { let (leftover_input, output) = parse_input(\u0026#34;Call-ID: helloWorld\u0026#34;)?; assert_eq!(leftover_input, \u0026#34;-ID: helloWorld\u0026#34;); // tag 函数匹配成功后返回剩余的输入 assert_eq!(output, \u0026#34;Call\u0026#34;); // tag 函数匹配成功返回匹配的内容 assert!(parse_input(\u0026#34;defWorld\u0026#34;).is_ok()); Ok(()) } 参考 https://tfpk.github.io/nominomicon/chapter_2.html ","keywords":["all"],"articleBody":"环境说明 rust版本 1.87.0 cargo版本 1.87.0 nom版本 8.0.0 解析逻辑 输入一个字符串 创建一个解析器 解析器调用parse方法 如果解析成功，返回结果，结果包含两部分内容，前者是没有匹配的内容，后者是匹配到的内容 举例 例1 空解析 这个例子描述了如何使用nom解析一个字符串。 输入是候输入字符串为my_input，匹配到的内容是空字符串，没有匹配到的是my_input。\nuse nom::IResult; use std::error::Error; pub fn do_nothing_parser(input: \u0026str) -\u003e IResult\u003c\u0026str, \u0026str\u003e { Ok((input, \"\")) } fn main() -\u003e Result\u003c(), Box\u003cdyn Error\u003e\u003e { let (remaining_input, output) = do_nothing_parser(\"my_input\")?; assert_eq!(remaining_input, \"my_input\"); assert_eq!(output, \"\"); Ok(()) } 例2 字符串匹配 pub use nom::bytes::complete::tag; pub use nom::IResult; use std::error::Error; fn parse_input(input: \u0026str) -\u003e IResult\u003c\u0026str, \u0026str\u003e { // tag 函数的返回结果也是一个函数 tag(\"Call-ID:\")(input) } fn main() -\u003e Result\u003c(), Box\u003cdyn Error\u003e\u003e { let (leftover_input, output) = parse_input(\"Call-ID: helloWorld\")?; assert_eq!(leftover_input, \" helloWorld\"); // tag 函数匹配成功后返回剩余的输入 assert_eq!(output, \"Call-ID:\"); // tag 函数匹配成功返回匹配的内容 assert!(parse_input(\"defWorld\").is_err()); Ok(()) } 例3 预定义匹配类型 alpha0: 识别0个或者多个大小写字符: /[a-zA-Z]/. alpha1: 和前者相同，并且至少返回一个字符 alphanumeric0: 识别0个或者多个大小写字符和数字: /[0-9a-zA-Z]/. alphanumeric1 和前者相同，并且至少返回一个字符 digit0:识别0个或者多个数字: /[0-9]/. digit1 和前者相同，并且至少返回一数字 multispace0: 识别0个或者多个空格, 制表, 会车和换行符 multispace1 和前者相同，并且至少返回一数字 space0: 识别0个或者多个空格和制表符. space1 和前者相同，并且至少返回一数字 line_ending: 识别行尾 (\\n and \\r\\n) newline: 匹配换行符 \\n tab: 匹配制表符 \\t use nom::character::complete::alpha0; pub use nom::IResult; use std::error::Error; fn parse_input(input: \u0026str) -\u003e IResult\u003c\u0026str, \u0026str\u003e { // tag 函数的返回结果也是一个函数 alpha0(input) } fn main() -\u003e Result\u003c(), Box\u003cdyn Error\u003e\u003e { let (leftover_input, output) = parse_input(\"Call-ID: helloWorld\")?; assert_eq!(leftover_input, \"-ID: helloWorld\"); // tag 函数匹配成功后返回剩余的输入 assert_eq!(output, \"Call\"); // tag 函数匹配成功返回匹配的内容 assert!(parse_input(\"defWorld\").is_ok()); Ok(()) } 参考 https://tfpk.github.io/nominomicon/chapter_2.html ","wordCount":"184","inLanguage":"en","datePublished":"2025-10-20T22:37:17+08:00","dateModified":"2025-10-20T22:37:17+08:00","author":{"@type":"Person","name":"Eddie Wang"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://wdd.js.org/nom/ch1/"},"publisher":{"@type":"Organization","name":"洞香春","logo":{"@type":"ImageObject","url":"https://wdd.js.org/favicon.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://wdd.js.org/ accesskey=h title="洞香春 (Alt + H)"><img src=https://wdd.js.org/favicon.ico alt aria-label=logo height=35>洞香春</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://wdd.js.org/opensips/ title=OpenSIPS><span>OpenSIPS</span></a></li><li><a href=https://wdd.js.org/kamailio/ title=Kamailio><span>Kamailio</span></a></li><li><a href=https://wdd.js.org/freeswitch/ title=FreeSWITCH><span>FreeSWITCH</span></a></li><li><a href=https://wdd.js.org/search/ title=搜索><span>搜索</span></a></li><li><a href=https://wdd.js.org/tags/ title=标签><span>标签</span></a></li><li><a href=https://wdd.js.org/archives/ title=归档><span>归档</span></a></li><li><a href=https://wdd.js.org/about/ title=我><span>我</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://wdd.js.org/>Home</a>&nbsp;»&nbsp;<a href=https://wdd.js.org/nom/>Noms</a></div><h1 class="post-title entry-hint-parent">nom 学习笔记 Ch1</h1><div class=post-meta><span title='2025-10-20 22:37:17 +0800 CST'>2025-10-20 22:37:17</span>&nbsp;·&nbsp;<span>1 min</span>&nbsp;·&nbsp;<span>Eddie Wang</span>&nbsp;|&nbsp;<span>
+<a href=https://github.com/%3cpath_to_repo%3e/content/nom/ch1/index.md rel="noopener noreferrer edit" target=_blank>Suggest Changes</a></span></div></header><aside id=toc-container class="toc-container wide"><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#%e7%8e%af%e5%a2%83%e8%af%b4%e6%98%8e aria-label=环境说明>环境说明</a></li><li><a href=#%e8%a7%a3%e6%9e%90%e9%80%bb%e8%be%91 aria-label=解析逻辑>解析逻辑</a></li><li><a href=#%e4%b8%be%e4%be%8b aria-label=举例>举例</a><ul><li><a href=#%e4%be%8b1-%e7%a9%ba%e8%a7%a3%e6%9e%90 aria-label="例1 空解析">例1 空解析</a></li><li><a href=#%e4%be%8b2-%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%8c%b9%e9%85%8d aria-label="例2 字符串匹配">例2 字符串匹配</a></li><li><a href=#%e4%be%8b3-%e9%a2%84%e5%ae%9a%e4%b9%89%e5%8c%b9%e9%85%8d%e7%b1%bb%e5%9e%8b aria-label="例3 预定义匹配类型">例3 预定义匹配类型</a></li></ul></li><li><a href=#%e5%8f%82%e8%80%83 aria-label=参考>参考</a></li></ul></div></details></div></aside><script>let activeElement,elements;window.addEventListener("DOMContentLoaded",function(){checkTocPosition(),elements=document.querySelectorAll("h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]"),activeElement=elements[0];const t=encodeURI(activeElement.getAttribute("id")).toLowerCase();document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active")},!1),window.addEventListener("resize",function(){checkTocPosition()},!1),window.addEventListener("scroll",()=>{activeElement=Array.from(elements).find(e=>{if(getOffsetTop(e)-window.pageYOffset>0&&getOffsetTop(e)-window.pageYOffset<window.innerHeight/2)return e})||activeElement,elements.forEach(e=>{const t=encodeURI(e.getAttribute("id")).toLowerCase();e===activeElement?document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active"):document.querySelector(`.inner ul li a[href="#${t}"]`).classList.remove("active")})},!1);const main=parseInt(getComputedStyle(document.body).getPropertyValue("--article-width"),10),toc=parseInt(getComputedStyle(document.body).getPropertyValue("--toc-width"),10),gap=parseInt(getComputedStyle(document.body).getPropertyValue("--gap"),10);function checkTocPosition(){const e=document.body.scrollWidth;e-main-toc*2-gap*4>0?document.getElementById("toc-container").classList.add("wide"):document.getElementById("toc-container").classList.remove("wide")}function getOffsetTop(e){if(!e.getClientRects().length)return 0;let t=e.getBoundingClientRect(),n=e.ownerDocument.defaultView;return t.top+n.pageYOffset}</script><div class=post-content><h1 id=环境说明>环境说明<a hidden class=anchor aria-hidden=true href=#环境说明>#</a></h1><ul><li>rust版本 1.87.0</li><li>cargo版本 1.87.0</li><li>nom版本 8.0.0</li></ul><h1 id=解析逻辑>解析逻辑<a hidden class=anchor aria-hidden=true href=#解析逻辑>#</a></h1><ol><li>输入一个字符串</li><li>创建一个解析器</li><li>解析器调用parse方法</li><li>如果解析成功，返回结果，结果包含两部分内容，前者是没有匹配的内容，后者是匹配到的内容</li></ol><p><img loading=lazy src=/nom/ch1/arch.drawio.png></p><h1 id=举例>举例<a hidden class=anchor aria-hidden=true href=#举例>#</a></h1><h2 id=例1-空解析>例1 空解析<a hidden class=anchor aria-hidden=true href=#例1-空解析>#</a></h2><p>这个例子描述了如何使用nom解析一个字符串。
+输入是候输入字符串为my_input，匹配到的内容是空字符串，没有匹配到的是my_input。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=display:flex><span><span style=color:#66d9ef>use</span> nom::IResult;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>use</span> std::error::Error;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>pub</span> <span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>do_nothing_parser</span>(input: <span style=color:#66d9ef>&amp;</span><span style=color:#66d9ef>str</span>) -&gt; <span style=color:#a6e22e>IResult</span><span style=color:#f92672>&lt;&amp;</span><span style=color:#66d9ef>str</span>, <span style=color:#f92672>&amp;</span><span style=color:#66d9ef>str</span><span style=color:#f92672>&gt;</span> {
+</span></span><span style=display:flex><span>    Ok((input, <span style=color:#e6db74>&#34;&#34;</span>))
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>main</span>() -&gt; Result<span style=color:#f92672>&lt;</span>(), Box<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>dyn</span> Error<span style=color:#f92672>&gt;&gt;</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> (remaining_input, output) <span style=color:#f92672>=</span> do_nothing_parser(<span style=color:#e6db74>&#34;my_input&#34;</span>)<span style=color:#f92672>?</span>;
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>assert_eq!</span>(remaining_input, <span style=color:#e6db74>&#34;my_input&#34;</span>);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>assert_eq!</span>(output, <span style=color:#e6db74>&#34;&#34;</span>);
+</span></span><span style=display:flex><span>    Ok(())
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=例2-字符串匹配>例2 字符串匹配<a hidden class=anchor aria-hidden=true href=#例2-字符串匹配>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>pub</span> <span style=color:#66d9ef>use</span> nom::bytes::complete::tag;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>pub</span> <span style=color:#66d9ef>use</span> nom::IResult;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>use</span> std::error::Error;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>parse_input</span>(input: <span style=color:#66d9ef>&amp;</span><span style=color:#66d9ef>str</span>) -&gt; <span style=color:#a6e22e>IResult</span><span style=color:#f92672>&lt;&amp;</span><span style=color:#66d9ef>str</span>, <span style=color:#f92672>&amp;</span><span style=color:#66d9ef>str</span><span style=color:#f92672>&gt;</span> {
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// tag 函数的返回结果也是一个函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    tag(<span style=color:#e6db74>&#34;Call-ID:&#34;</span>)(input)
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>main</span>() -&gt; Result<span style=color:#f92672>&lt;</span>(), Box<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>dyn</span> Error<span style=color:#f92672>&gt;&gt;</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> (leftover_input, output) <span style=color:#f92672>=</span> parse_input(<span style=color:#e6db74>&#34;Call-ID: helloWorld&#34;</span>)<span style=color:#f92672>?</span>;
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>assert_eq!</span>(leftover_input, <span style=color:#e6db74>&#34; helloWorld&#34;</span>); <span style=color:#75715e>// tag 函数匹配成功后返回剩余的输入
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>assert_eq!</span>(output, <span style=color:#e6db74>&#34;Call-ID:&#34;</span>); <span style=color:#75715e>// tag 函数匹配成功返回匹配的内容
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>assert!</span>(parse_input(<span style=color:#e6db74>&#34;defWorld&#34;</span>).is_err());
+</span></span><span style=display:flex><span>  Ok(())
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=例3-预定义匹配类型>例3 预定义匹配类型<a hidden class=anchor aria-hidden=true href=#例3-预定义匹配类型>#</a></h2><ul><li><strong>alpha0</strong>: 识别0个或者多个大小写字符: /[a-zA-Z]/.<ul><li><strong>alpha1</strong>: 和前者相同，并且至少返回一个字符</li></ul></li><li><strong>alphanumeric0</strong>: 识别0个或者多个大小写字符和数字: /[0-9a-zA-Z]/.<ul><li><strong>alphanumeric1</strong> 和前者相同，并且至少返回一个字符</li></ul></li><li><strong>digit0</strong>:识别0个或者多个数字: /[0-9]/.<ul><li><strong>digit1</strong> 和前者相同，并且至少返回一数字</li></ul></li><li><strong>multispace0</strong>: 识别0个或者多个空格, 制表, 会车和换行符<ul><li><strong>multispace1</strong> 和前者相同，并且至少返回一数字</li></ul></li><li><strong>space0</strong>: 识别0个或者多个空格和制表符.<ul><li><strong>space1</strong> 和前者相同，并且至少返回一数字</li></ul></li><li><strong>line_ending</strong>: 识别行尾 (<code>\n</code> and <code>\r\n</code>)</li><li><strong>newline</strong>: 匹配换行符 <code>\n</code></li><li><strong>tab</strong>: 匹配制表符 <code>\t</code></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>use</span> nom::character::complete::alpha0;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>pub</span> <span style=color:#66d9ef>use</span> nom::IResult;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>use</span> std::error::Error;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>parse_input</span>(input: <span style=color:#66d9ef>&amp;</span><span style=color:#66d9ef>str</span>) -&gt; <span style=color:#a6e22e>IResult</span><span style=color:#f92672>&lt;&amp;</span><span style=color:#66d9ef>str</span>, <span style=color:#f92672>&amp;</span><span style=color:#66d9ef>str</span><span style=color:#f92672>&gt;</span> {
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// tag 函数的返回结果也是一个函数
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    alpha0(input)
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>main</span>() -&gt; Result<span style=color:#f92672>&lt;</span>(), Box<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>dyn</span> Error<span style=color:#f92672>&gt;&gt;</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> (leftover_input, output) <span style=color:#f92672>=</span> parse_input(<span style=color:#e6db74>&#34;Call-ID: helloWorld&#34;</span>)<span style=color:#f92672>?</span>;
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>assert_eq!</span>(leftover_input, <span style=color:#e6db74>&#34;-ID: helloWorld&#34;</span>); <span style=color:#75715e>// tag 函数匹配成功后返回剩余的输入
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>assert_eq!</span>(output, <span style=color:#e6db74>&#34;Call&#34;</span>); <span style=color:#75715e>// tag 函数匹配成功返回匹配的内容
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>assert!</span>(parse_input(<span style=color:#e6db74>&#34;defWorld&#34;</span>).is_ok());
+</span></span><span style=display:flex><span>  Ok(())
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h1 id=参考>参考<a hidden class=anchor aria-hidden=true href=#参考>#</a></h1><ul><li><a href=https://tfpk.github.io/nominomicon/chapter_2.html>https://tfpk.github.io/nominomicon/chapter_2.html</a></li></ul></div><footer class=post-footer><ul class=post-tags><li><a href=https://wdd.js.org/tags/all/>All</a></li></ul><nav class=paginav><a class=next href=https://wdd.js.org/posts/2025/sipwise-c5-arch/><span class=title>Next »</span><br><span>SipWise C5 架构分析 WIP</span></a></nav></footer><script src=https://giscus.app/client.js data-repo=wangduanduan/wangduanduan.github.io data-repo-id="MDEwOlJlcG9zaXRvcnkxMTkyMjMyNjA=" data-category=Announcements data-category-id=DIC_kwDOBxsz3M4CAjBq data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=bottom data-theme=preferred_color_scheme data-lang=zh-CN crossorigin=anonymous async></script></article></main><footer class=footer><span>&copy; 2025 <a href=https://wdd.js.org/>洞香春</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
