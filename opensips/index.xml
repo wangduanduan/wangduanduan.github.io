@@ -9087,7 +9087,12 @@ signaling: 信令层的操作，例如返回200ok之类的&lt;/p&gt;&lt;/blockqu
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; }
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;配置定时任务&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-systemverilog&#34; data-lang=&#34;systemverilog&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;*/&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;usr&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;sbin&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;logrotate &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;etc&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;logrotate.d&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;opensips
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;rsyslog进程卡死导致opensips无法启动&#34;&gt;rsyslog进程卡死导致OpenSIPS无法启动&lt;/h1&gt;
+&lt;p&gt;在启动kamailio进程之前，启动脚本会尝试启动rsyslogd,  在启动rsyslogd时，进程卡住&lt;/p&gt;
+&lt;p&gt;报错语句：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;startup failure, child did not respond within startup timeout
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;原因分析&#34;&gt;原因分析&lt;/h2&gt;
+&lt;p&gt;排查相关资料，这个issues最为有用： &lt;a href=&#34;https://github.com/rsyslog/rsyslog/issues/5158&#34;&gt;https://github.com/rsyslog/rsyslog/issues/5158&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>配置文件</title>
