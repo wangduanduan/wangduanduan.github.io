@@ -17,6 +17,12 @@ VOIP 对我来说是个比较陌生的领域。进入这个领域可以说是一
 
 加微信 **suguswang177**,  备注 opensips, 拉你进 opensips 交流群。
 
+# 关于作者
+
+7年VoIP工作经验，前端/软交换开发。持续在SIP、OpenSIPS、Kamailio、WebRTC方向深耕。 
+
+热爱开源，热爱分享， 也对能够交流技术或探索契合方向的工作机会保持开放态度。微信ID：suguswang177
+
 
 # 文章目录
 

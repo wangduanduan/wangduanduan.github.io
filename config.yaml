@@ -79,8 +79,8 @@ params:
   # home-info mode
   homeInfoParams:
     enabled: false
-    Title: "Eddie(艾迪)的博客"
-    Content: "7年VoIP工作经验，前端/软交换开发。热爱开源，热爱分享。 微信：suguswang177, 欢迎交流"
+    Title: "Eddie(艾迪)"
+    Content: "7年VoIP工作经验，前端/软交换开发。持续在SIP、OpenSIPS、Kamailio、WebRTC方向深耕。 热爱开源，热爱分享，也对能够交流技术或探索契合方向的工作机会保持开放态度。微信ID：suguswang177"
 
   socialIcons:
     - name: github
@@ -122,18 +122,18 @@ menu:
       name: "FreeSWITCH"
       url: /freeswitch/
       weight: 3
-    # - identifier: id_books
-    #   name: "读书"
-    #   url: /books/
-    #   weight: 8
-    # - identifier: id_vim
-    #   name: "VIM"
-    #   url: /vim/
-    #   weight: 10
-    # - identifier: id_fe
-    #   name: "前端"
-    #   url: /fe/
-    #   weight: 10
+    - identifier: id_books
+      name: "读书"
+      url: /books/
+      weight: 8
+    - identifier: id_vim
+      name: "VIM"
+      url: /vim/
+      weight: 10
+    - identifier: id_fe
+      name: "前端"
+      url: /fe/
+      weight: 10
     - identifier: id_kama
       name: "Kamailio"
       url: /kamailio/

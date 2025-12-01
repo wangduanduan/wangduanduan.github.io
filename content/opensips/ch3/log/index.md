@@ -76,3 +76,65 @@ apt install logrotate -y
 */10 * * * * /usr/sbin/logrotate /etc/logrotate.d/opensips
 ```
 
+# rsyslog进程卡死导致OpenSIPS无法启动
+
+在启动kamailio进程之前，启动脚本会尝试启动rsyslogd,  在启动rsyslogd时，进程卡住
+
+报错语句：
+
+```sh
+startup failure, child did not respond within startup timeout
+```
+
+
+## 原因分析
+
+排查相关资料，这个issues最为有用： https://github.com/rsyslog/rsyslog/issues/5158
+
+
+该issuse里所表达的时： **进程的ulimit 值太大，导致rsyslogd卡在循环**
+
+然后我在启动脚本里打印了机器的ulimit,  确认了ulimit的确是一个非常大的值。
+
+```
+root@8ccc77403b06:~# ulimit -n    
+1073741816
+```
+
+
+## 解决方案
+
+既然知道原因，就可以通多ulimit去限制， 限制后，进程能成功启动。
+
+```
+docker run 
+--ulimit nproc=65525 \
+--ulimit nofile=20000:40000 \
+```
+
+
+## rsyslogd深入分析
+
+
+```c
+	/* close unnecessary open files */
+	const int endClose = getdtablesize();
+	close(0);
+	for(int i = beginClose ; i <= endClose ; ++i) {
+		if((i != dbgGetDbglogFd()) && (i != parentPipeFD)) {
+			  aix_close_it(i); /* AIXPORT */
+		}
+	}
+	seedRandomNumberForChild();
+```
+
+- `getdtablesize()`  获取当前进程可用的 **最大文件描述符数量**（硬上限）。 用来确定循环关闭 FD 的范围
+- 关闭所有不需要的文件描述符（socket、pipe、文件、监听句柄等）。
+- 父进程 fork 后，希望子进程不要继承无用 FD，避免资源泄漏
+
+
+# 参考资料
+
+- https://github.com/rsyslog/rsyslog/issues/5158
+- https://github.com/moby/moby/issues/38814
+- https://github.com/moby/moby/issues/44547
