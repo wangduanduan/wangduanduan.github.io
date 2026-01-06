@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>工程师随笔 on 洞香春</title>
+    <link>https://wdd.js.org/tags/%E5%B7%A5%E7%A8%8B%E5%B8%88%E9%9A%8F%E7%AC%94/</link>
+    <description>Recent content in 工程师随笔 on 洞香春</description>
+    <generator>Hugo -- 0.151.0</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 06 Jan 2026 19:00:15 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/%E5%B7%A5%E7%A8%8B%E5%B8%88%E9%9A%8F%E7%AC%94/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>天下苦 VOS 久矣</title>
+      <link>https://wdd.js.org/posts/2026/the-voip-world-has-suffered-from-vos-for-too-long/</link>
+      <pubDate>Tue, 06 Jan 2026 19:00:15 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2026/the-voip-world-has-suffered-from-vos-for-too-long/</guid>
+      <description>&lt;p&gt;天下苦 VOS 久矣。
+此言非怒而发，乃久用之后，积怨成理也。&lt;/p&gt;
+&lt;p&gt;VOS3x、VOS5x，曾有其功。
+当年软交换荒芜，SIP 规范未成体系，工程师多凭经验行事。VOS 以一套封装良好的系统，解“能跑”之急，立一时之功，不可不认。&lt;/p&gt;
+&lt;p&gt;然功成之后，不思进化；
+市占既稳，便少革新。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;天下之患，莫大于此。&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;一垄断既久问题反成常态&#34;&gt;一、垄断既久，问题反成常态&lt;/h2&gt;
+&lt;p&gt;今之 VOS，已非“可选方案”，而成“默认答案”。&lt;/p&gt;
+&lt;p&gt;选型之时，不问架构，只问“是不是 VOS”；
+排障之时，不查协议，只等“厂商回复”。&lt;/p&gt;
+&lt;p&gt;于是，奇景频出：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SIP 行为异于 RFC，而曰“产品设计如此”&lt;/li&gt;
+&lt;li&gt;性能瓶颈不可测，而曰“经验上差不多”&lt;/li&gt;
+&lt;li&gt;复杂需求难以实现，而曰“VOS 不支持”,&lt;/li&gt;
+&lt;li&gt;简单需求可实现，但“得加钱”&lt;/li&gt;
+&lt;li&gt;故障定位止于日志，而曰“已提交工单”&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;久而久之，
+问题不再被解决，
+只是被习惯。&lt;/p&gt;
+&lt;h2 id=&#34;二用-vos工程师何其卑微&#34;&gt;二、用 VOS，工程师何其卑微&lt;/h2&gt;
+&lt;p&gt;用 VOS 者，常有此感：&lt;/p&gt;
+&lt;p&gt;系统在跑，
+却不知为何如此跑；
+问题已现，
+却不知从何而断。&lt;/p&gt;
+&lt;p&gt;工程师所做者，不过：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;点配置&lt;/li&gt;
+&lt;li&gt;调参数&lt;/li&gt;
+&lt;li&gt;猜行为&lt;/li&gt;
+&lt;li&gt;等回复&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;软交换本该是工程，
+却活成了玄学。&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;三opensips--kamailio让系统讲人话&#34;&gt;三、OpenSIPS / Kamailio：让系统“讲人话”&lt;/h2&gt;
+&lt;p&gt;或问：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“不用 VOS，又当用谁？”&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;曰：OpenSIPS，Kamailio。&lt;/p&gt;
+&lt;p&gt;二者之道，不在“省钱”，而在&lt;strong&gt;透明&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SIP 即 SIP，不自创私货&lt;/li&gt;
+&lt;li&gt;路由即代码，行为白纸黑字&lt;/li&gt;
+&lt;li&gt;性能可压测，瓶颈可定位&lt;/li&gt;
+&lt;li&gt;出问题先看脚本，而非先写邮件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在此体系之中，
+系统不再“猜你想要什么”，
+而是“严格执行你所写之逻辑”。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;这是工程，
+不是占卜。&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;四开源之苦在前开源之利在后&#34;&gt;四、开源之苦，在前；开源之利，在后&lt;/h2&gt;
+&lt;p&gt;诚然，OpenSIPS / Kamailio 不好上手。
+学习曲线陡峭，踩坑在所难免。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

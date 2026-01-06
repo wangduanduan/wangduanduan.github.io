@@ -1,0 +1,179 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>天下苦 VOS 久矣 | 洞香春</title><meta name=keywords content="VoIP,SIP,工程师随笔"><meta name=description content="天下苦 VOS 久矣。
+此言非怒而发，乃久用之后，积怨成理也。
+VOS3x、VOS5x，曾有其功。
+当年软交换荒芜，SIP 规范未成体系，工程师多凭经验行事。VOS 以一套封装良好的系统，解“能跑”之急，立一时之功，不可不认。
+然功成之后，不思进化；
+市占既稳，便少革新。
+天下之患，莫大于此。
+
+一、垄断既久，问题反成常态
+今之 VOS，已非“可选方案”，而成“默认答案”。
+选型之时，不问架构，只问“是不是 VOS”；
+排障之时，不查协议，只等“厂商回复”。
+于是，奇景频出：
+
+SIP 行为异于 RFC，而曰“产品设计如此”
+性能瓶颈不可测，而曰“经验上差不多”
+复杂需求难以实现，而曰“VOS 不支持”,
+简单需求可实现，但“得加钱”
+故障定位止于日志，而曰“已提交工单”
+
+久而久之，
+问题不再被解决，
+只是被习惯。
+二、用 VOS，工程师何其卑微
+用 VOS 者，常有此感：
+系统在跑，
+却不知为何如此跑；
+问题已现，
+却不知从何而断。
+工程师所做者，不过：
+
+点配置
+调参数
+猜行为
+等回复
+
+软交换本该是工程，
+却活成了玄学。
+三、OpenSIPS / Kamailio：让系统“讲人话”
+或问：
+
+“不用 VOS，又当用谁？”
+曰：OpenSIPS，Kamailio。
+二者之道，不在“省钱”，而在透明：
+
+SIP 即 SIP，不自创私货
+路由即代码，行为白纸黑字
+性能可压测，瓶颈可定位
+出问题先看脚本，而非先写邮件
+
+在此体系之中，
+系统不再“猜你想要什么”，
+而是“严格执行你所写之逻辑”。
+这是工程，
+不是占卜。
+四、开源之苦，在前；开源之利，在后
+诚然，OpenSIPS / Kamailio 不好上手。
+学习曲线陡峭，踩坑在所难免。"><meta name=author content="Eddie Wang"><link rel=canonical href=https://wdd.js.org/posts/2026/the-voip-world-has-suffered-from-vos-for-too-long/><link crossorigin=anonymous href=/assets/css/stylesheet.a2acda249b8eac62938bb2d2f1c562c5f74d5728640d2a1a7d6aeaec5c50ef24.css integrity="sha256-oqzaJJuOrGKTi7LS8cVixfdNVyhkDSoafWrq7FxQ7yQ=" rel="preload stylesheet" as=style><link rel=icon href=https://wdd.js.org/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://wdd.js.org/favicon.ico><link rel=icon type=image/png sizes=32x32 href=https://wdd.js.org/favicon.ico><link rel=apple-touch-icon href=https://wdd.js.org/favicon.ico><link rel=mask-icon href=https://wdd.js.org/favicon.ico><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://wdd.js.org/posts/2026/the-voip-world-has-suffered-from-vos-for-too-long/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css><style>body{font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,noto sans,sans-serif,apple color emoji,segoe ui emoji;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}h1,h2,h3,h4,h5,h6{font-weight:600;letter-spacing:-.02em}code,pre{font-family:fira code,jetbrains mono,Consolas,monospace;font-variant-ligatures:normal;font-size:.95em}</style><meta property="og:url" content="https://wdd.js.org/posts/2026/the-voip-world-has-suffered-from-vos-for-too-long/"><meta property="og:site_name" content="洞香春"><meta property="og:title" content="天下苦 VOS 久矣"><meta property="og:description" content="天下苦 VOS 久矣。 此言非怒而发，乃久用之后，积怨成理也。
+VOS3x、VOS5x，曾有其功。 当年软交换荒芜，SIP 规范未成体系，工程师多凭经验行事。VOS 以一套封装良好的系统，解“能跑”之急，立一时之功，不可不认。
+然功成之后，不思进化； 市占既稳，便少革新。
+天下之患，莫大于此。
+一、垄断既久，问题反成常态 今之 VOS，已非“可选方案”，而成“默认答案”。
+选型之时，不问架构，只问“是不是 VOS”； 排障之时，不查协议，只等“厂商回复”。
+于是，奇景频出：
+SIP 行为异于 RFC，而曰“产品设计如此” 性能瓶颈不可测，而曰“经验上差不多” 复杂需求难以实现，而曰“VOS 不支持”, 简单需求可实现，但“得加钱” 故障定位止于日志，而曰“已提交工单” 久而久之， 问题不再被解决， 只是被习惯。
+二、用 VOS，工程师何其卑微 用 VOS 者，常有此感：
+系统在跑， 却不知为何如此跑； 问题已现， 却不知从何而断。
+工程师所做者，不过：
+点配置 调参数 猜行为 等回复 软交换本该是工程， 却活成了玄学。
+三、OpenSIPS / Kamailio：让系统“讲人话” 或问：
+“不用 VOS，又当用谁？”
+曰：OpenSIPS，Kamailio。
+二者之道，不在“省钱”，而在透明：
+SIP 即 SIP，不自创私货 路由即代码，行为白纸黑字 性能可压测，瓶颈可定位 出问题先看脚本，而非先写邮件 在此体系之中， 系统不再“猜你想要什么”， 而是“严格执行你所写之逻辑”。
+这是工程， 不是占卜。
+四、开源之苦，在前；开源之利，在后 诚然，OpenSIPS / Kamailio 不好上手。 学习曲线陡峭，踩坑在所难免。"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2026-01-06T19:00:15+08:00"><meta property="article:modified_time" content="2026-01-06T19:00:15+08:00"><meta property="article:tag" content="VoIP"><meta property="article:tag" content="SIP"><meta property="article:tag" content="工程师随笔"><meta name=twitter:card content="summary"><meta name=twitter:title content="天下苦 VOS 久矣"><meta name=twitter:description content="天下苦 VOS 久矣。
+此言非怒而发，乃久用之后，积怨成理也。
+VOS3x、VOS5x，曾有其功。
+当年软交换荒芜，SIP 规范未成体系，工程师多凭经验行事。VOS 以一套封装良好的系统，解“能跑”之急，立一时之功，不可不认。
+然功成之后，不思进化；
+市占既稳，便少革新。
+天下之患，莫大于此。
+
+一、垄断既久，问题反成常态
+今之 VOS，已非“可选方案”，而成“默认答案”。
+选型之时，不问架构，只问“是不是 VOS”；
+排障之时，不查协议，只等“厂商回复”。
+于是，奇景频出：
+
+SIP 行为异于 RFC，而曰“产品设计如此”
+性能瓶颈不可测，而曰“经验上差不多”
+复杂需求难以实现，而曰“VOS 不支持”,
+简单需求可实现，但“得加钱”
+故障定位止于日志，而曰“已提交工单”
+
+久而久之，
+问题不再被解决，
+只是被习惯。
+二、用 VOS，工程师何其卑微
+用 VOS 者，常有此感：
+系统在跑，
+却不知为何如此跑；
+问题已现，
+却不知从何而断。
+工程师所做者，不过：
+
+点配置
+调参数
+猜行为
+等回复
+
+软交换本该是工程，
+却活成了玄学。
+三、OpenSIPS / Kamailio：让系统“讲人话”
+或问：
+
+“不用 VOS，又当用谁？”
+曰：OpenSIPS，Kamailio。
+二者之道，不在“省钱”，而在透明：
+
+SIP 即 SIP，不自创私货
+路由即代码，行为白纸黑字
+性能可压测，瓶颈可定位
+出问题先看脚本，而非先写邮件
+
+在此体系之中，
+系统不再“猜你想要什么”，
+而是“严格执行你所写之逻辑”。
+这是工程，
+不是占卜。
+四、开源之苦，在前；开源之利，在后
+诚然，OpenSIPS / Kamailio 不好上手。
+学习曲线陡峭，踩坑在所难免。"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://wdd.js.org/posts/"},{"@type":"ListItem","position":2,"name":"天下苦 VOS 久矣","item":"https://wdd.js.org/posts/2026/the-voip-world-has-suffered-from-vos-for-too-long/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"天下苦 VOS 久矣","name":"天下苦 VOS 久矣","description":"天下苦 VOS 久矣。 此言非怒而发，乃久用之后，积怨成理也。\nVOS3x、VOS5x，曾有其功。 当年软交换荒芜，SIP 规范未成体系，工程师多凭经验行事。VOS 以一套封装良好的系统，解“能跑”之急，立一时之功，不可不认。\n然功成之后，不思进化； 市占既稳，便少革新。\n天下之患，莫大于此。\n一、垄断既久，问题反成常态 今之 VOS，已非“可选方案”，而成“默认答案”。\n选型之时，不问架构，只问“是不是 VOS”； 排障之时，不查协议，只等“厂商回复”。\n于是，奇景频出：\nSIP 行为异于 RFC，而曰“产品设计如此” 性能瓶颈不可测，而曰“经验上差不多” 复杂需求难以实现，而曰“VOS 不支持”, 简单需求可实现，但“得加钱” 故障定位止于日志，而曰“已提交工单” 久而久之， 问题不再被解决， 只是被习惯。\n二、用 VOS，工程师何其卑微 用 VOS 者，常有此感：\n系统在跑， 却不知为何如此跑； 问题已现， 却不知从何而断。\n工程师所做者，不过：\n点配置 调参数 猜行为 等回复 软交换本该是工程， 却活成了玄学。\n三、OpenSIPS / Kamailio：让系统“讲人话” 或问：\n“不用 VOS，又当用谁？”\n曰：OpenSIPS，Kamailio。\n二者之道，不在“省钱”，而在透明：\nSIP 即 SIP，不自创私货 路由即代码，行为白纸黑字 性能可压测，瓶颈可定位 出问题先看脚本，而非先写邮件 在此体系之中， 系统不再“猜你想要什么”， 而是“严格执行你所写之逻辑”。\n这是工程， 不是占卜。\n四、开源之苦，在前；开源之利，在后 诚然，OpenSIPS / Kamailio 不好上手。 学习曲线陡峭，踩坑在所难免。\n","keywords":["VoIP","SIP","工程师随笔"],"articleBody":"天下苦 VOS 久矣。 此言非怒而发，乃久用之后，积怨成理也。\nVOS3x、VOS5x，曾有其功。 当年软交换荒芜，SIP 规范未成体系，工程师多凭经验行事。VOS 以一套封装良好的系统，解“能跑”之急，立一时之功，不可不认。\n然功成之后，不思进化； 市占既稳，便少革新。\n天下之患，莫大于此。\n一、垄断既久，问题反成常态 今之 VOS，已非“可选方案”，而成“默认答案”。\n选型之时，不问架构，只问“是不是 VOS”； 排障之时，不查协议，只等“厂商回复”。\n于是，奇景频出：\nSIP 行为异于 RFC，而曰“产品设计如此” 性能瓶颈不可测，而曰“经验上差不多” 复杂需求难以实现，而曰“VOS 不支持”, 简单需求可实现，但“得加钱” 故障定位止于日志，而曰“已提交工单” 久而久之， 问题不再被解决， 只是被习惯。\n二、用 VOS，工程师何其卑微 用 VOS 者，常有此感：\n系统在跑， 却不知为何如此跑； 问题已现， 却不知从何而断。\n工程师所做者，不过：\n点配置 调参数 猜行为 等回复 软交换本该是工程， 却活成了玄学。\n三、OpenSIPS / Kamailio：让系统“讲人话” 或问：\n“不用 VOS，又当用谁？”\n曰：OpenSIPS，Kamailio。\n二者之道，不在“省钱”，而在透明：\nSIP 即 SIP，不自创私货 路由即代码，行为白纸黑字 性能可压测，瓶颈可定位 出问题先看脚本，而非先写邮件 在此体系之中， 系统不再“猜你想要什么”， 而是“严格执行你所写之逻辑”。\n这是工程， 不是占卜。\n四、开源之苦，在前；开源之利，在后 诚然，OpenSIPS / Kamailio 不好上手。 学习曲线陡峭，踩坑在所难免。\n然其回报亦清晰：\n你终于能解释系统的每一个行为 你终于知道性能的真实上限 你终于可以自信地说：“这是我设计的系统” 相比之下， VOS 之“易用”， 不过是把复杂度转嫁给未来。\n五、弃 VOS 非叛逆，乃回归常识 弃 VOS 者， 非反国产， 非逐时髦， 非为标新立异。\n而是拒绝将核心通信能力， 永久托付于黑盒之中。\n在一个需要长期演进的系统里：\n封闭 = 风险 垄断 = 停滞 不可解释 = 不可维护 六、智能路由之世，VOS 已显老态 今之通信，早已不止于“能通”。 成本、质量、路径、风控、策略，皆需动态权衡。\n路由，已非静态配置之物， 而是实时决策之中枢。\n在 AI 与智能调度已成常态的今天， 路由系统应当具备：\n基于实时指标的动态决策能力 按 ASR、ACD、延迟、抖动、失败率自动调优 可接入外部算法与模型 可持续学习、不断修正策略 然反观 VOS 之路由：\n规则静态，逻辑僵硬 决策维度有限，扩展成本极高 路由策略与系统强耦合，几乎无法外置 所谓“智能”，多停留在参数叠加层面 其本质，仍是人工维护的规则引擎。\n七、未来的路由，是系统，而非配置页 在 OpenSIPS / Kamailio 体系中， 路由从一开始就不是“点选结果”， 而是可编排的逻辑执行流。\n这意味着什么？\n意味着你可以：\n将实时统计数据送入决策逻辑 将路由行为交由外部服务判断 将 AI / 算法模型作为“路由大脑” 将软交换退化为高性能执行引擎 在这种架构下：\nSIP Server 负责“快、稳、准地执行”， 智能系统负责“算、选、调”。\n而 VOS 的设计， 生于“配置即一切”的年代， 注定难以承载这一分工模式。\n八、不是 VOS 不想进化，而是它无法进化 或有人言：\n“VOS 以后也可以加 AI。”\n此言似是而非。\n真正的问题不在于“能不能加功能”， 而在于：\n核心是否可被重构 架构是否允许外部决策介入 系统是否承认自己只是执行层 当路由被固化在封闭系统之中， 所谓“智能”， 便只能是贴在外壳上的标签。\n真正的智能路由， 需要开放架构作为前提。\n结语 天下苦 VOS 久矣。 昔日苦其封闭， 今日更苦其落伍。\n当路由开始走向智能化、服务化、算法化， 一切以静态配置为核心的系统， 终将被时代淘汰。\n这并非诅咒， 而是技术演进的自然结果。\n弃 VOS， 不是追逐新潮， 而是承认现实。\n","wordCount":"182","inLanguage":"en","datePublished":"2026-01-06T19:00:15+08:00","dateModified":"2026-01-06T19:00:15+08:00","author":{"@type":"Person","name":"Eddie Wang"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://wdd.js.org/posts/2026/the-voip-world-has-suffered-from-vos-for-too-long/"},"publisher":{"@type":"Organization","name":"洞香春","logo":{"@type":"ImageObject","url":"https://wdd.js.org/favicon.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://wdd.js.org/ accesskey=h title="洞香春 (Alt + H)"><img src=https://wdd.js.org/favicon.ico alt aria-label=logo height=35>洞香春</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://wdd.js.org/opensips/ title=OpenSIPS><span>OpenSIPS</span></a></li><li><a href=https://wdd.js.org/kamailio/ title=Kamailio><span>Kamailio</span></a></li><li><a href=https://wdd.js.org/freeswitch/ title=FreeSWITCH><span>FreeSWITCH</span></a></li><li><a href=https://wdd.js.org/books/ title=读书><span>读书</span></a></li><li><a href=https://wdd.js.org/vim/ title=VIM><span>VIM</span></a></li><li><a href=https://wdd.js.org/fe/ title=前端><span>前端</span></a></li><li><a href=https://wdd.js.org/search/ title=搜索><span>搜索</span></a></li><li><a href=https://wdd.js.org/tags/ title=标签><span>标签</span></a></li><li><a href=https://wdd.js.org/archives/ title=归档><span>归档</span></a></li><li><a href=https://wdd.js.org/about/ title=我><span>我</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://wdd.js.org/>Home</a>&nbsp;»&nbsp;<a href=https://wdd.js.org/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">天下苦 VOS 久矣</h1><div class=post-meta><span title='2026-01-06 19:00:15 +0800 CST'>2026-01-06 19:00:15</span>&nbsp;·&nbsp;<span>1 min</span>&nbsp;·&nbsp;<span>Eddie Wang</span>&nbsp;|&nbsp;<span>
+<a href=https://github.com/%3cpath_to_repo%3e/content/posts/2026/the-voIP-world-has-suffered-from-vos-for-too-long/index.md rel="noopener noreferrer edit" target=_blank>Suggest Changes</a></span></div></header><aside id=toc-container class="toc-container wide"><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#%e4%b8%80%e5%9e%84%e6%96%ad%e6%97%a2%e4%b9%85%e9%97%ae%e9%a2%98%e5%8f%8d%e6%88%90%e5%b8%b8%e6%80%81 aria-label=一、垄断既久，问题反成常态>一、垄断既久，问题反成常态</a></li><li><a href=#%e4%ba%8c%e7%94%a8-vos%e5%b7%a5%e7%a8%8b%e5%b8%88%e4%bd%95%e5%85%b6%e5%8d%91%e5%be%ae aria-label="二、用 VOS，工程师何其卑微">二、用 VOS，工程师何其卑微</a></li><li><a href=#%e4%b8%89opensips--kamailio%e8%ae%a9%e7%b3%bb%e7%bb%9f%e8%ae%b2%e4%ba%ba%e8%af%9d aria-label="三、OpenSIPS / Kamailio：让系统“讲人话”">三、OpenSIPS / Kamailio：让系统“讲人话”</a></li><li><a href=#%e5%9b%9b%e5%bc%80%e6%ba%90%e4%b9%8b%e8%8b%a6%e5%9c%a8%e5%89%8d%e5%bc%80%e6%ba%90%e4%b9%8b%e5%88%a9%e5%9c%a8%e5%90%8e aria-label=四、开源之苦，在前；开源之利，在后>四、开源之苦，在前；开源之利，在后</a></li><li><a href=#%e4%ba%94%e5%bc%83-vos-%e9%9d%9e%e5%8f%9b%e9%80%86%e4%b9%83%e5%9b%9e%e5%bd%92%e5%b8%b8%e8%af%86 aria-label="五、弃 VOS 非叛逆，乃回归常识">五、弃 VOS 非叛逆，乃回归常识</a></li><li><a href=#%e5%85%ad%e6%99%ba%e8%83%bd%e8%b7%af%e7%94%b1%e4%b9%8b%e4%b8%96vos-%e5%b7%b2%e6%98%be%e8%80%81%e6%80%81 aria-label="六、智能路由之世，VOS 已显老态">六、智能路由之世，VOS 已显老态</a></li><li><a href=#%e4%b8%83%e6%9c%aa%e6%9d%a5%e7%9a%84%e8%b7%af%e7%94%b1%e6%98%af%e7%b3%bb%e7%bb%9f%e8%80%8c%e9%9d%9e%e9%85%8d%e7%bd%ae%e9%a1%b5 aria-label=七、未来的路由，是系统，而非配置页>七、未来的路由，是系统，而非配置页</a></li><li><a href=#%e5%85%ab%e4%b8%8d%e6%98%af-vos-%e4%b8%8d%e6%83%b3%e8%bf%9b%e5%8c%96%e8%80%8c%e6%98%af%e5%ae%83%e6%97%a0%e6%b3%95%e8%bf%9b%e5%8c%96 aria-label="八、不是 VOS 不想进化，而是它无法进化">八、不是 VOS 不想进化，而是它无法进化</a></li><li><a href=#%e7%bb%93%e8%af%ad aria-label=结语>结语</a></li></ul></div></details></div></aside><script>let activeElement,elements;window.addEventListener("DOMContentLoaded",function(){checkTocPosition(),elements=document.querySelectorAll("h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]"),activeElement=elements[0];const t=encodeURI(activeElement.getAttribute("id")).toLowerCase();document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active")},!1),window.addEventListener("resize",function(){checkTocPosition()},!1),window.addEventListener("scroll",()=>{activeElement=Array.from(elements).find(e=>{if(getOffsetTop(e)-window.pageYOffset>0&&getOffsetTop(e)-window.pageYOffset<window.innerHeight/2)return e})||activeElement,elements.forEach(e=>{const t=encodeURI(e.getAttribute("id")).toLowerCase();e===activeElement?document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active"):document.querySelector(`.inner ul li a[href="#${t}"]`).classList.remove("active")})},!1);const main=parseInt(getComputedStyle(document.body).getPropertyValue("--article-width"),10),toc=parseInt(getComputedStyle(document.body).getPropertyValue("--toc-width"),10),gap=parseInt(getComputedStyle(document.body).getPropertyValue("--gap"),10);function checkTocPosition(){const e=document.body.scrollWidth;e-main-toc*2-gap*4>0?document.getElementById("toc-container").classList.add("wide"):document.getElementById("toc-container").classList.remove("wide")}function getOffsetTop(e){if(!e.getClientRects().length)return 0;let t=e.getBoundingClientRect(),n=e.ownerDocument.defaultView;return t.top+n.pageYOffset}</script><div class=post-content><p>天下苦 VOS 久矣。
+此言非怒而发，乃久用之后，积怨成理也。</p><p>VOS3x、VOS5x，曾有其功。
+当年软交换荒芜，SIP 规范未成体系，工程师多凭经验行事。VOS 以一套封装良好的系统，解“能跑”之急，立一时之功，不可不认。</p><p>然功成之后，不思进化；
+市占既稳，便少革新。</p><p><strong>天下之患，莫大于此。</strong></p><hr><h2 id=一垄断既久问题反成常态>一、垄断既久，问题反成常态<a hidden class=anchor aria-hidden=true href=#一垄断既久问题反成常态>#</a></h2><p>今之 VOS，已非“可选方案”，而成“默认答案”。</p><p>选型之时，不问架构，只问“是不是 VOS”；
+排障之时，不查协议，只等“厂商回复”。</p><p>于是，奇景频出：</p><ul><li>SIP 行为异于 RFC，而曰“产品设计如此”</li><li>性能瓶颈不可测，而曰“经验上差不多”</li><li>复杂需求难以实现，而曰“VOS 不支持”,</li><li>简单需求可实现，但“得加钱”</li><li>故障定位止于日志，而曰“已提交工单”</li></ul><p>久而久之，
+问题不再被解决，
+只是被习惯。</p><h2 id=二用-vos工程师何其卑微>二、用 VOS，工程师何其卑微<a hidden class=anchor aria-hidden=true href=#二用-vos工程师何其卑微>#</a></h2><p>用 VOS 者，常有此感：</p><p>系统在跑，
+却不知为何如此跑；
+问题已现，
+却不知从何而断。</p><p>工程师所做者，不过：</p><ul><li>点配置</li><li>调参数</li><li>猜行为</li><li>等回复</li></ul><p><strong>软交换本该是工程，
+却活成了玄学。</strong></p><h2 id=三opensips--kamailio让系统讲人话>三、OpenSIPS / Kamailio：让系统“讲人话”<a hidden class=anchor aria-hidden=true href=#三opensips--kamailio让系统讲人话>#</a></h2><p>或问：</p><blockquote><p>“不用 VOS，又当用谁？”</p></blockquote><p>曰：OpenSIPS，Kamailio。</p><p>二者之道，不在“省钱”，而在<strong>透明</strong>：</p><ul><li>SIP 即 SIP，不自创私货</li><li>路由即代码，行为白纸黑字</li><li>性能可压测，瓶颈可定位</li><li>出问题先看脚本，而非先写邮件</li></ul><p>在此体系之中，
+系统不再“猜你想要什么”，
+而是“严格执行你所写之逻辑”。</p><p><strong>这是工程，
+不是占卜。</strong></p><h2 id=四开源之苦在前开源之利在后>四、开源之苦，在前；开源之利，在后<a hidden class=anchor aria-hidden=true href=#四开源之苦在前开源之利在后>#</a></h2><p>诚然，OpenSIPS / Kamailio 不好上手。
+学习曲线陡峭，踩坑在所难免。</p><p>然其回报亦清晰：</p><ul><li>你终于能解释系统的每一个行为</li><li>你终于知道性能的真实上限</li><li>你终于可以自信地说：“这是我设计的系统”</li></ul><p>相比之下，
+VOS 之“易用”，
+不过是把复杂度转嫁给未来。</p><h2 id=五弃-vos-非叛逆乃回归常识>五、弃 VOS 非叛逆，乃回归常识<a hidden class=anchor aria-hidden=true href=#五弃-vos-非叛逆乃回归常识>#</a></h2><p>弃 VOS 者，
+非反国产，
+非逐时髦，
+非为标新立异。</p><p><strong>而是拒绝将核心通信能力，
+永久托付于黑盒之中。</strong></p><p>在一个需要长期演进的系统里：</p><ul><li>封闭 = 风险</li><li>垄断 = 停滞</li><li>不可解释 = 不可维护</li></ul><h2 id=六智能路由之世vos-已显老态>六、智能路由之世，VOS 已显老态<a hidden class=anchor aria-hidden=true href=#六智能路由之世vos-已显老态>#</a></h2><p>今之通信，早已不止于“能通”。
+成本、质量、路径、风控、策略，皆需动态权衡。</p><p>路由，已非静态配置之物，
+而是<strong>实时决策之中枢</strong>。</p><p>在 AI 与智能调度已成常态的今天，
+路由系统应当具备：</p><ul><li>基于实时指标的动态决策能力</li><li>按 ASR、ACD、延迟、抖动、失败率自动调优</li><li>可接入外部算法与模型</li><li>可持续学习、不断修正策略</li></ul><p>然反观 VOS 之路由：</p><ul><li>规则静态，逻辑僵硬</li><li>决策维度有限，扩展成本极高</li><li>路由策略与系统强耦合，几乎无法外置</li><li>所谓“智能”，多停留在参数叠加层面</li></ul><p>其本质，仍是<strong>人工维护的规则引擎</strong>。</p><h2 id=七未来的路由是系统而非配置页>七、未来的路由，是系统，而非配置页<a hidden class=anchor aria-hidden=true href=#七未来的路由是系统而非配置页>#</a></h2><p>在 OpenSIPS / Kamailio 体系中，
+路由从一开始就不是“点选结果”，
+而是<strong>可编排的逻辑执行流</strong>。</p><p>这意味着什么？</p><p>意味着你可以：</p><ul><li>将实时统计数据送入决策逻辑</li><li>将路由行为交由外部服务判断</li><li>将 AI / 算法模型作为“路由大脑”</li><li>将软交换退化为高性能执行引擎</li></ul><p>在这种架构下：</p><blockquote><p>SIP Server 负责“快、稳、准地执行”，
+智能系统负责“算、选、调”。</p></blockquote><p>而 VOS 的设计，
+生于“配置即一切”的年代，
+注定难以承载这一分工模式。</p><h2 id=八不是-vos-不想进化而是它无法进化>八、不是 VOS 不想进化，而是它无法进化<a hidden class=anchor aria-hidden=true href=#八不是-vos-不想进化而是它无法进化>#</a></h2><p>或有人言：</p><blockquote><p>“VOS 以后也可以加 AI。”</p></blockquote><p>此言似是而非。</p><p>真正的问题不在于“能不能加功能”，
+而在于：</p><ul><li>核心是否可被重构</li><li>架构是否允许外部决策介入</li><li>系统是否承认自己只是执行层</li></ul><p>当路由被固化在封闭系统之中，
+所谓“智能”，
+便只能是贴在外壳上的标签。</p><p><strong>真正的智能路由，
+需要开放架构作为前提。</strong></p><h2 id=结语>结语<a hidden class=anchor aria-hidden=true href=#结语>#</a></h2><p>天下苦 VOS 久矣。
+昔日苦其封闭，
+今日更苦其落伍。</p><p>当路由开始走向智能化、服务化、算法化，
+一切以静态配置为核心的系统，
+终将被时代淘汰。</p><p>这并非诅咒，
+而是技术演进的自然结果。</p><p>弃 VOS，
+不是追逐新潮，
+而是承认现实。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://wdd.js.org/tags/voip/>VoIP</a></li><li><a href=https://wdd.js.org/tags/sip/>SIP</a></li><li><a href=https://wdd.js.org/tags/%E5%B7%A5%E7%A8%8B%E5%B8%88%E9%9A%8F%E7%AC%94/>工程师随笔</a></li></ul><nav class=paginav><a class=next href=https://wdd.js.org/nom/ch1/><span class=title>Next »</span><br><span>nom 学习笔记 Ch1</span></a></nav></footer><script src=https://giscus.app/client.js data-repo=wangduanduan/wangduanduan.github.io data-repo-id="MDEwOlJlcG9zaXRvcnkxMTkyMjMyNjA=" data-category=Announcements data-category-id=DIC_kwDOBxsz3M4CAjBq data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=bottom data-theme=preferred_color_scheme data-lang=zh-CN crossorigin=anonymous async></script></article></main><footer class=footer><span>&copy; 2026 <a href=https://wdd.js.org/>洞香春</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

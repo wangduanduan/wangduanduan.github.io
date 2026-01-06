@@ -2,28 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://wdd.js.org/categories/all/</loc>
+    <lastmod>2026-01-06T19:00:15+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/categories/</loc>
+    <lastmod>2026-01-06T19:00:15+08:00</lastmod>
+  </url><url>
     <loc>https://wdd.js.org/posts/</loc>
+    <lastmod>2026-01-06T19:00:15+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/sip/</loc>
+    <lastmod>2026-01-06T19:00:15+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/</loc>
+    <lastmod>2026-01-06T19:00:15+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/voip/</loc>
+    <lastmod>2026-01-06T19:00:15+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/2026/the-voip-world-has-suffered-from-vos-for-too-long/</loc>
+    <lastmod>2026-01-06T19:00:15+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/%E5%B7%A5%E7%A8%8B%E5%B8%88%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2026-01-06T19:00:15+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/</loc>
     <lastmod>2026-01-06T19:00:15+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/categories/all/</loc>
-    <lastmod>2025-10-20T22:37:17+08:00</lastmod>
-  </url><url>
     <loc>https://wdd.js.org/tags/all/</loc>
-    <lastmod>2025-10-20T22:37:17+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/categories/</loc>
     <lastmod>2025-10-20T22:37:17+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/nom/ch1/</loc>
     <lastmod>2025-10-20T22:37:17+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/nom/</loc>
-    <lastmod>2025-10-20T22:37:17+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/</loc>
     <lastmod>2025-10-20T22:37:17+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2025/sipwise-c5-arch/</loc>
@@ -64,9 +76,6 @@
   </url><url>
     <loc>https://wdd.js.org/tags/%E5%BD%95%E9%9F%B3/</loc>
     <lastmod>2025-07-15T19:26:06+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/sip/</loc>
-    <lastmod>2025-07-14T23:13:23+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/sip%E5%AE%89%E5%85%A8/</loc>
     <lastmod>2025-07-14T23:13:23+08:00</lastmod>
