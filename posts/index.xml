@@ -29,8 +29,8 @@
 &lt;ul&gt;
 &lt;li&gt;SIP 行为异于 RFC，而曰“产品设计如此”&lt;/li&gt;
 &lt;li&gt;性能瓶颈不可测，而曰“经验上差不多”&lt;/li&gt;
-&lt;li&gt;复杂需求难以实现，而曰“VOS 不支持”,&lt;/li&gt;
-&lt;li&gt;简单需求可实现，但“得加钱”&lt;/li&gt;
+&lt;li&gt;复杂需求难以实现，而曰“VOS 不支持”&lt;/li&gt;
+&lt;li&gt;简单需求可实现，而曰“得加钱”&lt;/li&gt;
 &lt;li&gt;故障定位止于日志，而曰“已提交工单”&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;久而久之，
