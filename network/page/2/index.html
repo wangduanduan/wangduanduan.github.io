@@ -25,7 +25,7 @@ typedef struct pcap_hdr_s { guint32 magic_number; /* magic number */ guint16 ver
 TIME_WAIT连接太多 服务端太多的TIME_WAIT连接，则说明连接是服务端主动去关闭的。查看了响应头，内容也是Connection: Close。
 我们知道，一般情况下TIME_WAIT状态的链接至少会持续60秒。也就是说该连接占用的内存至少在60秒内不会释放。
 当连接太多时，就有可能产生out of memory的问题，而操作系统就会很有可能把这个进程给kill掉，进而导致服务不可用。</p></div><footer class=entry-footer><span title='2020-01-15 20:23:45 +0800 CST'>2020-01-15 20:23:45</span>&nbsp;·&nbsp;<span>1 min</span>&nbsp;·&nbsp;<span>Eddie Wang</span></footer><a class=entry-link aria-label="post link to TIME_WAIT与持久连接" href=https://wdd.js.org/network/sq4l53/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://wdd.js.org/network/>«&nbsp;Prev&nbsp;
-</a><a class=next href=https://wdd.js.org/network/page/3/>Next&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><span>&copy; 2025 <a href=https://wdd.js.org/>洞香春</a></span> ·
+</a><a class=next href=https://wdd.js.org/network/page/3/>Next&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><span>&copy; 2026 <a href=https://wdd.js.org/>洞香春</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
 <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>

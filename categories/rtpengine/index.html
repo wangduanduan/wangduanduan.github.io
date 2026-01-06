@@ -5,7 +5,7 @@
 因此录制成 PCAP 文件，可以节省资源，后期 pcap 转语音也能比较容易的实现。
 实现步骤 配置rtpengine启动参数 --pcaps-dir=/var/log/records --record-method=pcap --recording-format=eht 在opensips在做SDP Offer rtpengine_offer("record-call=yes"); 录音文件位置 录音文件在/var/log/records目录下，文件名是呼叫的sip Call-ID-16hex随机数.pcap
 call1-1234567890abcdef.pcap call2-1234567890abcdef.pcap 录音文件内容 录音文件用wireshark分析，可以听到主被叫双方的声音。
-其他 除了录音文件，一些录音的元数据，例如SDP之类的信息，会被记录到录音的目录下。</p></div><footer class=entry-footer><span title='2025-07-15 19:26:06 +0800 CST'>2025-07-15 19:26:06</span>&nbsp;·&nbsp;<span>1 min</span>&nbsp;·&nbsp;<span>Eddie Wang</span></footer><a class=entry-link aria-label="post link to RTPEngine 录制 PCAP 文件" href=https://wdd.js.org/posts/2025/rtpengine-record-pcap/></a></article></main><footer class=footer><span>&copy; 2025 <a href=https://wdd.js.org/>洞香春</a></span> ·
+其他 除了录音文件，一些录音的元数据，例如SDP之类的信息，会被记录到录音的目录下。</p></div><footer class=entry-footer><span title='2025-07-15 19:26:06 +0800 CST'>2025-07-15 19:26:06</span>&nbsp;·&nbsp;<span>1 min</span>&nbsp;·&nbsp;<span>Eddie Wang</span></footer><a class=entry-link aria-label="post link to RTPEngine 录制 PCAP 文件" href=https://wdd.js.org/posts/2025/rtpengine-record-pcap/></a></article></main><footer class=footer><span>&copy; 2026 <a href=https://wdd.js.org/>洞香春</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
 <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>

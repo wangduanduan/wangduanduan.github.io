@@ -7,7 +7,7 @@ sequenceDiagram autonumber participant u1 as user1 participant o as opensips par
 分机到opensips的tcp连接断开 contact使用错误的transport参数 从过观察第2个信令的Conact头，发现transport=ws, User-Agent=JSSip。 正常情况下，jssip应该使用wss作为transport。
 所以解决办法是，在jssip的配置中，将transport改为wss。
 还有一个解决方案， 就是让jssip通过nginx转发wss请求，让nginx转发到opensips的ws端口, 也能解决问题。
-sequenceDiagram autonumber jssip ->> nginx: wss nginx ->> opensips: ws</p></div><footer class=entry-footer><span title='2025-07-15 20:00:08 +0800 CST'>2025-07-15 20:00:08</span>&nbsp;·&nbsp;<span>1 min</span>&nbsp;·&nbsp;<span>Eddie Wang</span></footer><a class=entry-link aria-label="post link to 【案例分享】JSSIP 电话无法挂断问题" href=https://wdd.js.org/posts/2025/jssip-can-not-drop-call/></a></article></main><footer class=footer><span>&copy; 2025 <a href=https://wdd.js.org/>洞香春</a></span> ·
+sequenceDiagram autonumber jssip ->> nginx: wss nginx ->> opensips: ws</p></div><footer class=entry-footer><span title='2025-07-15 20:00:08 +0800 CST'>2025-07-15 20:00:08</span>&nbsp;·&nbsp;<span>1 min</span>&nbsp;·&nbsp;<span>Eddie Wang</span></footer><a class=entry-link aria-label="post link to 【案例分享】JSSIP 电话无法挂断问题" href=https://wdd.js.org/posts/2025/jssip-can-not-drop-call/></a></article></main><footer class=footer><span>&copy; 2026 <a href=https://wdd.js.org/>洞香春</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
 <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
