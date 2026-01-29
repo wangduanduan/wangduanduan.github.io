@@ -6,8 +6,31 @@
     <description>Recent content in Posts on 洞香春</description>
     <generator>Hugo -- 0.151.0</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 06 Jan 2026 19:00:15 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 29 Jan 2026 13:12:36 +0800</lastBuildDate>
     <atom:link href="https://wdd.js.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ACK消息的URI来自哪里？</title>
+      <link>https://wdd.js.org/posts/2026/how-ack-set-request-url/</link>
+      <pubDate>Thu, 29 Jan 2026 13:12:36 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2026/how-ack-set-request-url/</guid>
+      <description>&lt;h1 id=&#34;简介&#34;&gt;简介&lt;/h1&gt;
+&lt;p&gt;这里我们把ACK的场景限定到INVITE收到200响应之后，UAC构造ACK消息的URI来自哪里？&lt;/p&gt;
+&lt;p&gt;这里的时序图为&lt;/p&gt;
+&lt;pre class=&#34;mermaid&#34;&gt;sequenceDiagram
+    uac -&amp;gt;&amp;gt; uas: INVITE
+    uas -&amp;gt;&amp;gt; uac: 200
+    uac -&amp;gt;&amp;gt; uas: ACK
+&lt;/pre&gt;
+&lt;p&gt;我们要把这个问题讲清楚，不要臆造，并且必须提供RFC3261的原文作为参考。&lt;/p&gt;
+&lt;h1 id=&#34;rfc3261解读&#34;&gt;RFC3261解读&lt;/h1&gt;
+&lt;p&gt;📌 13.2.2.4&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The UAC core MUST generate an ACK request for each 2xx received from the transaction layer&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;✏️ 这里说明，在UAC收到INVITE 200 OK后，必须回复ACK消息。&lt;/p&gt;
+&lt;p&gt;📌 12.2.1.1 Generating the Request&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The UAC uses the remote target and route set to build the Request-URI and Route header field of the request. If the route set is empty, the UAC MUST place the remote target URI into the Request-URI. The UAC MUST NOT add a Route header field to the request. If the route set is not empty, and the first URI in the route set contains the lr parameter (see Section 19.1.1), the UAC MUST place the remote target URI into the Request-URI and MUST include a Route header field containing the route set values in order, including all parameters.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>天下苦 VOS 久矣</title>
       <link>https://wdd.js.org/posts/2026/the-voip-world-has-suffered-from-vos-for-too-long/</link>
