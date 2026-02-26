@@ -5,7 +5,7 @@ draft: false
 ---
 
 # 1. 概念理解
-- 务必要能理解SIP的重要概念，特别是事务、Dialog。参考https://www.yuque.com/wangdd/opensips/fx5pyy
+- 务必要能理解SIP的重要概念，特别是事务、Dialog。参考 [SIP协议简介](https://wdd.js.org/opensips/ch1/sip-overview/)
 - 概念是非常重要的东西，不理解概念，越学就会越吃力
 
 # 2. 时序图
