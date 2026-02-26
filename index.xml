@@ -4852,7 +4852,7 @@ register自不必说，invite和bye是需要认证的。&lt;/p&gt;
       <guid>https://wdd.js.org/opensips/ch1/study-tips/</guid>
       <description>&lt;h1 id=&#34;1-概念理解&#34;&gt;1. 概念理解&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;务必要能理解SIP的重要概念，特别是事务、Dialog。参考https://www.yuque.com/wangdd/opensips/fx5pyy&lt;/li&gt;
+&lt;li&gt;务必要能理解SIP的重要概念，特别是事务、Dialog。参考 &lt;a href=&#34;https://wdd.js.org/opensips/ch1/sip-overview/&#34;&gt;SIP协议简介&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;概念是非常重要的东西，不理解概念，越学就会越吃力&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;2-时序图&#34;&gt;2. 时序图&lt;/h1&gt;
