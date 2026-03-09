@@ -6,8 +6,73 @@
     <description>Recent content on 洞香春</description>
     <generator>Hugo -- 0.151.0</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 29 Jan 2026 13:12:36 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 09 Mar 2026 18:26:07 +0800</lastBuildDate>
     <atom:link href="https://wdd.js.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>图解VoIP#1: 你什么时候需要OpenSIPS或kamailio - 软交换架构演进</title>
+      <link>https://wdd.js.org/posts/2026/when-you-need-opensips-or-kamailio/</link>
+      <pubDate>Mon, 09 Mar 2026 18:26:07 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2026/when-you-need-opensips-or-kamailio/</guid>
+      <description>&lt;h1 id=&#34;最简单的架构---1架构&#34;&gt;最简单的架构 - 1架构&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1架构: 1台FS节点&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;在一个最简单的VoIP架构里，你只需要部署一台具有公网IP的FreeSWITCH,  就可以开始呼叫业务。&lt;/p&gt;
+&lt;p&gt;分机直接注册到FS上，然后FS直接对接线路。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2026/when-you-need-opensips-or-kamailio/p1.drawio.svg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;但是要不了多久，你就会发现下面的问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;安全问题&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;FS直接公网暴露，必然面临被攻击的事实。因为对接线路虽然可以设置网络策略，但是分机的IP往往是动态变化的。小型的攻击例如恶意的注册扫描，大型的攻击就是DDOS, 直接打满带宽，导致业务必然中断。&lt;/li&gt;
+&lt;li&gt;一些简单的安全防范，比如默认端口改成非5060的端口，但是使用现代化的端口扫描工具，6W个端口基本上几秒就能扫描完。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;高可用问题&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;单台FS挂掉，业务就中断了&lt;/li&gt;
+&lt;li&gt;停机维护， 业务也会中断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;扩展问题&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当业务上量，一台FS就无法满足，必然要增加新的FS节点。&lt;/li&gt;
+&lt;li&gt;这时候问题就来了
+&lt;ul&gt;
+&lt;li&gt;分机信息保存在FS节点中，多FS节点分机注册信息如何同步？&lt;/li&gt;
+&lt;li&gt;在呼入的时候，是否要通知SIP-线路去增加新的FS节点信息？ 网络策略是不是又要开一遍？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;支持fs动态扩展架构--2n架构&#34;&gt;支持FS动态扩展架构  2+N架构&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2+N架构: 2台SIP Proxy，N台FS节点&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2026/when-you-need-opensips-or-kamailio/p2.drawio.svg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这种架构特点&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;SIP Proxy层具有公网IP，无论分机注册，还是对接线路，SIP信令都需要经过SIP Proxy层&lt;/li&gt;
+&lt;li&gt;分机注册信息也保存在SIP Proxy层，FS不再关心分机的注册地址&lt;/li&gt;
+&lt;li&gt;SIP Proxy层可以用keep-alive保活，一主一备部署&lt;/li&gt;
+&lt;li&gt;FS可以无感扩容，由Proxy层来做负载均衡。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在这个架构图里，我没有引入rtpproxy或者rtpengine的，这时候媒体流的走向就比较尴尬。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;每台FS还必须要要有公网地址&lt;/strong&gt;， 只有这样分机才能直接对接FS。 而原因也很简单，因为opensips或者kamailio没有媒体处理能力。&lt;/p&gt;
+&lt;p&gt;这种架构还是无法节约EIP, FS还是可能遭受到公网攻击。&lt;/p&gt;
+&lt;h1 id=&#34;2nn架构&#34;&gt;2+N+N架构&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;2+N+N架构: 2台SIP Proxy，N台MediaPrxyo节点, N台FS节点&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;为了彻底让FS不再供网暴露，我们引入媒体代理层。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2026/when-you-need-opensips-or-kamailio/p3.drawio.svg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这次基于架构2， 引入媒体代理集群，例如使用多台rtpengine机群，用来转发UAC &amp;lt;&amp;gt; FS &amp;lt;&amp;gt; 线路 之间的媒体流&lt;/p&gt;
+&lt;h1 id=&#34;三明治架构&#34;&gt;三明治架构&lt;/h1&gt;
+&lt;p&gt;可以参考 SIPSwse C5架构 &lt;a href=&#34;https://wdd.js.org/posts/2025/sipwise-c5-arch/&#34;&gt;https://wdd.js.org/posts/2025/sipwise-c5-arch/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2026/when-you-need-opensips-or-kamailio/p4.drawio.svg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这种架构在媒体层和SIP Proxy层之间又增加一层，我称之为SIP Router层。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>ACK消息的URI来自哪里？</title>
       <link>https://wdd.js.org/posts/2026/how-ack-set-request-url/</link>

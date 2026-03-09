@@ -2,29 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://wdd.js.org/posts/2026/how-ack-set-request-url/</loc>
-    <lastmod>2026-01-29T13:12:36+08:00</lastmod>
-  </url><url>
     <loc>https://wdd.js.org/categories/all/</loc>
-    <lastmod>2026-01-29T13:12:36+08:00</lastmod>
+    <lastmod>2026-03-09T18:26:07+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/categories/</loc>
-    <lastmod>2026-01-29T13:12:36+08:00</lastmod>
+    <lastmod>2026-03-09T18:26:07+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/kamailio/</loc>
+    <lastmod>2026-03-09T18:26:07+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/opensips/</loc>
+    <lastmod>2026-03-09T18:26:07+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/</loc>
+    <lastmod>2026-03-09T18:26:07+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/</loc>
+    <lastmod>2026-03-09T18:26:07+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/tags/voip/</loc>
+    <lastmod>2026-03-09T18:26:07+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/2026/when-you-need-opensips-or-kamailio/</loc>
+    <lastmod>2026-03-09T18:26:07+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/</loc>
+    <lastmod>2026-03-09T18:26:07+08:00</lastmod>
+  </url><url>
+    <loc>https://wdd.js.org/posts/2026/how-ack-set-request-url/</loc>
     <lastmod>2026-01-29T13:12:36+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/sip/</loc>
     <lastmod>2026-01-29T13:12:36+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/</loc>
-    <lastmod>2026-01-29T13:12:36+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/</loc>
-    <lastmod>2026-01-29T13:12:36+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/voip/</loc>
-    <lastmod>2026-01-06T19:00:15+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2026/the-voip-world-has-suffered-from-vos-for-too-long/</loc>
     <lastmod>2026-01-06T19:00:15+08:00</lastmod>
@@ -89,9 +98,6 @@
     <loc>https://wdd.js.org/tags/sip%E6%94%BB%E5%87%BB/</loc>
     <lastmod>2025-07-14T23:13:23+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/tags/opensips/</loc>
-    <lastmod>2025-07-14T21:52:23+08:00</lastmod>
-  </url><url>
     <loc>https://wdd.js.org/posts/2025/opensips-summit-2025/</loc>
     <lastmod>2025-07-14T21:52:23+08:00</lastmod>
   </url><url>
@@ -136,9 +142,6 @@
   </url><url>
     <loc>https://wdd.js.org/kamailio/devel-guide-note/</loc>
     <lastmod>2025-02-21T22:17:35+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/kamailio/</loc>
-    <lastmod>2025-02-17T22:57:11+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/kamailio/homer-hep/</loc>
     <lastmod>2025-02-17T22:57:11+08:00</lastmod>
