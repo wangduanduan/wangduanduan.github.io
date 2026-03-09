@@ -85,6 +85,8 @@ params:
   socialIcons:
     - name: github
       url: "https://github.com/wangduanduan"
+    - name: discord
+      url: "https://github.com/wangduanduan"
     - name: email
       url: "mailto://1779706607@qq.com"
     - name: RSS
