@@ -124,18 +124,18 @@ menu:
       name: "FreeSWITCH"
       url: /freeswitch/
       weight: 3
-    - identifier: id_books
-      name: "读书"
-      url: /books/
-      weight: 8
-    - identifier: id_vim
-      name: "VIM"
-      url: /vim/
-      weight: 10
-    - identifier: id_fe
-      name: "前端"
-      url: /fe/
-      weight: 10
+    # - identifier: id_books
+    #   name: "读书"
+    #   url: /books/
+    #   weight: 8
+    # - identifier: id_vim
+    #   name: "VIM"
+    #   url: /vim/
+    #   weight: 10
+    # - identifier: id_fe
+    #   name: "前端"
+    #   url: /fe/
+      # weight: 10
     - identifier: id_kama
       name: "Kamailio"
       url: /kamailio/
