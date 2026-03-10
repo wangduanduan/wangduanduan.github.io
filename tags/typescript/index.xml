@@ -108,25 +108,5 @@ To get started, run:
   bun run index.ts
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;使用bun运行index.ts&lt;/p&gt;</description>
     </item>
-    <item>
-      <title>VIM typescript 跳转到定义</title>
-      <link>https://wdd.js.org/vim/typescript-go-to-definition/</link>
-      <pubDate>Mon, 10 Jul 2023 09:30:46 +0800</pubDate>
-      <guid>https://wdd.js.org/vim/typescript-go-to-definition/</guid>
-      <description>&lt;p&gt;在VScode中，可以使用右键来跳转到typescript类型对应的定义，但是用vim的&lt;code&gt;gd&lt;/code&gt;命令却无法正常跳转。&lt;/p&gt;
-&lt;p&gt;因为无法正常跳转的这个问题，我差点放弃了vim。&lt;/p&gt;
-&lt;p&gt;然而我想别人应该也遇到类似的问题。&lt;/p&gt;
-&lt;p&gt;我的neovim本身使用的是coc插件，然后我就再次到看看官方文档，来确定最终有没有解决这个问题的方案。&lt;/p&gt;
-&lt;p&gt;功夫不负有心人。&lt;/p&gt;
-&lt;p&gt;我发现官方给的例子中，就包括了如何配置跳换的配置。&lt;/p&gt;
-&lt;p&gt;首先说明一下，我本身就安装了&lt;code&gt;coc-json coc-tsserver&lt;/code&gt;这两个插件，所以只需要将如下的配置写入init.vim&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;#34; GoTo code navigation
-nmap &amp;lt;silent&amp;gt; gd &amp;lt;Plug&amp;gt;(coc-definition)
-nmap &amp;lt;silent&amp;gt; gy &amp;lt;Plug&amp;gt;(coc-type-definition)
-nmap &amp;lt;silent&amp;gt; gi &amp;lt;Plug&amp;gt;(coc-implementation)
-nmap &amp;lt;silent&amp;gt; gr &amp;lt;Plug&amp;gt;(coc-references)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这样的话，在普通模式，按&lt;code&gt;gy&lt;/code&gt;这个快捷键，就能跳转到对应的类型定义，包括某个npm包的里面的类型定义，非常好用。&lt;/p&gt;
-&lt;p&gt;亲测有效。&lt;/p&gt;</description>
-    </item>
   </channel>
 </rss>

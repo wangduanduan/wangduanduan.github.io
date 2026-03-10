@@ -57,15 +57,5 @@
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180211141443_fV3amH_Screenshot.jpeg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180322150920_oVhst9_Jietu20180322-150855.jpeg&#34;&gt;&lt;/p&gt;</description>
     </item>
-    <item>
-      <title>win7 ie11 开发者工具打开后一片空白</title>
-      <link>https://wdd.js.org/posts/2018/01/ie11-without-devtool/</link>
-      <pubDate>Mon, 29 Jan 2018 21:43:12 +0800</pubDate>
-      <guid>https://wdd.js.org/posts/2018/01/ie11-without-devtool/</guid>
-      <description>&lt;p&gt;解决方法安装Windows7补丁：KB3008923；
-下载地址：
-&lt;a href=&#34;http://www.microsoft.com/en-us/download/details.aspx?id=45134&#34;&gt;http://www.microsoft.com/en-us/download/details.aspx?id=45134&lt;/a&gt; （32位）
-&lt;a href=&#34;http://www.microsoft.com/zh-CN/download/details.aspx?id=45154&#34;&gt;http://www.microsoft.com/zh-CN/download/details.aspx?id=45154&lt;/a&gt; （64位）&lt;/p&gt;</description>
-    </item>
   </channel>
 </rss>

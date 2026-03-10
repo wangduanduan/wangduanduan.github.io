@@ -80,54 +80,6 @@ dos2unix file
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果是vscode，也可以点击对应的文件格式按钮。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>清除所有GIT历史记录</title>
-      <link>https://wdd.js.org/git/clean-all-history/</link>
-      <pubDate>Thu, 01 Dec 2022 09:49:29 +0800</pubDate>
-      <guid>https://wdd.js.org/git/clean-all-history/</guid>
-      <description>&lt;p&gt;有些时候，git 仓库累积了太多无用的历史更改，导致 clone 文件过大。如果确定历史更改没有意义，可以采用下述方法清空历史，&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;先 clone 项目到本地目录 (以名为 mylearning 的仓库为例)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git clone git@gitee.com:badboycoming/mylearning.git
-&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;2&#34;&gt;
-&lt;li&gt;进入 mylearning 仓库，拉一个分支，比如名为 latest_branch&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git checkout --orphan latest_branch
-&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;3&#34;&gt;
-&lt;li&gt;添加所有文件到上述分支 (Optional)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt; git add -A
-&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;4&#34;&gt;
-&lt;li&gt;提交一次&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt; git commit -am &amp;#34;Initial commit.&amp;#34;
-&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;5&#34;&gt;
-&lt;li&gt;删除 master 分支&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git branch -D master
-&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;6&#34;&gt;
-&lt;li&gt;更改当前分支为 master 分支&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git branch -m master
-&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;7&#34;&gt;
-&lt;li&gt;将本地所有更改 push 到远程仓库&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git push -f origin master
-&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;8&#34;&gt;
-&lt;li&gt;关联本地 master 到远程 master&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git branch --set-upstream-to=origin/master
-&lt;/code&gt;&lt;/pre&gt;</description>
-    </item>
-    <item>
-      <title>GIT 重新设置远程url</title>
-      <link>https://wdd.js.org/git/remote-url/</link>
-      <pubDate>Thu, 01 Dec 2022 09:46:13 +0800</pubDate>
-      <guid>https://wdd.js.org/git/remote-url/</guid>
-      <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git remote set-url origin repo-url
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-    </item>
-    <item>
       <title>Shell 教程技巧</title>
       <link>https://wdd.js.org/posts/2022/05/shell-101/</link>
       <pubDate>Sat, 28 May 2022 12:39:50 +0800</pubDate>
@@ -145,55 +97,6 @@ dos2unix file
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# Uncommitted changes&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-    </item>
-    <item>
-      <title>git合并上游仓库即同步fork后的仓库</title>
-      <link>https://wdd.js.org/posts/2018/01/fork-sync-learn/</link>
-      <pubDate>Wed, 31 Jan 2018 17:16:44 +0800</pubDate>
-      <guid>https://wdd.js.org/posts/2018/01/fork-sync-learn/</guid>
-      <description>&lt;h1 id=&#34;1-前提说明&#34;&gt;1. 前提说明&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;仓库A: &lt;a href=&#34;http://gitlab.tt.cc:30000/fe/omp.git&#34;&gt;http://gitlab.tt.cc:30000/fe/omp.git&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;仓库B: 仓库Bfork自仓库A, 仓库A的地址是：http://gitlab.tt.cc:30000/wangdd/omp.git&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;某一时刻，仓库A更新了。仓库B需要同步上游分支的更新。&lt;/p&gt;
-&lt;h1 id=&#34;2-本地操作&#34;&gt;2. 本地操作&lt;/h1&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// 1 查看远程分支
-➜  omp git:(master) git remote -v
-origin	http://gitlab.tt.cc:30000/wangdd/omp.git (fetch)
-origin	http://gitlab.tt.cc:30000/wangdd/omp.git (push)
-
-// 2 添加一个远程同步的上游仓库
-➜  omp git:(master) git remote add upstream http://gitlab.tt.cc:30000/fe/omp.git
-➜  omp git:(master) git remote -v
-origin	http://gitlab.tt.cc:30000/wangdd/omp.git (fetch)
-origin	http://gitlab.tt.cc:30000/wangdd/omp.git (push)
-upstream	http://gitlab.tt.cc:30000/fe/omp.git (fetch)
-upstream	http://gitlab.tt.cc:30000/fe/omp.git (push)
-
-// 3 拉去上游分支到本地，并且会被存储在一个新分支upstream/master
-➜  omp git:(master) git fetch upstream
-remote: Counting objects: 4, done.
-remote: Compressing objects: 100% (4/4), done.
-remote: Total 4 (delta 2), reused 0 (delta 0)
-Unpacking objects: 100% (4/4), done.
-From http://gitlab.tt.cc:30000/fe/omp
- * [new branch]      master     -&amp;gt; upstream/master
-
-// 4 将upstream/master分支合并到master分支，由于我已经在master分支，此处就不在切换到master分支
-➜  omp git:(master) git merge upstream/master
-Updating 29c098c..6413803
-Fast-forward
- README.md | 1 +
- 1 file changed, 1 insertion(+)
-
-// 5 查看一下，此次合并，本地有哪些更新
-➜  omp git:(master) git log -p
-
-// 6 然后将更新推送到仓库B
-➜  omp git:(master) git push
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;3-总结&#34;&gt;3. 总结&lt;/h1&gt;
-&lt;p&gt;通过上述操作，仓库B就同步了仓库A的代码。整体的逻辑就是将&lt;code&gt;上游分支拉去到本地，然后合并到本地分支上&lt;/code&gt;。就这么简单。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

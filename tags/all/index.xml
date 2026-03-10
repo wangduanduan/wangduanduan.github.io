@@ -6,117 +6,8 @@
     <description>Recent content in All on 洞香春</description>
     <generator>Hugo -- 0.151.0</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 20 Oct 2025 22:37:17 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 16 Oct 2025 17:39:50 +0800</lastBuildDate>
     <atom:link href="https://wdd.js.org/tags/all/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>nom 学习笔记 Ch1</title>
-      <link>https://wdd.js.org/nom/ch1/</link>
-      <pubDate>Mon, 20 Oct 2025 22:37:17 +0800</pubDate>
-      <guid>https://wdd.js.org/nom/ch1/</guid>
-      <description>&lt;h1 id=&#34;环境说明&#34;&gt;环境说明&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;rust版本 1.87.0&lt;/li&gt;
-&lt;li&gt;cargo版本 1.87.0&lt;/li&gt;
-&lt;li&gt;nom版本 8.0.0&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;解析逻辑&#34;&gt;解析逻辑&lt;/h1&gt;
-&lt;ol&gt;
-&lt;li&gt;输入一个字符串&lt;/li&gt;
-&lt;li&gt;创建一个解析器&lt;/li&gt;
-&lt;li&gt;解析器调用parse方法&lt;/li&gt;
-&lt;li&gt;如果解析成功，返回结果，结果包含两部分内容，前者是没有匹配的内容，后者是匹配到的内容&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/nom/ch1/arch.drawio.png&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;举例&#34;&gt;举例&lt;/h1&gt;
-&lt;h2 id=&#34;例1-空解析&#34;&gt;例1 空解析&lt;/h2&gt;
-&lt;p&gt;这个例子描述了如何使用nom解析一个字符串。
-输入是候输入字符串为my_input，匹配到的内容是空字符串，没有匹配到的是my_input。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;use&lt;/span&gt; nom::IResult;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;use&lt;/span&gt; std::error::Error;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;pub&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;do_nothing_parser&lt;/span&gt;(input: &lt;span style=&#34;color:#66d9ef&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;str&lt;/span&gt;) -&amp;gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;IResult&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;str&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;str&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Ok((input, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;))
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() -&amp;gt; Result&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;(), Box&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;dyn&lt;/span&gt; Error&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; (remaining_input, output) &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; do_nothing_parser(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;my_input&amp;#34;&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;?&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;assert_eq!&lt;/span&gt;(remaining_input, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;my_input&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;assert_eq!&lt;/span&gt;(output, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Ok(())
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;例2-字符串匹配&#34;&gt;例2 字符串匹配&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;pub&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;use&lt;/span&gt; nom::bytes::complete::tag;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;pub&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;use&lt;/span&gt; nom::IResult;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;use&lt;/span&gt; std::error::Error;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;parse_input&lt;/span&gt;(input: &lt;span style=&#34;color:#66d9ef&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;str&lt;/span&gt;) -&amp;gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;IResult&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;str&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;str&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// tag 函数的返回结果也是一个函数
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    tag(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Call-ID:&amp;#34;&lt;/span&gt;)(input)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() -&amp;gt; Result&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;(), Box&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;dyn&lt;/span&gt; Error&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; (leftover_input, output) &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; parse_input(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Call-ID: helloWorld&amp;#34;&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;?&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;assert_eq!&lt;/span&gt;(leftover_input, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34; helloWorld&amp;#34;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// tag 函数匹配成功后返回剩余的输入
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;assert_eq!&lt;/span&gt;(output, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Call-ID:&amp;#34;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// tag 函数匹配成功返回匹配的内容
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;assert!&lt;/span&gt;(parse_input(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;defWorld&amp;#34;&lt;/span&gt;).is_err());
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  Ok(())
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;例3-预定义匹配类型&#34;&gt;例3 预定义匹配类型&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;alpha0&lt;/strong&gt;: 识别0个或者多个大小写字符: /[a-zA-Z]/.
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;alpha1&lt;/strong&gt;: 和前者相同，并且至少返回一个字符&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;alphanumeric0&lt;/strong&gt;: 识别0个或者多个大小写字符和数字: /[0-9a-zA-Z]/.
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;alphanumeric1&lt;/strong&gt; 和前者相同，并且至少返回一个字符&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;digit0&lt;/strong&gt;:识别0个或者多个数字: /[0-9]/.
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;digit1&lt;/strong&gt; 和前者相同，并且至少返回一数字&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;multispace0&lt;/strong&gt;: 识别0个或者多个空格, 制表, 会车和换行符
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;multispace1&lt;/strong&gt; 和前者相同，并且至少返回一数字&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;space0&lt;/strong&gt;: 识别0个或者多个空格和制表符.
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;space1&lt;/strong&gt; 和前者相同，并且至少返回一数字&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;line_ending&lt;/strong&gt;: 识别行尾 (&lt;code&gt;\n&lt;/code&gt; and &lt;code&gt;\r\n&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;newline&lt;/strong&gt;: 匹配换行符 &lt;code&gt;\n&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;tab&lt;/strong&gt;: 匹配制表符 &lt;code&gt;\t&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;use&lt;/span&gt; nom::character::complete::alpha0;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;pub&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;use&lt;/span&gt; nom::IResult;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;use&lt;/span&gt; std::error::Error;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;parse_input&lt;/span&gt;(input: &lt;span style=&#34;color:#66d9ef&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;str&lt;/span&gt;) -&amp;gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;IResult&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;str&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;str&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// tag 函数的返回结果也是一个函数
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    alpha0(input)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() -&amp;gt; Result&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;(), Box&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;dyn&lt;/span&gt; Error&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; (leftover_input, output) &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; parse_input(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Call-ID: helloWorld&amp;#34;&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;?&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;assert_eq!&lt;/span&gt;(leftover_input, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;-ID: helloWorld&amp;#34;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// tag 函数匹配成功后返回剩余的输入
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;assert_eq!&lt;/span&gt;(output, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Call&amp;#34;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// tag 函数匹配成功返回匹配的内容
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;assert!&lt;/span&gt;(parse_input(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;defWorld&amp;#34;&lt;/span&gt;).is_ok());
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  Ok(())
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;参考&#34;&gt;参考&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tfpk.github.io/nominomicon/chapter_2.html&#34;&gt;https://tfpk.github.io/nominomicon/chapter_2.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
-    </item>
     <item>
       <title>SipWise C5 架构分析 WIP</title>
       <link>https://wdd.js.org/posts/2025/sipwise-c5-arch/</link>
@@ -1084,13 +975,6 @@ sip:192.168.40.17:5060;status=active
 &lt;/ul&gt;</description>
     </item>
     <item>
-      <title>TypeSctipt类型实战</title>
-      <link>https://wdd.js.org/fe/ts-type-action/</link>
-      <pubDate>Fri, 22 Nov 2024 13:04:35 +0800</pubDate>
-      <guid>https://wdd.js.org/fe/ts-type-action/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>第二份工作的辞职总结</title>
       <link>https://wdd.js.org/posts/2024/leave-the-second-job/</link>
       <pubDate>Tue, 10 Sep 2024 21:08:51 +0800</pubDate>
@@ -1120,30 +1004,6 @@ sip:192.168.40.17:5060;status=active
 &lt;li&gt;深入学习了python, 主要用来做数据分析。数据分析方面的协议栈主要有pandas、duckdb、doris(MySQL)、grafana来组成&lt;/li&gt;
 &lt;li&gt;深入学习了python的GUI开发，主要用到的框架是wxPython，开发的两个工具分别给到运维人员和客服去使用，来提高运行效率&lt;/li&gt;
 &lt;/ul&gt;</description>
-    </item>
-    <item>
-      <title>算法 - 入侵脑细胞</title>
-      <link>https://wdd.js.org/posts/2023/the-cell/</link>
-      <pubDate>Tue, 21 Nov 2023 20:35:02 +0800</pubDate>
-      <guid>https://wdd.js.org/posts/2023/the-cell/</guid>
-      <description>&lt;p&gt;我以前看过一部电影，叫做&lt;a href=&#34;https://movie.douban.com/subject/1293171/&#34;&gt;《入侵脑细胞》&lt;/a&gt;，这部电影提供一种可能性。类似的电影还有《盗梦空间》，都是将一种思想植入别人的思想中。&lt;/p&gt;
-&lt;p&gt;这两部电影虽然提供了可能性，但是却无法提供实际可操作的方案。&lt;/p&gt;
-&lt;p&gt;最近在阅读的一本书也于此有关，叫做&lt;a href=&#34;https://book.douban.com/subject/35264809/&#34;&gt;《对不起，我操控了你的大脑》&lt;/a&gt;，是一个叫做剑桥分析、曾轰动世界的公司，利用基于大数据、算法、人工智能、心理学来做思想植入的。常见的领域如操纵大选，并且提供成功的案例。&lt;/p&gt;
-&lt;p&gt;但是作为普通人，大规模的思想植入似乎里我们还是比较遥远。&lt;/p&gt;
-&lt;p&gt;但是真的那么遥远吗？&lt;/p&gt;
-&lt;p&gt;昨天我爸来看我，之前他总是抱怨手机流量不够用。我给他换了每个月180G的流量卡，才过没两三天，他说已经用了20多G了。按照这个速度，180G的流量也不够用一个月。&lt;/p&gt;
-&lt;p&gt;我问：“你怎么会用那么多流量！，你用手机看视频的吗？”&lt;/p&gt;
-&lt;p&gt;爸说：“我经常刷抖音，刷好久，刷的眼疼”&lt;/p&gt;
-&lt;p&gt;我说：“你还是少刷点手机吧”，虽然这只是苍白无力的 一句关心。&lt;/p&gt;
-&lt;p&gt;我爸生于70年代，没怎么读过书，小学文凭。现在年近五十，经常带着鸭舌帽，依然遮不住后脑勺斑白的头发。虽然他经常用手机，但是很多东西依然搞不明白，需要找身边的年轻人来帮忙设置手机。&lt;/p&gt;
-&lt;p&gt;一个50多岁的人，人生过了大半。面对现在飞速发展的社会，很多东西都已经无法适应。对于他自己来说，也基本上无法改变自己。从第七次人口普查的数据中可以看出，在2020年60+的人口已经占比接近14亿人口的20%了，随着时间的推移，这个占比只会增大。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2023/the-cell/atta/2023-11-22-21-27-50.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;对于我爸这类的人，即使刷的眼睛疼，也无法控制自己，还是一直不停的刷。&lt;/p&gt;
-&lt;p&gt;由此可见，像这种大公司，制作的超级App有多可怕。能够一直持续的让大脑保持短期兴奋。这种超级App，背后都是心理学家、计算机学家、数据科学家等。 这些专家对待普通大众，就像哥伦布对待印第安人。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;因为我发现他们没有什么信仰，也没有任何崇拜的形象，人们又都很温和，他们无邪得不知道什么是邪恶，从不侵害别人，也不懂得偷窃，没有打斗，特别的温顺  《哥伦布日记》&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;或许几十年以后，大部分人的大脑已经退化，也不需要有思考能里。只需要机械的按照刺激-&amp;gt;反应去行动。&lt;/p&gt;
-&lt;p&gt;这种进化是一种潮流，绝大多数人都难以幸免。作为一个独立思考的人，我只能尽量避免被影响，远离社交网络。&lt;/p&gt;</description>
     </item>
     <item>
       <title>解决 VsCode pwsh终端环境变量不生效问题</title>
@@ -1222,62 +1082,6 @@ $env:ELECTRON_MIRROR=&amp;#34;https://npmmirror.com/mirrors/electron/&amp;#34;
 &lt;p&gt;当然，如果你从未使用过kindle系列的产品，国产的电纸书还是值得买的。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>没有免费的Obsidian</title>
-      <link>https://wdd.js.org/posts/2023/no-free-obsidian/</link>
-      <pubDate>Wed, 25 Oct 2023 16:39:10 +0800</pubDate>
-      <guid>https://wdd.js.org/posts/2023/no-free-obsidian/</guid>
-      <description>&lt;p&gt;我看过很多介绍obsidian的文章，除了外观漂亮，功能强大，最为着重前调的就是个人用户免费了。&lt;/p&gt;
-&lt;p&gt;对于个人用户，真的免费吗？ 还是说人家并不是免费，只是我们在白嫖罢了。&lt;/p&gt;
-&lt;p&gt;我们看看官网关于商业付费的详细解释：&lt;/p&gt;
-&lt;p&gt;Obsidian 对于个人是免费的。但是，对于那些拥有两名及以上员工的公司或组织，以商业目的使用 Obsidian 的话，则需要购买商用许可证。所谓商业目的，指的是任何与工作相关的活动，比如记录会议内容、项目笔记，或是创建组织 Wiki 等。与这些活动相关的笔记记录、文档管理、知识管理等都可以视为以商用目的使用 Obsidian。 &amp;ndash;参考商用许可证&lt;/p&gt;
-&lt;p&gt;所以，大部分人，包括我都是听话一半，只看前面，不看后面的但是。&lt;/p&gt;
-&lt;p&gt;对于大部分上班族来说，如果你再用obsidian，我不太相信你从来没有在obsidian里记录一些工作内容。&lt;/p&gt;
-&lt;p&gt;对我个人来说，虽然我的有几百条笔记和工作无关。但是也免不了有一些是和工作有关的的。比如对于某个线上问题的分析，比如记录了一些工作账号信息等等。&lt;/p&gt;
-&lt;p&gt;在关于商业付费的例子上，官方还举出了贴心的给出了栗子。&lt;/p&gt;
-&lt;p&gt;问题5：我使用 Obsidian 储存所有的知识，无论是个人的还是工作/专业相关的（因为太难区分），我需要购买商用许可证吗？&lt;/p&gt;
-&lt;p&gt;回答：如果你的笔记中有内容直接与公司项目相关，并且该公司拥有两名及以上员工，那么你需要购买商用许可证。&lt;/p&gt;
-&lt;p&gt;综上所述，即使是个人使用，免费的条件也是极为苛刻的。&lt;/p&gt;
-&lt;p&gt;你的笔记不能包含任何商业目的的信息
-你可以包含商业目的的信息，但前提是你的公司只有你一个人
-假如你是个用Obisian的上班族，我觉得极大的可能你并不符合免费用户的条件。&lt;/p&gt;
-&lt;p&gt;或者有一天，当你大学毕业了，进入工作环境，你如果还继续用之前的仓库，那你也不再符合免费用户的条件。&lt;/p&gt;
-&lt;p&gt;所以说，不要再逢人就说Obsidian是免费的了。&lt;/p&gt;
-&lt;p&gt;Obsidian并不免费，只是我们大部分人都在白嫖罢了。&lt;/p&gt;
-&lt;p&gt;我也并不是不愿意花钱，如果要付钱的话，我更想买typeora。&lt;/p&gt;
-&lt;p&gt;因为typeora是买断机制，一次性付费89元，终身包用，免费升级，最多可以再三台设备上使用&lt;/p&gt;
-&lt;p&gt;Obsidian是订阅机制，每年商业使用要50美元，也就是将近400人民币。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Go1.21发布</title>
-      <link>https://wdd.js.org/golang/go1.21/</link>
-      <pubDate>Thu, 10 Aug 2023 11:20:47 +0800</pubDate>
-      <guid>https://wdd.js.org/golang/go1.21/</guid>
-      <description>&lt;p&gt;golang每隔6个月发布一个新的次版本号升级。一般是是2月一个版本，8月一个版本&lt;/p&gt;
-&lt;h1 id=&#34;语言层面&#34;&gt;语言层面&lt;/h1&gt;
-&lt;h2 id=&#34;增加内置函数&#34;&gt;增加内置函数&lt;/h2&gt;
-&lt;h3 id=&#34;min-max&#34;&gt;min() max()&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;参考 &lt;a href=&#34;https://tip.golang.org/ref/spec#Min_and_max&#34;&gt;https://tip.golang.org/ref/spec#Min_and_max&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;The built-in functions min and max compute the smallest—or largest, respectively—value of a fixed number of arguments of ordered types. There must be at least one argument.&lt;/p&gt;
-&lt;p&gt;The same type rules as for operators apply: for ordered arguments x and y, min(x, y) is valid if x + y is valid, and the type of min(x, y) is the type of x + y (and similarly for max). If all arguments are constant, the result is constant.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>困在coc错误弹窗中</title>
-      <link>https://wdd.js.org/vim/stuck-in-error-msgfloat-window/</link>
-      <pubDate>Mon, 10 Jul 2023 12:27:47 +0800</pubDate>
-      <guid>https://wdd.js.org/vim/stuck-in-error-msgfloat-window/</guid>
-      <description>&lt;p&gt;请注意，VIM的光标现在位于错误弹窗上了。光标只能左右移动，无法上线移动。 我的光标被困在了错误提示框中。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/vim/stuck-in-error-msgfloat-window/atta/2023-07-10-12-30-20.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;因为错误提示只有一行，所以无法上下移动。&lt;/p&gt;
-&lt;p&gt;一直以来，我并没有把错误提示框也看成一个窗口，所以我可能多次按了ctrl + w w, 然后光标跳转到了错误提示框上。&lt;/p&gt;
-&lt;p&gt;正常的错误提示框，当光标不在关键词上时，错误弹窗会自动关闭的。 但是由于我已经进入了错误弹窗里面。 所以除非按窗口切换的快捷键，我会始终困在这个错误窗口中。&lt;/p&gt;
-&lt;p&gt;我觉得，VIM实在是太博大精深了。很多概念性的理解不到位，就会越到很多困难。 这些困难会给人造成极大的挫折感。&lt;/p&gt;
-&lt;p&gt;能解决困难，则学到东西。&lt;/p&gt;
-&lt;p&gt;否则就只能放弃VIM, 回到VScode的怀抱中。&lt;/p&gt;
-&lt;p&gt;但是，我已经习惯了不使用鼠标的快捷编辑方式。&lt;/p&gt;
-&lt;p&gt;我只能学会解决并适应VIM， 并且接受VIM的所有挑战。&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>JS运行时构建独立二进制程序比较</title>
       <link>https://wdd.js.org/posts/2023/js-runtime-build-executable/</link>
       <pubDate>Thu, 01 Jun 2023 13:48:00 +0800</pubDate>
@@ -1309,84 +1113,6 @@ bun构建指令: &lt;code&gt;bun build ./app.js --compile --outfile h2&lt;/code&
 &lt;li&gt;&lt;a href=&#34;https://deno.com/manual@v1.34.1/tools/compiler&#34;&gt;https://deno.com/manual@v1.34.1/tools/compiler&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://nodejs.org/api/single-executable-applications.html&#34;&gt;https://nodejs.org/api/single-executable-applications.html&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description>
-    </item>
-    <item>
-      <title>Build Docker Image With Libpcap</title>
-      <link>https://wdd.js.org/golang/build-docker-image-with-libpcap/</link>
-      <pubDate>Mon, 08 May 2023 11:45:23 +0800</pubDate>
-      <guid>https://wdd.js.org/golang/build-docker-image-with-libpcap/</guid>
-      <description>&lt;h1 id=&#34;常规构建&#34;&gt;常规构建&lt;/h1&gt;
-&lt;p&gt;一般情况下，我们的Dockerfile可能是下面这样的&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;这个Dockerfile使用了多步构建，使用golang:1.19.4作为构建容器，二进制文件构建成功后，单独把文件复制到alpine镜像。&lt;/li&gt;
-&lt;li&gt;这样做的好处是最后产出的镜像非常小，一般只有十几MB的样子，如果直接使用golang的镜像来构建，镜像体积就可能达到1G左右。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-Dockerfile&#34; data-lang=&#34;Dockerfile&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;golang:1.19.4&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;builder&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;ENV&lt;/span&gt; GO111MODULE&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;on GOPROXY&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;https://goproxy.cn,direct&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;WORKDIR&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;/app&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; . .&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; CGO_ENABLED&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; GOOS&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;linux GOARCH&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;amd64 go build -o run .&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;alpine:3.14.2&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;WORKDIR&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;/app&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; encdec run.sh /app/&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; --from&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;builder /app/run .&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;EXPOSE&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;3000&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;ENTRYPOINT&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/app/run&amp;#34;&lt;/span&gt;]&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;依赖libpcap的构建&#34;&gt;依赖libpcap的构建&lt;/h1&gt;
-&lt;p&gt;如果使用了程序使用了&lt;a href=&#34;https://pkg.go.dev/github.com/google/gopacket/pcap&#34;&gt;libpcap&lt;/a&gt; 来抓包，那么除了我们自己代码产生的二进制文件外，可能还会依赖libpcap的文件。常规打包就会报各种错误，例如文件找不到，缺少so文件等等。&lt;/p&gt;
-&lt;p&gt;libpcap是一个c库，并不是golang的代码，所以处理起来要不一样。&lt;/p&gt;
-&lt;p&gt;下面直接给出Dockerfile&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-Dockerfile&#34; data-lang=&#34;Dockerfile&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 构建的基础镜像换成了alpine镜像&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;golang:alpine&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;builder&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 将alpine镜像换清华源，这样后续依赖的安装会加快&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; sed -i &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;s/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g&amp;#39;&lt;/span&gt; /etc/apk/repositories&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 安装需要用到的C库，和构建依赖&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; apk --update add linux-headers musl-dev gcc libpcap-dev&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 使用国内的goproxy&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;ENV&lt;/span&gt; GO111MODULE&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;on GOPROXY&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;https://goproxy.cn,direct&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 设置工作目录&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;WORKDIR&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;/app&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 拷贝go相关的依赖&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; go.mod go.sum ./&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 下载go相关的依赖&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; go mod download&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 复制go代码&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; . .&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 编译go代码&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; CGO_ENABLED&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; GOOS&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;linux GOARCH&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;amd64 go build -a --ldflags &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;-linkmode external -extldflags &amp;#34;-static -s -w&amp;#34;&amp;#39;&lt;/span&gt; -o run main.go&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 使用最小的scratch镜像&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;scratch&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 设置工作目录&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;WORKDIR&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;/app&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 拷贝二进制文件&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; --from&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;builder /app/run .&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;EXPOSE&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;8086&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;ENTRYPOINT&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/app/run&amp;#34;&lt;/span&gt;]&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;整个Dockerfile比较好理解，重要的部分就是ldflags的参数了，下面着重讲解一下&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Edge浏览器双击标签栏 关闭标签页</title>
-      <link>https://wdd.js.org/posts/2022/12/double-click-close-tab/</link>
-      <pubDate>Wed, 07 Dec 2022 09:17:59 +0800</pubDate>
-      <guid>https://wdd.js.org/posts/2022/12/double-click-close-tab/</guid>
-      <description>&lt;p&gt;在设置里搜索&lt;strong&gt;双击&lt;/strong&gt;，如果有使用双击关闭浏览器选项卡， 则开启。&lt;/p&gt;
-&lt;p&gt;对于用鼠标关闭标签页来说，的确可以提高极大的效率。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/double-click-close-tab/2022-12-07-09-32-38.png&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>为什么我不再使用语雀</title>
@@ -1485,66 +1211,6 @@ bun构建指令: &lt;code&gt;bun build ./app.js --compile --outfile h2&lt;/code&
 &lt;li&gt;&lt;a href=&#34;OpenSIPS_2.0_Framework.pdf&#34;&gt;OpenSIPS_2.0_Framework.pdf&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;Norman_Brandinger-OpenSIPS_Summit_2014-Advanced_SIP_Routing_with_OpenSIPS_modules.pdf&#34;&gt;Norman_Brandinger-OpenSIPS_Summit_2014-Advanced_SIP_Routing_with_OpenSIPS_modules.pdf&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description>
-    </item>
-    <item>
-      <title>西安之旅 不仅有羊肉泡馍 也有长恨歌</title>
-      <link>https://wdd.js.org/posts/2022/12/xian-travel/</link>
-      <pubDate>Fri, 02 Dec 2022 20:38:46 +0800</pubDate>
-      <guid>https://wdd.js.org/posts/2022/12/xian-travel/</guid>
-      <description>&lt;p&gt;一年过半以后，偶然打开微信公众号，看到草稿箱里的篇文章。我才回想起去年带女友去西安的那个遥远的夏天。&lt;/p&gt;
-&lt;p&gt;如今女友已经变成老婆，这篇文章我才想起来发表。&lt;/p&gt;
-&lt;h1 id=&#34;day-1-钟楼-鼓楼-回民街&#34;&gt;day 1 钟楼 鼓楼 回民街&lt;/h1&gt;
-&lt;p&gt;那是六月末的时候，和女友一起坐火车去了趟西安。&lt;/p&gt;
-&lt;p&gt;为什么要去西安呢？据吃货女友说，西安有非常多的好吃的。所以人生是必须要去一趟的。&lt;/p&gt;
-&lt;p&gt;清晨，我们从南京南站出发坐动车，一路向西，坐了5个多小时，到达西安北站。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-41-29.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;路上我带了一个1500ml的水瓶，以及1500ml的酸奶。&lt;/p&gt;
-&lt;p&gt;女友吐槽说，还好没做飞机，不然我就像宝强一样，要在机场干完一大瓶酸奶了。&lt;/p&gt;
-&lt;p&gt;下了动车，立即前往钟楼订的宾馆，放置行李。&lt;/p&gt;
-&lt;p&gt;西安钟楼位于西安市中心，是中国现存钟楼中形制最大、保存最完整的一座。建于明太祖洪武十七年，初建于今广济街口，与鼓楼相对，明神宗万历十年整体迁移于今址。&lt;/p&gt;
-&lt;p&gt;沿着钟楼附近，我们逛了一圈回民街。&lt;/p&gt;
-&lt;p&gt;回民街是西安著名的美食文化街区，是西安小吃街区。&lt;/p&gt;
-&lt;p&gt;西安回民街作为西安风情的代表之一，是回民街区多条街道的统称，由北广济街、北院门、西羊市、大皮院、化觉巷、洒金桥等数条街道组成，在钟鼓楼后。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-42-22.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;钟楼&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-42-36.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-42-46.png&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;day-2-大唐芙蓉城-大唐不夜城-大雁塔&#34;&gt;day 2 大唐芙蓉城 大唐不夜城 大雁塔&lt;/h1&gt;
-&lt;p&gt;大唐芙蓉城是一座仿唐建筑，里面有许多景点，或许我们不应该早上来，因为上午太热了。&lt;/p&gt;
-&lt;p&gt;唯一庆幸的是，我们带了一个很大的水杯，而且芙蓉城里提供免费的开水，所以我们才没有被渴死。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-43-17.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;大唐芙蓉城 西游师徒四人 雕塑&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-44-29.png&#34;&gt;
-傍晚的 大唐不夜城&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-44-43.png&#34;&gt;
-夜幕降临的 大唐不夜城&lt;/p&gt;
-&lt;p&gt;遗憾之一：大雁塔没有去看，因为当时正在维修，周围全是脚手架。
-遗憾之二：没有到陕西历史博物馆看看，因为没有早点预约&lt;/p&gt;
-&lt;p&gt;女友埋怨我说我不早点做攻略，害得这么多景点去不了。&lt;/p&gt;
-&lt;p&gt;我说我是做了攻略的，还记在备忘录里面呢。&lt;/p&gt;
-&lt;p&gt;女友打开我的备忘录一看，笑出眼泪说：你做的啥狗屁攻略，就这几个字！男人果然靠不住！&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-45-24.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;我说: 这你就不懂了吧，啥都写清楚，一个一个点打卡多没意思。&lt;/p&gt;
-&lt;h1 id=&#34;day3-华清宫-兵马俑-长恨歌&#34;&gt;day3 华清宫 兵马俑 长恨歌&lt;/h1&gt;
-&lt;p&gt;由于西安攻略做的太过肤浅，所以第二天晚上决定直接跟团。在网上买了两张华清宫兵马俑和长恨歌的一日游。&lt;/p&gt;
-&lt;p&gt;说实在的，华清宫没啥意思，都是洗澡池子。&lt;/p&gt;
-&lt;p&gt;蒋介石洗过澡的池子，杨贵妃的洗澡池子，唐明皇的洗澡池子，大臣们的洗澡池子。&lt;/p&gt;
-&lt;p&gt;逛完之后，下午我们坐着旅游大巴，前往兵马俑。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-46-08.png&#34;&gt;
-一号坑&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-46-18.png&#34;&gt;
-一号坑&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-46-33.png&#34;&gt;
-一号坑&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-46-45.png&#34;&gt;
-一号坑&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/12/xian-travel/2022-12-02-20-47-01.png&#34;&gt;
-一号坑&lt;/p&gt;
-&lt;p&gt;兵马俑有三个坑。&lt;/p&gt;
-&lt;p&gt;一号坑最大，兵马俑也是最多的。然而当时游客比肩接踵，加上天气炎热，大家都在里面像蒸桑拿一样。&lt;/p&gt;
-&lt;p&gt;出了一号坑，我心里想：这么大个坑，这么热为啥不装空调，难道是因为要保护文物吗？&lt;/p&gt;
-&lt;p&gt;后来据博物馆的讲解员介绍：不装空调是因为审核手续复杂，可能要要个几十年手续才能完成。像二号坑和三号坑都已经装好空调了。&lt;/p&gt;
-&lt;p&gt;二号坑真的是个坑，没有兵马俑，仅仅是个大坑。&lt;/p&gt;</description>
     </item>
     <item>
       <title>1.1 脚本结构 - 全局参数、模块配置、路由</title>

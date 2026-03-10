@@ -51,22 +51,5 @@ rufus：能够正常使用；注意分区类型要选择GPT。最新款的一些
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;使用介绍&#34;&gt;使用介绍&lt;/h1&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2022/11/deepin-install-man/2022-11-03-12-00-16.png&#34;&gt;&lt;/p&gt;</description>
     </item>
-    <item>
-      <title>使用brew作为deepin的包管理工具</title>
-      <link>https://wdd.js.org/posts/2021/11/</link>
-      <pubDate>Thu, 18 Nov 2021 08:42:53 +0800</pubDate>
-      <guid>https://wdd.js.org/posts/2021/11/</guid>
-      <description>&lt;p&gt;11月2号，我的主力开发工具macbook开始退役。&lt;/p&gt;
-&lt;p&gt;我换了nuc11 i7,  安装了国产的deepin(深度)操作系统。总体体验蛮好的，只是apt-get的软件包里，太多都是很老的包。所以我想到以前用mac的包管理工具homebrew, 据说它不仅仅可以在mac上工作，主流的linux也是能够使用的。&lt;/p&gt;
-&lt;p&gt;homebrew的介绍是：The Missing Package Manager for macOS (or Linux)。也就是说brew完全可以在linux上运行。&lt;/p&gt;
-&lt;p&gt;安装方式也很简单：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;/bin/bash -c &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;$(&lt;/span&gt;curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh&lt;span style=&#34;color:#66d9ef&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;上面的shell执行之后，brew就安装成功了。&lt;/p&gt;
-&lt;p&gt;和mac不同的是，linux homebrew的安装包的可执行命令的目录是：/home/linuxbrew/.linuxbrew/bin, 所以需要把它加入到PATH中，安装的软件才能正确执行。&lt;/p&gt;
-&lt;h1 id=&#34;参考&#34;&gt;参考&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://brew.sh/&#34;&gt;https://brew.sh/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
-    </item>
   </channel>
 </rss>

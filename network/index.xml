@@ -364,27 +364,6 @@ ciscodump &amp;ndash;extcap-interface=ciscodump &amp;ndash;remote-host myhost &a
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/network/pz06t2/2022-10-29-18-36-43.png&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
-      <title>tcpdump filters</title>
-      <link>https://wdd.js.org/network/hhlfi1/</link>
-      <pubDate>Fri, 04 Dec 2020 13:32:16 +0800</pubDate>
-      <guid>https://wdd.js.org/network/hhlfi1/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://www.yuque.com/attachments/yuque/0/2020/pdf/280451/1607059951958-8fd98d7f-52b2-49e3-a69f-b4e0fc08a215.pdf&#34;&gt;ethereal-tcpdump.pdf&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>libpcap tutorial</title>
-      <link>https://wdd.js.org/network/ivzphz/</link>
-      <pubDate>Fri, 04 Dec 2020 13:31:32 +0800</pubDate>
-      <guid>https://wdd.js.org/network/ivzphz/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://www.yuque.com/attachments/yuque/0/2020/pdf/280451/1607059907885-3aec5ac7-27c2-42f0-bbc3-4a993dc28b6b.pdf&#34;&gt;libpcap-tutorial.pdf&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>tcpdump zine</title>
-      <link>https://wdd.js.org/network/yscigi/</link>
-      <pubDate>Fri, 04 Dec 2020 13:29:53 +0800</pubDate>
-      <guid>https://wdd.js.org/network/yscigi/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://www.yuque.com/attachments/yuque/0/2020/pdf/280451/1607059806872-996e8e81-0e4e-41e4-9d29-75b38eb33061.pdf&#34;&gt;tcpdump-zine.pdf&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>pcap抓包教程</title>
       <link>https://wdd.js.org/network/uq5cii/</link>
       <pubDate>Wed, 02 Dec 2020 13:27:13 +0800</pubDate>
@@ -490,14 +469,6 @@ ciscodump &amp;ndash;extcap-interface=ciscodump &amp;ndash;remote-host myhost &a
 &lt;p&gt;当读取了pcap文件的前24个字节之后，紧接着需要读取16个字节。这16个字节中，incl_len表示packet数据部分的长度。当拿到了Packet Data部分数据的长度。我们同时也就知道了下一个packet header要从哪个位置开始读取。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>网络包的封装和分用</title>
-      <link>https://wdd.js.org/network/mlepcg/</link>
-      <pubDate>Wed, 11 Mar 2020 08:24:20 +0800</pubDate>
-      <guid>https://wdd.js.org/network/mlepcg/</guid>
-      <description>&lt;p&gt;图解包在TCP/IP各个协议栈的流动情况&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.processon.com/embed/5e682878e4b069aa4e5b845f&#34;&gt;点击查看【undefined】&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>IP协议 Protocol</title>
       <link>https://wdd.js.org/network/ip-protocol/</link>
       <pubDate>Thu, 05 Mar 2020 12:48:10 +0800</pubDate>
@@ -517,14 +488,6 @@ ciscodump &amp;ndash;extcap-interface=ciscodump &amp;ndash;remote-host myhost &a
 &lt;li&gt;&lt;a href=&#34;https://tools.ietf.org/html/rfc790&#34;&gt;https://tools.ietf.org/html/rfc790&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/List_of_IP_protocol_numbers&#34;&gt;https://en.wikipedia.org/wiki/List_of_IP_protocol_numbers&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description>
-    </item>
-    <item>
-      <title>从飞机航线讲解网络分层</title>
-      <link>https://wdd.js.org/network/ibhy8a/</link>
-      <pubDate>Tue, 03 Mar 2020 13:48:27 +0800</pubDate>
-      <guid>https://wdd.js.org/network/ibhy8a/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/network/ibhy8a/2022-10-29-18-34-09.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/network/ibhy8a/2022-10-29-18-34-19.png&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>TIME_WAIT与持久连接</title>
@@ -572,70 +535,6 @@ ciscodump &amp;ndash;extcap-interface=ciscodump &amp;ndash;remote-host myhost &a
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/network/yoc1k0/2022-10-29-18-37-49.png&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;为什么要有time-wait状态&#34;&gt;为什么要有TIME-WAIT状态？&lt;/h1&gt;
 &lt;h1 id=&#34;太多time-wait链接是否意味有故障&#34;&gt;太多TIME-WAIT链接是否意味有故障？&lt;/h1&gt;</description>
-    </item>
-    <item>
-      <title>2 链路层</title>
-      <link>https://wdd.js.org/network/xwuvyr/</link>
-      <pubDate>Thu, 28 Nov 2019 13:35:34 +0800</pubDate>
-      <guid>https://wdd.js.org/network/xwuvyr/</guid>
-      <description>&lt;h1 id=&#34;最大传输单元mtu&#34;&gt;最大传输单元MTU&lt;/h1&gt;
-&lt;p&gt;以太网和802.3对数据帧的长度有个限制，其最大长度分别是1500和1942。链路层的这个特性称作MTU,  最大传输单元。不同类型的网络大多数都有一个限制。&lt;/p&gt;
-&lt;p&gt;如果IP层的数据报的长度比链路层的MTU大，那么IP层就需要分片，每一片的长度要小于MTU。&lt;/p&gt;
-&lt;p&gt;使用netstat -in可以打印出网络接口的MTU&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-makefile&#34; data-lang=&#34;makefile&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;➜&lt;/span&gt;  &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;~&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;netstat&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;-in&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;Kernel&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;Interface&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;table&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;Iface&lt;/span&gt;       &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;MTU&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;Met&lt;/span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;RX-OK&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;RX-ERR&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;RX-DRP&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;RX-OVR&lt;/span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;TX-OK&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;TX-ERR&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;TX-DRP&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;TX-OVR&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;Flg&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;eth2&lt;/span&gt;       &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;1500&lt;/span&gt;   &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;1078767768&lt;/span&gt;   &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;2264&lt;/span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;689&lt;/span&gt;      &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;1297577913&lt;/span&gt;      &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;0&lt;/span&gt;      &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;0&lt;/span&gt;      &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;BMRU&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;lo&lt;/span&gt;        &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;16436&lt;/span&gt;   &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;0&lt;/span&gt;   &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;734474&lt;/span&gt;      &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;0&lt;/span&gt;      &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;0&lt;/span&gt;      &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;0&lt;/span&gt;   &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;734474&lt;/span&gt;      &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;0&lt;/span&gt;      &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;0&lt;/span&gt;      &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;LRU&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;路径mtu&#34;&gt;路径MTU&lt;/h1&gt;
-&lt;p&gt;信息经过多个网络时，不同网络可能会有不同的MTU，而其中最小的一个MTU, 称为路径MTU。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>1 概述</title>
-      <link>https://wdd.js.org/network/ir1i82/</link>
-      <pubDate>Wed, 27 Nov 2019 09:20:48 +0800</pubDate>
-      <guid>https://wdd.js.org/network/ir1i82/</guid>
-      <description>&lt;h1 id=&#34;分层&#34;&gt;分层&lt;/h1&gt;
-&lt;p&gt;应用程序一般处理应用层的&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;------------------------------------------------------------&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;应用层&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;#&lt;/span&gt; Telnet, FTP, Email, MySql			&lt;span style=&#34;color:#f92672&#34;&gt;|&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	  	&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;应用程序细节&lt;/span&gt;						  &lt;span style=&#34;color:#f92672&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;用户进程&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;------------------------------------------------------------&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;运输层&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;#&lt;/span&gt; TCP, UDP                          &lt;span style=&#34;color:#f92672&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;内核&lt;/span&gt;(&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;处理通信细节&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;端到端通信&lt;/span&gt;                          &lt;span style=&#34;color:#f92672&#34;&gt;|&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;------------------------------------------|&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;网络层&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;#&lt;/span&gt; IP, ICMP, IGMP					&lt;span style=&#34;color:#f92672&#34;&gt;|&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;逐跳通信，处理分组相关的活动，例如分组选路&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;|&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;------------------------------------------|&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;链路层&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;#&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;设备驱动程序&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;接口卡&lt;/span&gt;				   &lt;span style=&#34;color:#f92672&#34;&gt;|&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;处理物理信号&lt;/span&gt;						  &lt;span style=&#34;color:#f92672&#34;&gt;|&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;------------------------------------------------------------&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;应用层和传输层使用&lt;strong&gt;端到端&lt;/strong&gt;的协议&lt;/li&gt;
-&lt;li&gt;网络层提供&lt;strong&gt;逐跳&lt;/strong&gt;的协议&lt;/li&gt;
-&lt;li&gt;网桥在&lt;strong&gt;链路层&lt;/strong&gt;来连接网络&lt;/li&gt;
-&lt;li&gt;路由器在&lt;strong&gt;网络层&lt;/strong&gt;连接网络&lt;/li&gt;
-&lt;li&gt;以太网数据帧的物理特性是长度必须在&lt;strong&gt;46-1500&lt;/strong&gt;字节之间&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;封装&#34;&gt;封装&lt;/h1&gt;
-&lt;p&gt;以太网帧用来封装IP数据报。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;IP数据报 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; IP首部&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;20字节&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; + TCP首部&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;20字节&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; + 应用数据  &lt;span style=&#34;color:#75715e&#34;&gt;# 针对TCP&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;IP数据报 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; IP首部&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;20字节&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; + UDP首部&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;8字节&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; + 应用数据 &lt;span style=&#34;color:#75715e&#34;&gt;# 针对UDP&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;以太网帧 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; 以太网首部&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;14字节&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; + IP数据报&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;46-1500字节&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; + 以太网尾部&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;4字节&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;IP数据报最大为1500字节，减去20字节IP首部，8字节UDP首部，留给UDP应用数据的只有1472字节。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>技巧1</title>
-      <link>https://wdd.js.org/network/kttu4i/</link>
-      <pubDate>Mon, 25 Nov 2019 20:24:24 +0800</pubDate>
-      <guid>https://wdd.js.org/network/kttu4i/</guid>
-      <description>&lt;h1 id=&#34;1-面向连接和面向非连接的区别&#34;&gt;1 面向连接和面向非连接的区别？&lt;/h1&gt;
-&lt;p&gt;面向连接与面向非连接并不是指的物理介质，而是指的分组数据包。而实际上，连接只是一个虚拟的概念。&lt;/p&gt;
-&lt;p&gt;数据在发送前，会被分组发送。对于面向连接的协议来说，每个分组之间都有顺序的，分组会存储自己的位置信息。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;可以理解在同一时间只维持一段关系。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/network/kttu4i/2022-10-29-18-34-49.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;面向非连接协议，分组直接并无任何关系，每个分组都是相互独立的。&lt;strong&gt;可以理解为脚踏多条船。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/network/kttu4i/2022-10-29-18-35-03.png&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>基本套接字API回顾</title>

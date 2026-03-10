@@ -30,6 +30,13 @@
       <description></description>
     </item>
     <item>
+      <title>Ipc</title>
+      <link>https://wdd.js.org/tags/ipc/</link>
+      <pubDate>Fri, 06 Mar 2026 15:42:42 +0800</pubDate>
+      <guid>https://wdd.js.org/tags/ipc/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>SIP</title>
       <link>https://wdd.js.org/tags/sip/</link>
       <pubDate>Thu, 29 Jan 2026 13:12:36 +0800</pubDate>
@@ -46,7 +53,7 @@
     <item>
       <title>All</title>
       <link>https://wdd.js.org/tags/all/</link>
-      <pubDate>Mon, 20 Oct 2025 22:37:17 +0800</pubDate>
+      <pubDate>Thu, 16 Oct 2025 17:39:50 +0800</pubDate>
       <guid>https://wdd.js.org/tags/all/</guid>
       <description></description>
     </item>
@@ -156,38 +163,10 @@
       <description></description>
     </item>
     <item>
-      <title>C</title>
-      <link>https://wdd.js.org/tags/c/</link>
-      <pubDate>Sat, 28 Dec 2024 19:00:00 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/c/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>C&#43;&#43;</title>
-      <link>https://wdd.js.org/tags/c&#43;&#43;/</link>
-      <pubDate>Sat, 28 Dec 2024 19:00:00 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/c&#43;&#43;/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>CPU</title>
-      <link>https://wdd.js.org/tags/cpu/</link>
-      <pubDate>Sat, 28 Dec 2024 19:00:00 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/cpu/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Ddos</title>
       <link>https://wdd.js.org/tags/ddos/</link>
       <pubDate>Tue, 17 Dec 2024 21:10:40 +0800</pubDate>
       <guid>https://wdd.js.org/tags/ddos/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Ts</title>
-      <link>https://wdd.js.org/tags/ts/</link>
-      <pubDate>Fri, 22 Nov 2024 13:04:35 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/ts/</guid>
       <description></description>
     </item>
     <item>
@@ -209,69 +188,6 @@
       <link>https://wdd.js.org/tags/%E8%BF%90%E8%90%A5%E5%95%86/</link>
       <pubDate>Mon, 18 Nov 2024 19:58:38 +0800</pubDate>
       <guid>https://wdd.js.org/tags/%E8%BF%90%E8%90%A5%E5%95%86/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>内稳态</title>
-      <link>https://wdd.js.org/tags/%E5%86%85%E7%A8%B3%E6%80%81/</link>
-      <pubDate>Mon, 18 Nov 2024 18:35:02 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/%E5%86%85%E7%A8%B3%E6%80%81/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>多巴胺</title>
-      <link>https://wdd.js.org/tags/%E5%A4%9A%E5%B7%B4%E8%83%BA/</link>
-      <pubDate>Mon, 18 Nov 2024 18:35:02 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/%E5%A4%9A%E5%B7%B4%E8%83%BA/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>犒赏系统</title>
-      <link>https://wdd.js.org/tags/%E7%8A%92%E8%B5%8F%E7%B3%BB%E7%BB%9F/</link>
-      <pubDate>Mon, 18 Nov 2024 18:35:02 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/%E7%8A%92%E8%B5%8F%E7%B3%BB%E7%BB%9F/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>药物耐受性</title>
-      <link>https://wdd.js.org/tags/%E8%8D%AF%E7%89%A9%E8%80%90%E5%8F%97%E6%80%A7/</link>
-      <pubDate>Mon, 18 Nov 2024 18:35:02 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/%E8%8D%AF%E7%89%A9%E8%80%90%E5%8F%97%E6%80%A7/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>健康</title>
-      <link>https://wdd.js.org/tags/%E5%81%A5%E5%BA%B7/</link>
-      <pubDate>Tue, 12 Nov 2024 14:02:00 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/%E5%81%A5%E5%BA%B7/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>微信读书</title>
-      <link>https://wdd.js.org/tags/%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6/</link>
-      <pubDate>Tue, 12 Nov 2024 10:55:06 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>商业</title>
-      <link>https://wdd.js.org/tags/%E5%95%86%E4%B8%9A/</link>
-      <pubDate>Tue, 12 Nov 2024 10:30:00 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/%E5%95%86%E4%B8%9A/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>消费主义</title>
-      <link>https://wdd.js.org/tags/%E6%B6%88%E8%B4%B9%E4%B8%BB%E4%B9%89/</link>
-      <pubDate>Tue, 12 Nov 2024 10:30:00 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/%E6%B6%88%E8%B4%B9%E4%B8%BB%E4%B9%89/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>三体</title>
-      <link>https://wdd.js.org/tags/%E4%B8%89%E4%BD%93/</link>
-      <pubDate>Tue, 12 Nov 2024 10:00:00 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/%E4%B8%89%E4%BD%93/</guid>
       <description></description>
     </item>
     <item>
@@ -338,31 +254,10 @@
       <description></description>
     </item>
     <item>
-      <title>Make</title>
-      <link>https://wdd.js.org/tags/make/</link>
-      <pubDate>Thu, 10 Aug 2023 09:47:46 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/make/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Makefile</title>
-      <link>https://wdd.js.org/tags/makefile/</link>
-      <pubDate>Thu, 10 Aug 2023 09:47:46 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/makefile/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Node</title>
       <link>https://wdd.js.org/tags/node/</link>
       <pubDate>Sun, 09 Jul 2023 14:20:45 +0800</pubDate>
       <guid>https://wdd.js.org/tags/node/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Libpcap</title>
-      <link>https://wdd.js.org/tags/libpcap/</link>
-      <pubDate>Mon, 08 May 2023 11:45:23 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/libpcap/</guid>
       <description></description>
     </item>
     <item>
@@ -506,13 +401,6 @@
       <description></description>
     </item>
     <item>
-      <title>Vim</title>
-      <link>https://wdd.js.org/tags/vim/</link>
-      <pubDate>Sat, 28 May 2022 12:21:47 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/vim/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Mermaid</title>
       <link>https://wdd.js.org/tags/mermaid/</link>
       <pubDate>Fri, 27 May 2022 11:49:44 +0800</pubDate>
@@ -524,20 +412,6 @@
       <link>https://wdd.js.org/tags/%E6%B5%81%E7%A8%8B%E5%9B%BE/</link>
       <pubDate>Fri, 27 May 2022 11:49:44 +0800</pubDate>
       <guid>https://wdd.js.org/tags/%E6%B5%81%E7%A8%8B%E5%9B%BE/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Ack</title>
-      <link>https://wdd.js.org/tags/ack/</link>
-      <pubDate>Fri, 18 Jun 2021 00:00:00 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/ack/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Contab</title>
-      <link>https://wdd.js.org/tags/contab/</link>
-      <pubDate>Fri, 18 Jun 2021 00:00:00 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/contab/</guid>
       <description></description>
     </item>
     <item>
@@ -639,20 +513,6 @@
       <description></description>
     </item>
     <item>
-      <title>财商</title>
-      <link>https://wdd.js.org/tags/%E8%B4%A2%E5%95%86/</link>
-      <pubDate>Wed, 25 Apr 2018 13:33:52 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/%E8%B4%A2%E5%95%86/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>财富</title>
-      <link>https://wdd.js.org/tags/%E8%B4%A2%E5%AF%8C/</link>
-      <pubDate>Wed, 25 Apr 2018 13:33:52 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/%E8%B4%A2%E5%AF%8C/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>浏览器缓存</title>
       <link>https://wdd.js.org/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98/</link>
       <pubDate>Sun, 08 Apr 2018 09:00:48 +0800</pubDate>
@@ -730,62 +590,6 @@
       <description></description>
     </item>
     <item>
-      <title>笔试</title>
-      <link>https://wdd.js.org/tags/%E7%AC%94%E8%AF%95/</link>
-      <pubDate>Fri, 23 Feb 2018 15:18:26 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/%E7%AC%94%E8%AF%95/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>面试</title>
-      <link>https://wdd.js.org/tags/%E9%9D%A2%E8%AF%95/</link>
-      <pubDate>Fri, 23 Feb 2018 15:18:26 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/%E9%9D%A2%E8%AF%95/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>微习惯</title>
-      <link>https://wdd.js.org/tags/%E5%BE%AE%E4%B9%A0%E6%83%AF/</link>
-      <pubDate>Tue, 13 Feb 2018 14:57:23 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/%E5%BE%AE%E4%B9%A0%E6%83%AF/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>思想者</title>
-      <link>https://wdd.js.org/tags/%E6%80%9D%E6%83%B3%E8%80%85/</link>
-      <pubDate>Tue, 13 Feb 2018 14:57:23 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/%E6%80%9D%E6%83%B3%E8%80%85/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>读书</title>
-      <link>https://wdd.js.org/tags/%E8%AF%BB%E4%B9%A6/</link>
-      <pubDate>Tue, 13 Feb 2018 14:57:23 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/%E8%AF%BB%E4%B9%A6/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>SendBeacon</title>
-      <link>https://wdd.js.org/tags/sendbeacon/</link>
-      <pubDate>Sun, 11 Feb 2018 14:34:17 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/sendbeacon/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Visibilitychange</title>
-      <link>https://wdd.js.org/tags/visibilitychange/</link>
-      <pubDate>Sun, 11 Feb 2018 14:34:17 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/visibilitychange/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Mac</title>
-      <link>https://wdd.js.org/tags/mac/</link>
-      <pubDate>Sun, 11 Feb 2018 14:20:01 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/mac/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>12004</title>
       <link>https://wdd.js.org/tags/12004/</link>
       <pubDate>Sun, 11 Feb 2018 14:12:19 +0800</pubDate>
@@ -811,13 +615,6 @@
       <link>https://wdd.js.org/tags/elementui/</link>
       <pubDate>Fri, 09 Feb 2018 13:44:13 +0800</pubDate>
       <guid>https://wdd.js.org/tags/elementui/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Json</title>
-      <link>https://wdd.js.org/tags/json/</link>
-      <pubDate>Fri, 09 Feb 2018 13:27:15 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/json/</guid>
       <description></description>
     </item>
     <item>
@@ -884,13 +681,6 @@
       <description></description>
     </item>
     <item>
-      <title>Console</title>
-      <link>https://wdd.js.org/tags/console/</link>
-      <pubDate>Thu, 08 Feb 2018 13:56:40 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/console/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Debug</title>
       <link>https://wdd.js.org/tags/debug/</link>
       <pubDate>Thu, 08 Feb 2018 13:53:48 +0800</pubDate>
@@ -919,59 +709,10 @@
       <description></description>
     </item>
     <item>
-      <title>Js</title>
-      <link>https://wdd.js.org/tags/js/</link>
-      <pubDate>Wed, 07 Feb 2018 10:09:42 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/js/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Onunload</title>
-      <link>https://wdd.js.org/tags/onunload/</link>
-      <pubDate>Wed, 07 Feb 2018 09:18:54 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/onunload/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Fork</title>
-      <link>https://wdd.js.org/tags/fork/</link>
-      <pubDate>Wed, 31 Jan 2018 17:16:44 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/fork/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>合并上游分支</title>
-      <link>https://wdd.js.org/tags/%E5%90%88%E5%B9%B6%E4%B8%8A%E6%B8%B8%E5%88%86%E6%94%AF/</link>
-      <pubDate>Wed, 31 Jan 2018 17:16:44 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/%E5%90%88%E5%B9%B6%E4%B8%8A%E6%B8%B8%E5%88%86%E6%94%AF/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>接口文档</title>
-      <link>https://wdd.js.org/tags/%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/</link>
-      <pubDate>Mon, 29 Jan 2018 22:01:55 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Csta</title>
       <link>https://wdd.js.org/tags/csta/</link>
       <pubDate>Mon, 29 Jan 2018 21:35:24 +0800</pubDate>
       <guid>https://wdd.js.org/tags/csta/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Hexo</title>
-      <link>https://wdd.js.org/tags/hexo/</link>
-      <pubDate>Mon, 29 Jan 2018 18:08:03 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/hexo/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Jsorg</title>
-      <link>https://wdd.js.org/tags/jsorg/</link>
-      <pubDate>Mon, 29 Jan 2018 18:08:03 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/jsorg/</guid>
       <description></description>
     </item>
     <item>
@@ -986,13 +727,6 @@
       <link>https://wdd.js.org/tags/substring/</link>
       <pubDate>Mon, 29 Jan 2018 13:46:31 +0800</pubDate>
       <guid>https://wdd.js.org/tags/substring/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>JQuery</title>
-      <link>https://wdd.js.org/tags/jquery/</link>
-      <pubDate>Mon, 29 Jan 2018 13:43:23 +0800</pubDate>
-      <guid>https://wdd.js.org/tags/jquery/</guid>
       <description></description>
     </item>
   </channel>
