@@ -537,32 +537,6 @@ ciscodump &amp;ndash;extcap-interface=ciscodump &amp;ndash;remote-host myhost &a
 &lt;h1 id=&#34;太多time-wait链接是否意味有故障&#34;&gt;太多TIME-WAIT链接是否意味有故障？&lt;/h1&gt;</description>
     </item>
     <item>
-      <title>基本套接字API回顾</title>
-      <link>https://wdd.js.org/network/base-socket/</link>
-      <pubDate>Mon, 25 Nov 2019 20:06:16 +0800</pubDate>
-      <guid>https://wdd.js.org/network/base-socket/</guid>
-      <description>&lt;h1 id=&#34;套接字api&#34;&gt;套接字API&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;SOCKET &lt;span style=&#34;color:#a6e22e&#34;&gt;socket&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; domain, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; type, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; protocol)
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Socket API和协议无关，即可以用来创建Socket，无论是TCP还是UDP，还是进程间的通信，都可以用这个接口创建。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;domain 表示通信域，最长见的有以下两个域
-&lt;ul&gt;
-&lt;li&gt;AF_INET 因特网通信&lt;/li&gt;
-&lt;li&gt;AF_LOCAL 进程间通信&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;type 表示套接字的类型
-&lt;ul&gt;
-&lt;li&gt;SOCK_STREAM 可靠的、全双工、面向连接的，实际上就是我们熟悉的TCP&lt;/li&gt;
-&lt;li&gt;SOCK_DGRAM 不可靠、尽力而为的，无连接的。实际上指的就是UDP&lt;/li&gt;
-&lt;li&gt;SOCK_RAW 允许对IP层的数据进行访问。用于特殊目的，例如ICMP&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;protocol 表示具体通信协议&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;TCP/IP 本自同根生！&lt;/strong&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>可能被遗漏的https与http的知识点</title>
       <link>https://wdd.js.org/network/of5hny/</link>
       <pubDate>Tue, 15 Oct 2019 21:56:42 +0800</pubDate>

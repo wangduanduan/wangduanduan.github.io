@@ -10381,32 +10381,6 @@ a=rtpmap:9 G722/8000
 &lt;p&gt;&lt;a href=&#34;https://blog.opensips.org/2017/03/22/capturing-beyond-sip/&#34;&gt;https://blog.opensips.org/2017/03/22/capturing-beyond-sip/&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;&lt;a href=&#34;https://www.opensips.org/Documentation/Tutorials-Tracing&#34;&gt;https://www.opensips.org/Documentation/Tutorials-Tracing&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
-      <title>基本套接字API回顾</title>
-      <link>https://wdd.js.org/network/base-socket/</link>
-      <pubDate>Mon, 25 Nov 2019 20:06:16 +0800</pubDate>
-      <guid>https://wdd.js.org/network/base-socket/</guid>
-      <description>&lt;h1 id=&#34;套接字api&#34;&gt;套接字API&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;SOCKET &lt;span style=&#34;color:#a6e22e&#34;&gt;socket&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; domain, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; type, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; protocol)
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Socket API和协议无关，即可以用来创建Socket，无论是TCP还是UDP，还是进程间的通信，都可以用这个接口创建。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;domain 表示通信域，最长见的有以下两个域
-&lt;ul&gt;
-&lt;li&gt;AF_INET 因特网通信&lt;/li&gt;
-&lt;li&gt;AF_LOCAL 进程间通信&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;type 表示套接字的类型
-&lt;ul&gt;
-&lt;li&gt;SOCK_STREAM 可靠的、全双工、面向连接的，实际上就是我们熟悉的TCP&lt;/li&gt;
-&lt;li&gt;SOCK_DGRAM 不可靠、尽力而为的，无连接的。实际上指的就是UDP&lt;/li&gt;
-&lt;li&gt;SOCK_RAW 允许对IP层的数据进行访问。用于特殊目的，例如ICMP&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;protocol 表示具体通信协议&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;TCP/IP 本自同根生！&lt;/strong&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>WebRTC简介</title>
       <link>https://wdd.js.org/opensips/ch9/notes/</link>
       <pubDate>Sat, 23 Nov 2019 10:51:20 +0800</pubDate>
@@ -17442,7 +17416,7 @@ To start debugging, open the following URL in Chrome:
 &lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180207141649_ArMyV7_Screenshot.jpeg&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
-      <title>关于我</title>
+      <title>About Me</title>
       <link>https://wdd.js.org/about/</link>
       <pubDate>Wed, 31 Jan 2018 12:09:09 +0800</pubDate>
       <guid>https://wdd.js.org/about/</guid>
@@ -17451,8 +17425,6 @@ To start debugging, open the following URL in Chrome:
 &lt;ul&gt;
 &lt;li&gt;精通VOIP相关技术栈：SIP/opensips/kamailio等等&lt;/li&gt;
 &lt;li&gt;精通VIM&lt;/li&gt;
-&lt;li&gt;email: &lt;a href=&#34;mailto:eddie2072@icloud.com&#34;&gt;eddie2072@icloud.com&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Github: &lt;a href=&#34;https://github.com/wangduanduan&#34;&gt;github.com/wangduanduan&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;个人博客: &lt;a href=&#34;https://wdd.js.org&#34;&gt;wdd.js.org&lt;/a&gt;, 最新内容将会发布在wdd.js.org&lt;/li&gt;
 &lt;li&gt;微信阅读资深会员/365天阅读挑战赛&lt;/li&gt;
 &lt;/ul&gt;
