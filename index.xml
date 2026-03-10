@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>洞香春</title>
+    <title>The SIP Lab</title>
     <link>https://wdd.js.org/</link>
-    <description>Recent content on 洞香春</description>
+    <description>Recent content on The SIP Lab</description>
     <generator>Hugo -- 0.151.0</generator>
     <language>en</language>
     <lastBuildDate>Mon, 09 Mar 2026 18:26:07 +0800</lastBuildDate>
@@ -16783,101 +16783,6 @@ var session = ua.call(&amp;#39;sip:bob@example.com&amp;#39;, options);
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;浏览器打开 &lt;code&gt;http://localhost:8080/&lt;/code&gt;, 看到如下界面，说明项目初始化成功&lt;/p&gt;</description>
     </item>
     <item>
-      <title>ECharts 轮流高亮中国地图各个省份</title>
-      <link>https://wdd.js.org/posts/2018/02/echarts-highlight-china-map/</link>
-      <pubDate>Fri, 09 Feb 2018 13:16:53 +0800</pubDate>
-      <guid>https://wdd.js.org/posts/2018/02/echarts-highlight-china-map/</guid>
-      <description>&lt;h1 id=&#34;1-小栗子&#34;&gt;1. 小栗子&lt;/h1&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180209131759_k10o0Z_bVVWEB.jpeg&#34;&gt;&lt;/p&gt;
-&lt;p&gt;最早我是想通过&lt;code&gt;dispatchAction&lt;/code&gt;方法去改变选中的省份，但是没有起作用，如果你知道这个方法怎么实现，麻烦你可以告诉我。
-我实现的方法是另外一种。&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;dispatchAction({
-    type: &amp;#39;geoSelect&amp;#39;,
-    // 可选，系列 index，可以是一个数组指定多个系列
-    seriesIndex?: number|Array,
-    // 可选，系列名称，可以是一个数组指定多个系列
-    seriesName?: string|Array,
-    // 数据的 index，如果不指定也可以通过 name 属性根据名称指定数据
-    dataIndex?: number,
-    // 可选，数据名称，在有 dataIndex 的时候忽略
-    name?: string
-})
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;后来我改变了一个方法。这个方法的核心思路是定时获取图标的配置，然后更新配置，最后在设置配置。&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var myChart = echarts.init(document.getElementById(&amp;#39;china-map&amp;#39;));
-
-var COLORS = [&amp;#34;#070093&amp;#34;, &amp;#34;#1c3fbf&amp;#34;, &amp;#34;#1482e5&amp;#34;, &amp;#34;#70b4eb&amp;#34;, &amp;#34;#b4e0f3&amp;#34;, &amp;#34;#ffffff&amp;#34;];
-
-// 指定图表的配置项和数据
-var option = {
-    tooltip: {
-        trigger: &amp;#39;item&amp;#39;,
-        formatter: &amp;#39;{b}&amp;#39;
-    },
-    series: [
-        {
-            name: &amp;#39;中国&amp;#39;,
-            type: &amp;#39;map&amp;#39;,
-            mapType: &amp;#39;china&amp;#39;,
-            selectedMode : &amp;#39;single&amp;#39;,
-            label: {
-                normal: {
-                    show: true
-                },
-                emphasis: {
-                    show: true
-                }
-            },
-            data:[
-                // 默认高亮安徽省
-                {name:&amp;#39;安徽&amp;#39;, selected:true}
-            ],
-            itemStyle: {
-                normal: {
-                    areaColor: &amp;#39;rgba(255,255,255,0.5)&amp;#39;,
-                    color: &amp;#39;#000000&amp;#39;,
-                    shadowBlur: 200,
-                    shadowColor: &amp;#39;rgba(0, 0, 0, 0.5)&amp;#39;
-                },
-                emphasis:{
-                    areaColor: &amp;#39;#3be2fb&amp;#39;,
-                    color: &amp;#39;#000000&amp;#39;,
-                    shadowBlur: 200,
-                    shadowColor: &amp;#39;rgba(0, 0, 0, 0.5)&amp;#39;
-                }
-            }
-        }
-    ]
-};
-
-// 使用刚指定的配置项和数据显示图表。
-myChart.setOption(option);
-
-myChart.on(&amp;#39;click&amp;#39;, function(params) {
-    console.log(params);
-});
-
-setInterval(function(){
-    var op = myChart.getOption();
-    var data = op.series[0].data;
-
-    var length = data.length;
-
-    data.some(function(item, index){
-        if(item.selected){
-            item.selected = false;
-            var next = (index + 1)%length;
-            data[next].selected = true;
-            return true;
-        }
-    });
-
-    myChart.setOption(op);
-
-}, 3000);
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;2-后续补充&#34;&gt;2. 后续补充&lt;/h1&gt;
-&lt;p&gt;我从这里发现：https://github.com/ecomfe/echarts/issues/3282，选中地图的写法是这样的，而试了一下果然可以。主要是type要是&lt;code&gt;mapSelect&lt;/code&gt;,而不是&lt;code&gt;geoSelect&lt;/code&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>一行命令搭建简易静态文件http服务器</title>
       <link>https://wdd.js.org/posts/2018/02/one-command-create-static-file-server/</link>
       <pubDate>Fri, 09 Feb 2018 13:01:14 +0800</pubDate>
@@ -17296,24 +17201,6 @@ proxy.pipe(res)
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;这次异步按批次创建，没有耗时的警告。因为控制了每次代码在50ms内运行。实际上每80行耗时约10ms左右。这就不会引起页面卡顿等问题。&lt;/code&gt;&lt;/p&gt;</description>
     </item>
     <item>
-      <title>关于JavaScropt函数式编程，我多么希望能早点看到这本书</title>
-      <link>https://wdd.js.org/posts/2018/02/js-functional-programming/</link>
-      <pubDate>Thu, 08 Feb 2018 14:06:22 +0800</pubDate>
-      <guid>https://wdd.js.org/posts/2018/02/js-functional-programming/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;我父亲以前跟我说过，有些事物在你得到之前是无足轻重的，得到之后就不可或缺了。微波炉是这样，智能手机是这样，互联网也是这样——老人们在没有互联网的时候过得也很充实。对我来说，函数的柯里化（curry）也是这样。&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180208140707_POIKmq_Screenshot.jpeg&#34;&gt;
-&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180208140717_25soGz_Screenshot.jpeg&#34;&gt;&lt;/p&gt;
-&lt;p&gt;然后我继续看了这本书的中文版。有些醍醐灌顶的感觉。 随之在github搜了一下。
-&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180208140730_aTXsaN_Screenshot.jpeg&#34;&gt;&lt;/p&gt;
-&lt;p&gt;我想，即使付费，我也愿意看。&lt;/p&gt;
-&lt;p&gt;中文版地址：https://www.gitbook.com/book/llh911001/mostly-adequate-guide-chinese/details
-github原文地址：https://github.com/MostlyAdequate/mostly-adequate-guide&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/img/images/20180208140744_5kvV4A_Screenshot.jpeg&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;1-后记&#34;&gt;1. 后记&lt;/h1&gt;
-&lt;p&gt;其实我是想学点函数柯里化的东西，然后用谷歌搜索了一下。第一个结果就是这本书。&lt;code&gt;非常感谢谷歌搜索，如果我用百度，可能就没有缘分遇到这本书了。&lt;/code&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>如何浏览器里调试iframe里层的代码？</title>
       <link>https://wdd.js.org/posts/2018/02/debug-code-in-iframe/</link>
       <pubDate>Thu, 08 Feb 2018 13:53:48 +0800</pubDate>
@@ -17425,14 +17312,10 @@ To start debugging, open the following URL in Chrome:
 &lt;ul&gt;
 &lt;li&gt;精通VOIP相关技术栈：SIP/opensips/kamailio等等&lt;/li&gt;
 &lt;li&gt;精通VIM&lt;/li&gt;
+&lt;li&gt;微信ID: suguswang177&lt;/li&gt;
 &lt;li&gt;个人博客: &lt;a href=&#34;https://wdd.js.org&#34;&gt;wdd.js.org&lt;/a&gt;, 最新内容将会发布在wdd.js.org&lt;/li&gt;
 &lt;li&gt;微信阅读资深会员/365天阅读挑战赛&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;博客说明&#34;&gt;博客说明&lt;/h1&gt;
-&lt;p&gt;博客取名为洞香春，灵感来自孙皓晖所著&lt;a href=&#34;https://book.douban.com/subject/3079029/&#34;&gt;《大秦帝国》&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;洞香春大致在战国时代中期所在地：魏国安邑。&lt;/p&gt;
-&lt;p&gt;战国时期，社会制度发生着巨大变化，工商业日益兴旺，出现了以白圭为首的一批巨贾商人，而位于魏国安邑的洞香春酒肆就是白氏家族创办的产业中最为著名的一个。&lt;/p&gt;
-&lt;p&gt;洞香春以名士荟萃、谈论国事、交流思想而著称于当时列国&lt;/p&gt;
 &lt;h1 id=&#34;如何订阅博客&#34;&gt;如何订阅博客&lt;/h1&gt;
 &lt;ol&gt;
 &lt;li&gt;添加RSS订阅： &lt;a href=&#34;https://wdd.js.org/index.xml&#34;&gt;https://wdd.js.org/index.xml&lt;/a&gt;&lt;/li&gt;

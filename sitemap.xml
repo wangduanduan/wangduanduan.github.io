@@ -20,13 +20,13 @@
     <loc>https://wdd.js.org/tags/</loc>
     <lastmod>2026-03-09T18:26:07+08:00</lastmod>
   </url><url>
+    <loc>https://wdd.js.org/</loc>
+    <lastmod>2026-03-09T18:26:07+08:00</lastmod>
+  </url><url>
     <loc>https://wdd.js.org/tags/voip/</loc>
     <lastmod>2026-03-09T18:26:07+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2026/when-you-need-opensips-or-kamailio/</loc>
-    <lastmod>2026-03-09T18:26:07+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/</loc>
     <lastmod>2026-03-09T18:26:07+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/ipc/</loc>
@@ -1304,12 +1304,6 @@
     <loc>https://wdd.js.org/posts/2018/02/vue-elementui-audio-component/</loc>
     <lastmod>2018-02-09T13:44:13+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/tags/echarts/</loc>
-    <lastmod>2018-02-09T13:16:53+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2018/02/echarts-highlight-china-map/</loc>
-    <lastmod>2018-02-09T13:16:53+08:00</lastmod>
-  </url><url>
     <loc>https://wdd.js.org/posts/2018/02/one-command-create-static-file-server/</loc>
     <lastmod>2018-02-09T13:01:14+08:00</lastmod>
   </url><url>
@@ -1345,12 +1339,6 @@
   </url><url>
     <loc>https://wdd.js.org/posts/2018/02/settimeout-to-splice-big-work/</loc>
     <lastmod>2018-02-08T14:09:54+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2018/02/js-functional-programming/</loc>
-    <lastmod>2018-02-08T14:06:22+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</loc>
-    <lastmod>2018-02-08T14:06:22+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/debug/</loc>
     <lastmod>2018-02-08T13:53:48+08:00</lastmod>
