@@ -17,6 +17,10 @@ minify:
   disableXML: true
   minifyOutput: true
 
+mainSections:
+  - posts
+
+
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: "洞香春"
@@ -95,8 +99,8 @@ params:
       url: "https://yuque.com/wangdd"
 
   analytics:
-    #google:
-    #SiteVerificationTag: "G-SGW660ZWKM"
+    google:
+      SiteVerificationTag: "G-SGW660ZWKM"
 
   cover:
     hidden: true # hide everywhere but not in structured data
@@ -120,70 +124,30 @@ params:
     keys: ["title", "permalink", "summary", "content"]
 menu:
   main:
-    - identifier: id_fs
-      name: "FreeSWITCH"
-      url: /freeswitch/
-      weight: 3
-    # - identifier: id_books
-    #   name: "读书"
-    #   url: /books/
-    #   weight: 8
-    # - identifier: id_vim
-    #   name: "VIM"
-    #   url: /vim/
-    #   weight: 10
-    # - identifier: id_fe
-    #   name: "前端"
-    #   url: /fe/
-      # weight: 10
+    - identifier: id_opensips
+      name: "OpenSIPS 2x"
+      url: /opensips/
+      weight: 1
     - identifier: id_kama
       name: "Kamailio"
       url: /kamailio/
       weight: 2
-    # - identifier: id_km_wiki_56
-    #   name: "Kamailio 5.6 wiki"
-    #   url: /kamailio/56/
-    #   weight: 10
-    # - identifier: id_container
-    #   name: "k8s/docker"
-    #   url: /container/
-    #   weight: 10
-    # - identifier: id_shell
-    #   name: "Shell"
-    #   url: /shell/
-    #   weight: 10
-    - identifier: id_opensips
-      name: "OpenSIPS"
-      url: /opensips/
-      weight: 1
-    # - identifier: id_network
-    #   name: "Network"
-    #   url: /network/
-    #   weight: 10
-    # - identifier: id_golang
-    #   name: "Golang"
-    #   url: /golang/
-    #   weight: 10
-    # - identifier: id_categories
-    #   name: "分类"
-    #   url: /categories/
-    #   weight: 10
-    - identifier: id_tags
-      name: "标签"
-      url: /tags/
-      weight: 20
+    - identifier: id_fs
+      name: "FreeSWITCH"
+      url: /freeswitch/
+      weight: 3
     - identifier: id_search
       name: "搜索"
       url: /search/
-      weight: 20
+      weight: 4
     - identifier: id_archives
       name: "归档"
       url: /archives/
-      weight: 30
+      weight: 5
     - identifier: id_about
       name: "我"
       url: /about/
-      weight: 31
+      weight: 6
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 # pygmentsUseClasses: true
 markup:
