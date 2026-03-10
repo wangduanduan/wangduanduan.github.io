@@ -13,16 +13,24 @@ VOIP 对我来说是个比较陌生的领域。进入这个领域可以说是一
 
 推荐在学习的过程中，一定要啃一遍 RFC 3261 协议，这是 VOIP 的基石。
 
-# OpenSIPS交流微信群
+本教程基于 OpensIPS 2.4.X， 但是大部分概念，在OpenSIPS 3.x上也能使用。
 
-加微信 **suguswang177**,  备注 opensips, 拉你进 opensips 交流群。
+# VoIP Club 知识星球
+
+欢迎扫码加入VoIP Club知识星球，加入后，可以获得更多VOIP相关知识
+
+- 包括不定期VoIP 实战经验分享
+- OpenSIPS 3.x 相关教程分享
+- 行业大佬带你飞
+
+
+{{< figure src="/images/voip-club2.png" width="400" >}}
 
 # 关于作者
 
 7年VoIP工作经验，前端/软交换开发。持续在SIP、OpenSIPS、Kamailio、WebRTC方向深耕。 
 
-热爱开源，热爱分享， 也对能够交流技术或探索契合方向的工作机会保持开放态度。微信ID：suguswang177
-
+热爱开源，热爱分享， 也对能够交流技术或探索契合方向的工作机会保持开放态度。
 
 # 文章目录
 

@@ -40,7 +40,7 @@
     {{- partial "anchored_headings.html" .Content -}}
     {{- else }}{{ .Content }}{{ end }}
 
-
+    {{ partial "post-footer.html" . }}
   </div>
   {{- end }}
 
