@@ -1,5 +1,5 @@
 baseURL: "https://wdd.js.org"
-title: "洞香春"
+title: "The SIP Lab"
 pagination:
   pagerSize: 10
 # theme: ananke
@@ -23,11 +23,10 @@ mainSections:
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: "洞香春"
-  description: "Eddie Wang的个人博客"
-  keywords: [Blog, Portfolio, PaperMod]
+  title: "The SIP Lab"
+  description: "Deep dives into VoIP, SIP, OpenSIPS, and Kamailio."
+  keywords: ["OpenSIPS", "Kamailio", "VoIP", "SIP", "FreeSWITCH", "RTC", "通信工程", "WebRTC", "电话", "PSTN", "SIP服务器", "软交换", "CTI", "CSTA"]
   author: "Eddie Wang"
-  # images: ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat: "2006-01-02 15:04:05"
   defaultTheme: light #auto # dark, light
   disableThemeToggle: false
@@ -61,7 +60,7 @@ params:
       - "https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css"
 
   label:
-    text: "洞香春"
+    text: "The SIP Lab"
     icon: "/favicon.ico"
     iconHeight: 35
 
@@ -83,14 +82,14 @@ params:
   # home-info mode
   homeInfoParams:
     enabled: false
-    Title: "Eddie"
-    Content: "7年VoIP工作经验，持续在SIP、OpenSIPS、Kamailio。 热爱开源，热爱分享。WeChatID: suguswang177, 欢迎交流！"
+    Title: "The SIP Lab"
+    Content: "Deep dives into VoIP, SIP, OpenSIPS, and Kamailio."
 
   socialIcons:
     - name: github
       url: "https://github.com/wangduanduan"
     - name: email
-      url: "mailto://eddie2072@icloud.com"
+      url: "mailto:eddie2072@icloud.com"
     - name: RSS
       url: "https://wdd.js.org/index.xml"
 
