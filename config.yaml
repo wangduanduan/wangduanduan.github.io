@@ -98,9 +98,9 @@ params:
     - name: other
       url: "https://yuque.com/wangdd"
 
-  analytics:
-    google:
-      SiteVerificationTag: "G-SGW660ZWKM"
+  # analytics:
+  #   google:
+  #     SiteVerificationTag: "G-SGW660ZWKM"
 
   cover:
     hidden: true # hide everywhere but not in structured data
