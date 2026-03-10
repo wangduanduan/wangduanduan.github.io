@@ -1,5 +1,5 @@
 ---
-title: 关于我
+title: About Me
 date: 2018-01-31 12:09:09
 ---
 
@@ -9,8 +9,6 @@ date: 2018-01-31 12:09:09
 
 - 精通VOIP相关技术栈：SIP/opensips/kamailio等等
 - 精通VIM
-- email: eddie2072@icloud.com
-- Github: [github.com/wangduanduan](https://github.com/wangduanduan)
 - 个人博客: [wdd.js.org](https://wdd.js.org), 最新内容将会发布在wdd.js.org
 - 微信阅读资深会员/365天阅读挑战赛
 

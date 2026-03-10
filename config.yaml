@@ -83,20 +83,16 @@ params:
   # home-info mode
   homeInfoParams:
     enabled: false
-    Title: "Eddie(艾迪)"
-    Content: "7年VoIP工作经验，持续在SIP、OpenSIPS、Kamailio。 热爱开源，热爱分享，也对能够交流技术或探索契合方向的工作机会保持开放态度"
+    Title: "Eddie"
+    Content: "7年VoIP工作经验，持续在SIP、OpenSIPS、Kamailio。 热爱开源，热爱分享。WeChatID: suguswang177, 欢迎交流！"
 
   socialIcons:
     - name: github
       url: "https://github.com/wangduanduan"
-    # - name: discord
-    #   url: "https://discord.gg/3e9yHt9Egg"
     - name: email
-      url: "mailto://1779706607@qq.com"
+      url: "mailto://eddie2072@icloud.com"
     - name: RSS
       url: "https://wdd.js.org/index.xml"
-    - name: other
-      url: "https://yuque.com/wangdd"
 
   # analytics:
   #   google:
@@ -136,16 +132,20 @@ menu:
       name: "FreeSWITCH"
       url: /freeswitch/
       weight: 3
+    - identifier: id_net
+      name: "Network"
+      url: /network/
+      weight: 4
     - identifier: id_search
-      name: "搜索"
+      name: "Search"
       url: /search/
       weight: 4
     - identifier: id_archives
-      name: "归档"
+      name: "Journal"
       url: /archives/
       weight: 5
     - identifier: id_about
-      name: "我"
+      name: "Me"
       url: /about/
       weight: 6
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma

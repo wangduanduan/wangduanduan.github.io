@@ -15,16 +15,6 @@ VOIP 对我来说是个比较陌生的领域。进入这个领域可以说是一
 
 本教程基于 OpensIPS 2.4.X， 但是大部分概念，在OpenSIPS 3.x上也能使用。
 
-# VoIP Club 知识星球
-
-欢迎扫码加入VoIP Club知识星球，加入后，可以获得更多VOIP相关知识
-
-- 包括不定期VoIP 实战经验分享
-- OpenSIPS 3.x 相关教程分享
-- 行业大佬带你飞
-
-
-{{< figure src="/images/voip-club2.png" width="400" >}}
 
 # 关于作者
 
