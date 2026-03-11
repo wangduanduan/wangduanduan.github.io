@@ -1,7 +1,7 @@
 ---
 title: "OpenSIPS vs Kamailio， 你应该选择哪个？"
 date: "2026-03-11 21:05:30"
-draft: true
+draft: false
 type: posts
 tags:
 - all
