@@ -1,7 +1,7 @@
 ---
 title: "图解Kamailio进程间通信详解"
 date: "2026-03-06 15:42:42"
-draft: true
+draft: false
 type: posts
 tags:
 - kamailio

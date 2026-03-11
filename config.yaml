@@ -7,7 +7,7 @@ theme: PaperMod
 ignoreLogs:
   - 'warning-goldmark-raw-html'
 enableRobotsTXT: true
-buildDrafts: true
+buildDrafts: false
 buildFuture: false
 buildExpired: false
 timeZone: "Asia/Shanghai"

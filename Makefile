@@ -12,16 +12,10 @@ push:
 	git push
 new:
 	hugo new $(type)/$(name)/index.md
-add:
-	hugo new $(name)/index.md
-2024:
-	hugo new posts/2024/$(name)/index.md
-2026:
-	hugo new posts/2026/$(name)/index.md
 post:
-	hugo new posts/2025/$(name)/index.md
+	hugo new posts/2026/$(name)/index.md
 serve:
-	hugo serve --disableFastRender
+	hugo serve -D
 km:
 	hugo new kamailio/$(id)/index.md
 km56:
