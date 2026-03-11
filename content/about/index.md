@@ -12,6 +12,7 @@ date: 2018-01-31 12:09:09
 - 微信ID: suguswang177
 - 个人博客: [wdd.js.org](https://wdd.js.org), 最新内容将会发布在wdd.js.org
 - 微信阅读资深会员/365天阅读挑战赛
+- 微信公众号： **The SIP Lab**
 
 
 # 如何订阅博客
