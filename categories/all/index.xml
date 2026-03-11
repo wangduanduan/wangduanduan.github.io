@@ -436,63 +436,6 @@ fw1 --&amp;gt; uas1
 &lt;p&gt;可以想象，随着媒体能力的增强，UDP包的SIP信令中的分片几乎成为必然，所以，是否可以考虑有限使用TCP/TLS来传输信令呢？&lt;/p&gt;</description>
     </item>
     <item>
-      <title>RTPEngine STUN包处理流程</title>
-      <link>https://wdd.js.org/posts/2025/rtpengine-stun-flow/</link>
-      <pubDate>Thu, 03 Jul 2025 22:26:35 +0800</pubDate>
-      <guid>https://wdd.js.org/posts/2025/rtpengine-stun-flow/</guid>
-      <description>&lt;h1 id=&#34;stun-请求处理&#34;&gt;STUN 请求处理&lt;/h1&gt;
-&lt;pre class=&#34;mermaid&#34;&gt;flowchart TD
-
-__wildcard_endpoint_map--&amp;gt;__assign_stream_fds
-monologue_offer_answer--&amp;gt;__assign_stream_fds
-monologue_publish--&amp;gt;__assign_stream_fds
-monologue_subscribe_request1--&amp;gt;__assign_stream_fds
-call_make_transform_media--&amp;gt;__assign_stream_fds
-
-__wildcard_endpoint_map --&amp;gt;__get_endpoint_map
-monologue_offer_answer --&amp;gt;__get_endpoint_map
-monologue_publish --&amp;gt;__get_endpoint_map
-monologue_subscribe_request1 --&amp;gt;__get_endpoint_map
-call_make_transform_media --&amp;gt;__get_endpoint_map
-
-__assign_stream_fds --&amp;gt; stream_fd_new
-__get_endpoint_map --&amp;gt; stream_fd_new
-
-stream_fd_new --&amp;gt; stream_fd_recv
-
-stream_fd_new--&amp;gt;stream_fd_readable
-stream_fd_readable--&amp;gt;__stream_fd_readable
-stream_fd_recv--&amp;gt;
-__stream_fd_readable--&amp;gt;
-stream_packet--&amp;gt;
-media_demux_protocols --&amp;gt; 
-stun --&amp;gt; __stun_request --&amp;gt; ice_request
-&lt;/pre&gt;
-&lt;p&gt;从SDP Offer之后，stream_fd_new 函数里做了几个事件订阅， 当对应的的媒体端口收到包之后，这个包可能是好几种协议，例如RTP, DTLS, STUN等。&lt;/p&gt;
-&lt;p&gt;在media_demux_protocols() 中决定了这个包是以上包的哪一种， 如果是STUN包，则进入stun()中处理。&lt;/p&gt;
-&lt;p&gt;STUN包也分为请求和响应，当消息是响应时，进入ice_request().&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 1&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ice_request&lt;/span&gt;(stream_fd &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;sfd, &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;endpoint_t&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;src,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 2&lt;/span&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; stun_attrs &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;attrs)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 3&lt;/span&gt;&lt;span&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 4&lt;/span&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; packet_stream &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;ps &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; sfd&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;stream;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 5&lt;/span&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; call_media &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;media &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ps&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;media;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 6&lt;/span&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ice_agent &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;ag;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 7&lt;/span&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;char&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;err;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 8&lt;/span&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ice_candidate &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;cand;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt; 9&lt;/span&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ice_candidate_pair &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;pair;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;10&lt;/span&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; ret;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;11&lt;/span&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex; background-color:#3c3d38&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;12&lt;/span&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;ilogs&lt;/span&gt;(ice, LOG_DEBUG, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Received ICE/STUN request from %s on %s&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex; background-color:#3c3d38&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;13&lt;/span&gt;&lt;span&gt;			&lt;span style=&#34;color:#a6e22e&#34;&gt;endpoint_print_buf&lt;/span&gt;(src),
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex; background-color:#3c3d38&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;14&lt;/span&gt;&lt;span&gt;			&lt;span style=&#34;color:#a6e22e&#34;&gt;endpoint_print_buf&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;sfd&lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt;socket.local));
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre class=&#34;mermaid&#34;&gt;flowchart TD
-ice_update--&amp;gt;__do_ice_checks
-ice_agents_timer_run--&amp;gt;__do_ice_checks
-
-__do_ice_checks --&amp;gt; __do_ice_check
-&lt;/pre&gt;</description>
-    </item>
-    <item>
       <title>DTLS协商失败导致无声问题</title>
       <link>https://wdd.js.org/posts/2025/dtls-negotiation-failed-no-audio/</link>
       <pubDate>Tue, 24 Jun 2025 21:06:11 +0800</pubDate>
@@ -854,29 +797,6 @@ The core includes:&lt;/p&gt;
 &lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/devel-guide-note/atta/2025-02-21-22-24-59.png&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
-      <title>kamailio 集成 HEP Server</title>
-      <link>https://wdd.js.org/kamailio/homer-hep/</link>
-      <pubDate>Mon, 17 Feb 2025 22:57:11 +0800</pubDate>
-      <guid>https://wdd.js.org/kamailio/homer-hep/</guid>
-      <description>&lt;h1 id=&#34;目标&#34;&gt;目标&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;kamailio将所收到的SIP消息封装成HEP格式，然后已UDP发送给Hep Server&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;环境说明&#34;&gt;环境说明&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;kamailio版本 5.6&lt;/li&gt;
-&lt;li&gt;Hep server地址 192.168.0.100&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;kamailio脚本&#34;&gt;kamailio脚本&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cfg&#34; data-lang=&#34;cfg&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;listen&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;参考文档&#34;&gt;参考文档&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.kamailio.org/docs/modules/5.6.x/modules/siptrace.html&#34;&gt;https://www.kamailio.org/docs/modules/5.6.x/modules/siptrace.html&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/sipcapture/homer/discussions/619&#34;&gt;https://github.com/sipcapture/homer/discussions/619&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/sipcapture/homer/wiki/Examples%3A-Kamailio&#34;&gt;https://github.com/sipcapture/homer/wiki/Examples%3A-Kamailio&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
-    </item>
-    <item>
       <title>HEP 协议学习笔记</title>
       <link>https://wdd.js.org/posts/2025/hep-protocol/</link>
       <pubDate>Sun, 02 Feb 2025 15:12:40 +0800</pubDate>
@@ -1074,61 +994,6 @@ title HEP Packet
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; str_hash_table names; &lt;span style=&#34;color:#75715e&#34;&gt;/* name to route index mappings */&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;str_hash_table的结构如下：&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>对外地址和record-route的问题</title>
-      <link>https://wdd.js.org/kamailio/adv-ip-record-route/</link>
-      <pubDate>Mon, 23 Dec 2024 19:23:43 +0800</pubDate>
-      <guid>https://wdd.js.org/kamailio/adv-ip-record-route/</guid>
-      <description>&lt;p&gt;网络结构图如下：&lt;/p&gt;
-&lt;pre class=&#34;mermaid&#34;&gt;flowchart LR
-jssip --&amp;gt; opensips --&amp;gt; freeswich
-&lt;/pre&gt;
-&lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;节点&lt;/th&gt;
-          &lt;th&gt;内网IP&lt;/th&gt;
-          &lt;th&gt;公网IP&lt;/th&gt;
-          &lt;th&gt;监听端口wss&lt;/th&gt;
-          &lt;th&gt;监听端口udp&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;opensips&lt;/td&gt;
-          &lt;td&gt;192.168.0.10&lt;/td&gt;
-          &lt;td&gt;1.2.3.4&lt;/td&gt;
-          &lt;td&gt;4443&lt;/td&gt;
-          &lt;td&gt;5060&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;freeswich&lt;/td&gt;
-          &lt;td&gt;192.168.0.11&lt;/td&gt;
-          &lt;td&gt;无&lt;/td&gt;
-          &lt;td&gt;&lt;/td&gt;
-          &lt;td&gt;5060&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h1 id=&#34;场景1--opensips不增加record-route&#34;&gt;场景1：  OpenSIPS不增加Record-Route&lt;/h1&gt;
-&lt;pre class=&#34;mermaid&#34;&gt;sequenceDiagram
-autonumber
-client-&amp;gt;&amp;gt;opensips: INVITE/WSS
-opensips-&amp;gt;&amp;gt;freeswich: INVITE/UDP
-freeswich--&amp;gt;&amp;gt;opensips: 200 Ok/UDP
-opensips--&amp;gt;&amp;gt;client: 200 Ok/WSS
-note right of client: 无任何Record-Route头，客户端的ACK由根据200 Ok的Contact决定
-client -&amp;gt;&amp;gt; WhereToGo: ACK 
-&lt;/pre&gt;
-&lt;p&gt;client收到200OK, 由于无Record-Route头，client的ACK由根据200 Ok的Contact决定。&lt;/p&gt;
-&lt;p&gt;WhereToGo 那么有以下几种可能：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;200 OK Contact 是 opensips的内网地址 192.168.0.10， ACK发往192.168.0.10， 这个肯定是不通的。&lt;/li&gt;
-&lt;li&gt;200 OK Contact 是 freeswich的内网地址 192.168.0.11， ACK发往192.168.0.11， 这个也肯定不通。&lt;/li&gt;
-&lt;li&gt;200 Ok Contact 是 opensips的公网地址 1.2.3.4， ACK发往opensips的公网地址 1.2.3.4， 这个请求opensips可以收到&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;结论：如果200 Ok 没有Record-Route， 那么OpenSIPS再发出200 OK的时候，Contact必须设置成自己的OpenSIPS的公网地址。&lt;/p&gt;</description>
     </item>
     <item>
       <title>DMQ模块源码学习笔记</title>
