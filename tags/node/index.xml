@@ -31,51 +31,5 @@
 &lt;p&gt;最后，我用&lt;code&gt;sudo -E n lts&lt;/code&gt;, 成功的从npmmirror上更新了nodejs的版本。&lt;/p&gt;
 &lt;p&gt;关于curl超时的这个问题，我也给n仓库提出了pull request, &lt;a href=&#34;https://github.com/tj/n/pull/771&#34;&gt;https://github.com/tj/n/pull/771&lt;/a&gt;&lt;/p&gt;</description>
     </item>
-    <item>
-      <title>NodeJS Events 模块笔记</title>
-      <link>https://wdd.js.org/posts/2018/08/deepin-nodejs-events/</link>
-      <pubDate>Fri, 10 Aug 2018 10:18:57 +0800</pubDate>
-      <guid>https://wdd.js.org/posts/2018/08/deepin-nodejs-events/</guid>
-      <description>&lt;h1 id=&#34;1-环境&#34;&gt;1. 环境&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;node 8.11.3&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;2-基本使用&#34;&gt;2. 基本使用&lt;/h1&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// 01.js
-
-const EventEmitter = require(&amp;#39;events&amp;#39;);
-
-class MyEmitter extends EventEmitter {}
-
-const myEmitter = new MyEmitter();
-myEmitter.on(&amp;#39;event&amp;#39;, () =&amp;gt; {
-  console.log(&amp;#39;an event occurred!&amp;#39;);
-});
-myEmitter.emit(&amp;#39;event&amp;#39;);
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;输出：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;an event occurred!
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;3-传参与this指向&#34;&gt;3. 传参与this指向&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;emit()&lt;/code&gt;方法可以传不限制数量的参数。&lt;/li&gt;
-&lt;li&gt;除了箭头函数外，在回调函数内部，this会被绑定到EventEmitter类的实例上&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// 02.js
-const EventEmitter = require(&amp;#39;events&amp;#39;)
-
-class MyEmitter extends EventEmitter {}
-
-const myEmitter = new MyEmitter()
-
-myEmitter.on(&amp;#39;event&amp;#39;, function (a, b){
-  console.log(a, b, this, this === myEmitter)
-})
-
-myEmitter.on(&amp;#39;event&amp;#39;, (a, b) =&amp;gt; {
-  console.log(a, b, this, this === myEmitter)
-})
-
-myEmitter.emit(&amp;#39;event&amp;#39;, &amp;#39;a&amp;#39;, {name:&amp;#39;wdd&amp;#39;})
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;输出：&lt;/p&gt;</description>
-    </item>
   </channel>
 </rss>

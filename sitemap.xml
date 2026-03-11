@@ -173,9 +173,6 @@
     <loc>https://wdd.js.org/tags/udp/</loc>
     <lastmod>2025-01-01T20:23:41+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/posts/2024/the-edn-day/</loc>
-    <lastmod>2024-12-31T21:06:09+08:00</lastmod>
-  </url><url>
     <loc>https://wdd.js.org/kamailio/route-list-action/</loc>
     <lastmod>2024-12-28T09:43:00+08:00</lastmod>
   </url><url>
@@ -233,35 +230,8 @@
     <loc>https://wdd.js.org/posts/2024/learn-prom-with-excel/</loc>
     <lastmod>2024-03-16T08:38:46+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/tags/typescript/</loc>
-    <lastmod>2023-12-28T20:21:11+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2023/when-to-use-ts-generics/</loc>
-    <lastmod>2023-12-28T20:21:11+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2023/typescript-with-bun/</loc>
-    <lastmod>2023-12-23T15:04:44+08:00</lastmod>
-  </url><url>
     <loc>https://wdd.js.org/posts/2023/vscode-pwsh-env-not-work/</loc>
     <lastmod>2023-11-16T08:08:39+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/404/</loc>
-    <lastmod>2023-11-09T20:49:44+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/categories/react/</loc>
-    <lastmod>2023-11-09T20:49:44+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/react-route/</loc>
-    <lastmod>2023-11-09T20:49:44+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/route/</loc>
-    <lastmod>2023-11-09T20:49:44+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/vite/</loc>
-    <lastmod>2023-11-09T20:49:44+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2023/vite-react-route-url-dot-404/</loc>
-    <lastmod>2023-11-09T20:49:44+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2023/hanvon-clear7-vs-book-leaf3/</loc>
     <lastmod>2023-11-06T09:30:34+08:00</lastmod>
@@ -280,9 +250,6 @@
   </url><url>
     <loc>https://wdd.js.org/posts/2023/n-stucked/</loc>
     <lastmod>2023-07-09T14:20:45+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2023/js-runtime-build-executable/</loc>
-    <lastmod>2023-06-01T13:48:00+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/vscode/</loc>
     <lastmod>2023-04-18T13:43:07+08:00</lastmod>
@@ -479,12 +446,6 @@
     <loc>https://wdd.js.org/freeswitch/</loc>
     <lastmod>2022-06-01T08:27:53+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/tags/hugo/</loc>
-    <lastmod>2022-05-28T21:08:43+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2022/05/hugo-blog-faq/</loc>
-    <lastmod>2022-05-28T21:08:43+08:00</lastmod>
-  </url><url>
     <loc>https://wdd.js.org/freeswitch/install-bcg729/</loc>
     <lastmod>2022-05-28T17:34:13+08:00</lastmod>
   </url><url>
@@ -502,12 +463,6 @@
   </url><url>
     <loc>https://wdd.js.org/freeswitch/media-settings/</loc>
     <lastmod>2022-05-28T14:50:55+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/shell/</loc>
-    <lastmod>2022-05-28T12:39:50+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2022/05/shell-101/</loc>
-    <lastmod>2022-05-28T12:39:50+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/clang/</loc>
     <lastmod>2022-05-28T12:35:26+08:00</lastmod>
@@ -1145,62 +1100,11 @@
     <loc>https://wdd.js.org/tags/%E5%AE%A2%E6%88%B7crm/</loc>
     <lastmod>2019-01-15T21:04:11+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/posts/2018/01/where-time-you-spend-what-you-will-be/</loc>
-    <lastmod>2019-01-01T21:02:08+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2018/12/deep-in-javascript-variable-value-arguments/</loc>
-    <lastmod>2018-12-17T15:24:15+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/bug/</loc>
-    <lastmod>2018-12-12T20:29:16+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/splice/</loc>
-    <lastmod>2018-12-12T20:29:16+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/vue/</loc>
-    <lastmod>2018-12-12T20:29:16+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2018/12/vue-array-splice-not-work/</loc>
-    <lastmod>2018-12-12T20:29:16+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2018/10/how-to-fix-circular-dependencies-in-node-js/</loc>
-    <lastmod>2018-10-29T09:21:03+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/shields/</loc>
-    <lastmod>2018-10-29T09:14:43+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2018/10/how-to-make-shields-badge/</loc>
-    <lastmod>2018-10-29T09:14:43+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/express/</loc>
-    <lastmod>2018-09-30T09:41:44+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2018/09/express-middleware-order-proxy-problem/</loc>
-    <lastmod>2018-09-30T09:41:44+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/http-proxy-middleware/</loc>
-    <lastmod>2018-09-30T09:41:44+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/node-http-proxy/</loc>
-    <lastmod>2018-09-30T09:41:44+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/proxy/</loc>
-    <lastmod>2018-09-30T09:41:44+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2018/08/ie-cross-domain-settings/</loc>
-    <lastmod>2018-08-23T10:20:10+08:00</lastmod>
-  </url><url>
     <loc>https://wdd.js.org/tags/%E6%9C%AA%E5%AE%8C%E6%88%90/</loc>
     <lastmod>2018-08-14T18:36:40+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2018/08/the-rest-of-your-life/</loc>
     <lastmod>2018-08-14T18:36:40+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2018/08/deepin-nodejs-events/</loc>
-    <lastmod>2018-08-10T10:18:57+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2018/06/js-download-file/</loc>
-    <lastmod>2018-06-27T09:09:01+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/rest/</loc>
     <lastmod>2018-06-07T22:35:08+08:00</lastmod>
@@ -1208,32 +1112,8 @@
     <loc>https://wdd.js.org/posts/2018/06/think-about-restful-api/</loc>
     <lastmod>2018-06-07T22:35:08+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/posts/2018/06/how-to-fix-google-chrome-very-high-cpu-cost/</loc>
-    <lastmod>2018-06-04T17:58:24+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/ie/</loc>
-    <lastmod>2018-05-24T14:50:49+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2018/05/ie-not-support-location-origin/</loc>
-    <lastmod>2018-05-24T14:50:49+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/%E7%AB%AF%E5%88%B0%E7%AB%AF%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2018-05-14T10:43:02+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2018/05/e2e-testing-hacker-news-with-cypress/</loc>
-    <lastmod>2018-05-14T10:43:02+08:00</lastmod>
-  </url><url>
     <loc>https://wdd.js.org/posts/2018/04/master-google-search-command/</loc>
     <lastmod>2018-04-26T16:56:01+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2018/04/express-static-file-cache-setting-and-cleaning/</loc>
-    <lastmod>2018-04-08T09:00:48+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98/</loc>
-    <lastmod>2018-04-08T09:00:48+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6/</loc>
-    <lastmod>2018-04-08T09:00:48+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/tags/websocket/</loc>
     <lastmod>2018-03-29T20:35:38+08:00</lastmod>
@@ -1241,68 +1121,14 @@
     <loc>https://wdd.js.org/posts/2018/03/websocket-close-reasons/</loc>
     <lastmod>2018-03-29T20:35:38+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/posts/2018/03/js-true-and-false-value/</loc>
-    <lastmod>2018-03-27T14:31:01+08:00</lastmod>
-  </url><url>
     <loc>https://wdd.js.org/tags/stompjs/</loc>
     <lastmod>2018-03-20T22:09:34+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2018/03/stomp-over-websocket/</loc>
     <lastmod>2018-03-20T22:09:34+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/tags/ajax/</loc>
-    <lastmod>2018-03-15T14:17:59+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2018/03/status-code-200-jquery-ajax-failed/</loc>
-    <lastmod>2018-03-15T14:17:59+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/clipboard/</loc>
-    <lastmod>2018-03-14T14:19:12+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/copy/</loc>
-    <lastmod>2018-03-14T14:19:12+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2018/03/clipboard-copy-tutorial/</loc>
-    <lastmod>2018-03-14T14:19:12+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/chrome/</loc>
-    <lastmod>2018-03-09T17:58:05+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2018/03/origin-null-is-not-allowed/</loc>
-    <lastmod>2018-03-09T17:58:05+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/origin-null-is-not-allowed/</loc>
-    <lastmod>2018-03-09T17:58:05+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/%E8%B7%A8%E5%9F%9F/</loc>
-    <lastmod>2018-03-09T17:58:05+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</loc>
-    <lastmod>2018-02-24T15:27:24+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2018/02/regex-online-tools/</loc>
-    <lastmod>2018-02-24T15:27:24+08:00</lastmod>
-  </url><url>
     <loc>https://wdd.js.org/posts/2018/02/webrtc-web-sip-phone/</loc>
     <lastmod>2018-02-11T14:44:58+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/12004/</loc>
-    <lastmod>2018-02-11T14:12:19+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/ie11/</loc>
-    <lastmod>2018-02-11T14:12:19+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2018/02/ie11-0x2ee4-bug/</loc>
-    <lastmod>2018-02-11T14:12:19+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/audio/</loc>
-    <lastmod>2018-02-09T13:44:13+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/elementui/</loc>
-    <lastmod>2018-02-09T13:44:13+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2018/02/vue-elementui-audio-component/</loc>
-    <lastmod>2018-02-09T13:44:13+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/posts/2018/02/one-command-create-static-file-server/</loc>
     <lastmod>2018-02-09T13:01:14+08:00</lastmod>
@@ -1334,21 +1160,6 @@
     <loc>https://wdd.js.org/posts/2018/02/tcp-high-recv-q-or-send-q-reasons/</loc>
     <lastmod>2018-02-08T21:58:31+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/tags/settimeout/</loc>
-    <lastmod>2018-02-08T14:09:54+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2018/02/settimeout-to-splice-big-work/</loc>
-    <lastmod>2018-02-08T14:09:54+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/debug/</loc>
-    <lastmod>2018-02-08T13:53:48+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2018/02/debug-code-in-iframe/</loc>
-    <lastmod>2018-02-08T13:53:48+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2018/02/audio-heart-detail/</loc>
-    <lastmod>2018-02-08T09:44:01+08:00</lastmod>
-  </url><url>
     <loc>https://wdd.js.org/tags/http/</loc>
     <lastmod>2018-02-08T09:10:59+08:00</lastmod>
   </url><url>
@@ -1358,12 +1169,6 @@
     <loc>https://wdd.js.org/posts/2018/02/you-dont-know-https-and-http/</loc>
     <lastmod>2018-02-08T09:10:59+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/tags/nodejs/</loc>
-    <lastmod>2018-02-07T14:15:43+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2018/02/debug-nodejs-in-chrome-devtool/</loc>
-    <lastmod>2018-02-07T14:15:43+08:00</lastmod>
-  </url><url>
     <loc>https://wdd.js.org/about/</loc>
     <lastmod>2018-01-31T12:09:09+08:00</lastmod>
   </url><url>
@@ -1372,15 +1177,6 @@
   </url><url>
     <loc>https://wdd.js.org/posts/2018/01/csta-call-model-overview/</loc>
     <lastmod>2018-01-29T21:35:24+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/substr/</loc>
-    <lastmod>2018-01-29T13:46:31+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/tags/substring/</loc>
-    <lastmod>2018-01-29T13:46:31+08:00</lastmod>
-  </url><url>
-    <loc>https://wdd.js.org/posts/2018/01/substr-and-substring-history/</loc>
-    <lastmod>2018-01-29T13:46:31+08:00</lastmod>
   </url><url>
     <loc>https://wdd.js.org/kamailio/56/structure/</loc>
   </url><url>

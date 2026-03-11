@@ -79,24 +79,5 @@
 dos2unix file
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果是vscode，也可以点击对应的文件格式按钮。&lt;/p&gt;</description>
     </item>
-    <item>
-      <title>Shell 教程技巧</title>
-      <link>https://wdd.js.org/posts/2022/05/shell-101/</link>
-      <pubDate>Sat, 28 May 2022 12:39:50 +0800</pubDate>
-      <guid>https://wdd.js.org/posts/2022/05/shell-101/</guid>
-      <description>&lt;h1 id=&#34;复制文本到剪贴板&#34;&gt;复制文本到剪贴板&lt;/h1&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo apt install xclip
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;vim ~/.zshrc&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;alias copy=&amp;#39;xclip -selection clipboard&amp;#39;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这样我们就可以用copy命令来考本文件内容到系统剪贴板了。&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;copy aaa.txt
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;判断工作区是否clean&#34;&gt;判断工作区是否clean&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt; -z &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;$(&lt;/span&gt;git status --porcelain&lt;span style=&#34;color:#66d9ef&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;then&lt;/span&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# Working directory clean&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# Uncommitted changes&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fi&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-    </item>
   </channel>
 </rss>
