@@ -139,6 +139,11 @@ kamailio在三种pool模型上层做了封装.
   - TCP链接由TCP Main进程负责分配
   - accept新的TCP/TLS链接
   - 维护TCP链接的生命周期
+- **负载策略**
+  - 选择最小负载的tcp worker进程
+- **链接亲和性**
+  - 当conn[1]第一次被绑定到tcp woker[1]上时， 后续从conn[1]上读数据都会由worker[1]处理。 注意，链接在未收到任何数据时，不会分配给任何的worker。
+
 
 ## 3.3. 调用链分析
 
@@ -167,4 +172,45 @@ flowchart LR
 	main:main_loop --> tcp_main:tcp_init_children --> tcp_read:tcp_receive_loop
 ```
 
+整个调用链关系很复杂，但是重点只需要关注几类事件
+
+- **TCP Main**
+  - 事件回调handle_io
+    - **F_SOCKINFO** 新的TCP链接建立
+    - **F_TCPCONN** 链接断开，可读，可写等等
+    - **F_TCPCHILD** 来自TCP子进程的消息
+    - **F_PROC** 来自其他进程的消息
+  - 事件订阅tcp_main_loop
+    - POLLN
+      - tcp SIP 链接
+      - tls SIP 链接
+      - unix_sock 通用进程间通信
+      - tcp_children TCP子进程通信
+
 # 4. 举例说明： UDP读TCP发
+
+场景说明
+- SIP INVITE从UDP端口接收, 然后发现目标地址是一个TCP地址，而且这个链接已经存在
+
+```mermaid
+sequenceDiagram
+    participant x as XXX
+    participant u as UDP worker
+    participant m as TCP main
+    participant t as TCP receiver-1
+    participant ua as MicroSIP
+
+    x->>u: INVITE/UDP MicroSIP
+
+    opt IPC
+      u-)m: Get TCP conn FD
+      m-)u: TCP FD 12
+    end
+
+    u->>ua: INVITE/TCP MicroSIP
+
+    ua -->>t: 180/TCP
+    t-->>x: 180/UDP
+    ua -->>t: 200 Ok/TCP
+    t-->>x: 200 Ok/UDP
+```
