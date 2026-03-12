@@ -1,6 +1,6 @@
 ---
 title: "时光轴"
 layout: "archives"
-url: "/zh/archives/"
+url: "/archives/"
 summary: archives
 ---
