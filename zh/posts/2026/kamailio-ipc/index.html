@@ -1,0 +1,175 @@
+<!doctype html><html lang=zh dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>图解Kamailio进程间通信详解 | The SIP Lab</title><meta name=keywords content="kamailio,ipc"><meta name=description content="
+1. 概述
+2. UDP Socket进程处理分析
+
+2.1. UDP端口信息收集
+2.2. 端口绑定
+2.3. 进程fork阶段
+2.4. UDP read 阶段
+2.5. UDP 消息进程间负载均衡阶段
+
+
+3. TCP消息处理分析
+
+3.1. 消息处理模型
+3.2. 负载均衡策略
+3.3. 调用链分析
+
+
+4. 举例说明： UDP读TCP发
+
+1. 概述
+kamailio SIP消息处理进程主要分为三类。
+
+  
+      
+          类别
+          功能
+          数量
+      
+  
+  
+      
+          UDP worker进程
+          处理以UDP传输的SIP消息
+          port * children
+      
+      
+          TCP main进程
+          负责tcp链接管理，生命周期维护，tcp work的消息分发
+          1
+      
+      
+          TCP worker进程
+          处理以TCP传输的SIP消息
+          children
+      
+  
+
+以下面的配置为例：
+则SIP消息处理进程数量为：4 * 2 + 1 + 4 = 13个
+children=4
+listen=udp:127.0.0.1:5060
+listen=udp:127.0.0.1:5080
+listen=tcp:127.0.0.1:5061
+在生成环境，建议children设置为CPU核数,  这样能最大化利用多核能力，并且避免太多的进程切换。
+2. UDP Socket进程处理分析
+UDP Socket处理主要分为三个步骤"><meta name=author content="Eddie Wang"><link rel=canonical href=https://wdd.js.org/zh/posts/2026/kamailio-ipc/><link crossorigin=anonymous href=/assets/css/stylesheet.a2acda249b8eac62938bb2d2f1c562c5f74d5728640d2a1a7d6aeaec5c50ef24.css integrity="sha256-oqzaJJuOrGKTi7LS8cVixfdNVyhkDSoafWrq7FxQ7yQ=" rel="preload stylesheet" as=style><link rel=icon href=https://wdd.js.org/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://wdd.js.org/favicon.ico><link rel=icon type=image/png sizes=32x32 href=https://wdd.js.org/favicon.ico><link rel=apple-touch-icon href=https://wdd.js.org/favicon.ico><link rel=mask-icon href=https://wdd.js.org/favicon.ico><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://wdd.js.org/zh/posts/2026/kamailio-ipc/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css><style>body{font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,noto sans,sans-serif,apple color emoji,segoe ui emoji;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}h1,h2,h3,h4,h5,h6{font-weight:600;letter-spacing:-.02em}code,pre{font-family:fira code,jetbrains mono,Consolas,monospace;font-variant-ligatures:normal;font-size:.95em}</style><script async src="https://www.googletagmanager.com/gtag/js?id=G-SGW660ZWKM"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-SGW660ZWKM")</script><meta property="og:url" content="https://wdd.js.org/zh/posts/2026/kamailio-ipc/"><meta property="og:site_name" content="The SIP Lab"><meta property="og:title" content="图解Kamailio进程间通信详解"><meta property="og:description" content=" 1. 概述 2. UDP Socket进程处理分析 2.1. UDP端口信息收集 2.2. 端口绑定 2.3. 进程fork阶段 2.4. UDP read 阶段 2.5. UDP 消息进程间负载均衡阶段 3. TCP消息处理分析 3.1. 消息处理模型 3.2. 负载均衡策略 3.3. 调用链分析 4. 举例说明： UDP读TCP发 1. 概述 kamailio SIP消息处理进程主要分为三类。
+类别 功能 数量 UDP worker进程 处理以UDP传输的SIP消息 port * children TCP main进程 负责tcp链接管理，生命周期维护，tcp work的消息分发 1 TCP worker进程 处理以TCP传输的SIP消息 children 以下面的配置为例：
+则SIP消息处理进程数量为：4 * 2 + 1 + 4 = 13个
+children=4 listen=udp:127.0.0.1:5060 listen=udp:127.0.0.1:5080 listen=tcp:127.0.0.1:5061 在生成环境，建议children设置为CPU核数, 这样能最大化利用多核能力，并且避免太多的进程切换。
+2. UDP Socket进程处理分析 UDP Socket处理主要分为三个步骤"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2026-03-06T15:42:42+08:00"><meta property="article:modified_time" content="2026-03-06T15:42:42+08:00"><meta property="article:tag" content="Kamailio"><meta property="article:tag" content="Ipc"><meta name=twitter:card content="summary"><meta name=twitter:title content="图解Kamailio进程间通信详解"><meta name=twitter:description content="
+1. 概述
+2. UDP Socket进程处理分析
+
+2.1. UDP端口信息收集
+2.2. 端口绑定
+2.3. 进程fork阶段
+2.4. UDP read 阶段
+2.5. UDP 消息进程间负载均衡阶段
+
+
+3. TCP消息处理分析
+
+3.1. 消息处理模型
+3.2. 负载均衡策略
+3.3. 调用链分析
+
+
+4. 举例说明： UDP读TCP发
+
+1. 概述
+kamailio SIP消息处理进程主要分为三类。
+
+  
+      
+          类别
+          功能
+          数量
+      
+  
+  
+      
+          UDP worker进程
+          处理以UDP传输的SIP消息
+          port * children
+      
+      
+          TCP main进程
+          负责tcp链接管理，生命周期维护，tcp work的消息分发
+          1
+      
+      
+          TCP worker进程
+          处理以TCP传输的SIP消息
+          children
+      
+  
+
+以下面的配置为例：
+则SIP消息处理进程数量为：4 * 2 + 1 + 4 = 13个
+children=4
+listen=udp:127.0.0.1:5060
+listen=udp:127.0.0.1:5080
+listen=tcp:127.0.0.1:5061
+在生成环境，建议children设置为CPU核数,  这样能最大化利用多核能力，并且避免太多的进程切换。
+2. UDP Socket进程处理分析
+UDP Socket处理主要分为三个步骤"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://wdd.js.org/zh/posts/"},{"@type":"ListItem","position":2,"name":"图解Kamailio进程间通信详解","item":"https://wdd.js.org/zh/posts/2026/kamailio-ipc/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"图解Kamailio进程间通信详解","name":"图解Kamailio进程间通信详解","description":" 1. 概述 2. UDP Socket进程处理分析 2.1. UDP端口信息收集 2.2. 端口绑定 2.3. 进程fork阶段 2.4. UDP read 阶段 2.5. UDP 消息进程间负载均衡阶段 3. TCP消息处理分析 3.1. 消息处理模型 3.2. 负载均衡策略 3.3. 调用链分析 4. 举例说明： UDP读TCP发 1. 概述 kamailio SIP消息处理进程主要分为三类。\n类别 功能 数量 UDP worker进程 处理以UDP传输的SIP消息 port * children TCP main进程 负责tcp链接管理，生命周期维护，tcp work的消息分发 1 TCP worker进程 处理以TCP传输的SIP消息 children 以下面的配置为例：\n则SIP消息处理进程数量为：4 * 2 + 1 + 4 = 13个\nchildren=4 listen=udp:127.0.0.1:5060 listen=udp:127.0.0.1:5080 listen=tcp:127.0.0.1:5061 在生成环境，建议children设置为CPU核数, 这样能最大化利用多核能力，并且避免太多的进程切换。\n2. UDP Socket进程处理分析 UDP Socket处理主要分为三个步骤\n","keywords":["kamailio","ipc"],"articleBody":" 1. 概述 2. UDP Socket进程处理分析 2.1. UDP端口信息收集 2.2. 端口绑定 2.3. 进程fork阶段 2.4. UDP read 阶段 2.5. UDP 消息进程间负载均衡阶段 3. TCP消息处理分析 3.1. 消息处理模型 3.2. 负载均衡策略 3.3. 调用链分析 4. 举例说明： UDP读TCP发 1. 概述 kamailio SIP消息处理进程主要分为三类。\n类别 功能 数量 UDP worker进程 处理以UDP传输的SIP消息 port * children TCP main进程 负责tcp链接管理，生命周期维护，tcp work的消息分发 1 TCP worker进程 处理以TCP传输的SIP消息 children 以下面的配置为例：\n则SIP消息处理进程数量为：4 * 2 + 1 + 4 = 13个\nchildren=4 listen=udp:127.0.0.1:5060 listen=udp:127.0.0.1:5080 listen=tcp:127.0.0.1:5061 在生成环境，建议children设置为CPU核数, 这样能最大化利用多核能力，并且避免太多的进程切换。\n2. UDP Socket进程处理分析 UDP Socket处理主要分为三个步骤\nUDP端口信息收集 端口绑定 进程fork 2.1. UDP端口信息收集 2.2. 端口绑定 2.3. 进程fork阶段 2.4. UDP read 阶段 udp recvfrom() 都是读到一个静态的buffer区域中，这个静态buffer会一直循环利用，而不是每次都申请。\n2.5. UDP 消息进程间负载均衡阶段 套接字共享：所有进程共享一个套接字文件描述符 竞争接收：一组相同端口的worker都从相同的套接字上等待接收消息，但是只有一个能收到消息 内核级调度： 当UDP数据包到达时 将数据包放到套接字接收缓冲区 唤醒一个正在等待的进程 被唤醒的集成调用recvfrom()获取数据 内核的调度策略，无法预测，可能INVITE在woker1上，ACK在woker2上，BYE在woker3上，CANCEL在woker4上。 在大量消息的情况下，只能做到大致均衡。\n这种调度优缺点都非常明显\n优点 高并发，充分利用多核CPU 高效率，无需应用层调度 低延迟，消息直接由进程处理 缺点 惊群效应，多个进程被唤醒，只有一个能读到消息 负载不均衡，某些进程可能更活跃 消息顺序，无法保证消息顺序。例如可能先处理了CANCEL, 再处理了INVITE 编程复杂，始终考虑多进程的边界，稍不注意，日志打印都会引起coredump 3. TCP消息处理分析 3.1. 消息处理模型 TCP消息的处理阶段和UDP处理的类似，唯一的区别是， TCP woker进程的数量和端口无关，而只和children参数有关。\n这里主要讲一下tcp_poll_method\nkamailio在三种pool模型上层做了封装.\n维度 select epoll kqueue 平台 通用 Linux BSD 可监控数 ~1014 10W+ 10W+ 复杂度 O(n) O(1) O(1) 内存拷贝 每次 仅注册 仅注册 适合 小规模 高并发 高并发 3.2. 负载均衡策略 应用级分配 TCP链接由TCP Main进程负责分配 accept新的TCP/TLS链接 维护TCP链接的生命周期 负载策略 选择最小负载的tcp worker进程 链接亲和性 当conn[1]第一次被绑定到tcp woker[1]上时， 后续从conn[1]上读数据都会由worker[1]处理。 注意，链接在未收到任何数据时，不会分配给任何的worker。 3.3. 调用链分析 flowchart LR tcp_main:handle_io --\u003e tcp_main:handle_new_connect tcp_main:handle_io --\u003e tcp_main:handle_tcpconn_ev tcp_main:handle_new_connect --\u003e tcp_main:send2child tcp_main:handle_tcpconn_ev --\u003e tcp_main:send2child tcp_main:send2child --\u003e tcp_main:handle_tcp_child tcp_main:send2child --\u003e tcp_main:handle_ser_child tcp_main:handle_io --\u003e tcp_main:handle_tcp_child tcp_main:handle_tcp_child --\u003e io_watch_add tcp_main:handle_io --\u003e tcp_main:handle_ser_child tcp_main:handle_ser_child --\u003e io_watch_add main:main_loop --\u003e tcp_main:tcp_main_loop tcp_main:tcp_main_loop -- tcp listen sockets --\u003e io_watch_add tcp_main:tcp_main_loop -- tls listen sockets --\u003e io_watch_add tcp_main:tcp_main_loop -- process unix_sockets --\u003e io_watch_add tcp_main:tcp_main_loop -- tcp child unix_sockets --\u003e io_watch_add tcp_read:handle_io --\u003e io_watch_add tcp_read:tcp_receive_loop --tcpmain socket--\u003e io_watch_add tcp_read:tcp_receive_loop --\u003e io_wait_loop_epoll tcp_main:tcp_main_loop --\u003e io_wait_loop_epoll --\u003e handle_io main:main_loop --\u003e tcp_main:tcp_init_children --\u003e tcp_read:tcp_receive_loop 整个调用链关系很复杂，但是重点只需要关注几类事件\nTCP Main 事件回调handle_io F_SOCKINFO 新的TCP链接建立 F_TCPCONN 链接断开，可读，可写等等 F_TCPCHILD 来自TCP子进程的消息 F_PROC 来自其他进程的消息 事件订阅tcp_main_loop POLLN tcp SIP 链接 tls SIP 链接 unix_sock 通用进程间通信 tcp_children TCP子进程通信 4. 举例说明： UDP读TCP发 场景说明\nSIP INVITE从UDP端口接收, 然后发现目标地址是一个TCP地址，而且这个链接已经存在 sequenceDiagram participant x as XXX participant u as UDP worker participant m as TCP main participant t as TCP receiver-1 participant ua as MicroSIP x-\u003e\u003eu: INVITE/UDP MicroSIP opt IPC u-)m: Get TCP conn FD m-)u: TCP FD 12 end u-\u003e\u003eua: INVITE/TCP MicroSIP ua --\u003e\u003et: 180/TCP t--\u003e\u003ex: 180/UDP ua --\u003e\u003et: 200 Ok/TCP t--\u003e\u003ex: 200 Ok/UDP ","wordCount":"328","inLanguage":"zh","datePublished":"2026-03-06T15:42:42+08:00","dateModified":"2026-03-06T15:42:42+08:00","author":{"@type":"Person","name":"Eddie Wang"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://wdd.js.org/zh/posts/2026/kamailio-ipc/"},"publisher":{"@type":"Organization","name":"The SIP Lab","logo":{"@type":"ImageObject","url":"https://wdd.js.org/favicon.ico"}}}</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-SGW660ZWKM"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-SGW660ZWKM")</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://wdd.js.org/zh/ accesskey=h title="The SIP Lab (Alt + H)"><img src=https://wdd.js.org/favicon.ico alt aria-label=logo height=35>The SIP Lab</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button><ul class=lang-switch><li>|</li><li><a href=https://wdd.js.org/en/ title=English aria-label=English>En</a></li></ul></div></div><ul id=menu><li><a href=https://wdd.js.org/zh/opensips/ title=OpenSIPS><span>OpenSIPS</span></a></li><li><a href=https://wdd.js.org/zh/kamailio/ title=Kamailio><span>Kamailio</span></a></li><li><a href=https://wdd.js.org/zh/freeswitch/ title=FreeSWITCH><span>FreeSWITCH</span></a></li><li><a href=https://wdd.js.org/zh/network/ title=Network><span>Network</span></a></li><li><a href=https://wdd.js.org/zh/search/ title=Search><span>Search</span></a></li><li><a href=https://wdd.js.org/zh/archives/ title=Journal><span>Journal</span></a></li><li><a href=https://wdd.js.org/zh/about/ title=Me><span>Me</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://wdd.js.org/zh/>主页</a>&nbsp;»&nbsp;<a href=https://wdd.js.org/zh/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">图解Kamailio进程间通信详解</h1><div class=post-meta><span title='2026-03-06 15:42:42 +0800 CST'>2026-03-06 15:42:42</span>&nbsp;·&nbsp;<span>2 分钟</span>&nbsp;·&nbsp;<span>Eddie Wang</span>&nbsp;|&nbsp;<span>
+<a href=https://github.com/%3cpath_to_repo%3e/content/posts/2026/kamailio-ipc/index.md rel="noopener noreferrer edit" target=_blank>Suggest Changes</a></span></div></header><aside id=toc-container class="toc-container wide"><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>目录</span></summary><div class=inner><ul><li><a href=#1-%e6%a6%82%e8%bf%b0 aria-label="1. 概述">1. 概述</a></li><li><a href=#2-udp-socket%e8%bf%9b%e7%a8%8b%e5%a4%84%e7%90%86%e5%88%86%e6%9e%90 aria-label="2. UDP Socket进程处理分析">2. UDP Socket进程处理分析</a><ul><li><a href=#21-udp%e7%ab%af%e5%8f%a3%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86 aria-label="2.1. UDP端口信息收集">2.1. UDP端口信息收集</a></li><li><a href=#22-%e7%ab%af%e5%8f%a3%e7%bb%91%e5%ae%9a aria-label="2.2. 端口绑定">2.2. 端口绑定</a></li><li><a href=#23-%e8%bf%9b%e7%a8%8bfork%e9%98%b6%e6%ae%b5 aria-label="2.3. 进程fork阶段">2.3. 进程fork阶段</a></li><li><a href=#24-udp-read-%e9%98%b6%e6%ae%b5 aria-label="2.4. UDP read 阶段">2.4. UDP read 阶段</a></li><li><a href=#25-udp-%e6%b6%88%e6%81%af%e8%bf%9b%e7%a8%8b%e9%97%b4%e8%b4%9f%e8%bd%bd%e5%9d%87%e8%a1%a1%e9%98%b6%e6%ae%b5 aria-label="2.5. UDP 消息进程间负载均衡阶段">2.5. UDP 消息进程间负载均衡阶段</a></li></ul></li><li><a href=#3-tcp%e6%b6%88%e6%81%af%e5%a4%84%e7%90%86%e5%88%86%e6%9e%90 aria-label="3. TCP消息处理分析">3. TCP消息处理分析</a><ul><li><a href=#31-%e6%b6%88%e6%81%af%e5%a4%84%e7%90%86%e6%a8%a1%e5%9e%8b aria-label="3.1. 消息处理模型">3.1. 消息处理模型</a></li><li><a href=#32-%e8%b4%9f%e8%bd%bd%e5%9d%87%e8%a1%a1%e7%ad%96%e7%95%a5 aria-label="3.2. 负载均衡策略">3.2. 负载均衡策略</a></li><li><a href=#33-%e8%b0%83%e7%94%a8%e9%93%be%e5%88%86%e6%9e%90 aria-label="3.3. 调用链分析">3.3. 调用链分析</a></li></ul></li><li><a href=#4-%e4%b8%be%e4%be%8b%e8%af%b4%e6%98%8e-udp%e8%af%bbtcp%e5%8f%91 aria-label="4. 举例说明： UDP读TCP发">4. 举例说明： UDP读TCP发</a></li></ul></div></details></div></aside><script>let activeElement,elements;window.addEventListener("DOMContentLoaded",function(){checkTocPosition(),elements=document.querySelectorAll("h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]"),activeElement=elements[0];const t=encodeURI(activeElement.getAttribute("id")).toLowerCase();document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active")},!1),window.addEventListener("resize",function(){checkTocPosition()},!1),window.addEventListener("scroll",()=>{activeElement=Array.from(elements).find(e=>{if(getOffsetTop(e)-window.pageYOffset>0&&getOffsetTop(e)-window.pageYOffset<window.innerHeight/2)return e})||activeElement,elements.forEach(e=>{const t=encodeURI(e.getAttribute("id")).toLowerCase();e===activeElement?document.querySelector(`.inner ul li a[href="#${t}"]`).classList.add("active"):document.querySelector(`.inner ul li a[href="#${t}"]`).classList.remove("active")})},!1);const main=parseInt(getComputedStyle(document.body).getPropertyValue("--article-width"),10),toc=parseInt(getComputedStyle(document.body).getPropertyValue("--toc-width"),10),gap=parseInt(getComputedStyle(document.body).getPropertyValue("--gap"),10);function checkTocPosition(){const e=document.body.scrollWidth;e-main-toc*2-gap*4>0?document.getElementById("toc-container").classList.add("wide"):document.getElementById("toc-container").classList.remove("wide")}function getOffsetTop(e){if(!e.getClientRects().length)return 0;let t=e.getBoundingClientRect(),n=e.ownerDocument.defaultView;return t.top+n.pageYOffset}</script><div class=post-content><ul><li><a href=/zh/posts/2026/kamailio-ipc/#1-%e6%a6%82%e8%bf%b0>1. 概述</a></li><li><a href=/zh/posts/2026/kamailio-ipc/#2-udp-socket%e8%bf%9b%e7%a8%8b%e5%a4%84%e7%90%86%e5%88%86%e6%9e%90>2. UDP Socket进程处理分析</a><ul><li><a href=/zh/posts/2026/kamailio-ipc/#21-udp%e7%ab%af%e5%8f%a3%e4%bf%a1%e6%81%af%e6%94%b6%e9%9b%86>2.1. UDP端口信息收集</a></li><li><a href=/zh/posts/2026/kamailio-ipc/#22-%e7%ab%af%e5%8f%a3%e7%bb%91%e5%ae%9a>2.2. 端口绑定</a></li><li><a href=/zh/posts/2026/kamailio-ipc/#23-%e8%bf%9b%e7%a8%8bfork%e9%98%b6%e6%ae%b5>2.3. 进程fork阶段</a></li><li><a href=/zh/posts/2026/kamailio-ipc/#24-udp-read-%e9%98%b6%e6%ae%b5>2.4. UDP read 阶段</a></li><li><a href=/zh/posts/2026/kamailio-ipc/#25-udp-%e6%b6%88%e6%81%af%e8%bf%9b%e7%a8%8b%e9%97%b4%e8%b4%9f%e8%bd%bd%e5%9d%87%e8%a1%a1%e9%98%b6%e6%ae%b5>2.5. UDP 消息进程间负载均衡阶段</a></li></ul></li><li><a href=/zh/posts/2026/kamailio-ipc/#3-tcp%e6%b6%88%e6%81%af%e5%a4%84%e7%90%86%e5%88%86%e6%9e%90>3. TCP消息处理分析</a><ul><li><a href=/zh/posts/2026/kamailio-ipc/#31-%e6%b6%88%e6%81%af%e5%a4%84%e7%90%86%e6%a8%a1%e5%9e%8b>3.1. 消息处理模型</a></li><li><a href=/zh/posts/2026/kamailio-ipc/#32-%e8%b4%9f%e8%bd%bd%e5%9d%87%e8%a1%a1%e7%ad%96%e7%95%a5>3.2. 负载均衡策略</a></li><li><a href=/zh/posts/2026/kamailio-ipc/#33-%e8%b0%83%e7%94%a8%e9%93%be%e5%88%86%e6%9e%90>3.3. 调用链分析</a></li></ul></li><li><a href=/zh/posts/2026/kamailio-ipc/#4-%e4%b8%be%e4%be%8b%e8%af%b4%e6%98%8e-udp%e8%af%bbtcp%e5%8f%91>4. 举例说明： UDP读TCP发</a></li></ul><h1 id=1-概述>1. 概述<a hidden class=anchor aria-hidden=true href=#1-概述>#</a></h1><p>kamailio SIP消息处理进程主要分为三类。</p><table><thead><tr><th>类别</th><th>功能</th><th>数量</th></tr></thead><tbody><tr><td>UDP worker进程</td><td>处理以UDP传输的SIP消息</td><td>port * children</td></tr><tr><td>TCP main进程</td><td>负责tcp链接管理，生命周期维护，tcp work的消息分发</td><td>1</td></tr><tr><td>TCP worker进程</td><td>处理以TCP传输的SIP消息</td><td>children</td></tr></tbody></table><p>以下面的配置为例：</p><p>则SIP消息处理进程数量为：<code>4 * 2 + 1 + 4</code> = 13个</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>children<span style=color:#f92672>=</span><span style=color:#ae81ff>4</span>
+</span></span><span style=display:flex><span>listen<span style=color:#f92672>=</span>udp:127.0.0.1:5060
+</span></span><span style=display:flex><span>listen<span style=color:#f92672>=</span>udp:127.0.0.1:5080
+</span></span><span style=display:flex><span>listen<span style=color:#f92672>=</span>tcp:127.0.0.1:5061
+</span></span></code></pre></div><p>在生成环境，建议children设置为<code>CPU核数</code>, 这样能最大化利用多核能力，并且避免太多的进程切换。</p><h1 id=2-udp-socket进程处理分析>2. UDP Socket进程处理分析<a hidden class=anchor aria-hidden=true href=#2-udp-socket进程处理分析>#</a></h1><p>UDP Socket处理主要分为三个步骤</p><ol><li>UDP端口信息收集</li><li>端口绑定</li><li>进程fork</li></ol><h2 id=21-udp端口信息收集>2.1. UDP端口信息收集<a hidden class=anchor aria-hidden=true href=#21-udp端口信息收集>#</a></h2><p><img loading=lazy src=/zh/posts/2026/kamailio-ipc/udp.drawio.png></p><hr><h2 id=22-端口绑定>2.2. 端口绑定<a hidden class=anchor aria-hidden=true href=#22-端口绑定>#</a></h2><p><img loading=lazy src=/zh/posts/2026/kamailio-ipc/udp-bind.drawio.png></p><hr><h2 id=23-进程fork阶段>2.3. 进程fork阶段<a hidden class=anchor aria-hidden=true href=#23-进程fork阶段>#</a></h2><p><img loading=lazy src=/zh/posts/2026/kamailio-ipc/udp-fork.drawio.png></p><hr><h2 id=24-udp-read-阶段>2.4. UDP read 阶段<a hidden class=anchor aria-hidden=true href=#24-udp-read-阶段>#</a></h2><p>udp recvfrom() 都是读到一个静态的buffer区域中，这个静态buffer会一直循环利用，而不是每次都申请。</p><p><img loading=lazy src=/zh/posts/2026/kamailio-ipc/udp-read.drawio.png></p><hr><h2 id=25-udp-消息进程间负载均衡阶段>2.5. UDP 消息进程间负载均衡阶段<a hidden class=anchor aria-hidden=true href=#25-udp-消息进程间负载均衡阶段>#</a></h2><p><img loading=lazy src=/zh/posts/2026/kamailio-ipc/udp-dispatcher.drawio.png></p><ol><li><strong>套接字共享</strong>：所有进程共享一个套接字文件描述符</li><li><strong>竞争接收</strong>：一组相同端口的worker都从相同的套接字上等待接收消息，但是只有一个能收到消息</li><li><strong>内核级调度</strong>： 当UDP数据包到达时<ol><li>将数据包放到套接字接收缓冲区</li><li>唤醒一个正在等待的进程</li><li>被唤醒的集成调用recvfrom()获取数据</li></ol></li></ol><p>内核的调度策略，无法预测，可能INVITE在woker1上，ACK在woker2上，BYE在woker3上，CANCEL在woker4上。
+在大量消息的情况下，只能做到大致均衡。</p><p>这种调度优缺点都非常明显</p><ul><li><strong>优点</strong><ul><li>高并发，充分利用多核CPU</li><li>高效率，无需应用层调度</li><li>低延迟，消息直接由进程处理</li></ul></li><li><strong>缺点</strong><ul><li>惊群效应，多个进程被唤醒，只有一个能读到消息</li><li>负载不均衡，某些进程可能更活跃</li><li>消息顺序，无法保证消息顺序。例如可能先处理了CANCEL, 再处理了INVITE</li><li>编程复杂，始终考虑多进程的边界，稍不注意，日志打印都会引起coredump</li></ul></li></ul><hr><h1 id=3-tcp消息处理分析>3. TCP消息处理分析<a hidden class=anchor aria-hidden=true href=#3-tcp消息处理分析>#</a></h1><h2 id=31-消息处理模型>3.1. 消息处理模型<a hidden class=anchor aria-hidden=true href=#31-消息处理模型>#</a></h2><p>TCP消息的处理阶段和UDP处理的类似，唯一的区别是， TCP woker进程的数量和端口无关，而只和children参数有关。</p><p>这里主要讲一下tcp_poll_method</p><p>kamailio在三种pool模型上层做了封装.</p><p><img loading=lazy src=/zh/posts/2026/kamailio-ipc/tcp-poll-mod.drawio.png></p><table><thead><tr><th>维度</th><th>select</th><th>epoll</th><th>kqueue</th></tr></thead><tbody><tr><td>平台</td><td>通用</td><td>Linux</td><td>BSD</td></tr><tr><td>可监控数</td><td>~1014</td><td>10W+</td><td>10W+</td></tr><tr><td>复杂度</td><td>O(n)</td><td>O(1)</td><td>O(1)</td></tr><tr><td>内存拷贝</td><td>每次</td><td>仅注册</td><td>仅注册</td></tr><tr><td>适合</td><td>小规模</td><td>高并发</td><td>高并发</td></tr></tbody></table><h2 id=32-负载均衡策略>3.2. 负载均衡策略<a hidden class=anchor aria-hidden=true href=#32-负载均衡策略>#</a></h2><p><img loading=lazy src=/zh/posts/2026/kamailio-ipc/tcp-dispatcher.drawio.png></p><ul><li><strong>应用级分配</strong><ul><li>TCP链接由TCP Main进程负责分配</li><li>accept新的TCP/TLS链接</li><li>维护TCP链接的生命周期</li></ul></li><li><strong>负载策略</strong><ul><li>选择最小负载的tcp worker进程</li></ul></li><li><strong>链接亲和性</strong><ul><li>当conn[1]第一次被绑定到tcp woker[1]上时， 后续从conn[1]上读数据都会由worker[1]处理。 注意，链接在未收到任何数据时，不会分配给任何的worker。</li></ul></li></ul><h2 id=33-调用链分析>3.3. 调用链分析<a hidden class=anchor aria-hidden=true href=#33-调用链分析>#</a></h2><pre class=mermaid>flowchart LR
+    tcp_main:handle_io --&gt; tcp_main:handle_new_connect
+    tcp_main:handle_io --&gt; tcp_main:handle_tcpconn_ev
+	tcp_main:handle_new_connect --&gt; tcp_main:send2child
+	tcp_main:handle_tcpconn_ev --&gt; tcp_main:send2child
+	tcp_main:send2child --&gt; tcp_main:handle_tcp_child
+	tcp_main:send2child --&gt; tcp_main:handle_ser_child
+	tcp_main:handle_io --&gt; tcp_main:handle_tcp_child
+	tcp_main:handle_tcp_child --&gt; io_watch_add
+	tcp_main:handle_io --&gt; tcp_main:handle_ser_child
+	tcp_main:handle_ser_child --&gt; io_watch_add
+	main:main_loop --&gt; tcp_main:tcp_main_loop
+	tcp_main:tcp_main_loop -- tcp listen sockets --&gt; io_watch_add
+	tcp_main:tcp_main_loop -- tls listen sockets --&gt; io_watch_add
+	tcp_main:tcp_main_loop -- process unix_sockets --&gt; io_watch_add
+	tcp_main:tcp_main_loop -- tcp child unix_sockets --&gt; io_watch_add
+	tcp_read:handle_io --&gt; io_watch_add
+	tcp_read:tcp_receive_loop --tcpmain socket--&gt; io_watch_add
+	tcp_read:tcp_receive_loop --&gt; io_wait_loop_epoll
+	
+	tcp_main:tcp_main_loop --&gt; io_wait_loop_epoll --&gt; handle_io
+	main:main_loop --&gt; tcp_main:tcp_init_children --&gt; tcp_read:tcp_receive_loop
+</pre><p>整个调用链关系很复杂，但是重点只需要关注几类事件</p><ul><li><strong>TCP Main</strong><ul><li>事件回调handle_io<ul><li><strong>F_SOCKINFO</strong> 新的TCP链接建立</li><li><strong>F_TCPCONN</strong> 链接断开，可读，可写等等</li><li><strong>F_TCPCHILD</strong> 来自TCP子进程的消息</li><li><strong>F_PROC</strong> 来自其他进程的消息</li></ul></li><li>事件订阅tcp_main_loop<ul><li>POLLN<ul><li>tcp SIP 链接</li><li>tls SIP 链接</li><li>unix_sock 通用进程间通信</li><li>tcp_children TCP子进程通信</li></ul></li></ul></li></ul></li></ul><h1 id=4-举例说明-udp读tcp发>4. 举例说明： UDP读TCP发<a hidden class=anchor aria-hidden=true href=#4-举例说明-udp读tcp发>#</a></h1><p>场景说明</p><ul><li>SIP INVITE从UDP端口接收, 然后发现目标地址是一个TCP地址，而且这个链接已经存在</li></ul><pre class=mermaid>sequenceDiagram
+    participant x as XXX
+    participant u as UDP worker
+    participant m as TCP main
+    participant t as TCP receiver-1
+    participant ua as MicroSIP
+
+    x-&gt;&gt;u: INVITE/UDP MicroSIP
+
+    opt IPC
+      u-)m: Get TCP conn FD
+      m-)u: TCP FD 12
+    end
+
+    u-&gt;&gt;ua: INVITE/TCP MicroSIP
+
+    ua --&gt;&gt;t: 180/TCP
+    t--&gt;&gt;x: 180/UDP
+    ua --&gt;&gt;t: 200 Ok/TCP
+    t--&gt;&gt;x: 200 Ok/UDP
+</pre><div style=margin-top:40px;text-align:center><hr><img src=/images/wechat-01.png style="max-width:500px;display:block;margin:0 auto"></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://wdd.js.org/zh/tags/kamailio/>Kamailio</a></li><li><a href=https://wdd.js.org/zh/tags/ipc/>Ipc</a></li></ul><nav class=paginav><a class=prev href=https://wdd.js.org/zh/posts/2026/when-you-need-opensips-or-kamailio/><span class=title>« 上一页</span><br><span>图解VoIP#1: 你什么时候需要OpenSIPS或kamailio - 软交换架构演进之路</span>
+</a><a class=next href=https://wdd.js.org/zh/posts/2026/how-ack-set-request-url/><span class=title>下一页 »</span><br><span>ACK消息的URI来自哪里？</span></a></nav></footer><script src=https://giscus.app/client.js data-repo=wangduanduan/wangduanduan.github.io data-repo-id="MDEwOlJlcG9zaXRvcnkxMTkyMjMyNjA=" data-category=Announcements data-category-id=DIC_kwDOBxsz3M4CAjBq data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=bottom data-theme=preferred_color_scheme data-lang=zh-CN crossorigin=anonymous async></script></article></main><footer class=footer><span>&copy; 2026 <a href=https://wdd.js.org/zh/>The SIP Lab</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body><script type=module>
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script></html>
