@@ -3,6 +3,7 @@ title: "图解VoIP#1: 你什么时候需要OpenSIPS或kamailio - 软交换架构
 date: "2026-03-09 18:26:07"
 draft: false
 type: posts
+translationKey: foo
 tags:
 - VoIP
 - OpenSIPS
