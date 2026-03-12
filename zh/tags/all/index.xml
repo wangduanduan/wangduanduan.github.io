@@ -25,13 +25,13 @@
   &lt;tbody&gt;
       &lt;tr&gt;
           &lt;td&gt;性能&lt;/td&gt;
-          &lt;td&gt;5&lt;/td&gt;
+          &lt;td&gt;4.5&lt;/td&gt;
           &lt;td&gt;5&lt;/td&gt;
           &lt;td&gt;性能接近&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td&gt;脚本能力&lt;/td&gt;
-          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
           &lt;td&gt;5&lt;/td&gt;
           &lt;td&gt;kmailio脚本更友好，支持预处理，宏&lt;/td&gt;
       &lt;/tr&gt;
@@ -42,43 +42,44 @@
           &lt;td&gt;opensips开发更激进，所以稳定性没有kamailio高&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td&gt;场景&lt;/td&gt;
+          &lt;td&gt;特殊能力&lt;/td&gt;
           &lt;td&gt;5&lt;/td&gt;
           &lt;td&gt;3&lt;/td&gt;
-          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;opensips在拓扑隐藏，注册信息同步，动态新增SIP端口方面能力更强&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;无论从哪些方面，OpenSIPS和Kamailio似乎都可以相互替代。&lt;/p&gt;
-&lt;p&gt;但是，有几个特殊的地方，你可能要提前考虑，而不要走到死路再回头。&lt;/p&gt;
-&lt;h1 id=&#34;1-拓扑隐藏&#34;&gt;1. 拓扑隐藏&lt;/h1&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;11-最简单的场景不做拓扑隐藏&#34;&gt;1.1. 最简单的场景：不做拓扑隐藏&lt;/h2&gt;
-&lt;p&gt;假设一个典型架构：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;UAC  →  SIP Proxy  →  Media Server
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;例如：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Alice (10.1.1.10)
-        |
-     Proxy
-        |
-FreeSWITCH (10.1.2.20)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Alice 呼叫 Bob，发送 &lt;code&gt;INVITE&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;原始 SIP 请求：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;INVITE sip:bob@example.com SIP/2.0
-Via: SIP/2.0/UDP 10.1.1.10:5060
-From: &amp;lt;sip:alice@example.com&amp;gt;
-To: &amp;lt;sip:bob@example.com&amp;gt;
-Call-ID: 123456@10.1.1.10
-Contact: &amp;lt;sip:alice@10.1.1.10&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;经过 Proxy 转发后：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;INVITE sip:bob@10.1.2.20 SIP/2.0
-Via: SIP/2.0/UDP proxy.example.com
-Via: SIP/2.0/UDP 10.1.1.10
-From: &amp;lt;sip:alice@example.com&amp;gt;
-To: &amp;lt;sip:bob@example.com&amp;gt;
-Call-ID: 123456@10.1.1.10
-Contact: &amp;lt;sip:alice@10.1.1.10&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;FreeSWITCH 现在可以看到：&lt;/p&gt;</description>
+&lt;p&gt;但是，有几个特别的能力，你可能要提前考虑。&lt;/p&gt;
+&lt;h1 id=&#34;1-拓扑隐藏能力&#34;&gt;1. 拓扑隐藏能力&lt;/h1&gt;
+&lt;h2 id=&#34;11-什么是拓扑隐藏&#34;&gt;1.1. 什么是拓扑隐藏&lt;/h2&gt;
+&lt;p&gt;假设某 VoIP 运营商没有启用拓扑隐藏，对方运营商收到的 &lt;code&gt;INVITE&lt;/code&gt; 可能是这样的：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;INVITE sip:441234567890@carrierB.net SIP/2.0
+Via: SIP/2.0/UDP gw3.carrierA.net:5060;branch=z9hG4bK-342343
+Via: SIP/2.0/UDP core-switch1.internal.local:5060;branch=z9hG4bK-983423
+Via: SIP/2.0/UDP edge1.carrierA.net:5060;branch=z9hG4bK-238472
+From: &amp;lt;sip:+12065550123@carrierA.net&amp;gt;;tag=98324
+To: &amp;lt;sip:+441234567890@carrierB.net&amp;gt;
+Call-ID: a98sdasdh23@10.12.0.15
+Contact: &amp;lt;sip:fs1.internal.local:5060&amp;gt;
+Record-Route: &amp;lt;sip:edge1.carrierA.net;lr&amp;gt;
+Record-Route: &amp;lt;sip:core-switch1.internal.local;lr&amp;gt;
+User-Agent: FreeSWITCH-mod_sofia/1.10
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;看起来只是普通 SIP 报文，但实际上信息量&lt;strong&gt;非常巨大&lt;/strong&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Via头会暴露&lt;strong&gt;所有经过的节点&lt;/strong&gt;， 只靠一个包就能画出你的 SIP 网络图&lt;/li&gt;
+&lt;li&gt;Call-ID暴露内网地址：Call-ID: &lt;a href=&#34;mailto:a98sdasdh23@10.12.0.15&#34;&gt;a98sdasdh23@10.12.0.15&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;User-Agent暴露了服务器类型和版本，黑客会直接去查询对应版本的CVE和漏洞&lt;/li&gt;
+&lt;li&gt;Record-Route暴露dialog经过哪些节点&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;黑客利用上面的信息，针对弱点攻击：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SIP flood&lt;/li&gt;
+&lt;li&gt;REGISTER attack&lt;/li&gt;
+&lt;li&gt;RTP injection&lt;/li&gt;
+&lt;li&gt;SIP scanning&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;启用拓扑隐藏后，对方只能看到一个对外的SIP Server， 内部网络信息被完全隐藏。&lt;/p&gt;</description>
     </item>
     <item>
       <title>SipWise C5 架构分析 WIP</title>
