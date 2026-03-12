@@ -13,7 +13,43 @@
       <link>https://wdd.js.org/zh/posts/2026/opensips-vs-kamilio-which-one-should-you-choose/</link>
       <pubDate>Wed, 11 Mar 2026 21:05:30 +0800</pubDate>
       <guid>https://wdd.js.org/zh/posts/2026/opensips-vs-kamilio-which-one-should-you-choose/</guid>
-      <description>&lt;p&gt;无论从哪些方面，OpenSIPS和Kamailio似乎都可以相互替代。&lt;/p&gt;
+      <description>&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;维度&lt;/th&gt;
+          &lt;th&gt;opensips&lt;/th&gt;
+          &lt;th&gt;kamalio&lt;/th&gt;
+          &lt;th&gt;说明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;性能&lt;/td&gt;
+          &lt;td&gt;5&lt;/td&gt;
+          &lt;td&gt;5&lt;/td&gt;
+          &lt;td&gt;性能接近&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;脚本能力&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;5&lt;/td&gt;
+          &lt;td&gt;kmailio脚本更友好，支持预处理，宏&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;稳定性&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;5&lt;/td&gt;
+          &lt;td&gt;opensips开发更激进，所以稳定性没有kamailio高&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;场景&lt;/td&gt;
+          &lt;td&gt;5&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;无论从哪些方面，OpenSIPS和Kamailio似乎都可以相互替代。&lt;/p&gt;
 &lt;p&gt;但是，有几个特殊的地方，你可能要提前考虑，而不要走到死路再回头。&lt;/p&gt;
 &lt;h1 id=&#34;1-拓扑隐藏&#34;&gt;1. 拓扑隐藏&lt;/h1&gt;
 &lt;hr&gt;
@@ -42,16 +78,7 @@ From: &amp;lt;sip:alice@example.com&amp;gt;
 To: &amp;lt;sip:bob@example.com&amp;gt;
 Call-ID: 123456@10.1.1.10
 Contact: &amp;lt;sip:alice@10.1.1.10&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;FreeSWITCH 现在可以看到：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;UAC IP：&lt;code&gt;10.1.1.10&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;内部网络结构&lt;/li&gt;
-&lt;li&gt;Proxy 地址&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;整个网络拓扑完全暴露。&lt;/strong&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;12-使用拓扑隐藏&#34;&gt;1.2. 使用拓扑隐藏&lt;/h2&gt;
-&lt;p&gt;加入拓扑隐藏后：&lt;/p&gt;</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;FreeSWITCH 现在可以看到：&lt;/p&gt;</description>
     </item>
     <item>
       <title>图解VoIP#1: 你什么时候需要OpenSIPS或kamailio - 软交换架构演进之路</title>
