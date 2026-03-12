@@ -132,6 +132,78 @@
                 href="https://wdd.js.org/en/about/"
                 />
   </url><url>
+    <loc>https://wdd.js.org/en/404/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/404/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/404/"
+                />
+  </url><url>
+    <loc>https://wdd.js.org/en/network/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/network/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/network/"
+                />
+  </url><url>
+    <loc>https://wdd.js.org/en/kamailio/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/kamailio/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/kamailio/"
+                />
+  </url><url>
+    <loc>https://wdd.js.org/en/opensips/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/opensips/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/opensips/"
+                />
+  </url><url>
+    <loc>https://wdd.js.org/en/freeswitch/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/freeswitch/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/freeswitch/"
+                />
+  </url><url>
+    <loc>https://wdd.js.org/en/archives/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/archives/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/archives/"
+                />
+  </url><url>
     <loc>https://wdd.js.org/en/search/</loc>
     <xhtml:link
                 rel="alternate"
@@ -142,18 +214,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://wdd.js.org/en/search/"
-                />
-  </url><url>
-    <loc>https://wdd.js.org/en/archives/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://wdd.js.org/archives/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://wdd.js.org/en/archives/"
                 />
   </url>
 </urlset>

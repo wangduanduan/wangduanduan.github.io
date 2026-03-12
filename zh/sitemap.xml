@@ -195,6 +195,16 @@
   </url><url>
     <loc>https://wdd.js.org/zh/opensips/</loc>
     <lastmod>2025-05-27T20:10:22+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/opensips/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/opensips/"
+                />
   </url><url>
     <loc>https://wdd.js.org/zh/opensips/ch1/ha/</loc>
     <lastmod>2025-05-27T20:10:22+08:00</lastmod>
@@ -213,6 +223,16 @@
   </url><url>
     <loc>https://wdd.js.org/zh/kamailio/</loc>
     <lastmod>2025-04-18T23:05:15+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/kamailio/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/kamailio/"
+                />
   </url><url>
     <loc>https://wdd.js.org/zh/kamailio/read-bad-tcp/</loc>
     <lastmod>2025-04-18T23:05:15+08:00</lastmod>
@@ -240,6 +260,16 @@
   </url><url>
     <loc>https://wdd.js.org/zh/network/</loc>
     <lastmod>2025-01-01T20:23:41+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/network/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/network/"
+                />
   </url><url>
     <loc>https://wdd.js.org/zh/network/rfc768-udp/</loc>
     <lastmod>2025-01-01T20:23:41+08:00</lastmod>
@@ -516,6 +546,16 @@
   </url><url>
     <loc>https://wdd.js.org/zh/freeswitch/</loc>
     <lastmod>2022-06-01T08:27:53+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/freeswitch/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/freeswitch/"
+                />
   </url><url>
     <loc>https://wdd.js.org/zh/freeswitch/install-bcg729/</loc>
     <lastmod>2022-05-28T17:34:13+08:00</lastmod>
@@ -1263,7 +1303,7 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://wdd.js.org/en/404.html"
+                href="https://wdd.js.org/en/404/"
                 />
     <xhtml:link
                 rel="alternate"
@@ -1311,7 +1351,7 @@
   </url><url>
     <loc>https://wdd.js.org/zh/kamailio/56/</loc>
   </url><url>
-    <loc>https://wdd.js.org/archives/</loc>
+    <loc>https://wdd.js.org/zh/archives/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -1320,7 +1360,7 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://wdd.js.org/archives/"
+                href="https://wdd.js.org/zh/archives/"
                 />
   </url><url>
     <loc>https://wdd.js.org/zh/search/</loc>
