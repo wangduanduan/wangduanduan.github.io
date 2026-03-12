@@ -20,6 +20,15 @@ minify:
 mainSections:
   - posts
 
+DefaultContentLanguage: zh
+defaultContentLanguageInSubdir: true
+languages:
+  zh:
+    languageName: "中文"
+    weight: 1
+  en:
+    languageName: English
+    weight: 1
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
@@ -88,6 +97,8 @@ params:
   socialIcons:
     - name: github
       url: "https://github.com/wangduanduan"
+    - name: discord
+      url: "https://discord.gg/duayDtk6Ht"
     - name: email
       url: "mailto:eddie2072@icloud.com"
     - name: RSS

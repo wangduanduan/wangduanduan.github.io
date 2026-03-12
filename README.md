@@ -1,17 +1,13 @@
-# Eddie(艾迪)的洞香春
+# The SIP Lab Blog
 
-> 夫天地者，万物之逆旅也；光阴者，百代之过客也。而浮生若梦，为欢几何？
-
-![GitHub last commit](https://img.shields.io/github/last-commit/wangduanduan/wangduanduan.github.io.svg) 
-![GitHub issues](https://img.shields.io/github/issues/wangduanduan/wangduanduan.github.io.svg) 
-![GitHub closed issues](https://img.shields.io/github/issues-closed/wangduanduan/wangduanduan.github.io.svg)
+> Deep dives into VoIP, SIP, OpenSIPS, and Kamailio.
 
 
 # Thanks 
 
-感谢下面读者提出的反馈，包括错别字修改，内容建议，问题交流等。
+Thanks to the following readers for their feedback, including typo corrections, content suggestions, and discussions.
 
-每个点评都很重要，感谢🙏！
+Every comment is valuable. Thank you 🙏!
 
 - [hongxupeace](https://github.com/hongxupeace)
 - [Kitoali](https://github.com/Kitoali)
