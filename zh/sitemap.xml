@@ -4,6 +4,16 @@
   <url>
     <loc>https://wdd.js.org/zh/categories/all/</loc>
     <lastmod>2026-03-11T21:05:30+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/categories/all/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/categories/all/"
+                />
   </url><url>
     <loc>https://wdd.js.org/zh/tags/all/</loc>
     <lastmod>2026-03-11T21:05:30+08:00</lastmod>
@@ -26,6 +36,16 @@
   </url><url>
     <loc>https://wdd.js.org/zh/posts/</loc>
     <lastmod>2026-03-11T21:05:30+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/posts/"
+                />
   </url><url>
     <loc>https://wdd.js.org/zh/tags/</loc>
     <lastmod>2026-03-11T21:05:30+08:00</lastmod>
@@ -55,12 +75,42 @@
   </url><url>
     <loc>https://wdd.js.org/zh/tags/kamailio/</loc>
     <lastmod>2026-03-09T18:26:07+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/tags/kamailio/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/tags/kamailio/"
+                />
   </url><url>
     <loc>https://wdd.js.org/zh/tags/opensips/</loc>
     <lastmod>2026-03-09T18:26:07+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/tags/opensips/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/tags/opensips/"
+                />
   </url><url>
     <loc>https://wdd.js.org/zh/tags/voip/</loc>
     <lastmod>2026-03-09T18:26:07+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/tags/voip/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/tags/voip/"
+                />
   </url><url>
     <loc>https://wdd.js.org/zh/posts/2026/when-you-need-opensips-or-kamailio/</loc>
     <lastmod>2026-03-09T18:26:07+08:00</lastmod>
@@ -1192,6 +1242,16 @@
   </url><url>
     <loc>https://wdd.js.org/zh/about/</loc>
     <lastmod>2018-01-31T12:09:09+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/about/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/about/"
+                />
   </url><url>
     <loc>https://wdd.js.org/zh/tags/csta/</loc>
     <lastmod>2018-01-29T21:35:24+08:00</lastmod>
@@ -1252,7 +1312,27 @@
     <loc>https://wdd.js.org/zh/kamailio/56/</loc>
   </url><url>
     <loc>https://wdd.js.org/archives/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/archives/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/archives/"
+                />
   </url><url>
-    <loc>https://wdd.js.org/search/</loc>
+    <loc>https://wdd.js.org/zh/search/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/search/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/search/"
+                />
   </url>
 </urlset>

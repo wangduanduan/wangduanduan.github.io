@@ -2,7 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://wdd.js.org/en/categories/all/</loc>
+    <lastmod>2026-03-09T18:26:07+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/categories/all/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/categories/all/"
+                />
+  </url><url>
     <loc>https://wdd.js.org/en/categories/</loc>
+    <lastmod>2026-03-09T18:26:07+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -14,7 +28,47 @@
                 href="https://wdd.js.org/en/categories/"
                 />
   </url><url>
+    <loc>https://wdd.js.org/en/tags/kamailio/</loc>
+    <lastmod>2026-03-09T18:26:07+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/tags/kamailio/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/tags/kamailio/"
+                />
+  </url><url>
+    <loc>https://wdd.js.org/en/tags/opensips/</loc>
+    <lastmod>2026-03-09T18:26:07+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/tags/opensips/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/tags/opensips/"
+                />
+  </url><url>
+    <loc>https://wdd.js.org/en/posts/</loc>
+    <lastmod>2026-03-09T18:26:07+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/posts/"
+                />
+  </url><url>
     <loc>https://wdd.js.org/en/tags/</loc>
+    <lastmod>2026-03-09T18:26:07+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -27,6 +81,7 @@
                 />
   </url><url>
     <loc>https://wdd.js.org/en/</loc>
+    <lastmod>2026-03-09T18:26:07+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -36,6 +91,69 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://wdd.js.org/en/"
+                />
+  </url><url>
+    <loc>https://wdd.js.org/en/tags/voip/</loc>
+    <lastmod>2026-03-09T18:26:07+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/tags/voip/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/tags/voip/"
+                />
+  </url><url>
+    <loc>https://wdd.js.org/en/posts/2026/when-you-need-opensips-or-kamailio/</loc>
+    <lastmod>2026-03-09T18:26:07+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/posts/2026/when-you-need-opensips-or-kamailio/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/posts/2026/when-you-need-opensips-or-kamailio/"
+                />
+  </url><url>
+    <loc>https://wdd.js.org/en/about/</loc>
+    <lastmod>2018-01-31T12:09:09+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/about/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/about/"
+                />
+  </url><url>
+    <loc>https://wdd.js.org/en/search/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/search/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/search/"
+                />
+  </url><url>
+    <loc>https://wdd.js.org/en/archives/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/archives/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/archives/"
                 />
   </url>
 </urlset>
