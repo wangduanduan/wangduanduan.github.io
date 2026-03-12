@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Kamailio on The SIP Lab</title>
+    <link>https://wdd.js.org/tags/kamailio/</link>
+    <description>Recent content in Kamailio on The SIP Lab</description>
+    <generator>Hugo -- 0.151.0</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 09 Mar 2026 18:26:07 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/kamailio/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VoIP Explained #1: When Do You Need OpenSIPS or Kamailio? The Evolution of Softswitch Architecture</title>
+      <link>https://wdd.js.org/posts/2026/when-you-need-opensips-or-kamailio/</link>
+      <pubDate>Mon, 09 Mar 2026 18:26:07 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2026/when-you-need-opensips-or-kamailio/</guid>
+      <description>&lt;h1 id=&#34;the-simplest-architecture--the-1-node-architecture&#34;&gt;The Simplest Architecture – The 1-Node Architecture&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;1-Node Architecture: 1 FreeSWITCH Node&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;In the simplest VoIP architecture, you only need to deploy a single &lt;strong&gt;FreeSWITCH&lt;/strong&gt; server with a public IP address to start providing calling services.&lt;/p&gt;
+&lt;p&gt;Extensions register directly to the FreeSWITCH server, and the server connects directly to SIP trunks.&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/posts/2026/when-you-need-opensips-or-kamailio/p1.drawio.svg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;However, it doesn’t take long before you start encountering the following problems:&lt;/p&gt;
+&lt;h2 id=&#34;security-issues&#34;&gt;Security Issues&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Direct Internet exposure&lt;/strong&gt;&lt;br&gt;
+FreeSWITCH is directly exposed to the public Internet, which inevitably means it will be attacked.&lt;br&gt;
+While trunk connections can be protected with network policies, extension IP addresses are often dynamic.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>图解Kamailio进程间通信详解</title>
+      <link>https://wdd.js.org/posts/2026/kamailio-ipc/</link>
+      <pubDate>Fri, 06 Mar 2026 15:42:42 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2026/kamailio-ipc/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-%E6%A6%82%E8%BF%B0&#34;&gt;1. 概述&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-udp-socket%E8%BF%9B%E7%A8%8B%E5%A4%84%E7%90%86%E5%88%86%E6%9E%90&#34;&gt;2. UDP Socket进程处理分析&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#21-udp%E7%AB%AF%E5%8F%A3%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86&#34;&gt;2.1. UDP端口信息收集&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#22-%E7%AB%AF%E5%8F%A3%E7%BB%91%E5%AE%9A&#34;&gt;2.2. 端口绑定&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#23-%E8%BF%9B%E7%A8%8Bfork%E9%98%B6%E6%AE%B5&#34;&gt;2.3. 进程fork阶段&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#24-udp-read-%E9%98%B6%E6%AE%B5&#34;&gt;2.4. UDP read 阶段&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#25-udp-%E6%B6%88%E6%81%AF%E8%BF%9B%E7%A8%8B%E9%97%B4%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E9%98%B6%E6%AE%B5&#34;&gt;2.5. UDP 消息进程间负载均衡阶段&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-tcp%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86%E5%88%86%E6%9E%90&#34;&gt;3. TCP消息处理分析&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#31-%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86%E6%A8%A1%E5%9E%8B&#34;&gt;3.1. 消息处理模型&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#32-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%AD%96%E7%95%A5&#34;&gt;3.2. 负载均衡策略&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#33-%E8%B0%83%E7%94%A8%E9%93%BE%E5%88%86%E6%9E%90&#34;&gt;3.3. 调用链分析&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-%E4%B8%BE%E4%BE%8B%E8%AF%B4%E6%98%8E-udp%E8%AF%BBtcp%E5%8F%91&#34;&gt;4. 举例说明： UDP读TCP发&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;1-概述&#34;&gt;1. 概述&lt;/h1&gt;
+&lt;p&gt;kamailio SIP消息处理进程主要分为三类。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;类别&lt;/th&gt;
+          &lt;th&gt;功能&lt;/th&gt;
+          &lt;th&gt;数量&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;UDP worker进程&lt;/td&gt;
+          &lt;td&gt;处理以UDP传输的SIP消息&lt;/td&gt;
+          &lt;td&gt;port * children&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;TCP main进程&lt;/td&gt;
+          &lt;td&gt;负责tcp链接管理，生命周期维护，tcp work的消息分发&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;TCP worker进程&lt;/td&gt;
+          &lt;td&gt;处理以TCP传输的SIP消息&lt;/td&gt;
+          &lt;td&gt;children&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;以下面的配置为例：&lt;/p&gt;
+&lt;p&gt;则SIP消息处理进程数量为：&lt;code&gt;4 * 2 + 1 + 4&lt;/code&gt; = 13个&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;children&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;listen&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;udp:127.0.0.1:5060
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;listen&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;udp:127.0.0.1:5080
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;listen&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;tcp:127.0.0.1:5061
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在生成环境，建议children设置为&lt;code&gt;CPU核数&lt;/code&gt;,  这样能最大化利用多核能力，并且避免太多的进程切换。&lt;/p&gt;
+&lt;h1 id=&#34;2-udp-socket进程处理分析&#34;&gt;2. UDP Socket进程处理分析&lt;/h1&gt;
+&lt;p&gt;UDP Socket处理主要分为三个步骤&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>第一节 如何熟悉Kamailio文档的文档结构</title>
+      <link>https://wdd.js.org/kamailio/docs-index/</link>
+      <pubDate>Mon, 02 Dec 2024 22:43:24 +0800</pubDate>
+      <guid>https://wdd.js.org/kamailio/docs-index/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;我始终认为，快速学习一门知识，最为重要的就是熟悉它的文档结构。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;对于熟悉OpenSIPS的文档结构来说的人，看了Kamailio的文档，往往觉得无从下手。&lt;/p&gt;
+&lt;p&gt;当我们打开Km的官网(kamailio.org)后， 会重定向到https://www.kamailio.org/w/,  在页面的右侧，&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/docs-index/atta/2024-12-02-22-57-06.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;接着，我们会导航到 &lt;a href=&#34;https://www.kamailio.org/w/documentation/&#34;&gt;https://www.kamailio.org/w/documentation/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这个页面的结构需要烂熟于心&lt;/p&gt;
+&lt;h1 id=&#34;1-模块文档&#34;&gt;1. 模块文档&lt;/h1&gt;
+&lt;p&gt;如果你知道km的版本号和对应的模块，可以点击这里进入对应版本，然后再选择对应模块&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/docs-index/atta/2024-12-02-23-03-53.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;2-wiki部分&#34;&gt;2. wiki部分&lt;/h1&gt;
+&lt;h2 id=&#34;21-必学部分&#34;&gt;2.1 必学部分&lt;/h2&gt;
+&lt;p&gt;wiki部分主要是一些教程，非常值得看。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/docs-index/atta/2024-12-02-23-05-57.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;其中有三个重点部分&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;core cookbook&lt;/strong&gt;： 主要讲解km的脚本的结构、全局参数、模块参数、路由类型、预处理、脚本操作等等，是编写km脚本的必学之处，各种参数都可以看看&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pseudo-Variables CookBook&lt;/strong&gt;：主要讲解各种伪变量，用来读写SIP消息&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Transformations CookBook&lt;/strong&gt;： 主要讲解各种操作变换，例如把字符串型转为int型数据&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/docs-index/atta/2024-12-02-23-07-06.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;全部函数索引&#34;&gt;全部函数索引&lt;/h2&gt;
+&lt;p&gt;在km的wiki官网，即https://www.kamailio.org/wikidocs/， 其中Alphabetic Indexes就是所有的参数或者函数的索引。&lt;/p&gt;
+&lt;p&gt;在你学些km的脚本时，有时候想知道某个函数在哪个模块中，就可以用这个全部函数索引中查找。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/docs-index/atta/2024-12-07-11-37-37.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;源码安装&#34;&gt;源码安装&lt;/h2&gt;
+&lt;p&gt;这部分讲解如何通过GIT进行源码安装。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/docs-index/atta/2024-12-02-23-12-53.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;faq&#34;&gt;FAQ&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.kamailio.org/wikidocs/tutorials/faq/main/&#34;&gt;https://www.kamailio.org/wikidocs/tutorials/faq/main/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;外部资源&#34;&gt;外部资源&lt;/h2&gt;
+&lt;p&gt;这里涉及了如何用km和常见的媒体服务器如何集成&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/docs-index/atta/2024-12-02-23-16-07.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/docs-index/atta/2024-12-02-23-31-00.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://wdd.js.org/kamailio/docs-index/atta/2024-12-02-23-33-15.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;其他&#34;&gt;其他&lt;/h1&gt;
+&lt;p&gt;官方的Web版本的wiki, 对于刚入门的人来说，还是有点绕的。&lt;/p&gt;
+&lt;p&gt;另外一个问题就是mkdocs的页面渲染效果的确不太行，目录滚动一点都不灵敏。&lt;/p&gt;
+&lt;p&gt;如果你想看的不是某个模块的说明文档，我更建议你直接把https://github.com/kamailio/kamailio-wiki 这个git仓库下载到本地查看。&lt;/p&gt;
+&lt;h1 id=&#34;总结&#34;&gt;总结&lt;/h1&gt;
+&lt;p&gt;总体来说，km的文档算是非常完整了，但是和OpenSIPS相比，还有待加强。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

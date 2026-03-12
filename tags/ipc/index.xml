@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Ipc on The SIP Lab</title>
+    <link>https://wdd.js.org/tags/ipc/</link>
+    <description>Recent content in Ipc on The SIP Lab</description>
+    <generator>Hugo -- 0.151.0</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 06 Mar 2026 15:42:42 +0800</lastBuildDate>
+    <atom:link href="https://wdd.js.org/tags/ipc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>图解Kamailio进程间通信详解</title>
+      <link>https://wdd.js.org/posts/2026/kamailio-ipc/</link>
+      <pubDate>Fri, 06 Mar 2026 15:42:42 +0800</pubDate>
+      <guid>https://wdd.js.org/posts/2026/kamailio-ipc/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-%E6%A6%82%E8%BF%B0&#34;&gt;1. 概述&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-udp-socket%E8%BF%9B%E7%A8%8B%E5%A4%84%E7%90%86%E5%88%86%E6%9E%90&#34;&gt;2. UDP Socket进程处理分析&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#21-udp%E7%AB%AF%E5%8F%A3%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86&#34;&gt;2.1. UDP端口信息收集&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#22-%E7%AB%AF%E5%8F%A3%E7%BB%91%E5%AE%9A&#34;&gt;2.2. 端口绑定&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#23-%E8%BF%9B%E7%A8%8Bfork%E9%98%B6%E6%AE%B5&#34;&gt;2.3. 进程fork阶段&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#24-udp-read-%E9%98%B6%E6%AE%B5&#34;&gt;2.4. UDP read 阶段&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#25-udp-%E6%B6%88%E6%81%AF%E8%BF%9B%E7%A8%8B%E9%97%B4%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E9%98%B6%E6%AE%B5&#34;&gt;2.5. UDP 消息进程间负载均衡阶段&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-tcp%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86%E5%88%86%E6%9E%90&#34;&gt;3. TCP消息处理分析&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#31-%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86%E6%A8%A1%E5%9E%8B&#34;&gt;3.1. 消息处理模型&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#32-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%AD%96%E7%95%A5&#34;&gt;3.2. 负载均衡策略&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#33-%E8%B0%83%E7%94%A8%E9%93%BE%E5%88%86%E6%9E%90&#34;&gt;3.3. 调用链分析&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-%E4%B8%BE%E4%BE%8B%E8%AF%B4%E6%98%8E-udp%E8%AF%BBtcp%E5%8F%91&#34;&gt;4. 举例说明： UDP读TCP发&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;1-概述&#34;&gt;1. 概述&lt;/h1&gt;
+&lt;p&gt;kamailio SIP消息处理进程主要分为三类。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;类别&lt;/th&gt;
+          &lt;th&gt;功能&lt;/th&gt;
+          &lt;th&gt;数量&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;UDP worker进程&lt;/td&gt;
+          &lt;td&gt;处理以UDP传输的SIP消息&lt;/td&gt;
+          &lt;td&gt;port * children&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;TCP main进程&lt;/td&gt;
+          &lt;td&gt;负责tcp链接管理，生命周期维护，tcp work的消息分发&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;TCP worker进程&lt;/td&gt;
+          &lt;td&gt;处理以TCP传输的SIP消息&lt;/td&gt;
+          &lt;td&gt;children&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;以下面的配置为例：&lt;/p&gt;
+&lt;p&gt;则SIP消息处理进程数量为：&lt;code&gt;4 * 2 + 1 + 4&lt;/code&gt; = 13个&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;children&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;listen&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;udp:127.0.0.1:5060
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;listen&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;udp:127.0.0.1:5080
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;listen&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;tcp:127.0.0.1:5061
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在生成环境，建议children设置为&lt;code&gt;CPU核数&lt;/code&gt;,  这样能最大化利用多核能力，并且避免太多的进程切换。&lt;/p&gt;
+&lt;h1 id=&#34;2-udp-socket进程处理分析&#34;&gt;2. UDP Socket进程处理分析&lt;/h1&gt;
+&lt;p&gt;UDP Socket处理主要分为三个步骤&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
