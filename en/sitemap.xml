@@ -144,16 +144,16 @@
                 href="https://wdd.js.org/en/404/"
                 />
   </url><url>
-    <loc>https://wdd.js.org/en/network/</loc>
+    <loc>https://wdd.js.org/en/freeswitch/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://wdd.js.org/zh/network/"
+                href="https://wdd.js.org/zh/freeswitch/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://wdd.js.org/en/network/"
+                href="https://wdd.js.org/en/freeswitch/"
                 />
   </url><url>
     <loc>https://wdd.js.org/en/kamailio/</loc>
@@ -168,6 +168,18 @@
                 href="https://wdd.js.org/en/kamailio/"
                 />
   </url><url>
+    <loc>https://wdd.js.org/en/network/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://wdd.js.org/zh/network/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://wdd.js.org/en/network/"
+                />
+  </url><url>
     <loc>https://wdd.js.org/en/opensips/</loc>
     <xhtml:link
                 rel="alternate"
@@ -178,18 +190,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://wdd.js.org/en/opensips/"
-                />
-  </url><url>
-    <loc>https://wdd.js.org/en/freeswitch/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://wdd.js.org/zh/freeswitch/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://wdd.js.org/en/freeswitch/"
                 />
   </url><url>
     <loc>https://wdd.js.org/en/archives/</loc>
