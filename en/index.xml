@@ -44,12 +44,5 @@ While trunk connections can be protected with network policies, extension IP add
 &lt;p&gt;You can follow my latest posts via RSS:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://wdd.js.org/index.xml&#34;&gt;https://wdd.js.org/index.xml&lt;/a&gt;&lt;/p&gt;</description>
     </item>
-    <item>
-      <title></title>
-      <link>https://wdd.js.org/en/404/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://wdd.js.org/en/404/</guid>
-      <description>&lt;h1 id=&#34;page-not-found-2&#34;&gt;Page Not Found 2&lt;/h1&gt;</description>
-    </item>
   </channel>
 </rss>

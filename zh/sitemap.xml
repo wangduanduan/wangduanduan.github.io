@@ -1299,18 +1299,6 @@
     <loc>https://wdd.js.org/zh/posts/2018/01/csta-call-model-overview/</loc>
     <lastmod>2018-01-29T21:35:24+08:00</lastmod>
   </url><url>
-    <loc>https://wdd.js.org/zh/404/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://wdd.js.org/en/404/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://wdd.js.org/zh/404/"
-                />
-  </url><url>
     <loc>https://wdd.js.org/zh/kamailio/56/structure/</loc>
   </url><url>
     <loc>https://wdd.js.org/zh/kamailio/56/sctp-params/</loc>
